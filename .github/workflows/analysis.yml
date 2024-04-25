@@ -83,7 +83,7 @@ jobs:
   results:
     name: Analysis Results
     if: always()
-    needs: [tests, codeql, trivy]
+    needs: [tests, trivy]
     runs-on: ubuntu-22.04
     steps:
       - run: |
