@@ -22,6 +22,7 @@ jobs:
     name: Validate Results
     if: always()
     needs: [validate]
+    permissions: write-all
     runs-on: ubuntu-22.04
     steps:
       - run: |

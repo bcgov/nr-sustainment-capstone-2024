@@ -60,6 +60,7 @@ jobs:
   codeql:
     name: CodeQL Security Scan
     if: ${{ ! github.event.pull_request.draft }}
+    permissions: write-all
     runs-on: ubuntu-22.04
     timeout-minutes: 5
     steps:
