@@ -55,7 +55,7 @@ jobs:
   results:
     name: PR Results
     if: always()
-    needs: [builds, deploys, tests]
+    needs: [deploys, tests]
     runs-on: ubuntu-22.04
     steps:
       - run: |
