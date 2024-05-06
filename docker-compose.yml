@@ -10,8 +10,8 @@ services:
     environment:
       - POSTGRES_HOST=${POSTGRES_HOST:-admin}
       - POSTGRES_USER${POSTGRES_USER:-USER}
-      - POSTGRESS_PASSWORD=${POSTGRESS_PASSWORD:-admin}
-      - POSTGRESS_DATABASE=${POSTGRESS_DATABASE:-nmp}
+      - POSTGRES_PASSWORD=${POSTGRESS_PASSWORD:-admin}
+      - POSTGRES_DATABASE=${POSTGRESS_DATABASE:-nmp}
     ports:
       - 5432:5432
     healthcheck:
