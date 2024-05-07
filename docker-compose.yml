@@ -10,8 +10,8 @@ services:
     environment:
       - POSTGRES_HOST=${POSTGRES_HOST:-admin}
       - POSTGRES_USER${POSTGRES_USER:-USER}
-      - POSTGRESS_PASSWORD=${POSTGRESS_PASSWORD:-admin}
-      - POSTGRESS_DATABASE=${POSTGRESS_DATABASE:-nmp}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-admin}
+      - POSTGRES_DATABASE=${POSTGRES_DATABASE:-nmp}
     ports:
       - 5432:5432
     healthcheck:
@@ -30,7 +30,7 @@ services:
       - 5050:80
     environment:
        PGADMIN_DEFAULT_PASSWORD: admin
-       PGADMIN_DEFAULT_EMAIL: admin@nmp.container_name
+       PGADMIN_DEFAULT_EMAIL: admin@qs.com
     networks:
     - quackStack-network
 ###################
