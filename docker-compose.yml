@@ -1,9 +1,34 @@
 version: "3.9"
 name: quackstack-nmp
 services:
-  ###################
-  #     DB          #
-  ###################
+  ##########################################################
+  #                      FrontEnd                          #
+  ##########################################################
+  frontend:
+    container_name: quackStack-frontend
+    build:
+    context: ./
+    dockerfile: Dockerfile
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - node_modules/
+            - .github/
+    ports:
+      - ${PORT:-8080}:8080
+    healthcheck:
+      test: curl--fail http://localhost:8080 || exit 1
+      interval: 20s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  ##########################################################
+  #                      DB                                #
+  ##########################################################
   database:
     image: postgres:15
     container_name: quackStack-db
@@ -20,9 +45,10 @@ services:
       timeout: 30s
       retries: 5
       start_period: 20s
-  ####################
-  #     PGAdmin      #
-  ####################
+
+  ##########################################################
+  #                      PGAdmin                           #
+  ##########################################################
   pgadmin:
     image: dpage/pgadmin4
     container_name: quackStack-pgadmin
@@ -33,9 +59,9 @@ services:
        PGADMIN_DEFAULT_EMAIL: admin@qs.com
     networks:
     - quackStack-network
-###################
-#   Networks      #
-###################
+##########################################################
+#                      Network                           #
+##########################################################
 networks:
   quackStack-network:
     driver: "bridge"
