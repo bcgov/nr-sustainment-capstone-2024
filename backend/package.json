@@ -28,6 +28,10 @@
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+<<<<<<< HEAD
+=======
+    "dotenv": "^16.4.5",
+>>>>>>> main
     "morgan": "^1.10.0"
   }
 }
