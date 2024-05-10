@@ -12,5 +12,5 @@ const API_PORT = process.env.API_PORT || 3000;
 
 // Start HTTP Server
 app.listen(API_PORT, () => {
-  console.info(`Server running at http://localhost:${API_PORT}`);
+  console.info(`Server running on port: ${API_PORT}`);
 })
