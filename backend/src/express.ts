@@ -4,7 +4,7 @@ import compression from 'compression';
 import morgan from 'morgan';
 import cors from 'cors';
 import apiRouter from './routes/api.router';
-// import healthRoute from './routes/health';
+import path from 'path';
 
 const app = express();
 
@@ -22,6 +22,7 @@ app.get('/api', (req: Request, res: Response) => {
 
 // Routes
 app.use('/api', apiRouter);
-// app.use('/api/health', healthRoute);
+app.use('/api/api-docs', express.static(path.join(__dirname, './docs/redoc-static.html')));
+
 
 export default app;

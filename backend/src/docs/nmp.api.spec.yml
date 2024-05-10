@@ -1,0 +1,22 @@
+openapi: "3.1.0"
+info: 
+  title: NMP - QuackStack API
+  version: "1.0.0"
+servers:
+  - url: http://127.0.0.1:3000/api
+    description: QS NMP API Server
+security: []
+paths: 
+  /health:
+    description: API Health
+    get:
+      summary: Return API health status
+      operationId: checkHealth
+      description: |
+        If the API is healthy, respond to request
+        with a healthy status message
+      responses:
+        "200":
+          description: NMP API is healthy and ready
+        "400":
+          description: Bad Request
