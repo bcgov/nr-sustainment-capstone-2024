@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import morgan from 'morgan';
 import cors from 'cors';
-import apiRouter from './routes/api-router';
+import apiRouter from './routes/api.router';
 // import healthRoute from './routes/health';
 
 const app = express();

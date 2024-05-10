@@ -2,13 +2,13 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/index.ts",
+    "start": "ts-node src/server.ts",
     "build": "tsc",
-    "serve": "node dist/index.js",
-    "dev": "nodemon server.ts"
+    "serve": "node src/server.ts",
+    "dev": "nodemon src/server.ts"
   },
   "author": "",
   "license": "ISC",
