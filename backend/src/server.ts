@@ -1,7 +1,16 @@
+// API Server logic goes here 
+// It's the first file called when running this API
+// It hands HTTP Requests to ./express.ts
 import app from './express';
+import dotenv from 'dotenv';
 
-const port = process.env.PORT || 3000;
+// Get environment variables from .env file using DotEnv
+dotenv.config();
 
-app.listen(port, () => {
-  console.info(`Server running at http://localhost:${port}`);
+// Get api port from environment variables, failsafe to 3000
+const API_PORT = process.env.API_PORT || 3000;
+
+// Start HTTP Server
+app.listen(API_PORT, () => {
+  console.info(`Server running at http://localhost:${API_PORT}`);
 })
