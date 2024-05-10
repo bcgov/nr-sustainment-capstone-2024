@@ -1,7 +1,7 @@
 // Middleware is activated here
 // Any processing of HTTP Requests is done here 
 // before routing them to their target endpoints
-import express, {Request, Response } from 'express';
+import express from 'express';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import morgan from 'morgan';
