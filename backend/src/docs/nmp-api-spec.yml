@@ -10,7 +10,7 @@ paths:
   /health:
     description: API Health
     get:
-      summary: Return API health status
+      summary: Health status
       operationId: checkHealth
       description: |
         If the API is healthy, respond to request
