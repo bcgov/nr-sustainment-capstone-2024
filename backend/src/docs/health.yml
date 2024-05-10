@@ -1,15 +1,9 @@
-openapi: "3.1.0"
-info: 
-  title: NMP - QuackStack API
-  version: "1.0.0"
-servers:
-  - url: http://OPENSHIFT.STATIC.URL:3000/api
-    description: QS NMP API Server
-security: []
 paths: 
   /health:
     description: API Health
     get:
+      tags:
+        - Health
       summary: Health status
       operationId: checkHealth
       description: |

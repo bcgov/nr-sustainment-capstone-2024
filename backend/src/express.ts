@@ -19,9 +19,6 @@ app.use(compression());    // Compressor of body data, improving transfer speeds
 app.use(morgan('dev'));    // Logger Requests and Responses in the console
 app.use(cors());           // Activate CORS, allowing access 
 
-// Serve API static docs page
-app.use('/api/api-docs', express.static(path.join(__dirname, './docs/redoc-static.html')));
-
 // Routes
 app.use('/api', apiRouter);
 
