@@ -8,7 +8,9 @@
     "start": "ts-node src/server.ts",
     "build": "tsc",
     "serve": "node src/server.ts",
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/server.ts",
+    "lint": "eslint",
+    "format": "prettier . --write"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +23,7 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.12.11",
     "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.34.1",
     "express": "^4.19.2",
     "globals": "^15.2.0",
