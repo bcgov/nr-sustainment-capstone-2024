@@ -9,7 +9,7 @@ import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerConfig from './config/swaggerConfig';
-import apiRouter from './routes/api-router';
+import * as routers from './routes';
 
 const app = express();
 
@@ -29,6 +29,8 @@ app.use(
 );
 
 // Routes
-app.use('/api', apiRouter);
+app.use('/api', [
+  routers.healthRouter
+]);
 
 export default app;

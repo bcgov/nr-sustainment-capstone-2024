@@ -5,7 +5,6 @@ import checkHealth from '../controllers/health-api-controller';
 
 
 const router = express.Router();
-const app = express();
 
 router.route('/health').get(checkHealth);     // Simple health endpoint to check API status
 
