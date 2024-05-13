@@ -10,7 +10,7 @@ paths:
         If the API is healthy, respond to request
         with a healthy status message
       responses:
-        "200":
+        '200':
           description: NMP API is healthy and ready
-        "400":
+        '400':
           description: Bad Request
