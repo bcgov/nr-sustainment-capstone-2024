@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [
     VitePWA({
       manifest: {
+        name: 'QuackStack NMP',
+        description: 'An NMP web application designed to be mobile and desktop compatible.',
+        theme_color: '#ffffff',
         icons: [
           {
             src: '/icons/install-512.png',
