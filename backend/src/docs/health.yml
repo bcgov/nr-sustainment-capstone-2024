@@ -1,0 +1,16 @@
+paths: 
+  /health:
+    description: API Health
+    get:
+      tags:
+        - Health
+      summary: Health status
+      operationId: checkHealth
+      description: |
+        If the API is healthy, respond to request
+        with a healthy status message
+      responses:
+        "200":
+          description: NMP API is healthy and ready
+        "400":
+          description: Bad Request
