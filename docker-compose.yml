@@ -15,7 +15,7 @@ services:
     ports:
       - 5432:5432
     healthcheck:
-      test: ["CMD","pg_isready","-U","${POSTGRES_USER:-user}"]
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER:-user}"]
       interval: 20s
       timeout: 30s
       retries: 5
@@ -29,10 +29,29 @@ services:
     ports:
       - 5050:80
     environment:
-       PGADMIN_DEFAULT_PASSWORD: admin
-       PGADMIN_DEFAULT_EMAIL: admin@qs.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: admin@qs.com
     networks:
-    - quackStack-network
+      - quackStack-network
+  ###################
+  #   Backend      #
+  ###################
+  backend:
+    container_name: quackStack-api
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    develop:
+      watch:
+        - action: sync
+          path: ./backend/src
+          target: /backend/src
+          ignore:
+            - node_modules
+            - .github/
+            - .git/
 ###################
 #   Networks      #
 ###################
