@@ -9,7 +9,6 @@ COPY . .
 
 # Install all dependencies and typescript
 RUN npm i 
-RUN npm i typescript
 
 # Build the API, target is /backend/dist
 RUN npm run build

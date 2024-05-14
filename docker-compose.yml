@@ -18,7 +18,7 @@ services:
       - postgres:/var/lib/postgresql/data
       - ./database/db/entrypoint:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD","pg_isready","-U","${POSTGRES_USER:-admin}"]
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER:-admin}"]
       interval: 20s
       timeout: 30s
       retries: 5
@@ -57,6 +57,15 @@ services:
             - node_modules
             - .github/
             - .git/
+    healthcheck:
+      test: curl localhost:${PORT:-3000}/api/health | grep 'NMP API is healthy and ready!'
+      interval: 20s
+      timeout: 30s
+      retries: 5
+      start_period: 20s
+    depends_on:
+      database:
+        condition: service_healthy
 ###################
 #   Networks      #
 ###################
