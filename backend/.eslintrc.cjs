@@ -1,3 +1,5 @@
+const { off } = require("process");
+
 module.exports = {
   root: true,
   env: { es2020: true },
@@ -18,6 +20,7 @@ module.exports = {
         'import/no-absolute-path': 'off', // Disables the rule for absolute import paths
         'no-unresolved-imports': 'off', // Disables the rule for unresolved imports (not a standard ESLint rule)
         'import/no-wildcard': 'off',
+        'import/extensions': 'off',
       },
     },
   ],
