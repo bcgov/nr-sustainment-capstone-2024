@@ -1,8 +1,8 @@
-name: "Pull Request Labeller"
+name: "Pull Request Labeler"
 on:
-  - pull_request_target
+- pull_request_target
 
-jobs: 
+jobs:
   triage:
     permissions:
       contents: read
@@ -10,5 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/labeler@v4
-      with: repo-token: "${{ secrets.GITHUB_TOKEN }}"
-      configuration-path: .github/labeller.yml
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        configuration-path: .github/labeller.yaml
