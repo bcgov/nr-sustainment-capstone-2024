@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 // Middleware is activated here
 // Any processing of HTTP Requests is done here
 // before routing them to their target endpoints
@@ -8,8 +9,8 @@ import morgan from 'morgan';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
-import swaggerConfig from './config/swaggerConfig.ts';
-import * as routers from './routes/index.ts';
+import swaggerConfig from './config/swaggerConfig';
+import * as routers from './routes/index';
 
 const app = express();
 
