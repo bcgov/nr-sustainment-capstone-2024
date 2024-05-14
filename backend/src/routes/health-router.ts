@@ -3,9 +3,8 @@
 import express from 'express';
 import checkHealth from '../controllers/health-api-controller';
 
-
 const router = express.Router();
 
-router.route('/health').get(checkHealth);     // Simple health endpoint to check API status
+router.route('/health').get(checkHealth); // Simple health endpoint to check API status
 
 export default router;
