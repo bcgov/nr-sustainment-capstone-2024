@@ -8,18 +8,23 @@ services:
     image: postgres:15
     container_name: quackStack-db
     environment:
-      - POSTGRES_HOST=${POSTGRES_HOST:-admin}
-      - POSTGRES_USER${POSTGRES_USER:-USER}
+      - POSTGRES_USER=${POSTGRES_USER:-admin}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-admin}
-      - POSTGRES_DATABASE=${POSTGRES_DATABASE:-nmp}
+      - POSTGRES_DB=${POSTGRES_DATABASE:-nmp}
+      - PORT=5432
     ports:
       - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./database/db/entrypoint:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD","pg_isready","-U","${POSTGRES_USER:-user}"]
+      test: ["CMD","pg_isready","-U","${POSTGRES_USER:-admin}"]
       interval: 20s
       timeout: 30s
       retries: 5
       start_period: 20s
+    networks:
+      - quackStack-network
   ####################
   #     PGAdmin      #
   ####################
@@ -39,3 +44,6 @@ services:
 networks:
   quackStack-network:
     driver: "bridge"
+volumes:
+  postgres:
+    name: quackStack-db-vol-postgres
