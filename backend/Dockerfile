@@ -10,9 +10,6 @@ COPY . .
 # Install all dependencies and typescript
 RUN npm i 
 
-# Build the API, target is /backend/dist
-RUN npm run build
-
 # Expose 3000 to localhost
 EXPOSE 3000
 
