@@ -1,5 +1,3 @@
-const { off } = require("process");
-
 module.exports = {
   root: true,
   env: { es2020: true },
@@ -21,6 +19,7 @@ module.exports = {
         'no-unresolved-imports': 'off', // Disables the rule for unresolved imports (not a standard ESLint rule)
         'import/no-wildcard': 'off',
         'import/extensions': 'off',
+        'no-console': 'off'
       },
     },
   ],
