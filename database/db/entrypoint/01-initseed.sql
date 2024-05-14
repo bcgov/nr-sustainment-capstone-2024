@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS developers (
+  ID INT PRIMARY KEY NOT NULL,
+  FIRST_NAME VARCHAR(30) NOT NULL,
+  LAST_NAME VARCHAR(30) NOT NULL
+);
+INSERT INTO
+  developers (ID, FIRST_NAME, LAST_NAME)
+VALUES
+  (1, 'John', 'Doe'),
+  (2, 'James', 'Doe'),
+  (3, 'Jim', 'Doe')
