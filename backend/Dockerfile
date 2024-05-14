@@ -19,3 +19,4 @@ EXPOSE 3000
 
 # Run in dev mode, `npm run serve` for production
 CMD ["npm", "run", "dev"]
+USER 1001
