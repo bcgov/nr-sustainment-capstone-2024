@@ -2,7 +2,7 @@
 // It's the first file called when running this API
 // It hands HTTP Requests to ./express.ts
 import dotenv from 'dotenv';
-import app from './express.ts';
+import app from './express';
 
 // Get environment variables from .env file using DotEnv
 dotenv.config();
