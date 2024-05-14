@@ -29,4 +29,4 @@
 
 # Any changes to any swagger configurations
 'Swagger Configurations':
-  -/backend/src/config/*.ts
+  - /backend/src/config/*.ts
