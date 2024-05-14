@@ -14,6 +14,6 @@ const swaggerConfig = {
     servers: [{ url: '/api' }],
   },
   apis: ['./src/docs/*.yml'],
-}
+};
 
-export default swaggerConfig
+export default swaggerConfig;
