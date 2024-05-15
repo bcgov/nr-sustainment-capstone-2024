@@ -1,6 +1,7 @@
 version: "3.9"
 name: quackstack-nmp
 services:
+
   ##########################################################
   #                      DB                                #
   ##########################################################
@@ -55,7 +56,8 @@ services:
         - action: sync
           path: ./backend/src
           target: /backend/src
-          ignore: [node_modules]
+          ignore:
+            - node_modules
     healthcheck:
       test: curl localhost:${PORT:-3000}/api/health | grep 'NMP API is healthy and ready!'
       interval: 20s
@@ -80,7 +82,8 @@ services:
         - action: sync
           path: ./frontend
           target: /frontend
-          ignore: [node_modules]
+          ignore:
+            - node_modules
     ports:
       - ${PORT:-5173}:5173
     healthcheck:
