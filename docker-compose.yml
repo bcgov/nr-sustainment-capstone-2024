@@ -74,7 +74,8 @@ services:
     container_name: quackStack-frontend
     build:
       context: ./frontend
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
+    command: npm run serve
     develop:
       watch:
         - action: sync
