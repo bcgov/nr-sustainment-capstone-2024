@@ -10,7 +10,7 @@ services:
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-admin}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-admin}
-      - POSTGRES_DB=${POSTGRES_DATABASE:-nmp}
+      - POSTGRES_DB=${POSTGRES_DATABASE:-admin}
       - PORT=5432
     ports:
       - 5432:5432
