@@ -1,6 +1,8 @@
-// API Server logic goes here
-// It's the first file called when running this API
-// It hands HTTP Requests to ./express.ts
+/**
+ * @desc First contact of HTTP requests, they then are handed to express 
+ * @summary API Server
+ * @author GDamaso
+ */
 import dotenv from 'dotenv';
 import app from './express';
 
