@@ -16,7 +16,7 @@ EXPOSE 5173
 CMD ["npm", "run", "dev"]
 
 # Set the correct permissions
-#RUN chown -R 1001:1001 /frontend
+RUN chown -R 1001:1001 /frontend
 
 # Run as non-root image user
-#USER 1001
+USER 1001
