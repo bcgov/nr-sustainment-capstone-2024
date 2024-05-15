@@ -13,7 +13,5 @@ RUN npm i
 EXPOSE 5173
 
 # Run in dev mode, `npm run serve` for production
-CMD ["npm", "run", "serve"]
+CMD ["npm", "run", "dev"]
 
-# Use a non-root image user
-USER 1001
