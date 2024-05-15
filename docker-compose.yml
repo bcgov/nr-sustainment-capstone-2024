@@ -25,6 +25,7 @@ services:
       start_period: 20s
     networks:
       - quackStack-network
+
   ####################
   #     PGAdmin      #
   ####################
@@ -38,6 +39,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@qs.com
     networks:
       - quackStack-network
+
   ###################
   #   Backend      #
   ###################
@@ -53,10 +55,7 @@ services:
         - action: sync
           path: ./backend/src
           target: /backend/src
-          ignore:
-            - node_modules
-            - .github/
-            - .git/
+          ignore: [node_modules]
     healthcheck:
       test: curl localhost:${PORT:-3000}/api/health | grep 'NMP API is healthy and ready!'
       interval: 20s
@@ -81,10 +80,7 @@ services:
         - action: sync
           path: ./frontend
           target: /frontend
-          ignore:
-            - node_modules/
-            - .github/
-            - .git/
+          ignore: [node_modules]
     ports:
       - ${PORT:-5173}:5173
     healthcheck:
@@ -96,6 +92,7 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+
 ###################
 #   Networks      #
 ###################
