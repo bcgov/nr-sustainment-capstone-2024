@@ -73,27 +73,28 @@ services:
   frontend:
     container_name: quackStack-frontend
     build:
-    context: ./
-    dockerfile: Dockerfile
+      context: ./frontend
+      dockerfile: Dockerfile
     develop:
       watch:
         - action: sync
-          path: .
-          target: /app
+          path: ./frontend
+          target: /frontend
           ignore:
             - node_modules/
             - .github/
+            - .git/
     ports:
-      - ${PORT:-8080}:8080
+      - ${PORT:-5173}:5173
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail http://localhost:3000 || exit 1"]
+      test: ["CMD-SHELL", "curl --fail http://localhost:5173 || exit 1"]
       interval: 20s
       timeout: 30s
       retries: 5
-      start_period: 30s
-      depends_on:
-        backend:
-          condition: service_healthy
+      start_period: 20s
+    depends_on:
+      backend:
+        condition: service_healthy
 ###################
 #   Networks      #
 ###################
