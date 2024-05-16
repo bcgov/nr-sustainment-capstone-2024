@@ -2,6 +2,7 @@
 // Middleware is activated here
 // Any processing of HTTP Requests is done here
 // before routing them to their target endpoints
+import './db'
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
@@ -24,6 +25,9 @@ app.use(cors()); // Activate CORS, allowing access
 app.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerConfig)));
 
 // Routes
-app.use('/api', [routers.healthRouter]);
+app.use('/api', [
+  routers.healthRouter,
+  routers.dbTestRouter
+]);
 
 export default app;

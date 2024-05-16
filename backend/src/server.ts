@@ -1,5 +1,5 @@
 /**
- * @desc First contact of HTTP requests, they then are handed to express 
+ * @desc First contact of HTTP requests, they then are handed to express
  * @summary API Server
  * @author GDamaso
  */
