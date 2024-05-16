@@ -6,7 +6,7 @@
 import app from './express';
 
 // Get api port from environment variables, failsafe to 3000
-const API_PORT = process.env.API_PORT;
+const API_PORT = process.env.API_PORT || 3000;
 
 // Start HTTP Server
 app.listen(API_PORT, () => {
