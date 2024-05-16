@@ -3,10 +3,10 @@ import pg from 'pg';
 const { Client } = pg;
 
 const client = new Client({
-  user: 'admin',
-  password: 'admin',
-  host: 'host.docker.internal',
-  database: 'admin',
+  user: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  host: process.env.POSTGRES_HOST,
+  database: process.env.POSTGRES_DB,
 });
 client.connect();
 

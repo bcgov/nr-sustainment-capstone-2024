@@ -7,18 +7,15 @@ services:
   database:
     image: postgres:15
     container_name: quackStack-db
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER:-admin}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-admin}
-      - POSTGRES_DB=${POSTGRES_DATABASE:-admin}
-      - PORT=5432
+    env_file:
+      - ./.env
     ports:
-      - 5432:5432
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
     volumes:
       - postgres:/var/lib/postgresql/data
       - ./database/db/entrypoint:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER:-admin}"]
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
       interval: 20s
       timeout: 30s
       retries: 5
@@ -34,9 +31,8 @@ services:
     container_name: quackStack-pgadmin
     ports:
       - 5050:80
-    environment:
-      PGADMIN_DEFAULT_PASSWORD: admin
-      PGADMIN_DEFAULT_EMAIL: admin@qs.com
+    env_file:
+      - ./.env
     networks:
       - quackStack-network
 
@@ -48,6 +44,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env
     ports:
       - 3000:3000
     develop:

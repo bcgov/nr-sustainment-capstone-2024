@@ -3,14 +3,10 @@
  * @summary API Server
  * @author GDamaso
  */
-import dotenv from 'dotenv';
 import app from './express';
 
-// Get environment variables from .env file using DotEnv
-dotenv.config();
-
 // Get api port from environment variables, failsafe to 3000
-const API_PORT = process.env.API_PORT || 3000;
+const API_PORT = process.env.API_PORT;
 
 // Start HTTP Server
 app.listen(API_PORT, () => {
