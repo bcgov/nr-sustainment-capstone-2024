@@ -9,13 +9,6 @@ const client = new Client({
 });
 client.connect();
 
-async function queryTime() {
-  try {
-    const result = await client.query('SELECT NOW()');
-    console.log(result.rows[0]); 
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
-queryTime();
+export const query = (text: any, params?: any[]): Promise<any> => {
+  return client.query(text, params);
+};
