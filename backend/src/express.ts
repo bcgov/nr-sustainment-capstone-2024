@@ -1,8 +1,11 @@
-/* eslint-disable import/extensions */
-// Middleware is activated here
-// Any processing of HTTP Requests is done here
-// before routing them to their target endpoints
-import './db'
+/**
+ * @desc This is where middleware and routes are activated
+ * Any processing of Requests is done here before routing
+ * to their target endpoints
+ * @summary The file where middleware and routes are activated
+ * @author GDamaso
+ */
+import './db';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
@@ -25,9 +28,6 @@ app.use(cors()); // Activate CORS, allowing access
 app.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(swaggerConfig)));
 
 // Routes
-app.use('/api', [
-  routers.healthRouter,
-  routers.dbTestRouter
-]);
+app.use('/api', [routers.healthRouter, routers.developersRouter]);
 
 export default app;

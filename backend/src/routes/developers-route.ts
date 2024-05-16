@@ -1,10 +1,10 @@
 // Root|/api endpoint router
 // Any routes in /api can be accessed through here
 import express from 'express';
-import getTime  from '../controllers/db-test-controller';
+import getDevelopers from '../controllers/developers-controller';
 
 const router = express.Router();
 
-router.route('/testDB').get(getTime); 
+router.route('/developers').get(getDevelopers);
 
 export default router;

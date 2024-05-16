@@ -1,4 +1,5 @@
 import pg from 'pg';
+
 const { Client } = pg;
 
 const client = new Client({
@@ -9,6 +10,6 @@ const client = new Client({
 });
 client.connect();
 
-export const query = (text: any, params?: any[]): Promise<any> => {
-  return client.query(text, params);
-};
+const query = (text: any, params?: any[]): Promise<any> => client.query(text, params);
+
+export default query;

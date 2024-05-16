@@ -6,6 +6,6 @@ CREATE TABLE IF NOT EXISTS developers (
 INSERT INTO
   developers (ID, FIRST_NAME, LAST_NAME)
 VALUES
-  (1, 'John', 'Doe'),
-  (2, 'James', 'Doe'),
-  (3, 'Jim', 'Doe')
+  (1, 'G', 'Damaso'),
+  (2, 'K', 'Caparas'),
+  (3, 'S', 'Spy')
