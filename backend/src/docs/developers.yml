@@ -1,0 +1,15 @@
+paths:
+  /developers:
+    description: Developers in the Database
+    get:
+      tags:
+        - Developers
+      summary: Queries developers table in the Database
+      operationId: getDevelopers
+      description: |
+        Query developers table in the database and return developers first_name and last_name in json.
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request

@@ -1,6 +1,9 @@
-// Base Swagger config file, exported as json
-// Main specifications should be defined here
-// All API endpoints are included in 'apis' attribute and should be in YML
+/**
+ * @desc Base Swagger config file, exported as json
+ * @summary Main specifications should be defined here
+ * All API endpoints are included in 'apis' attribute and should be in YML
+ * @author @GDamaso
+ */
 
 const swaggerConfig = {
   failOnErrors: true, // Whether or not to throw when parsing errors. Defaults to false.
