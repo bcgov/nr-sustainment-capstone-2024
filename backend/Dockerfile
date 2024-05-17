@@ -1,5 +1,5 @@
 # Base image for the container
-FROM node:20.12.2
+FROM node:20.13.1
 
 # The working directory inside the container
 WORKDIR /backend/
