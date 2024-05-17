@@ -1,4 +1,3 @@
-version: "3.9"
 name: quackstack-nmp
 services:
 
@@ -8,13 +7,15 @@ services:
   database:
     image: postgres:15
     container_name: quackStack-db
+    env_file:
+      - ./.env
     environment:
-      - POSTGRES_USER=${POSTGRES_USER:-admin}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-admin}
-      - POSTGRES_DB=${POSTGRES_DATABASE:-admin}
-      - PORT=5432
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWD:-admin}
+      POSTGRES_DB: ${POSTGRES_DB:-admin}
+      POSTGRES_HOST: ${POSTGRES_HOST:-host.docker.internal}
     ports:
-      - 5432:5432
+      - ${POSTGRES_PORT:-5432}:${POSTGRES_PORT:-5432}
     volumes:
       - postgres:/var/lib/postgresql/data
       - ./database/db/entrypoint:/docker-entrypoint-initdb.d
@@ -35,9 +36,11 @@ services:
     container_name: quackStack-pgadmin
     ports:
       - 5050:80
+    env_file:
+      - ./.env
     environment:
-      PGADMIN_DEFAULT_PASSWORD: admin
-      PGADMIN_DEFAULT_EMAIL: admin@qs.com
+        PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@qs.com}
+        PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
     networks:
       - quackStack-network
 
@@ -49,8 +52,16 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env
+    environment:
+      API_PORT: ${API_PORT:-3000}
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWD:-admin}
+      POSTGRES_DB: ${POSTGRES_DB:-admin}
+      POSTGRES_HOST: ${POSTGRES_HOST:-host.docker.internal}
     ports:
-      - 3000:3000
+      - ${API_PORT:-3000}:${API_PORT:-3000}
     develop:
       watch:
         - action: sync
