@@ -33,7 +33,7 @@
 
 ## Our Mission
 
-We're embarking on a journey to develop a mobile-first, intuitive, and modern web application inspired by the BC Government NMP Calculator (https://nmp.apps.nrs.gov.bc.ca/).
+We're embarking on a journey to develop a mobile-first, intuitive, and modern web application inspired by the BC Government NMP Calculator (https://nmp.apps.nrs.gov.bc.ca/). Our intent is to make a Minimum Viable Product (MVP) based on the current NMP Calculator.
 
 Our goal is to leverage technologies we're comfortable with, such as Postgres, Express, React, and Node (\*\*PERN), while also exploring new tools like OpenShift, Progressive Web Apps, GitHub Actions, Docker and more.
 
