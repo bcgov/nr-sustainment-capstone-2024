@@ -67,6 +67,8 @@ services:
     depends_on:
       database:
         condition: service_healthy
+    networks:
+      - quackStack-network
 
   ##########################################################
   #                      FrontEnd                          #
@@ -77,6 +79,11 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     command: npm run serve
+    environment:
+      - VITE_FRONTEND_PORT=${VITE_PORT:-5173}
+      - VITE_FRONTEND_URL=${VITE_FRONTEND_URL:-http://localhost:5173}
+      - VITE_BACKEND_PORT=${VITE_PORT:-3000}
+      - VITE_BACKEND_URL=${VITE_BACKEND_URL:-http://localhost:3000}
     develop:
       watch:
         - action: sync
@@ -95,6 +102,8 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+    networks:
+      - quackStack-network
 
 ###################
 #   Networks      #
