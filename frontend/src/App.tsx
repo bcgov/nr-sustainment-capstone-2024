@@ -1,15 +1,12 @@
-import './App.css'
-import HealthEndpoint from './components/healthEndpoint'
-import FetchDevelopers from './components/developerEndpoint'
+import './App.css';
+import HealthEndpoint from './components/HealthCheck';
+import FetchDevelopers from './components/FetchDevelopers';
 
-function App() {
+const App = () => (
+  <>
+    <HealthEndpoint />
+    <FetchDevelopers />
+  </>
+);
 
-  return (
-    <>
-      <HealthEndpoint/>
-      <FetchDevelopers/>
-    </>
-  )
-}
-
-export default App
+export default App;
