@@ -9,7 +9,7 @@ const FetchDevelopers = () => {
   useEffect(() => {
     const backEndUrl = import.meta.env.VITE_BACKEND_URL;
 
-    const url = `${backEndUrl}/api/developers`;
+    const url = `${backEndUrl}/developers`;
     axios
       .get(url)
       .then((response) => {

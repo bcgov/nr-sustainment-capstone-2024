@@ -96,7 +96,7 @@ services:
       - VITE_FRONTEND_PORT=${VITE_PORT:-5173}
       - VITE_FRONTEND_URL=${VITE_FRONTEND_URL:-http://localhost:5173}
       - VITE_BACKEND_PORT=${VITE_PORT:-3000}
-      - VITE_BACKEND_URL=${VITE_BACKEND_URL:-http://localhost:3000}
+      - VITE_BACKEND_URL=${VITE_BACKEND_URL:-http://localhost:3000/api}
     develop:
       watch:
         - action: sync

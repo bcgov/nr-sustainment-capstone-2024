@@ -4,7 +4,7 @@ import axios from 'axios';
 const HealthCheck = () => {
   useEffect(() => {
     const backEndUrl = import.meta.env.VITE_BACKEND_URL;
-    const url = `${backEndUrl}/api/health`;
+    const url = `${backEndUrl}/health`;
 
     axios.get(url)
       .then((response) => {
