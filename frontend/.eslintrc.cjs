@@ -7,6 +7,9 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime', // Include this for new JSX Transform
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -16,14 +19,15 @@ module.exports = {
       rules: {
         'react/jsx-filename-extension': ['error', { extensions: ['.tsx'] }],
         'react/react-in-jsx-scope': 'off',
+        'react/jsx-uses-react': 'off',
         'import/no-unresolved': 'off',
         'import/no-absolute-path': 'off',
-        'no-console': 'off', 
+        'no-console': 'off',
         'arrow-parens': ['error', 'always'], // Ensure parentheses around arrow function arguments
       },
     },
   ],
-  plugins: ['react-refresh', '@typescript-eslint'],
+  plugins: ['react-refresh', '@typescript-eslint', 'react'],
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'react/function-component-definition': [
@@ -45,6 +49,9 @@ module.exports = {
     ],
   },
   settings: {
+    react: {
+      version: 'detect',
+    },
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],

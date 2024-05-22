@@ -6,7 +6,8 @@ const HealthCheck = () => {
     const backEndUrl = import.meta.env.VITE_BACKEND_URL;
     const url = `${backEndUrl}/health`;
 
-    axios.get(url)
+    axios
+      .get(url)
       .then((response) => {
         console.log('Health Check data:', response.data);
       })

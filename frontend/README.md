@@ -1,9 +1,8 @@
-# Welcome to QuackStack 'NMP' Frontend  🚀
+# Welcome to QuackStack 'NMP' Frontend 🚀
 
 ## About the Frontend
 
 Our frontend is a Vite React project written in TypeScript. This is a mobile first, intuitive and modern interface where users can easily manage their farm nutrient calculations on the go.
-
 
 ## Setup
 
