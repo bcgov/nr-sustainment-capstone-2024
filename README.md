@@ -1,3 +1,21 @@
+## This is QuackStack 'NMP' API
+
+### Environment Variables
+
+| Key                      | Example          | Purpose                                       |
+| ------------------------ | ---------------- | --------------------------------------------- |
+| API_HOST                 | 'localhost'      | Used to determine current hosting environment |
+| API_PORT                 | '3000'           | Used to determine current host API port       |
+| POSTGRES_USER            | 'dbUsr'          | Postgres User, for connection                 |
+| POSTGRES_PASSWORD        | 'useASafePasswd' | PG User Password for connection               |
+| POSTGRES_DATABASE        | 'dbName'         | PG Database name to be used                   |
+| POSTGRES_HOST            | 'localhost:1234' | PG host address                               |
+| POSTGRES_PORT            | '1234'           | PG exposed port                               |
+| PGADMIN_DEFAULT_EMAIL    | 'admin@email.ca' | PG Admin page admin login email               |
+| PGADMIN_DEFAULT_PASSWORD | 'useASafePasswd' | PG Admin page admin password                  |
+
+<!-- We should decide what to keep from this template README -->
+
 [![MIT License](https://img.shields.io/github/license/bcgov/quickstart-openshift.svg)](/LICENSE.md)
 [![Lifecycle](https://img.shields.io/badge/Lifecycle-Experimental-339999)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
 

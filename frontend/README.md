@@ -1,9 +1,8 @@
-# Welcome to QuackStack 'NMP' Frontend  🚀
+# Welcome to QuackStack 'NMP' Frontend 🚀
 
 ## About the Frontend
 
 Our frontend is a Vite React project written in TypeScript. This is a mobile first, intuitive and modern interface where users can easily manage their farm nutrient calculations on the go.
-
 
 ## Setup
 
@@ -29,7 +28,7 @@ export default {
     project: ['./tsconfig.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
