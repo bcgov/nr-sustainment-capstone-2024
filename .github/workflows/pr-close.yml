@@ -3,8 +3,8 @@ name: PR Closed
 # Switch back to pull_request to re-enable!
 on:
   workflow_dispatch:
-  # pull_request:
-  #   types: [closed]
+  pull_request:
+    types: [closed]
 
 concurrency:
   # PR open and close use the same group, allowing only one at a time
