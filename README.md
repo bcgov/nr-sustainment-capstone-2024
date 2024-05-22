@@ -86,3 +86,5 @@ Here's a quick rundown of the environment variables we'll be using:
 | `POSTGRES_PORT`            | `'1234'`           | Port where PostgreSQL is exposed.              |
 | `PGADMIN_DEFAULT_EMAIL`    | `'admin@email.ca'` | Email for logging into the pgAdmin interface.  |
 | `PGADMIN_DEFAULT_PASSWORD` | `'useASafePasswd'` | Password for accessing the pgAdmin interface.  |
+
+Openshift's cool!
