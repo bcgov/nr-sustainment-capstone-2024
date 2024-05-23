@@ -63,6 +63,20 @@ spec:
           env:
             - name: LOG_LEVEL
               value: info
+            - name: POSTGRES_DATABASE
+              value: admin
+            - name: POSTGRES_HOST
+              value: {{.Release.Name}}-bitnami-pg-0
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Release.Name}}
+                  key: password
+            - name: POSTGRES_POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Release.Name}}
+                  key: postgres-password
           ports:
             - name: http
               containerPort: {{ .Values.backend.service.targetPort }}
