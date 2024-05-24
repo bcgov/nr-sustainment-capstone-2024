@@ -11,7 +11,6 @@ const HealthCheck = () => {
       .get(url)
       .then((response) => {
         console.log('Health Check data:', response.data);
-        console.log(response.data);
         setStatus(response.data);
       })
       .catch((error) => {
@@ -22,9 +21,7 @@ const HealthCheck = () => {
   return (
     <div>
       <h1>Health Check</h1>
-      <h2>
-        { status }
-      </h2>
+      <h2>{status}</h2>
     </div>
   );
 };

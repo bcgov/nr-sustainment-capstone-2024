@@ -1,6 +1,5 @@
 import { expect, test } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import HealthCheck from '../components/HealthCheck';
 
 test('HealthCheck heading', () => {
@@ -11,6 +10,8 @@ test('HealthCheck heading', () => {
 test('HealthCheck paragraph stats', async () => {
   render(<HealthCheck />);
   await waitFor(() => {
-    expect(screen.getByRole('heading', { level: 2, name: 'NMP API is healthy and ready!' })).toBeDefined();
+    expect(
+      screen.getByRole('heading', { level: 2, name: 'NMP API is healthy and ready!' }),
+    ).toBeDefined();
   });
 });
