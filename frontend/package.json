@@ -9,7 +9,8 @@
     "serve": "vite serve",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "test": "vitest"
   },
   "dependencies": {
     "@vitejs/plugin-react-swc": "^3.5.0",
@@ -20,7 +21,10 @@
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
     "vite": "^5.2.0",
-    "vite-plugin-pwa": "^0.20.0"
+    "vite-plugin-pwa": "^0.20.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "vitest": "^1.6.0",
+    "@testing-library/react": "^15.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
@@ -33,6 +37,7 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "jsdom": "^24.0.0",
     "prettier": "^3.2.5",
     "typescript": "^5.2.2"
   }
