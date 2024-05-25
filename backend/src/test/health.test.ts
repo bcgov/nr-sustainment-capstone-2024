@@ -1,4 +1,8 @@
-import { testRequest } from "./testRequest";
+/**
+ * @desc This is a jest test for the /api/health endpoint
+ * @author @GDamaso
+ */
+import testRequest from './testRequest';
 
 describe('Test the health path', () => {
   test('returns status code 200 if healthy', async () => {

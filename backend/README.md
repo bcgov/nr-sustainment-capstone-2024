@@ -8,7 +8,6 @@ Documentation is accessible through Swagger.
 
 ## Accessing the API Documentation
 
-
 http://localhost:3000/api/api-docs
 
 ## Environment Variables
@@ -24,5 +23,3 @@ Here's a summary of the essential environment variables:
 | `POSTGRES_DATABASE`        | `'dbName'`         | Name of the PostgreSQL database to connect to. |
 | `POSTGRES_HOST`            | `'localhost:1234'` | Address of the PostgreSQL host.                |
 | `POSTGRES_PORT`            | `'1234'`           | Port where PostgreSQL is exposed.              |
-| `PGADMIN_DEFAULT_EMAIL`    | `'admin@email.ca'` | Email for logging into the pgAdmin interface.  |
-| `PGADMIN_DEFAULT_PASSWORD` | `'useASafePasswd'` | Password for accessing the pgAdmin interface.  |
