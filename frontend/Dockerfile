@@ -1,21 +1,23 @@
 # Base image for the container
-FROM node:20.13.1
+FROM node:alpine
 
 # The working directory inside the container
-WORKDIR /frontend/
+WORKDIR /frontend
 
-# Add frontend user group with group id 1001 and Add frontend usr with group id 1001
-RUN groupadd --gid 1001 frontendUser && \
-    useradd --uid 1001 --gid frontendUser --home /frontend frontendUser
 # Copy the rest of the application code
 COPY . .
 
 # Install npm dependencies and build the app
 RUN npm i && \
-    npm run build
+  npm run build
+
+# Install curl for the healthcheck
+RUN apk --update --no-cache add curl
 
 #PORTS, CMD, Permission Change and User
-RUN chown -R 1001:1001 /frontend
-USER frontendUser
 EXPOSE 5173
+
 CMD ["npm", "run", "serve"]
+
+RUN chown -R 1001:1001 /frontend
+USER 1001
