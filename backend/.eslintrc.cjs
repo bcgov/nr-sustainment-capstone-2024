@@ -1,6 +1,9 @@
 module.exports = {
   root: true,
-  env: { es2020: true },
+  env: {
+    es2020: true,
+    jest: true,
+  },
   extends: [
     'airbnb', // Extends Airbnb's base style guide
     'plugin:import/errors', // Import plugin with error rules
