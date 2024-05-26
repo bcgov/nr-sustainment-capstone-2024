@@ -72,7 +72,7 @@ services:
           ignore:
             - node_modules
     healthcheck:
-      test: curl localhost:${PORT:-3000}/api/health | grep 'NMP API is healthy and ready!'
+      test: curl ${API_HOST:-localhost}:${API_PORT:-3000}/api/health | grep 'NMP API is healthy and ready!'
       interval: 20s
       timeout: 30s
       retries: 5
@@ -93,7 +93,7 @@ services:
       dockerfile: Dockerfile
     command: npm run serve
     environment:
-      - VITE_BACKEND_URL=${VITE_BACKEND_URL:-http://localhost:3000/api}
+      - VITE_BACKEND_URL=${VITE_BACKEND_URL:-http://${API_HOST:-localhost}:${API_PORT:-3000}/api}
     develop:
       watch:
         - action: sync
@@ -102,9 +102,13 @@ services:
           ignore:
             - node_modules
     ports:
-      - ${PORT:-5173}:5173
+      - ${VITE_PORT:-5173}:${VITE_PORT:-5173}
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail http://localhost:5173 || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "curl --fail http://${VITE_HOST:-localhost}:5173 || exit 1",
+        ]
       interval: 20s
       timeout: 30s
       retries: 5
