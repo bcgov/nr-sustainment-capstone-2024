@@ -1,36 +1,97 @@
-# Welcome to QuackStack 'NMP' Frontend 🚀
+# Welcome to QuackStack 'Better Berries NMP' Frontend 🚀
 
 ## About the Frontend
 
 Our frontend is a Vite React project written in TypeScript. This is a mobile first, intuitive and modern interface where users can easily manage their farm nutrient calculations on the go.
 
-## Setup
+## Project Description
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The 'Better Berries NMP' is a Progressive Web Application that helps farmers to calculate accurate and precise nutrients needed for their crops.
+This is an excerpt of the original workflow of the Sustainment's team Nutrient Management Program. ([NMP](https://nmp.apps.nrs.gov.bc.ca/))
 
-Currently, two official plugins are available:
+## Frameworks / Library
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Vite](https://vitejs.dev/)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Run Locally
 
-- Configure the top-level `parserOptions` property like this:
+Clone the project
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-};
+```bash
+  git clone https://github.com/bcgov/nr-sustainment-capstone-2024.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Go to the project directory
+
+```bash
+  cd frontend
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start docker compose
+
+```bash
+  docker-compose up
+```
+You can also add --build to build docker-compose.yml and --watch in order to control CLI
+
+For deleting volumes of docker
+
+```bash
+    docker-compose down -v
+```
+
+## Running Tests
+
+Test are using [Vitest](https://vitest.dev/) which is a Vite-native testing framework that is based from [Jest](https://jestjs.io/). More information about testing will be in the [Wiki](https://github.com/bcgov/nr-sustainment-capstone-2024/blob/main/README.md)
+
+```bash
+  npm run test
+```
+
+
+## Usage/Examples
+
+### Component Imports
+ESlint will enforce component imports to be at the bottom of other imports.
+```javascript
+import axios from 'axios' // Needs to be at top of Component, or ESlint will complain.
+import Component from 'my-project'
+
+const function = () => {block of code} // ESlint enforces ES6, because author loves ES6.
+```
+### Testing imports
+Frontend Testing is testing what a block of code displays in the Web Application. Therefore, we need **jest-dom** to assert state of the DOM.
+```javascript
+import '@testing-library/jest-dom'; // Asserts state of DOM, toBeInTheDocument
+
+ developers.forEach((developer:DeveloperInterface) => {
+        expect(screen.getByText(developer.first_name)).toBeInTheDocument();
+        expect(screen.getByText(developer.last_name)).toBeInTheDocument();
+      });
+```
+### Interface Imports
+To ensure clarity and understandability with other developers, interface/types can be created since we are using TypeScript.
+```javascript
+export interface DeveloperInterface {
+  id: number;
+  first_name: string;
+  last_name: string;
+}
+```
+This is where you import it and use it as a type/interface.
+```javascript
+    const developers: Array<DeveloperInterface> = [
+      { id: 1, first_name: 'G', last_name: 'Damaso' },
+      { id: 2, first_name: 'K', last_name: 'Caparas' },
+      { id: 3, first_name: 'S', last_name: 'Spy' },
+    ];
+```
