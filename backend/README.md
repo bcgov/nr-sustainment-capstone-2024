@@ -6,9 +6,29 @@ Our backend is a RESTful API written with TypeScript and the Express framework. 
 
 Documentation is accessible through Swagger.
 
+
+## Running this API
+
+This Express API requires connection to this applications database to properly respond to requests. This projects docker-compose config will set things up automatically when running localy. There are default values set up for development.
+
+To run with docker compose with hot reload for development, run:
+`docker compose up -watch`
+
 ## Accessing the API Documentation
 
-http://localhost:3000/api/api-docs
+If running with docker compose:
+`http://localhost:3000/api/api-docs`
+
+*The OpenShift deploy is on its way and will be published soon.*
+
+## Testing the API
+
+This API is tested with Jest framework.
+
+There are suites covering all endpoints. Each suite should test all response statuses and data to ensure proper behaviour of the API.
+
+To run the test suits, just run this command from this backend directory, while the application runs locally with docker compose:
+`npm run test`
 
 ## Environment Variables
 
@@ -23,3 +43,5 @@ Here's a summary of the essential environment variables:
 | `POSTGRES_DATABASE` | `'dbName'`         | Name of the PostgreSQL database to connect to. |
 | `POSTGRES_HOST`     | `'localhost:1234'` | Address of the PostgreSQL host.                |
 | `POSTGRES_PORT`     | `'1234'`           | Port where PostgreSQL is exposed.              |
+
+Written by @GDamaso
