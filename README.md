@@ -1,21 +1,3 @@
-## This is QuackStack 'NMP' API
-
-### Environment Variables
-
-| Key                      | Example          | Purpose                                       |
-| ------------------------ | ---------------- | --------------------------------------------- |
-| API_HOST                 | 'localhost'      | Used to determine current hosting environment |
-| API_PORT                 | '3000'           | Used to determine current host API port       |
-| POSTGRES_USER            | 'dbUsr'          | Postgres User, for connection                 |
-| POSTGRES_PASSWORD        | 'useASafePasswd' | PG User Password for connection               |
-| POSTGRES_DATABASE        | 'dbName'         | PG Database name to be used                   |
-| POSTGRES_HOST            | 'localhost:1234' | PG host address                               |
-| POSTGRES_PORT            | '1234'           | PG exposed port                               |
-| PGADMIN_DEFAULT_EMAIL    | 'admin@email.ca' | PG Admin page admin login email               |
-| PGADMIN_DEFAULT_PASSWORD | 'useASafePasswd' | PG Admin page admin password                  |
-
-<!-- We should decide what to keep from this template README -->
-
 [![MIT License](https://img.shields.io/github/license/bcgov/quickstart-openshift.svg)](/LICENSE.md)
 [![Lifecycle](https://img.shields.io/badge/Lifecycle-Experimental-339999)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
 
@@ -75,16 +57,17 @@ This repository was bootstrapped using the Quickstart for OpenShift (https://git
 
 Here's a quick rundown of the environment variables we'll be using:
 
-| Key                        | Example            | Description                                    |
-| -------------------------- | ------------------ | ---------------------------------------------- |
-| `API_HOST`                 | `'localhost'`      | Determines the hosting environment.            |
-| `API_PORT`                 | `'3000'`           | Specifies the host API port.                   |
-| `POSTGRES_USER`            | `'dbUsr'`          | PostgreSQL username for database connections.  |
-| `POSTGRES_PASSWORD`        | `'useASafePasswd'` | PostgreSQL password for database connections.  |
-| `POSTGRES_DATABASE`        | `'dbName'`         | Name of the PostgreSQL database to connect to. |
-| `POSTGRES_HOST`            | `'localhost:1234'` | Address of the PostgreSQL host.                |
-| `POSTGRES_PORT`            | `'1234'`           | Port where PostgreSQL is exposed.              |
-| `PGADMIN_DEFAULT_EMAIL`    | `'admin@email.ca'` | Email for logging into the pgAdmin interface.  |
-| `PGADMIN_DEFAULT_PASSWORD` | `'useASafePasswd'` | Password for accessing the pgAdmin interface.  |
-
-Openshift's cool!
+| Key                        | Example              | Description                                          |
+| -------------------------- | -------------------- | ---------------------------------------------------- |
+| `API_HOST`                 | `'localhost'`        | Determines Express the hosting environment.          |
+| `API_PORT`                 | `'3000'`             | Specifies the host API port.                         |
+| `POSTGRES_USER`            | `'dbUsr'`            | PostgreSQL username for database connections.        |
+| `POSTGRES_PASSWORD`        | `'useASafePasswd'`   | PostgreSQL password for database connections.        |
+| `POSTGRES_DATABASE`        | `'dbName'`           | Name of the PostgreSQL database to connect to.       |
+| `POSTGRES_HOST`            | `'localhost:1234'`   | Address of the PostgreSQL host.                      |
+| `POSTGRES_PORT`            | `'1234'`             | Port where PostgreSQL is exposed.                    |
+| `PGADMIN_DEFAULT_EMAIL`    | `'admin@email.ca'`   | Email for logging into the pgAdmin interface.        |
+| `PGADMIN_DEFAULT_PASSWORD` | `'useASafePasswd'`   | Password for accessing the pgAdmin interface.        |
+| `VITE_HOST`                | `localhost`          | Determines Vite hosting environment.                 |
+| `VITE_PORT`                | `5173`               | Specified the host vite port.                        |
+| `VITE_BACKEND_URL`         | `localhost:3000/api` | Specifies the backend root endpoint vite should use. |
