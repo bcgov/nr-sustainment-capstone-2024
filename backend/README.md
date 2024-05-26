@@ -27,6 +27,20 @@ This API is tested with Jest framework.
 
 There are suites covering all endpoints. Each suite should test all response statuses and data to ensure proper behaviour of the API.
 
+A test suite for an endpoint should check for status and data to ensure no false positive responses are being created. 
+The simplest test looks like:
+
+```
+describe('Test the health path', () => {
+  test('returns status code 200 if healthy', async () => {
+    const res = await testRequest.get('/health');
+
+    expect(res.statusCode).toEqual(200);
+    expect(res.text).toBe('NMP API is healthy and ready!');
+  });
+});
+```
+
 To run the test suits, just run this command from this backend directory, while the application runs locally with docker compose:
 `npm run test`
 
