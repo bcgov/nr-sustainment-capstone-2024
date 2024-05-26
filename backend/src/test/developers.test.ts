@@ -9,5 +9,6 @@ describe('Test the developers path', () => {
     const res = await testRequest.get('/developers');
 
     expect(res.statusCode).toEqual(200);
+    expect(res.text).toEqual('[{\"first_name\":\"G\",\"last_name\":\"Damaso\"},{\"first_name\":\"K\",\"last_name\":\"Caparas\"},{\"first_name\":\"S\",\"last_name\":\"Spy\"}]');
   });
 });

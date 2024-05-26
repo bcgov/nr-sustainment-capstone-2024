@@ -14,12 +14,12 @@ http://localhost:3000/api/api-docs
 
 Here's a summary of the essential environment variables:
 
-| Key                        | Example            | Description                                    |
-| -------------------------- | ------------------ | ---------------------------------------------- |
-| `API_HOST`                 | `'localhost'`      | Determines the hosting environment.            |
-| `API_PORT`                 | `'3000'`           | Specifies the host API port.                   |
-| `POSTGRES_USER`            | `'dbUsr'`          | PostgreSQL username for database connections.  |
-| `POSTGRES_PASSWORD`        | `'useASafePasswd'` | PostgreSQL password for database connections.  |
-| `POSTGRES_DATABASE`        | `'dbName'`         | Name of the PostgreSQL database to connect to. |
-| `POSTGRES_HOST`            | `'localhost:1234'` | Address of the PostgreSQL host.                |
-| `POSTGRES_PORT`            | `'1234'`           | Port where PostgreSQL is exposed.              |
+| Key                 | Example            | Description                                    |
+| ------------------- | ------------------ | ---------------------------------------------- |
+| `API_HOST`          | `'localhost'`      | Determines the hosting environment.            |
+| `API_PORT`          | `'3000'`           | Specifies the host API port.                   |
+| `POSTGRES_USER`     | `'dbUsr'`          | PostgreSQL username for database connections.  |
+| `POSTGRES_PASSWORD` | `'useASafePasswd'` | PostgreSQL password for database connections.  |
+| `POSTGRES_DATABASE` | `'dbName'`         | Name of the PostgreSQL database to connect to. |
+| `POSTGRES_HOST`     | `'localhost:1234'` | Address of the PostgreSQL host.                |
+| `POSTGRES_PORT`     | `'1234'`           | Port where PostgreSQL is exposed.              |
