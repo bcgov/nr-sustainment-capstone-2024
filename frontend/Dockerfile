@@ -1,19 +1,24 @@
-# Base image for the container
-FROM node:20.13.1
+# Build static files
+# Node Bullseye has npm
+FROM node:20.13.1-bullseye AS build
 
-# Copy files
-WORKDIR /app/
+# Install packages, build and keep only prod packages
+WORKDIR /app
 COPY . ./
+RUN npm ci && \
+    npm run build
 
-# Add nonroot user and take ownership
-RUN groupadd --gid 1001 nonroot && \
-    useradd --uid 1001 --gid nonroot --home /app nonroot && \
-    chown -R 1001:1001 /app
+# Deploy container
+# Caddy serves static files
+FROM caddy:2.7.6-alpine
+RUN apk add --no-cache ca-certificates
 
-# Switch nonroot user and install dependencies
-USER nonroot
-RUN npm i
+# Copy static files and run formatting
+COPY --from=build /app/dist /srv
+COPY Caddyfile /etc/caddy/Caddyfile
+RUN caddy fmt --overwrite /etc/caddy/Caddyfile
 
-# Declare port and run CMD
-EXPOSE 5173
-CMD ["npm", "run", "serve"]
+# Ports, health check and non-root user
+EXPOSE 3000 3001
+HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost/:3001/health
+USER 1001

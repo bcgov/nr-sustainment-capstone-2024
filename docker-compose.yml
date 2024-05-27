@@ -83,7 +83,23 @@ services:
           target: /frontend
           ignore: [node_modules]
     environment:
-      - VITE_BACKEND_URL=http://localhost:3000/api
+      VITE_BACKEND_URL: http://localhost:3000/api
     healthcheck:
       test: curl --fail http://localhost:5173 || exit 1
     ports: [5173:5173]
+
+  # Caddy - static file hosting
+  caddy:
+    container_name: caddy
+    profiles: ["caddy"]
+    build: ./frontend
+    environment:
+      PORT: 3000
+      VITE_BACKEND_URL: http://localhost:3000/api
+    ports: ["3005:3000"]
+    volumes: ["./frontend/Caddyfile:/etc/caddy/Caddyfile"]
+    healthcheck:
+      test: curl -f http://localhost:3000 || exit 1
+    depends_on:
+      backend:
+        condition: service_healthy
