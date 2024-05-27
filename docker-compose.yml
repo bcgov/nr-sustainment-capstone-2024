@@ -85,7 +85,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    command: npm run serve
     environment:
       - VITE_BACKEND_URL=localhost:3000/api
     develop:
