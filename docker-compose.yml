@@ -1,4 +1,4 @@
-# Common postgres vars
+# Reusable vars
 x-var:
   - &POSTGRES_USER
     postgres
@@ -7,6 +7,7 @@ x-var:
   - &POSTGRES_DATABASE
     postgres
 
+# Common Postgres vars
 x-postgres-vars: &postgres-vars
   POSTGRES_HOST: quackStack-db
   POSTGRES_USER: *POSTGRES_USER
@@ -26,9 +27,7 @@ services:
     ports: [5432:5432]
     volumes: [./database/db/entrypoint:/docker-entrypoint-initdb.d]
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", *POSTGRES_USER]
-    networks:
-      - quackStack-network
+      test: ["CMD", "pg_isready", "-U", "*POSTGRES_USER"]
 
   ####################
   #     PGAdmin      #
@@ -40,84 +39,51 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     image: dpage/pgadmin4
     ports: [5050:80]
-    networks:
-      - quackStack-network
 
   ###################
   #   Backend      #
   ###################
   backend:
-    container_name: quackStack-api
     build:
       context: ./backend
       dockerfile: Dockerfile
-    # env_file:
-    #   - path: ./backend/.env
-        # required: false
-    environment:
-      <<: *postgres-vars
-    ports:
-      - 3000:3000
+    command: npm run dev
+    container_name: quackStack-api
+    depends_on:
+      database:
+        condition: service_healthy
     develop:
       watch:
         - action: sync
           path: ./backend/src
           target: /backend/src
-          ignore:
-            - node_modules
+          ignore: [node_modules]
+    environment:
+      <<: *postgres-vars
     healthcheck:
       test: curl localhost:3000/api/health | grep 'NMP API is healthy and ready!'
-      interval: 20s
-      timeout: 30s
-      retries: 5
-      start_period: 20s
-    depends_on:
-      database:
-        condition: service_healthy
-    networks:
-      - quackStack-network
+    ports: [3000:3000]
 
   ##########################################################
-  #                      FrontEnd                          #
+  #                      Frontend                          #
   ##########################################################
   frontend:
-    container_name: quackStack-frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    environment:
-      - VITE_BACKEND_URL=localhost:3000/api
+    command: npm run dev
+    container_name: quackStack-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
     develop:
       watch:
         - action: sync
           path: ./frontend
           target: /frontend
-          ignore:
-            - node_modules
-    ports:
-      - ${VITE_PORT:-5173}:${VITE_PORT:-5173}
+          ignore: [node_modules]
+    environment:
+      - VITE_BACKEND_URL=http://localhost:3000/api
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "curl --fail http://${VITE_HOST:-localhost}:5173 || exit 1",
-        ]
-      interval: 20s
-      timeout: 30s
-      retries: 5
-      start_period: 20s
-    depends_on:
-      backend:
-        condition: service_healthy
-    networks:
-      - quackStack-network
-
-###################
-#   Networks      #
-###################
-networks:
-  quackStack-network:
-    driver: "bridge"
-volumes:
-  postgres:
-    name: quackStack-db-vol-postgres
+      test: curl --fail http://localhost:5173 || exit 1
+    ports: [5173:5173]
