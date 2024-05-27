@@ -42,29 +42,29 @@ spec:
               value: "info"
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: 5173
               protocol: TCP
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 3001
-              scheme: HTTP
-            initialDelaySeconds: 5
-            periodSeconds: 2
-            timeoutSeconds: 2
-            successThreshold: 1
-            failureThreshold: 30
-          #-- the liveness probe for the container. it is optional and is an object. for default values check this link: https://github.com/bcgov/helm-service/blob/main/charts/component/templates/deployment.yaml#L324-L328
-          livenessProbe:
-            successThreshold: 1
-            failureThreshold: 3
-            httpGet:
-              path: /health
-              port: 3001
-              scheme: HTTP
-            initialDelaySeconds: 15
-            periodSeconds: 30
-            timeoutSeconds: 5
+          # readinessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: 3001
+          #     scheme: HTTP
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 2
+          #   timeoutSeconds: 2
+          #   successThreshold: 1
+          #   failureThreshold: 30
+          # #-- the liveness probe for the container. it is optional and is an object. for default values check this link: https://github.com/bcgov/helm-service/blob/main/charts/component/templates/deployment.yaml#L324-L328
+          # livenessProbe:
+          #   successThreshold: 1
+          #   failureThreshold: 3
+          #   httpGet:
+          #     path: /health
+          #     port: 3001
+          #     scheme: HTTP
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 30
+          #   timeoutSeconds: 5
           resources:
             limits:
               cpu: 100m
