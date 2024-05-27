@@ -18,4 +18,4 @@ RUN npm i && \
 RUN chown -R 1001:1001 /frontend
 USER frontendUser
 EXPOSE 5173
-CMD ["npm", "run", "serve"]
+CMD ["npm", "run", "dev"]

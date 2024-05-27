@@ -9,6 +9,9 @@ export default defineConfig({
   },
   plugins: [
     VitePWA({
+      devOptions: {
+        enabled: true,
+      },
       manifest: {
         name: 'QuackStack NMP',
         description: 'An NMP web application designed to be mobile and desktop compatible.',
