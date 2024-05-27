@@ -93,7 +93,7 @@ services:
       dockerfile: Dockerfile
     command: npm run serve
     environment:
-      - VITE_BACKEND_URL=${VITE_BACKEND_URL:-http://${API_HOST:-localhost}:${API_PORT:-3000}/api}
+      - VITE_BACKEND_URL=${VITE_BACKEND_URL:localhost:3000/api}
     develop:
       watch:
         - action: sync
