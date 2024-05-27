@@ -31,32 +31,31 @@ jobs:
           tag_fallback: latest
           triggers: ('${{ matrix.package }}/')
 
-  # # # https://github.com/bcgov-nr/action-deployer-openshift
-  # deploys:
-  #   name: Deploys
-  #   needs: [builds]
-  #   uses: bcgov/quickstart-openshift-helpers/.github/workflows/.deployer.yml@v0.4.1
-  #   secrets:
-  #     oc_namespace: ${{ secrets.OC_NAMESPACE }}
-  #     oc_token: ${{ secrets.OC_TOKEN }}
-  #   with:
-  #     triggers: ('backend/' 'frontend/' 'migrations/')
-  #     params:
-  #       --set global.secrets.persist=false
+  # # https://github.com/bcgov-nr/action-deployer-openshift
+  deploys:
+    name: Deploys
+    needs: [builds]
+    uses: bcgov/quickstart-openshift-helpers/.github/workflows/.deployer.yml@v0.4.1
+    secrets:
+      oc_namespace: ${{ secrets.OC_NAMESPACE }}
+      oc_token: ${{ secrets.OC_TOKEN }}
+    with:
+      triggers: ('backend/' 'frontend/' 'migrations/')
+      params:
+        --set global.secrets.persist=false
 
-  # tests:
-    # name: Tests
-    # if: needs.deploys.outputs.triggered == 'true'
-    # needs: [deploys]
-    # uses: ./.github/workflows/.tests.yml
-    # with:
-    #   target: ${{ github.event.number }}
+  tests:
+    name: Tests
+    if: needs.deploys.outputs.triggered == 'true'
+    needs: [deploys]
+    uses: ./.github/workflows/.tests.yml
+    with:
+      target: ${{ github.event.number }}
 
   results:
     name: PR Results
     if: always() && (!failure()) && (!cancelled())
-    # needs: [builds, deploys]
-    needs: [builds]
+    needs: [builds, deploys]
     runs-on: ubuntu-22.04
     steps:
       - run: echo "Success!"
