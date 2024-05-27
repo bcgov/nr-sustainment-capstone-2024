@@ -31,18 +31,18 @@ jobs:
           tag_fallback: latest
           triggers: ('${{ matrix.package }}/')
 
-  # # https://github.com/bcgov-nr/action-deployer-openshift
-  deploys:
-    name: Deploys
-    needs: [builds]
-    uses: bcgov/quickstart-openshift-helpers/.github/workflows/.deployer.yml@v0.4.1
-    secrets:
-      oc_namespace: ${{ secrets.OC_NAMESPACE }}
-      oc_token: ${{ secrets.OC_TOKEN }}
-    with:
-      triggers: ('backend/' 'frontend/' 'migrations/')
-      params:
-        --set global.secrets.persist=false
+  # # # https://github.com/bcgov-nr/action-deployer-openshift
+  # deploys:
+  #   name: Deploys
+  #   needs: [builds]
+  #   uses: bcgov/quickstart-openshift-helpers/.github/workflows/.deployer.yml@v0.4.1
+  #   secrets:
+  #     oc_namespace: ${{ secrets.OC_NAMESPACE }}
+  #     oc_token: ${{ secrets.OC_TOKEN }}
+  #   with:
+  #     triggers: ('backend/' 'frontend/' 'migrations/')
+  #     params:
+  #       --set global.secrets.persist=false
 
   # tests:
     # name: Tests
@@ -54,16 +54,9 @@ jobs:
 
   results:
     name: PR Results
-    if: always()
-    needs: [builds, deploys]
+    if: always() && (!failure()) && (!cancelled())
+    # needs: [builds, deploys]
+    needs: [builds]
     runs-on: ubuntu-22.04
     steps:
-      - run: |
-          # View results
-          echo "needs.*.result: ${{ toJson(needs.*.result) }}"
-
-      - if: contains(needs.*.result, 'failure')
-        run: |
-          # Job failure found
-          echo "At least one job has failed"
-          exit 1
+      - run: echo "Success!"

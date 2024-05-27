@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const HealthCheck = () => {
+  const [status, setStatus] = useState(null);
   useEffect(() => {
     const backEndUrl = import.meta.env.VITE_BACKEND_URL;
     const url = `${backEndUrl}/health`;
@@ -10,6 +11,7 @@ const HealthCheck = () => {
       .get(url)
       .then((response) => {
         console.log('Health Check data:', response.data);
+        setStatus(response.data);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -19,6 +21,7 @@ const HealthCheck = () => {
   return (
     <div>
       <h1>Health Check</h1>
+      <h2>{status}</h2>
     </div>
   );
 };
