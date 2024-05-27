@@ -22,6 +22,8 @@ module.exports = {
         'react/jsx-uses-react': 'off',
         'import/no-unresolved': 'off',
         'import/no-absolute-path': 'off',
+        'import/no-undef': 'off',
+        'object-curly-newline': 'off',
         'no-console': 'off',
         'arrow-parens': ['error', 'always'], // Ensure parentheses around arrow function arguments
       },
