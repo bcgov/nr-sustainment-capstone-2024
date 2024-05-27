@@ -27,8 +27,6 @@ services:
     volumes: [./database/db/entrypoint:/docker-entrypoint-initdb.d]
     healthcheck:
       test: ["CMD", "pg_isready", "-U", *POSTGRES_USER]
-    networks:
-      - quackStack-network
 
   ####################
   #     PGAdmin      #
@@ -40,8 +38,6 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     image: dpage/pgadmin4
     ports: [5050:80]
-    networks:
-      - quackStack-network
 
   ###################
   #   Backend      #
@@ -74,8 +70,6 @@ services:
     depends_on:
       database:
         condition: service_healthy
-    networks:
-      - quackStack-network
 
   ##########################################################
   #                      FrontEnd                          #
@@ -109,15 +103,3 @@ services:
     depends_on:
       backend:
         condition: service_healthy
-    networks:
-      - quackStack-network
-
-###################
-#   Networks      #
-###################
-networks:
-  quackStack-network:
-    driver: "bridge"
-volumes:
-  postgres:
-    name: quackStack-db-vol-postgres
