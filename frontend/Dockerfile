@@ -1,11 +1,19 @@
-# Build static files
-# Node Bullseye has npm
-FROM node:20.13.1 AS build
+# Base image for the container
+FROM node:20.13.1
 
-# Copy files, install dependencies and build
+# Copy files
 WORKDIR /app/
 COPY . ./
+
+# Add nonroot user and take ownership
+RUN groupadd --gid 1001 nonroot && \
+    useradd --uid 1001 --gid nonroot --home /app nonroot && \
+    chown -R 1001:1001 /app
+
+# Switch nonroot user and install dependencies
+USER nonroot
 RUN npm i
 
-# Run in production mode, `npm run dev` for dev mode
+# Declare port and run CMD
+EXPOSE 5173
 CMD ["npm", "run", "serve"]
