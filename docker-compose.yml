@@ -65,24 +65,25 @@ services:
     ports: [3000:3000]
 
   ##########################################################
-  #                      FrontEnd                          #
+  #                      Frontend                          #
   ##########################################################
   frontend:
-    container_name: quackStack-frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    environment:
-      - VITE_BACKEND_URL=localhost:3000/api
+    command: npm run dev
+    container_name: quackStack-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
     develop:
       watch:
         - action: sync
           path: ./frontend
           target: /frontend
           ignore: [node_modules]
-    ports: [5173:5173]
+    environment:
+      - VITE_BACKEND_URL=localhost:3000/api
     healthcheck:
-      test: curl --fail http://${VITE_HOST:-localhost}:5173 || exit 1
-    depends_on:
-      backend:
-        condition: service_healthy
+      test: curl --fail http://localhost:5173 || exit 1
+    ports: [5173:5173]

@@ -2,7 +2,7 @@
 FROM node:20.13.1
 
 # Copy files and install dependencies
-WORKDIR /backend/
+WORKDIR /app/
 COPY . ./
 RUN npm i
 
