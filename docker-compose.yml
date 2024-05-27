@@ -47,6 +47,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    command: npm run dev
     container_name: quackStack-api
     depends_on:
       database:
