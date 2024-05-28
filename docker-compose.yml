@@ -94,6 +94,7 @@ services:
     profiles: ["caddy"]
     build: ./frontend
     environment:
+      LOG_LEVEL: info
       PORT: 3000
       VITE_BACKEND_URL: http://localhost:3000/api
     ports: ["3005:3000"]
