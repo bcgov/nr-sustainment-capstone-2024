@@ -3,7 +3,7 @@
 FROM node:20.13.1-bullseye AS build
 
 # Install packages, build and keep only prod packages
-WORKDIR /app
+WORKDIR /frontend
 COPY . ./
 RUN npm ci && \
     npm run build
@@ -14,7 +14,7 @@ FROM caddy:2.7.6-alpine
 RUN apk add --no-cache ca-certificates
 
 # Copy static files and run formatting
-COPY --from=build /app/dist /srv
+COPY --from=build /frontend/dist /srv
 COPY Caddyfile /etc/caddy/Caddyfile
 RUN caddy fmt --overwrite /etc/caddy/Caddyfile
 

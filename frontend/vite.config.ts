@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import react from '@vitejs/plugin-react-swc';
-// https://vitejs.dev/config/
+
 export default defineConfig({
   server: {
     host: '0.0.0.0',
@@ -45,5 +45,24 @@ export default defineConfig({
       },
     }),
     react(),
+    {
+      name: 'build-html',
+      apply: 'build',
+      transformIndexHtml: (html) => ({
+        html,
+        tags: [
+          {
+            tag: 'script',
+            attrs: {
+              src: '/env.js',
+            },
+            injectTo: 'head',
+          },
+        ],
+      }),
+    },
   ],
+  build: {
+    outDir: 'dist', // Ensure this matches your output directory
+  },
 });
