@@ -19,7 +19,7 @@ jobs:
       digest: ${{ steps.builds.outputs.digest }}
     strategy:
       matrix:
-        package: [backend, frontend, migrations]
+        package: [backend, database, frontend, migrations]
     timeout-minutes: 10
     steps:
       - uses: bcgov-nr/action-builder-ghcr@v2.0.2
