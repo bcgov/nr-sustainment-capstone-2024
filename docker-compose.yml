@@ -14,12 +14,15 @@ name: quackstack-nmp
 services:
   # DB
   database:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
     container_name: quackStack-db
     environment:
       <<: *postgres-vars
-    image: postgres:15
+    # image: postgres:15
     ports: [5432:5432]
-    volumes: [./database/db/entrypoint:/docker-entrypoint-initdb.d]
+    # volumes: [./database/db/entrypoint:/docker-entrypoint-initdb.d]
     healthcheck:
       test: ["CMD", "pg_isready", "-U", *POSTGRES_USER]
 
