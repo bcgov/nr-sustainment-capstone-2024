@@ -31,18 +31,11 @@ jobs:
           tag_fallback: latest
           triggers: ('${{ matrix.package }}/')
 
-  # # # https://github.com/bcgov-nr/action-deployer-openshift
-  # deploys:
-  #   name: Deploys
-  #   needs: [builds]
-  #   uses: bcgov/quickstart-openshift-helpers/.github/workflows/.deployer.yml@v0.4.1
-  #   secrets:
-  #     oc_namespace: ${{ secrets.OC_NAMESPACE }}
-  #     oc_token: ${{ secrets.OC_TOKEN }}
-  #   with:
-  #     triggers: ('backend/' 'frontend/' 'migrations/')
-  #     params:
-  #       --set global.secrets.persist=false
+  deploys:
+    name: Deploys
+    needs: [builds]
+    secrets: inherit
+    uses: ./.github/workflows/.deploy.yml
 
   # tests:
     # name: Tests
