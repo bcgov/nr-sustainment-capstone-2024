@@ -7,6 +7,7 @@ const FetchDevelopers = () => {
   const [developers, setDevelopers] = useState<DeveloperInterface[]>([]);
 
   useEffect(() => {
+    console.log(import.meta.env);
     const backEndUrl = import.meta.env.VITE_BACKEND_URL;
 
     const url = `${backEndUrl}/developers`;
