@@ -1,0 +1,25 @@
+name: .Deploys
+
+on:
+  workflow_call:
+    inputs:
+      target:
+        description: Deployment target; usually PR number, test or prod
+        required: false
+        type: string
+
+jobs:
+  database:
+    name: Database
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Deploy Database
+        uses: bcgov-nr/action-deployer-openshift@v2.3.0
+        with:
+          oc_namespace: ${{ vars.OC_NAMESPACE }}
+          oc_server: ${{ vars.OC_SERVER }}
+          oc_token: ${{ secrets.OC_TOKEN }}
+          file: database/openshift.deploy.yml
+          overwrite: false
+          parameters:
+            -p TAG=${{ github.event.number }}
