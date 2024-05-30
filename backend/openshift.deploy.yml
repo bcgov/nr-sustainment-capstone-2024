@@ -69,16 +69,16 @@ objects:
                 - name: backend-http
                   containerPort: 3000
                   protocol: TCP
-              # readinessProbe:
-              #   httpGet:
-              #     path: /api/health
-              #     port: 3000
-              #     scheme: HTTP
-              #   initialDelaySeconds: 5
-              #   periodSeconds: 2
-              #   timeoutSeconds: 2
-              #   successThreshold: 1
-              #   failureThreshold: 30
+              readinessProbe:
+                httpGet:
+                  path: /api/health
+                  port: 3000
+                  scheme: HTTP
+                initialDelaySeconds: 5
+                periodSeconds: 2
+                timeoutSeconds: 2
+                successThreshold: 1
+                failureThreshold: 30
               # livenessProbe:
               #   successThreshold: 1
               #   failureThreshold: 3
