@@ -23,7 +23,6 @@ objects:
     metadata:
       labels:
         app: ${APP}-${TAG}
-        service: ${APP}-${TAG}-${COMPONENT}
       name: ${APP}-${TAG}-${COMPONENT}
     spec:
       type: ClusterIP
@@ -52,6 +51,7 @@ objects:
           labels:
             app: ${APP}-${TAG}
             deployment: ${APP}-${TAG}-${COMPONENT}
+            service: ${APP}-${TAG}-${COMPONENT}
         spec:
           containers:
             - name: ${APP}-${TAG}-backend
@@ -66,13 +66,13 @@ objects:
                 - name: POSTGRES_HOST
                   value: ${APP}-${TAG}-database
               ports:
-                - name: http
+                - name: backend-http
                   containerPort: 3000
                   protocol: TCP
               readinessProbe:
                 httpGet:
                   path: /api/health
-                  port: http
+                  port: backend-http
                   scheme: HTTP
                 initialDelaySeconds: 5
                 periodSeconds: 2
@@ -84,7 +84,7 @@ objects:
                 failureThreshold: 3
                 httpGet:
                   path: /api/health
-                  port: 3000
+                  port: backend-http
                   scheme: HTTP
                 initialDelaySeconds: 15
                 periodSeconds: 30
