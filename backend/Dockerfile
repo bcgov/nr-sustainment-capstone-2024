@@ -7,4 +7,4 @@ COPY . ./
 RUN npm i
 
 # Run in dev mode, `npm run serve` for production
-CMD ["npm", "run", "serve"]
+CMD ["npm", "run", "dev"]

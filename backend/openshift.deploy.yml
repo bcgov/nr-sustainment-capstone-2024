@@ -55,7 +55,7 @@ objects:
         spec:
           containers:
             - name: ${APP}-${TAG}-backend
-              image: "ghcr.io/${ORG}/${APP}/migrations:${TAG}"
+              image: "ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}"
               imagePullPolicy: Always
               envFrom:
                 - secretRef:
@@ -63,6 +63,8 @@ objects:
               env:
                 - name: LOG_LEVEL
                   value: info
+                - name: POSTGRES_HOST
+                  value: ${APP}-${TAG}-database
               ports:
                 - name: http
                   containerPort: 3000
