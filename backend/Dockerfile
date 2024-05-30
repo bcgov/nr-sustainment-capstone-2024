@@ -1,5 +1,5 @@
 # Base image for the container
-FROM node:20.4.0
+FROM node:20.14.0
 
 # Copy files and install dependencies
 WORKDIR /app/
