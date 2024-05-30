@@ -4,7 +4,8 @@ FROM node:20.13.1
 # Copy files and install dependencies
 WORKDIR /app/
 COPY . ./
-RUN npm i
+RUN npm ci && \
+    npm run build
 
 # Run in dev mode, `npm run serve` for production
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "serve"]
