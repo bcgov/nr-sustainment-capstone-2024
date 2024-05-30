@@ -89,6 +89,8 @@ objects:
                 requests:
                   cpu: 50m
                   memory: 75Mi
+              securityContext:
+                runAsUser: 1000
   - kind: Route
     apiVersion: route.openshift.io/v1
     metadata:
