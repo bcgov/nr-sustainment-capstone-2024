@@ -1,0 +1,109 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+parameters:
+  - name: APP
+    description: Application name
+    value: nr-sustainment-capstone-2024
+  - name: COMPONENT
+    description: Component name
+    value: database
+  - name: ORG
+    description: Organization name; e.g. bcgov or bcdevops
+    value: bcgov
+  - name: TAG
+    description: Image tag; e.g. PR number, latest or prod
+    required: true
+  - name: DB_PASSWORD
+    description: Password for the PostgreSQL connection user.
+    from: "[a-zA-Z0-9]{16}"
+    generate: expression
+objects:
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app: ${APP}-${TAG}
+        service: ${APP}-${TAG}-${COMPONENT}
+      name: ${APP}-${TAG}-${COMPONENT}
+    spec:
+      type: ClusterIP
+      ports:
+        - port: 80
+          targetPort: http
+          protocol: TCP
+          name: http
+      selector:
+        service: ${APP}-${TAG}-${COMPONENT}
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app: ${APP}-${TAG}
+        deployment: ${APP}-${TAG}-${COMPONENT}
+      name: ${APP}-${TAG}-${COMPONENT}
+    spec:
+      strategy:
+        type: RollingUpdate
+      selector:
+        matchLabels:
+          deployment: ${APP}-${TAG}-${COMPONENT}
+      template:
+        metadata:
+          labels:
+            app: ${APP}-${TAG}
+        spec:
+          initContainers:
+            - name: ${APP}-${TAG}-backend-init
+              image: "ghcr.io/${ORG}/${APP}/migrations:${TAG}"
+              imagePullPolicy: Always
+              envFrom:
+                - secretRef:
+                    name: ${APP}-${TAG}-database
+              resources:
+                limits:
+                  cpu: 200m
+                  memory: 100Mi
+                requests:
+                  cpu: 50m
+                  memory: 25Mi
+          containers:
+            - name: ${APP}-${TAG}-backend
+              image: "ghcr.io/${ORG}/${APP}/migrations:${TAG}"
+              imagePullPolicy: Always
+              envFrom:
+                - secretRef:
+                    name: ${APP}-${TAG}-database
+              env:
+                - name: LOG_LEVEL
+                  value: info
+              ports:
+                - name: http
+                  containerPort: 3000
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /api/health
+                  port: http
+                  scheme: HTTP
+                initialDelaySeconds: 5
+                periodSeconds: 2
+                timeoutSeconds: 2
+                successThreshold: 1
+                failureThreshold: 30
+              livenessProbe:
+                successThreshold: 1
+                failureThreshold: 3
+                httpGet:
+                  path: /api/health
+                  port: 3000
+                  scheme: HTTP
+                initialDelaySeconds: 15
+                periodSeconds: 30
+                timeoutSeconds: 5
+              resources: # this is optional
+                limits:
+                  cpu: 150m
+                  memory: 150Mi
+                requests:
+                  cpu: 50m
+                  memory: 75Mi
