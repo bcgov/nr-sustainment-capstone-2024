@@ -12,6 +12,7 @@ parameters:
     value: bcgov
   - name: TAG
     description: Image
+    required: true
 objects:
   - kind: Service
     apiVersion: v1
