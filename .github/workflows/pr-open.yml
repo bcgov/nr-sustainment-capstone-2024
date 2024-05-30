@@ -37,19 +37,10 @@ jobs:
     secrets: inherit
     uses: ./.github/workflows/.deploy.yml
 
-  # tests:
-    # name: Tests
-    # if: needs.deploys.outputs.triggered == 'true'
-    # needs: [deploys]
-    # uses: ./.github/workflows/.tests.yml
-    # with:
-    #   target: ${{ github.event.number }}
-
   results:
     name: PR Results
     if: always() && (!failure()) && (!cancelled())
-    # needs: [builds, deploys]
-    needs: [builds]
+    needs: [builds, deploys]
     runs-on: ubuntu-22.04
     steps:
       - run: echo "Success!"
