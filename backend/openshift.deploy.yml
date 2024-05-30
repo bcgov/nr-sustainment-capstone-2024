@@ -18,8 +18,8 @@ parameters:
     from: "[a-zA-Z0-9]{16}"
     generate: expression
 objects:
-  - apiVersion: v1
-    kind: Service
+  - kind: Service
+    apiVersion: v1
     metadata:
       labels:
         app: ${APP}-${TAG}
@@ -28,13 +28,13 @@ objects:
       type: ClusterIP
       ports:
         - port: 80
-          targetPort: http
+          targetPort: 3000
           protocol: TCP
-          name: http
+          name: http-3000
       selector:
         service: ${APP}-${TAG}-${COMPONENT}
-  - apiVersion: apps/v1
-    kind: Deployment
+  - kind: Deployment
+    apiVersion: apps/v1
     metadata:
       labels:
         app: ${APP}-${TAG}
@@ -72,7 +72,7 @@ objects:
               readinessProbe:
                 httpGet:
                   path: /api/health
-                  port: backend-http
+                  port: 3000
                   scheme: HTTP
                 initialDelaySeconds: 5
                 periodSeconds: 2
@@ -84,7 +84,7 @@ objects:
                 failureThreshold: 3
                 httpGet:
                   path: /api/health
-                  port: backend-http
+                  port: 3000
                   scheme: HTTP
                 initialDelaySeconds: 15
                 periodSeconds: 30
@@ -96,8 +96,8 @@ objects:
                 requests:
                   cpu: 50m
                   memory: 75Mi
-  - apiVersion: route.openshift.io/v1
-    kind: Route
+  - kind: Route
+    apiVersion: route.openshift.io/v1
     metadata:
       labels:
         app: ${APP}-${TAG}
@@ -105,7 +105,7 @@ objects:
     spec:
       host: ${APP}-${TAG}-${COMPONENT}.apps.silver.devops.gov.bc.ca
       port:
-        targetPort: 8090-tcp
+        targetPort: http-3000
       to:
         kind: Service
         name: ${APP}-${TAG}-${COMPONENT}
