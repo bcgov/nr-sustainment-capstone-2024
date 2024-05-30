@@ -19,5 +19,5 @@ jobs:
       oc_namespace: ${{ secrets.OC_NAMESPACE }}
       oc_token: ${{ secrets.OC_TOKEN }}
     with:
-      cleanup: helm
-      packages: backend frontend migrations
+      cleanup: label
+      packages: database backend frontend

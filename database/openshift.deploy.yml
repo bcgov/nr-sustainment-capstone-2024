@@ -18,10 +18,33 @@ parameters:
     from: "[a-zA-Z0-9]{16}"
     generate: expression
 objects:
+  - apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: allow-from-openshift-ingress
+      labels:
+        template: openshift-test
+    spec:
+      ingress:
+        - from:
+            - namespaceSelector:
+                matchLabels:
+                  network.openshift.io/policy-group: ingress
+      policyTypes:
+        - Ingress
+  - apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: allow-same-namespace
+      labels:
+        template: nr-spar-backend-network-security-policy
+    spec:
+      policyTypes:
+        - Ingress
   - apiVersion: v1
     kind: Secret
     metadata:
-      name: ${APP}-${TAG}-${PG_DATABASE}
+      name: ${APP}-${TAG}-${COMPONENT}
       labels:
         app: ${APP}-${TAG}
     stringData:

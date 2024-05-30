@@ -23,3 +23,19 @@ jobs:
           overwrite: false
           parameters:
             -p TAG=${{ github.event.number }}
+
+  backend:
+    name: Backend
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Deploy Backend
+        uses: bcgov-nr/action-deployer-openshift@v2.3.0
+        with:
+          oc_namespace: ${{ vars.OC_NAMESPACE }}
+          oc_server: ${{ vars.OC_SERVER }}
+          oc_token: ${{ secrets.OC_TOKEN }}
+          file: backend/openshift.deploy.yml
+          overwrite: false
+          parameters:
+            -p TAG=${{ github.event.number }}
+          verification_path: /api/health
