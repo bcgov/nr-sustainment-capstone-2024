@@ -72,23 +72,23 @@ objects:
               readinessProbe:
                 httpGet:
                   path: /api/health
-                  port: 3000
+                  port: backend-http
                   scheme: HTTP
-                initialDelaySeconds: 5
-                periodSeconds: 2
-                timeoutSeconds: 2
+                initialDelaySeconds: 15
+                periodSeconds: 5
+                timeoutSeconds: 5
                 successThreshold: 1
                 failureThreshold: 30
-              # livenessProbe:
-              #   successThreshold: 1
-              #   failureThreshold: 3
-              #   httpGet:
-              #     path: /api/health
-              #     port: 3000
-              #     scheme: HTTP
-              #   initialDelaySeconds: 15
-              #   periodSeconds: 30
-              #   timeoutSeconds: 5
+              livenessProbe:
+                successThreshold: 1
+                failureThreshold: 3
+                httpGet:
+                  path: /api/health
+                  port: backend-http
+                  scheme: HTTP
+                initialDelaySeconds: 15
+                periodSeconds: 30
+                timeoutSeconds: 5
               resources: # this is optional
                 limits:
                   cpu: 150m
