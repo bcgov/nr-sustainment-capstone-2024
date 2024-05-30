@@ -41,7 +41,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    command: npm run dev
+    command: npm run ${CMD:-dev}
     container_name: quackStack-api
     depends_on:
       database:
@@ -63,7 +63,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    command: npm run dev
+    command: npm run ${CMD:-dev}
     container_name: quackStack-frontend
     depends_on:
       backend:
