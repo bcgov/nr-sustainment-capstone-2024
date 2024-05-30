@@ -6,7 +6,7 @@ parameters:
     value: nr-sustainment-capstone-2024
   - name: COMPONENT
     description: Component name
-    value: database
+    value: backend
   - name: ORG
     description: Organization name; e.g. bcgov or bcdevops
     value: bcgov
@@ -51,21 +51,8 @@ objects:
         metadata:
           labels:
             app: ${APP}-${TAG}
+            deployment: ${APP}-${TAG}-${COMPONENT}
         spec:
-          initContainers:
-            - name: ${APP}-${TAG}-backend-init
-              image: "ghcr.io/${ORG}/${APP}/migrations:${TAG}"
-              imagePullPolicy: Always
-              envFrom:
-                - secretRef:
-                    name: ${APP}-${TAG}-database
-              resources:
-                limits:
-                  cpu: 200m
-                  memory: 100Mi
-                requests:
-                  cpu: 50m
-                  memory: 25Mi
           containers:
             - name: ${APP}-${TAG}-backend
               image: "ghcr.io/${ORG}/${APP}/migrations:${TAG}"
