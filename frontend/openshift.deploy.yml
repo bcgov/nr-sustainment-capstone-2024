@@ -6,17 +6,12 @@ parameters:
     value: nr-sustainment-capstone-2024
   - name: COMPONENT
     description: Component name
-    value: backend
+    value: frontend
   - name: ORG
     description: Organization name; e.g. bcgov or bcdevops
     value: bcgov
   - name: TAG
-    description: Image tag; e.g. PR number, latest or prod
-    required: true
-  - name: DB_PASSWORD
-    description: Password for the PostgreSQL connection user.
-    from: "[a-zA-Z0-9]{16}"
-    generate: expression
+    description: Image
 objects:
   - kind: Service
     apiVersion: v1
@@ -28,9 +23,9 @@ objects:
       type: ClusterIP
       ports:
         - port: 80
-          targetPort: 3000
+          targetPort: 5173
           protocol: TCP
-          name: http-3000
+          name: http-5173
       selector:
         service: ${APP}-${TAG}-${COMPONENT}
   - kind: Deployment
@@ -57,17 +52,14 @@ objects:
             - name: ${APP}-${TAG}-${COMPONENT}
               image: "ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}"
               imagePullPolicy: Always
-              envFrom:
-                - secretRef:
-                    name: ${APP}-${TAG}-database
               env:
                 - name: LOG_LEVEL
                   value: info
-                - name: POSTGRES_HOST
-                  value: ${APP}-${TAG}-database
+                - name: VITE_BACKEND_URL
+                  value: ${APP}-${TAG}-backend
               ports:
                 - name: http
-                  containerPort: 3000
+                  containerPort: 5173
                   protocol: TCP
               readinessProbe:
                 httpGet:
@@ -105,7 +97,7 @@ objects:
     spec:
       host: ${APP}-${TAG}-${COMPONENT}.apps.silver.devops.gov.bc.ca
       port:
-        targetPort: http-3000
+        targetPort: http-5173
       to:
         kind: Service
         name: ${APP}-${TAG}-${COMPONENT}
