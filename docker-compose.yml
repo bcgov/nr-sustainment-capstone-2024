@@ -20,9 +20,7 @@ services:
     container_name: quackStack-db
     environment:
       <<: *postgres-vars
-    # image: postgres:15
     ports: [5432:5432]
-    # volumes: [./database/db/entrypoint:/docker-entrypoint-initdb.d]
     healthcheck:
       test: ["CMD", "pg_isready", "-U", *POSTGRES_USER]
 

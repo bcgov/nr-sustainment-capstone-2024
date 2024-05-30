@@ -2,8 +2,9 @@
 FROM node:20.13.1
 
 # Copy files, install dependencies and build
+USER node
 WORKDIR /app/
-COPY . ./
+COPY --chown=node . ./
 RUN npm i && \
     npm run build
 
