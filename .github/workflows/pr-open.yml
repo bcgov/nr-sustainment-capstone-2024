@@ -33,14 +33,14 @@ jobs:
 
   deploys:
     name: Deploys
-    # needs: [builds]
+    needs: [builds]
     secrets: inherit
     uses: ./.github/workflows/.deploy.yml
 
-  # results:
-  #   name: PR Results
-  #   if: always() && (!failure()) && (!cancelled())
-  #   needs: [builds, deploys]
-  #   runs-on: ubuntu-22.04
-  #   steps:
-  #     - run: echo "Success!"
+  results:
+    name: PR Results
+    if: always() && (!failure()) && (!cancelled())
+    needs: [builds, deploys]
+    runs-on: ubuntu-22.04
+    steps:
+      - run: echo "Success!"
