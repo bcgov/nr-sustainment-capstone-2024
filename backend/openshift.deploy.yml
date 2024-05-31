@@ -77,7 +77,7 @@ objects:
                 initialDelaySeconds: 15
                 periodSeconds: 5
                 timeoutSeconds: 5
-                successThreshold: 1
+                successThreshold: 3
                 failureThreshold: 30
               livenessProbe:
                 successThreshold: 1
