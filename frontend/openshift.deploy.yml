@@ -70,8 +70,8 @@ objects:
                   port: http
                   scheme: HTTP
                 initialDelaySeconds: 15
-                periodSeconds: 5
-                timeoutSeconds: 5
+                periodSeconds: 10
+                timeoutSeconds: 10
                 successThreshold: 1
                 failureThreshold: 30
               livenessProbe:
