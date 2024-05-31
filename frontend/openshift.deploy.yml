@@ -87,10 +87,10 @@ objects:
               resources: # this is optional
                 limits:
                   cpu: 150m
-                  memory: 150Mi
+                  memory: 250Mi
                 requests:
                   cpu: 50m
-                  memory: 75Mi
+                  memory: 175Mi
   - kind: Route
     apiVersion: route.openshift.io/v1
     metadata:
