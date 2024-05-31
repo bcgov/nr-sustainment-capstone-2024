@@ -66,7 +66,7 @@ objects:
                   protocol: TCP
               readinessProbe:
                 httpGet:
-                  path: /api/health
+                  path: /
                   port: http
                   scheme: HTTP
                 initialDelaySeconds: 15
@@ -78,7 +78,7 @@ objects:
                 successThreshold: 1
                 failureThreshold: 3
                 httpGet:
-                  path: /api/health
+                  path: /
                   port: http
                   scheme: HTTP
                 initialDelaySeconds: 15
