@@ -6,17 +6,13 @@ parameters:
     value: nr-sustainment-capstone-2024
   - name: COMPONENT
     description: Component name
-    value: backend
+    value: frontend
   - name: ORG
     description: Organization name; e.g. bcgov or bcdevops
     value: bcgov
   - name: TAG
-    description: Image tag; e.g. PR number, latest or prod
+    description: Image
     required: true
-  - name: DB_PASSWORD
-    description: Password for the PostgreSQL connection user.
-    from: "[a-zA-Z0-9]{16}"
-    generate: expression
 objects:
   - kind: Service
     apiVersion: v1
@@ -28,9 +24,9 @@ objects:
       type: ClusterIP
       ports:
         - port: 80
-          targetPort: 3000
+          targetPort: 5173
           protocol: TCP
-          name: http-3000
+          name: http-5173
       selector:
         service: ${APP}-${TAG}-${COMPONENT}
   - kind: Deployment
@@ -56,34 +52,33 @@ objects:
           containers:
             - name: ${APP}-${TAG}-${COMPONENT}
               image: "ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}"
+              securityContext:
+                runAsUser: 1011540000
               imagePullPolicy: Always
-              envFrom:
-                - secretRef:
-                    name: ${APP}-${TAG}-database
               env:
                 - name: LOG_LEVEL
                   value: info
-                - name: POSTGRES_HOST
-                  value: ${APP}-${TAG}-database
+                - name: VITE_BACKEND_URL
+                  value: http://${APP}-${TAG}-backend/api
               ports:
                 - name: http
-                  containerPort: 3000
+                  containerPort: 5173
                   protocol: TCP
               readinessProbe:
                 httpGet:
-                  path: /api/health
+                  path: /
                   port: http
                   scheme: HTTP
                 initialDelaySeconds: 15
-                periodSeconds: 5
-                timeoutSeconds: 5
+                periodSeconds: 10
+                timeoutSeconds: 10
                 successThreshold: 3
                 failureThreshold: 30
               livenessProbe:
                 successThreshold: 1
                 failureThreshold: 3
                 httpGet:
-                  path: /api/health
+                  path: /
                   port: http
                   scheme: HTTP
                 initialDelaySeconds: 15
@@ -92,10 +87,10 @@ objects:
               resources: # this is optional
                 limits:
                   cpu: 150m
-                  memory: 150Mi
+                  memory: 250Mi
                 requests:
                   cpu: 50m
-                  memory: 75Mi
+                  memory: 175Mi
   - kind: Route
     apiVersion: route.openshift.io/v1
     metadata:
@@ -105,7 +100,7 @@ objects:
     spec:
       host: ${APP}-${TAG}-${COMPONENT}.apps.silver.devops.gov.bc.ca
       port:
-        targetPort: http-3000
+        targetPort: http-5173
       to:
         kind: Service
         name: ${APP}-${TAG}-${COMPONENT}
