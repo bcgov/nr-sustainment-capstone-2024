@@ -64,26 +64,26 @@ objects:
                 - name: http
                   containerPort: 5173
                   protocol: TCP
-              # readinessProbe:
-              #   httpGet:
-              #     path: /api/health
-              #     port: http
-              #     scheme: HTTP
-              #   initialDelaySeconds: 15
-              #   periodSeconds: 5
-              #   timeoutSeconds: 5
-              #   successThreshold: 1
-              #   failureThreshold: 30
-              # livenessProbe:
-              #   successThreshold: 1
-              #   failureThreshold: 3
-              #   httpGet:
-              #     path: /api/health
-              #     port: http
-              #     scheme: HTTP
-              #   initialDelaySeconds: 15
-              #   periodSeconds: 30
-              #   timeoutSeconds: 5
+              readinessProbe:
+                httpGet:
+                  path: /api/health
+                  port: http
+                  scheme: HTTP
+                initialDelaySeconds: 15
+                periodSeconds: 5
+                timeoutSeconds: 5
+                successThreshold: 1
+                failureThreshold: 30
+              livenessProbe:
+                successThreshold: 1
+                failureThreshold: 3
+                httpGet:
+                  path: /api/health
+                  port: http
+                  scheme: HTTP
+                initialDelaySeconds: 15
+                periodSeconds: 30
+                timeoutSeconds: 5
               resources: # this is optional
                 limits:
                   cpu: 150m
