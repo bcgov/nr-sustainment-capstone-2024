@@ -39,6 +39,7 @@ jobs:
           parameters:
             -p TAG=${{ github.event.number }}
           verification_path: /api/health
+          verification_retry_seconds: "15"
 
   frontend:
     name: Frontend
