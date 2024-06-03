@@ -20,7 +20,6 @@ const Header = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  console.log(window.innerWidth);
   return (
     <StyledHeader>
       <Logo src={isDesktop ? '../../../public/assets/BCID-logo-desktop.png' : '../../../public/assets/BCID-logo-mobile.png'} alt="bc-logo" />
