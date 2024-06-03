@@ -10,7 +10,9 @@ const StyledFooter = styled.footer`
   flex-direction: column;
   position: fixed;
   bottom: 0;
-    max-width: 320px;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
   color: ${tokens.typographyColorPlaceholder};
   font-size: ${tokens.typographyRegularLabel};
   margin-bottom: 36px;
