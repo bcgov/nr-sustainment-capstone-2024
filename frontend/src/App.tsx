@@ -1,6 +1,6 @@
 import './App.css';
-import HealthEndpoint from './components/HealthCheck';
-import FetchDevelopers from './components/FetchDevelopers';
+import HealthEndpoint from './Views/HealthCheck';
+import FetchDevelopers from './Views/FetchDevelopers';
 
 const App = () => (
   <>
