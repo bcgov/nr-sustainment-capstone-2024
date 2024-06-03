@@ -12,10 +12,10 @@ const Header = () => {
     // Initial check
     handleResize();
 
-    // Event listener for window resize
+    // Change Logo based on state
     window.addEventListener('resize', handleResize);
 
-    // Cleanup
+    // Logo changes and removes what's mounted
     return () => {
       window.removeEventListener('resize', handleResize);
     };
