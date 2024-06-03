@@ -8,9 +8,7 @@ const Footer = () => (
   <StyledFooter>
     <p>
       By continuing, you agree to our
-      <a href="https://nmp.apps.nrs.gov.bc.ca/Information/Disclaimer">
-        Terms of Service
-      </a>
+      <a href="https://nmp.apps.nrs.gov.bc.ca/Information/Disclaimer">Terms of Service</a>
     </p>
     <p>
       Need
