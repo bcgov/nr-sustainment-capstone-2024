@@ -1,0 +1,115 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+parameters:
+  - name: APP
+    description: Application name
+    value: nr-sustainment-capstone-2024
+  - name: COMPONENT
+    description: Component name
+    value: backend
+  - name: ORG
+    description: Organization name; e.g. bcgov or bcdevops
+    value: bcgov
+  - name: TAG
+    description: Image tag; e.g. PR number, latest or prod
+    required: true
+  - name: DB_PASSWORD
+    description: Password for the PostgreSQL connection user.
+    from: "[a-zA-Z0-9]{16}"
+    generate: expression
+objects:
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      labels:
+        app: ${APP}-${TAG}
+      name: ${APP}-${TAG}-${COMPONENT}
+    spec:
+      type: ClusterIP
+      ports:
+        - port: 80
+          targetPort: 3000
+          protocol: TCP
+          name: http-3000
+      selector:
+        service: ${APP}-${TAG}-${COMPONENT}
+  - kind: Deployment
+    apiVersion: apps/v1
+    metadata:
+      labels:
+        app: ${APP}-${TAG}
+        deployment: ${APP}-${TAG}-${COMPONENT}
+      name: ${APP}-${TAG}-${COMPONENT}
+    spec:
+      strategy:
+        type: RollingUpdate
+      selector:
+        matchLabels:
+          deployment: ${APP}-${TAG}-${COMPONENT}
+      template:
+        metadata:
+          labels:
+            app: ${APP}-${TAG}
+            deployment: ${APP}-${TAG}-${COMPONENT}
+            service: ${APP}-${TAG}-${COMPONENT}
+        spec:
+          containers:
+            - name: ${APP}-${TAG}-${COMPONENT}
+              image: "ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}"
+              imagePullPolicy: Always
+              envFrom:
+                - secretRef:
+                    name: ${APP}-${TAG}-database
+              env:
+                - name: LOG_LEVEL
+                  value: info
+                - name: POSTGRES_HOST
+                  value: ${APP}-${TAG}-database
+              ports:
+                - name: http
+                  containerPort: 3000
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /api/health
+                  port: http
+                  scheme: HTTP
+                initialDelaySeconds: 15
+                periodSeconds: 5
+                timeoutSeconds: 5
+                successThreshold: 3
+                failureThreshold: 30
+              livenessProbe:
+                successThreshold: 1
+                failureThreshold: 3
+                httpGet:
+                  path: /api/health
+                  port: http
+                  scheme: HTTP
+                initialDelaySeconds: 15
+                periodSeconds: 30
+                timeoutSeconds: 5
+              resources: # this is optional
+                limits:
+                  cpu: 150m
+                  memory: 150Mi
+                requests:
+                  cpu: 50m
+                  memory: 75Mi
+  - kind: Route
+    apiVersion: route.openshift.io/v1
+    metadata:
+      labels:
+        app: ${APP}-${TAG}
+      name: ${APP}-${TAG}-${COMPONENT}
+    spec:
+      host: ${APP}-${TAG}-${COMPONENT}.apps.silver.devops.gov.bc.ca
+      port:
+        targetPort: http-3000
+      to:
+        kind: Service
+        name: ${APP}-${TAG}-${COMPONENT}
+        weight: 100
+      tls:
+        termination: edge
+        insecureEdgeTerminationPolicy: Redirect

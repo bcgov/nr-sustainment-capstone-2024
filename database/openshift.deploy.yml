@@ -1,0 +1,174 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+parameters:
+  - name: APP
+    description: Application name
+    value: nr-sustainment-capstone-2024
+  - name: COMPONENT
+    description: Component name
+    value: database
+  - name: ORG
+    description: Organization name; e.g. bcgov or bcdevops
+    value: bcgov
+  - name: TAG
+    description: Image tag; e.g. PR number, latest or prod
+    required: true
+  - name: DB_PASSWORD
+    description: Password for the PostgreSQL connection user.
+    from: "[a-zA-Z0-9]{16}"
+    generate: expression
+objects:
+  - apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: allow-from-openshift-ingress
+      labels:
+        template: openshift-test
+    spec:
+      ingress:
+        - from:
+            - namespaceSelector:
+                matchLabels:
+                  network.openshift.io/policy-group: ingress
+      policyTypes:
+        - Ingress
+  - apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: allow-same-namespace
+      labels:
+        template: nr-spar-backend-network-security-policy
+    spec:
+      policyTypes:
+        - Ingress
+  - apiVersion: v1
+    kind: Secret
+    metadata:
+      name: ${APP}-${TAG}-${COMPONENT}
+      labels:
+        app: ${APP}-${TAG}
+    stringData:
+      database-name: postgres
+      database-password: ${DB_PASSWORD}
+      database-port: "5432"
+      database-user: postgres
+  - kind: PersistentVolumeClaim
+    apiVersion: v1
+    metadata:
+      name: ${APP}-${TAG}-${COMPONENT}
+      labels:
+        app: ${APP}-${TAG}
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 256Mi
+      storageClassName: netapp-file-standard
+  - kind: Deployment
+    apiVersion: apps/v1
+    metadata:
+      name: ${APP}-${TAG}-${COMPONENT}
+      labels:
+        app: ${APP}-${TAG}
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          deployment: ${APP}-${TAG}-${COMPONENT}
+      strategy:
+        type: Recreate
+        recreateParams:
+          timeoutSeconds: 600
+        activeDeadlineSeconds: 21600
+      template:
+        metadata:
+          name: ${APP}-${TAG}-${COMPONENT}
+          labels:
+            app: ${APP}-${TAG}
+            deployment: ${APP}-${TAG}-${COMPONENT}
+        spec:
+          volumes:
+            - name: ${APP}-${TAG}-${COMPONENT}
+              persistentVolumeClaim:
+                claimName: ${APP}-${TAG}-${COMPONENT}
+          containers:
+            - name: ${APP}-${TAG}
+              image: ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}
+              ports:
+                - containerPort: 5432
+                  protocol: TCP
+              resources:
+                requests:
+                  cpu: 50m
+                  memory: 150Mi
+                limits:
+                  cpu: 115m
+                  memory: 250Mi
+              readinessProbe:
+                exec:
+                  command:
+                    - /usr/bin/env
+                    - bash
+                    - "-c"
+                    - psql -q -U $POSTGRES_USER -d $POSTGRES_DB -c 'SELECT 1'
+                successThreshold: 1
+                failureThreshold: 5
+                initialDelaySeconds: 10
+                periodSeconds: 15
+                timeoutSeconds: 10
+              livenessProbe:
+                exec:
+                  command:
+                    - /usr/bin/env
+                    - bash
+                    - "-c"
+                    - psql -q $POSTGRES_USER -d $POSTGRES_DB -c 'SELECT 1'
+                successThreshold: 1
+                failureThreshold: 5
+                initialDelaySeconds: 10
+                periodSeconds: 15
+                timeoutSeconds: 10
+              env:
+                - name: POSTGRES_DB
+                  valueFrom:
+                    secretKeyRef:
+                      name: ${APP}-${TAG}-${COMPONENT}
+                      key: database-name
+                - name: POSTGRES_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: ${APP}-${TAG}-${COMPONENT}
+                      key: database-password
+                - name: POSTGRES_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: ${APP}-${TAG}-${COMPONENT}
+                      key: database-user
+              volumeMounts:
+                - name: ${APP}-${TAG}-${COMPONENT}
+                  mountPath: "/var/lib/postgresql"
+              terminationMessagePath: "/dev/termination-log"
+              terminationMessagePolicy: File
+              imagePullPolicy: Always
+          restartPolicy: Always
+          terminationGracePeriodSeconds: 30
+          dnsPolicy: ClusterFirst
+          schedulerName: default-scheduler
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app: ${APP}-${TAG}
+      name: ${APP}-${TAG}-${COMPONENT}
+    spec:
+      ports:
+        - name: postgresql
+          nodePort: 0
+          port: 5432
+          protocol: TCP
+          targetPort: 5432
+      selector:
+        deployment: ${APP}-${TAG}-${COMPONENT}
+      sessionAffinity: None
+      type: ClusterIP
