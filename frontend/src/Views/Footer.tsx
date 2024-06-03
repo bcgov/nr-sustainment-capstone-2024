@@ -1,10 +1,16 @@
+/**
+ * @desc A footer with links to our terms of agreement and BC NMP Help resource
+ *@author @GDamaso
+ */
 import StyledFooter from './Footer.style';
 
 const Footer = () => (
   <StyledFooter>
     <p>
       By continuing, you agree to our
-      <a href="https://nmp.apps.nrs.gov.bc.ca/Information/Disclaimer">Terms of Service</a>
+      <a href="https://nmp.apps.nrs.gov.bc.ca/Information/Disclaimer">
+        Terms of Service
+      </a>
     </p>
     <p>
       Need

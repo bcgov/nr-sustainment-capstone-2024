@@ -14,6 +14,8 @@ This is an excerpt of the original workflow of the Sustainment's team Nutrient M
 - [Vite](https://vitejs.dev/)
 - [React](https://react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Design Tokens](https://www.npmjs.com/package/@bcgov/design-tokens?activeTab=readme)
+- [Emotion](https://emotion.sh/docs/introduction)
 
 ## Run Locally
 
@@ -104,3 +106,39 @@ This is where you import it and use it as a type/interface.
       { id: 3, first_name: 'S', last_name: 'Spy' },
     ];
 ```
+
+### Design tokens and Emotion Styled components
+
+We need to follow BC's Styling guide, for this purpose, we're using BC Design Tokens.
+To get some more flexibility and provide a fresh and modern design, we will also use Emotion.
+The are imported in a `*.style.tsx` file, then Design tokens are used whenever possible, and emotion on should add some flare on top of it.
+
+Here's a simple example of design tokens being used:
+
+```TypeScript
+import styled from '@emotion/styled';
+import * as tokens from '@bcgov/design-tokens/js';
+
+const StyledFooter = styled.footer`
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  color: ${tokens.typographyColorPlaceholder};
+  font-size: ${tokens.typographyRegularLabel};
+  margin-bottom: 36px;
+  p {
+    margin: 0;
+  }
+  a {
+    color: ${tokens.typographyColorLink};
+  }
+`;
+
+export default StyledFooter;
+```
+
+<!-- Here's a simple example using emotion: -->
+<!-- ```TypeScript -->
+
+<!-- ``` -->

@@ -1,3 +1,7 @@
+/**
+ * @desc Styling with BC Design Tokens and Emotion for Footer component
+ * @author @GDamaso
+ */
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
 
