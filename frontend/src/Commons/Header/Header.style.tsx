@@ -27,13 +27,13 @@ const StyledHeader = styled.header`
 const Logo = styled.img`
   max-height: 112px;
   max-width: 123px;
-  order: 2;
+  order: 2; /* Moves logo below text */
 
   /* Desktop */
   @media (min-width: ${screenSizes.desktop}){
     max-height: 123px;
     max-width: 319px;
-    order: 1;
+    order: 1; /* Moves Logo before text */
   }
 `;
 
@@ -43,13 +43,13 @@ const Title = styled.h1`
   font-weight: ${tokens.typographyFontWeightsBold};
   text-align: center;
   font-size: 32px;
-  order: 1;
+  order: 1; /* Moves text above logo */
   margin: 50px 0 20px 0;
   line-height: 54px;
 
   /* Desktop */
   @media (min-width: ${screenSizes.desktop}){
-    order: 2;
+    order: 2; /* Moves text after logo */
     font-size: 48px;
     margin: 0;
     margin-left: -20%
