@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import * as tokens from "@bcgov/design-tokens/js";
+import * as tokens from '@bcgov/design-tokens/js';
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -9,10 +9,12 @@ const StyledFooter = styled.footer`
   color: ${tokens.typographyColorPlaceholder};
   font-size: ${tokens.typographyRegularLabel};
   margin-bottom: 36px;
-  p {margin: 0;};
+  p {
+    margin: 0;
+  }
   a {
-      color: ${tokens.typographyColorLink};
-    }
+    color: ${tokens.typographyColorLink};
+  }
 `;
 
 export default StyledFooter;
