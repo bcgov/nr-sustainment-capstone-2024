@@ -13,6 +13,8 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@bcgov/design-tokens": "^3.0.0",
+    "@emotion/styled": "^11.11.5",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
     "@vitejs/plugin-react": "^4.3.0",
