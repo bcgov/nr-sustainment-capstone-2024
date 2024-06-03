@@ -1,7 +1,7 @@
 import { vi, describe, expect, it } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import axios from 'axios';
-import HealthCheck from '../components/HealthCheck';
+import HealthCheck from '../Views/HealthCheck';
 
 vi.mock('axios');
 
