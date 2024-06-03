@@ -1,4 +1,4 @@
-# Welcome to QuackStack 'Better Berries NMP' Frontend 🚀
+# Welcome to QuackStack 'Better Berries' Frontend 🚀
 
 ## About the Frontend
 
@@ -6,7 +6,7 @@ Our frontend is a Vite React project written in TypeScript. This is a mobile fir
 
 ## Project Description
 
-The 'Better Berries NMP' is a Progressive Web Application that helps farmers to calculate accurate and precise nutrients needed for their crops.
+The 'Better Berries' is a Progressive Web Application that helps farmers to calculate accurate and precise nutrients needed for their crops.
 This is an excerpt of the original workflow of the Sustainment's team Nutrient Management Program. ([NMP](https://nmp.apps.nrs.gov.bc.ca/))
 
 ## Frameworks / Library

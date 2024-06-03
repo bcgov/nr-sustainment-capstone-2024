@@ -1,4 +1,4 @@
-# Welcome to QuackStack 'NMP' API 🚀
+# Welcome to QuackStack 'Better Berries' API 🚀
 
 ## About the API
 
@@ -30,13 +30,13 @@ There are suites covering all endpoints. Each suite should test all response sta
 A test suite for an endpoint should check for status and data to ensure no false positive responses are being created. 
 The simplest test looks like:
 
-```
+```typescript
 describe('Test the health path', () => {
   test('returns status code 200 if healthy', async () => {
     const res = await testRequest.get('/health');
 
     expect(res.statusCode).toEqual(200);
-    expect(res.text).toBe('NMP API is healthy and ready!');
+    expect(res.text).toBe('Better Berries API is healthy and ready!');
   });
 });
 ```
