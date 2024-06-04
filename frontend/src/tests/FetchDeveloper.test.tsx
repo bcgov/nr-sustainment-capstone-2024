@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { vi, describe, it, expect } from 'vitest';
 import axios from 'axios';
-import FetchDevelopers from '../Views/FetchDevelopers';
+import FetchDevelopers from './test-components/FetchDevelopers';
 import { DeveloperInterface } from '../Interface/DeveloperInterface';
 
 vi.mock('axios');
