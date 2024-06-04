@@ -1,4 +1,4 @@
-import { StyledHeader, Logo, Title } from './Header.style';
+import { StyledHeader, Logo, Title } from '../Styles/Header.style';
 
 const Header = () => (
   <StyledHeader>
