@@ -27,12 +27,14 @@ const StyledHeader = styled.header`
 const Logo = styled.img`
   max-height: 112px;
   max-width: 123px;
+  content: url('../../../public/assets/BCID-logo-mobile.png');
   order: 2; /* Moves logo below text */
 
   /* Desktop */
   @media (min-width: ${screenSizes.desktop}){
     max-height: 123px;
     max-width: 319px;
+    content: url('../../../public/assets/BCID-logo-desktop.png');
     order: 1; /* Moves Logo before text */
   }
 `;
