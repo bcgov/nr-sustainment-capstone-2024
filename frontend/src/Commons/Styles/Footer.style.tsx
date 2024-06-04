@@ -8,6 +8,7 @@ import * as tokens from '@bcgov/design-tokens/js';
 const StyledFooter = styled.footer`
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: fixed;
   bottom: 0;
   left: 0;
