@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Table, Container } from 'react-bootstrap';
-import { DeveloperInterface } from '../Interface/DeveloperInterface';
+import { DeveloperInterface } from '../../Interface/DeveloperInterface';
 
 const FetchDevelopers = () => {
   const [developers, setDevelopers] = useState<DeveloperInterface[]>([]);
