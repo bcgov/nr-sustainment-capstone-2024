@@ -2,7 +2,7 @@
  * @desc A footer with links to our terms of agreement and BC NMP Help resource
  *@author @GDamaso
  */
-import StyledFooter from './Footer.style';
+import StyledFooter from './Styles/Footer.style.tsx';
 
 const Footer = () => (
   <StyledFooter>
