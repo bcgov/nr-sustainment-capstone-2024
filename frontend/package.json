@@ -13,6 +13,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@bcgov/bc-sans": "^2.1.0",
     "@bcgov/design-tokens": "^3.0.0",
     "@emotion/styled": "^11.11.5",
     "@testing-library/jest-dom": "^6.4.5",
