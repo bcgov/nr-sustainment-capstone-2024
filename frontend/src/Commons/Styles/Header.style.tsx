@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '../../Constants/ScreenSize';
-import desktopLogo from '../../../public/assets/BCID-logo-desktop.png';
-import mobileLogo from '../../../public/assets/BCID-logo-mobile.png';
+import desktopLogo from '/assets/BCID-logo-desktop.png';
+import mobileLogo from '/assets/BCID-logo-mobile.png';
 
 const StyledHeader = styled.header`
   display: flex;
