@@ -52,7 +52,8 @@ const Title = styled.h1`
     order: 2; /* Moves text after logo */
     font-size: 48px;
     margin: 0;
-    margin-left: -20%
+    position:absolute;
+    left: 40vw;
     line-height: 65.38px;
   }
 `;
