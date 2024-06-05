@@ -10,7 +10,7 @@ x-postgres-vars: &postgres-vars
   POSTGRES_PASSWORD: default
   POSTGRES_USER: *POSTGRES_USER
 
-name: quackstack-nmp
+name: quackstack-bb
 services:
   # DB
   database:
@@ -47,8 +47,8 @@ services:
     develop:
       watch:
         - action: sync
-          path: ./backend/src
-          target: /backend/src
+          path: ./backend/
+          target: app
           ignore: [node_modules]
     environment:
       <<: *postgres-vars
@@ -70,7 +70,7 @@ services:
       watch:
         - action: sync
           path: ./frontend
-          target: /frontend
+          target: /app
           ignore: [node_modules]
     environment:
       VITE_BACKEND_URL: http://localhost:3000/api

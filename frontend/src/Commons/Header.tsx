@@ -1,4 +1,4 @@
-import { StyledHeader, Logo, Title } from '../Styles/Header.style';
+import { StyledHeader, Logo, Title } from './Styles/Header.style';
 import bcLogo from '/assets/BCID-logo-mobile.png';
 
 const Header = () => (
