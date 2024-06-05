@@ -2,5 +2,3 @@ cd backend
 npm run test
 npm run format
 npm run lint
- 
-exit 1
