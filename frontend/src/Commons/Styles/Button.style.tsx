@@ -12,7 +12,9 @@ const StyledButton = styled.button`
   border-radius: 8px;
   border: 0;
   padding:10px;
-
+  font-family: ${tokens.typographyFontFamiliesBcSans};
+  font-weight: ${tokens.typographyFontWeightsBold};
+  
   @media (min-width: ${screenSizes.desktop}){
     max-height: 59px;
     max-width: 483px;
