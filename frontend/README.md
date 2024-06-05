@@ -15,7 +15,6 @@ This is an excerpt of the original workflow of the Sustainment's team Nutrient M
 - [React](https://react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 
-
 ## Run Locally
 
 Clone the project
@@ -41,6 +40,7 @@ Start docker compose
 ```bash
   docker-compose up
 ```
+
 You can also add --build to build docker-compose.yml and --watch in order to control CLI
 
 For deleting volumes of docker
@@ -57,19 +57,23 @@ Test are using [Vitest](https://vitest.dev/) which is a Vite-native testing fram
   npm run test
 ```
 
-
 ## Usage/Examples
 
 ### Component Imports
+
 ESlint will enforce component imports to be at the bottom of other imports.
+
 ```javascript
 import axios from 'axios' // Needs to be at top of Component, or ESlint will complain.
 import Component from 'my-project'
 
 const function = () => {block of code} // ESlint enforces ES6, because author loves ES6.
 ```
+
 ### Testing imports
+
 Frontend Testing is testing what a block of code displays in the Web Application. Therefore, we need **jest-dom** to assert state of the DOM.
+
 ```javascript
 import '@testing-library/jest-dom'; // Asserts state of DOM, toBeInTheDocument
 
@@ -78,8 +82,11 @@ import '@testing-library/jest-dom'; // Asserts state of DOM, toBeInTheDocument
         expect(screen.getByText(developer.last_name)).toBeInTheDocument();
       });
 ```
+
 ### Interface Imports
+
 To ensure clarity and understandability with other developers, interface/types can be created since we are using TypeScript.
+
 ```javascript
 export interface DeveloperInterface {
   id: number;
@@ -87,7 +94,9 @@ export interface DeveloperInterface {
   last_name: string;
 }
 ```
+
 This is where you import it and use it as a type/interface.
+
 ```javascript
     const developers: Array<DeveloperInterface> = [
       { id: 1, first_name: 'G', last_name: 'Damaso' },
