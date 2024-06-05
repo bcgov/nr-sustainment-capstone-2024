@@ -1,0 +1,9 @@
+cd frontend
+npm run test
+npm run format
+npm run lint
+
+cd ../backend
+npm run test
+npm run format
+npm run lint
