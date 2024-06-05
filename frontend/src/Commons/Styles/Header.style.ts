@@ -48,11 +48,11 @@ const Title = styled.h1`
   margin: 50px 0 20px 0;
   line-height: 54px;
 
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     order: 2; /* Moves text after logo */
     font-size: 48px;
     margin: 0;
-    position:absolute;
+    position: absolute;
     left: 40vw;
     line-height: 65.38px;
   }
