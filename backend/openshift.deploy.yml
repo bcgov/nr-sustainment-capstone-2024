@@ -15,7 +15,7 @@ parameters:
     required: true
   - name: DB_PASSWORD
     description: Password for the PostgreSQL connection user.
-    from: "[a-zA-Z0-9]{16}"
+    from: '[a-zA-Z0-9]{16}'
     generate: expression
 objects:
   - kind: Service
@@ -55,7 +55,7 @@ objects:
         spec:
           containers:
             - name: ${APP}-${TAG}-${COMPONENT}
-              image: "ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}"
+              image: 'ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}'
               imagePullPolicy: Always
               envFrom:
                 - secretRef:
