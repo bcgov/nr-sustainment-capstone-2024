@@ -117,7 +117,9 @@ test-report.xml
 **/dist
 **/out
 **/target
-**/dev-dist
 
 # VSCode
 .vscode/
+
+# Frontend
+frontend/dev-dist
