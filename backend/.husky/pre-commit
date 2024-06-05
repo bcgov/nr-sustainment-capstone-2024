@@ -1,2 +1,4 @@
 cd backend
-npm test
+npm run test
+npm run format
+npm run lint
