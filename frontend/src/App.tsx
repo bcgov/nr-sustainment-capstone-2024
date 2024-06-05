@@ -5,11 +5,7 @@ import FetchDevelopers from './Views/FetchDevelopers';
 import Header from './Commons/Header/Header';
 
 const App = () => (
-  <>
-    <Header />
-    <HealthEndpoint />
-    <FetchDevelopers />
-  </>
+  <Header />
 );
 
 export default App;
