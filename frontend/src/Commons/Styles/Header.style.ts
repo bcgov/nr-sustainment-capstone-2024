@@ -12,10 +12,10 @@ const StyledHeader = styled.header`
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   flex-direction: column;
-  
+
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
-    margin-top:5vh;
-    max-height:300px;
+    margin-top: 5vh;
+    max-height: 300px;
   }
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
@@ -32,10 +32,10 @@ const Logo = styled.img`
   order: 2; /* Moves logo below text */
 
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
-    max-height:20vh;
+    max-height: 20vh;
     max-width: 20vw;
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
   }
   @media (min-width: ${screenSizes.desktop}) {
     max-height: 20vh;
@@ -56,11 +56,11 @@ const Title = styled.h1`
   line-height: 54px;
 
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
-    font-size:40px;
-    height:100%;
-    width:100%;
+    font-size: 40px;
+    height: 100%;
+    width: 100%;
   }
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     order: 2; /* Moves text after logo */
     font-size: 5vh;
     margin: 0;

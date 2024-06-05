@@ -11,8 +11,8 @@ const StyledFooter = styled.footer`
   flex-direction: column;
   align-items: center;
   position: fixed;
-  bottom:5vh;
-  left:0;
+  bottom: 5vh;
+  left: 0;
   width: 100%;
   max-width: 100vw;
   color: ${tokens.typographyColorPlaceholder};
@@ -25,8 +25,8 @@ const StyledFooter = styled.footer`
     color: ${tokens.typographyColorLink};
   }
 
-  @media (min-width:${screenSizes.mobile}) and (max-width:500){
-    left:-2vh;
+  @media (min-width: ${screenSizes.mobile}) and (max-width: 500) {
+    left: -2vh;
   }
 `;
 
