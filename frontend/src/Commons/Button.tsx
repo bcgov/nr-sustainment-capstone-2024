@@ -1,7 +1,18 @@
 import StyledButton from './Styles/Button.style';
 
-const Button = (
-  { text }: { text: string }, // Destructured primitive string literal
-) => <StyledButton type="button">{text}</StyledButton>;
+type ButtonTypes = {
+  text: string;
+};
+
+const Button = ({ text }: ButtonTypes) => {
+  const handleClick = () => {
+    console.log('button clicked');
+  };
+  return (
+    <StyledButton type="button" onClick={handleClick}>
+      {text}
+    </StyledButton>
+  );
+};
 
 export default Button;
