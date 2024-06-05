@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { vi, describe, it, expect } from 'vitest';
 import axios from 'axios';
-import FetchDevelopers from '../Views/FetchDevelopers';
+import FetchDevelopers from './test-components/FetchDevelopers';
 import { DeveloperInterface } from '../Interface/DeveloperInterface';
 
 vi.mock('axios');
@@ -23,7 +23,7 @@ describe('FetchDevelopers component', () => {
       // Check if the correct number of developer rows are displayed
       const rows = screen.getAllByRole('row');
       expect(rows).toHaveLength(developers.length + 1);
-      developers.forEach((developer:DeveloperInterface) => {
+      developers.forEach((developer: DeveloperInterface) => {
         expect(screen.getByText(developer.first_name)).toBeInTheDocument();
         expect(screen.getByText(developer.last_name)).toBeInTheDocument();
       });

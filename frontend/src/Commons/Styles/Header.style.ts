@@ -13,12 +13,10 @@ const StyledHeader = styled.header`
   border-top-right-radius: 2px;
   flex-direction: column;
 
-
-  @media (min-width: ${screenSizes.tablet}){
-
+  @media (min-width: ${screenSizes.tablet}) {
   }
   /* Desktop */
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     background-color: ${tokens.themeBlue100};
     color: ${tokens.typographyColorPrimaryInvert};
@@ -32,8 +30,7 @@ const Logo = styled.img`
   content: url(${mobileLogo});
   order: 2; /* Moves logo below text */
 
-
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     max-height: 123px;
     max-width: 319px;
     content: url(${desktopLogo});
