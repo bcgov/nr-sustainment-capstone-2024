@@ -4,16 +4,17 @@
  */
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
+import screenSizes from '../../Constants/ScreenSize';
 
 const StyledFooter = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
   position: fixed;
-  bottom: 0;
-  left: 0;
+  bottom:5vh;
+  left:0;
   width: 100%;
-  max-width: 100%;
+  max-width: 100vw;
   color: ${tokens.typographyColorPlaceholder};
   font-size: ${tokens.typographyRegularLabel};
   margin-bottom: 36px;
@@ -22,6 +23,10 @@ const StyledFooter = styled.footer`
   }
   a {
     color: ${tokens.typographyColorLink};
+  }
+
+  @media (min-width:${screenSizes.mobile}) and (max-width:500){
+    left:-2vh;
   }
 `;
 
