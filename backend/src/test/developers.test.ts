@@ -34,4 +34,4 @@ describe('Test GET /developers against mockDevelopers', () => {
       expect(element).toEqual(mockDev);
     });
   });
-}); 
+});

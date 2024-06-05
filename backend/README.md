@@ -6,7 +6,6 @@ Our backend is a RESTful API written with TypeScript and the Express framework. 
 
 Documentation is accessible through Swagger.
 
-
 ## Running this API
 
 This Express API requires connection to this applications database to properly respond to requests. This projects docker-compose config will set things up automatically when running localy. There are default values set up for development.
@@ -19,7 +18,7 @@ To run with docker compose with hot reload for development, run:
 If running with docker compose:
 `http://localhost:3000/api/api-docs`
 
-*The OpenShift deploy is on its way and will be published soon.*
+_The OpenShift deploy is on its way and will be published soon._
 
 ## Testing the API
 
@@ -27,7 +26,7 @@ This API is tested with Jest framework.
 
 There are suites covering all endpoints. Each suite should test all response statuses and data to ensure proper behaviour of the API.
 
-A test suite for an endpoint should check for status and data to ensure no false positive responses are being created. 
+A test suite for an endpoint should check for status and data to ensure no false positive responses are being created.
 The simplest test looks like:
 
 ```typescript
