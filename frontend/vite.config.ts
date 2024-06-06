@@ -13,8 +13,8 @@ export default defineConfig({
         enabled: true,
       },
       manifest: {
-        name: 'QuackStack NMP',
-        description: 'An NMP web application designed to be mobile and desktop compatible.',
+        name: 'Better Berries',
+        description: 'Better Berries nutrient calculator',
         theme_color: '#ffffff',
         icons: [
           {
