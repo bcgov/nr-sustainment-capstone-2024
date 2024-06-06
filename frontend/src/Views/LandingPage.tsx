@@ -4,7 +4,6 @@ import Button from '../Commons/Button';
 import { StyledContent, StyledButtonGroup, StyledDivider } from './Styles/LandingPage.styles';
 
 const LandingPage = () => {
-  console.log(window.innerWidth);
   return (
     <>
       <Header />
