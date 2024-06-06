@@ -63,7 +63,9 @@ const Title = styled.h1`
     order: 2; /* Moves text after logo */
     font-size: 40px; /* Will not use token on this one. */
     margin: ${tokens.layoutMarginNone};
-    margin-left: -19vw;
+    position: absolute;
+    left:50%;
+    transform: translate(-50%,0);
   }
 `;
 
