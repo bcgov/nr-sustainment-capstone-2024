@@ -51,7 +51,8 @@ const Title = styled.h1`
   text-align: center;
   font: ${tokens.typographyBoldH2};
   order: 1; /* Moves text above logo */
-  margin: ${tokens.layoutMarginHuge} ${tokens.layoutMarginNone} ${tokens.layoutMarginXlarge} ${tokens.layoutMarginNone};
+  margin: ${tokens.layoutMarginHuge} ${tokens.layoutMarginNone} ${tokens.layoutMarginXlarge}
+    ${tokens.layoutMarginNone};
 
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
     font-size: ${tokens.typographyRegularH1};

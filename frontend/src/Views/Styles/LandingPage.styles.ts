@@ -21,7 +21,7 @@ const StyledContent = styled.div`
     font: ${tokens.typographyRegularSmallBody};
     color: ${tokens.typographyColorSecondary};
   }
-  
+
   @media (min-width: ${screenSizes.tablet}) {
     top: 10vh;
     max-width: 350px;
@@ -87,7 +87,7 @@ const StyledDivider = styled.div`
   position: relative;
   margin: auto;
   left: -20px;
-  
+
   &::before,
   &::after {
     flex: 1;
