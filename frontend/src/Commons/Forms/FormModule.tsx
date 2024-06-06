@@ -1,5 +1,15 @@
 import FormHeader from './FormHeader';
+import StyledFormModule from './Styles/FormModule.style';
 
-const FormModule = () => <FormHeader text="Farm Information" />;
+type InputModuleType = React.ComponentType<{ className?: string; }>;
+
+const FormModule: React.FC<{ InputModule: InputModuleType }> = ({ InputModule }) => (
+  <StyledFormModule>
+    <FormHeader text="Farm Information" active />
+    <div>
+      <InputModule />
+    </div>
+  </StyledFormModule>
+);
 
 export default FormModule;
