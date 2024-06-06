@@ -15,7 +15,7 @@ const LandingPage = () => (
       </p>
     </StyledContent>
     <StyledButtonGroup>
-      <Button text="New Calculation" />
+      <Button text="New Calculation" path="/main" />
       <StyledDivider>or</StyledDivider>
       <Button text="Load Existing File" />
     </StyledButtonGroup>

@@ -10,13 +10,20 @@ const Button = ({ text, path }: ButtonTypes) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    path ? navigate(path) : null;
+    if (path) {
+      navigate(path);
+    }
   };
   return (
     <StyledButton type="button" onClick={handleClick}>
       {text}
     </StyledButton>
   );
+};
+
+// ESLint hates not having a default :p
+Button.defaultProps = {
+  path: '',
 };
 
 export default Button;
