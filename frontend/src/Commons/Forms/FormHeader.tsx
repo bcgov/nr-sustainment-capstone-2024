@@ -1,6 +1,6 @@
-import StyledFormHeader from '../Styles/FormHeader.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import StyledFormHeader from '../Styles/FormHeader.style';
 
 type FormHeaderTypes = {
   text: string;

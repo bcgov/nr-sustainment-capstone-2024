@@ -3,7 +3,7 @@ import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '../../Constants/ScreenSize';
 
 const StyledFormHeader = styled.button`
-display: flex;
+  display: flex;
   justify-content: space-between;
   max-height: 51px;
   max-width: 1311px;
