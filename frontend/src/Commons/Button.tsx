@@ -1,18 +1,22 @@
 import StyledButton from './Styles/Button.style';
 
-type ButtonTypes = {
-  text: string;
+export type ButtonSizes = 'sm' | 'md' | 'lg';
+export type ButtonProps = {
+  handleClick? : () => void;
+  text: string,
+  size: ButtonSizes,
+  disabled: boolean,
 };
 
-const Button = ({ text }: ButtonTypes) => {
-  const handleClick = () => {
-    console.log('button clicked');
-  };
-  return (
-    <StyledButton type="button" onClick={handleClick}>
-      {text}
-    </StyledButton>
-  );
-};
+const Button = ({ handleClick, text, size = 'md', disabled = false }: ButtonProps) => (
+  <StyledButton
+    size={size}
+    disabled={disabled}
+    onClick={handleClick}
+    value=""
+  >
+    {text}
+  </StyledButton>
+);
 
 export default Button;
