@@ -25,9 +25,6 @@ const StyledFooter = styled.footer`
     color: ${tokens.typographyColorLink};
   }
 
-  @media (min-width: ${screenSizes.mobile}) and (max-width: 500) {
-    left: -2vh;
-  }
 `;
 
 export default StyledFooter;

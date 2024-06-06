@@ -12,46 +12,43 @@ const StyledContent = styled.div`
   top: 15vh;
   gap: 2px;
   text-align: center;
-  font-family: ${tokens.typographyFontFamiliesBcSans};
+
   h1 {
-    font-size: 18px;
-    font-weight: 700;
+    font: ${tokens.typographyBoldH6};
   }
 
   p {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 21px;
+    font: ${tokens.typographyRegularSmallBody};
     color: ${tokens.typographyColorSecondary};
   }
+  
   @media (min-width: ${screenSizes.tablet}) {
     top: 10vh;
     max-width: 350px;
 
     h1 {
-      font-size: 22px;
+      font: ${tokens.typographyRegularH5};
     }
 
     p {
-      font-size: 16px;
+      font: ${tokens.typographyRegularBody};
     }
   }
+
   @media (min-width: ${screenSizes.desktop}) {
     max-width: 510px;
     max-height: 270px;
     gap: 2px;
     top: 10vh;
     text-align: center;
+
     h1 {
-      font-size: 32px;
-      line-height: 52px;
-      font-weight: 700;
+      font: ${tokens.typographyBoldH2};
     }
 
     p {
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 30.61px;
+      font: ${tokens.typographyRegularLargeBody};
+      color: ${tokens.typographyColorSecondary};
     }
   }
 `;
@@ -90,6 +87,7 @@ const StyledDivider = styled.div`
   position: relative;
   margin: auto;
   left: -20px;
+  
   &::before,
   &::after {
     flex: 1;
