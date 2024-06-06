@@ -5,8 +5,7 @@
 import StyledFooter from './Styles/Footer.style';
 
 const termsURL = 'https://nmp.apps.nrs.gov.bc.ca/Information/Disclaimer';
-const helpURL =
-  'https://www2.gov.bc.ca/gov/content/industry/agriculture-seafood/agricultural-land-and-environment/soil-nutrients/nutrient-management/nutrient-management-calculator/support-for-the-bc-nutrient-management-calculator';
+const helpURL = 'https://www2.gov.bc.ca/gov/content/industry/agriculture-seafood/agricultural-land-and-environment/soil-nutrients/nutrient-management/nutrient-management-calculator/support-for-the-bc-nutrient-management-calculator';
 
 const Footer = () => (
   <StyledFooter>
