@@ -25,6 +25,7 @@ module.exports = {
         'import/no-undef': 'off',
         'object-curly-newline': 'off',
         'no-console': 'off',
+        'react/require-default-props': 'off',
         'arrow-parens': ['error', 'always'], // Ensure parentheses around arrow function arguments
       },
     },
