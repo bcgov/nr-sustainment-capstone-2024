@@ -13,6 +13,8 @@ const StyledFormHeader = styled.button<{ clicked: boolean }>`
   background-color: ${({ clicked }) => (clicked ? tokens.themeGray20 : tokens.themeGray40)};
   color: ${tokens.typographyColorPrimary};
   border-radius: 3px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   border: 1px solid black;
   padding: 3px;
 

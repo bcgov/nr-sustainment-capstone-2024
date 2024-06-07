@@ -1,15 +1,15 @@
 import FormHeader from './FormHeader';
-import StyledFormModule from './Styles/FormModule.style';
+import { StyledFormContainer, StyledFormContent } from './Styles/FormModule.style';
 
-type InputModuleType = React.ComponentType<{ className?: string; }>;
+type InputModuleType = React.ComponentType<{ className?: string }>;
 
 const FormModule: React.FC<{ InputModule: InputModuleType }> = ({ InputModule }) => (
-  <StyledFormModule>
+  <StyledFormContainer>
     <FormHeader text="Farm Information" active />
-    <div>
+    <StyledFormContent>
       <InputModule />
-    </div>
-  </StyledFormModule>
+    </StyledFormContent>
+  </StyledFormContainer>
 );
 
 export default FormModule;

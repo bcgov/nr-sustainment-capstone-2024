@@ -2,29 +2,36 @@ import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 
-const StyledFormModule = styled.div`
+const StyledFormContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   max-height: 51px;
-  max-width: 1311px;
+  /* max-width: 1311px; */
   height: 100%;
   width: 95%;
-  /* background-color: ${tokens.surfaceColorPrimaryDangerButtonDefault}; */
-  color: ${tokens.typographyColorPrimary};
-  border-radius: 8px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  border: 1px solid ${tokens.typographyColorPrimary};
-  border-top: 0;
-  padding-bottom: 200px;
-  padding-top: 15px;
+  margin-top: 100px;
 
-  @media (min - width: ${screenSizes.desktop}) {
+  @media (min-width: ${screenSizes.desktop}) {
     max-height: 51px;
     max-width: 1311px;
+    max-width: 70%;
   }
 `;
 
-export default StyledFormModule;
+const StyledFormContent = styled.div`
+  width: 100%;
+  /* background-color: ${tokens.surfaceColorPrimaryDangerButtonDefault}; */
+  color: ${tokens.typographyColorPrimary};
+  border-radius: 8px;
+  border-top-left-radius: 1px;
+  border-top-right-radius: 1px;
+  border: 1px solid ${tokens.typographyColorPrimary};
+  /* border-top: 0; */
+  padding: 10px;
+  padding-bottom: 15px;
+  padding-top: 0px;
+`;
+
+export { StyledFormContainer, StyledFormContent };
