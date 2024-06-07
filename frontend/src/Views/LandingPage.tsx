@@ -1,5 +1,3 @@
-import Header from '../Commons/Header';
-import Footer from '../Commons/Footer';
 import Button from '../Commons/Button';
 import { StyledContent, StyledButtonGroup, StyledDivider } from './Styles/LandingPage.styles';
 
@@ -9,9 +7,8 @@ const LandingPage = () => {
   };
   return (
     <>
-      <Header />
       <StyledContent>
-        <h1>About the nutrient calculator</h1>
+        <h2>About the nutrient calculator</h2>
         <p>
           For BC berry farmers, who maintain soil nutrient levels, Better Berries is a simple
           nutrient calculator that lets you manage your crops&apos; on the go. Our application is
@@ -24,7 +21,6 @@ const LandingPage = () => {
         <StyledDivider>or</StyledDivider>
         <Button size="lg" text="Load Existing File" disabled={false} handleClick={consolePrint} />
       </StyledButtonGroup>
-      <Footer />
     </>
   );
 };

@@ -13,7 +13,7 @@ const StyledContent = styled.div`
   gap: 2px;
   text-align: center;
 
-  h1 {
+  h2 {
     font: ${tokens.typographyBoldH6};
   }
 
@@ -26,8 +26,8 @@ const StyledContent = styled.div`
     top: 10vh;
     max-width: 350px;
 
-    h1 {
-      font: ${tokens.typographyRegularH5};
+    h2 {
+      font: ${tokens.typographyBoldH5};
     }
 
     p {
@@ -42,7 +42,7 @@ const StyledContent = styled.div`
     top: 10vh;
     text-align: center;
 
-    h1 {
+    h2 {
       font: ${tokens.typographyBoldH2};
     }
 
