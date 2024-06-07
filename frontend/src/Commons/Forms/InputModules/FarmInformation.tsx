@@ -1,4 +1,5 @@
-import StyledFarmInfo from './Styles/FarmInformation.style';
+import { StyledFarmInfo, StyledButtonContainer } from './Styles/FarmInformation.style';
+import Button from '../../Button';
 
 const FarmInfoForm = () => (
   <StyledFarmInfo>
@@ -15,9 +16,13 @@ const FarmInfoForm = () => (
     <label htmlFor="farmRegion">
       Region
       <br />
-      <select id="farmRegion" name="farmRegion">
-        <option value="Vancouver Island">Vancouver Island </option>
-      </select>
+      <p> Region selection will customize recommendations to your local climate. </p>
+      <StyledButtonContainer>
+        <select id="farmRegion" name="farmRegion">
+          <option value="Vancouver Island">Vancouver Island </option>
+        </select>
+        <Button text="Next" />
+      </StyledButtonContainer>
     </label>
   </StyledFarmInfo>
 );

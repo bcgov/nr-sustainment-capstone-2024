@@ -32,6 +32,10 @@ const StyledFormContent = styled.div`
   padding: 10px;
   padding-bottom: 15px;
   padding-top: 0px;
+
+  Button {
+    position: top;
+  }
 `;
 
 export { StyledFormContainer, StyledFormContent };
