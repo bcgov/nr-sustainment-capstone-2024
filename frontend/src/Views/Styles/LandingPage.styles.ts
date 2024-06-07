@@ -63,7 +63,7 @@ const StyledButtonGroup = styled.div`
   gap: 2px;
   position: relative;
   top: 20vh;
-  left: 30px;
+  align-items:center;
 
   @media (min-width: ${screenSizes.tablet}) {
     top: 15vh;
@@ -86,7 +86,6 @@ const StyledDivider = styled.div`
   color: ${tokens.typographyColorPlaceholder};
   position: relative;
   margin: auto;
-  left: -20px;
 
   &::before,
   &::after {
@@ -94,8 +93,9 @@ const StyledDivider = styled.div`
     content: '';
     padding: 1px;
     background-color: ${tokens.typographyColorPlaceholder};
-    width: 150px;
+    width: 130px;
     margin: 5px;
+    
   }
 
   @media (min-width: ${screenSizes.desktop}) {
