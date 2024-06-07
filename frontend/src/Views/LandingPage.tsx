@@ -1,11 +1,8 @@
-import Header from '../Commons/Header';
-import Footer from '../Commons/Footer';
 import Button from '../Commons/Button';
 import { StyledContent, StyledButtonGroup, StyledDivider } from './Styles/LandingPage.styles';
 
 const LandingPage = () => (
   <>
-    <Header />
     <StyledContent>
       <h1>About the nutrient calculator</h1>
       <p>
@@ -19,7 +16,6 @@ const LandingPage = () => (
       <StyledDivider>or</StyledDivider>
       <Button text="Load Existing File" />
     </StyledButtonGroup>
-    <Footer />
   </>
 );
 
