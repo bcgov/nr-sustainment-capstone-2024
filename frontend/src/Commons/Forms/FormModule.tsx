@@ -1,3 +1,4 @@
+import React from 'react';
 import FormHeader from './FormHeader';
 import { StyledFormContainer, StyledFormContent } from './Styles/FormModule.style';
 

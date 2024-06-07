@@ -2,17 +2,17 @@ import StyledFarmInfo from './Styles/FarmInformation.style';
 
 const FarmInfoForm = () => (
   <StyledFarmInfo>
-    <label>
+    <label htmlFor="farmName">
       Name
       <br />
       <input type="text" name="farmName" />
     </label>
-    <label>
+    <label htmlFor="farmYear">
       Year
       <br />
       <input type="text" name="farmYear" />
     </label>
-    <label>
+    <label htmlFor="farmRegion">
       Region
       <br />
       <select id="farmRegion" name="farmRegion">

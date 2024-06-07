@@ -26,6 +26,8 @@ module.exports = {
         'object-curly-newline': 'off',
         'no-console': 'off',
         'arrow-parens': ['error', 'always'], // Ensure parentheses around arrow function arguments
+        'react/require-default-props': 'off',
+        'no-nested-ternary': 'off',
       },
     },
   ],
