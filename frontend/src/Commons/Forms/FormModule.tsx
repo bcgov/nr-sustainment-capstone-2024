@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import FormHeader from './FormHeader';
 import { StyledFormContainer, StyledFormContent } from './Styles/FormModule.style';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 type InputModuleType = React.ComponentType<{ className?: string }>;
 

@@ -39,7 +39,7 @@ const Logo = styled.img`
     width: 100%;
   }
   @media (min-width: ${screenSizes.desktop}) {
-  justify-content: flex-start;
+    justify-content: flex-start;
     max-height: 20vh;
     max-width: 20vw;
     content: url(${desktopLogo});

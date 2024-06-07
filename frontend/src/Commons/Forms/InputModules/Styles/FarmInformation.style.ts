@@ -16,17 +16,17 @@ const StyledFarmInfo = styled.form`
   }
 `;
 
-const StyledButtonContainer = styled.div` 
+const StyledButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: 0;
-    padding-top: 0;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 0;
+  padding-top: 0;
 
   Select {
     height: 30px;
-    width: 80%
+    width: 80%;
   }
-`
+`;
 export { StyledFarmInfo, StyledButtonContainer };
