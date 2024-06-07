@@ -8,4 +8,14 @@ const StyledMain = styled.div`
   align-items: center;
   width: 100%;
 `;
-export default StyledMain;
+
+const StyledMainContainer = styled.div`
+ display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+ gap:30px;
+  margin-top: 100px;
+`;
+
+export { StyledMain, StyledMainContainer };
