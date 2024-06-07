@@ -11,7 +11,6 @@ const StyledFormContainer = styled.div`
   /* max-width: 1311px; */
   height: 100%;
   width: 95%;
-  margin-top: 100px;
 
   @media (min-width: ${screenSizes.desktop}) {
     max-height: 51px;
@@ -32,6 +31,7 @@ const StyledFormContent = styled.div`
   padding: 10px;
   padding-bottom: 15px;
   padding-top: 0px;
+  background-color: ${tokens.themeGray10};
 
   Button {
     position: top;

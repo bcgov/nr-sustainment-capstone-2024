@@ -1,25 +1,26 @@
-import { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import StyledFormHeader from './Styles/FormHeader.style';
 
 type FormHeaderTypes = {
   text: string;
-  active?: boolean;
+  active: boolean;
+  setActive: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const FormHeader = ({ text, active = false }: FormHeaderTypes) => {
-  const [clicked, setClicked] = useState(active);
+const FormHeader = ({ text, active = false, setActive }: FormHeaderTypes) => {
+  // const [clicked, setClicked] = useState(active);
 
   const handleClick = () => {
-    setClicked(!clicked);
+    setActive(!active);
+    active = false;
     console.log(text, ' clicked');
   };
-  console.log(clicked);
   return (
-    <StyledFormHeader type="button" onClick={handleClick} clicked={clicked}>
+    <StyledFormHeader type="button" onClick={handleClick} active={active}>
       {text}
-      <FontAwesomeIcon icon={clicked ? faChevronUp : faChevronDown} />
+      <FontAwesomeIcon icon={active ? faChevronUp : faChevronDown} />
     </StyledFormHeader>
   );
 };
