@@ -7,14 +7,10 @@ const StyledFormContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  max-height: 51px;
-  /* max-width: 1311px; */
   height: 100%;
   width: 95%;
 
   @media (min-width: ${screenSizes.desktop}) {
-    max-height: 51px;
-    max-width: 1311px;
     max-width: 70%;
   }
 `;

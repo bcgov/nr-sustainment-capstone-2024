@@ -10,14 +10,13 @@ const StyledFooter = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
   bottom: 5vh;
   left: 0;
   width: 100%;
   max-width: 100vw;
+    margin-top: 20px;
   color: ${tokens.typographyColorPlaceholder};
-  font-size: ${tokens.typographyRegularLabel};
-  margin-bottom: 36px;
+  font: ${tokens.typographyRegularLabel};
   p {
     margin: 0;
   }
