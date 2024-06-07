@@ -16,7 +16,7 @@ const FarmInfoForm = () => (
     <label htmlFor="farmRegion">
       Region
       <br />
-      <p> Region selection will customize recommendations to your local climate. </p>
+      {/* <p> Region selection will customize recommendations to your local climate. </p> */}
       <StyledButtonContainer>
         <select id="farmRegion" name="farmRegion">
           <option value="Vancouver Island">Vancouver Island </option>
