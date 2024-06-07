@@ -16,8 +16,9 @@ const StyledMainContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 30px;
+  gap: 24px;
   margin-top: 100px;
+  margin-bottom: 50px;
 `;
 
 export { StyledMain, StyledMainContainer };
