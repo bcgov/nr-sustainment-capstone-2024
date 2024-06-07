@@ -25,8 +25,8 @@ const FormHeader = ({ text, active = false }: FormHeaderTypes) => {
 };
 
 // ESLint hates not having a default :p
-FormHeader.defaultProps = {
-  active: false,
-};
+// FormHeader.defaultProps = {
+//   active: false,
+// };
 
 export default FormHeader;

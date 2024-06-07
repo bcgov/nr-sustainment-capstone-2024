@@ -6,7 +6,7 @@ type ButtonTypes = {
   path?: string;
 };
 
-const Button = ({ text, path }: ButtonTypes) => {
+const Button = ({ text, path = '' }: ButtonTypes) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -22,8 +22,8 @@ const Button = ({ text, path }: ButtonTypes) => {
 };
 
 // ESLint hates not having a default :p
-Button.defaultProps = {
-  path: '',
-};
+// Button.defaultProps = {
+//   path: '',
+// };
 
 export default Button;
