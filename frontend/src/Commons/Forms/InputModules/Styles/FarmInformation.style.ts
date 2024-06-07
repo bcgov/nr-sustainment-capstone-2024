@@ -8,13 +8,12 @@ const StyledFarmInfo = styled.form`
   justify-content: space-between;
   align-items: left;
   height: 100%;
-    p {
+  p {
     margin-bottom: 0;
   }
 
   @media (min - width: ${screenSizes.desktop}) {
   }
-
 `;
 
 const StyledButtonContainer = styled.div` 
@@ -30,5 +29,5 @@ const StyledButtonContainer = styled.div`
   }
   Button {
     width: 20%;
-  `
+  `;
 export { StyledFarmInfo, StyledButtonContainer };

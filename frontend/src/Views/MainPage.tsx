@@ -7,17 +7,15 @@ import FarmInfoForm from '../Commons/Forms/InputModules/FarmInformation';
 // const testInputModule = () => <Button text="Hello world!" path="/" />;
 const farmInformation = () => <FarmInfoForm />;
 
-const MainPage = () => {
-  return (
-    <StyledMain>
-      <Header />
-      <StyledMainContainer>
-        <FormModule InputModule={farmInformation} enable={true} />
-        <FormModule InputModule={farmInformation} enable={false} />
-      </StyledMainContainer>
-      <Footer />
-    </StyledMain>
-  );
-};
+const MainPage = () => (
+  <StyledMain>
+    <Header />
+    <StyledMainContainer>
+      <FormModule InputModule={farmInformation} enable />
+      <FormModule InputModule={farmInformation} enable={false} />
+    </StyledMainContainer>
+    <Footer />
+  </StyledMain>
+);
 
 export default MainPage;

@@ -13,9 +13,9 @@ const StyledFormHeader = styled.button<{ active: boolean }>`
   background-color: ${({ active }) => (active ? tokens.themeGray20 : tokens.themeGray40)};
   color: ${tokens.typographyColorPrimary};
   border-radius: 3px;
-  border-bottom-left-radius: ${({ active }) => (active ? "0" : "3px")};
-  border-bottom-right-radius: ${({ active }) => (active ? "0" : "3px")};
-  border-bottom: ${({ active }) => (active ? "0px" : "0px solid black")};
+  border-bottom-left-radius: ${({ active }) => (active ? '0' : '3px')};
+  border-bottom-right-radius: ${({ active }) => (active ? '0' : '3px')};
+  border-bottom: ${({ active }) => (active ? '0px' : '0px solid black')};
 
 border: 1px solid black;
 padding: 3px;

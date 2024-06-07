@@ -13,7 +13,6 @@ const FormModule: React.FC<FormModuleProps> = ({ InputModule, enable }) => {
   const [active, setActive] = useState(enable);
 
   return (
-
     <StyledFormContainer>
       <FormHeader text="Farm Information" active={active} setActive={setActive} />
       {active ? (
@@ -22,7 +21,7 @@ const FormModule: React.FC<FormModuleProps> = ({ InputModule, enable }) => {
         </StyledFormContent>
       ) : null}
     </StyledFormContainer>
-  )
+  );
 };
 
 export default FormModule;

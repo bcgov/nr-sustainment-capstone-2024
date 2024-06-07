@@ -10,11 +10,8 @@ type FormHeaderTypes = {
 };
 
 const FormHeader = ({ text, active = false, setActive }: FormHeaderTypes) => {
-  // const [clicked, setClicked] = useState(active);
-
   const handleClick = () => {
     setActive(!active);
-    active = false;
     console.log(text, ' clicked');
   };
   return (
@@ -24,10 +21,5 @@ const FormHeader = ({ text, active = false, setActive }: FormHeaderTypes) => {
     </StyledFormHeader>
   );
 };
-
-// ESLint hates not having a default :p
-// FormHeader.defaultProps = {
-//   active: false,
-// };
 
 export default FormHeader;

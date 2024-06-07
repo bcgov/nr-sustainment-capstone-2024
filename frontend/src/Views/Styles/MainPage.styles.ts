@@ -10,11 +10,11 @@ const StyledMain = styled.div`
 `;
 
 const StyledMainContainer = styled.div`
- display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
- gap:30px;
+  gap: 30px;
   margin-top: 100px;
 `;
 
