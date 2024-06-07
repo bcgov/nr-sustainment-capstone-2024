@@ -25,9 +25,8 @@ const StyledButtonContainer = styled.div`
     padding-top: 0;
 
   Select {
-    width: 50%
+    height: 30px;
+    width: 80%
   }
-  Button {
-    width: 20%;
-  `;
+`
 export { StyledFarmInfo, StyledButtonContainer };
