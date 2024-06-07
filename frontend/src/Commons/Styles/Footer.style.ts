@@ -9,8 +9,8 @@ const StyledFooter = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
-  bottom: 5vh;
+  position: relative;
+  bottom: -22vh;
   left: 0;
   width: 100%;
   max-width: 100vw;
