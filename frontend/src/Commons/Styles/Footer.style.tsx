@@ -12,8 +12,8 @@ const StyledFooter = styled.footer`
   align-items: center;
   width: 100%;
   max-width: 100vw;
-    margin-top: auto;
-    margin-bottom: 20px;
+  margin-top: auto;
+  margin-bottom: 20px;
   color: ${tokens.typographyColorPlaceholder};
   font: ${tokens.typographyRegularLabel};
   p {

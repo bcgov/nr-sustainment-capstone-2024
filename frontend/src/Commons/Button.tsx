@@ -13,11 +13,12 @@ export type ButtonProps = {
 const Button = ({ handleClick, text, size = 'md', disabled = false, path = '' }: ButtonProps) => {
   const navigate = useNavigate();
 
-  const handleClickWrapper = handleClick || (() => {
-    if (path) {
-      navigate(path);
-    }
-  });
+  const handleClickWrapper = handleClick
+    || (() => {
+      if (path) {
+        navigate(path);
+      }
+    });
 
   return (
     <StyledButton size={size} disabled={disabled} onClick={handleClickWrapper} value="">

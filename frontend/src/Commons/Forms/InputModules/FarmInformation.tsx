@@ -21,7 +21,7 @@ const FarmInfoForm = () => (
         <select id="farmRegion" name="farmRegion">
           <option value="Vancouver Island">Vancouver Island </option>
         </select>
-        <Button text="Next" size='sm' disabled={false} path="/" />
+        <Button text="Next" size="sm" disabled={false} path="/" />
       </StyledButtonContainer>
     </label>
   </StyledFarmInfo>
