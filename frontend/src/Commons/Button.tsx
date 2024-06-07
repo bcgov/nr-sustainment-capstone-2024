@@ -1,29 +1,29 @@
 import { useNavigate } from 'react-router-dom';
 import StyledButton from './Styles/Button.style';
 
-type ButtonTypes = {
+export type ButtonSizes = 'sm' | 'md' | 'lg';
+export type ButtonProps = {
+  handleClick?: () => void;
   text: string;
+  size: ButtonSizes;
+  disabled: boolean;
   path?: string;
 };
 
-const Button = ({ text, path = '' }: ButtonTypes) => {
+const Button = ({ handleClick, text, size = 'md', disabled = false, path = '' }: ButtonProps) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClickWrapper = handleClick || (() => {
     if (path) {
       navigate(path);
     }
-  };
+  });
+
   return (
-    <StyledButton type="button" onClick={handleClick}>
+    <StyledButton size={size} disabled={disabled} onClick={handleClickWrapper} value="">
       {text}
     </StyledButton>
   );
 };
-
-// ESLint hates not having a default :p
-// Button.defaultProps = {
-//   path: '',
-// };
 
 export default Button;

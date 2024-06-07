@@ -49,24 +49,23 @@ const Logo = styled.img`
 const Title = styled.h1`
   flex: 1;
   font-family: ${tokens.typographyFontFamiliesBcSans}, sans-serif;
-  font-weight: ${tokens.typographyFontWeightsBold};
   text-align: center;
-  font-size: 32px;
+  font: ${tokens.typographyBoldH2};
   order: 1; /* Moves text above logo */
-  margin: 50px 0 20px 0;
-  line-height: 54px;
+  margin: 3.5rem ${tokens.layoutMarginNone} ${tokens.layoutMarginSmall} ${tokens.layoutMarginNone};
 
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
-    font-size: 40px;
+    font-size: ${tokens.typographyRegularH1};
     height: 100%;
     width: 100%;
   }
   @media (min-width: ${screenSizes.desktop}) {
     order: 2; /* Moves text after logo */
-    font-size: 5vh;
-    margin: 0;
-    margin-left: -19vw;
-    line-height: 65.38px;
+    font-size: 40px; /* Will not use token on this one. */
+    margin: ${tokens.layoutMarginNone};
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
   }
 `;
 
