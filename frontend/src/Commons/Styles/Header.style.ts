@@ -12,7 +12,7 @@ const StyledHeader = styled.header`
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   flex-direction: column;
-  width:100%;
+  width: 100%;
 
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
     margin-top: 5vh;

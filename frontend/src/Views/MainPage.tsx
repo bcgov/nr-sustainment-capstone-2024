@@ -5,7 +5,7 @@ import StyledMain from './Styles/MainPage.styles';
 import FarmInfoForm from '../Commons/Forms/InputModules/FarmInformation';
 
 // const testInputModule = () => <Button text="Hello world!" path="/" />;
-const farmInformation = () => <FarmInfoForm />
+const farmInformation = () => <FarmInfoForm />;
 
 const MainPage = () => (
   <StyledMain>
