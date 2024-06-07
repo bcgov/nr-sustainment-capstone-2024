@@ -2,12 +2,15 @@ import Header from '../Commons/Header';
 import Footer from '../Commons/Footer';
 import FormModule from '../Commons/Forms/FormModule';
 import StyledMain from './Styles/MainPage.styles';
-import Button from '../Commons/Button';
+import FarmInfoForm from '../Commons/Forms/InputModules/FarmInformation';
+
+// const testInputModule = () => <Button text="Hello world!" path="/" />;
+const farmInformation = () => <FarmInfoForm />
 
 const MainPage = () => (
   <StyledMain>
     <Header />
-    <FormModule InputModule={() => <Button text="Hello world!" path="/" />} />
+    <FormModule InputModule={farmInformation} />
     <Footer />
   </StyledMain>
 );
