@@ -1,13 +1,13 @@
 import '@bcgov/design-tokens/css/variables.css';
 import '@bcgov/bc-sans/css/BC_Sans.css';
+import LandingPage from './Views/LandingPage';
 import Header from './Commons/Header';
 import Footer from './Commons/Footer';
-import Button from './Commons/Button';
 
 const App = () => (
   <>
     <Header />
-    <Button text="New Calculation" />
+    <LandingPage />
     <Footer />
   </>
 );

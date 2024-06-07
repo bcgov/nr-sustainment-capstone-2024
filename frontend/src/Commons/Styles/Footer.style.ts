@@ -9,11 +9,11 @@ const StyledFooter = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
-  bottom: 0;
+  position: relative;
+  bottom: -22vh;
   left: 0;
   width: 100%;
-  max-width: 100%;
+  max-width: 100vw;
   color: ${tokens.typographyColorPlaceholder};
   font-size: ${tokens.typographyRegularLabel};
   margin-bottom: 36px;
