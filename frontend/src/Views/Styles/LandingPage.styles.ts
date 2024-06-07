@@ -8,7 +8,6 @@ const StyledContent = styled.div`
   margin: auto;
   max-width: 265px;
   max-height: 180px;
-  position: relative;
   top: 15vh;
   gap: 2px;
   text-align: center;
@@ -61,7 +60,6 @@ const StyledButtonGroup = styled.div`
   flex-direction: column;
   margin: auto;
   gap: 2px;
-  position: relative;
   top: 20vh;
   align-items: center;
 
@@ -84,7 +82,6 @@ const StyledDivider = styled.div`
   align-items: center;
   text-align: center;
   color: ${tokens.typographyColorPlaceholder};
-  position: relative;
   margin: auto;
 
   &::before,
