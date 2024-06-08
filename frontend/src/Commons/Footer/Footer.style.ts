@@ -4,7 +4,7 @@
  */
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
-import screenSizes from '../../Constants/ScreenSize';
+import screenSizes from '@Constants/ScreenSize';
 
 const StyledFooter = styled.footer`
   display: flex;

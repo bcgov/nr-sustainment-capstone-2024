@@ -1,4 +1,4 @@
-import Button from '../../Commons/Button/Button.tsx';
+import Button from '@Commons/Button/Button.tsx';
 import {
   StyledContent,
   StyledButtonGroup,

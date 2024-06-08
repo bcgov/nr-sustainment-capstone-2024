@@ -4,7 +4,7 @@
  * @author @GDamaso
  */
 import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
-import Button from '../../../Button/Button.tsx';
+import Button from '@Commons/Button/Button.tsx';
 
 const FarmInfoForm = () => (
   <StyledFarmInfo>

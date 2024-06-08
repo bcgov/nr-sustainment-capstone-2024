@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
-import screenSizes from '../../Constants/ScreenSize';
+import screenSizes from '@Constants/ScreenSize';
 import desktopLogo from '/assets/BCID-logo-desktop.png';
 import mobileLogo from '/assets/BCID-logo-mobile.png';
 
