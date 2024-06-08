@@ -22,10 +22,10 @@ const StyledFormContainer = styled.div`
 const StyledFormContent = styled.div`
   width: 100%;
   color: ${tokens.typographyColorPrimary};
-  border-radius: 8px;
+  border-radius: 2px;
   border-top-left-radius: 1px;
   border-top-right-radius: 1px;
-  border: 1px solid ${tokens.typographyColorPrimary};
+  border: 1px solid ${tokens.themeGray40};
   padding: 10px;
   padding-bottom: 15px;
   padding-top: 0px;

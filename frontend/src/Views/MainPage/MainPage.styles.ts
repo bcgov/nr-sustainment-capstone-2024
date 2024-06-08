@@ -4,6 +4,7 @@
  * @author @GDamaso
  */
 import styled from '@emotion/styled';
+import screenSizes from '@Constants/ScreenSize';
 
 const StyledMain = styled.div`
   display: flex;
@@ -22,6 +23,10 @@ const StyledMainContainer = styled.div`
   gap: 24px;
   margin-top: 100px;
   margin-bottom: 50px;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    gap: 11px;
+  }
 `;
 
 export { StyledMain, StyledMainContainer };

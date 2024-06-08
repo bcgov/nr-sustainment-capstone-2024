@@ -15,13 +15,13 @@ const StyledFormHeader = styled.button<{ active: boolean }>`
   width: 100%;
   color: ${tokens.typographyColorPrimary};
 
-  border-radius: 3px;
-  border-bottom-left-radius: ${({ active }) => (active ? '0' : '3px')};
-  border-bottom-right-radius: ${({ active }) => (active ? '0' : '3px')};
+  border-radius: 2px;
+  border-bottom-left-radius: ${({ active }) => (active ? '0' : '2px')};
+  border-bottom-right-radius: ${({ active }) => (active ? '0' : '2px')};
   border-bottom: ${({ active }) => (active ? '0px' : '0px solid black')};
   background-color: ${({ active }) => (active ? tokens.themeGray20 : tokens.themeGray40)};
 
-  border: 1px solid black;
+  border: 1px solid ${tokens.themeGray40};
   padding: 3px;
 `;
 
