@@ -11,8 +11,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Header from '@Commons/Header/Header.tsx';
 import FormModule from '@Commons/Forms/FormModule/FormModule.tsx';
-import { StyledMain, StyledMainContainer } from './MainPage.styles';
 import FarmInfoForm from '@Commons/Forms/InputModules/FarmInformation/FarmInformation.tsx';
+import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 const farmInformation = () => <FarmInfoForm />;
 
