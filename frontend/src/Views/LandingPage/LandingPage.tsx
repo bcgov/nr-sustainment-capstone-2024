@@ -1,8 +1,13 @@
 import Button from '../../Commons/Button/Button.tsx';
-import { StyledContent, StyledButtonGroup, StyledDivider } from './LandingPage.styles.ts';
+import {
+  StyledContent,
+  StyledButtonGroup,
+  StyledDivider,
+  StyledLandingContainer,
+} from './LandingPage.styles.ts';
 
 const LandingPage = () => (
-  <>
+  <StyledLandingContainer>
     <StyledContent>
       <h2>About the nutrient calculator</h2>
       <p>
@@ -16,7 +21,7 @@ const LandingPage = () => (
       <StyledDivider>or</StyledDivider>
       <Button size="lg" text="Load Existing File" disabled={false} path="/" />
     </StyledButtonGroup>
-  </>
+  </StyledLandingContainer>
 );
 
 export default LandingPage;

@@ -5,7 +5,6 @@ import screenSizes from '../../Constants/ScreenSize';
 const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
-  margin: auto;
   max-width: 265px;
   max-height: 180px;
   top: 15vh;
@@ -58,7 +57,6 @@ const StyledButtonGroup = styled.div`
   max-height: 149px;
   width: 100%;
   flex-direction: column;
-  margin: auto;
   gap: 2px;
   top: 20vh;
   align-items: center;
@@ -82,7 +80,6 @@ const StyledDivider = styled.div`
   align-items: center;
   text-align: center;
   color: ${tokens.typographyColorPlaceholder};
-  margin: auto;
 
   &::before,
   &::after {
@@ -102,4 +99,14 @@ const StyledDivider = styled.div`
   }
 `;
 
-export { StyledContent, StyledButtonGroup, StyledDivider };
+const StyledLandingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: auto;
+  gap: 40px;
+`;
+
+export { StyledContent, StyledButtonGroup, StyledDivider, StyledLandingContainer };
