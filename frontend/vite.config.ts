@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@Constants': path.resolve(__dirname, 'src/Constants'),
+      '@Commons': path.resolve(__dirname, 'src/Commons'),
     },
   },
   server: {
