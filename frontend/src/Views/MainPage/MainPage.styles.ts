@@ -1,6 +1,9 @@
+/**
+ * @desc Styling with BC Design Tokens and Emotion for
+ *       Main Page of Better Berries App
+ * @author @GDamaso
+ */
 import styled from '@emotion/styled';
-// import * as tokens from '@bcgov/design-tokens/js';
-// import screenSizes from '../../Constants/ScreenSize';
 
 const StyledMain = styled.div`
   display: flex;

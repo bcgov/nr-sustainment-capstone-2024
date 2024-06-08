@@ -1,6 +1,9 @@
+/**
+ * @desc Styling with BC Design Tokens and Emotion for
+ *       Farm Information Input Module
+ * @author @GDamaso
+ */
 import styled from '@emotion/styled';
-// import * as tokens from '@bcgov/design-tokens/js';
-import screenSizes from '@Constants/ScreenSize';
 
 const StyledFarmInfo = styled.form`
   display: flex;
@@ -10,9 +13,6 @@ const StyledFarmInfo = styled.form`
   height: 100%;
   p {
     margin-bottom: 0;
-  }
-
-  @media (min - width: ${screenSizes.desktop}) {
   }
 `;
 

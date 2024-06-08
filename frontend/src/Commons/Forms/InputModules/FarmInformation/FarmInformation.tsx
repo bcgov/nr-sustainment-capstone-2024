@@ -1,3 +1,8 @@
+/**
+ * @summary Farm Information Input Module
+ * @description A module with input fields to be used in a Form Module
+ * @author @GDamaso
+ */
 import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
 import Button from '../../../Button/Button.tsx';
 

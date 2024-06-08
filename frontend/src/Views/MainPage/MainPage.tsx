@@ -1,3 +1,7 @@
+/**
+ * @desc Main Page of Better Berries App
+ * @author @GDamaso
+ */
 import {
   faCalculator,
   faCow,
@@ -17,7 +21,12 @@ const MainPage = () => (
   <StyledMain>
     <Header />
     <StyledMainContainer>
-      <FormModule InputModule={farmInformation} name="Farm Information" faIcon={faTractor} enable />
+      <FormModule
+        InputModule={farmInformation}
+        name="Farm Information"
+        faIcon={faTractor}
+        enable
+      />
       <FormModule
         InputModule={farmInformation}
         name="Fields and Soil"
