@@ -44,13 +44,13 @@ module.exports = {
       },
     ],
     'import/extensions': [
-      'error',
+      'off',
       'ignorePackages',
       {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
+        js: 'always',
+        jsx: 'always',
+        ts: 'always',
+        tsx: 'always',
       },
     ],
   },
