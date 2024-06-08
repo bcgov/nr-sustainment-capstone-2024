@@ -1,5 +1,5 @@
-import { StyledFarmInfo, StyledButtonContainer } from './Styles/FarmInformation.style';
-import Button from '../../Button';
+import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
+import Button from '../../../Button/Button.tsx';
 
 const FarmInfoForm = () => (
   <StyledFarmInfo>

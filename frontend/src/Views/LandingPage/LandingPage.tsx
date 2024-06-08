@@ -1,5 +1,5 @@
-import Button from '../Commons/Button';
-import { StyledContent, StyledButtonGroup, StyledDivider } from './Styles/LandingPage.styles';
+import Button from '../../Commons/Button/Button.tsx';
+import { StyledContent, StyledButtonGroup, StyledDivider } from './LandingPage.styles.ts';
 
 const LandingPage = () => (
   <>

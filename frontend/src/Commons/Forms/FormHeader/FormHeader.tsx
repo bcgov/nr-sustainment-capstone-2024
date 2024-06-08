@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp, faChevronDown, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import StyledFormHeader from './Styles/FormHeader.style';
+import StyledFormHeader from './FormHeader.style';
 
 type FormHeaderTypes = {
   text: string;

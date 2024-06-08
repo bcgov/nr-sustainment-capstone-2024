@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import StyledButton from './Styles/Button.style';
+import StyledButton from './Button.style';
 
 export type ButtonSizes = 'sm' | 'md' | 'lg';
 export type ButtonProps = {

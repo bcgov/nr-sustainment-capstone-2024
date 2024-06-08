@@ -5,11 +5,11 @@ import {
   faTractor,
   faWheatAwn,
 } from '@fortawesome/free-solid-svg-icons';
-import Header from '../Commons/Header';
-import Footer from '../Commons/Footer';
-import FormModule from '../Commons/Forms/FormModule';
-import { StyledMain, StyledMainContainer } from './Styles/MainPage.styles';
-import FarmInfoForm from '../Commons/Forms/InputModules/FarmInformation';
+import Header from '../../Commons/Header/Header.tsx';
+import Footer from '../../Commons/Footer/Footer.tsx';
+import FormModule from '../../Commons/Forms/FormModule/FormModule.tsx';
+import { StyledMain, StyledMainContainer } from './MainPage.styles';
+import FarmInfoForm from '../../Commons/Forms/InputModules/FarmInformation/FarmInformation.tsx';
 
 const farmInformation = () => <FarmInfoForm />;
 
