@@ -23,6 +23,8 @@ const StyledMainContainer = styled.div`
   gap: 24px;
   margin-top: 100px;
   margin-bottom: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
 
   @media (min-width: ${screenSizes.desktop}) {
     gap: 11px;

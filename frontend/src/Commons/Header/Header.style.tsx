@@ -65,7 +65,7 @@ const Title = styled.h1`
     font-size: 40px; /* Will not use token on this one. */
     margin: ${tokens.layoutMarginNone};
     position: absolute;
-    left: 50%;
+    left: 50vw;
     transform: translate(-50%, 0);
   }
 `;
