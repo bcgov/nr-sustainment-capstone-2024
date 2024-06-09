@@ -8,6 +8,11 @@ import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import { faTractor } from '@fortawesome/free-solid-svg-icons';
 import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
 
+const clickHandler = () => {
+  // e.preventDefault();
+  console.log('click');
+};
+
 const FarmInfoComponent = () => (
   <StyledFarmInfo>
     <label htmlFor="farmName">
@@ -18,7 +23,7 @@ const FarmInfoComponent = () => (
     <label htmlFor="farmYear">
       Year
       <br />
-      <input type="text" name="farmYear" />
+      <input type="number" name="farmYear" />
     </label>
     <label htmlFor="farmRegion">
       Region
@@ -28,7 +33,7 @@ const FarmInfoComponent = () => (
         <select id="farmRegion" name="farmRegion">
           <option value="Vancouver Island">Vancouver Island </option>
         </select>
-        <Button text="Next" size="sm" disabled={false} path="/" />
+        <Button text="Next" size="sm" disabled={false} handleClick={clickHandler} />
       </StyledButtonContainer>
     </label>
   </StyledFarmInfo>

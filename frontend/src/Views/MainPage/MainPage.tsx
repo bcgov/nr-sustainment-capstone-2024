@@ -21,7 +21,7 @@ const MainPage = () => (
     <Header />
     <StyledMainContainer>
       {mockBerriesWorkflow.map((formSection) => {
-        console.log(formSection.formSectionID);
+        // Not sure what type to use for `inputModule` here
         const InputModule: InputModuleInterface = (inputModules as any)[formSection.formSectionID];
         if (InputModule) {
           return <FormModule InputModule={InputModule} key={formSection.formSectionID} />;
