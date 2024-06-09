@@ -19,20 +19,16 @@
  * @author @GDamaso
  */
 import React, { useState } from 'react';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import FormHeader from '../FormHeader/FormHeader.tsx';
 import { StyledFormContainer, StyledFormContent } from './FormModule.style';
-
-type InputModuleType = React.ComponentType<{ className?: string }>;
+import InputModuleInterface from 'src/Interface/InputModuleinterface.tsx';
 
 interface FormModuleProps {
-  InputModule: InputModuleType;
-  name: string;
-  enable: boolean;
-  faIcon: IconDefinition;
+  InputModule: InputModuleInterface;
 }
 
-const FormModule: React.FC<FormModuleProps> = ({ InputModule, name, enable, faIcon }) => {
+const FormModule: React.FC<FormModuleProps> = ({ InputModule }) => {
+  const { InputModuleComponent, name, enable, faIcon } = InputModule;
   const [active, setActive] = useState(enable);
 
   return (
@@ -40,7 +36,7 @@ const FormModule: React.FC<FormModuleProps> = ({ InputModule, name, enable, faIc
       <FormHeader text={name} active={active} setActive={setActive} faIcon={faIcon} />
       {active ? (
         <StyledFormContent>
-          <InputModule />
+          <InputModuleComponent />
         </StyledFormContent>
       ) : null}
     </StyledFormContainer>

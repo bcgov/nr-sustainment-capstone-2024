@@ -2,44 +2,35 @@
  * @desc Main Page of Better Berries App
  * @author @GDamaso
  */
-import {
-  faCalculator,
-  faCow,
-  faList,
-  faTractor,
-  faWheatAwn,
-} from '@fortawesome/free-solid-svg-icons';
 import Header from '@Commons/Header/Header.tsx';
 import FormModule from '@Commons/Forms/FormModule/FormModule.tsx';
-import FarmInfoForm from '@Commons/Forms/InputModules/FarmInformation/FarmInformation.tsx';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
+import * as inputModules from '@Commons/Forms/InputModules/index';
+import InputModuleInterface from 'src/Interface/InputModuleinterface';
 
-const farmInformation = () => <FarmInfoForm />;
+const mockBerriesWorkflow = [
+  { formSectionID: 'FarmInformation' },
+  { formSectionID: 'FarmInformation' },
+  { formSectionID: 'FarmInformation' },
+  { formSectionID: 'FarmInformation' },
+  { formSectionID: 'FarmInformation' },
+  { formSectionID: 'FieldsAndSoil' },
+  { formSectionID: 'ManureAndCompost' },
+  { formSectionID: 'Calculate' },
+  { formSectionID: 'Nutrients' },
+];
 
 const MainPage = () => (
   <StyledMain>
     <Header />
     <StyledMainContainer>
-      <FormModule InputModule={farmInformation} name="Farm Information" faIcon={faTractor} enable />
-      <FormModule
-        InputModule={farmInformation}
-        name="Fields and Soil"
-        faIcon={faWheatAwn}
-        enable={false}
-      />
-      <FormModule
-        InputModule={farmInformation}
-        name="Manure and Compost"
-        faIcon={faCow}
-        enable={false}
-      />
-      <FormModule
-        InputModule={farmInformation}
-        name="Calculate Nutrients"
-        faIcon={faCalculator}
-        enable={false}
-      />
-      <FormModule InputModule={farmInformation} name="Summary" faIcon={faList} enable={false} />
+      {mockBerriesWorkflow.map((formSection) => {
+        const InputModule: InputModuleInterface = (inputModules as any)[formSection.formSectionID];
+        if (InputModule) {
+          return <FormModule InputModule={InputModule} key={formSection.formSectionID} />;
+        }
+        return null;
+      })}
     </StyledMainContainer>
   </StyledMain>
 );
