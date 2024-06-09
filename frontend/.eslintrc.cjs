@@ -30,6 +30,8 @@ module.exports = {
         'arrow-parens': ['error', 'always'], // Ensure parentheses around arrow function arguments
         'react/require-default-props': 'off',
         'no-nested-ternary': 'off',
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': 'error',
       },
     },
   ],
