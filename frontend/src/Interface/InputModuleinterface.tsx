@@ -7,4 +7,4 @@ export default interface InputModuleInterface {
   name: string;
   faIcon: IconDefinition;
   enable: boolean;
-}
+};

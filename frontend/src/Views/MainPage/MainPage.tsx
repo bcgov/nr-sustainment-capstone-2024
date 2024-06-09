@@ -10,14 +10,10 @@ import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 const mockBerriesWorkflow = [
   { formSectionID: 'FarmInformation' },
-  { formSectionID: 'FarmInformation' },
-  { formSectionID: 'FarmInformation' },
-  { formSectionID: 'FarmInformation' },
-  { formSectionID: 'FarmInformation' },
   { formSectionID: 'FieldsAndSoil' },
   { formSectionID: 'ManureAndCompost' },
   { formSectionID: 'Calculate' },
-  { formSectionID: 'Nutrients' },
+  { formSectionID: 'Summary' },
 ];
 
 const MainPage = () => (
@@ -25,6 +21,7 @@ const MainPage = () => (
     <Header />
     <StyledMainContainer>
       {mockBerriesWorkflow.map((formSection) => {
+        console.log(formSection.formSectionID);
         const InputModule: InputModuleInterface = (inputModules as any)[formSection.formSectionID];
         if (InputModule) {
           return <FormModule InputModule={InputModule} key={formSection.formSectionID} />;
