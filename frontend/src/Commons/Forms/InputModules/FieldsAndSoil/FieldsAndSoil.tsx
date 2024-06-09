@@ -5,8 +5,8 @@
  */
 import Button from '@Commons/Button/Button.tsx';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
-import { faTractor } from '@fortawesome/free-solid-svg-icons';
-import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
+import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
+import { StyledFarmInfo, StyledButtonContainer } from './FieldsAndSoil.style';
 
 const FarmInfoComponent = () => (
   <StyledFarmInfo>
@@ -34,12 +34,12 @@ const FarmInfoComponent = () => (
   </StyledFarmInfo>
 );
 
-const FarmInfoForm: InputModuleInterface = {
+const FieldsAndSoil: InputModuleInterface = {
   InputModuleComponent: FarmInfoComponent,
-  id: 'FarmInformation',
-  name: 'Farm Information',
-  faIcon: faTractor,
-  enable: true,
+  id: 'FieldsAndSoil',
+  name: 'Fields and Soil',
+  faIcon: faWheatAwn,
+  enable: false,
 };
 
-export default FarmInfoForm;
+export default FieldsAndSoil;
