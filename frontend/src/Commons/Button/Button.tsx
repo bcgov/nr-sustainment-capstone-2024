@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import StyledButton from './Button.style';
 
-export type ButtonSizes = 'sm' | 'md' | 'lg';
-export type ButtonProps = {
+type ButtonSizes = 'sm' | 'md' | 'lg';
+type ButtonProps = {
   handleClick?: () => void;
   text: string;
   size: ButtonSizes;
@@ -13,12 +13,14 @@ export type ButtonProps = {
 const Button = ({ handleClick, text, size = 'md', disabled = false, path = '' }: ButtonProps) => {
   const navigate = useNavigate();
 
-  const handleClickWrapper = handleClick
-    || (() => {
-      if (path) {
-        navigate(path);
-      }
-    });
+  const handleClickWrapper = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (handleClick) {
+      handleClick();
+    } else if (path) {
+      navigate(path);
+    }
+  };
 
   return (
     <StyledButton size={size} disabled={disabled} onClick={handleClickWrapper} value="">
