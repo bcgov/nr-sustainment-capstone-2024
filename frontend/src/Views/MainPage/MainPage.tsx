@@ -19,7 +19,7 @@ const mockBerriesWorkflow = [
 ];
 
 const initialFarmDetails: FarmDetailsInterface = {
-  Year: '2000',
+  Year: '2024',
   FarmName: 'FarmName',
   FarmRegion: 'VancouverIsland',
   HasBerries: true,

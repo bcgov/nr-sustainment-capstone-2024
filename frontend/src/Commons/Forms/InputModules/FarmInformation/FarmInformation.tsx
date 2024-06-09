@@ -8,6 +8,7 @@ import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import { faTractor } from '@fortawesome/free-solid-svg-icons';
 import InputModuleProps from 'src/Interface/InputModuleProps';
 import React from 'react';
+import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
 
 // const mockFarmDetails: FarmDetailsInterface = {
@@ -19,10 +20,25 @@ import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
 
 const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const farmInfoDetails = farmDetails;
+
+  const validate = (farmInfo: FarmDetailsInterface) => {
+    const { FarmName, Year } = farmInfo;
+    const checkFarmName = FarmName === 'hey';
+    const checkFarmYear = Year === '2024';
+
+    if (checkFarmName && checkFarmYear) {
+      console.log('Valid!');
+      return true;
+    }
+    return false;
+  };
+
   const clickHandler = () => {
-    updateFarmDetails(farmInfoDetails);
-    console.log('farmInfoDetails: ', farmInfoDetails);
-    console.log('farmDetails: ', farmDetails);
+    if (validate(farmInfoDetails)) {
+      updateFarmDetails(farmInfoDetails);
+      console.log('farmInfoDetails: ', farmInfoDetails);
+      console.log('farmDetails: ', farmDetails);
+    }
   };
 
   return (
