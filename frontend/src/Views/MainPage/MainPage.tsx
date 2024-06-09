@@ -2,7 +2,7 @@
  * @desc Main Page of Better Berries App
  * @author @GDamaso
  */
-import Header from '@Commons/Header/Header.tsx';
+import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
 import FormModule from '@Commons/Forms/FormModule/FormModule.tsx';
 import * as inputModules from '@Commons/Forms/InputModules/index';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
@@ -18,7 +18,7 @@ const mockBerriesWorkflow = [
 
 const MainPage = () => (
   <StyledMain>
-    <Header />
+    <MainPageHeader />
     <StyledMainContainer>
       {mockBerriesWorkflow.map((formSection) => {
         console.log(formSection.formSectionID);
