@@ -22,7 +22,6 @@ const StyledHeader = styled.header`
     max-height: 300px;
   }
   @media (min-width: ${screenSizes.desktop}) {
-    
   }
 `;
 
