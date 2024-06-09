@@ -4,9 +4,9 @@
  */
 import Header from '@Commons/Header/Header.tsx';
 import FormModule from '@Commons/Forms/FormModule/FormModule.tsx';
-import { StyledMain, StyledMainContainer } from './MainPage.styles';
 import * as inputModules from '@Commons/Forms/InputModules/index';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
+import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 const mockBerriesWorkflow = [
   { formSectionID: 'FarmInformation' },

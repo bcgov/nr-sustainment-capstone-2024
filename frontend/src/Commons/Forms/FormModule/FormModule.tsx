@@ -19,9 +19,9 @@
  * @author @GDamaso
  */
 import React, { useState } from 'react';
+import InputModuleInterface from 'src/Interface/InputModuleinterface.tsx';
 import FormHeader from '../FormHeader/FormHeader.tsx';
 import { StyledFormContainer, StyledFormContent } from './FormModule.style';
-import InputModuleInterface from 'src/Interface/InputModuleinterface.tsx';
 
 interface FormModuleProps {
   InputModule: InputModuleInterface;

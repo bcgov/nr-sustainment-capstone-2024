@@ -4,9 +4,9 @@
  * @author @GDamaso
  */
 import Button from '@Commons/Button/Button.tsx';
-import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import { faTractor } from '@fortawesome/free-solid-svg-icons';
+import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
 
 const FarmInfoComponent = () => (
   <StyledFarmInfo>
