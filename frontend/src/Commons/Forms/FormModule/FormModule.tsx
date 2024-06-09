@@ -33,7 +33,6 @@ interface FormModuleProps {
 const FormModule: React.FC<FormModuleProps> = ({ InputModule, farmDetails, updateFarmDetails }) => {
   const { InputModuleComponent, name, enable, faIcon } = InputModule;
   const [active, setActive] = useState(enable);
-  console.log(farmDetails);
   return (
     <StyledFormContainer>
       <FormHeader text={name} active={active} setActive={setActive} faIcon={faIcon} />
