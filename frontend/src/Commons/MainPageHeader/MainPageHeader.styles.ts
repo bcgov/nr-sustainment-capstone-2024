@@ -13,23 +13,23 @@ const StyledHeader = styled.header`
   border-top-right-radius: 2px;
   flex-direction: row;
   width: 100%;
-  padding:10px;
+  padding: 10px;
   background-color: ${tokens.themeBlue100};
   color: ${tokens.typographyColorPrimaryInvert};
   border-bottom: ${tokens.layoutBorderWidthMedium} solid ${tokens.themeGold100};
 
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
-    max-height:100px;
+    max-height: 100px;
   }
   @media (min-width: ${screenSizes.desktop}) {
-    height:450px;
+    height: 450px;
   }
 `;
 
 const Logo = styled.img`
   max-height: 69.29px;
   max-width: 76px;
-  margin-left:10px;
+  margin-left: 10px;
   content: url(${mobileLogo});
 
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
@@ -41,8 +41,8 @@ const Logo = styled.img`
   @media (min-width: ${screenSizes.desktop}) {
     max-height: 123px;
     max-width: 250px;
-    position:absolute;
-    left:17%;
+    position: absolute;
+    left: 17%;
     transform: translate(-17%, 0);
     content: url(${desktopLogo});
   }
