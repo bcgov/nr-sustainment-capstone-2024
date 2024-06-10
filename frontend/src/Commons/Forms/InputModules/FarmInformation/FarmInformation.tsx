@@ -11,76 +11,67 @@ import React from 'react';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
 
-// const mockFarmDetails: FarmDetailsInterface = {
-//   Year: '2020',
-//   FarmName: 'Hello',
-//   FarmRegion: 'World!',
-//   HasBerries: true,
-// };
-
 const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const farmInfoDetails = farmDetails;
 
   const validate = (farmInfo: FarmDetailsInterface) => {
     const { FarmName, Year } = farmInfo;
-    const checkFarmName = FarmName === 'hey';
-    const checkFarmYear = Year === '2024';
+    const nameRegexp = /^[A-Za-z \d]+$/;
+    const yearRegexp = /^(19|20)\d{2}$/;
 
-    if (checkFarmName && checkFarmYear) {
-      console.log('Valid!');
-      return true;
-    }
-    return false;
+    const checkFarmName = nameRegexp.test(FarmName);
+    const checkFarmYear = yearRegexp.test(Year);
+
+    // To be removed once summary is implemented
+    console.log(checkFarmName && checkFarmYear);
+    return checkFarmName && checkFarmYear;
   };
 
   const clickHandler = () => {
     if (validate(farmInfoDetails)) {
       updateFarmDetails(farmInfoDetails);
-      console.log('farmInfoDetails: ', farmInfoDetails);
+      // To be removed once summary is implemented
       console.log('farmDetails: ', farmDetails);
     }
   };
 
   return (
     <StyledFarmInfo>
-      <label htmlFor="farmName">
-        Name
-        <br />
-        <input
-          type="text"
-          name="farmName"
-          onChange={(e) => {
-            farmInfoDetails.FarmName = e.target.value;
-          }}
-          minLength={1}
-          maxLength={24}
+      <label htmlFor="farmName">Name</label>
+      <input
+        type="text"
+        name="farmName"
+        onChange={(e) => {
+          farmInfoDetails.FarmName = e.target.value;
+        }}
+        minLength={1}
+        maxLength={24}
+      />
+      <label htmlFor="farmYear">Year</label>
+      <input
+        type="number"
+        name="farmYear"
+        defaultValue="2024"
+        onChange={(e) => {
+          farmInfoDetails.Year = e.target.value;
+        }}
+      />
+      <label htmlFor="farmRegion">Region</label>
+      {/* <p> Region selection will customize recommendations to your local climate. </p> */}
+      <StyledButtonContainer>
+        <select
+          id="farmRegion"
+          name="farmRegion"
+        >
+          <option value="VancouverIsland">Vancouver Island </option>
+        </select>
+        <Button
+          text="Next"
+          size="sm"
+          disabled={false}
+          handleClick={clickHandler}
         />
-      </label>
-      <label htmlFor="farmYear">
-        Year
-        <br />
-        <input
-          type="number"
-          name="farmYear"
-          defaultValue="2024"
-          min="1950"
-          max="2099"
-          onChange={(e) => {
-            farmInfoDetails.Year = e.target.value;
-          }}
-        />
-      </label>
-      <label htmlFor="farmRegion">
-        Region
-        <br />
-        {/* <p> Region selection will customize recommendations to your local climate. </p> */}
-        <StyledButtonContainer>
-          <select id="farmRegion" name="farmRegion">
-            <option value="Vancouver Island">Vancouver Island </option>
-          </select>
-          <Button text="Next" size="sm" disabled={false} handleClick={clickHandler} />
-        </StyledButtonContainer>
-      </label>
+      </StyledButtonContainer>
     </StyledFarmInfo>
   );
 };
