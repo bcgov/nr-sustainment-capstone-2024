@@ -2,44 +2,48 @@ import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 import desktopLogo from '/assets/BCID-logo-desktop.png';
-import mobileLogo from '/assets/BCID-logo-mobile.png';
+import mobileLogo from '/assets/BCID-MainMobile-logo.png';
 
 const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   max-width: 100vw;
-  max-height: 166px;
+  max-height: 87px;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   flex-direction: row;
   width: 100%;
+  padding:10px;
   background-color: ${tokens.themeBlue100};
   color: ${tokens.typographyColorPrimaryInvert};
   border-bottom: ${tokens.layoutBorderWidthMedium} solid ${tokens.themeGold100};
 
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
-    margin-top: 5vh;
-    max-height: 300px;
+    max-height:100px;
   }
   @media (min-width: ${screenSizes.desktop}) {
+    height:450px;
   }
 `;
 
 const Logo = styled.img`
-  max-height: 50vh;
-  max-width: 123px;
+  max-height: 69.29px;
+  max-width: 76px;
+  margin-left:10px;
   content: url(${mobileLogo});
 
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
-    max-height: 20vh;
-    max-width: 20vw;
+    max-height: 80px;
+    max-width: 80px;
     height: 100%;
     width: 100%;
   }
   @media (min-width: ${screenSizes.desktop}) {
-    justify-content: flex-start;
-    max-height: 20vh;
-    max-width: 20vw;
+    max-height: 123px;
+    max-width: 250px;
+    position:absolute;
+    left:17%;
+    transform: translate(-17%, 0);
     content: url(${desktopLogo});
   }
 `;
@@ -47,10 +51,8 @@ const Logo = styled.img`
 const Title = styled.h1`
   flex: 1;
   font-family: ${tokens.typographyFontFamiliesBcSans}, sans-serif;
-  text-align: center;
-  font: ${tokens.typographyBoldH2};
-  margin: 3.5rem ${tokens.layoutMarginNone} ${tokens.layoutMarginSmall} ${tokens.layoutMarginNone};
-
+  font: ${tokens.typographyBoldH4};
+  margin: 15px 0 0 15px;
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
     font-size: ${tokens.typographyRegularH1};
     height: 100%;
