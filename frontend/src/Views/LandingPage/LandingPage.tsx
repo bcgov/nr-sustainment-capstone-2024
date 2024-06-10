@@ -17,9 +17,19 @@ const LandingPage = () => (
       </p>
     </StyledContent>
     <StyledButtonGroup>
-      <Button size="lg" text="New Calculation" disabled={false} path="/main" />
+      <Button
+        size="lg"
+        text="New Calculation"
+        disabled={false}
+        path="/main"
+      />
       <StyledDivider>or</StyledDivider>
-      <Button size="lg" text="Load Existing File" disabled={false} path="/" />
+      <Button
+        size="lg"
+        text="Load Existing File"
+        disabled={false}
+        path="/"
+      />
     </StyledButtonGroup>
   </StyledLandingContainer>
 );

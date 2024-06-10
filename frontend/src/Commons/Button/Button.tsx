@@ -24,7 +24,12 @@ const Button = ({ handleClick, text, size = 'md', disabled = false, path = '' }:
   };
 
   return (
-    <StyledButton size={size} disabled={disabled} onClick={handleClickWrapper} value="">
+    <StyledButton
+      size={size}
+      disabled={disabled}
+      onClick={handleClickWrapper}
+      value=""
+    >
       {text}
     </StyledButton>
   );

@@ -1,4 +1,8 @@
 /**
+ *
+ * THIS IS A SKELETON!
+ * THIS IS STILL TO BE IMPLEMENTED!
+ *
  * @summary Farm Information Input Module
  * @description A module with input fields to be used in a Form Module
  * @author @GDamaso
@@ -13,22 +17,36 @@ const FarmInfoComponent = () => (
     <label htmlFor="farmName">
       Name
       <br />
-      <input type="text" name="farmName" />
+      <input
+        type="text"
+        name="farmName"
+      />
     </label>
     <label htmlFor="farmYear">
       Year
       <br />
-      <input type="text" name="farmYear" />
+      <input
+        type="text"
+        name="farmYear"
+      />
     </label>
     <label htmlFor="farmRegion">
       Region
       <br />
       {/* <p> Region selection will customize recommendations to your local climate. </p> */}
       <StyledButtonContainer>
-        <select id="farmRegion" name="farmRegion">
+        <select
+          id="farmRegion"
+          name="farmRegion"
+        >
           <option value="Vancouver Island">Vancouver Island </option>
         </select>
-        <Button text="Next" size="sm" disabled={false} path="/" />
+        <Button
+          text="Next"
+          size="sm"
+          disabled={false}
+          path="/"
+        />
       </StyledButtonContainer>
     </label>
   </StyledFarmInfo>

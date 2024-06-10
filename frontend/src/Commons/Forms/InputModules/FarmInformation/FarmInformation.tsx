@@ -37,41 +37,48 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
 
   return (
     <StyledFarmInfo>
-      <label htmlFor="farmName">Name</label>
-      <input
-        type="text"
-        name="farmName"
-        onChange={(e) => {
-          farmInfoDetails.FarmName = e.target.value;
-        }}
-        minLength={1}
-        maxLength={24}
-      />
-      <label htmlFor="farmYear">Year</label>
-      <input
-        type="number"
-        name="farmYear"
-        defaultValue="2024"
-        onChange={(e) => {
-          farmInfoDetails.Year = e.target.value;
-        }}
-      />
-      <label htmlFor="farmRegion">Region</label>
-      {/* <p> Region selection will customize recommendations to your local climate. </p> */}
-      <StyledButtonContainer>
-        <select
-          id="farmRegion"
-          name="farmRegion"
-        >
-          <option value="VancouverIsland">Vancouver Island </option>
-        </select>
-        <Button
-          text="Next"
-          size="sm"
-          disabled={false}
-          handleClick={clickHandler}
+      <label htmlFor="farmName">
+        <p>Name</p>
+        <input
+          type="text"
+          name="Farm Name"
+          id="farmName"
+          onChange={(e) => {
+            farmInfoDetails.FarmName = e.target.value;
+          }}
+          minLength={1}
+          maxLength={24}
         />
-      </StyledButtonContainer>
+      </label>
+      <label htmlFor="farmYear">
+        <p>Year</p>
+        <input
+          type="number"
+          name="Year"
+          id="farmYear"
+          defaultValue="2024"
+          onChange={(e) => {
+            farmInfoDetails.Year = e.target.value;
+          }}
+        />
+      </label>
+      <label htmlFor="farmRegion">
+        <p>Region</p>
+        <StyledButtonContainer>
+          <select
+            id="farmRegion"
+            name="farmRegion"
+          >
+            <option value="VancouverIsland">Vancouver Island </option>
+          </select>
+          <Button
+            text="Next"
+            size="sm"
+            disabled={false}
+            handleClick={clickHandler}
+          />
+        </StyledButtonContainer>
+      </label>
     </StyledFarmInfo>
   );
 };

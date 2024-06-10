@@ -33,10 +33,17 @@ const FormHeader = ({ text, active = false, setActive, faIcon }: FormHeaderTypes
   };
 
   return (
-    <StyledFormHeader type="button" onClick={handleClick} active={active}>
+    <StyledFormHeader
+      type="button"
+      onClick={handleClick}
+      active={active}
+    >
       {text}
       <div>
-        <FontAwesomeIcon icon={faIcon} style={{ marginRight: '8px' }} />
+        <FontAwesomeIcon
+          icon={faIcon}
+          style={{ marginRight: '11px' }}
+        />
         <FontAwesomeIcon icon={active ? faChevronUp : faChevronDown} />
       </div>
     </StyledFormHeader>

@@ -3,14 +3,18 @@
  * @desc A Form Module is a component that takes a form section container,
  *       containing a header and an Input Module
  *
- * @param InputModule: ComponentType<string> => Takes string name of a Component, InputModule
- * @param name: string => name of the Form Section
- * @param enable: boolean => expand or collapse form section upon render
+ * @param InputModule: InputModuleInterface => Takes the InputModule to be rendered
+ * @param farmDetails: FarmDetailsInterface => Main data object with farm and calculation data
+ * @param updateFarmDetails: A setState function to modify the main data object (farmDetails)
+ * with new farm farm information.
+ * @param name: string => Name of the Form Section
+ * @param enable: boolean => Expand or collapse form section upon render
  * @param faIcon: IconDefinition => Font Awesome IconDefinition to be passed to FormHeader component
  *
  * @example:
       <FormModule
         InputModule={farmInformation}
+        farmDetails={farmDetails}
         name="Fields and Soil"
         faIcon={faWheatAwn}
         enable={false}
@@ -35,10 +39,18 @@ const FormModule: React.FC<FormModuleProps> = ({ InputModule, farmDetails, updat
   const [active, setActive] = useState(enable);
   return (
     <StyledFormContainer>
-      <FormHeader text={name} active={active} setActive={setActive} faIcon={faIcon} />
+      <FormHeader
+        text={name}
+        active={active}
+        setActive={setActive}
+        faIcon={faIcon}
+      />
       {active ? (
         <StyledFormContent>
-          <InputModuleComponent updateFarmDetails={updateFarmDetails} farmDetails={farmDetails} />
+          <InputModuleComponent
+            updateFarmDetails={updateFarmDetails}
+            farmDetails={farmDetails}
+          />
         </StyledFormContent>
       ) : null}
     </StyledFormContainer>
