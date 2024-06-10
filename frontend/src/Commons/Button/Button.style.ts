@@ -11,10 +11,12 @@ const StyledButton = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: ${(props) => (props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '40px')}; /* 40px; */
+  max-height: ${(props) =>
+    props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '40px'}; /* 40px; */
   height: 100%;
   width: 100%;
-  max-width: ${(props) => (props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '300px')}; /* 327px; */
+  max-width: ${(props) =>
+    props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '300px'}; /* 327px; */
   background-color: ${tokens.surfaceColorPrimaryButtonDefault};
   color: ${tokens.typographyColorPrimaryInvert};
   border-radius: 8px;
@@ -28,8 +30,10 @@ const StyledButton = styled.button<ButtonProps>`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    max-height: ${(props) => (props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '40px')}; /* 40px; */
-    max-width: ${(props) => (props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '300px')}; /* 327px; */
+    max-height: ${(props) =>
+      props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '40px'}; /* 40px; */
+    max-width: ${(props) =>
+      props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '300px'}; /* 327px; */
   }
 `;
 

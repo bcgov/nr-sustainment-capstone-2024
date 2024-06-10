@@ -13,8 +13,9 @@ export type ButtonProps = {
 const Button = ({ handleClick, text, size = 'md', disabled = false, path = '' }: ButtonProps) => {
   const navigate = useNavigate();
 
-  const handleClickWrapper = handleClick
-    || (() => {
+  const handleClickWrapper =
+    handleClick ||
+    (() => {
       if (path) {
         navigate(path);
       }

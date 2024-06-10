@@ -41,9 +41,7 @@ const Logo = styled.img`
   @media (min-width: ${screenSizes.desktop}) {
     max-height: 123px;
     max-width: 250px;
-    position: absolute;
-    left: 17%;
-    transform: translate(-17%, 0);
+    margin-left: 14%;
     content: url(${desktopLogo});
   }
 `;
