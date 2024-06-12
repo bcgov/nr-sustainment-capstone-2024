@@ -69,7 +69,7 @@ objects:
                   path: /
                   port: http
                   scheme: HTTP
-                initialDelaySeconds: 15
+                initialDelaySeconds: 90
                 periodSeconds: 10
                 timeoutSeconds: 10
                 successThreshold: 3
