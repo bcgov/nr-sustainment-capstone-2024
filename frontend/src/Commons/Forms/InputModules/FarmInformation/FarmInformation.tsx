@@ -9,8 +9,8 @@ import { faTractor } from '@fortawesome/free-solid-svg-icons';
 import InputModuleProps from 'src/Interface/InputModuleProps';
 import React from 'react';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
-import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
 import ComponentText from '@Constants/ComponentText';
+import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
 
 const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const farmInfoDetails = farmDetails;
