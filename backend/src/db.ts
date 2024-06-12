@@ -13,6 +13,7 @@ const client = new Client({
   host: process.env.POSTGRES_HOST,
   database: process.env.POSTGRES_DATABASE,
 });
+
 const connectClient = async () => {
   try {
     await client.connect();
