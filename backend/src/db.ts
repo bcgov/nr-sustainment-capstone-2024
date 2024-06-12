@@ -18,3 +18,14 @@ client.connect();
 const query = (text: any, params?: any[]): Promise<any> => client.query(text, params);
 
 export default query;
+
+// Log client and database connection
+console.log('Client:', client);
+client.query('SELECT NOW()', (err, res) => {
+  if (err) {
+    console.log('Error connecting to database');
+    console.log(err);
+  } else {
+    console.log('Connected to database:', res.rows[0]);
+  }
+});
