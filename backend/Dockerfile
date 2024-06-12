@@ -8,4 +8,5 @@ RUN npm ci && \
     npm run build
 
 # Run in dev mode, `npm run serve` for production
-CMD ["npm", "run", "serve", "--no-update-notifier", "--max-old-space-size=50"]
+# CMD ["npm", "run", "serve", "--no-update-notifier", "--max-old-space-size=50"]
+CMD ["npm", "run", "dev", "--no-update-notifier", "--max-old-space-size=50"]
