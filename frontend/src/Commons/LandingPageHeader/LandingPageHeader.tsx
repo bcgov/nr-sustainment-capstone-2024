@@ -1,7 +1,7 @@
-import { StyledHeader, Logo, Title } from './Header.style';
+import { StyledHeader, Logo, Title } from './LandingPageHeader.style';
 import bcLogo from '/assets/BCID-logo-mobile.png';
 
-const Header = () => (
+const LandingPageHeader = () => (
   <StyledHeader>
     <Logo
       src={bcLogo}
@@ -11,4 +11,4 @@ const Header = () => (
   </StyledHeader>
 );
 
-export default Header;
+export default LandingPageHeader;
