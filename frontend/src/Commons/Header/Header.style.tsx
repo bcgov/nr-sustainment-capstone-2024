@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
-import screenSizes from '../../Constants/ScreenSize';
+import screenSizes from '@Constants/ScreenSize';
 import desktopLogo from '/assets/BCID-logo-desktop.png';
 import mobileLogo from '/assets/BCID-logo-mobile.png';
 
@@ -12,6 +12,7 @@ const StyledHeader = styled.header`
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   flex-direction: column;
+  width: 100%;
 
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
     margin-top: 5vh;
@@ -38,6 +39,7 @@ const Logo = styled.img`
     width: 100%;
   }
   @media (min-width: ${screenSizes.desktop}) {
+    justify-content: flex-start;
     max-height: 20vh;
     max-width: 20vw;
     content: url(${desktopLogo});
@@ -63,7 +65,7 @@ const Title = styled.h1`
     font-size: 40px; /* Will not use token on this one. */
     margin: ${tokens.layoutMarginNone};
     position: absolute;
-    left: 50%;
+    left: 50vw;
     transform: translate(-50%, 0);
   }
 `;

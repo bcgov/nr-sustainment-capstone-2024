@@ -1,8 +1,16 @@
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import react from '@vitejs/plugin-react-swc';
+import path from 'path';
+
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@Constants': path.resolve(__dirname, 'src/Constants'),
+      '@Commons': path.resolve(__dirname, 'src/Commons'),
+    },
+  },
   server: {
     host: '0.0.0.0',
     port: 5173,
@@ -13,8 +21,8 @@ export default defineConfig({
         enabled: true,
       },
       manifest: {
-        name: 'QuackStack NMP',
-        description: 'An NMP web application designed to be mobile and desktop compatible.',
+        name: 'Better Berries',
+        description: 'Better Berries nutrient calculator',
         theme_color: '#ffffff',
         icons: [
           {

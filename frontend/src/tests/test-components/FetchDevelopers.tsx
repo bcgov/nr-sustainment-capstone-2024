@@ -21,7 +21,10 @@ const FetchDevelopers = () => {
   }, []);
   return (
     <Container className="mt-4">
-      <Table bordered hover>
+      <Table
+        bordered
+        hover
+      >
         <thead className="thead-dark">
           <tr>
             <th>First Name</th>
