@@ -21,5 +21,12 @@ export default query;
 
 // Log client for troubleshooting
 if (process.env.LOG_LEVEL !== 'info') {
+  client.query('SELECT NOW()', (err, res) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Connected to database:', res.rows[0]);
+    }
+  });
   console.debug('Client:', client);
 }
