@@ -51,6 +51,7 @@ services:
           target: app
           ignore: [node_modules]
     environment:
+      LOG_LEVEL: info
       <<: *postgres-vars
     healthcheck:
       test: curl localhost:3000/api/health | grep 'NMP API is healthy and ready!'
