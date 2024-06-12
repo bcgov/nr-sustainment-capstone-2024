@@ -57,14 +57,26 @@ objects:
             - name: ${APP}-${TAG}-${COMPONENT}
               image: 'ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}'
               imagePullPolicy: Always
-              envFrom:
-                - secretRef:
-                    name: ${APP}-${TAG}-database
               env:
                 - name: LOG_LEVEL
                   value: info
                 - name: POSTGRES_HOST
                   value: ${APP}-${TAG}-database
+                - name: POSTGRES_DB
+                  valueFrom:
+                    secretKeyRef:
+                      name: nr-sustainment-capstone-2024-161-database
+                      key: database-name
+                - name: POSTGRES_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: nr-sustainment-capstone-2024-161-database
+                      key: database-password
+                - name: POSTGRES_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: nr-sustainment-capstone-2024-161-database
+                      key: database-user
               ports:
                 - name: http
                   containerPort: 3000
