@@ -78,25 +78,24 @@ objects:
                       name: nr-sustainment-capstone-2024-161-database
                       key: database-user
               ports:
-                - name: http
-                  containerPort: 3000
+                - containerPort: 3000
                   protocol: TCP
               readinessProbe:
                 httpGet:
                   path: /api/health
-                  port: http
+                  port: 3000
                   scheme: HTTP
                 initialDelaySeconds: 15
-                periodSeconds: 5
-                timeoutSeconds: 5
+                periodSeconds: 15
+                timeoutSeconds: 10
                 successThreshold: 3
                 failureThreshold: 30
               livenessProbe:
                 successThreshold: 1
-                failureThreshold: 3
+                failureThreshold: 5
                 httpGet:
                   path: /api/health
-                  port: http
+                  port: 3000
                   scheme: HTTP
                 initialDelaySeconds: 15
                 periodSeconds: 30
