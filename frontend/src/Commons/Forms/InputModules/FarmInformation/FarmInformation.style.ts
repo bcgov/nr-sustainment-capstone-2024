@@ -24,7 +24,7 @@ const StyledButtonContainer = styled.div`
   margin-top: 0;
   padding-top: 0;
 
-  Select {
+  select {
     height: 30px;
     width: 80%;
   }

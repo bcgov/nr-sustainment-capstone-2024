@@ -45,14 +45,14 @@ const FormModule: React.FC<FormModuleProps> = ({ InputModule, farmDetails, updat
         setActive={setActive}
         faIcon={faIcon}
       />
-      {active ? (
+      {active && (
         <StyledFormContent>
           <InputModuleComponent
             updateFarmDetails={updateFarmDetails}
             farmDetails={farmDetails}
           />
         </StyledFormContent>
-      ) : null}
+      )}
     </StyledFormContainer>
   );
 };

@@ -29,7 +29,7 @@ type FormHeaderTypes = {
 
 const FormHeader = ({ text, active = false, setActive, faIcon }: FormHeaderTypes) => {
   const handleClick = () => {
-    setActive(!active);
+    setActive((prevActive) => !prevActive);
   };
 
   return (
