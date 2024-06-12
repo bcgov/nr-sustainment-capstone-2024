@@ -13,20 +13,17 @@ const client = new Client({
   host: process.env.POSTGRES_HOST,
   database: process.env.POSTGRES_DATABASE,
 });
-client.connect();
+const connectClient = async () => {
+  try {
+    await client.connect();
+    console.log('Connected to DB');
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+connectClient();
 
 const query = (text: any, params?: any[]): Promise<any> => client.query(text, params);
 
 export default query;
-
-// Log client for troubleshooting
-if (process.env.LOG_LEVEL !== 'info') {
-  client.query('SELECT NOW()', (err, res) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Connected to database:', res.rows[0]);
-    }
-  });
-  console.debug('Client:', client);
-}
