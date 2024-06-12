@@ -21,7 +21,7 @@ const connectClient = async () => {
     console.log(err);
   }
 };
-
+// Deploy again!
 connectClient();
 
 const query = (text: any, params?: any[]): Promise<any> => client.query(text, params);
