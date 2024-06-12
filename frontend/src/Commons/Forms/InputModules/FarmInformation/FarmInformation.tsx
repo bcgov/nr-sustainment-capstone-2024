@@ -10,6 +10,7 @@ import InputModuleProps from 'src/Interface/InputModuleProps';
 import React from 'react';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
+import ComponentText from '@Constants/ComponentText';
 
 const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const farmInfoDetails = farmDetails;
@@ -35,6 +36,14 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
     }
   };
 
+  const updateFarmName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    farmInfoDetails.FarmName = e.target.value;
+  };
+
+  const updateFarmYear = (e: React.ChangeEvent<HTMLInputElement>) => {
+    farmInfoDetails.Year = e.target.value;
+  };
+
   return (
     <StyledFarmInfo>
       <label htmlFor="farmName">
@@ -43,9 +52,7 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
           type="text"
           name="Farm Name"
           id="farmName"
-          onChange={(e) => {
-            farmInfoDetails.FarmName = e.target.value;
-          }}
+          onChange={(e) => updateFarmName(e)}
           minLength={1}
           maxLength={24}
         />
@@ -57,9 +64,7 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
           name="Year"
           id="farmYear"
           defaultValue="2024"
-          onChange={(e) => {
-            farmInfoDetails.Year = e.target.value;
-          }}
+          onChange={(e) => updateFarmYear(e)}
         />
       </label>
       <label htmlFor="farmRegion">
@@ -72,7 +77,7 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
             <option value="VancouverIsland">Vancouver Island </option>
           </select>
           <Button
-            text="Next"
+            text={ComponentText.NEXT}
             size="sm"
             disabled={false}
             handleClick={clickHandler}
