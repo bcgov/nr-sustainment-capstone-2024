@@ -32,10 +32,11 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
     FarmRegion: Yup.string().required('Required'),
   });
 
-  function onSubmit(
+  const onSubmit = (
     values: SubmissionValues,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
-  ): void {
+  ): void => {
+    // Suggested timeout by Formik docs
     setTimeout(() => {
       // There is probably a better way of doing this with a for loop
       // Build a FarmDetails object and use it to update the main data passed from the Main Page
@@ -43,13 +44,11 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
       farmInformation.FarmName = values.FarmName;
       farmInformation.Year = values.Year;
       farmInformation.FarmRegion = values.FarmRegion;
-      console.log(farmDetails);
       // Update the Main Data Object
       updateFarmDetails(farmInformation);
       setSubmitting(false);
     }, 400);
-    console.log(farmDetails);
-  }
+  };
 
   return (
     <Formik
