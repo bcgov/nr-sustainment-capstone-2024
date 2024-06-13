@@ -10,13 +10,15 @@ const Container = styled.div`
   width: 95%;
   order: 2;
   position: fixed;
-  bottom: 80px;
+  bottom: 30px;
   background-color: #fff;
-  height: 100px;
+  height: 80px;
+  padding-bottom: 30px;
   @media (min-width: ${screenSizes.desktop}) {
+    padding-bottom: 50px;
     height: 150px;
     width: 70%;
-    top: 14%;
+    top: 9.2%;
     order: 0;
   }
 `;

@@ -4,6 +4,8 @@
  */
 import React, { useState } from 'react';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
+import ProgressBar from '@Commons/ProgressBar/ProgressBar';
+import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter';
 import FormModule from '@Commons/Forms/FormModule/FormModule.tsx';
 import * as inputModules from '@Commons/Forms/InputModules/index';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
@@ -39,6 +41,7 @@ const MainPage: React.FC = () => {
   return (
     <StyledMain>
       <MainPageHeader />
+      <ProgressBar />
       <StyledMainContainer>
         {mockBerriesWorkflow.map((formSection) => {
           // Not sure what type to use for `inputModules` here
@@ -58,6 +61,7 @@ const MainPage: React.FC = () => {
           return null;
         })}
       </StyledMainContainer>
+      <MainPageFooter />
     </StyledMain>
   );
 };
