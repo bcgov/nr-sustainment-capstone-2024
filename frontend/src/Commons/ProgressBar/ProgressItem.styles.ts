@@ -40,7 +40,7 @@ const StyledIcon = styled.div`
 const StyledItemText = styled.p`
   font: ${tokens.typographyRegularLabel};
   text-align: center;
-
+  
   @media (min-width: ${screenSizes.desktop}) {
     font: ${tokens.typographyRegularH5};
     font-size: 20px;
