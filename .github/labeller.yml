@@ -7,33 +7,32 @@ GHActions:
 - changed-files:
   - any-glob-to-any-file: '.github/workflows/*'
 
-# Any changes to any file in the dockerfiles and docker-compose.yml
-Docker:
-- changed-files:
-  - any-glob-to-any-file: '**/Dockerfile'
-  - any-glob-to-any-file: 'docker-compose.yml'
+# # Any changes to any file in the dockerfiles and docker-compose.yml
+# Docker:
+# - changed-files:
+#   - any-glob-to-any-file: ['**/Dockerfile','docker-compose.yml']
 
-# Any changes to any file or subdirectories in the Frontend directory
-Frontend:
-- changed-files:
-  - any-glob-to-any-file: '/frontend/**/*'
+# # Any changes to any file or subdirectories in the Frontend directory
+# Frontend:
+# - changed-files:
+#   - any-glob-to-any-file: '/frontend/**/*'
 
-# Any changes to any file or subdirectories in the Backend directory
-Backend:
-- changed-files:
-  - any-glob-to-any-file: '/backend/**/*'
+# # Any changes to any file or subdirectories in the Backend directory
+# Backend:
+# - changed-files:
+#   - any-glob-to-any-file: '/backend/**/*'
 
-# Any changes to any environment variables
-Environment Variables:
-- changed-files:
-  - any-glob-to-any-file: '/**/*.env*/'
+# # Any changes to any environment variables
+# Envars:
+# - changed-files:
+#   - any-glob-to-any-file: '/**/*.env*/'
 
-# Any changes to any swagger documents
-Swagger:
-- changed-files:
-  - any-glob-to-any-file: '/backend/src/docs/*.yml'
+# # Any changes to any swagger documents
+# Swagger:
+# - changed-files:
+#   - any-glob-to-any-file: '/backend/src/docs/*.yml'
 
-# Any changes to any swagger configurations
-Swagger Configurations:
-- changed-files:
-  - any-glob-to-any-file: '/backend/src/config/*.ts'
+# # Any changes to any swagger configurations
+# SwaggerConfig:
+# - changed-files:
+#   - any-glob-to-any-file: '/backend/src/config/*.ts'
