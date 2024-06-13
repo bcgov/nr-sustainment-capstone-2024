@@ -11,10 +11,12 @@ const Container = styled.div`
   order: 2;
   position: fixed;
   bottom: 80px;
+  background-color: #fff;
+  height:100px;
   @media (min-width: ${screenSizes.desktop}) {
-    position: static;
+    height: 150px;
     width: 70%;
-    margin-top: 50px;
+    top: 14%;
     order: 0;
   }
 `;

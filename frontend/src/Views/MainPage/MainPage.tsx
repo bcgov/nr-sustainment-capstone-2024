@@ -16,10 +16,10 @@ import { StyledMain, StyledMainContainer } from './MainPage.styles';
 // Uncomment sections as they are implemented to have them instantiated ;)
 const mockBerriesWorkflow = [
   { InputModuleID: 'FarmInformation' },
-  // { InputModuleID: 'FieldsAndSoil' },
-  // { InputModuleID: 'ManureAndCompost' },
-  // { InputModuleID: 'Calculate' },
-  // { InputModuleID: 'Summary' },
+  { InputModuleID: 'FieldsAndSoil' },
+  { InputModuleID: 'ManureAndCompost' },
+  { InputModuleID: 'Calculate' },
+  { InputModuleID: 'Summary' },
 ];
 
 // Initial Values for calculation, some defaults are being used
