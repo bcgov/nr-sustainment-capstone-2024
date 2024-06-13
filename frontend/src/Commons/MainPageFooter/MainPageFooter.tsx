@@ -1,7 +1,5 @@
 import StyledMainFooter from './MainPageFooter.styles';
 
-const MainPageFooter = () => (
-  <StyledMainFooter />
-);
+const MainPageFooter = () => <StyledMainFooter />;
 
 export default MainPageFooter;
