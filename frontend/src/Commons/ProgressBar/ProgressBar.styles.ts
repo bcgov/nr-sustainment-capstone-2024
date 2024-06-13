@@ -12,7 +12,7 @@ const Container = styled.div`
   position: fixed;
   bottom: 80px;
   background-color: #fff;
-  height:100px;
+  height: 100px;
   @media (min-width: ${screenSizes.desktop}) {
     height: 150px;
     width: 70%;
