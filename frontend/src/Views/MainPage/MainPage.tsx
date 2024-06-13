@@ -3,7 +3,7 @@
  * @author @GDamaso
  */
 import React, { useState } from 'react';
-import Header from '@Commons/Header/Header.tsx';
+import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
 import FormModule from '@Commons/Forms/FormModule/FormModule.tsx';
 import * as inputModules from '@Commons/Forms/InputModules/index';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
@@ -38,7 +38,7 @@ const MainPage: React.FC = () => {
 
   return (
     <StyledMain>
-      <Header />
+      <MainPageHeader />
       <StyledMainContainer>
         {mockBerriesWorkflow.map((formSection) => {
           // Not sure what type to use for `inputModules` here
