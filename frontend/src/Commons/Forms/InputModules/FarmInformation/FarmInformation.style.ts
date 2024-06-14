@@ -5,14 +5,14 @@
  */
 import styled from '@emotion/styled';
 
-const StyledFarmInfo = styled.form`
+const StyledFarmInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: left;
   height: 100%;
   p {
-    margin-bottom: 0;
+    margin: 8px 0 0 0;
   }
 `;
 
