@@ -40,7 +40,7 @@ const FormModule: React.FC<FormModuleProps> = ({ InputModule, farmDetails, updat
   return (
     <StyledFormContainer>
       <FormHeader
-        text={name}
+        text={name.long}
         active={active}
         setActive={setActive}
         faIcon={faIcon}
