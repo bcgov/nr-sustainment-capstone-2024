@@ -10,7 +10,7 @@ const StyledMainFooter = styled.div`
   bottom: 0;
 
   @media (min-width: ${screenSizes.desktop}) {
-    background-color: transparent;
+    display: none;
   }
 `;
 
