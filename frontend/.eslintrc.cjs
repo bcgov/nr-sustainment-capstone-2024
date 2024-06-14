@@ -31,6 +31,16 @@ module.exports = {
         'react/require-default-props': 'off',
         'no-nested-ternary': 'off',
         'no-unused-vars': 'off',
+        // Stop throwing errors Formik's custom fields
+        'jsx-a11y/label-has-associated-control': [
+          2,
+          {
+            labelComponents: ['CustomInputLabel'],
+            labelAttributes: ['label'],
+            controlComponents: ['CustomInput'],
+            depth: 3,
+          },
+        ],
         '@typescript-eslint/no-unused-vars': 'error',
       },
     },
