@@ -11,7 +11,8 @@ import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import ComponentText from '@Constants/ComponentText';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { StyledFarmInfo, StyledButtonContainer } from './FarmInformation.style';
+import CustomField from '@Commons/Input/CustomField';
+import { StyledFarmInfo, StyledSelectContainer } from './FarmInformation.style';
 
 interface SubmissionValues {
   FarmName: string;
@@ -58,30 +59,27 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
     >
       <Form>
         <StyledFarmInfo>
-          <label htmlFor="FarmName">
-            <p>Name</p>
-          </label>
-          <Field
-            id="FarmName"
-            name="FarmName"
-            type="text"
-          />
-          <ErrorMessage name="FarmName" />
+          <div id="inputContainer">
+            <CustomField
+              label="Year"
+              id="Year"
+              name="Year"
+              type="number"
+              width="20%"
+            />
 
-          <label htmlFor="Year">
-            <p>Year</p>
-          </label>
-          <Field
-            id="Year"
-            name="Year"
-            type="number"
-          />
-          <ErrorMessage name="Year" />
+            <CustomField
+              label="Name"
+              id="FarmName"
+              name="FarmName"
+              type="text"
+            />
+          </div>
 
           <label htmlFor="FarmRegion">
             <p>Region</p>
           </label>
-          <StyledButtonContainer>
+          <StyledSelectContainer>
             <Field
               name="FarmRegion"
               as="select"
@@ -95,7 +93,7 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
             />
 
             <button type="submit">{ComponentText.NEXT}</button>
-          </StyledButtonContainer>
+          </StyledSelectContainer>
         </StyledFarmInfo>
       </Form>
     </Formik>
