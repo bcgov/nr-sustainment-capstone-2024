@@ -1,6 +1,6 @@
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import * as inputModules from '@Commons/Forms/InputModules/index';
-import ProgressItem from './ProgressItem';
+import ProgressItem from '../ProgressItem/ProgressItem';
 import { Container, StyledProgressBar, StyledLineBlock } from './ProgressBar.styles';
 
 const mockBerriesWorkflow = [
