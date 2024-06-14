@@ -91,7 +91,7 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
 const FarmInfoForm: InputModuleInterface = {
   InputModuleComponent: FarmInfoComponent,
   id: 'FarmInformation',
-  name: 'Farm Information',
+  name: { long: 'Farm Information', short: 'Farm Info' },
   faIcon: faTractor,
   enable: true,
 };
