@@ -37,13 +37,25 @@ const StyledIcon = styled.div`
     font-size: 30px;
   }
 `;
-const StyledItemText = styled.p`
+const StyledItemTextShort = styled.p`
   font: ${tokens.typographyRegularLabel};
   text-align: center;
-
+  display: block;
   @media (min-width: ${screenSizes.desktop}) {
     font: ${tokens.typographyRegularH5};
     font-size: 20px;
+    display: none;
   }
 `;
-export { Container, StyledItem, StyledIcon, StyledItemText };
+
+const StyledItemTextLong = styled.p`
+  font: ${tokens.typographyRegularLabel};
+  text-align: center;
+  display: none;
+  @media (min-width: ${screenSizes.desktop}) {
+    font: ${tokens.typographyRegularH5};
+    font-size: 20px;
+    display: block;
+  }
+`;
+export { Container, StyledItem, StyledIcon, StyledItemTextShort, StyledItemTextLong };

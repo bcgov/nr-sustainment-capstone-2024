@@ -3,7 +3,6 @@ import * as inputModules from '@Commons/Forms/InputModules/index';
 import ProgressItem from './ProgressItem';
 import { Container, StyledProgressBar, StyledLineBlock } from './ProgressBar.styles';
 
-
 const mockBerriesWorkflow = [
   { InputModuleID: 'FarmInformation' },
   { InputModuleID: 'FieldsAndSoil' },

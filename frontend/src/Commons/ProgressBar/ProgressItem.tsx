@@ -1,19 +1,17 @@
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useMediaQuery } from 'react-responsive';
-import screenSizeWithoutPX from '@Constants/ScreenSizewithoutPX';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
-import { Container, StyledItem, StyledIcon, StyledItemText } from './ProgressItem.styles';
+import { Container, StyledItem, StyledIcon, StyledItemTextShort, StyledItemTextLong } from './ProgressItem.styles';
 
 export type ProgressProps = {
   InputModule: InputModuleInterface;
 };
 
 const ProgressItem = ({ InputModule }: ProgressProps) => {
-  const { name: { long, short }, enable, faIcon } = InputModule;
-  const isDesktop = useMediaQuery({ minWidth: 1024 });
-  console.log(screenSizeWithoutPX.desktop);
-  console.log(isDesktop);
+  const {
+    name: { long, short },
+    enable,
+    faIcon,
+  } = InputModule;
   return (
     <Container>
       <StyledItem
@@ -24,7 +22,8 @@ const ProgressItem = ({ InputModule }: ProgressProps) => {
           <FontAwesomeIcon icon={faIcon} />
         </StyledIcon>
       </StyledItem>
-      <StyledItemText>{isDesktop ? long : short }</StyledItemText>
+      <StyledItemTextShort>{ short }</StyledItemTextShort>
+      <StyledItemTextLong>{ long }</StyledItemTextLong>
     </Container>
   );
 };
