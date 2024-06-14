@@ -19,7 +19,10 @@ import InputModuleProps from './InputModuleProps';
 interface InputModuleInterface {
   InputModuleComponent: React.ComponentType<InputModuleProps>;
   id: string;
-  name: string;
+  name: {
+    long: string;
+    short?: string;
+  };
   faIcon: IconDefinition;
   enable: boolean;
 }

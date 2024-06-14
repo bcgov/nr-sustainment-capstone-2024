@@ -55,7 +55,7 @@ const FarmInfoComponent = () => (
 const Calculate: InputModuleInterface = {
   InputModuleComponent: FarmInfoComponent,
   id: 'Calculate',
-  name: 'Calculate Nutrients',
+  name: { long: 'Calculate Nutrients', short: 'Calculate' },
   faIcon: faCalculator,
   enable: false,
 };

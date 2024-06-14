@@ -55,7 +55,7 @@ const FarmInfoComponent = () => (
 const FieldsAndSoil: InputModuleInterface = {
   InputModuleComponent: FarmInfoComponent,
   id: 'FieldsAndSoil',
-  name: 'Fields and Soil',
+  name: { long: 'Fields and Soil', short: 'Fields' },
   faIcon: faWheatAwn,
   enable: false,
 };
