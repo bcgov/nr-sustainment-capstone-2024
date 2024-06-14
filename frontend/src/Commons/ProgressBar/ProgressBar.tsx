@@ -1,37 +1,32 @@
-import {
-  faCalculator,
-  faCow,
-  faList,
-  faTractor,
-  faWheatAwn,
-} from '@fortawesome/free-solid-svg-icons';
+import InputModuleInterface from 'src/Interface/InputModuleinterface';
+import * as inputModules from '@Commons/Forms/InputModules/index';
 import ProgressItem from './ProgressItem';
 import { Container, StyledProgressBar, StyledLineBlock } from './ProgressBar.styles';
+
+
+const mockBerriesWorkflow = [
+  { InputModuleID: 'FarmInformation' },
+  { InputModuleID: 'FieldsAndSoil' },
+  { InputModuleID: 'ManureAndCompost' },
+  { InputModuleID: 'Calculate' },
+  { InputModuleID: 'Summary' },
+];
 
 const ProgressBar = () => (
   <Container>
     <StyledProgressBar>
-      <ProgressItem
-        favIcon={faTractor}
-        text="Farm Info"
-        active
-      />
-      <ProgressItem
-        favIcon={faWheatAwn}
-        text="Fields"
-      />
-      <ProgressItem
-        favIcon={faCow}
-        text="Manure"
-      />
-      <ProgressItem
-        favIcon={faCalculator}
-        text="Calculate"
-      />
-      <ProgressItem
-        favIcon={faList}
-        text="Summary"
-      />
+      {mockBerriesWorkflow.map((progressItem) => {
+        const InputModule: InputModuleInterface = (inputModules as any)[progressItem.InputModuleID];
+        if (InputModule) {
+          return (
+            <ProgressItem
+              InputModule={InputModule}
+              key={progressItem.InputModuleID}
+            />
+          );
+        }
+        return null;
+      })}
     </StyledProgressBar>
     <StyledLineBlock />
   </Container>

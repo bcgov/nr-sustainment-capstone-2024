@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import screenSizes from '@Constants/ScreenSize';
 
 type ProgressProps = {
-  favIcon?: IconDefinition;
-  active?: boolean;
+  InputModule: InputModuleInterface;
+  active: boolean;
 };
 
 const Container = styled.div`
