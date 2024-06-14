@@ -33,7 +33,7 @@ const StyledProgressBar = styled.div`
 `;
 const StyledLineBlock = styled.div`
   border: 5px solid ${tokens.surfaceColorBorderDark};
-  width: 95%;
+  width: 90%;
   margin-top: -60px;
 
   @media (min-width: ${screenSizes.desktop}) {

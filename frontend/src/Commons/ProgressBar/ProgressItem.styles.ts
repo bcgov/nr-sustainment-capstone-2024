@@ -11,6 +11,8 @@ type ProgressProps = {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 const StyledItem = styled.div<ProgressProps>`
   border-radius: 50%;
