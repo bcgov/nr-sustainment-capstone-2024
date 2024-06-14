@@ -24,18 +24,11 @@ const StyledItem = styled.div<ProgressProps>`
   width: 46px;
   height: 46px;
   border: ${tokens.layoutBorderWidthLarge} solid ${tokens.surfaceColorBorderDark};
-
+  font-size: 18px; /* tokens not working on this one */
   @media (min-width: ${screenSizes.desktop}) {
     min-width: 93px;
     min-height: 93px;
     padding: 20px;
-  }
-`;
-
-const StyledIcon = styled.div`
-  font-size: 18px; /* tokens not working on this one */
-
-  @media (min-width: ${screenSizes.desktop}) {
     font-size: 30px;
   }
 `;
@@ -60,4 +53,4 @@ const StyledItemTextLong = styled.p`
     display: block;
   }
 `;
-export { Container, StyledItem, StyledIcon, StyledItemTextShort, StyledItemTextLong };
+export { Container, StyledItem, StyledItemTextShort, StyledItemTextLong };

@@ -3,7 +3,6 @@ import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import {
   Container,
   StyledItem,
-  StyledIcon,
   StyledItemTextShort,
   StyledItemTextLong,
 } from './ProgressItem.styles';
@@ -24,9 +23,7 @@ const ProgressItem = ({ InputModule }: ProgressProps) => {
         InputModule={InputModule}
         active={enable}
       >
-        <StyledIcon>
-          <FontAwesomeIcon icon={faIcon} />
-        </StyledIcon>
+        <FontAwesomeIcon icon={faIcon} />
       </StyledItem>
       <StyledItemTextShort>{short}</StyledItemTextShort>
       <StyledItemTextLong>{long}</StyledItemTextLong>
