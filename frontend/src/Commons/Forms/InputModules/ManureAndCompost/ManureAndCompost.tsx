@@ -55,7 +55,7 @@ const FarmInfoComponent = () => (
 const ManureAndCompost: InputModuleInterface = {
   InputModuleComponent: FarmInfoComponent,
   id: 'ManureAndCompost',
-  name: 'Manure and Compost',
+  name: { long: 'Manure and Compost', short: 'Manure' },
   faIcon: faCow,
   enable: false,
 };

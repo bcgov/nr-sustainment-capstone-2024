@@ -138,6 +138,54 @@ const StyledFooter = styled.footer`
 export default StyledFooter;
 ```
 
+### Formik && Yup
+
+Formik is being used to handle our InputModule forms. It is coupled with Yup for building validation schemas.
+Formik helps a lot in managing input field states and updating data. It simplifies code and improves functionality.
+There are some custom components such as Field and ErrorMessage provided by it which implements these functionalities.
+A good example is our Name input field for our FarmInformation InputModule, where a custom submission handler is being provided with some initial values and a yup validationSchema:
+
+```TypeScript
+  const initialValues = {
+    FarmName: farmDetails.FarmName,
+    Year: farmDetails.Year,
+    FarmRegion: farmDetails.FarmRegion,
+  };
+
+  const validationSchema = Yup.object().shape({
+    FarmName: Yup.string().max(24).required('Required'),
+    Year: Yup.number().min(1900).max(2099).required('Required'),
+    FarmRegion: Yup.string().required('Required'),
+  });
+
+...
+
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      <Form>
+        <StyledFarmInfo>
+          <label htmlFor="FarmName">
+            <p>Name</p>
+          </label>
+          <Field
+            id="FarmName"
+            name="FarmName"
+            type="text"
+          />
+          <ErrorMessage name="FarmName" />
+
+...
+
+        </StyledFarmInfo>
+      </Form>
+    </Formik>
+
+...
+```
+
 <!-- Here's a simple example using emotion: -->
 <!-- ```TypeScript -->
 
