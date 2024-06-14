@@ -69,7 +69,7 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
             />
 
             <CustomField
-              label="Name"
+              label="Farm Name"
               id="FarmName"
               name="FarmName"
               type="text"
