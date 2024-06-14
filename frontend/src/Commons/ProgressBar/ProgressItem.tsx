@@ -1,6 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
-import { Container, StyledItem, StyledIcon, StyledItemTextShort, StyledItemTextLong } from './ProgressItem.styles';
+import {
+  Container,
+  StyledItem,
+  StyledIcon,
+  StyledItemTextShort,
+  StyledItemTextLong,
+} from './ProgressItem.styles';
 
 export type ProgressProps = {
   InputModule: InputModuleInterface;
@@ -22,8 +28,8 @@ const ProgressItem = ({ InputModule }: ProgressProps) => {
           <FontAwesomeIcon icon={faIcon} />
         </StyledIcon>
       </StyledItem>
-      <StyledItemTextShort>{ short }</StyledItemTextShort>
-      <StyledItemTextLong>{ long }</StyledItemTextLong>
+      <StyledItemTextShort>{short}</StyledItemTextShort>
+      <StyledItemTextLong>{long}</StyledItemTextLong>
     </Container>
   );
 };
