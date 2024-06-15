@@ -13,7 +13,8 @@ type StyledSelectProps = {
 const StyledSelect = styled.div<StyledSelectProps>`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
+  margin-top: 5px;
   label {
     font-weight: ${tokens.typographyFontWeightsBold};
   }

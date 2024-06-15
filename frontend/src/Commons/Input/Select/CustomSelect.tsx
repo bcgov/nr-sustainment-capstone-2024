@@ -17,9 +17,7 @@ interface CustomSelectProps {
 
 const CustomSelect: FC<CustomSelectProps> = ({ name, id, label, width = '100%', options }) => (
   <StyledSelect width={width}>
-    <label htmlFor={id}>
-      <p>{label}</p>
-    </label>
+    <label htmlFor={id}>{label}</label>
     <Field
       name={name}
       id={id}
