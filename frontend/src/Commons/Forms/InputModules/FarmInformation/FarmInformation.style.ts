@@ -12,9 +12,6 @@ const StyledFarmInfo = styled.div`
   justify-content: space-between;
   align-items: left;
   height: 100%;
-  p {
-    margin: 8px 0 0 0;
-  }
 
   #inputContainer {
     @media (min-width: ${screenSizes.desktop}) {
@@ -31,12 +28,5 @@ const StyledSelectContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top: 0;
-  padding-top: 0;
-
-  select {
-    height: 30px;
-    width: 50%;
-  }
 `;
 export { StyledFarmInfo, StyledSelectContainer };

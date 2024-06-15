@@ -9,9 +9,11 @@ import InputModuleProps from 'src/Interface/InputModuleProps';
 import React from 'react';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import ComponentText from '@Constants/ComponentText';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import CustomField from '@Commons/Input/CustomField';
+import CustomField from '@Commons/Input/Field/CustomField';
+import CustomSelect from '@Commons/Input/Select/CustomSelect';
+import OptionInterface from 'src/Interface/OptionInterface';
 import { StyledFarmInfo, StyledSelectContainer } from './FarmInformation.style';
 
 interface SubmissionValues {
@@ -19,6 +21,8 @@ interface SubmissionValues {
   Year: string;
   FarmRegion: string;
 }
+
+const options: OptionInterface[] = [{ value: 'Vancouver Island', label: 'Vancouver Island' }];
 
 const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const initialValues = {
@@ -76,22 +80,14 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
             />
           </div>
 
-          <label htmlFor="FarmRegion">
-            <p>Region</p>
-          </label>
           <StyledSelectContainer>
-            <Field
+            <CustomSelect
               name="FarmRegion"
-              as="select"
               id="FarmRegion"
-            >
-              <option value="Vancouver Island">Vancouver Island</option>
-            </Field>
-            <ErrorMessage
-              name="FarmRegion"
-              component="span"
+              label="Region"
+              options={options}
+              width="50%"
             />
-
             <button type="submit">{ComponentText.NEXT}</button>
           </StyledSelectContainer>
         </StyledFarmInfo>
