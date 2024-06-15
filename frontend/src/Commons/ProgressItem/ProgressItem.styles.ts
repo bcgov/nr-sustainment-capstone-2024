@@ -13,7 +13,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 15%;
+  min-width: 15%; /* deploy */
 `;
 const StyledItem = styled.div<ProgressProps>`
   border-radius: 50%;
