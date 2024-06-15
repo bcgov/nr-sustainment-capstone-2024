@@ -14,10 +14,10 @@ const StyledField = styled.div<StyledFieldProps>`
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-top: 5px;
   label {
     font-weight: ${tokens.typographyFontWeightsBold};
   }
-
   input {
     border: solid 1px ${tokens.themeGray40};
     border-radius: 3px;
