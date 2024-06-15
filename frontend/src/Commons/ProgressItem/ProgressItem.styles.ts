@@ -13,10 +13,12 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-width: 15%;
 `;
 const StyledItem = styled.div<ProgressProps>`
   border-radius: 50%;
-  background-color: ${(props) => (props.active === true ? tokens.supportBorderColorWarning : '#FFF')};
+  background-color: ${(props) =>
+    props.active === true ? tokens.supportBorderColorWarning : '#FFF'};
   display: flex;
   justify-content: center;
   align-items: center;
