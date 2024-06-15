@@ -55,7 +55,7 @@ const FarmInfoComponent = () => (
 const Summary: InputModuleInterface = {
   InputModuleComponent: FarmInfoComponent,
   id: 'Summary',
-  name: { long: 'Summary', short: 'Summary' },
+  name: { long: 'Summary' },
   faIcon: faList,
   enable: false,
 };

@@ -4,8 +4,6 @@
  */
 import React, { useState } from 'react';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
-import ProgressBar from '@Commons/ProgressBar/ProgressBar';
-import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter';
 import FormModule from '@Commons/Forms/FormModule/FormModule.tsx';
 import * as inputModules from '@Commons/Forms/InputModules/index';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
@@ -17,10 +15,10 @@ import { StyledMain, StyledMainContainer } from './MainPage.styles';
 // Uncomment sections as they are implemented to have them instantiated ;)
 const mockBerriesWorkflow = [
   { InputModuleID: 'FarmInformation' },
-  { InputModuleID: 'FieldsAndSoil' },
-  { InputModuleID: 'ManureAndCompost' },
-  { InputModuleID: 'Calculate' },
-  { InputModuleID: 'Summary' },
+  // { InputModuleID: 'FieldsAndSoil' },
+  // { InputModuleID: 'ManureAndCompost' },
+  // { InputModuleID: 'Calculate' },
+  // { InputModuleID: 'Summary' },
 ];
 
 // Initial Values for calculation, some defaults are being used
@@ -41,7 +39,6 @@ const MainPage: React.FC = () => {
   return (
     <StyledMain>
       <MainPageHeader />
-      <ProgressBar />
       <StyledMainContainer>
         {mockBerriesWorkflow.map((formSection) => {
           // Not sure what type to use for `inputModules` here
@@ -61,7 +58,6 @@ const MainPage: React.FC = () => {
           return null;
         })}
       </StyledMainContainer>
-      <MainPageFooter />
     </StyledMain>
   );
 };
