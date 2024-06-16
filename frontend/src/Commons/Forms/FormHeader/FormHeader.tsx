@@ -17,18 +17,16 @@
  */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import StyledFormHeader from './FormHeader.style';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
+import StyledFormHeader from './FormHeader.style';
 
 interface FormHeaderProps {
   inputModule: InputModuleInterface;
   handleFormState: (moduleID: string, nextModuleID?: string) => void;
-  formStates: any;
 }
 
-const FormHeader = ({ inputModule, formStates, handleFormState }: FormHeaderProps) => {
+const FormHeader = ({ inputModule, handleFormState }: FormHeaderProps) => {
   const handleToggle = () => {
-    console.log(formStates);
     handleFormState(inputModule.id);
   };
 

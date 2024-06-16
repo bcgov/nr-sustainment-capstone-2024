@@ -7,8 +7,8 @@ type ButtonTypes = 'button' | 'submit' | 'reset' | undefined;
 type ButtonProps = {
   handleClick?: () => void;
   text: string;
-  size: ButtonSizes;
-  disabled: boolean;
+  size?: ButtonSizes;
+  disabled?: boolean;
   path?: string;
   type?: ButtonTypes;
 };

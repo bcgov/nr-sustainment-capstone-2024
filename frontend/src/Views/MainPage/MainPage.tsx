@@ -25,7 +25,7 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
 
 // Initial Values for calculation, some defaults are being used
 const initialFarmDetails: FarmDetailsInterface = {
-  Year: '2024',
+  Year: '',
   FarmName: '',
   FarmRegion: '',
   HasBerries: true,
@@ -35,9 +35,17 @@ const MainPage: React.FC = () => {
   const [farmDetails, setFarmDetails] = useState(initialFarmDetails);
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
 
+  /**
+   * @summary   Pass this handler to children who need to update InputModule states
+   * @desc      A State handler that will update the current form section states,
+   *            allowing you to expand/collapse form sections.
+   *            ** In the future, also update the ProgressBar status **
+   * @param     moduleID: string => An InputModule ID to be searched and updated
+   * @param     nextModuleID: string => A second InputModule ID to be searched and updated
+   */
   const handleFormState = (moduleID: string, nexModuleID?: string) => {
-    const updateStates = formStates.map((module: InputModuleInterface) => {
-      if (module.id == moduleID || module.id == nexModuleID) {
+    const updatedStates = formStates.map((module: InputModuleInterface) => {
+      if (module.id === moduleID || module.id === nexModuleID) {
         return {
           ...module,
           enable: !module.enable,
@@ -45,11 +53,19 @@ const MainPage: React.FC = () => {
       }
       return module;
     });
-    setFormStates(updateStates);
+    setFormStates((prevStates) => (prevStates = updatedStates));
   };
 
+  /**
+   * @summary   Handler for updating the Main Data of the Calculator.
+   * @desc      This updates the Main Data objet being built, 'farmDetails'.
+   *            Since after an update, the form should take you to the next section,
+   *            it calls the form state handler to update states automatically <3
+   * @param     newDetails => A new 'FarmDetailsInterface' object with new data from
+   *            from a form section.
+   * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
-    setFarmDetails(newDetails);
+    setFarmDetails((prevDetails) => (prevDetails = newDetails));
     handleFormState(InputModules.FarmInformation.id, InputModules.FieldsAndSoil.id);
   };
 
@@ -65,7 +81,6 @@ const MainPage: React.FC = () => {
                 InputModule={InputModule}
                 farmDetails={farmDetails}
                 updateFarmDetails={updateFarmDetails}
-                formStates={formStates}
                 handleFormState={handleFormState}
                 key={InputModule.id}
               />
