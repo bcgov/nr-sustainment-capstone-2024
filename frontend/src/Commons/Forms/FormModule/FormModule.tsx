@@ -32,15 +32,14 @@ interface FormModuleProps {
   InputModule: InputModuleInterface;
   farmDetails: FarmDetailsInterface;
   updateFarmDetails(farmDetails: FarmDetailsInterface): void;
-  formStates: any;
-  handleFormState: any;
+  formStates: InputModuleInterface[];
+  handleFormState(moduleID: string, nextModuleID?: string): void;
 }
 
 const FormModule: FC<FormModuleProps> = ({
   InputModule,
   farmDetails,
   updateFarmDetails,
-  formStates,
   handleFormState,
 }) => {
   const { InputModuleComponent } = InputModule;
@@ -50,7 +49,6 @@ const FormModule: FC<FormModuleProps> = ({
       <FormHeader
         inputModule={InputModule}
         handleFormState={handleFormState}
-        formStates={formStates}
       />
       {InputModule.enable && (
         <StyledFormContent>
