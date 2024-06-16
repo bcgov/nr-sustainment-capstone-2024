@@ -10,9 +10,10 @@
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import InputModuleProps from 'src/Interface/InputModuleProps';
+import { FC } from 'react';
 import { StyledFarmInfo } from './Summary.style';
 
-const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => (
+const SummaryComponent: FC<InputModuleProps> = ({ farmDetails }) => (
   <StyledFarmInfo>
     <p>
       Farm Name:&nbsp;

@@ -9,8 +9,8 @@ import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter';
 import FormModule from '@Commons/Forms/FormModule/FormModule.tsx';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
-import { StyledMain, StyledMainContainer } from './MainPage.styles';
 import * as InputModules from '@Commons/Forms/InputModules/index';
+import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 // The sequence of sections to show up on the main page
 // This is the skeleton for the Berries workflow
