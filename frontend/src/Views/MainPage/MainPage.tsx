@@ -33,9 +33,24 @@ const initialFarmDetails: FarmDetailsInterface = {
 
 const MainPage: React.FC = () => {
   const [farmDetails, setFarmDetails] = useState(initialFarmDetails);
+  const [formStates, setFormStates] = useState(mockBerriesWorkflow);
+
+  const handleFormState = (moduleID: string, nexModuleID?: string) => {
+    const updateStates = formStates.map((module: InputModuleInterface) => {
+      if (module.id == moduleID || module.id == nexModuleID) {
+        return {
+          ...module,
+          enable: !module.enable,
+        };
+      }
+      return module;
+    });
+    setFormStates(updateStates);
+  };
 
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
+    handleFormState(InputModules.FarmInformation.id, InputModules.FieldsAndSoil.id);
   };
 
   return (
@@ -43,13 +58,15 @@ const MainPage: React.FC = () => {
       <MainPageHeader />
       <ProgressBar />
       <StyledMainContainer>
-        {mockBerriesWorkflow.map((InputModule) => {
+        {formStates.map((InputModule) => {
           if (InputModule) {
             return (
               <FormModule
                 InputModule={InputModule}
                 farmDetails={farmDetails}
                 updateFarmDetails={updateFarmDetails}
+                formStates={formStates}
+                handleFormState={handleFormState}
                 key={InputModule.id}
               />
             );
