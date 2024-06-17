@@ -49,6 +49,7 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
       farmInformation.FarmName = values.FarmName;
       farmInformation.Year = values.Year;
       farmInformation.FarmRegion = values.FarmRegion;
+      farmInformation.HasBerries = false; // Creating nmp file return false, loading returns true
       // Update the Main Data Object
       updateFarmDetails(farmInformation);
       setSubmitting(false);
