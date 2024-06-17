@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @desc    Custom TextArea that aligns with the designer's mockup
  * @author  @Kcaparas
  */
@@ -16,7 +16,13 @@ interface CustomTextAreaProps {
   width?: string;
 }
 
-const CustomTextArea: FC<CustomTextAreaProps> = ({ label, id, placeholder, name, width = '100%'}) => (
+const CustomTextArea: FC<CustomTextAreaProps> = ({
+  label,
+  id,
+  placeholder,
+  name,
+  width = '100%',
+}) => (
   <StyledField width={width}>
     <label htmlFor={id}>{label}</label>
     <Field
