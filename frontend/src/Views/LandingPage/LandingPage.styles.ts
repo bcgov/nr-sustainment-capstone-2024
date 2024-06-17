@@ -61,6 +61,11 @@ const StyledButtonGroup = styled.div`
   top: 20vh;
   align-items: center;
 
+  label {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
   @media (min-width: ${screenSizes.tablet}) {
     top: 15vh;
   }
