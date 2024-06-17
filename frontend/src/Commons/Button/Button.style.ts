@@ -16,10 +16,16 @@ const StyledButton = styled.button<StyledButtonProps>`
   height: 100%;
   width: 100%;
   max-width: ${(props) => (props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '300px')};
-  background-color: ${(props) => (props.type === 'button' || props.type === 'submit' ? tokens.surfaceColorPrimaryButtonDefault : tokens.surfaceColorSecondaryButtonDefault)};
-  color: ${(props) => (props.type === 'button' || props.type === 'submit' ? tokens.typographyColorPrimaryInvert : tokens.typographyColorPrimary)};
+  background-color: ${(props) => (props.type === 'button' || props.type === 'submit'
+    ? tokens.surfaceColorPrimaryButtonDefault
+    : tokens.surfaceColorSecondaryButtonDefault)};
+  color: ${(props) => (props.type === 'button' || props.type === 'submit'
+    ? tokens.typographyColorPrimaryInvert
+    : tokens.typographyColorPrimary)};
   border-radius: 8px;
-  border: ${(props) => (props.type === 'button' || props.type === 'submit' ? 0 : `1px solid ${tokens.surfaceColorBorderMedium}`)};
+  border: ${(props) => (props.type === 'button' || props.type === 'submit'
+    ? 0
+    : `1px solid ${tokens.surfaceColorBorderMedium}`)};
   padding: 20px 30px;
   font-family: ${tokens.typographyFontFamiliesBcSans};
   font-weight: ${tokens.typographyFontWeightsBold};
