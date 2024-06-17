@@ -30,7 +30,8 @@ const StyledFarmInfo = styled.div`
 const StyledTextAreaContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-end;
+  gap: 30px;
 `;
 export { StyledFarmInfo, StyledTextAreaContainer };

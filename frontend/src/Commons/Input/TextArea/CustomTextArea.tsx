@@ -30,6 +30,7 @@ const CustomTextArea: FC<CustomTextAreaProps> = ({
       placeholder={placeholder}
       name={name}
       id={id}
+      style={{ resize: 'none' }}
     />
   </StyledField>
 );

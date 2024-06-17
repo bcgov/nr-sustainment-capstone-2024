@@ -9,6 +9,8 @@ import React from 'react';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import ComponentText from '@Constants/ComponentText';
+import Button from '@Commons/Button/Button';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
@@ -80,6 +82,19 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
               id="Comments"
               label="Comments (optional)"
               placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
+              width="50%"
+            />
+            <Button
+              type="reset"
+              size="sm"
+              disabled={false}
+              text={ComponentText.CANCEL}
+            />
+            <Button
+              type="submit"
+              size="sm"
+              disabled={false}
+              text={ComponentText.ADD}
             />
           </StyledTextAreaContainer>
         </StyledFarmInfo>
