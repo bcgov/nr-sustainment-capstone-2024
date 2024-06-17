@@ -30,7 +30,6 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
     Year: farmDetails.Year,
     FarmRegion: farmDetails.FarmRegion,
   };
-
   const validationSchema = Yup.object().shape({
     FarmName: Yup.string().max(24).required('Required'),
     Year: Yup.number().min(1900).max(2099).required('Required'),
@@ -47,8 +46,9 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
       // Build a FarmDetails object and use it to update the main data passed from the Main Page
       const farmInformation: FarmDetailsInterface = { ...farmDetails };
       farmInformation.FarmName = values.FarmName;
-      farmInformation.Year = values.Year;
+      farmInformation.Year = values.Year.toString();
       farmInformation.FarmRegion = values.FarmRegion;
+      farmInformation.HasBerries = true; // will always be true for now
       // Update the Main Data Object
       updateFarmDetails(farmInformation);
       setSubmitting(false);
