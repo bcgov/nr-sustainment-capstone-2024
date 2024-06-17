@@ -65,7 +65,7 @@ const MainPage: React.FC = () => {
    *            from a form section.
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
-    setFarmDetails((prevDetails) => (prevDetails = newDetails));
+    setFarmDetails(newDetails);
     handleFormState(InputModules.FarmInformation.id, InputModules.FieldsAndSoil.id);
   };
 
