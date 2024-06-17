@@ -7,9 +7,31 @@ import {
 } from './LandingPage.styles.ts';
 
 const LandingPage = () => {
-  const handleUploadClick = () => {
+  const handleUpload = () => {
     const labelButton = document.getElementById('fileUp');
     labelButton && labelButton.click();
+  };
+
+  const isValidFile = (file: File): boolean =>
+    file.type === 'application/json' || file.name.endsWith('.nmp');
+
+  const parseFile = (e: any) => {
+    console.log('Reading file');
+    const file = e.target.files[0];
+
+    if (!isValidFile(file)) {
+      alert('Invalid file type!');
+      return;
+    }
+
+    const fr = new FileReader();
+    fr.readAsText(file);
+
+    fr.onload = () => {
+      const data = fr.result;
+      data && localStorage.setItem('farmDetails', data.toString());
+    };
+    window.location.href = '/main';
   };
 
   return (
@@ -35,7 +57,7 @@ const LandingPage = () => {
           <Button
             size="lg"
             text="Load Existing File"
-            handleClick={handleUploadClick}
+            handleClick={handleUpload}
           />
         </label>
         <input

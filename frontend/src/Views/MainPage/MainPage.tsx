@@ -17,10 +17,10 @@ import { StyledMain, StyledMainContainer } from './MainPage.styles';
 // Uncomment sections as they are implemented to have them instantiated ;)
 const mockBerriesWorkflow: InputModuleInterface[] = [
   InputModules.FarmInformation,
-  InputModules.FieldsAndSoil,
-  InputModules.ManureAndCompost,
-  InputModules.Calculate,
-  InputModules.Summary,
+  // InputModules.FieldsAndSoil,
+  // InputModules.ManureAndCompost,
+  // InputModules.Calculate,
+  // InputModules.Summary,
 ];
 
 // Initial Values for calculation, some defaults are being used
@@ -30,6 +30,16 @@ const initialFarmDetails: FarmDetailsInterface = {
   FarmRegion: '',
   HasBerries: true,
 };
+
+const loadFarmDetails = () => {
+  const fdString = localStorage.getItem('farmDetails');
+  const fdJSON = fdString && JSON.parse(fdString);
+  console.log(fdJSON);
+  for (const element in fdJSON) {
+    console.log(element);
+  }
+};
+loadFarmDetails();
 
 const MainPage: React.FC = () => {
   const [farmDetails, setFarmDetails] = useState(initialFarmDetails);

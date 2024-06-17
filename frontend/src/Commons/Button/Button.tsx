@@ -27,6 +27,9 @@ const Button = ({
     if (handleClick) {
       handleClick();
     } else if (path) {
+      if (localStorage.getItem('farmDetails')) {
+        alert('Keep where you left of?');
+      }
       navigate(path);
     }
   };
