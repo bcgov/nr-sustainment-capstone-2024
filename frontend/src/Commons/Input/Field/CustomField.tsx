@@ -14,13 +14,7 @@ interface CustomFieldProps {
   width?: string;
 }
 
-const CustomField: FC<CustomFieldProps> = ({
-  name,
-  id,
-  type,
-  label,
-  width = '100%',
-}) => (
+const CustomField: FC<CustomFieldProps> = ({ name, id, type, label, width = '100%' }) => (
   <StyledField width={width}>
     <label htmlFor={id}>{label}</label>
     <Field
