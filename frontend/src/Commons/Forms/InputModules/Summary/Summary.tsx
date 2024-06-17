@@ -1,12 +1,13 @@
 /**
  *
- * THIS IS A SKELETON!
- * THIS IS STILL TO BE IMPLEMENTED!
+ *
+ * THIS DOES NOT REPRESENT MOCKUPS!
  *
  * @summary Farm Information Input Module
- * @description A module with input fields to be used in a Form Module
- * @author @GDamaso
+ * @description A module with the data inputted by the user
+ * @author @GDamaso @Kcaparas
  */
+import React from 'react';
 import InputModuleProps from 'src/Interface/InputModuleProps';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import PropTypes from 'prop-types';
@@ -47,7 +48,6 @@ SummaryComponent.propTypes = {
     FarmRegion: PropTypes.string.isRequired,
     HasBerries: PropTypes.bool.isRequired,
   }).isRequired,
-
 };
 const Summary: InputModuleInterface = {
   InputModuleComponent: SummaryComponent,
