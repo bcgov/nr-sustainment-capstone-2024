@@ -27,17 +27,10 @@ const StyledFarmInfo = styled.div`
   }
 `;
 
-const StyledButtonContainer = styled.div`
+const StyledSelectContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top: 0;
-  padding-top: 0;
-
-  Select {
-    height: 30px;
-    width: 80%;
-  }
 `;
-export { StyledFarmInfo, StyledButtonContainer };
+export { StyledFarmInfo, StyledSelectContainer };

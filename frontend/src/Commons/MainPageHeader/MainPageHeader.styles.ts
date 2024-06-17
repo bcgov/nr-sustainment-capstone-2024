@@ -9,8 +9,6 @@ const StyledHeader = styled.header`
   align-items: center;
   max-width: 100vw;
   max-height: 87px;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
   flex-direction: row;
   width: 100%;
   padding: 10px;

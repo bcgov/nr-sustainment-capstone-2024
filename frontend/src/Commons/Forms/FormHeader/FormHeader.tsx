@@ -15,36 +15,34 @@
  *
  * @author @GDamaso
  */
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronUp, faChevronDown, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import StyledFormHeader from './FormHeader.style';
 
-type FormHeaderTypes = {
-  text: string;
-  active: boolean;
-  setActive: React.Dispatch<React.SetStateAction<boolean>>;
-  faIcon: IconDefinition;
-};
+interface FormHeaderProps {
+  inputModule: InputModuleInterface;
+  handleFormState: (moduleID: string, nextModuleID?: string) => void;
+}
 
-const FormHeader = ({ text, active = false, setActive, faIcon }: FormHeaderTypes) => {
-  const handleClick = () => {
-    setActive((prevActive) => !prevActive);
+const FormHeader = ({ inputModule, handleFormState }: FormHeaderProps) => {
+  const handleToggle = () => {
+    handleFormState(inputModule.id);
   };
 
   return (
     <StyledFormHeader
       type="button"
-      onClick={handleClick}
-      active={active}
+      onClick={handleToggle}
+      active={inputModule.enable}
     >
-      {text}
+      {inputModule.name.long}
       <div>
         <FontAwesomeIcon
-          icon={faIcon}
+          icon={inputModule.faIcon}
           style={{ marginRight: '11px' }}
         />
-        <FontAwesomeIcon icon={active ? faChevronUp : faChevronDown} />
+        <FontAwesomeIcon icon={inputModule.enable ? faChevronUp : faChevronDown} />
       </div>
     </StyledFormHeader>
   );
