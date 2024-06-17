@@ -29,9 +29,21 @@ const StyledFarmInfo = styled.div`
 
 const StyledTextAreaContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: flex-end;
   gap: 30px;
+
+  @media (min-width: ${screenSizes.desktop}){
+    flex-direction: row;
+    justify-content: flex-start;
+  }
 `;
-export { StyledFarmInfo, StyledTextAreaContainer };
+
+const StyledButtonGroupContainer = styled.div`
+  margin-top: -10px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+`;
+export { StyledFarmInfo, StyledTextAreaContainer, StyledButtonGroupContainer };
