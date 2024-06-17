@@ -32,7 +32,6 @@ interface FormModuleProps {
   InputModule: InputModuleInterface;
   farmDetails: FarmDetailsInterface;
   updateFarmDetails(farmDetails: FarmDetailsInterface): void;
-  formStates: InputModuleInterface[];
   handleFormState(moduleID: string, nextModuleID?: string): void;
 }
 

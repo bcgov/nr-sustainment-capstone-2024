@@ -53,7 +53,7 @@ const MainPage: React.FC = () => {
       }
       return module;
     });
-    setFormStates((prevStates) => (prevStates = updatedStates));
+    setFormStates(updatedStates);
   };
 
   /**
