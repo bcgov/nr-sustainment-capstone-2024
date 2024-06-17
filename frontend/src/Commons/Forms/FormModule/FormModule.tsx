@@ -22,7 +22,7 @@
  *
  * @author @GDamaso
  */
-import React, { useState } from 'react';
+import { FC } from 'react';
 import InputModuleInterface from 'src/Interface/InputModuleinterface.tsx';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface.tsx';
 import FormHeader from '../FormHeader/FormHeader.tsx';
@@ -32,20 +32,24 @@ interface FormModuleProps {
   InputModule: InputModuleInterface;
   farmDetails: FarmDetailsInterface;
   updateFarmDetails(farmDetails: FarmDetailsInterface): void;
+  handleFormState(moduleID: string, nextModuleID?: string): void;
 }
 
-const FormModule: React.FC<FormModuleProps> = ({ InputModule, farmDetails, updateFarmDetails }) => {
-  const { InputModuleComponent, name, enable, faIcon } = InputModule;
-  const [active, setActive] = useState(enable);
+const FormModule: FC<FormModuleProps> = ({
+  InputModule,
+  farmDetails,
+  updateFarmDetails,
+  handleFormState,
+}) => {
+  const { InputModuleComponent } = InputModule;
+
   return (
     <StyledFormContainer>
       <FormHeader
-        text={name.long}
-        active={active}
-        setActive={setActive}
-        faIcon={faIcon}
+        inputModule={InputModule}
+        handleFormState={handleFormState}
       />
-      {active && (
+      {InputModule.enable && (
         <StyledFormContent>
           <InputModuleComponent
             updateFarmDetails={updateFarmDetails}

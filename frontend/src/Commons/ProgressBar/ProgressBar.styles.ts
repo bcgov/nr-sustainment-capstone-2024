@@ -17,8 +17,8 @@ const Container = styled.div`
   @media (min-width: ${screenSizes.desktop}) {
     padding-bottom: 50px;
     height: 150px;
-    width: 69.5%;
-    top: 9.2%;
+    width: 80%;
+    top: 13%;
     order: 0;
   }
 `;
