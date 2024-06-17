@@ -10,8 +10,9 @@ import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import CustomField from '@Commons/Input/Field/CustomField';
+import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
-import { StyledFarmInfo } from './FieldsAndSoil.style';
+import { StyledFarmInfo, StyledTextAreaContainer } from './FieldsAndSoil.style';
 
 interface SubmissionValues {
   FieldName: string;
@@ -73,6 +74,14 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
               width="60%"
             />
           </div>
+          <StyledTextAreaContainer>
+            <CustomTextArea
+              name="Comments"
+              id="Comments"
+              label="Comments (optional)"
+              placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
+            />
+          </StyledTextAreaContainer>
         </StyledFarmInfo>
       </Form>
     </Formik>

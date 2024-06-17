@@ -27,10 +27,10 @@ const StyledFarmInfo = styled.div`
   }
 `;
 
-const StyledSelectContainer = styled.div`
+const StyledTextAreaContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
 `;
-export { StyledFarmInfo, StyledSelectContainer };
+export { StyledFarmInfo, StyledTextAreaContainer };
