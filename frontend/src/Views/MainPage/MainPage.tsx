@@ -34,6 +34,7 @@ const initialFarmDetails: FarmDetailsInterface = {
 const MainPage: React.FC = () => {
   const [farmDetails, setFarmDetails] = useState(initialFarmDetails);
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
+  const [currForm, setCurrForm] = useState(0);
 
   /**
    * @summary   Pass this handler to children who need to update InputModule states
@@ -66,7 +67,8 @@ const MainPage: React.FC = () => {
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
-    handleFormState(InputModules.FarmInformation.id, InputModules.FieldsAndSoil.id);
+    handleFormState(formStates[currForm].id, formStates[currForm + 1].id);
+    setCurrForm((prevForm) => prevForm + 1);
   };
 
   return (
