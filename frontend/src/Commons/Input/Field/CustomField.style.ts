@@ -22,10 +22,17 @@ const StyledField = styled.div<StyledFieldProps>`
     border: solid 1px ${tokens.themeGray40};
     border-radius: 3px;
   }
+  #unitsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+  }
 
   @media (min-width: ${screenSizes.desktop}) {
     width: ${(props) => props.width};
   }
+
 `;
 
 export default StyledField;

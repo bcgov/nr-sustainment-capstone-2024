@@ -1,59 +1,90 @@
 /**
- *
- * THIS IS A SKELETON!
- * THIS IS STILL TO BE IMPLEMENTED!
- *
- * @summary Farm Information Input Module
+ * @summary Field and Soil Input Module
  * @description A module with input fields to be used in a Form Module
  * @author @GDamaso
  */
-import Button from '@Commons/Button/Button.tsx';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
+import InputModuleProps from 'src/Interface/InputModuleProps';
+import React from 'react';
+import Button from '@Commons/Button/Button.tsx';
+import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
+import ComponentText from '@Constants/ComponentText';
+import {Formik, Form} from 'formik';
+import * as Yup from 'yup';
+import CustomField from '@Commons/Input/Field/CustomField';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
 import { StyledFarmInfo, StyledButtonContainer } from './FieldsAndSoil.style';
 
-const FarmInfoComponent = () => (
-  <StyledFarmInfo>
-    <label htmlFor="farmName">
-      Name
-      <br />
-      <input
-        type="text"
-        name="farmName"
-      />
-    </label>
-    <label htmlFor="farmYear">
-      Year
-      <br />
-      <input
-        type="text"
-        name="farmYear"
-      />
-    </label>
-    <label htmlFor="farmRegion">
-      Region
-      <br />
-      {/* <p> Region selection will customize recommendations to your local climate. </p> */}
-      <StyledButtonContainer>
-        <select
-          id="farmRegion"
-          name="farmRegion"
-        >
-          <option value="Vancouver Island">Vancouver Island </option>
-        </select>
-        <Button
-          text="Next"
-          size="sm"
-          disabled={false}
-          path="/"
-        />
-      </StyledButtonContainer>
-    </label>
-  </StyledFarmInfo>
-);
+interface SubmissionValues {
+  FieldName: string;
+  Acres: number;
+  Comments?: string;
+}
+
+const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails}) => {
+  const initialValues = {
+    FieldName: farmDetails.FieldName,
+    Acres: farmDetails.Acres,
+    Comments: farmDetails.Comments,
+  };
+
+  const validationSchema = Yup.object().shape({
+    FieldName: Yup.string().max(24).required('Required'),
+    Acres: Yup.number().min(1).max(100).required('Required'),
+    Comments: Yup.string().max(200),
+  });
+
+  const onSubmit = (
+    values: SubmissionValues,
+    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
+  ): void => {
+    // Suggested timeout by Formik docs
+    setTimeout(() => {
+      // There is probably a better way of doing this with a for loop
+      // Build a FarmDetails object and use it to update the main data passed from the Main Page
+      const farmInformation: FarmDetailsInterface = { ...farmDetails };
+      farmInformation.FieldName = values.FieldName;
+      farmInformation.Acres = values.Acres;
+      farmInformation.Comments = values.Comments;
+      // Update the Main Data Object
+      updateFarmDetails(farmInformation);
+      setSubmitting(false);
+    }, 400);
+  };
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      <Form>
+        <StyledFarmInfo>
+          <div id="inputContainer">
+            <CustomField
+              label="Field name"
+              id="FieldName"
+              name="FieldName"
+              type="text"
+              showUnits={false}
+            />
+            <CustomField
+              label="Acres"
+              id="Acres"
+              name="Acres"
+              type="number"
+              width="1%"
+              showUnits
+            />
+          </div>
+        </StyledFarmInfo>
+      </Form>
+    </Formik>
+  );
+};
 
 const FieldsAndSoil: InputModuleInterface = {
-  InputModuleComponent: FarmInfoComponent,
+  InputModuleComponent: FieldsAndSoilComponent,
   id: 'FieldsAndSoil',
   name: { long: 'Fields and Soil', short: 'Fields' },
   faIcon: faWheatAwn,
