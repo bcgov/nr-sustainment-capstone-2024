@@ -10,7 +10,7 @@ type StyledFieldProps = {
   width: string;
 };
 
-const StyledField = styled.div`
+const StyledField = styled.div<StyledFieldProps>`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -22,18 +22,11 @@ const StyledField = styled.div`
     border: solid 1px ${tokens.themeGray40};
     border-radius: 3px;
   }
-  #unitsContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 10px;
-  }
-`;
 
-const StyledInput = styled.input<StyledFieldProps>`
   @media (min-width: ${screenSizes.desktop}) {
     width: ${(props) => props.width};
   }
 `;
 
-export { StyledField, StyledInput };
+
+export default StyledField;

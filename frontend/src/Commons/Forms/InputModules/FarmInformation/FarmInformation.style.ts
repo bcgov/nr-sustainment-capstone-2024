@@ -18,6 +18,7 @@ const StyledFarmInfo = styled.div`
       display: flex;
       flex-direction: row;
       width: 50%;
+      gap: 30px;
     }
   }
 `;

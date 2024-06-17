@@ -64,7 +64,6 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
               id="FieldName"
               name="FieldName"
               type="text"
-              showUnits={false}
             />
             <CustomField
               label="Acres"
@@ -72,7 +71,6 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
               name="Acres"
               type="number"
               width="60%"
-              showUnits
             />
           </div>
         </StyledFarmInfo>
