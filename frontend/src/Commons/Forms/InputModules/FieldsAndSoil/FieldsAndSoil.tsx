@@ -71,7 +71,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
               id="Acres"
               name="Acres"
               type="number"
-              width="1%"
+              width="60%"
               showUnits
             />
           </div>

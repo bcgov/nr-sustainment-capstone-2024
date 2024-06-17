@@ -10,7 +10,7 @@ type StyledFieldProps = {
   width: string;
 };
 
-const StyledField = styled.div<StyledFieldProps>`
+const StyledField = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -28,10 +28,12 @@ const StyledField = styled.div<StyledFieldProps>`
     align-items: flex-start;
     gap: 10px;
   }
-
-  @media (min-width: ${screenSizes.desktop}) {
-    width: ${(props) => props.width};
-  }
 `;
 
-export default StyledField;
+const StyledInput = styled.input<StyledFieldProps>`
+  @media (min-width: ${screenSizes.desktop}) {
+      width: ${(props) => props.width};
+    }
+`;
+
+export { StyledField, StyledInput };

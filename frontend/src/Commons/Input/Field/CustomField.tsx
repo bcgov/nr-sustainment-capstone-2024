@@ -4,7 +4,7 @@
  */
 import { Field, ErrorMessage } from 'formik';
 import { FC } from 'react';
-import StyledField from './CustomField.style';
+import { StyledField, StyledInput } from './CustomField.style';
 
 interface CustomFieldProps {
   label: string;
@@ -25,13 +25,14 @@ const CustomField: FC<CustomFieldProps> = ({
   units = 'acres',
   showUnits = false,
 }) => (
-  <StyledField width={width}>
+  <StyledField>
     <label htmlFor={id}>{label}</label>
     <div id="unitsContainer">
-      <Field
+      <StyledInput
         name={name}
         id={id}
         type={type}
+        width={width}
       />
       {showUnits ? <p>{units}</p> : null}
     </div>
