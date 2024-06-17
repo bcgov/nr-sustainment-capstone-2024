@@ -16,7 +16,7 @@ const StyledFarmInfo = styled.form`
   align-items: left;
   height: 100%;
   p {
-    margin-bottom: 0;
+    margin-bottom: 20px;
   }
 `;
 
