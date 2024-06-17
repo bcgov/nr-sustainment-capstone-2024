@@ -9,7 +9,6 @@
  */
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
-import * as tokens from '@bcgov/design-tokens/js';
 
 const StyledFarmInfo = styled.div`
   display: flex;

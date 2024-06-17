@@ -32,7 +32,6 @@ const StyledField = styled.div<StyledFieldProps>`
   @media (min-width: ${screenSizes.desktop}) {
     width: ${(props) => props.width};
   }
-
 `;
 
 export default StyledField;

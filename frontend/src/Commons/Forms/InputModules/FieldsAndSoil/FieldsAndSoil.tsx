@@ -6,14 +6,12 @@
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import InputModuleProps from 'src/Interface/InputModuleProps';
 import React from 'react';
-import Button from '@Commons/Button/Button.tsx';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
-import ComponentText from '@Constants/ComponentText';
-import {Formik, Form} from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import CustomField from '@Commons/Input/Field/CustomField';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
-import { StyledFarmInfo, StyledButtonContainer } from './FieldsAndSoil.style';
+import { StyledFarmInfo } from './FieldsAndSoil.style';
 
 interface SubmissionValues {
   FieldName: string;
@@ -21,7 +19,7 @@ interface SubmissionValues {
   Comments?: string;
 }
 
-const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails}) => {
+const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const initialValues = {
     FieldName: farmDetails.FieldName,
     Acres: farmDetails.Acres,

@@ -16,7 +16,15 @@ interface CustomFieldProps {
   showUnits: boolean;
 }
 
-const CustomField: FC<CustomFieldProps> = ({ name, id, type, label, width = '100%', units = 'acres', showUnits = false }) => (
+const CustomField: FC<CustomFieldProps> = ({
+  name,
+  id,
+  type,
+  label,
+  width = '100%',
+  units = 'acres',
+  showUnits = false,
+}) => (
   <StyledField width={width}>
     <label htmlFor={id}>{label}</label>
     <div id="unitsContainer">
@@ -25,7 +33,7 @@ const CustomField: FC<CustomFieldProps> = ({ name, id, type, label, width = '100
         id={id}
         type={type}
       />
-      {showUnits ? <p>{ units }</p> : null }
+      {showUnits ? <p>{units}</p> : null}
     </div>
     <ErrorMessage name={id} />
   </StyledField>
