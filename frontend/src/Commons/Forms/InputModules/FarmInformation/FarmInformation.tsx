@@ -18,7 +18,7 @@ import { StyledFarmInfo, StyledSelectContainer } from './FarmInformation.style';
 
 interface SubmissionValues {
   FarmName: string;
-  Year: number;
+  Year: string;
   FarmRegion: string;
 }
 
@@ -46,9 +46,9 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
       // Build a FarmDetails object and use it to update the main data passed from the Main Page
       const farmInformation: FarmDetailsInterface = { ...farmDetails };
       farmInformation.FarmName = values.FarmName;
-      farmInformation.Year = values.Year;
+      farmInformation.Year = values.Year.toString();
       farmInformation.FarmRegion = values.FarmRegion;
-      farmInformation.HasBerries = false; // Creating nmp file return false, loading returns true
+      farmInformation.HasBerries = true; // will always be true for now
       // Update the Main Data Object
       updateFarmDetails(farmInformation);
       setSubmitting(false);

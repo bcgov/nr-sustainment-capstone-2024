@@ -25,7 +25,7 @@ const mockBerriesWorkflow = [
 
 // Initial Values for calculation, some defaults are being used
 const initialFarmDetails: FarmDetailsInterface = {
-  Year: 2024,
+  Year: '2024',
   FarmName: '',
   FarmRegion: '',
   HasBerries: true,
