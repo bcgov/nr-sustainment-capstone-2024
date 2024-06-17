@@ -34,7 +34,7 @@ const StyledTextAreaContainer = styled.div`
   align-items: flex-end;
   gap: 30px;
 
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     justify-content: flex-start;
   }

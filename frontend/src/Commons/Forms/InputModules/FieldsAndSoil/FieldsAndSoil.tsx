@@ -14,7 +14,11 @@ import Button from '@Commons/Button/Button';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
-import { StyledFarmInfo, StyledTextAreaContainer, StyledButtonGroupContainer } from './FieldsAndSoil.style';
+import {
+  StyledFarmInfo,
+  StyledTextAreaContainer,
+  StyledButtonGroupContainer,
+} from './FieldsAndSoil.style';
 
 interface SubmissionValues {
   FieldName: string;
