@@ -63,6 +63,20 @@ objects:
                 - name: POSTGRES_HOST
                   value: ${APP}-${TAG}-database
                 - name: POSTGRES_DB
+                  valueFrom:
+                    secretKeyRef:
+                      name: ${APP}-${TAG}-database
+                      key: database-name
+                - name: POSTGRES_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: ${APP}-${TAG}-database
+                      key: database-password
+                - name: POSTGRES_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: ${APP}-${TAG}-database
+                      key: database-user
               ports:
                 - containerPort: 3000
                   protocol: TCP
