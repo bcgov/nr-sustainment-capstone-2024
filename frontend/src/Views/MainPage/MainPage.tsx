@@ -29,6 +29,9 @@ const initialFarmDetails: FarmDetailsInterface = {
   FarmName: '',
   FarmRegion: '',
   HasBerries: true,
+  FieldName: '',
+  Area: 0,
+  Comments: '',
 };
 
 const MainPage: React.FC = () => {

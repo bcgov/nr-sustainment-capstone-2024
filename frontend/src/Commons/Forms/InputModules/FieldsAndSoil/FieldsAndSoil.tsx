@@ -15,20 +15,20 @@ import { StyledFarmInfo } from './FieldsAndSoil.style';
 
 interface SubmissionValues {
   FieldName: string;
-  Acres: number;
+  Area: number;
   Comments?: string;
 }
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const initialValues = {
     FieldName: farmDetails.FieldName,
-    Acres: farmDetails.Acres,
+    Area: farmDetails.Area,
     Comments: farmDetails.Comments,
   };
 
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
-    Acres: Yup.number().min(1).max(100).required('Required'),
+    Area: Yup.number().min(1).max(100).required('Required'),
     Comments: Yup.string().max(200),
   });
 
@@ -42,7 +42,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
       // Build a FarmDetails object and use it to update the main data passed from the Main Page
       const farmInformation: FarmDetailsInterface = { ...farmDetails };
       farmInformation.FieldName = values.FieldName;
-      farmInformation.Acres = values.Acres;
+      farmInformation.Area = values.Area;
       farmInformation.Comments = values.Comments;
       // Update the Main Data Object
       updateFarmDetails(farmInformation);
@@ -66,9 +66,9 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
               type="text"
             />
             <CustomField
-              label="Acres"
-              id="Acres"
-              name="Acres"
+              label="Area"
+              id="Area"
+              name="Area"
               type="number"
               width="60%"
             />
