@@ -18,7 +18,7 @@ import { StyledFarmInfo, StyledSelectContainer } from './FarmInformation.style';
 
 interface SubmissionValues {
   FarmName: string;
-  Year: string;
+  Year: number;
   FarmRegion: string;
 }
 
@@ -30,7 +30,6 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
     Year: farmDetails.Year,
     FarmRegion: farmDetails.FarmRegion,
   };
-
   const validationSchema = Yup.object().shape({
     FarmName: Yup.string().max(24).required('Required'),
     Year: Yup.number().min(1900).max(2099).required('Required'),

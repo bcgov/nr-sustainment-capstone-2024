@@ -12,11 +12,11 @@ import InputModuleProps from 'src/Interface/InputModuleProps';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import PropTypes from 'prop-types';
 import { faList } from '@fortawesome/free-solid-svg-icons';
+import Button from '@Commons/Button/Button';
 import { StyledFarmInfo } from './Summary.style';
 
-const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
-  console.log(farmDetails);
-  return (
+const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => (
+  <>
     <StyledFarmInfo>
       <p>
         Farm Name:&nbsp;
@@ -35,8 +35,14 @@ const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
         {farmDetails.HasBerries ? 'Yes' : 'No'}
       </p>
     </StyledFarmInfo>
-  );
-};
+    <Button
+      size="md"
+      text="Finish"
+      disabled={false}
+      path="/export"
+    />
+  </>
+);
 /* Ensures passed props are the correct data type.
 isRequired returns a warning if the prop isn't provided.
 PropTypes.shape is useful for key-value pairs. Such as below.
@@ -44,11 +50,12 @@ PropTypes.shape is useful for key-value pairs. Such as below.
 SummaryComponent.propTypes = {
   farmDetails: PropTypes.shape({
     FarmName: PropTypes.string.isRequired,
-    Year: PropTypes.string.isRequired,
+    Year: PropTypes.number.isRequired,
     FarmRegion: PropTypes.string.isRequired,
     HasBerries: PropTypes.bool.isRequired,
   }).isRequired,
 };
+
 const Summary: InputModuleInterface = {
   InputModuleComponent: SummaryComponent,
   id: 'Summary',

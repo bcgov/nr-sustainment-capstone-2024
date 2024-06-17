@@ -6,7 +6,7 @@
  * @author @GDamaso
  */
 interface FarmDetailsInterface {
-  Year: string;
+  Year: number;
   FarmName: string;
   FarmRegion: string;
   HasBerries: boolean;
