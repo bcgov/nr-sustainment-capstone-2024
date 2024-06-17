@@ -2,7 +2,7 @@
  * @desc A footer with links to our terms of agreement and BC NMP Help resource
  *@author @GDamaso
  */
-import { Field, ErrorMessage } from 'formik';
+import { ErrorMessage } from 'formik';
 import { FC } from 'react';
 import { StyledField, StyledInput } from './CustomField.style';
 

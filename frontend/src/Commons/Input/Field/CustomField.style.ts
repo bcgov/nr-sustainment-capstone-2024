@@ -32,8 +32,8 @@ const StyledField = styled.div`
 
 const StyledInput = styled.input<StyledFieldProps>`
   @media (min-width: ${screenSizes.desktop}) {
-      width: ${(props) => props.width};
-    }
+    width: ${(props) => props.width};
+  }
 `;
 
 export { StyledField, StyledInput };
