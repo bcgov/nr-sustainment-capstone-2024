@@ -70,7 +70,7 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
               id="Year"
               name="Year"
               type="number"
-              size="sm"
+              width="20%"
             />
 
             <CustomField
@@ -78,7 +78,6 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
               id="FarmName"
               name="FarmName"
               type="text"
-              size="lg"
             />
           </div>
 

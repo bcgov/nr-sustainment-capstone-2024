@@ -7,14 +7,14 @@ import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 
 type StyledFieldProps = {
-  size: string;
+  width: string;
 };
 
 const StyledField = styled.div<StyledFieldProps>`
   display: flex;
   flex-direction: column;
+  width: ${(props) => props.width};
   margin-top: 5px;
-  width: ${(props) => (props.size === 'sm' ? '30%' : props.size === 'md' ? '50%' : '100%')};
   label {
     font-weight: ${tokens.typographyFontWeightsBold};
   }

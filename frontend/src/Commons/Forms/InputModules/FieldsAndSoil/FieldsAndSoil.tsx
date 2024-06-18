@@ -71,14 +71,13 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
               id="FieldName"
               name="FieldName"
               type="text"
-              size="lg"
             />
             <CustomField
               label="Area"
               id="Area"
               name="Area"
               type="number"
-              size="sm"
+              width="20%"
             />
           </div>
           <StyledTextAreaContainer>

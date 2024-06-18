@@ -6,19 +6,16 @@ import { Field, ErrorMessage } from 'formik';
 import { FC } from 'react';
 import StyledField from './CustomField.style';
 
-type CustomFieldSizes = 'sm' | 'md' | 'lg';
 interface CustomFieldProps {
   label: string;
   name: string;
   id: string;
   type: string;
-  size: CustomFieldSizes;
+  width?: string;
 }
 
-const CustomField: FC<CustomFieldProps> = ({ name, id, type, label, size = 'lg' }) => (
-  <StyledField 
-    size={size} 
-  >
+const CustomField: FC<CustomFieldProps> = ({ name, id, type, label, width = '100%' }) => (
+  <StyledField width={width}>
     <label htmlFor={id}>{label}</label>
     <Field
       name={name}
