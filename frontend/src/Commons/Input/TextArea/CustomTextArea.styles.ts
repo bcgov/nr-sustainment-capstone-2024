@@ -15,12 +15,19 @@ const StyledField = styled.div<StyledFieldProps>`
   flex-direction: column;
   width: 100%;
   margin-top: 5px;
+
   label {
     font-weight: ${tokens.typographyFontWeightsBold};
   }
-  input {
+  textarea {
     border: solid 1px ${tokens.themeGray40};
     border-radius: 3px;
+    resize: none;
+    height: 76px;
+
+    @media (min-width: ${screenSizes.desktop}){
+      height: 56px;
+    }
   }
 
   @media (min-width: ${screenSizes.desktop}) {
