@@ -22,10 +22,6 @@ const StyledField = styled.div<StyledFieldProps>`
     border: solid 1px ${tokens.themeGray40};
     border-radius: 3px;
   }
-
-  @media (min-width: ${screenSizes.desktop}) {
-    
-  }
 `;
 
 export default StyledField;
