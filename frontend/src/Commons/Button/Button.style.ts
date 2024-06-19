@@ -22,7 +22,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     : tokens.surfaceColorSecondaryButtonDefault)};
   color: ${(props) => (props.actions === 'primary'
     ? tokens.typographyColorPrimaryInvert
-    : tokens.typographyColorPrimary)};
+    : tokens.typographyColorSecondary)};
   border-radius: ${(props) => props.radius};
   border: ${(props) => (props.actions === 'primary' ? 0 : `1px solid ${tokens.surfaceColorBorderMedium}`)};
   padding: 20px 30px;
@@ -39,4 +39,10 @@ const StyledButton = styled.button<StyledButtonProps>`
   }
 `;
 
-export default StyledButton;
+const StyledChildrenContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 5px;
+`;
+
+export { StyledButton, StyledChildrenContainer };

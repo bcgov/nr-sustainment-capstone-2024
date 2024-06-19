@@ -14,7 +14,7 @@ import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
-import { faWheatAwn, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faWheatAwn, faPencil, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   StyledFarmInfo,
@@ -165,8 +165,10 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
         disabled={false}
         radius="50px"
         actions="secondary"
-        text={ComponentText.ADD}
-      />
+        text={ComponentText.NEWFIELD}
+      >
+        <FontAwesomeIcon icon={faPlus} />
+      </Button>
     </StyledFieldInfoList>
   );
 };
