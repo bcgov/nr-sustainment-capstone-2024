@@ -40,9 +40,9 @@ const StyledButton = styled.button<StyledButtonProps>`
 `;
 
 const StyledChildrenContainer = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;
 
 export { StyledButton, StyledChildrenContainer };
