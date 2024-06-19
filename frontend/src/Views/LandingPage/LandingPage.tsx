@@ -12,15 +12,14 @@ const LandingPage = () => {
     labelButton && labelButton.click();
   };
 
-  const isValidFile = (file: File): boolean =>
-    file.type === 'application/json' || file.name.endsWith('.nmp');
+  const isValidFile = (file: File): boolean => file.type === 'application/json' || file.name.endsWith('.nmp');
 
   const parseFile = (e: any) => {
     console.log('Reading file');
     const file = e.target.files[0];
 
     if (!isValidFile(file)) {
-      alert('Invalid file type!');
+      console.log('Invalid file type!');
       return;
     }
 
@@ -59,14 +58,14 @@ const LandingPage = () => {
             text="Load Existing File"
             handleClick={handleUpload}
           />
+          <input
+            id="fileUp"
+            type="file"
+            accept=".nmp, application/json"
+            onChange={parseFile}
+            hidden
+          />
         </label>
-        <input
-          id="fileUp"
-          type="file"
-          accept=".nmp, application/json"
-          onChange={parseFile}
-          hidden
-        />
       </StyledButtonGroup>
     </StyledLandingContainer>
   );

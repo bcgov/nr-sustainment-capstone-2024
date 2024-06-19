@@ -17,32 +17,56 @@ import { StyledMain, StyledMainContainer } from './MainPage.styles';
 // Uncomment sections as they are implemented to have them instantiated ;)
 const mockBerriesWorkflow: InputModuleInterface[] = [
   InputModules.FarmInformation,
-  // InputModules.FieldsAndSoil,
+  InputModules.FieldsAndSoil,
   // InputModules.ManureAndCompost,
   // InputModules.Calculate,
-  // InputModules.Summary,
+  InputModules.Summary,
 ];
 
 // Initial Values for calculation, some defaults are being used
 const initialFarmDetails: FarmDetailsInterface = {
-  Year: '',
-  FarmName: '',
+  Year: '2024',
+  FarmName: 'Kents Steed',
   FarmRegion: '',
   HasBerries: true,
+  Fields: [
+    {
+      FieldName: '',
+      Area: 0,
+      Comments: null,
+    },
+  ],
 };
 
-const loadFarmDetails = () => {
-  const fdString = localStorage.getItem('farmDetails');
-  const fdJSON = fdString && JSON.parse(fdString);
-  console.log(fdJSON);
-  for (const element in fdJSON) {
-    console.log(element);
+const loadFarmDetails = (farmDetails: FarmDetailsInterface) => {
+  const nmpString = localStorage.getItem('farmDetails');
+  const nmpJSON = nmpString && JSON.parse(nmpString);
+
+  if (nmpJSON) {
+    // for (const element in nmpJSON.farmDetails) {
+    //   if (farmDetails.hasOwnProperty(element)) {
+    //     farmDetails[element] = nmpJSON.farmDetails[element];
+    //   }
+    // }
+    farmDetails.FarmName = nmpJSON.farmDetails.FarmName;
+    farmDetails.Year = nmpJSON.farmDetails.Year;
+    if (nmpJSON.farmDetails.FarmRegion == 21) {
+      farmDetails.FarmRegion = 'Vancouver Island';
+    }
+    farmDetails.Fields = nmpJSON.years[0].Fields;
   }
+  console.log(nmpJSON);
+  console.log(farmDetails);
+  return farmDetails;
+  // for (const element in farmDetails.Fields[0]) {
+  //   if (fdJSON.years[0].Fields[0].hasOwnProperty(element)) {
+  //     console.log(element);
+  //   }
+  // }
 };
-loadFarmDetails();
 
 const MainPage: React.FC = () => {
-  const [farmDetails, setFarmDetails] = useState(initialFarmDetails);
+  const [farmDetails, setFarmDetails] = useState(loadFarmDetails(initialFarmDetails));
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
 
