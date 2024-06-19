@@ -9,6 +9,9 @@ interface FarmDetailsInterface {
   Year: string;
   FarmName: string;
   FarmRegion: string;
+  FieldName: string;
+  Area: number;
+  Comments?: string;
   HasBerries: boolean;
 }
 
