@@ -42,18 +42,6 @@ const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => (
     />
   </>
 );
-/* Ensures passed props are the correct data type.
-isRequired returns a warning if the prop isn't provided.
-PropTypes.shape is useful for key-value pairs. Such as below.
-*/
-// SummaryComponent.propTypes = {
-//   farmDetails: PropTypes.shape({
-//     FarmName: PropTypes.string.isRequired,
-//     Year: PropTypes.string.isRequired,
-//     FarmRegion: PropTypes.string.isRequired,
-//     HasBerries: PropTypes.bool.isRequired,
-//   }).isRequired,
-// };
 
 const Summary: InputModuleInterface = {
   InputModuleComponent: SummaryComponent,

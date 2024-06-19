@@ -1,7 +1,8 @@
 /**
- * @summary Field and Soil Input Module
- * @description A module with input fields to be used in a Form Module
- * @author @GDamaso
+ * @summary     Field and Soil Input Module
+ * @description Fields and Soil Input Module that asks user input on Field Name, Area,
+ *              Optional Comments. This will be implemented further in the next tickets.
+ * @author      @Kcaparas
  */
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import InputModuleProps from 'src/Interface/InputModuleProps';
