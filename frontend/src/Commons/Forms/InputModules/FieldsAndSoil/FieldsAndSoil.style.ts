@@ -13,7 +13,7 @@ import * as tokens from '@bcgov/design-tokens/js';
 
 type StyledListType = {
   width?: string;
-}
+};
 
 const StyledFarmInfo = styled.div`
   display: flex;
@@ -61,11 +61,11 @@ const StyledListContainer = styled.div`
   display: flex;
   flex-direction: row;
   padding-top: 20px;
-  
-  @media (min-width: ${screenSizes.desktop}){
-   gap: 30px;
-   flex-direction: row;
-   height: auto;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    gap: 30px;
+    flex-direction: row;
+    height: auto;
   }
 `;
 const StyledListItem = styled.div<StyledListType>`
@@ -73,15 +73,15 @@ const StyledListItem = styled.div<StyledListType>`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  
+
   h4 {
     font: ${tokens.typographyBoldBody};
   }
   p {
     font: ${tokens.typographyRegularLabel};
   }
-  
-  @media (min-width: ${screenSizes.desktop}){
+
+  @media (min-width: ${screenSizes.desktop}) {
     width: ${(props) => props.width};
     h4 {
       font: ${tokens.typographyBoldH6};
@@ -110,14 +110,13 @@ const StyledFieldInfoList = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media(min-width: ${screenSizes.desktop}){
-    
+  @media (min-width: ${screenSizes.desktop}) {
   }
 `;
 
 const StyledCommentContainerDesktop = styled.div`
-  display:none;  
-  @media (min-width: ${screenSizes.desktop}){
+  display: none;
+  @media (min-width: ${screenSizes.desktop}) {
     display: flex;
   }
 `;
@@ -125,7 +124,7 @@ const StyledCommentContainerDesktop = styled.div`
 const StyledCommentContainerMobile = styled.div`
   display: flex;
 
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     display: none;
   }
 `;

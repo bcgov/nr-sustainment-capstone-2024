@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import StyledButton from './Button.style';
 
 type ButtonSizes = 'sm' | 'md' | 'lg';
-type ButtonActions = 'primary' | 'secondary'
+type ButtonActions = 'primary' | 'secondary';
 type ButtonTypes = 'button' | 'submit' | 'reset' | undefined;
 
 type ButtonProps = {
