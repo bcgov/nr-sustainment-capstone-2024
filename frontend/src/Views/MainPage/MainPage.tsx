@@ -25,13 +25,17 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
 
 // Initial Values for calculation, some defaults are being used
 const initialFarmDetails: FarmDetailsInterface = {
-  Year: '',
-  FarmName: '',
+  Year: '2024',
+  FarmName: 'Kents Steed',
   FarmRegion: '',
   HasBerries: true,
-  FieldName: '',
-  Area: 0,
-  Comments: '',
+  Fields: [
+    {
+      FieldName: '',
+      Area: 0,
+      Comments: '',
+    },
+  ],
 };
 
 const MainPage: React.FC = () => {

@@ -9,10 +9,14 @@ interface FarmDetailsInterface {
   Year: string;
   FarmName: string;
   FarmRegion: string;
-  FieldName: string;
-  Area: number;
-  Comments?: string;
   HasBerries: boolean;
+  Fields: [
+    {
+      FieldName: string;
+      Area: number;
+      Comments?: string | null;
+    },
+  ];
 }
 
 export default FarmDetailsInterface;

@@ -14,28 +14,35 @@ import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
-import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
+import { faWheatAwn, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   StyledFarmInfo,
   StyledTextAreaContainer,
   StyledButtonGroupContainer,
   StyledListContainer,
   StyledListItem,
+  StyledFontAwesomeContainer,
+  StyledFieldInfoList,
+  StyledCommentContainerDesktop,
+  StyledCommentContainerMobile,
 } from './FieldsAndSoil.style';
 
 interface SubmissionValues {
   FieldName: string;
   Area: number;
-  Comments?: string;
+  Comments?: string | null;
 }
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const [fieldsInfo, setFieldsInfo] = useState(farmDetails);
+  const [fieldIndex, setFieldIndex] = useState(0);
+  const [isSubmitted, setSubmitted] = useState(false);
 
   const initialValues = {
-    FieldName: farmDetails.FieldName,
-    Area: farmDetails.Area,
-    Comments: farmDetails.Comments,
+    FieldName: farmDetails.Fields[fieldIndex].FieldName,
+    Area: farmDetails.Fields[fieldIndex].Area,
+    Comments: farmDetails.Fields[fieldIndex].Comments,
   };
 
   const validationSchema = Yup.object().shape({
@@ -50,9 +57,9 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
   ): void => {
     setTimeout(() => {
       const farmInformation: FarmDetailsInterface = { ...farmDetails };
-      farmInformation.FieldName = values.FieldName;
-      farmInformation.Area = values.Area;
-      farmInformation.Comments = values.Comments;
+      farmInformation.Fields[fieldIndex].FieldName = values.FieldName;
+      farmInformation.Fields[fieldIndex].Area = values.Area;
+      farmInformation.Fields[fieldIndex].Comments = values.Comments;
       updateFarmDetails(farmInformation);
       setSubmitting(false);
     }, 400);
@@ -60,13 +67,18 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
 
   const addFarmInfo = (values: SubmissionValues) => {
     const farmInfo: FarmDetailsInterface = { ...fieldsInfo };
-    farmInfo.FieldName = values.FieldName;
-    farmInfo.Area = values.Area;
-    farmInfo.Comments = values.Comments;
+    farmInfo.Fields.push({
+      FieldName: values.FieldName,
+      Area: values.Area,
+      Comments: values.Comments,
+    });
+    console.log(farmInfo);
     setFieldsInfo(farmInfo);
+    setFieldIndex((prevIndex) => prevIndex + 1);
+    setSubmitted(true);
   };
 
-  return (
+  return !isSubmitted ? (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -103,6 +115,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
                   type="reset"
                   size="sm"
                   disabled={false}
+                  actions="secondary"
                   text={ComponentText.CANCEL}
                 />
                 <Button
@@ -114,24 +127,47 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
                 />
               </StyledButtonGroupContainer>
             </StyledTextAreaContainer>
-            <StyledListContainer>
-              <StyledListItem>
-                <h4>Field Name</h4>
-                <p>{fieldsInfo.FieldName}</p>
-              </StyledListItem>
-              <StyledListItem>
-                <h4>Area</h4>
-                <p>{fieldsInfo.Area}</p>
-              </StyledListItem>
-              <StyledListItem>
-                <h4>Comments</h4>
-                <p>{fieldsInfo.Comments}</p>
-              </StyledListItem>
-            </StyledListContainer>
           </StyledFarmInfo>
         </Form>
       )}
     </Formik>
+  ) : (
+    <StyledFieldInfoList>
+      <StyledListContainer>
+        <StyledListItem width="20%">
+          <h4>Field Name</h4>
+          <p>{fieldsInfo.Fields[fieldIndex].FieldName}</p>
+        </StyledListItem>
+        <StyledListItem width="20%">
+          <h4>Area</h4>
+          <p>{fieldsInfo.Fields[fieldIndex].Area}</p>
+        </StyledListItem>
+        <StyledCommentContainerDesktop>
+          <StyledListItem width="100%">
+            <h4>Comments (optional)</h4>
+            <p>{fieldsInfo.Fields[fieldIndex].Comments}</p>
+          </StyledListItem>
+        </StyledCommentContainerDesktop>
+        <StyledFontAwesomeContainer>
+          <FontAwesomeIcon icon={faPencil} />
+          <FontAwesomeIcon icon={faTrash} />
+        </StyledFontAwesomeContainer>
+      </StyledListContainer>
+      <StyledCommentContainerMobile>
+        <StyledListItem width="100%">
+          <h4>Field Comments (optional)</h4>
+          <p>{fieldsInfo.Fields[fieldIndex].Comments}</p>
+        </StyledListItem>
+      </StyledCommentContainerMobile>
+      <Button
+        type="button"
+        size="md"
+        disabled={false}
+        radius="50px"
+        actions="secondary"
+        text={ComponentText.ADD}
+      />
+    </StyledFieldInfoList>
   );
 };
 
