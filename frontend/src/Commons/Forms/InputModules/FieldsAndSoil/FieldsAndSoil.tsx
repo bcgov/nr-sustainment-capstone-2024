@@ -37,7 +37,8 @@ interface SubmissionValues {
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const [fieldsInfo, setFieldsInfo] = useState(farmDetails);
   const [fieldIndex, setFieldIndex] = useState(0);
-  const [isSubmitted, setSubmitted] = useState(false);
+  const [isSubmitted, setSubmitted] = useState<boolean>(false);
+  const [fieldAdd, setFieldAdd] = useState<boolean>(false);
 
   const initialValues = {
     FieldName: farmDetails.Fields[fieldIndex].FieldName,
@@ -78,98 +79,111 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     setSubmitted(true);
   };
 
-  return !isSubmitted ? (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      {({ values }) => (
-        <Form>
-          <StyledFarmInfo>
-            <div id="inputContainer">
-              <CustomField
-                label="Field name"
-                id="FieldName"
-                name="FieldName"
-                type="text"
-              />
-              <CustomField
-                label="Area"
-                id="Area"
-                name="Area"
-                type="number"
-                width="20%"
-              />
-            </div>
-            <StyledTextAreaContainer>
-              <CustomTextArea
-                name="Comments"
-                id="Comments"
-                label="Comments (optional)"
-                placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
-                width="50%"
-              />
-              <StyledButtonGroupContainer>
-                <Button
-                  type="reset"
-                  size="sm"
-                  disabled={false}
-                  actions="secondary"
-                  text={ComponentText.CANCEL}
-                />
-                <Button
-                  type="button"
-                  size="sm"
-                  disabled={false}
-                  text={ComponentText.ADD}
-                  handleClick={() => addFarmInfo(values)}
-                />
-              </StyledButtonGroupContainer>
-            </StyledTextAreaContainer>
-          </StyledFarmInfo>
-        </Form>
-      )}
-    </Formik>
-  ) : (
-    <StyledFieldInfoList>
-      <StyledListContainer>
-        <StyledListItem width="20%">
-          <h4>Field Name</h4>
-          <p>{fieldsInfo.Fields[fieldIndex].FieldName}</p>
-        </StyledListItem>
-        <StyledListItem width="20%">
-          <h4>Area</h4>
-          <p>{fieldsInfo.Fields[fieldIndex].Area}</p>
-        </StyledListItem>
-        <StyledCommentContainerDesktop>
-          <StyledListItem width="100%">
-            <h4>Comments (optional)</h4>
-            <p>{fieldsInfo.Fields[fieldIndex].Comments}</p>
-          </StyledListItem>
-        </StyledCommentContainerDesktop>
-        <StyledFontAwesomeContainer>
-          <FontAwesomeIcon icon={faPencil} />
-          <FontAwesomeIcon icon={faTrash} />
-        </StyledFontAwesomeContainer>
-      </StyledListContainer>
-      <StyledCommentContainerMobile>
-        <StyledListItem width="100%">
-          <h4>Field Comments (optional)</h4>
-          <p>{fieldsInfo.Fields[fieldIndex].Comments}</p>
-        </StyledListItem>
-      </StyledCommentContainerMobile>
-      <Button
-        type="button"
-        size="md"
-        disabled={false}
-        radius="50px"
-        actions="secondary"
-        text={ComponentText.NEWFIELD}
-      >
-        <FontAwesomeIcon icon={faPlus} />
-      </Button>
-    </StyledFieldInfoList>
+  const addNewField = () => {
+    setFieldAdd(true);
+  };
+  console.log(`Field add state is ${fieldAdd}`);
+  console.log(`Field submitted state is ${isSubmitted}`);
+  return (
+    <>
+      {isSubmitted ? (
+        <StyledFieldInfoList>
+          <StyledListContainer>
+            <StyledListItem width="20%">
+              <h4>Field Name</h4>
+              <p>{fieldsInfo.Fields[fieldIndex].FieldName}</p>
+            </StyledListItem>
+            <StyledListItem width="20%">
+              <h4>Area</h4>
+              <p>{fieldsInfo.Fields[fieldIndex].Area}</p>
+            </StyledListItem>
+            <StyledCommentContainerDesktop>
+              <StyledListItem width="100%">
+                <h4>Comments (optional)</h4>
+                <p>{fieldsInfo.Fields[fieldIndex].Comments}</p>
+              </StyledListItem>
+            </StyledCommentContainerDesktop>
+            <StyledFontAwesomeContainer>
+              <FontAwesomeIcon icon={faPencil} />
+              <FontAwesomeIcon icon={faTrash} />
+            </StyledFontAwesomeContainer>
+          </StyledListContainer>
+          <StyledCommentContainerMobile>
+            <StyledListItem width="100%">
+              <h4>Field Comments (optional)</h4>
+              <p>{fieldsInfo.Fields[fieldIndex].Comments}</p>
+            </StyledListItem>
+          </StyledCommentContainerMobile>
+          { !fieldAdd ? (
+            <Button
+              type="button"
+              size="md"
+              disabled={false}
+              radius="50px"
+              actions="secondary"
+              text={ComponentText.NEWFIELD}
+              handleClick={addNewField}
+            >
+              <FontAwesomeIcon icon={faPlus} />
+            </Button>
+          ) : null}
+        </StyledFieldInfoList>
+      ) : null}
+      {fieldAdd || !isSubmitted ? (
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          {({ values }) => (
+            <Form>
+              <StyledFarmInfo>
+                <div id="inputContainer">
+                  <CustomField
+                    label="Field name"
+                    id="FieldName"
+                    name="FieldName"
+                    type="text"
+                  />
+                  <CustomField
+                    label="Area"
+                    id="Area"
+                    name="Area"
+                    type="number"
+                    width="20%"
+                  />
+                </div>
+                <StyledTextAreaContainer>
+                  <CustomTextArea
+                    name="Comments"
+                    id="Comments"
+                    label="Comments (optional)"
+                    placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
+                    width="50%"
+                  />
+                  <StyledButtonGroupContainer>
+                    <Button
+                      type="reset"
+                      size="sm"
+                      disabled={false}
+                      actions="secondary"
+                      text={ComponentText.CANCEL}
+                    />
+                    <Button
+                      type="button"
+                      size="sm"
+                      disabled={false}
+                      text={ComponentText.ADD}
+                      handleClick={() => addFarmInfo(values)}
+                    />
+                  </StyledButtonGroupContainer>
+                </StyledTextAreaContainer>
+              </StyledFarmInfo>
+            </Form>
+          )}
+        </Formik>
+      ) : null}
+    </>
   );
 };
 
