@@ -5,7 +5,7 @@
  */
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import InputModuleProps from 'src/Interface/InputModuleProps';
-import React from 'react';
+import React, { useState } from 'react';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -18,6 +18,8 @@ import {
   StyledFarmInfo,
   StyledTextAreaContainer,
   StyledButtonGroupContainer,
+  StyledListContainer,
+  StyledListItem,
 } from './FieldsAndSoil.style';
 
 interface SubmissionValues {
@@ -27,6 +29,8 @@ interface SubmissionValues {
 }
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
+  const [fieldsInfo, setFieldsInfo] = useState(farmDetails);
+
   const initialValues = {
     FieldName: farmDetails.FieldName,
     Area: farmDetails.Area,
@@ -43,15 +47,11 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     values: SubmissionValues,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
   ): void => {
-    // Suggested timeout by Formik docs
     setTimeout(() => {
-      // There is probably a better way of doing this with a for loop
-      // Build a FarmDetails object and use it to update the main data passed from the Main Page
       const farmInformation: FarmDetailsInterface = { ...farmDetails };
       farmInformation.FieldName = values.FieldName;
       farmInformation.Area = values.Area;
       farmInformation.Comments = values.Comments;
-      // Update the Main Data Object
       updateFarmDetails(farmInformation);
       setSubmitting(false);
     }, 400);
@@ -63,48 +63,71 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      <Form>
-        <StyledFarmInfo>
-          <div id="inputContainer">
-            <CustomField
-              label="Field name"
-              id="FieldName"
-              name="FieldName"
-              type="text"
-            />
-            <CustomField
-              label="Area"
-              id="Area"
-              name="Area"
-              type="number"
-              width="20%"
-            />
-          </div>
-          <StyledTextAreaContainer>
-            <CustomTextArea
-              name="Comments"
-              id="Comments"
-              label="Comments (optional)"
-              placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
-              width="50%"
-            />
-            <StyledButtonGroupContainer>
-              <Button
-                type="reset"
-                size="sm"
-                disabled={false}
-                text={ComponentText.CANCEL}
+      {({ values }) => (
+        <Form>
+          <StyledFarmInfo>
+            <div id="inputContainer">
+              <CustomField
+                label="Field name"
+                id="FieldName"
+                name="FieldName"
+                type="text"
               />
-              <Button
-                type="submit"
-                size="sm"
-                disabled={false}
-                text={ComponentText.ADD}
+              <CustomField
+                label="Area"
+                id="Area"
+                name="Area"
+                type="number"
+                width="20%"
               />
-            </StyledButtonGroupContainer>
-          </StyledTextAreaContainer>
-        </StyledFarmInfo>
-      </Form>
+            </div>
+            <StyledTextAreaContainer>
+              <CustomTextArea
+                name="Comments"
+                id="Comments"
+                label="Comments (optional)"
+                placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
+                width="50%"
+              />
+              <StyledButtonGroupContainer>
+                <Button
+                  type="reset"
+                  size="sm"
+                  disabled={false}
+                  text={ComponentText.CANCEL}
+                />
+                <Button
+                  type="button"
+                  size="sm"
+                  disabled={false}
+                  text={ComponentText.ADD}
+                  handleClick={() => {
+                    const farmInfo: FarmDetailsInterface = { ...fieldsInfo };
+                    farmInfo.FieldName = values.FieldName;
+                    farmInfo.Area = values.Area;
+                    farmInfo.Comments = values.Comments;
+                    setFieldsInfo(farmInfo);
+                  }}
+                />
+              </StyledButtonGroupContainer>
+            </StyledTextAreaContainer>
+            <StyledListContainer>
+              <StyledListItem>
+                <h4>Field Name</h4>
+                <p>{fieldsInfo.FieldName}</p>
+              </StyledListItem>
+              <StyledListItem>
+                <h4>Area</h4>
+                <p>{fieldsInfo.Area}</p>
+              </StyledListItem>
+              <StyledListItem>
+                <h4>Comments</h4>
+                <p>{fieldsInfo.Comments}</p>
+              </StyledListItem>
+            </StyledListContainer>
+          </StyledFarmInfo>
+        </Form>
+      )}
     </Formik>
   );
 };

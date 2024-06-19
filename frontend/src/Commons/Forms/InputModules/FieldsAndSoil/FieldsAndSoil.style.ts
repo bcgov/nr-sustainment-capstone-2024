@@ -50,4 +50,22 @@ const StyledButtonGroupContainer = styled.div`
   flex-direction: row;
   gap: 20px;
 `;
-export { StyledFarmInfo, StyledTextAreaContainer, StyledButtonGroupContainer };
+
+const StyledListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+`;
+const StyledListItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export {
+  StyledFarmInfo,
+  StyledTextAreaContainer,
+  StyledButtonGroupContainer,
+  StyledListContainer,
+  StyledListItem,
+};
