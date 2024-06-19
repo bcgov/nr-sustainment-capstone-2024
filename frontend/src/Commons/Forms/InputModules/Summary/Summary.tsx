@@ -33,6 +33,14 @@ const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => (
         Berries:&nbsp;
         {farmDetails.HasBerries ? 'Yes' : 'No'}
       </p>
+      <p>Fields:&nbsp;</p>
+      {farmDetails.Fields.map((field) => (
+        <div key={field.FieldName}>
+          <p>{field.FieldName}</p>
+          <p>{field.Area}</p>
+          <p>{field.Comments}</p>
+        </div>
+      ))}
     </StyledFarmInfo>
     <Button
       size="md"

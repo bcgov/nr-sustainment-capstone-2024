@@ -10,6 +10,8 @@ import FormModule from '@Commons/Forms/FormModule/FormModule.tsx';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import * as InputModules from '@Commons/Forms/InputModules/index';
+import initialFarmDetails from '@Constants/InitialFarmDetails';
+import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 // The sequence of sections to show up on the main page
@@ -23,46 +25,31 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
   InputModules.Summary,
 ];
 
-// Initial Values for calculation, some defaults are being used
-const initialFarmDetails: FarmDetailsInterface = {
-  Year: '2024',
-  FarmName: 'Kents Steed',
-  FarmRegion: '',
-  HasBerries: true,
-  Fields: [
-    {
-      FieldName: '',
-      Area: 0,
-      Comments: null,
-    },
-  ],
-};
-
-const loadFarmDetails = (farmDetails: FarmDetailsInterface) => {
+const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
   const nmpString = localStorage.getItem('farmDetails');
   const nmpJSON = nmpString && JSON.parse(nmpString);
+  const updateFarmDetails = { ...farmDetails };
 
   if (nmpJSON) {
-    // for (const element in nmpJSON.farmDetails) {
-    //   if (farmDetails.hasOwnProperty(element)) {
-    //     farmDetails[element] = nmpJSON.farmDetails[element];
-    //   }
-    // }
-    farmDetails.FarmName = nmpJSON.farmDetails.FarmName;
-    farmDetails.Year = nmpJSON.farmDetails.Year;
-    if (nmpJSON.farmDetails.FarmRegion == 21) {
-      farmDetails.FarmRegion = 'Vancouver Island';
+    const nmpFarmDetails = nmpJSON.farmDetails;
+    const fieldsJSON: FieldDetailInterface[] = nmpJSON.years[0].Fields;
+
+    console.log('starting');
+    updateFarmDetails.FarmName = nmpFarmDetails.FarmName;
+    updateFarmDetails.Year = nmpFarmDetails.Year;
+
+    if (nmpFarmDetails.FarmRegion === 21) {
+      updateFarmDetails.FarmRegion = 'Vancouver Island';
     }
-    farmDetails.Fields = nmpJSON.years[0].Fields;
+
+    fieldsJSON.forEach((field) => {
+      const updateField: FieldDetailInterface = field;
+      updateFarmDetails.Fields.push(updateField);
+    });
+    updateFarmDetails.Fields = nmpJSON.years[0].Fields;
   }
-  console.log(nmpJSON);
-  console.log(farmDetails);
-  return farmDetails;
-  // for (const element in farmDetails.Fields[0]) {
-  //   if (fdJSON.years[0].Fields[0].hasOwnProperty(element)) {
-  //     console.log(element);
-  //   }
-  // }
+
+  return updateFarmDetails;
 };
 
 const MainPage: React.FC = () => {

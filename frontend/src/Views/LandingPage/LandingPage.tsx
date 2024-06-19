@@ -8,18 +8,16 @@ import {
 
 const LandingPage = () => {
   const handleUpload = () => {
-    const labelButton = document.getElementById('fileUp');
-    labelButton && labelButton.click();
+    const upload = document.getElementById('fileUp');
+    if (upload) upload.click();
   };
 
   const isValidFile = (file: File): boolean => file.type === 'application/json' || file.name.endsWith('.nmp');
 
-  const parseFile = (e: any) => {
-    console.log('Reading file');
+  const saveFile = (e: any) => {
     const file = e.target.files[0];
 
     if (!isValidFile(file)) {
-      console.log('Invalid file type!');
       return;
     }
 
@@ -28,7 +26,7 @@ const LandingPage = () => {
 
     fr.onload = () => {
       const data = fr.result;
-      data && localStorage.setItem('farmDetails', data.toString());
+      if (data) localStorage.setItem('farmDetails', data.toString());
     };
     window.location.href = '/main';
   };
@@ -52,20 +50,18 @@ const LandingPage = () => {
           path="/main"
         />
         <StyledDivider>or</StyledDivider>
-        <label htmlFor="fileUp">
-          <Button
-            size="lg"
-            text="Load Existing File"
-            handleClick={handleUpload}
-          />
-          <input
-            id="fileUp"
-            type="file"
-            accept=".nmp, application/json"
-            onChange={parseFile}
-            hidden
-          />
-        </label>
+        <Button
+          size="lg"
+          text="Load Existing File"
+          handleClick={handleUpload}
+        />
+        <input
+          id="fileUp"
+          type="file"
+          accept=".nmp, application/json"
+          onChange={saveFile}
+          hidden
+        />
       </StyledButtonGroup>
     </StyledLandingContainer>
   );
