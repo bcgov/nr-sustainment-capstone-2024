@@ -25,7 +25,7 @@ const StyledField = styled.div<StyledFieldProps>`
     resize: none;
     height: 76px;
 
-    @media (min-width: ${screenSizes.desktop}){
+    @media (min-width: ${screenSizes.desktop}) {
       height: 56px;
     }
   }
