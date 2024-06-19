@@ -57,6 +57,14 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     }, 400);
   };
 
+  const addFarmInfo = (values:SubmissionValues) => {
+    const farmInfo: FarmDetailsInterface = { ...fieldsInfo };
+    farmInfo.FieldName = values.FieldName;
+    farmInfo.Area = values.Area;
+    farmInfo.Comments = values.Comments;
+    setFieldsInfo(farmInfo);
+  };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -101,13 +109,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
                   size="sm"
                   disabled={false}
                   text={ComponentText.ADD}
-                  handleClick={() => {
-                    const farmInfo: FarmDetailsInterface = { ...fieldsInfo };
-                    farmInfo.FieldName = values.FieldName;
-                    farmInfo.Area = values.Area;
-                    farmInfo.Comments = values.Comments;
-                    setFieldsInfo(farmInfo);
-                  }}
+                  handleClick={() => addFarmInfo(values)}
                 />
               </StyledButtonGroupContainer>
             </StyledTextAreaContainer>
