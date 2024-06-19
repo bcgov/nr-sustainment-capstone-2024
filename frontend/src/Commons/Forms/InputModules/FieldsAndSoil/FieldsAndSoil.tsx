@@ -114,7 +114,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
               <p>{fieldsInfo.Fields[fieldIndex].Comments}</p>
             </StyledListItem>
           </StyledCommentContainerMobile>
-          { !fieldAdd ? (
+          {!fieldAdd ? (
             <Button
               type="button"
               size="md"
