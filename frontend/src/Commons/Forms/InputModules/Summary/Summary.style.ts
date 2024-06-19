@@ -4,8 +4,8 @@
  * THIS IS STILL TO BE IMPLEMENTED!
  *
  * @desc Styling with BC Design Tokens and Emotion for
- *       Farm Information Input Module
- * @author @GDamaso
+ *       Summary Input Module
+ * @author @KCaparas
  */
 import styled from '@emotion/styled';
 
