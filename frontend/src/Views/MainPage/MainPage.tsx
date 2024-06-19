@@ -34,7 +34,6 @@ const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterfac
     const nmpFarmDetails = nmpJSON.farmDetails;
     const fieldsJSON: FieldDetailInterface[] = nmpJSON.years[0].Fields;
 
-    console.log('starting');
     updateFarmDetails.FarmName = nmpFarmDetails.FarmName;
     updateFarmDetails.Year = nmpFarmDetails.Year;
 
