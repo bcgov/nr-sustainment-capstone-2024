@@ -57,7 +57,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     }, 400);
   };
 
-  const addFarmInfo = (values:SubmissionValues) => {
+  const addFarmInfo = (values: SubmissionValues) => {
     const farmInfo: FarmDetailsInterface = { ...fieldsInfo };
     farmInfo.FieldName = values.FieldName;
     farmInfo.Area = values.Area;
