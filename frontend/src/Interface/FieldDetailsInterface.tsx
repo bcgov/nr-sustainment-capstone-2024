@@ -6,9 +6,9 @@
  * @author @GDamaso
  */
 interface FieldDetailInterface {
-  FieldName: '';
-  Area: 0;
-  Comments: null;
+  FieldName: string;
+  Area: number;
+  Comments?: string | null;
 }
 
 export default FieldDetailInterface;

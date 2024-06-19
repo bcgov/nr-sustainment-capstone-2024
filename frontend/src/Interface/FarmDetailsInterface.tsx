@@ -11,19 +11,8 @@ interface FarmDetailsInterface {
   Year: string;
   FarmName: string;
   FarmRegion: string;
-  FieldName: string;
-  Area: number;
-  Comments?: string;
   HasBerries: boolean;
   Fields: FieldDetailInterface[];
-  // Leaving this here so you don't have to open FieldDetailInterface ;)
-  // [
-  //   {
-  //     FieldName: string;
-  //     Area: number;
-  //     Comments?: string | null;
-  //   },
-  // ];
 }
 
 export default FarmDetailsInterface;
