@@ -11,7 +11,7 @@ import React from 'react';
 import InputModuleProps from 'src/Interface/InputModuleProps';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import { faList } from '@fortawesome/free-solid-svg-icons';
-import Button from '@Commons/Button/Button';
+import CustomLink from '@Commons/CustomLink/CustomLink';
 import { StyledFarmInfo } from './Summary.style';
 
 const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => (
@@ -33,12 +33,19 @@ const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => (
         Berries:&nbsp;
         {farmDetails.HasBerries ? 'Yes' : 'No'}
       </p>
+      <p>Fields:&nbsp;</p>
+      {farmDetails.Fields.map((field) => (
+        <div key={field.FieldName}>
+          <p>{field.FieldName}</p>
+          <p>{field.Area}</p>
+          <p>{field.Comments}</p>
+        </div>
+      ))}
     </StyledFarmInfo>
-    <Button
-      size="md"
-      text="Finish"
-      disabled={false}
+    <CustomLink
       path="/export"
+      size="lg"
+      text="Finish"
     />
   </>
 );

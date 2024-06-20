@@ -1,11 +1,49 @@
 /**
- * Hello World page. Nothing Special. This is a skeleton!!!
- * @desc only shows Hello World, will implement as Designer creates mockup
- * @author @Kcaparas
+ * @desc Export page for downloading your work in nmp format
+ * @author @GDamaso
  */
 
-import React from 'react';
+import Button from '@Commons/Button/Button.tsx';
+import { Link } from 'react-router-dom';
+import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader.tsx';
+import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter.tsx';
+import { FC } from 'react';
+import CustomLink from '@Commons/CustomLink/CustomLink.tsx';
+import { StyledContent, StyledLandingContainer } from './ExportPage.styles.ts';
 
-const ExportPage: React.FC = () => <h2>Hello World!</h2>;
+const ExportPage: FC = () => {
+  const downloadFile = () => {
+    localStorage.clear();
+    console.log('Downloading');
+  };
+
+  return (
+    <StyledLandingContainer>
+      <MainPageHeader />
+      <StyledContent>
+        <div id="dataFileHeader">
+          <p>NMP Data File </p>
+        </div>
+        <p>To continue later, Download this file to your computer or mobile device.</p>
+        <p>Load a NMP file on the Homepage when you want to continue.</p>
+
+        <p>
+          <Link to="/export">How to use this data file</Link>
+        </p>
+        <Button
+          size="md"
+          text="Download file"
+          handleClick={downloadFile}
+        />
+      </StyledContent>
+      <CustomLink
+        path="/main"
+        text="Return to Calculation"
+        size="lg"
+      />
+      <MainPageFooter />
+    </StyledLandingContainer>
+  );
+};
 
 export default ExportPage;

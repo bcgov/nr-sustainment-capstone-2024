@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { StyledButton, StyledChildrenContainer } from './Button.style';
 
 type ButtonSizes = 'sm' | 'md' | 'lg';
@@ -11,10 +10,9 @@ type ButtonProps = {
   text: string;
   size?: ButtonSizes;
   disabled?: boolean;
-  actions?: ButtonActions;
-  path?: string;
   type?: ButtonTypes;
   radius?: string;
+  actions?: ButtonActions;
   children?: React.ReactNode;
 };
 
@@ -23,19 +21,14 @@ const Button = ({
   text,
   size = 'md',
   disabled = false,
-  path = '',
   radius = '8px',
   type = 'button',
   actions = 'primary',
   children,
 }: ButtonProps) => {
-  const navigate = useNavigate();
-
   const handleClickWrapper = () => {
     if (handleClick) {
       handleClick();
-    } else if (path) {
-      navigate(path);
     }
   };
 
