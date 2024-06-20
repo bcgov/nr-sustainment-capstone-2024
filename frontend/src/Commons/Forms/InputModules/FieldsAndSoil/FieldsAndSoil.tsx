@@ -34,7 +34,6 @@ import {
 const initialFieldValues = initialFarmDetails.Fields[0];
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
-  const [fieldsInfo, setFieldsInfo] = useState(farmDetails);
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   const [fieldAdd, setFieldAdd] = useState<boolean>(false);
 
