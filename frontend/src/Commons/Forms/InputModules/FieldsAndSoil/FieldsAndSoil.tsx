@@ -26,7 +26,9 @@ import {
   StyledFieldInfoList,
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
+  StyledDivider,
 } from './FieldsAndSoil.style';
+
 
 interface SubmissionValues {
   FieldName: string;
@@ -87,40 +89,38 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     <>
       {isSubmitted ? (
         <StyledFieldInfoList>
-          <StyledListContainer>
-            <StyledListItem width="20%">
-              <h4>Field Name</h4>
-              {farmDetails.Fields.slice(1).map((field) => (
-                <p key={field.FieldName}>{field.FieldName}</p>
-              ))}
-            </StyledListItem>
-            <StyledListItem width="20%">
-              <h4>Area</h4>
-              {farmDetails.Fields.slice(1).map((field) => (
-                <p key={field.Area}>{field.Area}</p>
-              ))}
-            </StyledListItem>
-            <StyledCommentContainerDesktop>
-              <StyledListItem width="80%">
-                <h4>Field Comments (optional)</h4>
-                {farmDetails.Fields.slice(1).map((field) => (
-                  <p key={field.Comments}>{field.Comments}</p>
-                ))}
-              </StyledListItem>
-              <StyledFontAwesomeContainer>
-                <FontAwesomeIcon icon={faPencil} />
-                <FontAwesomeIcon icon={faTrash} />
-              </StyledFontAwesomeContainer>
-            </StyledCommentContainerDesktop>
-          </StyledListContainer>
-          <StyledCommentContainerMobile>
-            <StyledListItem width="100%">
-              <h4>Field Comments (optional)</h4>
-              {farmDetails.Fields.slice(1).map((field) => (
-                <p key={field.Comments}>{field.Comments}</p>
-              ))}
-            </StyledListItem>
-          </StyledCommentContainerMobile>
+          { farmDetails.Fields.slice(1).map((fields) => (
+            <>
+              <StyledListContainer key={fields.FieldName}>
+                <StyledListItem width="20%">
+                  <h4>Field Name</h4>
+                  <p key={fields.FieldName}>{fields.FieldName}</p>
+                </StyledListItem>
+                <StyledListItem width="20%">
+                  <h4>Area</h4>
+                  <p key={fields.Area}>{fields.Area}</p>
+                </StyledListItem>
+                <StyledCommentContainerDesktop>
+                  <StyledListItem width="80%">
+                    <h4>Field Comments (optional)</h4>
+                    <p key={fields.Comments}>{fields.Comments}</p>
+                  </StyledListItem>
+                </StyledCommentContainerDesktop>
+                <StyledFontAwesomeContainer>
+                  <FontAwesomeIcon icon={faPencil} />
+                  <FontAwesomeIcon icon={faTrash} />
+                </StyledFontAwesomeContainer>
+                <StyledCommentContainerMobile>
+                  <StyledListItem width="100%">
+                    <h4>Field Comments (optional)</h4>
+                    <p key={fields.Comments}>{fields.Comments}</p>
+                  </StyledListItem>
+                </StyledCommentContainerMobile>
+              </StyledListContainer>
+              <StyledDivider />
+            </>
+            
+          ))}
           {!fieldAdd ? (
             <Button
               type="button"

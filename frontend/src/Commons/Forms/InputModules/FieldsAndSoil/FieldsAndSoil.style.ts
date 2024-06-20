@@ -91,6 +91,7 @@ const StyledFontAwesomeContainer = styled.div`
 
   @media (min-width: ${screenSizes.desktop}) {
     font-size: 32px;
+    padding-top: 20px;
   }
 `;
 
@@ -118,6 +119,33 @@ const StyledCommentContainerMobile = styled.div`
   }
 `;
 
+const StyledDivider = styled.div`
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30.61px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: ${tokens.typographyColorPlaceholder};
+
+  &::before,
+  &::after {
+    flex: 1;
+    content: '';
+    padding: 1px;
+    background-color: ${tokens.typographyColorPlaceholder};
+    width: 130px;
+    margin: 5px;
+  }
+
+  @media (min-width: ${screenSizes.desktop}) {
+    &::before,
+    &::after {
+      width: 200px;
+    }
+  }
+`;
+
 export {
   StyledFarmInfo,
   StyledTextAreaContainer,
@@ -128,4 +156,5 @@ export {
   StyledFieldInfoList,
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
+  StyledDivider,
 };
