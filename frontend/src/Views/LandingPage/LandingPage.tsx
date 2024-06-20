@@ -1,4 +1,5 @@
 import Button from '@Commons/Button/Button.tsx';
+import CustomLink from '@Commons/CustomLink/CustomLink.tsx';
 import {
   StyledContent,
   StyledButtonGroup,
@@ -43,11 +44,10 @@ const LandingPage = () => {
         </p>
       </StyledContent>
       <StyledButtonGroup>
-        <Button
-          size="lg"
-          text="New Calculation"
-          disabled={false}
+        <CustomLink
           path="/main"
+          text="New Calculation"
+          size="lg"
         />
         <StyledDivider>or</StyledDivider>
         <Button
@@ -60,6 +60,7 @@ const LandingPage = () => {
           type="file"
           accept=".nmp, application/json"
           onChange={saveFile}
+          aria-label="Upload File"
           hidden
         />
       </StyledButtonGroup>

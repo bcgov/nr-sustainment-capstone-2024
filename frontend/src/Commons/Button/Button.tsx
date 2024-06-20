@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import StyledButton from './Button.style';
 
 type ButtonSizes = 'sm' | 'md' | 'lg';
@@ -9,7 +8,6 @@ type ButtonProps = {
   text: string;
   size?: ButtonSizes;
   disabled?: boolean;
-  path?: string;
   type?: ButtonTypes;
 };
 
@@ -18,19 +16,11 @@ const Button = ({
   text,
   size = 'md',
   disabled = false,
-  path = '',
   type = 'button',
 }: ButtonProps) => {
-  const navigate = useNavigate();
-
   const handleClickWrapper = () => {
     if (handleClick) {
       handleClick();
-    } else if (path) {
-      if (path === '/main' && localStorage.getItem('farmDetails')) {
-        console.log('Continue last Calculation?');
-      }
-      navigate(path);
     }
   };
 
