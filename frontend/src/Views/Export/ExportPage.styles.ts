@@ -36,15 +36,12 @@ const StyledContent = styled.div`
     align-items: center;
   }
 
-  h6 {
-    margin-bottom: 0;
-  }
-
   p {
     font: ${tokens.typographyRegularSmallBody};
     color: ${tokens.typographyColorSecondary};
     text-align: center;
     padding: 0 54px 0 54px;
+    margin-bottom: 0;
   }
 
   @media (min-width: ${screenSizes.desktop}) {

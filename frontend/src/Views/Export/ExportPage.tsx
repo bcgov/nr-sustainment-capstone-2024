@@ -4,6 +4,7 @@
  */
 
 import Button from '@Commons/Button/Button.tsx';
+import { Link } from 'react-router-dom';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader.tsx';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter.tsx';
 import { FC } from 'react';
@@ -20,24 +21,29 @@ const ExportPage: FC = () => {
       <MainPageHeader />
       <StyledContent>
         <div id="dataFileHeader">
-          <h6>NMP Data File </h6>
+          <p>NMP Data File </p>
         </div>
         <p>To continue later, Download this file to your computer or mobile device.</p>
         <p>Load a NMP file on the Homepage when you want to continue.</p>
-        <a href="https://nmp.apps.nrs.gov.bc.ca/Report/Report#">
-          <p>How to use this data file</p>
-        </a>
+
+        <p>
+          <Link to="/export">How to use this data file</Link>
+        </p>
         <Button
           size="md"
           text="Download file"
           handleClick={downloadFile}
         />
       </StyledContent>
-      <Button
-        size="lg"
-        text="Return to Calculation"
-        path="/main"
-      />
+      <Link
+        to="/main"
+        style={{ textDecoration: 'none' }}
+      >
+        <Button
+          size="lg"
+          text="Return to Calculation"
+        />
+      </Link>
       <MainPageFooter />
     </StyledLandingContainer>
   );
