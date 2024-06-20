@@ -1,5 +1,5 @@
 import Button from '@Commons/Button/Button.tsx';
-import { Link } from 'react-router-dom';
+import CustomLink from '@Commons/CustomLink/CustomLink.tsx';
 import {
   StyledContent,
   StyledButtonGroup,
@@ -44,15 +44,11 @@ const LandingPage = () => {
         </p>
       </StyledContent>
       <StyledButtonGroup>
-        <Link
-          to="/main"
-          style={{ textDecoration: 'none' }}
-        >
-          <Button
-            size="lg"
-            text="New Calculation"
-          />
-        </Link>
+        <CustomLink
+          path="/main"
+          text="New Calculation"
+          size="lg"
+        />
         <StyledDivider>or</StyledDivider>
         <Button
           size="lg"
