@@ -107,6 +107,10 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
                   <p key={field.Comments}>{field.Comments}</p>
                 ))}
               </StyledListItem>
+              <StyledFontAwesomeContainer>
+                <FontAwesomeIcon icon={faPencil} />
+                <FontAwesomeIcon icon={faTrash} />
+              </StyledFontAwesomeContainer>
             </StyledCommentContainerDesktop>
           </StyledListContainer>
           <StyledCommentContainerMobile>

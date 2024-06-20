@@ -62,27 +62,25 @@ const StyledListContainer = styled.div`
   flex-direction: row;
   padding-top: 20px;
 
-  @media (min-width: ${screenSizes.desktop}) {  
+  @media (min-width: ${screenSizes.desktop}) {
   }
 `;
 
 const StyledListItem = styled.div<StyledListType>`
   display: flex;
   flex-direction: column;
-  align-items:flex-start;
+  align-items: flex-start;
   width: ${(props) => props.width};
 
   h4 {
     font: ${tokens.typographyBoldBody};
   }
   @media (min-width: ${screenSizes.desktop}) {
-
-     h4 {
+    h4 {
       font: ${tokens.typographyBoldH6};
     }
   }
 `;
-
 
 const StyledFontAwesomeContainer = styled.div`
   display: flex;
@@ -91,8 +89,7 @@ const StyledFontAwesomeContainer = styled.div`
   gap: 30px;
   margin-right: 10px;
 
-  @media (min-width: ${screenSizes.desktop}){
-
+  @media (min-width: ${screenSizes.desktop}) {
     font-size: 32px;
   }
 `;
