@@ -20,7 +20,7 @@ const StyledContainer = styled.div`
   width: 100%;
 `;
 
-const StyledFarmInfo = styled.form`
+const StyledFarmInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
