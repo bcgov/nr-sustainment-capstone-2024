@@ -9,12 +9,10 @@ type LinkProps = {
   size?: LinkSizes;
 };
 
-const CustomLink = ({ text, size = 'md', path }: LinkProps) => {
-  return (
-    <StyledLinkContainer size={size}>
-      <Link to={path}>{text}</Link>
-    </StyledLinkContainer>
-  );
-};
+const CustomLink = ({ text, size = 'md', path }: LinkProps) => (
+  <StyledLinkContainer size={size}>
+    <Link to={path}>{text}</Link>
+  </StyledLinkContainer>
+);
 
 export default CustomLink;

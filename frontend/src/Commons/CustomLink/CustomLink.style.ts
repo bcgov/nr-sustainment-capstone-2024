@@ -20,10 +20,8 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
   font-weight: ${tokens.typographyFontWeightsBold};
 
   @media (min-width: ${screenSizes.desktop}) {
-    max-height: ${(props) =>
-      props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '40px'};
-    max-width: ${(props) =>
-      props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '300px'};
+    max-height: ${(props) => (props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '40px')};
+    max-width: ${(props) => (props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '300px')};
   }
   a {
     display: flex;
