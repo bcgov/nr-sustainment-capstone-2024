@@ -57,6 +57,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
   const addFarmInfo = (values: FieldDetailInterface) => {
     const farmInfo: FarmDetailsInterface = { ...farmDetails };
     farmInfo.Fields.push({
+      id: fieldIndex,
       FieldName: values.FieldName,
       Area: values.Area,
       Comments: values.Comments,
@@ -75,8 +76,8 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
       {isSubmitted && (
         <StyledFieldInfoList>
           {fieldsInfo.Fields.slice(1).map((fields) => (
-            <>
-              <StyledListContainer key={fields.FieldName}>
+            <div key={fields.id}>
+              <StyledListContainer>
                 <StyledListItem width="30%">
                   <h4>Field Name</h4>
                   <p key={fields.FieldName}>{fields.FieldName}</p>
@@ -103,7 +104,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
                 </StyledListItem>
               </StyledCommentContainerMobile>
               <StyledDivider />
-            </>
+            </div>
           ))}
           {!fieldAdd && (
             <StyledButtonGroupContainer>

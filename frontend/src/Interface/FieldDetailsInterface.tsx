@@ -6,6 +6,7 @@
  * @author @GDamaso
  */
 interface FieldDetailInterface {
+  id: number;
   FieldName: string;
   Area: number;
   Comments?: string | null;
