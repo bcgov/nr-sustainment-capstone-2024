@@ -66,7 +66,6 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     newField.Area = values.Area;
     newField.Comments = values.Comments;
     newFarmDetails.Fields.push(newField);
-    setFieldsInfo(newFarmDetails);
     setSubmitted(true);
     setFieldAdd(false);
   };
