@@ -18,6 +18,7 @@ const StyledContainer = styled.div`
   padding: 10px;
   height: 100%;
   width: 100%;
+  gap: 30px;
 `;
 
 const StyledFarmInfo = styled.div`
@@ -26,6 +27,7 @@ const StyledFarmInfo = styled.div`
   justify-content: space-between;
   align-items: left;
   height: 100%;
+  width: 100%; /*Can be removed to center content */
   .label {
     font-weight: ${tokens.typographyFontWeightsBold};
   }
