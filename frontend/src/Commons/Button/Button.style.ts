@@ -17,14 +17,17 @@ const StyledButton = styled.button<StyledButtonProps>`
   height: 100%;
   width: 100%;
   max-width: ${(props) => (props.size === 'sm' ? '62px' : props.size === 'md' ? '159px' : '327px')};
-  background-color: ${(props) => (props.actions === 'primary'
-    ? tokens.surfaceColorPrimaryButtonDefault
-    : tokens.surfaceColorSecondaryButtonDefault)};
-  color: ${(props) => (props.actions === 'primary'
-    ? tokens.typographyColorPrimaryInvert
-    : tokens.typographyColorSecondary)};
+  background-color: ${(props) =>
+    props.actions === 'primary'
+      ? tokens.surfaceColorPrimaryButtonDefault
+      : tokens.surfaceColorSecondaryButtonDefault};
+  color: ${(props) =>
+    props.actions === 'primary'
+      ? tokens.typographyColorPrimaryInvert
+      : tokens.typographyColorSecondary};
   border-radius: ${(props) => props.radius};
-  border: ${(props) => (props.actions === 'primary' ? 0 : `1px solid ${tokens.surfaceColorBorderMedium}`)};
+  border: ${(props) =>
+    props.actions === 'primary' ? 0 : `1px solid ${tokens.surfaceColorBorderMedium}`};
   padding: 20px 30px;
   font-family: ${tokens.typographyFontFamiliesBcSans};
   font-weight: ${tokens.typographyFontWeightsBold};
@@ -35,7 +38,8 @@ const StyledButton = styled.button<StyledButtonProps>`
 
   @media (min-width: ${screenSizes.desktop}) {
     max-height: 42px;
-    max-width: ${(props) => (props.size === 'sm' ? '62px' : props.size === 'md' ? '159px' : '483px')};
+    max-width: ${(props) =>
+      props.size === 'sm' ? '62px' : props.size === 'md' ? '159px' : '483px'};
   }
 `;
 

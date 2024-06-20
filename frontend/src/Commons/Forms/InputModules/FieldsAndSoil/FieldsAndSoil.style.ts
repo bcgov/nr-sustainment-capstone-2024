@@ -62,46 +62,37 @@ const StyledListContainer = styled.div`
   flex-direction: row;
   padding-top: 20px;
 
-  @media (min-width: ${screenSizes.desktop}) {
-    gap: 30px;
-    flex-direction: row;
-    height: auto;
+  @media (min-width: ${screenSizes.desktop}) {  
   }
 `;
+
 const StyledListItem = styled.div<StyledListType>`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
+  align-items:flex-start;
+  width: ${(props) => props.width};
 
   h4 {
     font: ${tokens.typographyBoldBody};
   }
-  p {
-    font: ${tokens.typographyRegularLabel};
-  }
-
   @media (min-width: ${screenSizes.desktop}) {
-    width: ${(props) => props.width};
-    h4 {
+
+     h4 {
       font: ${tokens.typographyBoldH6};
-    }
-    p {
-      font: ${tokens.typographyRegularBody};
     }
   }
 `;
+
 
 const StyledFontAwesomeContainer = styled.div`
   display: flex;
   flex-direction: row;
   font-size: 24spx;
   gap: 30px;
-  padding-top: 10px;xx
   margin-right: 10px;
 
   @media (min-width: ${screenSizes.desktop}){
-    padding-top: 30px;
+
     font-size: 32px;
   }
 `;
@@ -118,6 +109,7 @@ const StyledCommentContainerDesktop = styled.div`
   display: none;
   @media (min-width: ${screenSizes.desktop}) {
     display: flex;
+    flex-direction: column;
   }
 `;
 

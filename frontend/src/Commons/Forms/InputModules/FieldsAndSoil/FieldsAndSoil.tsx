@@ -77,13 +77,12 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     setFieldsInfo(farmInfo);
     setFieldIndex((prevIndex) => prevIndex + 1);
     setSubmitted(true);
+    setFieldAdd(false);
   };
 
   const addNewField = () => {
     setFieldAdd(true);
   };
-  console.log(`Field add state is ${fieldAdd}`);
-  console.log(`Field submitted state is ${isSubmitted}`);
   return (
     <>
       {isSubmitted ? (
@@ -91,27 +90,31 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
           <StyledListContainer>
             <StyledListItem width="20%">
               <h4>Field Name</h4>
-              <p>{fieldsInfo.Fields[fieldIndex].FieldName}</p>
+              {farmDetails.Fields.slice(1).map((field) => (
+                <p key={field.FieldName}>{field.FieldName}</p>
+              ))}
             </StyledListItem>
             <StyledListItem width="20%">
               <h4>Area</h4>
-              <p>{fieldsInfo.Fields[fieldIndex].Area}</p>
+              {farmDetails.Fields.slice(1).map((field) => (
+                <p key={field.Area}>{field.Area}</p>
+              ))}
             </StyledListItem>
             <StyledCommentContainerDesktop>
-              <StyledListItem width="100%">
-                <h4>Comments (optional)</h4>
-                <p>{fieldsInfo.Fields[fieldIndex].Comments}</p>
+              <StyledListItem width="80%">
+                <h4>Field Comments (optional)</h4>
+                {farmDetails.Fields.slice(1).map((field) => (
+                  <p key={field.Comments}>{field.Comments}</p>
+                ))}
               </StyledListItem>
             </StyledCommentContainerDesktop>
-            <StyledFontAwesomeContainer>
-              <FontAwesomeIcon icon={faPencil} />
-              <FontAwesomeIcon icon={faTrash} />
-            </StyledFontAwesomeContainer>
           </StyledListContainer>
           <StyledCommentContainerMobile>
             <StyledListItem width="100%">
               <h4>Field Comments (optional)</h4>
-              <p>{fieldsInfo.Fields[fieldIndex].Comments}</p>
+              {farmDetails.Fields.slice(1).map((field) => (
+                <p key={field.Comments}>{field.Comments}</p>
+              ))}
             </StyledListItem>
           </StyledCommentContainerMobile>
           {!fieldAdd ? (
