@@ -1,4 +1,5 @@
 import Button from '@Commons/Button/Button.tsx';
+import { Link } from 'react-router-dom';
 import {
   StyledContent,
   StyledButtonGroup,
@@ -12,7 +13,8 @@ const LandingPage = () => {
     if (upload) upload.click();
   };
 
-  const isValidFile = (file: File): boolean => file.type === 'application/json' || file.name.endsWith('.nmp');
+  const isValidFile = (file: File): boolean =>
+    file.type === 'application/json' || file.name.endsWith('.nmp');
 
   const saveFile = (e: any) => {
     const file = e.target.files[0];
@@ -43,12 +45,15 @@ const LandingPage = () => {
         </p>
       </StyledContent>
       <StyledButtonGroup>
-        <Button
-          size="lg"
-          text="New Calculation"
-          disabled={false}
-          path="/main"
-        />
+        <Link
+          to="/main"
+          style={{ textDecoration: 'none' }}
+        >
+          <Button
+            size="lg"
+            text="New Calculation"
+          />
+        </Link>
         <StyledDivider>or</StyledDivider>
         <Button
           size="lg"
@@ -60,6 +65,7 @@ const LandingPage = () => {
           type="file"
           accept=".nmp, application/json"
           onChange={saveFile}
+          aria-label="Upload File"
           hidden
         />
       </StyledButtonGroup>

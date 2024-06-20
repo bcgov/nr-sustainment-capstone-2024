@@ -75,6 +75,15 @@ const StyledButtonGroup = styled.div`
     max-height: 197px;
     top: 15vh;
   }
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: inherit;
+    text-decoration: inherit;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const StyledDivider = styled.div`
