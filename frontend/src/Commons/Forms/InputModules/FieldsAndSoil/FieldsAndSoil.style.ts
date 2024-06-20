@@ -50,10 +50,15 @@ const StyledTextAreaContainer = styled.div`
 `;
 
 const StyledButtonGroupContainer = styled.div`
-  margin-top: -10px;
   display: flex;
   flex-direction: row;
   gap: 20px;
+  width: 100vw;
+  justify-content: flex-end;
+  @media (min-width: ${screenSizes.desktop}){
+    justify-content: flex-start;
+    width: 100%;
+  }
 `;
 
 const StyledListContainer = styled.div`
@@ -61,7 +66,7 @@ const StyledListContainer = styled.div`
   display: flex;
   flex-direction: row;
   padding-top: 20px;
-
+  gap: 20px;
   @media (min-width: ${screenSizes.desktop}) {
   }
 `;
@@ -88,6 +93,7 @@ const StyledFontAwesomeContainer = styled.div`
   font-size: 24spx;
   gap: 30px;
   margin-right: 10px;
+  padding-top: 8px;
 
   @media (min-width: ${screenSizes.desktop}) {
     font-size: 32px;
@@ -98,7 +104,7 @@ const StyledFontAwesomeContainer = styled.div`
 const StyledFieldInfoList = styled.div`
   display: flex;
   flex-direction: column;
-
+  position: relative;
   @media (min-width: ${screenSizes.desktop}) {
   }
 `;
@@ -127,23 +133,34 @@ const StyledDivider = styled.div`
   align-items: center;
   text-align: center;
   color: ${tokens.typographyColorPlaceholder};
-
-  &::before,
-  &::after {
-    flex: 1;
-    content: '';
-    padding: 1px;
-    background-color: ${tokens.typographyColorPlaceholder};
-    width: 130px;
-    margin: 5px;
-  }
+  flex: 1;
+  content: '';
+  padding: 1px;
+  background-color: ${tokens.typographyColorPlaceholder};
+  width: 100%;
+  margin: auto;
 
   @media (min-width: ${screenSizes.desktop}) {
-    &::before,
-    &::after {
-      width: 200px;
-    }
+   
   }
+`;
+
+const StyledButtonContainer = styled.div`
+  margin-top: 20px;
+  width: 50%;
+  font: ${tokens.typographyRegularLabel};
+`;
+
+const StyledAddCancelButtonContainer = styled.div`
+  display: flex;
+  position: absolute;
+  right: 0;
+  gap: 10px;
+`;
+const StyledNewFieldButtonContainer = styled.div`
+  position: relative;
+  left: 0;
+  width: 100%;
 `;
 
 export {
@@ -157,4 +174,7 @@ export {
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
   StyledDivider,
+  StyledButtonContainer,
+  StyledAddCancelButtonContainer,
+  StyledNewFieldButtonContainer,
 };

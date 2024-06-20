@@ -29,11 +29,14 @@ import {
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
   StyledDivider,
+  StyledButtonContainer,
+  StyledAddCancelButtonContainer,
+  StyledNewFieldButtonContainer,
 } from './FieldsAndSoil.style';
 
-const initialFieldValues = initialFarmDetails.Fields[0];
-
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
+  const [fieldsInfo, setFieldsInfo] = useState(farmDetails);
+  const [fieldIndex, setFieldIndex] = useState(0);
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   const [fieldAdd, setFieldAdd] = useState<boolean>(false);
 
@@ -42,30 +45,24 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     Area: Yup.number().min(1).max(100).required('Required'),
     Comments: Yup.string().max(200),
   });
-
-  const onSubmit = (
-    values: FieldDetailInterface,
-    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
-  ): void => {
-    setTimeout(() => {
-      const newFarmDetails: FarmDetailsInterface = { ...farmDetails };
-      const newField: FieldDetailInterface = initialFieldValues;
-      newField.FieldName = values.FieldName;
-      newField.Area = values.Area;
-      newField.Comments = values.Comments;
-      newFarmDetails.Fields.push(newField);
-      updateFarmDetails(newFarmDetails);
-      setSubmitting(false);
-    }, 400);
+  const initialFieldValues = initialFarmDetails.Fields[fieldIndex];
+  const submitData = () => {
+    const farmInfo: FarmDetailsInterface = { ...farmDetails };
+    updateFarmDetails(farmInfo);
+    console.log('data submitted');
+    setFieldIndex((prevIndex) => prevIndex + 1);
+    setSubmitted(true);
+    setFieldAdd(false);
   };
-
   const addFarmInfo = (values: FieldDetailInterface) => {
-    const newFarmDetails: FarmDetailsInterface = { ...farmDetails };
-    const newField: FieldDetailInterface = initialFieldValues;
-    newField.FieldName = values.FieldName;
-    newField.Area = values.Area;
-    newField.Comments = values.Comments;
-    newFarmDetails.Fields.push(newField);
+    const farmInfo: FarmDetailsInterface = { ...farmDetails };
+    farmInfo.Fields.push({
+      FieldName: values.FieldName,
+      Area: values.Area,
+      Comments: values.Comments,
+    });
+    setFieldsInfo(farmInfo);
+    setFieldIndex((prevIndex) => prevIndex + 1);
     setSubmitted(true);
     setFieldAdd(false);
   };
@@ -75,59 +72,95 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
   };
   return (
     <>
-      {isSubmitted ? (
-        <StyledFieldInfoList>
-          {farmDetails.Fields.slice(1).map((fields) => (
-            <>
-              <StyledListContainer key={fields.FieldName}>
-                <StyledListItem width="20%">
-                  <h4>Field Name</h4>
-                  <p key={fields.FieldName}>{fields.FieldName}</p>
-                </StyledListItem>
-                <StyledListItem width="20%">
-                  <h4>Area</h4>
-                  <p key={fields.Area}>{fields.Area}</p>
-                </StyledListItem>
-                <StyledCommentContainerDesktop>
-                  <StyledListItem width="80%">
-                    <h4>Field Comments (optional)</h4>
-                    <p key={fields.Comments}>{fields.Comments}</p>
-                  </StyledListItem>
-                </StyledCommentContainerDesktop>
-                <StyledFontAwesomeContainer>
-                  <FontAwesomeIcon icon={faPencil} />
-                  <FontAwesomeIcon icon={faTrash} />
-                </StyledFontAwesomeContainer>
-                <StyledCommentContainerMobile>
-                  <StyledListItem width="100%">
-                    <h4>Field Comments (optional)</h4>
-                    <p key={fields.Comments}>{fields.Comments}</p>
-                  </StyledListItem>
-                </StyledCommentContainerMobile>
-              </StyledListContainer>
-              <StyledDivider />
-            </>
-          ))}
-          {!fieldAdd ? (
-            <Button
-              type="button"
-              size="md"
-              disabled={false}
-              radius="50px"
-              actions="secondary"
-              text={ComponentText.NEWFIELD}
-              handleClick={addNewField}
-            >
-              <FontAwesomeIcon icon={faPlus} />
-            </Button>
-          ) : null}
-        </StyledFieldInfoList>
-      ) : null}
-      {fieldAdd || !isSubmitted ? (
+      {isSubmitted && (
         <Formik
           initialValues={initialFieldValues}
           validationSchema={validationSchema}
-          onSubmit={onSubmit}
+          onSubmit={submitData}
+        >
+          {({ values }) => (
+            <Form>
+              <StyledFieldInfoList>
+                {fieldsInfo.Fields.slice(1).map((fields) => (
+                  <>
+                    <StyledListContainer key={fields.FieldName}>
+                      <StyledListItem width="30%">
+                        <h4>Field Name</h4>
+                        <p key={fields.FieldName}>{fields.FieldName}</p>
+                      </StyledListItem>
+                      <StyledListItem width="20%">
+                        <h4>Area</h4>
+                        <p key={fields.Area}>{fields.Area}</p>
+                      </StyledListItem>
+                      <StyledCommentContainerDesktop>
+                        <StyledListItem width="90%">
+                          <h4>Field Comments (optional)</h4>
+                          <p key={fields.Comments}>{fields.Comments}</p>
+                        </StyledListItem>
+                      </StyledCommentContainerDesktop>
+                      <StyledFontAwesomeContainer>
+                        <FontAwesomeIcon icon={faPencil} />
+                        <FontAwesomeIcon icon={faTrash} />
+                      </StyledFontAwesomeContainer>
+                    </StyledListContainer>
+                    <StyledCommentContainerMobile>
+                      <StyledListItem width="100%">
+                        <h4>Field Comments (optional)</h4>
+                        <p key={fields.Comments}>{fields.Comments}</p>
+                      </StyledListItem>
+                    </StyledCommentContainerMobile>
+                    <StyledDivider />
+                  </>
+                ))}
+                {!fieldAdd && (
+                  <StyledButtonGroupContainer>
+                    <StyledNewFieldButtonContainer>
+                      <StyledButtonContainer>
+                        <Button
+                          type="button"
+                          size="md"
+                          disabled={false}
+                          radius="50px"
+                          actions="secondary"
+                          text={ComponentText.NEWFIELD}
+                          handleClick={addNewField}
+                        >
+                          <FontAwesomeIcon icon={faPlus} />
+                        </Button>
+                      </StyledButtonContainer>
+                    </StyledNewFieldButtonContainer>
+                    <StyledAddCancelButtonContainer>
+                      <StyledButtonContainer>
+                        <Button
+                          type="reset"
+                          size="sm"
+                          disabled={false}
+                          actions="secondary"
+                          text={ComponentText.BACK}
+                        />
+                      </StyledButtonContainer>
+                      <StyledButtonContainer>
+                        <Button
+                          type="submit"
+                          size="sm"
+                          disabled={false}
+                          text={ComponentText.NEXT}
+                          handleClick={submitData}
+                        />
+                      </StyledButtonContainer>
+                    </StyledAddCancelButtonContainer>
+                  </StyledButtonGroupContainer>
+                )}
+              </StyledFieldInfoList>
+            </Form>
+          )}
+        </Formik>
+      )}
+      {(fieldAdd || !isSubmitted) && (
+        <Formik
+          initialValues={initialFieldValues}
+          validationSchema={validationSchema}
+          onSubmit={submitData}
         >
           {({ values }) => (
             <Form>
@@ -176,7 +209,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
             </Form>
           )}
         </Formik>
-      ) : null}
+      )}
     </>
   );
 };

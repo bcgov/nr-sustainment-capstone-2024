@@ -3,6 +3,7 @@ const ComponentText = {
   ADD: 'Add',
   CANCEL: 'Cancel',
   NEWFIELD: 'Add Field',
+  BACK: 'Back',
 };
 
 export default ComponentText;
