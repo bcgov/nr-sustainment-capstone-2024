@@ -73,88 +73,78 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
   return (
     <>
       {isSubmitted && (
-        <Formik
-          initialValues={initialFieldValues}
-          validationSchema={validationSchema}
-          onSubmit={submitData}
-        >
-          {({ values }) => (
-            <Form>
-              <StyledFieldInfoList>
-                {fieldsInfo.Fields.slice(1).map((fields) => (
-                  <>
-                    <StyledListContainer key={fields.FieldName}>
-                      <StyledListItem width="30%">
-                        <h4>Field Name</h4>
-                        <p key={fields.FieldName}>{fields.FieldName}</p>
-                      </StyledListItem>
-                      <StyledListItem width="20%">
-                        <h4>Area</h4>
-                        <p key={fields.Area}>{fields.Area}</p>
-                      </StyledListItem>
-                      <StyledCommentContainerDesktop>
-                        <StyledListItem width="90%">
-                          <h4>Field Comments (optional)</h4>
-                          <p key={fields.Comments}>{fields.Comments}</p>
-                        </StyledListItem>
-                      </StyledCommentContainerDesktop>
-                      <StyledFontAwesomeContainer>
-                        <FontAwesomeIcon icon={faPencil} />
-                        <FontAwesomeIcon icon={faTrash} />
-                      </StyledFontAwesomeContainer>
-                    </StyledListContainer>
-                    <StyledCommentContainerMobile>
-                      <StyledListItem width="100%">
-                        <h4>Field Comments (optional)</h4>
-                        <p key={fields.Comments}>{fields.Comments}</p>
-                      </StyledListItem>
-                    </StyledCommentContainerMobile>
-                    <StyledDivider />
-                  </>
-                ))}
-                {!fieldAdd && (
-                  <StyledButtonGroupContainer>
-                    <StyledNewFieldButtonContainer>
-                      <StyledButtonContainer>
-                        <Button
-                          type="button"
-                          size="md"
-                          disabled={false}
-                          radius="50px"
-                          actions="secondary"
-                          text={ComponentText.NEWFIELD}
-                          handleClick={addNewField}
-                        >
-                          <FontAwesomeIcon icon={faPlus} />
-                        </Button>
-                      </StyledButtonContainer>
-                    </StyledNewFieldButtonContainer>
-                    <StyledAddCancelButtonContainer>
-                      <StyledButtonContainer>
-                        <Button
-                          type="reset"
-                          size="sm"
-                          disabled={false}
-                          actions="secondary"
-                          text={ComponentText.BACK}
-                        />
-                      </StyledButtonContainer>
-                      <StyledButtonContainer>
-                        <Button
-                          type="submit"
-                          size="sm"
-                          disabled={false}
-                          text={ComponentText.NEXT}
-                          handleClick={submitData}
-                        />
-                      </StyledButtonContainer>
-                    </StyledAddCancelButtonContainer>
-                  </StyledButtonGroupContainer>
-                )}
-              </StyledFieldInfoList>
-            </Form>
+        <StyledFieldInfoList>
+          {fieldsInfo.Fields.slice(1).map((fields) => (
+            <>
+              <StyledListContainer key={fields.FieldName}>
+                <StyledListItem width="30%">
+                  <h4>Field Name</h4>
+                  <p key={fields.FieldName}>{fields.FieldName}</p>
+                </StyledListItem>
+                <StyledListItem width="20%">
+                  <h4>Area</h4>
+                  <p key={fields.Area}>{fields.Area}</p>
+                </StyledListItem>
+                <StyledCommentContainerDesktop>
+                  <StyledListItem width="90%">
+                    <h4>Field Comments (optional)</h4>
+                    <p key={fields.Comments}>{fields.Comments}</p>
+                  </StyledListItem>
+                </StyledCommentContainerDesktop>
+                <StyledFontAwesomeContainer>
+                  <FontAwesomeIcon icon={faPencil} />
+                  <FontAwesomeIcon icon={faTrash} />
+                </StyledFontAwesomeContainer>
+              </StyledListContainer>
+              <StyledCommentContainerMobile>
+                <StyledListItem width="100%">
+                  <h4>Field Comments (optional)</h4>
+                  <p key={fields.Comments}>{fields.Comments}</p>
+                </StyledListItem>
+              </StyledCommentContainerMobile>
+              <StyledDivider />
+            </>
+          ))}
+          {!fieldAdd && (
+            <StyledButtonGroupContainer>
+              <StyledNewFieldButtonContainer>
+                <StyledButtonContainer>
+                  <Button
+                    type="button"
+                    size="md"
+                    disabled={false}
+                    radius="50px"
+                    actions="secondary"
+                    text={ComponentText.NEWFIELD}
+                    handleClick={addNewField}
+                  >
+                    <FontAwesomeIcon icon={faPlus} />
+                  </Button>
+                </StyledButtonContainer>
+              </StyledNewFieldButtonContainer>
+              <StyledAddCancelButtonContainer>
+                <StyledButtonContainer>
+                  <Button
+                    type="reset"
+                    size="sm"
+                    disabled={false}
+                    actions="secondary"
+                    text={ComponentText.BACK}
+                  />
+                </StyledButtonContainer>
+                <StyledButtonContainer>
+                  <Button
+                    type="submit"
+                    size="sm"
+                    disabled={false}
+                    text={ComponentText.NEXT}
+                    handleClick={submitData}
+                  />
+                </StyledButtonContainer>
+              </StyledAddCancelButtonContainer>
+            </StyledButtonGroupContainer>
           )}
-        </Formik>
+        </StyledFieldInfoList>
       )}
       {(fieldAdd || !isSubmitted) && (
         <Formik

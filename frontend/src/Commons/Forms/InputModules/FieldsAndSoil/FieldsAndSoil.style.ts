@@ -55,7 +55,7 @@ const StyledButtonGroupContainer = styled.div`
   gap: 20px;
   width: 100vw;
   justify-content: flex-end;
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     justify-content: flex-start;
     width: 100%;
   }
@@ -141,7 +141,6 @@ const StyledDivider = styled.div`
   margin: auto;
 
   @media (min-width: ${screenSizes.desktop}) {
-   
   }
 `;
 
