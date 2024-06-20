@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader.tsx';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter.tsx';
 import { FC } from 'react';
+import CustomLink from '@Commons/CustomLink/CustomLink.tsx';
 import { StyledContent, StyledLandingContainer } from './ExportPage.styles.ts';
 
 const ExportPage: FC = () => {
@@ -35,15 +36,11 @@ const ExportPage: FC = () => {
           handleClick={downloadFile}
         />
       </StyledContent>
-      <Link
-        to="/main"
-        style={{ textDecoration: 'none' }}
-      >
-        <Button
-          size="lg"
-          text="Return to Calculation"
-        />
-      </Link>
+      <CustomLink
+        path="/main"
+        text="Return to Calculation"
+        size="lg"
+      />
       <MainPageFooter />
     </StyledLandingContainer>
   );
