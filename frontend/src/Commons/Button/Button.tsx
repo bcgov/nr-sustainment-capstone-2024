@@ -27,6 +27,9 @@ const Button = ({
     if (handleClick) {
       handleClick();
     } else if (path) {
+      if (path === '/main' && localStorage.getItem('farmDetails')) {
+        console.log('Continue last Calculation?');
+      }
       navigate(path);
     }
   };

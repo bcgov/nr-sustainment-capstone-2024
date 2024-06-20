@@ -15,6 +15,8 @@ import Button from '@Commons/Button/Button';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
+import initialFarmDetails from '@Constants/InitialFarmDetails';
+import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import {
   StyledFarmInfo,
   StyledTextAreaContainer,
@@ -23,20 +25,10 @@ import {
   StyledListItem,
 } from './FieldsAndSoil.style';
 
-interface SubmissionValues {
-  FieldName: string;
-  Area: number;
-  Comments?: string;
-}
+const initialFieldValues = initialFarmDetails.Fields[0];
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const [fieldsInfo, setFieldsInfo] = useState(farmDetails);
-
-  const initialValues = {
-    FieldName: farmDetails.FieldName,
-    Area: farmDetails.Area,
-    Comments: farmDetails.Comments,
-  };
 
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
@@ -45,30 +37,34 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
   });
 
   const onSubmit = (
-    values: SubmissionValues,
+    values: FieldDetailInterface,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
   ): void => {
     setTimeout(() => {
-      const farmInformation: FarmDetailsInterface = { ...farmDetails };
-      farmInformation.FieldName = values.FieldName;
-      farmInformation.Area = values.Area;
-      farmInformation.Comments = values.Comments;
-      updateFarmDetails(farmInformation);
+      const newFarmDetails: FarmDetailsInterface = { ...farmDetails };
+      const newField: FieldDetailInterface = initialFieldValues;
+      newField.FieldName = values.FieldName;
+      newField.Area = values.Area;
+      newField.Comments = values.Comments;
+      newFarmDetails.Fields.push(newField);
+      updateFarmDetails(newFarmDetails);
       setSubmitting(false);
     }, 400);
   };
 
-  const addFarmInfo = (values: SubmissionValues) => {
-    const farmInfo: FarmDetailsInterface = { ...fieldsInfo };
-    farmInfo.FieldName = values.FieldName;
-    farmInfo.Area = values.Area;
-    farmInfo.Comments = values.Comments;
-    setFieldsInfo(farmInfo);
+  const addFarmInfo = (values: FieldDetailInterface) => {
+    const newFarmDetails: FarmDetailsInterface = { ...farmDetails };
+    const newField: FieldDetailInterface = initialFieldValues;
+    newField.FieldName = values.FieldName;
+    newField.Area = values.Area;
+    newField.Comments = values.Comments;
+    newFarmDetails.Fields.push(newField);
+    setFieldsInfo(newFarmDetails);
   };
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={initialFieldValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
@@ -117,15 +113,15 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
             <StyledListContainer>
               <StyledListItem>
                 <h4>Field Name</h4>
-                <p>{fieldsInfo.FieldName}</p>
+                <p>{fieldsInfo.Fields[0].FieldName}</p>
               </StyledListItem>
               <StyledListItem>
                 <h4>Area</h4>
-                <p>{fieldsInfo.Area}</p>
+                <p>{fieldsInfo.Fields[0].Area}</p>
               </StyledListItem>
               <StyledListItem>
                 <h4>Comments</h4>
-                <p>{fieldsInfo.Comments}</p>
+                <p>{fieldsInfo.Fields[0].Comments}</p>
               </StyledListItem>
             </StyledListContainer>
           </StyledFarmInfo>

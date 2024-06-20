@@ -6,6 +6,9 @@
 
 import React from 'react';
 
-const ExportPage: React.FC = () => <h2>Hello World!</h2>;
+const ExportPage: React.FC = () => {
+  localStorage.clear();
+  return <h2>Export Page</h2>;
+};
 
 export default ExportPage;

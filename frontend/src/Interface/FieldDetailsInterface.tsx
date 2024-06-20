@@ -5,14 +5,10 @@
  *              be exported as JSON.
  * @author @GDamaso
  */
-import FieldDetailInterface from './FieldDetailsInterface';
-
-interface FarmDetailsInterface {
-  Year: string;
-  FarmName: string;
-  FarmRegion: string;
-  HasBerries: boolean;
-  Fields: FieldDetailInterface[];
+interface FieldDetailInterface {
+  FieldName: string;
+  Area: number;
+  Comments?: string | null;
 }
 
-export default FarmDetailsInterface;
+export default FieldDetailInterface;
