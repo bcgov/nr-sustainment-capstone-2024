@@ -40,7 +40,7 @@ const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
             <p>Fields:&nbsp;</p>
           </span>
           {farmDetails.Fields.map((field) => (
-            <div>
+            <div key={field.FieldName + field.Area + field.Comment}>
               <div
                 className="fieldRow"
                 key={field.FieldName}
