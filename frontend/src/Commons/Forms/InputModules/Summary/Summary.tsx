@@ -11,44 +11,59 @@ import React from 'react';
 import InputModuleProps from 'src/Interface/InputModuleProps';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import { faList } from '@fortawesome/free-solid-svg-icons';
-import Button from '@Commons/Button/Button';
-import { StyledFarmInfo } from './Summary.style';
+import { StyledFarmInfo, StyledContainer } from './Summary.style';
+import CustomLink from '@Commons/CustomLink/CustomLink';
 
 const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => (
-  <>
+  <StyledContainer>
     <StyledFarmInfo>
-      <p>
-        Farm Name:&nbsp;
-        {farmDetails.FarmName}
-      </p>
-      <p>
-        Year:&nbsp;
-        {farmDetails.Year}
-      </p>
-      <p>
-        Region:&nbsp;
-        {farmDetails.FarmRegion}
-      </p>
-      <p>
-        Berries:&nbsp;
-        {farmDetails.HasBerries ? 'Yes' : 'No'}
-      </p>
-      <p>Fields:&nbsp;</p>
-      {farmDetails.Fields.map((field) => (
-        <div key={field.FieldName}>
-          <p>{field.FieldName}</p>
-          <p>{field.Area}</p>
-          <p>{field.Comments}</p>
-        </div>
-      ))}
+      <div>
+        <p>
+          <span className="label">Farm Name:&nbsp;</span>
+          {farmDetails.FarmName}
+        </p>
+        <p>
+          <span className="label">Year:&nbsp;</span>
+          {farmDetails.Year}
+        </p>
+        <p>
+          <span className="label">Region:&nbsp;</span>
+          {farmDetails.FarmRegion}
+        </p>
+        <p>
+          <span className="label">Berries:&nbsp;</span>
+          {farmDetails.HasBerries ? 'Yes' : 'No'}
+        </p>
+        <span className="label">
+          <p>Fields:&nbsp;</p>
+        </span>
+        {farmDetails.Fields.map((field) => (
+          <div
+            className="fieldRow"
+            key={field.FieldName}
+          >
+            <span className="label">
+              <p>Name:&nbsp;</p>
+            </span>
+            <p>{field.FieldName}</p>
+            <span className="label">
+              <p>Area:&nbsp;</p>
+            </span>
+            <p>{field.Area}</p>
+            <span className="label">
+              <p>Comments:&nbsp;</p>
+            </span>
+            <p>{field.Comments}</p>
+          </div>
+        ))}
+      </div>
     </StyledFarmInfo>
-    <Button
-      size="md"
-      text="Finish"
-      disabled={false}
+    <CustomLink
       path="/export"
+      size="lg"
+      text="Finish"
     />
-  </>
+  </StyledContainer>
 );
 
 const Summary: InputModuleInterface = {

@@ -8,6 +8,17 @@
  * @author @KCaparas
  */
 import styled from '@emotion/styled';
+import * as tokens from '@bcgov/design-tokens/js';
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+`;
 
 const StyledFarmInfo = styled.form`
   display: flex;
@@ -15,22 +26,14 @@ const StyledFarmInfo = styled.form`
   justify-content: space-between;
   align-items: left;
   height: 100%;
-  p {
-    margin-bottom: 20px;
+  .label {
+    font-weight: ${tokens.typographyFontWeightsBold};
+  }
+  .fieldRow {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
   }
 `;
 
-const StyledButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: 0;
-  padding-top: 0;
-
-  Select {
-    height: 30px;
-    width: 80%;
-  }
-`;
-export { StyledFarmInfo, StyledButtonContainer };
+export { StyledContainer, StyledFarmInfo };
