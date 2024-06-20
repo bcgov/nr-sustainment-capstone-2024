@@ -45,7 +45,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
       const newField: FieldDetailInterface = initialFieldValues;
       newField.FieldName = values.FieldName;
       newField.Area = values.Area;
-      newField.Comments = values.Comments;
+      newField.Comment = values.Comment;
       newFarmDetails.Fields.push(newField);
       updateFarmDetails(newFarmDetails);
       setSubmitting(false);
@@ -57,7 +57,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     const newField: FieldDetailInterface = initialFieldValues;
     newField.FieldName = values.FieldName;
     newField.Area = values.Area;
-    newField.Comments = values.Comments;
+    newField.Comment = values.Comment;
     newFarmDetails.Fields.push(newField);
     setFieldsInfo(newFarmDetails);
   };
@@ -121,7 +121,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
               </StyledListItem>
               <StyledListItem>
                 <h4>Comments</h4>
-                <p>{fieldsInfo.Fields[0].Comments}</p>
+                <p>{fieldsInfo.Fields[0].Comment}</p>
               </StyledListItem>
             </StyledListContainer>
           </StyledFarmInfo>
