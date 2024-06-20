@@ -7,7 +7,7 @@ import Button from '@Commons/Button/Button.tsx';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader.tsx';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter.tsx';
 import { FC } from 'react';
-import { StyledContent, StyledButtonGroup, StyledLandingContainer } from './ExportPage.styles.ts';
+import { StyledContent, StyledLandingContainer } from './ExportPage.styles.ts';
 
 const ExportPage: FC = () => {
   const downloadFile = () => {
@@ -33,13 +33,11 @@ const ExportPage: FC = () => {
           handleClick={downloadFile}
         />
       </StyledContent>
-      <StyledButtonGroup>
-        <Button
-          size="lg"
-          text="Return to Calculation"
-          path="/main"
-        />
-      </StyledButtonGroup>
+      <Button
+        size="lg"
+        text="Return to Calculation"
+        path="/main"
+      />
       <MainPageFooter />
     </StyledLandingContainer>
   );
