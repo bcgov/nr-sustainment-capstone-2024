@@ -31,7 +31,6 @@ import {
   StyledDivider,
 } from './FieldsAndSoil.style';
 
-
 const initialFieldValues = initialFarmDetails.Fields[0];
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
@@ -80,7 +79,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     <>
       {isSubmitted ? (
         <StyledFieldInfoList>
-          { farmDetails.Fields.slice(1).map((fields) => (
+          {farmDetails.Fields.slice(1).map((fields) => (
             <>
               <StyledListContainer key={fields.FieldName}>
                 <StyledListItem width="20%">
