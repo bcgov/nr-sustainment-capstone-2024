@@ -1,11 +1,7 @@
 /**
- *
- * THIS IS A SKELETON!
- * THIS IS STILL TO BE IMPLEMENTED!
- *
  * @desc Styling with BC Design Tokens and Emotion for
- *       Farm Information Input Module
- * @author @GDamaso
+ *       Field and Soil Input Module
+ * @author @Kcaparas
  */
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';

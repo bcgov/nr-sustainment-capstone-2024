@@ -1,3 +1,8 @@
+/**
+ * @desc Styling with BC Design Tokens and Emotion for
+ *       Field and Soil List Component Module
+ * @author @Kcaparas
+ */
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';

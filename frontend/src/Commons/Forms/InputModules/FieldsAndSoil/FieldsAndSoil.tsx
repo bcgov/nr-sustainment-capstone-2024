@@ -23,12 +23,15 @@ import { StyledFarmInfo, StyledTextAreaContainer } from './FieldsAndSoil.style';
 import { StyledButtonGroupContainer } from './FieldsButtonComponent.styles';
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
+  // Builds field info inside the field form module.
   const [, setFieldsInfo] = useState(farmDetails);
   const [fieldIndex, setFieldIndex] = useState(0);
   const [initialFieldValues, setInitialFieldValues] = useState(
     initialFarmDetails.Fields[fieldIndex],
   );
+  // Only triggered once, it would show list and persists.
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
+  // Would trigger when new field button is clicked.
   const [fieldAdd, setFieldAdd] = useState<boolean>(false);
 
   const validationSchema = Yup.object().shape({
@@ -36,6 +39,13 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     Area: Yup.number().min(1).max(100).required('Required'),
     Comments: Yup.string().max(200),
   });
+  /**
+   *
+   * @param values : It's of type FieldDetailInterface, it calls, FieldName, Area, and Comments
+   * @desc         User data is inputted and then pushed into FarmDetailsInterface,
+   *               initial values for formik is then set to empty values, state hooks gets triggered
+   * @author       @Kcaparas
+   */
   const addFieldData = (values: FieldDetailInterface): void => {
     setTimeout(() => {
       const farmInfo: FarmDetailsInterface = { ...farmDetails };
@@ -58,6 +68,10 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
       setFieldAdd(false);
     }, 400);
   };
+  /**
+   * @desc    updateFarmDetails goes into the new form. Refer to MainPage.tsx
+   * @author  @Kcaparas
+   */
   const submitFarmInfo = () => {
     const farmInfo: FarmDetailsInterface = { ...farmDetails };
     updateFarmDetails(farmInfo);
