@@ -14,28 +14,19 @@ import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
-import { faWheatAwn, faPencil, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import FieldsButtonComponent from './FieldsButtonComponent';
+import FieldsListComponent from './FieldsListComponent';
 import {
   StyledFarmInfo,
   StyledTextAreaContainer,
   StyledButtonGroupContainer,
-  StyledListContainer,
-  StyledListItem,
-  StyledFontAwesomeContainer,
-  StyledFieldInfoList,
-  StyledCommentContainerDesktop,
-  StyledCommentContainerMobile,
-  StyledDivider,
-  StyledButtonContainer,
-  StyledAddCancelButtonContainer,
-  StyledNewFieldButtonContainer,
 } from './FieldsAndSoil.style';
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
-  const [fieldsInfo, setFieldsInfo] = useState(farmDetails);
+  const [, setFieldsInfo] = useState(farmDetails);
   const [fieldIndex, setFieldIndex] = useState(0);
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   const [fieldAdd, setFieldAdd] = useState<boolean>(false);
@@ -72,78 +63,18 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
   return (
     <>
       {isSubmitted && (
-        <StyledFieldInfoList>
-          {fieldsInfo.Fields.slice(1).map((fields) => (
-            <div key={fields.id}>
-              <StyledListContainer>
-                <StyledListItem width="30%">
-                  <h4>Field Name</h4>
-                  <p key={fields.FieldName}>{fields.FieldName}</p>
-                </StyledListItem>
-                <StyledListItem width="20%">
-                  <h4>Area</h4>
-                  <p key={fields.Area}>{fields.Area}</p>
-                </StyledListItem>
-                <StyledCommentContainerDesktop>
-                  <StyledListItem width="90%">
-                    <h4>Field Comments (optional)</h4>
-                    <p key={fields.Comments}>{fields.Comments}</p>
-                  </StyledListItem>
-                </StyledCommentContainerDesktop>
-                <StyledFontAwesomeContainer>
-                  <FontAwesomeIcon icon={faPencil} />
-                  <FontAwesomeIcon icon={faTrash} />
-                </StyledFontAwesomeContainer>
-              </StyledListContainer>
-              <StyledCommentContainerMobile>
-                <StyledListItem width="100%">
-                  <h4>Field Comments (optional)</h4>
-                  <p key={fields.Comments}>{fields.Comments}</p>
-                </StyledListItem>
-              </StyledCommentContainerMobile>
-              <StyledDivider />
-            </div>
-          ))}
+        <>
+          <FieldsListComponent
+            farmDetails={farmDetails}
+            updateFarmDetails={updateFarmDetails}
+          />
           {!fieldAdd && (
-            <StyledButtonGroupContainer>
-              <StyledNewFieldButtonContainer>
-                <StyledButtonContainer>
-                  <Button
-                    type="button"
-                    size="md"
-                    disabled={false}
-                    radius="50px"
-                    actions="secondary"
-                    text={ComponentText.NEWFIELD}
-                    handleClick={addNewField}
-                  >
-                    <FontAwesomeIcon icon={faPlus} />
-                  </Button>
-                </StyledButtonContainer>
-              </StyledNewFieldButtonContainer>
-              <StyledAddCancelButtonContainer>
-                <StyledButtonContainer>
-                  <Button
-                    type="reset"
-                    size="sm"
-                    disabled={false}
-                    actions="secondary"
-                    text={ComponentText.BACK}
-                  />
-                </StyledButtonContainer>
-                <StyledButtonContainer>
-                  <Button
-                    type="button"
-                    size="sm"
-                    disabled={false}
-                    text={ComponentText.NEXT}
-                    handleClick={submitFarmInfo}
-                  />
-                </StyledButtonContainer>
-              </StyledAddCancelButtonContainer>
-            </StyledButtonGroupContainer>
+            <FieldsButtonComponent
+              addNewField={addNewField}
+              submitFarmInfo={submitFarmInfo}
+            />
           )}
-        </StyledFieldInfoList>
+        </>
       )}
       {(fieldAdd || !isSubmitted) && (
         <Formik
