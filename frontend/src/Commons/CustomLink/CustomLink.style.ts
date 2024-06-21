@@ -11,7 +11,8 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
   align-items: center;
   justify-content: center;
   height: ${(props) => (props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '40px')};
-  width: ${(props) => (props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '300px')};
+  width: 100%;
+  max-width: ${(props) => (props.size === 'sm' ? '62px' : props.size === 'md' ? '159px' : '327px')};
   background-color: ${tokens.surfaceColorPrimaryButtonDefault};
   color: ${tokens.typographyColorPrimaryInvert};
   border-radius: 8px;
@@ -21,7 +22,8 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
 
   @media (min-width: ${screenSizes.desktop}) {
     max-height: ${(props) => (props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '40px')};
-    max-width: ${(props) => (props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '300px')};
+    max-width: ${(props) => (props.size === 'sm' ? '62px' : props.size === 'md' ? '159px' : '483px')};
+    width: 100%;
   }
   a {
     display: flex;
