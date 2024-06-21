@@ -22,7 +22,6 @@ import FieldsListComponent from './FieldsListComponent';
 import {
   StyledFarmInfo,
   StyledTextAreaContainer,
-  StyledButtonGroupContainer,
 } from './FieldsAndSoil.style';
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {

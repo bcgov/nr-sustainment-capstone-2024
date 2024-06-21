@@ -87,25 +87,6 @@ const StyledDivider = styled.div`
   }
 `;
 
-
-const StyledButtonContainer = styled.div`
-  margin-top: 20px;
-  width: 50%;
-  font: ${tokens.typographyRegularLabel};
-`;
-
-const StyledAddCancelButtonContainer = styled.div`
-  display: flex;
-  position: absolute;
-  right: 0;
-  gap: 10px;
-`;
-const StyledNewFieldButtonContainer = styled.div`
-  position: relative;
-  left: 0;
-  width: 100%;
-`;
-
 export {
   StyledListContainer,
   StyledListItem,
@@ -114,7 +95,5 @@ export {
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
   StyledDivider,
-  StyledButtonContainer,
-  StyledAddCancelButtonContainer,
-  StyledNewFieldButtonContainer,
+
 };

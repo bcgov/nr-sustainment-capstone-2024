@@ -12,8 +12,8 @@ import {
 } from './FieldsButtonComponent.styles';
 
 interface ButtonComponentProps {
-    addNewField: () => void;
-    submitFarmInfo: () => void;
+  addNewField: () => void;
+  submitFarmInfo: () => void;
 }
 const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({ addNewField, submitFarmInfo }) => (
   <StyledButtonGroupContainer>
