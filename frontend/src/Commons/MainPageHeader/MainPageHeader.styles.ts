@@ -15,6 +15,7 @@ const StyledHeader = styled.header`
   background-color: ${tokens.themeBlue100};
   position: fixed;
   top: 0;
+  z-index: 1;
   color: ${tokens.typographyColorPrimaryInvert};
   border-bottom: ${tokens.layoutBorderWidthMedium} solid ${tokens.themeGold100};
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {

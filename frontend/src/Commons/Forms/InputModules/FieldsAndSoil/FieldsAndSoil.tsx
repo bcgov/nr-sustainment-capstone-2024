@@ -46,26 +46,26 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     Comments: Yup.string().max(200),
   });
   const initialFieldValues = initialFarmDetails.Fields[fieldIndex];
-  const submitData = () => {
+  const addFieldData = (
+    values: FieldDetailInterface,
+  ): void => {
+    setTimeout(() => {
+      const farmInfo: FarmDetailsInterface = { ...farmDetails };
+      farmInfo.Fields.push({
+        id: fieldIndex,
+        FieldName: values.FieldName,
+        Area: values.Area,
+        Comments: values.Comments,
+      });
+      setFieldsInfo(farmInfo);
+      setFieldIndex((prevIndex) => prevIndex + 1);
+      setSubmitted(true);
+      setFieldAdd(false);
+    }, 400);
+  };
+  const submitFarmInfo = () => {
     const farmInfo: FarmDetailsInterface = { ...farmDetails };
     updateFarmDetails(farmInfo);
-    console.log('data submitted');
-    setFieldIndex((prevIndex) => prevIndex + 1);
-    setSubmitted(true);
-    setFieldAdd(false);
-  };
-  const addFarmInfo = (values: FieldDetailInterface) => {
-    const farmInfo: FarmDetailsInterface = { ...farmDetails };
-    farmInfo.Fields.push({
-      id: fieldIndex,
-      FieldName: values.FieldName,
-      Area: values.Area,
-      Comments: values.Comments,
-    });
-    setFieldsInfo(farmInfo);
-    setFieldIndex((prevIndex) => prevIndex + 1);
-    setSubmitted(true);
-    setFieldAdd(false);
   };
 
   const addNewField = () => {
@@ -135,11 +135,11 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
                 </StyledButtonContainer>
                 <StyledButtonContainer>
                   <Button
-                    type="submit"
+                    type="button"
                     size="sm"
                     disabled={false}
                     text={ComponentText.NEXT}
-                    handleClick={submitData}
+                    handleClick={submitFarmInfo}
                   />
                 </StyledButtonContainer>
               </StyledAddCancelButtonContainer>
@@ -151,54 +151,51 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
         <Formik
           initialValues={initialFieldValues}
           validationSchema={validationSchema}
-          onSubmit={submitData}
+          onSubmit={addFieldData}
         >
-          {({ values }) => (
-            <Form>
-              <StyledFarmInfo>
-                <div id="inputContainer">
-                  <CustomField
-                    label="Field name"
-                    id="FieldName"
-                    name="FieldName"
-                    type="text"
+          <Form>
+            <StyledFarmInfo>
+              <div id="inputContainer">
+                <CustomField
+                  label="Field name"
+                  id="FieldName"
+                  name="FieldName"
+                  type="text"
+                />
+                <CustomField
+                  label="Area"
+                  id="Area"
+                  name="Area"
+                  type="number"
+                  width="20%"
+                />
+              </div>
+              <StyledTextAreaContainer>
+                <CustomTextArea
+                  name="Comments"
+                  id="Comments"
+                  label="Comments (optional)"
+                  placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
+                  width="50%"
+                />
+                <StyledButtonGroupContainer>
+                  <Button
+                    type="reset"
+                    size="sm"
+                    disabled={false}
+                    actions="secondary"
+                    text={ComponentText.CANCEL}
                   />
-                  <CustomField
-                    label="Area"
-                    id="Area"
-                    name="Area"
-                    type="number"
-                    width="20%"
+                  <Button
+                    type="submit"
+                    size="sm"
+                    disabled={false}
+                    text={ComponentText.ADD}
                   />
-                </div>
-                <StyledTextAreaContainer>
-                  <CustomTextArea
-                    name="Comments"
-                    id="Comments"
-                    label="Comments (optional)"
-                    placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
-                    width="50%"
-                  />
-                  <StyledButtonGroupContainer>
-                    <Button
-                      type="reset"
-                      size="sm"
-                      disabled={false}
-                      actions="secondary"
-                      text={ComponentText.CANCEL}
-                    />
-                    <Button
-                      type="button"
-                      size="sm"
-                      disabled={false}
-                      text={ComponentText.ADD}
-                      handleClick={() => addFarmInfo(values)}
-                    />
-                  </StyledButtonGroupContainer>
-                </StyledTextAreaContainer>
-              </StyledFarmInfo>
-            </Form>
-          )}
+                </StyledButtonGroupContainer>
+              </StyledTextAreaContainer>
+            </StyledFarmInfo>
+          </Form>
         </Formik>
       )}
     </>
