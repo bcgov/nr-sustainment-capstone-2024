@@ -15,8 +15,6 @@ const StyledFieldInfoList = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  @media (min-width: ${screenSizes.desktop}) {
-  }
 `;
 
 const StyledListContainer = styled.div`
@@ -25,8 +23,6 @@ const StyledListContainer = styled.div`
   flex-direction: row;
   padding-top: 20px;
   gap: 20px;
-  @media (min-width: ${screenSizes.desktop}) {
-  }
 `;
 
 const StyledListItem = styled.div<StyledListType>`
@@ -88,8 +84,6 @@ const StyledDivider = styled.div`
   width: 100%;
   margin: auto;
 
-  @media (min-width: ${screenSizes.desktop}) {
-  }
 `;
 
 export {

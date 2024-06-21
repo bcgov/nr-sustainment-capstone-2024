@@ -116,7 +116,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
                   id="Area"
                   name="Area"
                   type="number"
-                  width="20%"
+                  width="50%"
                 />
               </div>
               <StyledTextAreaContainer>
@@ -125,7 +125,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
                   id="Comments"
                   label="Comments (optional)"
                   placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
-                  width="50%"
+                  width="70%"
                 />
                 <StyledButtonGroupContainer>
                   <Button

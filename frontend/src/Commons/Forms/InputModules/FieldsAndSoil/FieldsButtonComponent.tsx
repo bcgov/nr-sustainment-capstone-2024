@@ -54,6 +54,7 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({ addNewField, su
     </StyledAddCancelButtonContainer>
   </StyledButtonGroupContainer>
 );
+// Props Validation
 FieldsButtonComponent.propTypes = {
   addNewField: PropTypes.func.isRequired,
   submitFarmInfo: PropTypes.func.isRequired,
