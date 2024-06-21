@@ -3,8 +3,8 @@ import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
 
 type StyledListType = {
-    width?: string;
-  };
+  width?: string;
+};
 
 const StyledFieldInfoList = styled.div`
   display: flex;
@@ -95,5 +95,4 @@ export {
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
   StyledDivider,
-
 };

@@ -22,8 +22,13 @@ const StyledButtonContainer = styled.div`
 const StyledAddCancelButtonContainer = styled.div`
   display: flex;
   position: absolute;
-  right: 17%;
+  right: 7%;
   gap: 10px;
+
+  @media (min-width: ${screenSizes.desktop}){
+    position: absolute;
+    right: 17%;
+  }
 `;
 const StyledNewFieldButtonContainer = styled.div`
   position: relative;

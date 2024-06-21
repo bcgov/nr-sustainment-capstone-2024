@@ -19,10 +19,8 @@ import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import FieldsButtonComponent from './FieldsButtonComponent';
 import FieldsListComponent from './FieldsListComponent';
-import {
-  StyledFarmInfo,
-  StyledTextAreaContainer,
-} from './FieldsAndSoil.style';
+import { StyledFarmInfo, StyledTextAreaContainer } from './FieldsAndSoil.style';
+import { StyledButtonGroupContainer } from './FieldsButtonComponent.styles';
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const [, setFieldsInfo] = useState(farmDetails);
