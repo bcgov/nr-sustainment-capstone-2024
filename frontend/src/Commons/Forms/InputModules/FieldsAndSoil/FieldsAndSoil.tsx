@@ -25,11 +25,8 @@ import { StyledButtonGroupContainer } from './FieldsButtonComponent.styles';
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const [, setFieldsInfo] = useState(farmDetails);
   const [fieldIndex, setFieldIndex] = useState(0);
-  const [
-    initialFieldValues,
-    setInitialFieldValues,
-  ] = useState(
-    initialFarmDetails.Fields[fieldIndex]
+  const [initialFieldValues, setInitialFieldValues] = useState(
+    initialFarmDetails.Fields[fieldIndex],
   );
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   const [fieldAdd, setFieldAdd] = useState<boolean>(false);
