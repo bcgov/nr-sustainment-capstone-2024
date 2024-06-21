@@ -10,7 +10,7 @@ import {
   StyledAddCancelButtonContainer,
   StyledNewFieldButtonContainer,
 } from './FieldsButtonComponent.styles';
-// deploy
+
 interface ButtonComponentProps {
   addNewField: () => void;
   submitFarmInfo: () => void;
