@@ -25,6 +25,12 @@ import { StyledButtonGroupContainer } from './FieldsButtonComponent.styles';
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
   const [, setFieldsInfo] = useState(farmDetails);
   const [fieldIndex, setFieldIndex] = useState(0);
+  const [
+    initialFieldValues,
+    setInitialFieldValues,
+  ] = useState(
+    initialFarmDetails.Fields[fieldIndex]
+  );
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   const [fieldAdd, setFieldAdd] = useState<boolean>(false);
 
@@ -33,7 +39,6 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     Area: Yup.number().min(1).max(100).required('Required'),
     Comments: Yup.string().max(200),
   });
-  const initialFieldValues = initialFarmDetails.Fields[fieldIndex];
   const addFieldData = (values: FieldDetailInterface): void => {
     setTimeout(() => {
       const farmInfo: FarmDetailsInterface = { ...farmDetails };
@@ -43,6 +48,13 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
         Area: values.Area,
         Comments: values.Comments,
       });
+      const newInitialFieldValues = {
+        id: fieldIndex,
+        FieldName: '',
+        Area: 0,
+        Comments: '',
+      };
+      setInitialFieldValues(newInitialFieldValues);
       setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
