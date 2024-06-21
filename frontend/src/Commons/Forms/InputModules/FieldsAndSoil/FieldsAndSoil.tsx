@@ -46,9 +46,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     Comments: Yup.string().max(200),
   });
   const initialFieldValues = initialFarmDetails.Fields[fieldIndex];
-  const addFieldData = (
-    values: FieldDetailInterface,
-  ): void => {
+  const addFieldData = (values: FieldDetailInterface): void => {
     setTimeout(() => {
       const farmInfo: FarmDetailsInterface = { ...farmDetails };
       farmInfo.Fields.push({
