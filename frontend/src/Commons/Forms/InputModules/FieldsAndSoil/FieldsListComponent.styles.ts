@@ -30,11 +30,11 @@ const StyledListItem = styled.div<StyledListType>`
   align-items: flex-start;
   width: ${(props) => props.width};
 
-  h4 {
+  h2 {
     font: ${tokens.typographyBoldBody};
   }
   @media (min-width: ${screenSizes.desktop}) {
-    h4 {
+    h2 {
       font: ${tokens.typographyBoldH6};
     }
   }

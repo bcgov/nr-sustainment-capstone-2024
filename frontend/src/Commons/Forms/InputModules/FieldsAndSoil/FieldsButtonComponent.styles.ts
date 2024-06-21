@@ -25,7 +25,7 @@ const StyledAddCancelButtonContainer = styled.div`
   right: 7%;
   gap: 10px;
 
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     position: absolute;
     right: 17%;
   }
