@@ -36,8 +36,8 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
 
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
-    Area: Yup.number().min(1).max(100).required('Required'),
-    Comments: Yup.string().max(200),
+    Area: Yup.number().min(1, 'Area should be higher than 1').max(100, 'Area should be lower than 100').required('Required'),
+    Comments: Yup.string().max(200, 'Comments should be lower than 200'),
   });
   /**
    *

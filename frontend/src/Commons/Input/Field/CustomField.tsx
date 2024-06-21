@@ -5,6 +5,7 @@
 import { Field, ErrorMessage } from 'formik';
 import { FC } from 'react';
 import StyledField from './CustomField.style';
+import '../ErrorMessage.css';
 
 interface CustomFieldProps {
   label: string;
@@ -22,7 +23,7 @@ const CustomField: FC<CustomFieldProps> = ({ name, id, type, label, width = '100
       id={id}
       type={type}
     />
-    <ErrorMessage name={id} />
+    <ErrorMessage name={id} render={(msg) => <div className="errorMessage">{msg}</div>} />
   </StyledField>
 );
 

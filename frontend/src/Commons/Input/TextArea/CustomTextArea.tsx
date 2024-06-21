@@ -4,9 +4,10 @@
  * @author  @Kcaparas
  */
 
-import { Field } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 import { FC } from 'react';
 import StyledField from './CustomTextArea.styles';
+import '../ErrorMessage.css';
 
 interface CustomTextAreaProps {
   label: string;
@@ -31,6 +32,7 @@ const CustomTextArea: FC<CustomTextAreaProps> = ({
       name={name}
       id={id}
     />
+    <ErrorMessage name={id} render={(msg) => <div className="errorMessage">{msg}</div>} />
   </StyledField>
 );
 
