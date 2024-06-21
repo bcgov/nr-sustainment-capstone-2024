@@ -23,7 +23,10 @@ const CustomField: FC<CustomFieldProps> = ({ name, id, type, label, width = '100
       id={id}
       type={type}
     />
-    <ErrorMessage name={id} render={(msg) => <div className="errorMessage">{msg}</div>} />
+    <ErrorMessage
+      name={id}
+      render={(msg) => <div className="errorMessage">{msg}</div>}
+    />
   </StyledField>
 );
 

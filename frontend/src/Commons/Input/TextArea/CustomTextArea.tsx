@@ -32,7 +32,10 @@ const CustomTextArea: FC<CustomTextAreaProps> = ({
       name={name}
       id={id}
     />
-    <ErrorMessage name={id} render={(msg) => <div className="errorMessage">{msg}</div>} />
+    <ErrorMessage
+      name={id}
+      render={(msg) => <div className="errorMessage">{msg}</div>}
+    />
   </StyledField>
 );
 
