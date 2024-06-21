@@ -62,5 +62,4 @@ const StyledContent = styled.div`
   }
 `;
 
-
 export { StyledContent, StyledLandingContainer };

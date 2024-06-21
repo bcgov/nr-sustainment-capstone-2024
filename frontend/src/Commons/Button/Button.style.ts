@@ -28,7 +28,6 @@ const StyledButton = styled.button<StyledButtonProps>`
   padding: 20px 30px;
   font-family: ${tokens.typographyFontFamiliesBcSans};
   font-weight: ${tokens.typographyFontWeightsBold};
-  
 
   &:disabled {
     cursor: not-allowed;
