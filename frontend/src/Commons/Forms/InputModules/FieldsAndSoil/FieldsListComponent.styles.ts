@@ -83,7 +83,6 @@ const StyledDivider = styled.div`
   background-color: ${tokens.typographyColorPlaceholder};
   width: 100%;
   margin: auto;
-
 `;
 
 export {
