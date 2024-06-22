@@ -3,7 +3,6 @@ import Button from '@Commons/Button/Button';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import PropTypes from 'prop-types';
 import {
   StyledButtonGroupContainer,
   StyledButtonContainer,
@@ -11,7 +10,7 @@ import {
   StyledNewFieldButtonContainer,
 } from './FieldsButtonComponent.styles';
 
-interface ButtonComponentProps {
+type ButtonComponentProps = {
   addNewField: () => void;
   submitFarmInfo: () => void;
 }
@@ -25,7 +24,7 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({ addNewField, su
           disabled={false}
           radius="50px"
           actions="secondary"
-          text={ComponentText.NEWFIELD}
+          text={ComponentText.ADD_FIELD}
           handleClick={addNewField}
         >
           <FontAwesomeIcon icon={faPlus} />
@@ -54,9 +53,5 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({ addNewField, su
     </StyledAddCancelButtonContainer>
   </StyledButtonGroupContainer>
 );
-// Props Validation
-FieldsButtonComponent.propTypes = {
-  addNewField: PropTypes.func.isRequired,
-  submitFarmInfo: PropTypes.func.isRequired,
-};
+
 export default FieldsButtonComponent;

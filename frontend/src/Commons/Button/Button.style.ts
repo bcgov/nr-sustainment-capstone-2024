@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
+import ComponentText from '@Constants/ComponentText';
 import getButtonSize from './ButtonSizeConstant';
 
 type StyledButtonProps = {
@@ -17,7 +18,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   max-height: 42px;
   height: 100%;
   width: 100%;
-  max-width: ${(props) => getButtonSize(props.size, false)};
+  max-width: ${(props) => getButtonSize(props.size, ComponentText.ISMOBILE)};
   background-color: ${(props) => (props.actions === 'primary'
     ? tokens.surfaceColorPrimaryButtonDefault
     : tokens.surfaceColorSecondaryButtonDefault)};
@@ -35,7 +36,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    max-width: ${(props) => getButtonSize(props.size, true)};
+    max-width: ${(props) => getButtonSize(props.size, ComponentText.ISDESKTOP)};
   }
 `;
 

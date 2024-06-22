@@ -32,15 +32,14 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
   // Only triggered once, it would show list and persists.
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
-  const [fieldAdd, setFieldAdd] = useState<boolean>(false);
-
+  const [isFieldAdded, setFieldAdd] = useState<boolean>(false);
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
     Area: Yup.number()
       .min(1, 'Area should be higher than 1')
       .max(100, 'Area should be lower than 100')
       .required('Required'),
-    Comments: Yup.string().max(200, 'Comments should be lower than 200'),
+    Comments: Yup.string().max(200, 'Comments should be lower than 200 chars'),
   });
   /**
    *
@@ -53,18 +52,12 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     setTimeout(() => {
       const farmInfo: FarmDetailsInterface = { ...farmDetails };
       farmInfo.Fields.push({
-        id: fieldIndex,
+        Id: fieldIndex,
         FieldName: values.FieldName,
         Area: values.Area,
         Comments: values.Comments,
       });
-      const newInitialFieldValues = {
-        id: fieldIndex,
-        FieldName: '',
-        Area: 0,
-        Comments: '',
-      };
-      setInitialFieldValues(newInitialFieldValues);
+      setInitialFieldValues(farmInfo.Fields[0]);
       setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
@@ -91,7 +84,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
             farmDetails={farmDetails}
             updateFarmDetails={updateFarmDetails}
           />
-          {!fieldAdd && (
+          { !isFieldAdded && (
             <FieldsButtonComponent
               addNewField={addNewField}
               submitFarmInfo={submitFarmInfo}
@@ -99,7 +92,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
           )}
         </>
       )}
-      {(fieldAdd || !isSubmitted) && (
+      {(isFieldAdded || !isSubmitted) && (
         <Formik
           initialValues={initialFieldValues}
           validationSchema={validationSchema}
