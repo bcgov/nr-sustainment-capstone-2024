@@ -14,67 +14,65 @@ import { faList } from '@fortawesome/free-solid-svg-icons';
 import CustomLink from '@Commons/CustomLink/CustomLink';
 import { StyledFarmInfo, StyledContainer } from './Summary.style';
 
-const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
-  return (
-    <StyledContainer>
-      <StyledFarmInfo>
-        <div>
-          <p>
-            <span className="label">Farm Name:&nbsp;</span>
-            {farmDetails.FarmName}
-          </p>
-          <p>
-            <span className="label">Year:&nbsp;</span>
-            {farmDetails.Year}
-          </p>
-          <p>
-            <span className="label">Region:&nbsp;</span>
-            {farmDetails.FarmRegion}
-          </p>
-          <p>
-            <span className="label">Berries:&nbsp;</span>
-            {farmDetails.HasBerries ? 'Yes' : 'No'}
-          </p>
-          <span className="label">
-            <p>Fields:&nbsp;</p>
-          </span>
-          {farmDetails.Fields.map((field) => (
-            <div key={field.FieldName + field.Area + field.Comment}>
-              <div
-                className="fieldRow"
-                key={field.FieldName}
-              >
-                <span className="label">
-                  <p>Name:&nbsp;</p>
-                </span>
-                <p>{field.FieldName}</p>
-                <span className="label">
-                  <p>Area:&nbsp;</p>
-                </span>
-                <p>{field.Area}</p>
-              </div>
-              {field.Comment ? (
-                <div>
-                  <span className="label">
-                    <p>Comments:&nbsp;</p>
-                  </span>
-                  <p>{field.Comment}</p>
-                </div>
-              ) : null}
+const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => (
+  <StyledContainer>
+    <StyledFarmInfo>
+      <div>
+        <p>
+          <span className="label">Farm Name:&nbsp;</span>
+          {farmDetails.FarmName}
+        </p>
+        <p>
+          <span className="label">Year:&nbsp;</span>
+          {farmDetails.Year}
+        </p>
+        <p>
+          <span className="label">Region:&nbsp;</span>
+          {farmDetails.FarmRegion}
+        </p>
+        <p>
+          <span className="label">Berries:&nbsp;</span>
+          {farmDetails.HasBerries ? 'Yes' : 'No'}
+        </p>
+        <span className="label">
+          <p>Fields:&nbsp;</p>
+        </span>
+        {farmDetails.Fields.map((field) => (
+          <div key={field.FieldName + field.Area + field.Comment}>
+            <div
+              className="fieldRow"
+              key={field.FieldName}
+            >
+              <span className="label">
+                <p>Name:&nbsp;</p>
+              </span>
+              <p>{field.FieldName}</p>
+              <span className="label">
+                <p>Area:&nbsp;</p>
+              </span>
+              <p>{field.Area}</p>
             </div>
-          ))}
-        </div>
-      </StyledFarmInfo>
-      <div id="linkContainer">
-        <CustomLink
-          path="/export"
-          size="lg"
-          text="Finish"
-        />
+            {field.Comment ? (
+              <div>
+                <span className="label">
+                  <p>Comments:&nbsp;</p>
+                </span>
+                <p>{field.Comment}</p>
+              </div>
+            ) : null}
+          </div>
+        ))}
       </div>
-    </StyledContainer>
-  );
-};
+    </StyledFarmInfo>
+    <div id="linkContainer">
+      <CustomLink
+        path="/export"
+        size="lg"
+        text="Finish"
+      />
+    </div>
+  </StyledContainer>
+);
 
 const Summary: InputModuleInterface = {
   InputModuleComponent: SummaryComponent,
