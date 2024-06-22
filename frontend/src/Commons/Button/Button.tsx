@@ -1,6 +1,8 @@
-import StyledButton from './Button.style';
+import React from 'react';
+import { StyledButton, StyledChildrenContainer } from './Button.style';
 
 type ButtonSizes = 'sm' | 'md' | 'lg';
+type ButtonActions = 'primary' | 'secondary';
 type ButtonTypes = 'button' | 'submit' | 'reset' | undefined;
 
 type ButtonProps = {
@@ -9,6 +11,9 @@ type ButtonProps = {
   size?: ButtonSizes;
   disabled?: boolean;
   type?: ButtonTypes;
+  radius?: string;
+  actions?: ButtonActions;
+  children?: React.ReactNode;
 };
 
 const Button = ({
@@ -16,7 +21,10 @@ const Button = ({
   text,
   size = 'md',
   disabled = false,
+  radius = '8px',
   type = 'button',
+  actions = 'primary',
+  children,
 }: ButtonProps) => {
   const handleClickWrapper = () => {
     if (handleClick) {
@@ -31,8 +39,13 @@ const Button = ({
       onClick={handleClickWrapper}
       value=""
       type={type}
+      radius={radius}
+      actions={actions}
     >
-      {text}
+      <StyledChildrenContainer>
+        {children}
+        {text}
+      </StyledChildrenContainer>
     </StyledButton>
   );
 };
