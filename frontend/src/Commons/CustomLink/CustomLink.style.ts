@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
-import screenSizes from '@Constants/ScreenSize';
 
 type StyledLinkProps = {
   size: string;
@@ -10,8 +9,11 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: ${(props) => (props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '40px')};
-  width: ${(props) => (props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '300px')};
+  width: 100%;
+  height: 100%;
+  height: ${(props) => (props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '41.6px')};
+  max-width: ${(props) =>
+    props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '301.6px'};
   background-color: ${tokens.surfaceColorPrimaryButtonDefault};
   color: ${tokens.typographyColorPrimaryInvert};
   border-radius: 8px;
@@ -19,10 +21,6 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
   font-family: ${tokens.typographyFontFamiliesBcSans};
   font-weight: ${tokens.typographyFontWeightsBold};
 
-  @media (min-width: ${screenSizes.desktop}) {
-    max-height: ${(props) => (props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '40px')};
-    max-width: ${(props) => (props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '300px')};
-  }
   a {
     display: flex;
     align-items: center;
@@ -32,6 +30,10 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
     height: 100%;
     width: 100%;
     text-align: center;
+    max-height: ${(props) =>
+      props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '41.6px'};
+    max-width: ${(props) =>
+      props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '301.6px'};
   }
 `;
 

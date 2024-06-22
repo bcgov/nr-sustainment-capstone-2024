@@ -15,9 +15,6 @@ import CustomLink from '@Commons/CustomLink/CustomLink';
 import { StyledFarmInfo, StyledContainer } from './Summary.style';
 
 const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
-  function isCommentEmpty(comment: string | null | undefined): boolean {
-    return comment === '' || comment === null;
-  }
   return (
     <StyledContainer>
       <StyledFarmInfo>
@@ -56,23 +53,25 @@ const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
                 </span>
                 <p>{field.Area}</p>
               </div>
-              {isCommentEmpty(field.Comment) ? null : (
+              {field.Comment ? (
                 <div>
                   <span className="label">
                     <p>Comments:&nbsp;</p>
                   </span>
                   <p>{field.Comment}</p>
                 </div>
-              )}
+              ) : null}
             </div>
           ))}
         </div>
       </StyledFarmInfo>
-      <CustomLink
-        path="/export"
-        size="lg"
-        text="Finish"
-      />
+      <div id="linkContainer">
+        <CustomLink
+          path="/export"
+          size="lg"
+          text="Finish"
+        />
+      </div>
     </StyledContainer>
   );
 };
