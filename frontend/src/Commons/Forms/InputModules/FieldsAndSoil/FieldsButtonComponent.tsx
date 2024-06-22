@@ -13,7 +13,7 @@ import {
 type ButtonComponentProps = {
   addNewField: () => void;
   submitFarmInfo: () => void;
-}
+};
 const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({ addNewField, submitFarmInfo }) => (
   <StyledButtonGroupContainer>
     <StyledNewFieldButtonContainer>

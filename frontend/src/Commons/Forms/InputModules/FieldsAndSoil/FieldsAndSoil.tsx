@@ -84,7 +84,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
             farmDetails={farmDetails}
             updateFarmDetails={updateFarmDetails}
           />
-          { !isFieldAdded && (
+          {!isFieldAdded && (
             <FieldsButtonComponent
               addNewField={addNewField}
               submitFarmInfo={submitFarmInfo}

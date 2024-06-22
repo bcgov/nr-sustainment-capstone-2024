@@ -45,9 +45,7 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
               <p key={fields.Comments}>{fields.Comments}</p>
             </StyledListItem>
           </StyledCommentContainerMobile>
-          {fieldCount > 2 && (
-            <StyledDivider />
-          )}
+          {fieldCount > 2 && <StyledDivider />}
         </div>
       ))}
     </StyledFieldInfoList>
