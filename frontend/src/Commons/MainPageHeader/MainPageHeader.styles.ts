@@ -23,6 +23,7 @@ const StyledHeader = styled.header`
   }
   @media (min-width: ${screenSizes.desktop}) {
     height: 450px;
+    justify-content: space-between;
   }
 `;
 
@@ -38,9 +39,10 @@ const Logo = styled.img`
     width: 100%;
   }
   @media (min-width: ${screenSizes.desktop}) {
-    max-height: 123px;
+    max-height: 87px;
+    height: 100%;
     max-width: 250px;
-    margin-left: 14%;
+    margin-left: 40%;
     content: url(${desktopLogo});
   }
 `;
