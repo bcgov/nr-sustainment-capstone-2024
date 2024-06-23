@@ -18,7 +18,7 @@ const Container = styled.div`
     padding-bottom: 50px;
     height: 150px;
     width: 80%;
-    top: 8%;
+    top: 12vh;
     order: 0;
   }
 `;
