@@ -6,6 +6,7 @@ import screenSizes from '@Constants/ScreenSize';
 type ProgressProps = {
   InputModule: InputModuleInterface;
   active: boolean;
+  status: string;
 };
 
 const Container = styled.div`
@@ -17,7 +18,7 @@ const Container = styled.div`
 `;
 const StyledItem = styled.div<ProgressProps>`
   border-radius: 50%;
-  background-color: ${(props) => (props.active === true ? tokens.supportBorderColorWarning : '#FFF')};
+  background-color: ${(props) => (props.status === 'active' ? tokens.supportBorderColorWarning : props.status === 'completed' ? '#42814A' : '#fff')};
   display: flex;
   justify-content: center;
   align-items: center;

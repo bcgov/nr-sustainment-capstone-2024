@@ -18,9 +18,9 @@ import { StyledMain, StyledMainContainer } from './MainPage.styles';
 // This is the skeleton for the Berries workflow
 // Uncomment sections as they are implemented to have them instantiated ;)
 const mockBerriesWorkflow: InputModuleInterface[] = [
-  InputModules.FarmInformation,
-  InputModules.FieldsAndSoil,
-  InputModules.Summary,
+  { ...InputModules.FarmInformation, status: 'inactive' },
+  { ...InputModules.FieldsAndSoil, status: 'inactive' },
+  { ...InputModules.Summary, status: 'inactive' },
 ];
 
 const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
@@ -64,10 +64,17 @@ const MainPage: React.FC = () => {
    */
   const handleFormState = (moduleID: string, nexModuleID?: string) => {
     const updatedStates = formStates.map((module: InputModuleInterface) => {
-      if (module.id === moduleID || module.id === nexModuleID) {
+      if (module.id === moduleID) {
         return {
           ...module,
           enable: !module.enable,
+          status: module.enable ? 'inactive' : 'active',
+        };
+      }
+      if (module.id === nexModuleID) {
+        return {
+          ...module,
+          status: 'active',
         };
       }
       return module;
@@ -85,14 +92,22 @@ const MainPage: React.FC = () => {
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
-    handleFormState(formStates[currForm].id, formStates[currForm + 1].id);
-    setCurrForm((prevForm) => prevForm + 1);
+    setFormStates((prevStates) => prevStates.map((module, index) => {
+      if (index === currForm) {
+        return { ...module, status: 'completed' };
+      }
+      if (index === currForm + 1) {
+        return { ...module, status: 'active' };
+      }
+      setCurrForm((prevForm) => prevForm + 1);
+      return module;
+    }));
   };
 
   return (
     <StyledMain>
       <MainPageHeader />
-      <ProgressBar />
+      <ProgressBar formStates={formStates} />
       <StyledMainContainer>
         {formStates.map((InputModule) => {
           if (InputModule) {

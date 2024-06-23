@@ -16,12 +16,15 @@ const ProgressItem = ({ InputModule }: ProgressProps) => {
     name: { long, short },
     enable,
     faIcon,
+    status,
   } = InputModule;
+  console.log(status);
   return (
     <Container>
       <StyledItem
         InputModule={InputModule}
         active={enable}
+        status={status}
       >
         <FontAwesomeIcon icon={faIcon} />
       </StyledItem>
