@@ -108,6 +108,7 @@ const FarmInfoForm: InputModuleInterface = {
   name: { long: 'Farm Information', short: 'Farm Info' },
   faIcon: faTractor,
   enable: true,
+  status: 'active',
 };
 
 export default FarmInfoForm;

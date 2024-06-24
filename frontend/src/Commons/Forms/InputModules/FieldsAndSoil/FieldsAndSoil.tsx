@@ -153,6 +153,7 @@ const FieldsAndSoil: InputModuleInterface = {
   name: { long: 'Fields and Soil', short: 'Fields' },
   faIcon: faWheatAwn,
   enable: false,
+  status: 'inactive',
 };
 
 export default FieldsAndSoil;

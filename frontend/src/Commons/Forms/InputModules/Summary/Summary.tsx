@@ -56,6 +56,7 @@ const Summary: InputModuleInterface = {
   name: { long: 'Summary', short: 'Summary' },
   faIcon: faList,
   enable: false,
+  status: 'inactive',
 };
 
 export default Summary;

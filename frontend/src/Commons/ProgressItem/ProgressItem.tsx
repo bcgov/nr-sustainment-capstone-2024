@@ -18,7 +18,6 @@ const ProgressItem = ({ InputModule }: ProgressProps) => {
     faIcon,
     status,
   } = InputModule;
-  console.log(status);
   return (
     <Container>
       <StyledItem

@@ -18,7 +18,7 @@ import { StyledMain, StyledMainContainer } from './MainPage.styles';
 // This is the skeleton for the Berries workflow
 // Uncomment sections as they are implemented to have them instantiated ;)
 const mockBerriesWorkflow: InputModuleInterface[] = [
-  { ...InputModules.FarmInformation, status: 'inactive' },
+  { ...InputModules.FarmInformation, status: 'active' },
   { ...InputModules.FieldsAndSoil, status: 'inactive' },
   { ...InputModules.Summary, status: 'inactive' },
 ];
@@ -64,16 +64,10 @@ const MainPage: React.FC = () => {
    */
   const handleFormState = (moduleID: string, nexModuleID?: string) => {
     const updatedStates = formStates.map((module: InputModuleInterface) => {
-      if (module.id === moduleID) {
+      if (module.id === moduleID || module.id === nexModuleID) {
         return {
           ...module,
           enable: !module.enable,
-          status: module.enable ? 'inactive' : 'active',
-        };
-      }
-      if (module.id === nexModuleID) {
-        return {
-          ...module,
           status: 'active',
         };
       }
@@ -92,6 +86,8 @@ const MainPage: React.FC = () => {
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
+    handleFormState(formStates[currForm].id, formStates[currForm + 1].id);
+    setCurrForm((prevForm) => prevForm + 1);
     setFormStates((prevStates) => prevStates.map((module, index) => {
       if (index === currForm) {
         return { ...module, status: 'completed' };
@@ -99,7 +95,6 @@ const MainPage: React.FC = () => {
       if (index === currForm + 1) {
         return { ...module, status: 'active' };
       }
-      setCurrForm((prevForm) => prevForm + 1);
       return module;
     }));
   };
