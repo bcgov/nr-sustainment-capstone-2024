@@ -89,12 +89,14 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
               options={options}
               width="50%"
             />
-            <Button
-              type="submit"
-              size="sm"
-              disabled={false}
-              text={ComponentText.NEXT}
-            />
+            <div id="btnContainer">
+              <Button
+                type="submit"
+                size="lg"
+                disabled={false}
+                text={ComponentText.NEXT}
+              />
+            </div>
           </StyledSelectContainer>
         </StyledFarmInfo>
       </Form>
