@@ -52,14 +52,14 @@ const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => (
               </span>
               <p>{field.Area}</p>
             </div>
-            {field.Comment ? (
+            {field.Comment && (
               <div>
                 <span className="label">
                   <p>Comments:&nbsp;</p>
                 </span>
                 <p>{field.Comment}</p>
               </div>
-            ) : null}
+            )}
           </div>
         ))}
       </div>
