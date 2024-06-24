@@ -79,7 +79,6 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   const addNewField = () => {
     setFieldAdd(true);
   };
-  // const clickWrapper = () => handleFormState('back');
   return (
     <>
       {isSubmitted && (
