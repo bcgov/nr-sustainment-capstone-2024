@@ -39,7 +39,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
       .min(1, 'Area should be higher than 1')
       .max(100, 'Area should be lower than 100')
       .required('Required'),
-    Comments: Yup.string().max(200, 'Comments should be lower than 200 chars'),
+    Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
   });
   /**
    *
@@ -55,7 +55,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
         Id: fieldIndex,
         FieldName: values.FieldName,
         Area: values.Area,
-        Comments: values.Comments,
+        Comment: values.Comment,
       });
       setInitialFieldValues(farmInfo.Fields[0]);
       setFieldsInfo(farmInfo);
@@ -117,8 +117,8 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
               </div>
               <StyledTextAreaContainer>
                 <CustomTextArea
-                  name="Comments"
-                  id="Comments"
+                  name="Comment"
+                  id="Comment"
                   label="Comments (optional)"
                   placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
                   width="70%"

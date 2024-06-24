@@ -31,7 +31,7 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
             <StyledCommentContainerDesktop>
               <StyledListItem width="90%">
                 <h2>Field Comments (optional)</h2>
-                <p key={fields.Comments}>{fields.Comments}</p>
+                <p key={fields.Comment}>{fields.Comment}</p>
               </StyledListItem>
             </StyledCommentContainerDesktop>
             <StyledFontAwesomeContainer>
@@ -42,7 +42,7 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
           <StyledCommentContainerMobile>
             <StyledListItem width="100%">
               <h2>Field Comments (optional)</h2>
-              <p key={fields.Comments}>{fields.Comments}</p>
+              <p key={fields.Comment}>{fields.Comment}</p>
             </StyledListItem>
           </StyledCommentContainerMobile>
           {fieldCount > 2 && <StyledDivider />}
