@@ -11,7 +11,10 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ formStates }) => (
   <Container>
     <StyledProgressBar>
       {formStates.map((progressItem) => (
-        <ProgressItem InputModule={progressItem} key={progressItem.id} />
+        <ProgressItem
+          InputModule={progressItem}
+          key={progressItem.id}
+        />
       ))}
     </StyledProgressBar>
     <StyledLineBlock />

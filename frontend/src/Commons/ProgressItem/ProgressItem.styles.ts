@@ -18,7 +18,11 @@ const Container = styled.div`
 `;
 const StyledItem = styled.div<ProgressProps>`
   border-radius: 50%;
-  background-color: ${(props) => (props.status === 'active' ? tokens.supportBorderColorWarning : props.status === 'completed' ? '#42814A' : '#fff')};
+  background-color: ${(props) => (props.status === 'active'
+    ? tokens.supportBorderColorWarning
+    : props.status === 'completed'
+      ? '#42814A'
+      : '#fff')};
   display: flex;
   justify-content: center;
   align-items: center;
