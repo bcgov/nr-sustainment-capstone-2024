@@ -13,8 +13,13 @@ import {
 type ButtonComponentProps = {
   addNewField: () => void;
   submitFarmInfo: () => void;
+  handleBackState: () => void;
 };
-const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({ addNewField, submitFarmInfo }) => (
+const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
+  addNewField,
+  submitFarmInfo,
+  handleBackState
+}) => (
   <StyledButtonGroupContainer>
     <StyledNewFieldButtonContainer>
       <StyledButtonContainer>
@@ -34,11 +39,12 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({ addNewField, su
     <StyledAddCancelButtonContainer>
       <StyledButtonContainer>
         <Button
-          type="reset"
+          type="button"
           size="sm"
           disabled={false}
           actions="secondary"
           text={ComponentText.BACK}
+          handleClick={handleBackState}
         />
       </StyledButtonContainer>
       <StyledButtonContainer>

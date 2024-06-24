@@ -22,7 +22,11 @@ import FieldsListComponent from './FieldsListComponent';
 import { StyledFarmInfo, StyledTextAreaContainer } from './FieldsAndSoil.style';
 import { StyledButtonGroupContainer } from './FieldsButtonComponent.styles';
 
-const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
+const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
+  farmDetails,
+  updateFarmDetails,
+  handleBackState,
+}) => {
   // Builds field info inside the field form module.
   const [, setFieldsInfo] = useState(farmDetails);
   const [fieldIndex, setFieldIndex] = useState(0);
@@ -72,7 +76,11 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
     const farmInfo: FarmDetailsInterface = { ...farmDetails };
     updateFarmDetails(farmInfo);
   };
-
+  const setFormPrev = () => {
+    if (handleBackState) {
+      handleBackState();
+    }
+  };
   const addNewField = () => {
     setFieldAdd(true);
   };
@@ -88,6 +96,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updat
             <FieldsButtonComponent
               addNewField={addNewField}
               submitFarmInfo={submitFarmInfo}
+              handleBackState={setFormPrev}
             />
           )}
         </>
