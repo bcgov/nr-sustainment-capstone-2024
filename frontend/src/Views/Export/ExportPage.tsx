@@ -13,8 +13,10 @@ import { StyledContent, StyledLandingContainer } from './ExportPage.styles.ts';
 
 const ExportPage: FC = () => {
   const downloadFile = () => {
-    localStorage.clear();
-    console.log('Downloading');
+    // localStorage.clear();
+    const nmpString = localStorage.getItem('farmDetails');
+    const nmpJSON = nmpString && JSON.parse(nmpString);
+    console.log(nmpJSON);
   };
 
   return (
@@ -28,7 +30,12 @@ const ExportPage: FC = () => {
         <p>Load a NMP file on the Homepage when you want to continue.</p>
 
         <p>
-          <Link to="/export">How to use this data file</Link>
+          <Link
+            to="/export"
+            target="_blank"
+          >
+            How to use this data file
+          </Link>
         </p>
         <Button
           size="md"

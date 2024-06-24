@@ -2,7 +2,7 @@
  * @desc Main Page of Better Berries App
  * @author @GDamaso
  */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
 import ProgressBar from '@Commons/ProgressBar/ProgressBar';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter';
@@ -23,14 +23,23 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
   InputModules.Summary,
 ];
 
-const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
+const getLocalDetails = () => {
   const nmpString = localStorage.getItem('farmDetails');
-  const nmpJSON = nmpString && JSON.parse(nmpString);
+  if (!nmpString) return null;
+  try {
+    return JSON.parse(nmpString);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
+  const localDetails = getLocalDetails();
   const updateFarmDetails = { ...farmDetails };
 
-  if (nmpJSON) {
-    const nmpFarmDetails = nmpJSON.farmDetails;
-    const fieldsJSON: FieldDetailInterface[] = nmpJSON.years[0].Fields;
+  if (localDetails) {
+    const nmpFarmDetails = localDetails.farmDetails;
+    const fieldsJSON: FieldDetailInterface[] = localDetails.years[0].Fields;
 
     updateFarmDetails.FarmName = nmpFarmDetails.FarmName;
     updateFarmDetails.Year = nmpFarmDetails.Year;
@@ -43,16 +52,41 @@ const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterfac
       const updateField: FieldDetailInterface = field;
       updateFarmDetails.Fields.push(updateField);
     });
-    updateFarmDetails.Fields = nmpJSON.years[0].Fields;
+    updateFarmDetails.Fields = localDetails.years[0].Fields;
   }
 
   return updateFarmDetails;
 };
 
 const MainPage: React.FC = () => {
+  const localStorageDetails = getLocalDetails();
   const [farmDetails, setFarmDetails] = useState(loadFarmDetails(initialFarmDetails));
+  const [localDetails, setLocalDetails] = useState(localStorageDetails);
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
+
+  const updateLocalDetails = (newDetails: FarmDetailsInterface) => {
+    console.log('Updating local details');
+    setLocalDetails((prevDetails) => {
+      if (prevDetails) {
+        return {
+          ...prevDetails,
+          farmDetails: {
+            ...prevDetails.farmDetails,
+            FarmName: newDetails.FarmName,
+          },
+        };
+      }
+      return prevDetails;
+    });
+    console.log(localDetails);
+  };
+
+  useEffect(() => {
+    if (localDetails) {
+      localStorage.setItem('farmDetails', JSON.stringify(localDetails));
+    }
+  }, [localDetails]);
 
   /**
    * @summary   Pass this handler to children who need to update InputModule states
@@ -85,6 +119,8 @@ const MainPage: React.FC = () => {
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
+    updateLocalDetails(newDetails);
+
     handleFormState(formStates[currForm].id, formStates[currForm + 1].id);
     setCurrForm((prevForm) => prevForm + 1);
   };
