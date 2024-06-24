@@ -40,7 +40,6 @@ const FormModule: FC<FormModuleProps> = ({
   farmDetails,
   updateFarmDetails,
   handleFormState,
-
 }) => {
   const { InputModuleComponent } = InputModule;
 
