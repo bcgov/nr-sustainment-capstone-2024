@@ -18,7 +18,7 @@ type ButtonComponentProps = {
 const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
   addNewField,
   submitFarmInfo,
-  handleBackState
+  handleBackState,
 }) => (
   <StyledButtonGroupContainer>
     <StyledNewFieldButtonContainer>
