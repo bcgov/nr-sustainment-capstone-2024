@@ -36,6 +36,8 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
     height: 100%;
     width: 100%;
     text-align: center;
+    max-height: ${(props) => (props.size === 'sm' ? '27px' : props.size === 'md' ? '25px' : '41.6px')};
+    max-width: ${(props) => (props.size === 'sm' ? '52px' : props.size === 'md' ? '200px' : '301.6px')};
   }
 `;
 
