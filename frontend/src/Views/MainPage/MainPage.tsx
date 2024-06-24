@@ -62,15 +62,31 @@ const MainPage: React.FC = () => {
    * @param     moduleID: string => An InputModule ID to be searched and updated
    * @param     nextModuleID: string => A second InputModule ID to be searched and updated
    */
-  const handleFormState = (moduleID: string, nexModuleID?: string, prevModuleID?: string) => {
+  const handleFormState = (formMovement?: string) => {
+    const moduleID = formStates[currForm].id;
+    let secondModuleID = null;
+    switch (formMovement) {
+      case 'back':
+        secondModuleID = formStates[currForm - 1].id;
+        setCurrForm((prevForm) => prevForm - 1);
+        break;
+      case 'forward':
+        secondModuleID = formStates[currForm + 1].id;
+        setCurrForm((prevForm) => prevForm + 1);
+        break;
+      default:
+        return;
+    }
+    // if (moveBack) {
+    //   secondModuleID = formStates[currForm - 1].id;
+    //   setCurrForm((prevForm) => prevForm - 1);
+    // }
+    // if (moveForward) {
+    //   secondModuleID = formStates[currForm + 1].id;
+    //   setCurrForm((prevForm) => prevForm + 1);
+    // }
     const updatedStates = formStates.map((module: InputModuleInterface) => {
-      if (module.id === moduleID || module.id === nexModuleID) {
-        return {
-          ...module,
-          enable: !module.enable,
-        };
-      }
-      if (module.id === prevModuleID) {
+      if (module.id === moduleID || module.id === secondModuleID) {
         return {
           ...module,
           enable: !module.enable,
@@ -91,19 +107,12 @@ const MainPage: React.FC = () => {
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
-    handleFormState(formStates[currForm].id, formStates[currForm + 1].id);
-    setCurrForm((prevForm) => prevForm + 1);
+    handleFormState('forward');
   };
-  const handleBackState = () => {
-    handleFormState(formStates[currForm].id, formStates[currForm - 1].id);
-    setCurrForm((prevForm: number): number => {
-      if (prevForm > 0) {
-        return prevForm - 1;
-      }
-      return prevForm;
-    });
-  };
-
+  // const handleBackState = () => {
+  //   handleFormState(formStates[currForm].id, true);
+  //   setCurrForm((prevForm: number): number => prevForm - 1);
+  // };
   return (
     <StyledMain>
       <MainPageHeader />
@@ -117,7 +126,6 @@ const MainPage: React.FC = () => {
                 farmDetails={farmDetails}
                 updateFarmDetails={updateFarmDetails}
                 handleFormState={handleFormState}
-                handleBackState={handleBackState}
                 key={InputModule.id}
               />
             );

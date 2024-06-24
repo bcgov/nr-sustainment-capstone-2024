@@ -18,7 +18,7 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
   return (
     <StyledFieldInfoList>
       {farmDetails.Fields.slice(1).map((fields: FieldDetailInterface) => (
-        <div key={fields.Id}>
+        <div key={fields.FieldName + fields.Area + fields.Comment}>
           <StyledListContainer>
             <StyledListItem width="30%">
               <h2>Field Name</h2>
