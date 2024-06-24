@@ -1,11 +1,7 @@
 /**
- *
- * THIS IS A SKELETON!
- * THIS IS STILL TO BE IMPLEMENTED!
- *
  * @desc Styling with BC Design Tokens and Emotion for
- *       Farm Information Input Module
- * @author @GDamaso
+ *       Field and Soil Input Module
+ * @author @Kcaparas
  */
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
@@ -44,28 +40,4 @@ const StyledTextAreaContainer = styled.div`
   }
 `;
 
-const StyledButtonGroupContainer = styled.div`
-  margin-top: -10px;
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-`;
-
-const StyledListContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-`;
-const StyledListItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-export {
-  StyledFarmInfo,
-  StyledTextAreaContainer,
-  StyledButtonGroupContainer,
-  StyledListContainer,
-  StyledListItem,
-};
+export { StyledFarmInfo, StyledTextAreaContainer };

@@ -17,117 +17,133 @@ import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
-import {
-  StyledFarmInfo,
-  StyledTextAreaContainer,
-  StyledButtonGroupContainer,
-  StyledListContainer,
-  StyledListItem,
-} from './FieldsAndSoil.style';
-
-const initialFieldValues = initialFarmDetails.Fields[0];
+import FieldsButtonComponent from './FieldsButtonComponent';
+import FieldsListComponent from './FieldsListComponent';
+import { StyledFarmInfo, StyledTextAreaContainer } from './FieldsAndSoil.style';
+import { StyledButtonGroupContainer } from './FieldsButtonComponent.styles';
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
-  const [fieldsInfo, setFieldsInfo] = useState(farmDetails);
-
+  // Builds field info inside the field form module.
+  const [, setFieldsInfo] = useState(farmDetails);
+  const [fieldIndex, setFieldIndex] = useState(0);
+  const [initialFieldValues, setInitialFieldValues] = useState(
+    initialFarmDetails.Fields[fieldIndex],
+  );
+  // Only triggered once, it would show list and persists.
+  const [isSubmitted, setSubmitted] = useState<boolean>(false);
+  // Would trigger when new field button is clicked.
+  const [isFieldAdded, setFieldAdd] = useState<boolean>(false);
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
-    Area: Yup.number().min(1).max(100).required('Required'),
-    Comments: Yup.string().max(200),
+    Area: Yup.number()
+      .min(1, 'Area should be higher than 1')
+      .max(100, 'Area should be lower than 100')
+      .required('Required'),
+    Comments: Yup.string().max(200, 'Comments should be lower than 200 chars'),
   });
-
-  const onSubmit = (
-    values: FieldDetailInterface,
-    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
-  ): void => {
+  /**
+   *
+   * @param values : It's of type FieldDetailInterface, it calls, FieldName, Area, and Comments
+   * @desc         User data is inputted and then pushed into FarmDetailsInterface,
+   *               initial values for formik is then set to empty values, state hooks gets triggered
+   * @author       @Kcaparas
+   */
+  const addFieldData = (values: FieldDetailInterface): void => {
     setTimeout(() => {
-      const newFarmDetails: FarmDetailsInterface = { ...farmDetails };
-      const newField: FieldDetailInterface = initialFieldValues;
-      newField.FieldName = values.FieldName;
-      newField.Area = values.Area;
-      newField.Comment = values.Comment;
-      newFarmDetails.Fields.push(newField);
-      updateFarmDetails(newFarmDetails);
-      setSubmitting(false);
+      const farmInfo: FarmDetailsInterface = { ...farmDetails };
+      farmInfo.Fields.push({
+        Id: fieldIndex,
+        FieldName: values.FieldName,
+        Area: values.Area,
+        Comments: values.Comments,
+      });
+      setInitialFieldValues(farmInfo.Fields[0]);
+      setFieldsInfo(farmInfo);
+      setFieldIndex((prevIndex) => prevIndex + 1);
+      setSubmitted(true);
+      setFieldAdd(false);
     }, 400);
   };
-
-  const addFarmInfo = (values: FieldDetailInterface) => {
-    const newFarmDetails: FarmDetailsInterface = { ...farmDetails };
-    const newField: FieldDetailInterface = initialFieldValues;
-    newField.FieldName = values.FieldName;
-    newField.Area = values.Area;
-    newField.Comment = values.Comment;
-    newFarmDetails.Fields.push(newField);
-    setFieldsInfo(newFarmDetails);
+  /**
+   * @desc    updateFarmDetails goes into the new form. Refer to MainPage.tsx
+   * @author  @Kcaparas
+   */
+  const submitFarmInfo = () => {
+    const farmInfo: FarmDetailsInterface = { ...farmDetails };
+    updateFarmDetails(farmInfo);
   };
 
+  const addNewField = () => {
+    setFieldAdd(true);
+  };
   return (
-    <Formik
-      initialValues={initialFieldValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      {({ values }) => (
-        <Form>
-          <StyledFarmInfo>
-            <div id="inputContainer">
-              <CustomField
-                label="Field name"
-                id="FieldName"
-                name="FieldName"
-                type="text"
-              />
-              <CustomField
-                label="Area"
-                id="Area"
-                name="Area"
-                type="number"
-                width="20%"
-              />
-            </div>
-            <StyledTextAreaContainer>
-              <CustomTextArea
-                name="Comments"
-                id="Comments"
-                label="Comments (optional)"
-                placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
-                width="50%"
-              />
-              <StyledButtonGroupContainer>
-                <Button
-                  type="reset"
-                  size="sm"
-                  disabled={false}
-                  text={ComponentText.CANCEL}
-                />
-                <Button
-                  type="button"
-                  size="sm"
-                  disabled={false}
-                  text={ComponentText.ADD}
-                  handleClick={() => addFarmInfo(values)}
-                />
-              </StyledButtonGroupContainer>
-            </StyledTextAreaContainer>
-            <StyledListContainer>
-              <StyledListItem>
-                <h4>Field Name</h4>
-                <p>{fieldsInfo.Fields[0].FieldName}</p>
-              </StyledListItem>
-              <StyledListItem>
-                <h4>Area</h4>
-                <p>{fieldsInfo.Fields[0].Area}</p>
-              </StyledListItem>
-              <StyledListItem>
-                <h4>Comments</h4>
-                <p>{fieldsInfo.Fields[0].Comment}</p>
-              </StyledListItem>
-            </StyledListContainer>
-          </StyledFarmInfo>
-        </Form>
+    <>
+      {isSubmitted && (
+        <>
+          <FieldsListComponent
+            farmDetails={farmDetails}
+            updateFarmDetails={updateFarmDetails}
+          />
+          {!isFieldAdded && (
+            <FieldsButtonComponent
+              addNewField={addNewField}
+              submitFarmInfo={submitFarmInfo}
+            />
+          )}
+        </>
       )}
-    </Formik>
+      {(isFieldAdded || !isSubmitted) && (
+        <Formik
+          initialValues={initialFieldValues}
+          validationSchema={validationSchema}
+          onSubmit={addFieldData}
+        >
+          <Form>
+            <StyledFarmInfo>
+              <div id="inputContainer">
+                <CustomField
+                  label="Field name"
+                  id="FieldName"
+                  name="FieldName"
+                  type="text"
+                />
+                <CustomField
+                  label="Area"
+                  id="Area"
+                  name="Area"
+                  type="number"
+                  width="50%"
+                />
+              </div>
+              <StyledTextAreaContainer>
+                <CustomTextArea
+                  name="Comments"
+                  id="Comments"
+                  label="Comments (optional)"
+                  placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
+                  width="70%"
+                />
+                <StyledButtonGroupContainer>
+                  <Button
+                    type="reset"
+                    size="sm"
+                    disabled={false}
+                    actions="secondary"
+                    text={ComponentText.CANCEL}
+                  />
+                  <Button
+                    type="submit"
+                    size="sm"
+                    disabled={false}
+                    text={ComponentText.ADD}
+                  />
+                </StyledButtonGroupContainer>
+              </StyledTextAreaContainer>
+            </StyledFarmInfo>
+          </Form>
+        </Formik>
+      )}
+    </>
   );
 };
 
