@@ -5,7 +5,7 @@ on:
     inputs:
       target:
         description: Deployment target; usually PR number, test or prod
-        required: false
+        value: ${{ github.event.number }}
         type: string
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
           file: database/openshift.deploy.yml
           overwrite: false
           parameters:
-            -p TAG=${{ github.event.number }}
+            -p TAG=${{ inputs.target }}
 
   backend:
     name: Backend
@@ -37,7 +37,7 @@ jobs:
           file: backend/openshift.deploy.yml
           overwrite: true
           parameters:
-            -p TAG=${{ github.event.number }}
+            -p TAG=${{ inputs.target }}
           verification_path: /api/health
           verification_retry_attempts: "5"
           verification_retry_seconds: "15"
@@ -55,4 +55,4 @@ jobs:
           file: frontend/openshift.deploy.yml
           overwrite: trues
           parameters:
-            -p TAG=${{ github.event.number }}
+            -p TAG=${{ inputs.target }}
