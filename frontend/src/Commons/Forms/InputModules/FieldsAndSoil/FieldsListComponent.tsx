@@ -18,7 +18,7 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
   return (
     <StyledFieldInfoList>
       {farmDetails.Fields.slice(1).map((fields: FieldDetailInterface) => (
-        <div key={fields.FieldName + fields.Area + fields.Comments}>
+        <div key={fields.FieldName + fields.Area + fields.Comment}>
           <StyledListContainer>
             <StyledListItem width="30%">
               <h2>Field Name</h2>
@@ -31,7 +31,7 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
             <StyledCommentContainerDesktop>
               <StyledListItem width="90%">
                 <h2>Field Comments (optional)</h2>
-                <p key={fields.Comments}>{fields.Comments}</p>
+                <p key={fields.Comment}>{fields.Comment}</p>
               </StyledListItem>
             </StyledCommentContainerDesktop>
             <StyledFontAwesomeContainer>
@@ -42,7 +42,7 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
           <StyledCommentContainerMobile>
             <StyledListItem width="100%">
               <h2>Field Comments (optional)</h2>
-              <p key={fields.Comments}>{fields.Comments}</p>
+              <p key={fields.Comment}>{fields.Comment}</p>
             </StyledListItem>
           </StyledCommentContainerMobile>
           {fieldCount > 2 && <StyledDivider />}
