@@ -7,6 +7,11 @@ on:
         description: GitHub environment; usually PR (omit), TEST or PROD
         required: false
         type: string
+      tag: 
+        description: Container tag; usually PR number or latest
+        required: false
+        type: string
+        value: ${{ github.event.number }}
       target:
         description: Deployment target; usually PR number, test or prod
         required: false
@@ -28,7 +33,7 @@ jobs:
           file: database/openshift.deploy.yml
           overwrite: false
           parameters:
-            -p TAG=${{ inputs.target }}
+            -p TAG=${{ inputs.tag }} -p TARGET=${{ inputs.target }}
 
   backend:
     name: Backend
@@ -44,7 +49,7 @@ jobs:
           file: backend/openshift.deploy.yml
           overwrite: true
           parameters:
-            -p TAG=${{ inputs.target }}
+            -p TAG=${{ inputs.tag }} -p TARGET=${{ inputs.target }}
           verification_path: /api/health
           verification_retry_attempts: "5"
           verification_retry_seconds: "15"
@@ -63,4 +68,4 @@ jobs:
           file: frontend/openshift.deploy.yml
           overwrite: trues
           parameters:
-            -p TAG=${{ inputs.target }}
+            -p TAG=${{ inputs.tag }} -p TARGET=${{ inputs.target }}
