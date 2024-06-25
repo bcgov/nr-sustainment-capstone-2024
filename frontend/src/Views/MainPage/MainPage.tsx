@@ -115,7 +115,6 @@ const MainPage: React.FC = () => {
         break;
     }
   };
-  
 
   /**
    * @summary   Handler for updating the Main Data of the Calculator.
@@ -129,7 +128,6 @@ const MainPage: React.FC = () => {
     setFarmDetails(newDetails);
     handleFormState('forward');
   };
-
 
   return (
     <StyledMain>

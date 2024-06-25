@@ -22,10 +22,13 @@ const StyledItem = styled.div<ProgressProps>`
     ? tokens.supportBorderColorWarning
     : props.status === 'completed'
       ? tokens.iconsColorSuccess
-      : props.status === 'needattention' ? tokens.iconsColorDanger : tokens.iconsColorPrimaryInvert)};
+      : props.status === 'needattention'
+        ? tokens.iconsColorDanger
+        : tokens.iconsColorPrimaryInvert)};
   color: ${(props) => (props.status === 'active'
     ? tokens.iconsColorInfo
-    : props.status === 'completed' || props.status === 'needattention' ? tokens.iconsColorPrimaryInvert
+    : props.status === 'completed' || props.status === 'needattention'
+      ? tokens.iconsColorPrimaryInvert
       : tokens.iconsColorPrimary)};
   display: flex;
   justify-content: center;
