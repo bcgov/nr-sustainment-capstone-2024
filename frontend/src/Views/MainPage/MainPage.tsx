@@ -54,6 +54,30 @@ const MainPage: React.FC = () => {
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
 
+  const updateFormStates = (
+    moduleID: string,
+    secondModuleID: string,
+    moduleStatus: string,
+    secondModuleStatus: string,
+  ) => {
+    setFormStates((formState) => formState.map((module: InputModuleInterface) => {
+      if (module.id === moduleID) {
+        return {
+          ...module,
+          enable: !module.enable,
+          status: moduleStatus,
+        };
+      }
+      if (module.id === secondModuleID) {
+        return {
+          ...module,
+          enable: !module.enable,
+          status: secondModuleStatus,
+        };
+      }
+      return module;
+    }));
+  };
   /**
    * @summary   Pass this handler to children who need to update InputModule states
    * @desc      A State handler that will update the current form section states,
@@ -63,59 +87,31 @@ const MainPage: React.FC = () => {
    */
   const handleFormState = (formMovement?: string) => {
     const moduleID = formStates[currForm].id;
-    let secondModuleID = formStates[currForm].id;
+    let secondModuleID = moduleID;
+    let moduleStatus = '';
+    let secondModuleStatus = '';
     switch (formMovement) {
       case 'back':
         if (currForm > 0) {
           secondModuleID = formStates[currForm - 1].id;
           setCurrForm((prevForm) => prevForm - 1);
-          setFormStates((formState) => formState.map((module: InputModuleInterface) => {
-            if (module.id === moduleID) {
-              return {
-                ...module,
-                enable: !module.enable,
-                status: 'warning',
-              };
-            }
-            if (module.id === secondModuleID) {
-              return {
-                ...module,
-                enable: !module.enable,
-                status: 'completed',
-              };
-            }
-            return module;
-          }));
+          moduleStatus = 'warning';
+          secondModuleStatus = 'completed';
         }
         break;
       case 'forward':
         if (currForm < formStates.length - 1) {
           secondModuleID = formStates[currForm + 1].id;
           setCurrForm((prevForm) => prevForm + 1);
-          setFormStates((formState) => formState.map((module: InputModuleInterface) => {
-            if (module.id === moduleID) {
-              return {
-                ...module,
-                enable: !module.enable,
-                status: 'completed',
-              };
-            }
-            if (module.id === secondModuleID) {
-              return {
-                ...module,
-                enable: !module.enable,
-                status: 'active',
-              };
-            }
-            return module;
-          }));
+          moduleStatus = 'completed';
+          secondModuleStatus = 'active';
         }
         break;
       default:
-        break;
+        return;
     }
+    updateFormStates(moduleID, secondModuleID, moduleStatus, secondModuleStatus);
   };
-
   /**
    * @summary   Handler for updating the Main Data of the Calculator.
    * @desc      This updates the Main Data objet being built, 'farmDetails'.
