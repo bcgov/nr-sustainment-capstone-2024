@@ -22,12 +22,12 @@ const StyledItem = styled.div<ProgressProps>`
     ? tokens.supportBorderColorWarning
     : props.status === 'completed'
       ? tokens.iconsColorSuccess
-      : props.status === 'needattention'
+      : props.status === 'warning'
         ? tokens.iconsColorDanger
         : tokens.iconsColorPrimaryInvert)};
   color: ${(props) => (props.status === 'active'
     ? tokens.iconsColorInfo
-    : props.status === 'completed' || props.status === 'needattention'
+    : props.status === 'completed' || props.status === 'warning'
       ? tokens.iconsColorPrimaryInvert
       : tokens.iconsColorPrimary)};
   display: flex;

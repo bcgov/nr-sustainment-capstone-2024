@@ -74,7 +74,7 @@ const MainPage: React.FC = () => {
               return {
                 ...module,
                 enable: !module.enable,
-                status: 'needattention',
+                status: 'warning',
               };
             }
             if (module.id === secondModuleID) {
