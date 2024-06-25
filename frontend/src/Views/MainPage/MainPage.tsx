@@ -12,8 +12,8 @@ import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import * as InputModules from '@Commons/Forms/InputModules/index';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
-import nmpInterface from 'src/Interface/nmpInterface';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
+import nmpInterface from 'src/Interface/nmpInterface';
 
 // The sequence of sections to show up on the main page
 // This is the skeleton for the Berries workflow
@@ -67,7 +67,6 @@ const MainPage: React.FC = () => {
   const [currForm, setCurrForm] = useState(0);
 
   const updateLocalDetails = (newDetails: FarmDetailsInterface) => {
-    console.log('Updating local details');
     setLocalDetails((prevDetails: nmpInterface) => {
       if (prevDetails) {
         return {
@@ -77,11 +76,11 @@ const MainPage: React.FC = () => {
             FarmName: newDetails.FarmName,
             Year: newDetails.Year,
           },
+          years: [{ ...prevDetails.years[0], Year: newDetails.Year }],
         };
       }
       return prevDetails;
     });
-    console.log(localDetails);
   };
 
   useEffect(() => {
