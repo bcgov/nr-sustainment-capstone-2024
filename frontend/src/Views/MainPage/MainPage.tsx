@@ -74,6 +74,7 @@ const MainPage: React.FC = () => {
           farmDetails: {
             ...prevDetails.farmDetails,
             FarmName: newDetails.FarmName,
+            Year: newDetails.Year,
           },
         };
       }
