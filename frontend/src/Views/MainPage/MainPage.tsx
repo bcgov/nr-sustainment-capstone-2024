@@ -12,6 +12,7 @@ import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import * as InputModules from '@Commons/Forms/InputModules/index';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
+import nmpInterface from 'src/Interface/nmpInterface';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 // The sequence of sections to show up on the main page
@@ -67,7 +68,7 @@ const MainPage: React.FC = () => {
 
   const updateLocalDetails = (newDetails: FarmDetailsInterface) => {
     console.log('Updating local details');
-    setLocalDetails((prevDetails) => {
+    setLocalDetails((prevDetails: nmpInterface) => {
       if (prevDetails) {
         return {
           ...prevDetails,
