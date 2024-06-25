@@ -60,7 +60,7 @@ const MainPage: React.FC = () => {
    * @param     moduleID: string => current module id
    * @param     secondModuleID: string => previous or next module id depending on the formMovement
    * @param     moduleStatus: string => current module status
-   * @param     secondModuleStatus: string => previous or next module status depending on the 
+   * @param     secondModuleStatus: string => previous or next module status depending on the
    *            formMovement
    */
   const updateFormStates = (
