@@ -53,7 +53,16 @@ const MainPage: React.FC = () => {
   const [farmDetails, setFarmDetails] = useState(loadFarmDetails(initialFarmDetails));
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
-
+  /**
+   * @summary   Pass this handler into handleFormStates
+   * @desc      a State handler helper that passes moduleID, secondModuleID, moduleStatus,
+   *            and secondModuleStatus, to reduce code duplication.
+   * @param     moduleID: string => current module id
+   * @param     secondModuleID: string => previous or next module id depending on the formMovement
+   * @param     moduleStatus: string => current module status
+   * @param     secondModuleStatus: string => previous or next module status depending on the 
+   *            formMovement
+   */
   const updateFormStates = (
     moduleID: string,
     secondModuleID: string,
