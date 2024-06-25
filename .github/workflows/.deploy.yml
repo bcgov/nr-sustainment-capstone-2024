@@ -9,14 +9,14 @@ on:
         type: string
       tag: 
         description: Image tag; e.g. PR number or latest
+        default: ${{ github.event.number }}
         required: false
         type: string
-        value: ${{ github.event.number }}
       target:
         description: Deployment target; e.g. PR number (omit), test or prod
+        default: ${{ github.event.number }}
         required: false
         type: string
-        value: ${{ github.event.number }}
 
 jobs:
   database:
