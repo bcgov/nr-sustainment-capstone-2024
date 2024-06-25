@@ -3,14 +3,20 @@ name: .Deploys
 on:
   workflow_call:
     inputs:
+      environment:
+        description: GitHub environment; usually PR (omit), TEST or PROD
+        required: false
+        type: string
       target:
         description: Deployment target; usually PR number, test or prod
-        value: ${{ github.event.number }}
+        required: false
         type: string
+        value: ${{ github.event.number }}
 
 jobs:
   database:
     name: Database
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-22.04
     steps:
       - name: Deploy Database
@@ -26,6 +32,7 @@ jobs:
 
   backend:
     name: Backend
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-22.04
     steps:
       - name: Deploy Backend
@@ -44,6 +51,7 @@ jobs:
 
   frontend:
     name: Frontend
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-22.04
     steps:
       - name: Deploy Frontend
