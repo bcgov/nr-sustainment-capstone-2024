@@ -4,16 +4,16 @@ on:
   workflow_call:
     inputs:
       environment:
-        description: GitHub environment; usually PR (omit), TEST or PROD
+        description: GitHub environment; e.g. PR (omit), TEST or PROD
         required: false
         type: string
       tag: 
-        description: Container tag; usually PR number or latest
+        description: Image tag; e.g. PR number or latest
         required: false
         type: string
         value: ${{ github.event.number }}
       target:
-        description: Deployment target; usually PR number, test or prod
+        description: Deployment target; e.g. PR number, test or prod
         required: false
         type: string
         value: ${{ github.event.number }}

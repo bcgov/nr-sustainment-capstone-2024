@@ -11,15 +11,18 @@ parameters:
     description: Organization name; e.g. bcgov or bcdevops
     value: bcgov
   - name: TAG
-    description: Image
+    description: Image tag; e.g. PR number or latest
+    required: true
+  - name: TARGET
+    description: Deployment target; e.g. PR number, test or prod
     required: true
 objects:
   - kind: Service
     apiVersion: v1
     metadata:
       labels:
-        app: ${APP}-${TAG}
-      name: ${APP}-${TAG}-${COMPONENT}
+        app: ${APP}-${TARGET}
+      name: ${APP}-${TARGET}-${COMPONENT}
     spec:
       type: ClusterIP
       ports:
@@ -28,30 +31,30 @@ objects:
           protocol: TCP
           name: http-5173
       selector:
-        service: ${APP}-${TAG}-${COMPONENT}
+        service: ${APP}-${TARGET}-${COMPONENT}
   - kind: Deployment
     apiVersion: apps/v1
     metadata:
       labels:
-        app: ${APP}-${TAG}
-        deployment: ${APP}-${TAG}-${COMPONENT}
-      name: ${APP}-${TAG}-${COMPONENT}
+        app: ${APP}-${TARGET}
+        deployment: ${APP}-${TARGET}-${COMPONENT}
+      name: ${APP}-${TARGET}-${COMPONENT}
     spec:
       strategy:
         type: RollingUpdate
       selector:
         matchLabels:
-          deployment: ${APP}-${TAG}-${COMPONENT}
+          deployment: ${APP}-${TARGET}-${COMPONENT}
       template:
         metadata:
           labels:
-            app: ${APP}-${TAG}
-            deployment: ${APP}-${TAG}-${COMPONENT}
-            service: ${APP}-${TAG}-${COMPONENT}
+            app: ${APP}-${TARGET}
+            deployment: ${APP}-${TARGET}-${COMPONENT}
+            service: ${APP}-${TARGET}-${COMPONENT}
         spec:
           containers:
-            - name: ${APP}-${TAG}-${COMPONENT}
-              image: 'ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}'
+            - name: ${APP}-${TARGET}-${COMPONENT}
+              image: ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}
               securityContext:
                 runAsUser: 1011540000
               imagePullPolicy: Always
@@ -59,7 +62,7 @@ objects:
                 - name: LOG_LEVEL
                   value: info
                 - name: VITE_BACKEND_URL
-                  value: http://${APP}-${TAG}-backend/api
+                  value: http://${APP}-${TARGET}-backend/api
               ports:
                 - name: http
                   containerPort: 5173
@@ -95,15 +98,15 @@ objects:
     apiVersion: route.openshift.io/v1
     metadata:
       labels:
-        app: ${APP}-${TAG}
-      name: ${APP}-${TAG}-${COMPONENT}
+        app: ${APP}-${TARGET}
+      name: ${APP}-${TARGET}-${COMPONENT}
     spec:
-      host: ${APP}-${TAG}-${COMPONENT}.apps.silver.devops.gov.bc.ca
+      host: ${APP}-${TARGET}-${COMPONENT}.apps.silver.devops.gov.bc.ca
       port:
         targetPort: http-5173
       to:
         kind: Service
-        name: ${APP}-${TAG}-${COMPONENT}
+        name: ${APP}-${TARGET}-${COMPONENT}
         weight: 100
       tls:
         termination: edge
