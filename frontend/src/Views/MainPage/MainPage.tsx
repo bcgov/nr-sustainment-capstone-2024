@@ -25,12 +25,12 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
 
 const getLocalDetails = () => {
   const nmpString = localStorage.getItem('farmDetails');
-  if (!nmpString) return null;
   try {
-    return JSON.parse(nmpString);
+    if (nmpString) return JSON.parse(nmpString);
   } catch (err) {
     console.error(err);
   }
+  return null;
 };
 
 const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
