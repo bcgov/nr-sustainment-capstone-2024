@@ -16,8 +16,6 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       packages: write
-    outputs:
-      digest: ${{ steps.builds.outputs.digest }}
     strategy:
       matrix:
         package: [backend, database, frontend]
