@@ -1,6 +1,6 @@
 /**
  * @desc Main Page of Better Berries App
- * @author @GDamaso
+ * @author @GDamaso @Kcaparas
  */
 import React, { useState } from 'react';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
@@ -59,28 +59,63 @@ const MainPage: React.FC = () => {
    * @desc      A State handler that will update the current form section states,
    *            allowing you to expand/collapse form sections.
    *            ** In the future, also update the ProgressBar status **
-   * @param     moduleID: string => An InputModule ID to be searched and updated
-   * @param     nextModuleID: string => A second InputModule ID to be searched and updated
+   * @param formMovement: string => A movement that indicates if you go back or forward
    */
-  const handleFormState = (moduleID: string, nexModuleID?: string, prevModuleID?: string) => {
-    const updatedStates = formStates.map((module: InputModuleInterface) => {
-      if (module.id === moduleID || module.id === nexModuleID) {
-        return {
-          ...module,
-          enable: !module.enable,
-        };
-      }
-      if (module.id === prevModuleID) {
-        return {
-          ...module,
-          enable: !module.enable,
-        };
-      }
-      return module;
-    });
-    console.log(updatedStates);
-    setFormStates(updatedStates);
+  const handleFormState = (formMovement?: string) => {
+    const moduleID = formStates[currForm].id;
+    let secondModuleID = formStates[currForm].id;
+    switch (formMovement) {
+      case 'back':
+        if (currForm > 0) {
+          secondModuleID = formStates[currForm - 1].id;
+          setCurrForm((prevForm) => prevForm - 1);
+          setFormStates((formState) => formState.map((module: InputModuleInterface) => {
+            if (module.id === moduleID) {
+              return {
+                ...module,
+                enable: !module.enable,
+                status: 'needattention',
+              };
+            }
+            if (module.id === secondModuleID) {
+              return {
+                ...module,
+                enable: !module.enable,
+                status: 'completed',
+              };
+            }
+            return module;
+          }));
+        }
+        break;
+      case 'forward':
+        if (currForm < formStates.length - 1) {
+          secondModuleID = formStates[currForm + 1].id;
+          setCurrForm((prevForm) => prevForm + 1);
+          setFormStates((formState) => formState.map((module: InputModuleInterface) => {
+            if (module.id === moduleID) {
+              return {
+                ...module,
+                enable: !module.enable,
+                status: 'completed',
+              };
+            }
+            if (module.id === secondModuleID) {
+              return {
+                ...module,
+                enable: !module.enable,
+                status: 'active',
+              };
+            }
+            return module;
+          }));
+        }
+        break;
+      default:
+        break;
+    }
   };
+  
 
   /**
    * @summary   Handler for updating the Main Data of the Calculator.
@@ -92,43 +127,9 @@ const MainPage: React.FC = () => {
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
-    handleFormState(
-      formStates[currForm].id,
-      formStates[currForm + 1].id,
-    );
-    setCurrForm((prevForm) => prevForm + 1);
-    setFormStates((prevStates) => prevStates.map((module, index) => {
-      if (index === currForm) {
-        return { ...module, status: 'completed' };
-      }
-      if (index === currForm + 1) {
-        return { ...module, status: 'active' };
-      }
-      return module;
-    }));
+    handleFormState('forward');
   };
 
-  const handleBackState = () => {
-    handleFormState(
-      formStates[currForm].id,
-      formStates[currForm - 1].id,
-    );
-    setCurrForm((prevForm: number): number => {
-      if (prevForm > 0) {
-        return prevForm - 1;
-      }
-      return prevForm;
-    });
-    setFormStates((prevStates) => prevStates.map((module, index) => {
-      if (index === currForm) {
-        return { ...module, status: 'needattention' };
-      }
-      if (index === currForm - 1) {
-        return { ...module, status: 'completed' };
-      }
-      return module;
-    }));
-  };
 
   return (
     <StyledMain>
@@ -143,7 +144,6 @@ const MainPage: React.FC = () => {
                 farmDetails={farmDetails}
                 updateFarmDetails={updateFarmDetails}
                 handleFormState={handleFormState}
-                handleBackState={handleBackState}
                 key={InputModule.id}
               />
             );
