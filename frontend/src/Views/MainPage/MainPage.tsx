@@ -62,17 +62,23 @@ const MainPage: React.FC = () => {
    * @param     moduleID: string => An InputModule ID to be searched and updated
    * @param     nextModuleID: string => A second InputModule ID to be searched and updated
    */
-  const handleFormState = (moduleID: string, nexModuleID?: string) => {
+  const handleFormState = (moduleID: string, nexModuleID?: string, prevModuleID?: string) => {
     const updatedStates = formStates.map((module: InputModuleInterface) => {
       if (module.id === moduleID || module.id === nexModuleID) {
         return {
           ...module,
           enable: !module.enable,
-          status: 'active',
+        };
+      }
+      if (module.id === prevModuleID) {
+        return {
+          ...module,
+          enable: !module.enable,
         };
       }
       return module;
     });
+    console.log(updatedStates);
     setFormStates(updatedStates);
   };
 
@@ -86,7 +92,10 @@ const MainPage: React.FC = () => {
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
-    handleFormState(formStates[currForm].id, formStates[currForm + 1].id);
+    handleFormState(
+      formStates[currForm].id,
+      formStates[currForm + 1].id,
+    );
     setCurrForm((prevForm) => prevForm + 1);
     setFormStates((prevStates) => prevStates.map((module, index) => {
       if (index === currForm) {
@@ -94,6 +103,28 @@ const MainPage: React.FC = () => {
       }
       if (index === currForm + 1) {
         return { ...module, status: 'active' };
+      }
+      return module;
+    }));
+  };
+
+  const handleBackState = () => {
+    handleFormState(
+      formStates[currForm].id,
+      formStates[currForm - 1].id,
+    );
+    setCurrForm((prevForm: number): number => {
+      if (prevForm > 0) {
+        return prevForm - 1;
+      }
+      return prevForm;
+    });
+    setFormStates((prevStates) => prevStates.map((module, index) => {
+      if (index === currForm) {
+        return { ...module, status: 'needattention' };
+      }
+      if (index === currForm - 1) {
+        return { ...module, status: 'completed' };
       }
       return module;
     }));
@@ -112,6 +143,7 @@ const MainPage: React.FC = () => {
                 farmDetails={farmDetails}
                 updateFarmDetails={updateFarmDetails}
                 handleFormState={handleFormState}
+                handleBackState={handleBackState}
                 key={InputModule.id}
               />
             );

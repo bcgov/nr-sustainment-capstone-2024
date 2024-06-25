@@ -21,8 +21,12 @@ const StyledItem = styled.div<ProgressProps>`
   background-color: ${(props) => (props.status === 'active'
     ? tokens.supportBorderColorWarning
     : props.status === 'completed'
-      ? '#42814A'
-      : '#fff')};
+      ? tokens.iconsColorSuccess
+      : props.status === 'needattention' ? tokens.iconsColorDanger : tokens.iconsColorPrimaryInvert)};
+  color: ${(props) => (props.status === 'active'
+    ? tokens.iconsColorInfo
+    : props.status === 'completed' || props.status === 'needattention' ? tokens.iconsColorPrimaryInvert
+      : tokens.iconsColorPrimary)};
   display: flex;
   justify-content: center;
   align-items: center;
