@@ -12,7 +12,6 @@ import {
 } from './FieldsButtonComponent.styles';
 
 type ButtonComponentProps = {
-  inputModule: InputModuleInterface;
   addNewField: () => void;
   submitFarmInfo: () => void;
   handleFormState(cmd?: string): void;
@@ -21,10 +20,9 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
   addNewField,
   submitFarmInfo,
   handleFormState,
-  inputModule,
 }) => {
   const clickWrapper = () => {
-    handleFormState(inputModule.id, 'back');
+    handleFormState('back');
   };
   return (
     <StyledButtonGroupContainer>

@@ -132,7 +132,7 @@ const MainPage: React.FC = () => {
    */
   const handleFormState = (cmd?: string) => {
     let moduleID = formStates[currForm].id;
-    let secondModuleID = formStates[currForm].id;
+    let secondModuleID = null;
     let moduleStatus = '';
     let secondModuleStatus = '';
     switch (cmd) {
@@ -141,7 +141,7 @@ const MainPage: React.FC = () => {
           secondModuleID = formStates[currForm - 1].id;
           setCurrForm((prevForm) => prevForm - 1);
           moduleStatus = 'warning';
-          secondModuleStatus = 'completed';
+          secondModuleStatus = 'active';
         }
         break;
       case 'forward':
@@ -153,7 +153,6 @@ const MainPage: React.FC = () => {
         }
         break;
       default:
-        console.log('default');
         if (cmd && Object.keys(InputModules).includes(cmd)) {
           moduleID = cmd;
         }
