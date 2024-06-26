@@ -15,7 +15,7 @@ type ButtonComponentProps = {
   inputModule: InputModuleInterface;
   addNewField: () => void;
   submitFarmInfo: () => void;
-  handleFormState: (moduleID?: string, formMovement?: string) => void;
+  handleFormState(cmd?: string): void;
 };
 const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
   addNewField,

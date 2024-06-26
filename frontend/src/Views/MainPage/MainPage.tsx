@@ -2,7 +2,7 @@
  * @desc Main Page of Better Berries App
  * @author @GDamaso @Kcaparas
  */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
 import ProgressBar from '@Commons/ProgressBar/ProgressBar';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter';
@@ -12,6 +12,7 @@ import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import * as InputModules from '@Commons/Forms/InputModules/index';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
+import nmpInterface from 'src/Interface/nmpInterface';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 // The sequence of sections to show up on the main page
@@ -23,14 +24,23 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
   { ...InputModules.Summary, status: 'inactive' },
 ];
 
-const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
+const getLocalDetails = () => {
   const nmpString = localStorage.getItem('farmDetails');
-  const nmpJSON = nmpString && JSON.parse(nmpString);
+  try {
+    if (nmpString) return JSON.parse(nmpString);
+  } catch (err) {
+    console.error(err);
+  }
+  return null;
+};
+
+const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
+  const localDetails = getLocalDetails();
   const updateFarmDetails = { ...farmDetails };
 
-  if (nmpJSON) {
-    const nmpFarmDetails = nmpJSON.farmDetails;
-    const fieldsJSON: FieldDetailInterface[] = nmpJSON.years[0].Fields;
+  if (localDetails) {
+    const nmpFarmDetails = localDetails.farmDetails;
+    const fieldsJSON: FieldDetailInterface[] = localDetails.years[0].Fields;
 
     updateFarmDetails.FarmName = nmpFarmDetails.FarmName;
     updateFarmDetails.Year = nmpFarmDetails.Year;
@@ -43,16 +53,41 @@ const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterfac
       const updateField: FieldDetailInterface = field;
       updateFarmDetails.Fields.push(updateField);
     });
-    updateFarmDetails.Fields = nmpJSON.years[0].Fields;
+    updateFarmDetails.Fields = localDetails.years[0].Fields;
   }
 
   return updateFarmDetails;
 };
 
 const MainPage: React.FC = () => {
+  const localStorageDetails = getLocalDetails();
   const [farmDetails, setFarmDetails] = useState(loadFarmDetails(initialFarmDetails));
+  const [localDetails, setLocalDetails] = useState(localStorageDetails);
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
+
+  const updateLocalDetails = (newDetails: FarmDetailsInterface) => {
+    setLocalDetails((prevDetails: nmpInterface) => {
+      if (prevDetails) {
+        return {
+          ...prevDetails,
+          farmDetails: {
+            ...prevDetails.farmDetails,
+            FarmName: newDetails.FarmName,
+            Year: newDetails.Year,
+          },
+          years: [{ ...prevDetails.years[0], Year: newDetails.Year }],
+        };
+      }
+      return prevDetails;
+    });
+  };
+
+  useEffect(() => {
+    if (localDetails) {
+      localStorage.setItem('farmDetails', JSON.stringify(localDetails));
+    }
+  }, [localDetails]);
 
   /**
    * @summary   Pass this handler into handleFormStates
@@ -95,14 +130,12 @@ const MainPage: React.FC = () => {
    *            ** In the future, also update the ProgressBar status **
    * @param formMovement: string => A movement that indicates if you go back or forward
    */
-  const handleFormState = (moduleID?: string, formMovement?: string) => {
-    // const moduleID = formStates[currForm].id;\
-    console.log(formMovement);
-    const currentModuleID = moduleID ?? formStates[currForm].id;
+  const handleFormState = (cmd?: string) => {
+    let moduleID = formStates[currForm].id;
     let secondModuleID = formStates[currForm].id;
     let moduleStatus = '';
     let secondModuleStatus = '';
-    switch (formMovement) {
+    switch (cmd) {
       case 'back':
         if (currForm > 0) {
           secondModuleID = formStates[currForm - 1].id;
@@ -120,11 +153,13 @@ const MainPage: React.FC = () => {
         }
         break;
       default:
-        return;
+        console.log('default');
+        if (cmd && Object.keys(InputModules).includes(cmd)) {
+          moduleID = cmd;
+        }
+        break;
     }
-    console.log(currentModuleID);
-    console.log(secondModuleID);
-    updateFormStates(currentModuleID, secondModuleID, moduleStatus, secondModuleStatus);
+    updateFormStates(moduleID, secondModuleID, moduleStatus, secondModuleStatus);
   };
   /**
    * @summary   Handler for updating the Main Data of the Calculator.
@@ -136,7 +171,8 @@ const MainPage: React.FC = () => {
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
-    handleFormState(undefined, 'forward');
+    updateLocalDetails(newDetails);
+    handleFormState('forward');
   };
 
   return (

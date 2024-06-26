@@ -32,7 +32,7 @@ interface FormModuleProps {
   InputModule: InputModuleInterface;
   farmDetails: FarmDetailsInterface;
   updateFarmDetails(farmDetails: FarmDetailsInterface): void;
-  handleFormState: (moduleID?: string, formMovement?: string) => void;
+  handleFormState(cmd?: string): void;
 }
 
 const FormModule: FC<FormModuleProps> = ({

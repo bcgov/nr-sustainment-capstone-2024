@@ -27,8 +27,7 @@ interface FormHeaderProps {
 
 const FormHeader = ({ inputModule, handleFormState }: FormHeaderProps) => {
   const handleToggle = () => {
-    const formMovement = inputModule.enable ? 'back' : 'forward';
-    handleFormState(inputModule.id, formMovement);
+    handleFormState(inputModule.id.toString());
   };
 
   return (

@@ -13,8 +13,19 @@ import { StyledContent, StyledLandingContainer } from './ExportPage.styles.ts';
 
 const ExportPage: FC = () => {
   const downloadFile = () => {
-    localStorage.clear();
-    console.log('Downloading');
+    const nmpString = localStorage.getItem('farmDetails');
+    const nmpJSON = nmpString && JSON.parse(nmpString);
+    const nmpBlob = nmpString && new Blob([nmpString], { type: 'application/json' });
+    const nmpUrl = nmpBlob && URL.createObjectURL(nmpBlob);
+    const link = document.createElement('a');
+
+    if (nmpUrl) {
+      link.href = nmpUrl;
+      link.download = `${nmpJSON.farmDetails.FarmName}BB.nmp`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
 
   return (
@@ -28,7 +39,12 @@ const ExportPage: FC = () => {
         <p>Load a NMP file on the Homepage when you want to continue.</p>
 
         <p>
-          <Link to="/export">How to use this data file</Link>
+          <Link
+            to="/export"
+            target="_blank"
+          >
+            How to use this data file
+          </Link>
         </p>
         <Button
           size="md"

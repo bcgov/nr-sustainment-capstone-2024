@@ -21,7 +21,6 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
   border: ${`1px solid ${tokens.surfaceColorBorderMedium}`};
   font-family: ${tokens.typographyFontFamiliesBcSans};
   font-weight: ${tokens.typographyFontWeightsBold};
-  padding: 20px 30px;
   @media (min-width: ${screenSizes.desktop}) {
     height: 100%;
     max-width: ${(props) => getButtonSize(props.size, true)};
@@ -32,6 +31,7 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
     align-items: center;
     justify-content: center;
     color: inherit;
+    padding: 20px 30px;
     text-decoration: none;
     height: 100%;
     width: 100%;
