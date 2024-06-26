@@ -3,14 +3,25 @@ name: .Deploys
 on:
   workflow_call:
     inputs:
+      environment:
+        description: GitHub environment; e.g. PR number (omit), TEST or PROD
+        required: false
+        type: string
+      tag: 
+        description: Image tag; e.g. PR number or latest
+        default: ${{ github.event.number }}
+        required: false
+        type: string
       target:
-        description: Deployment target; usually PR number, test or prod
+        description: Deployment target; e.g. PR number (omit), test or prod
+        default: ${{ github.event.number }}
         required: false
         type: string
 
 jobs:
   database:
     name: Database
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-22.04
     steps:
       - name: Deploy Database
@@ -22,10 +33,11 @@ jobs:
           file: database/openshift.deploy.yml
           overwrite: false
           parameters:
-            -p TAG=${{ github.event.number }}
+            -p TAG=${{ inputs.tag }} -p TARGET=${{ inputs.target }}
 
   backend:
     name: Backend
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-22.04
     steps:
       - name: Deploy Backend
@@ -37,13 +49,14 @@ jobs:
           file: backend/openshift.deploy.yml
           overwrite: true
           parameters:
-            -p TAG=${{ github.event.number }}
+            -p TAG=${{ inputs.tag }} -p TARGET=${{ inputs.target }}
           verification_path: /api/health
           verification_retry_attempts: "5"
           verification_retry_seconds: "15"
 
   frontend:
     name: Frontend
+    environment: ${{ inputs.environment }}
     runs-on: ubuntu-22.04
     steps:
       - name: Deploy Frontend
@@ -55,4 +68,4 @@ jobs:
           file: frontend/openshift.deploy.yml
           overwrite: trues
           parameters:
-            -p TAG=${{ github.event.number }}
+            -p TAG=${{ inputs.tag }} -p TARGET=${{ inputs.target }}

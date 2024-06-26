@@ -15,8 +15,6 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       packages: write
-    outputs:
-      digest: ${{ steps.builds.outputs.digest }}
     strategy:
       matrix:
         package: [backend, database, frontend]
@@ -31,8 +29,8 @@ jobs:
           tag_fallback: latest
           triggers: ('${{ matrix.package }}/')
 
-  deploys:
-    name: Deploys
+  deploy:
+    name: Deploy
     needs: [builds]
     secrets: inherit
     uses: ./.github/workflows/.deploy.yml
@@ -40,7 +38,7 @@ jobs:
   results:
     name: PR Results
     if: always() && (!failure()) && (!cancelled())
-    needs: [builds, deploys]
+    needs: [builds, deploy]
     runs-on: ubuntu-22.04
     steps:
       - run: echo "Success!"

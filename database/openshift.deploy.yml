@@ -11,7 +11,10 @@ parameters:
     description: Organization name; e.g. bcgov or bcdevops
     value: bcgov
   - name: TAG
-    description: Image tag; e.g. PR number, latest or prod
+    description: Image tag; e.g. PR number or latest
+    required: true
+  - name: TARGET
+    description: Deployment target; e.g. PR number, test or prod
     required: true
   - name: DB_PASSWORD
     description: Password for the PostgreSQL connection user.
@@ -44,9 +47,9 @@ objects:
   - apiVersion: v1
     kind: Secret
     metadata:
-      name: ${APP}-${TAG}-${COMPONENT}
+      name: ${APP}-${TARGET}-${COMPONENT}
       labels:
-        app: ${APP}-${TAG}
+        app: ${APP}-${TARGET}
     stringData:
       database-name: postgres
       database-password: ${DB_PASSWORD}
@@ -55,9 +58,9 @@ objects:
   - kind: PersistentVolumeClaim
     apiVersion: v1
     metadata:
-      name: ${APP}-${TAG}-${COMPONENT}
+      name: ${APP}-${TARGET}-${COMPONENT}
       labels:
-        app: ${APP}-${TAG}
+        app: ${APP}-${TARGET}
     spec:
       accessModes:
         - ReadWriteOnce
@@ -68,14 +71,14 @@ objects:
   - kind: Deployment
     apiVersion: apps/v1
     metadata:
-      name: ${APP}-${TAG}-${COMPONENT}
+      name: ${APP}-${TARGET}-${COMPONENT}
       labels:
-        app: ${APP}-${TAG}
+        app: ${APP}-${TARGET}
     spec:
       replicas: 1
       selector:
         matchLabels:
-          deployment: ${APP}-${TAG}-${COMPONENT}
+          deployment: ${APP}-${TARGET}-${COMPONENT}
       strategy:
         type: Recreate
         recreateParams:
@@ -83,17 +86,17 @@ objects:
         activeDeadlineSeconds: 21600
       template:
         metadata:
-          name: ${APP}-${TAG}-${COMPONENT}
+          name: ${APP}-${TARGET}-${COMPONENT}
           labels:
-            app: ${APP}-${TAG}
-            deployment: ${APP}-${TAG}-${COMPONENT}
+            app: ${APP}-${TARGET}
+            deployment: ${APP}-${TARGET}-${COMPONENT}
         spec:
           volumes:
-            - name: ${APP}-${TAG}-${COMPONENT}
+            - name: ${APP}-${TARGET}-${COMPONENT}
               persistentVolumeClaim:
-                claimName: ${APP}-${TAG}-${COMPONENT}
+                claimName: ${APP}-${TARGET}-${COMPONENT}
           containers:
-            - name: ${APP}-${TAG}
+            - name: ${APP}-${TARGET}
               image: ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}
               ports:
                 - containerPort: 5432
@@ -133,20 +136,20 @@ objects:
                 - name: POSTGRES_DB
                   valueFrom:
                     secretKeyRef:
-                      name: ${APP}-${TAG}-${COMPONENT}
+                      name: ${APP}-${TARGET}-${COMPONENT}
                       key: database-name
                 - name: POSTGRES_PASSWORD
                   valueFrom:
                     secretKeyRef:
-                      name: ${APP}-${TAG}-${COMPONENT}
+                      name: ${APP}-${TARGET}-${COMPONENT}
                       key: database-password
                 - name: POSTGRES_USER
                   valueFrom:
                     secretKeyRef:
-                      name: ${APP}-${TAG}-${COMPONENT}
+                      name: ${APP}-${TARGET}-${COMPONENT}
                       key: database-user
               volumeMounts:
-                - name: ${APP}-${TAG}-${COMPONENT}
+                - name: ${APP}-${TARGET}-${COMPONENT}
                   mountPath: "/var/lib/postgresql"
               terminationMessagePath: "/dev/termination-log"
               terminationMessagePolicy: File
@@ -159,8 +162,8 @@ objects:
     kind: Service
     metadata:
       labels:
-        app: ${APP}-${TAG}
-      name: ${APP}-${TAG}-${COMPONENT}
+        app: ${APP}-${TARGET}
+      name: ${APP}-${TARGET}-${COMPONENT}
     spec:
       ports:
         - name: postgresql
@@ -169,6 +172,6 @@ objects:
           protocol: TCP
           targetPort: 5432
       selector:
-        deployment: ${APP}-${TAG}-${COMPONENT}
+        deployment: ${APP}-${TARGET}-${COMPONENT}
       sessionAffinity: None
       type: ClusterIP
