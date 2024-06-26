@@ -3,6 +3,7 @@ import Button from '@Commons/Button/Button';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import {
   StyledButtonGroupContainer,
   StyledButtonContainer,
@@ -11,17 +12,19 @@ import {
 } from './FieldsButtonComponent.styles';
 
 type ButtonComponentProps = {
+  inputModule: InputModuleInterface;
   addNewField: () => void;
   submitFarmInfo: () => void;
-  handleFormState(formMovement?: string): void;
+  handleFormState: (moduleID?: string, formMovement?: string) => void;
 };
 const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
   addNewField,
   submitFarmInfo,
   handleFormState,
+  inputModule,
 }) => {
   const clickWrapper = () => {
-    handleFormState('back');
+    handleFormState(inputModule.id, 'back');
   };
   return (
     <StyledButtonGroupContainer>

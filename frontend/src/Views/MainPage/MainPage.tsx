@@ -53,6 +53,7 @@ const MainPage: React.FC = () => {
   const [farmDetails, setFarmDetails] = useState(loadFarmDetails(initialFarmDetails));
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
+
   /**
    * @summary   Pass this handler into handleFormStates
    * @desc      a State handler helper that passes moduleID, secondModuleID, moduleStatus,
@@ -94,9 +95,11 @@ const MainPage: React.FC = () => {
    *            ** In the future, also update the ProgressBar status **
    * @param formMovement: string => A movement that indicates if you go back or forward
    */
-  const handleFormState = (formMovement?: string) => {
-    const moduleID = formStates[currForm].id;
-    let secondModuleID = moduleID;
+  const handleFormState = (moduleID?: string, formMovement?: string) => {
+    // const moduleID = formStates[currForm].id;\
+    console.log(formMovement);
+    const currentModuleID = moduleID ?? formStates[currForm].id;
+    let secondModuleID = formStates[currForm].id;
     let moduleStatus = '';
     let secondModuleStatus = '';
     switch (formMovement) {
@@ -119,7 +122,9 @@ const MainPage: React.FC = () => {
       default:
         return;
     }
-    updateFormStates(moduleID, secondModuleID, moduleStatus, secondModuleStatus);
+    console.log(currentModuleID);
+    console.log(secondModuleID);
+    updateFormStates(currentModuleID, secondModuleID, moduleStatus, secondModuleStatus);
   };
   /**
    * @summary   Handler for updating the Main Data of the Calculator.
@@ -131,7 +136,7 @@ const MainPage: React.FC = () => {
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
-    handleFormState('forward');
+    handleFormState(undefined, 'forward');
   };
 
   return (
