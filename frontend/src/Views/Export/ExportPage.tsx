@@ -16,14 +16,13 @@ const ExportPage: FC = () => {
     // localStorage.clear();
     const nmpString = localStorage.getItem('farmDetails');
     const nmpJSON = nmpString && JSON.parse(nmpString);
-    console.log(nmpJSON);
     const nmpBlob = nmpString && new Blob([nmpString], { type: 'application/json' });
     const nmpUrl = nmpBlob && URL.createObjectURL(nmpBlob);
     const link = document.createElement('a');
 
     if (nmpUrl) {
       link.href = nmpUrl;
-      link.download = `${nmpJSON.farmDetails.FarmName}.nmp`;
+      link.download = `${nmpJSON.farmDetails.FarmName}BB.nmp`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
