@@ -42,7 +42,8 @@ jobs:
       packages: write
     strategy:
       matrix:
-        package: [backend, database, frontend]
+        # package: [backend, database, frontend]
+        package: [frontend]
     timeout-minutes: 10
     steps:
       - uses: bcgov-nr/action-builder-ghcr@v2.0.2

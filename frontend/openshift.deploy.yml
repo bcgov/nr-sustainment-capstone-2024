@@ -55,8 +55,8 @@ objects:
           containers:
             - name: ${APP}-${TARGET}-${COMPONENT}
               image: ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}
-              securityContext:
-                runAsUser: 1011540000
+              # securityContext:
+              #   runAsUser: 1011540000
               imagePullPolicy: Always
               env:
                 - name: LOG_LEVEL
