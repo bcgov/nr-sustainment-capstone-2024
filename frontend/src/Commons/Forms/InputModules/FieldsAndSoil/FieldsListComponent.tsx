@@ -25,7 +25,7 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
               <p key={fields.FieldName}>{fields.FieldName}</p>
             </StyledListItem>
             <StyledListItem width="20%">
-              <h2>Area</h2>
+              <h2>Area (Acres)</h2>
               <p key={fields.Area}>{fields.Area}</p>
             </StyledListItem>
             <StyledCommentContainerDesktop>

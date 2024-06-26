@@ -114,7 +114,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                   type="text"
                 />
                 <CustomField
-                  label="Area"
+                  label="Area (Acres)"
                   id="Area"
                   name="Area"
                   type="number"
