@@ -22,12 +22,12 @@ import StyledFormHeader from './FormHeader.style';
 
 interface FormHeaderProps {
   inputModule: InputModuleInterface;
-  handleFormState: (moduleID?: string, formMovement?: string) => void;
+  handleFormState: (moduleID: string, nextModuleID?: string) => void;
 }
 
 const FormHeader = ({ inputModule, handleFormState }: FormHeaderProps) => {
   const handleToggle = () => {
-    handleFormState(inputModule.id.toString());
+    handleFormState(inputModule.id);
   };
 
   return (
