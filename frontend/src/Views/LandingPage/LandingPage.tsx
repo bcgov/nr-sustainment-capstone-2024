@@ -1,5 +1,4 @@
 import Button from '@Commons/Button/Button.tsx';
-import CustomLink from '@Commons/CustomLink/CustomLink.tsx';
 import {
   StyledContent,
   StyledButtonGroup,
@@ -13,7 +12,8 @@ const LandingPage = () => {
     if (upload) upload.click();
   };
 
-  const isValidFile = (file: File): boolean => file.type === 'application/json' || file.name.endsWith('.nmp');
+  const isValidFile = (file: File): boolean =>
+    file.type === 'application/json' || file.name.endsWith('.nmp');
 
   const saveFile = (e: any) => {
     const file = e.target.files[0];
@@ -32,6 +32,11 @@ const LandingPage = () => {
     window.location.href = '/main';
   };
 
+  const newCalcHandler = () => {
+    localStorage.clear();
+    window.location.href = '/main';
+  };
+
   return (
     <StyledLandingContainer>
       <StyledContent>
@@ -44,16 +49,18 @@ const LandingPage = () => {
         </p>
       </StyledContent>
       <StyledButtonGroup>
-        <CustomLink
-          path="/main"
+        <Button
           text="New Calculation"
           size="lg"
+          handleClick={newCalcHandler}
+          aria-label="New Calculation"
         />
         <StyledDivider>or</StyledDivider>
         <Button
           size="lg"
           text="Load Existing File"
           handleClick={handleUpload}
+          aria-label="Upload File"
         />
         <input
           id="fileUp"

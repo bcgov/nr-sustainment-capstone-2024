@@ -13,7 +13,6 @@ import { StyledContent, StyledLandingContainer } from './ExportPage.styles.ts';
 
 const ExportPage: FC = () => {
   const downloadFile = () => {
-    // localStorage.clear();
     const nmpString = localStorage.getItem('farmDetails');
     const nmpJSON = nmpString && JSON.parse(nmpString);
     const nmpBlob = nmpString && new Blob([nmpString], { type: 'application/json' });
