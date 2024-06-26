@@ -102,20 +102,26 @@ const MainPage: React.FC = () => {
 
     switch (cmd) {
       case 'back':
-        secondModuleID = formStates[currForm - 1].id;
-        setCurrForm((prevForm) => prevForm - 1);
+        if (currForm >= 0) {
+          secondModuleID = formStates[currForm - 1].id;
+          setCurrForm((prevForm) => prevForm - 1);
+        }
         break;
       case 'forward':
-        secondModuleID = formStates[currForm + 1].id;
-        setCurrForm((prevForm) => prevForm + 1);
+        if (formStates[currForm + 1]) {
+          secondModuleID = formStates[currForm + 1].id;
+          setCurrForm((prevForm) => prevForm + 1);
+        }
         break;
       default:
+        console.log('default');
         if (cmd && Object.keys(InputModules).includes(cmd)) {
           moduleID = cmd;
         }
         break;
     }
     const updatedStates = formStates.map((module: InputModuleInterface) => {
+      console.log('moduleID: ', moduleID, 'Second: ', secondModuleID);
       if (module.id === moduleID || module.id === secondModuleID) {
         return {
           ...module,
@@ -139,7 +145,6 @@ const MainPage: React.FC = () => {
     setFarmDetails(newDetails);
     updateLocalDetails(newDetails);
     handleFormState('forward');
-    setCurrForm((prevForm) => prevForm + 1);
   };
 
   return (
