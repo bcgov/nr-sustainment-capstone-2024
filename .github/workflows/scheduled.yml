@@ -13,7 +13,7 @@ jobs:
     name: PR Env Purge
     env:
       # https://tecadmin.net/getting-yesterdays-date-in-bash/
-      CUTOFF: "1 week ago"
+      CUTOFF: "2 days ago"
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
