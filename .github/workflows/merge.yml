@@ -61,7 +61,6 @@ jobs:
     secrets: inherit
     uses: ./.github/workflows/.deploy.yml
     with:
-      environment: test
       tag: ${{ needs.vars.outputs.pr }}
       target: test
 
