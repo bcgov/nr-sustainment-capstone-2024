@@ -37,6 +37,7 @@ jobs:
 
   backend:
     name: Backend
+    needs: [database]
     environment: ${{ inputs.environment }}
     runs-on: ubuntu-22.04
     steps:
@@ -56,6 +57,7 @@ jobs:
 
   frontend:
     name: Frontend
+    needs: [backend]
     environment: ${{ inputs.environment }}
     runs-on: ubuntu-22.04
     steps:
