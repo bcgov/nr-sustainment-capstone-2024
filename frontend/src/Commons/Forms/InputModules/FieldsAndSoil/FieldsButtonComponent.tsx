@@ -13,7 +13,7 @@ import {
 type ButtonComponentProps = {
   addNewField: () => void;
   submitFarmInfo: () => void;
-  handleFormState(formMovement?: string): void;
+  handleFormState(cmd?: string): void;
 };
 
 const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
