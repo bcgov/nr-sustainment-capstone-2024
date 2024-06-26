@@ -124,10 +124,8 @@ const MainPage: React.FC = () => {
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
-    handleFormState(
-      formStates[currForm].id,
-      formStates[currForm + 1].id,
-    );
+    updateLocalDetails(newDetails);
+    handleFormState(formStates[currForm].id, formStates[currForm + 1].id);
     setCurrForm((prevForm) => prevForm + 1);
     setFormStates((prevStates) => prevStates.map((module, index) => {
       if (index === currForm) {
@@ -141,10 +139,7 @@ const MainPage: React.FC = () => {
   };
 
   const handleBackState = () => {
-    handleFormState(
-      formStates[currForm].id,
-      formStates[currForm - 1].id,
-    );
+    handleFormState(formStates[currForm].id, formStates[currForm - 1].id);
     setCurrForm((prevForm: number): number => {
       if (prevForm > 0) {
         return prevForm - 1;
@@ -161,7 +156,6 @@ const MainPage: React.FC = () => {
       return module;
     }));
   };
-
 
   return (
     <StyledMain>

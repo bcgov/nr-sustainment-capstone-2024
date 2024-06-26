@@ -84,7 +84,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   const addNewField = () => {
     setFieldAdd(true);
   };
-  
+
   return (
     <>
       {isSubmitted && (
