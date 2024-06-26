@@ -34,27 +34,6 @@ jobs:
         id: pr
         uses: bcgov-nr/action-get-pr@v0.0.1
 
-  builds:
-    name: Builds
-    needs: [vars]
-    runs-on: ubuntu-22.04
-    permissions:
-      packages: write
-    strategy:
-      matrix:
-        # package: [backend, database, frontend]
-        package: [frontend]
-    timeout-minutes: 10
-    steps:
-      - uses: bcgov-nr/action-builder-ghcr@v2.0.2
-        id: builds
-        with:
-          keep_versions: 50
-          package: ${{ matrix.package }}
-          tag: ${{ needs.vars.outputs.pr }}
-          tag_fallback: latest
-          triggers: ('${{ matrix.package }}/')
-
   deploy:
     name: Deploy
     needs: [builds, vars]
