@@ -3,7 +3,6 @@ import Button from '@Commons/Button/Button';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import {
   StyledButtonGroupContainer,
   StyledButtonContainer,
