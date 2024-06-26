@@ -1,6 +1,6 @@
 /**
  * @desc Main Page of Better Berries App
- * @author @GDamaso
+ * @author @GDamaso @Kcaparas
  */
 import React, { useEffect, useState } from 'react';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
@@ -94,12 +94,25 @@ const MainPage: React.FC = () => {
    * @desc      A State handler that will update the current form section states,
    *            allowing you to expand/collapse form sections.
    *            ** In the future, also update the ProgressBar status **
-   * @param     moduleID: string => An InputModule ID to be searched and updated
-   * @param     nextModuleID: string => A second InputModule ID to be searched and updated
+   * @param     formMovement: string => A movement that indicates if you go back or forward
    */
-  const handleFormState = (moduleID: string, nexModuleID?: string) => {
+  const handleFormState = (formMovement?: string) => {
+    const moduleID = formStates[currForm].id;
+    let secondModuleID = null;
+    switch (formMovement) {
+      case 'back':
+        secondModuleID = formStates[currForm - 1].id;
+        setCurrForm((prevForm) => prevForm - 1);
+        break;
+      case 'forward':
+        secondModuleID = formStates[currForm + 1].id;
+        setCurrForm((prevForm) => prevForm + 1);
+        break;
+      default:
+        return;
+    }
     const updatedStates = formStates.map((module: InputModuleInterface) => {
-      if (module.id === moduleID || module.id === nexModuleID) {
+      if (module.id === moduleID || module.id === secondModuleID) {
         return {
           ...module,
           enable: !module.enable,
@@ -120,12 +133,12 @@ const MainPage: React.FC = () => {
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
+
     updateLocalDetails(newDetails);
 
     handleFormState(formStates[currForm].id, formStates[currForm + 1].id);
     setCurrForm((prevForm) => prevForm + 1);
   };
-
   return (
     <StyledMain>
       <MainPageHeader />
