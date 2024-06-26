@@ -27,7 +27,7 @@ interface FormHeaderProps {
 
 const FormHeader = ({ inputModule, handleFormState }: FormHeaderProps) => {
   const handleToggle = () => {
-    handleFormState();
+    handleFormState(inputModule.id.toString());
   };
 
   return (

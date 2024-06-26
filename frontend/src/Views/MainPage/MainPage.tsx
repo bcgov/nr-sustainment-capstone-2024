@@ -12,8 +12,8 @@ import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import * as InputModules from '@Commons/Forms/InputModules/index';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
-import { StyledMain, StyledMainContainer } from './MainPage.styles';
 import nmpInterface from 'src/Interface/nmpInterface';
+import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 // The sequence of sections to show up on the main page
 // This is the skeleton for the Berries workflow
@@ -96,10 +96,11 @@ const MainPage: React.FC = () => {
    *            ** In the future, also update the ProgressBar status **
    * @param     formMovement: string => A movement that indicates if you go back or forward
    */
-  const handleFormState = (formMovement?: string) => {
-    const moduleID = formStates[currForm].id;
+  const handleFormState = (cmd?: string) => {
+    let moduleID = formStates[currForm].id;
     let secondModuleID = null;
-    switch (formMovement) {
+
+    switch (cmd) {
       case 'back':
         secondModuleID = formStates[currForm - 1].id;
         setCurrForm((prevForm) => prevForm - 1);
@@ -109,7 +110,10 @@ const MainPage: React.FC = () => {
         setCurrForm((prevForm) => prevForm + 1);
         break;
       default:
-        return;
+        if (cmd && Object.keys(InputModules).includes(cmd)) {
+          moduleID = cmd;
+        }
+        break;
     }
     const updatedStates = formStates.map((module: InputModuleInterface) => {
       if (module.id === moduleID || module.id === secondModuleID) {
@@ -133,12 +137,11 @@ const MainPage: React.FC = () => {
    * */
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
-
     updateLocalDetails(newDetails);
-
-    handleFormState(formStates[currForm].id, formStates[currForm + 1].id);
+    handleFormState('forward');
     setCurrForm((prevForm) => prevForm + 1);
   };
+
   return (
     <StyledMain>
       <MainPageHeader />
