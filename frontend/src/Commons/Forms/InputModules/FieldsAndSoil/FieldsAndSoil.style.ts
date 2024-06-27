@@ -47,12 +47,11 @@ const StyledAreaContainer = styled.div`
   height: auto;
   position: relative;
 
-  p{
+  p {
     position: absolute;
     top: 30px;
     left: 100px;
   }
 `;
-
 
 export { StyledFarmInfo, StyledTextAreaContainer, StyledAreaContainer };
