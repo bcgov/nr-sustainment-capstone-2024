@@ -23,8 +23,8 @@ import {
   StyledFarmInfo,
   StyledTextAreaContainer,
   StyledAreaContainer,
+  StyledButtonGroupContainer,
 } from './FieldsAndSoil.style';
-import { StyledButtonGroupContainer } from './FieldsButtonComponent.styles';
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   farmDetails,

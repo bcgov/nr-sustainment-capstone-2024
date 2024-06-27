@@ -59,5 +59,19 @@ const StyledAreaContainer = styled.div`
     }
   }
 `;
+const StyledButtonGroupContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto;
+  width: 320px;
+  justify-content: flex-end;
+  @media (min-width: ${screenSizes.desktop}) {
+    flex-direction: row;
+    margin: 0;
+    justify-content: flex-start;
+    width: 67px;;
+  }
+`;
 
-export { StyledFarmInfo, StyledTextAreaContainer, StyledAreaContainer };
+export { StyledFarmInfo, StyledTextAreaContainer, StyledAreaContainer, StyledButtonGroupContainer };
