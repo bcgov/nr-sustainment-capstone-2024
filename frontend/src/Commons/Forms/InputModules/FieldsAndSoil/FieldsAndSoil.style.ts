@@ -40,4 +40,19 @@ const StyledTextAreaContainer = styled.div`
   }
 `;
 
-export { StyledFarmInfo, StyledTextAreaContainer };
+const StyledAreaContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  height: auto;
+  position: relative;
+
+  p{
+    position: absolute;
+    top: 30px;
+    left: 100px;
+  }
+`;
+
+
+export { StyledFarmInfo, StyledTextAreaContainer, StyledAreaContainer };

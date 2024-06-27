@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
 import ProgressBar from '@Commons/ProgressBar/ProgressBar';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter';
-import FormModule from '@Commons/Forms/FormModule/FormModule.tsx';
+import FormModule from '@Commons/Forms/FormModule/FormModule';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import * as InputModules from '@Commons/Forms/InputModules/index';

@@ -19,7 +19,7 @@ import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import FieldsButtonComponent from './FieldsButtonComponent';
 import FieldsListComponent from './FieldsListComponent';
-import { StyledFarmInfo, StyledTextAreaContainer } from './FieldsAndSoil.style';
+import { StyledFarmInfo, StyledTextAreaContainer, StyledAreaContainer } from './FieldsAndSoil.style';
 import { StyledButtonGroupContainer } from './FieldsButtonComponent.styles';
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
@@ -112,13 +112,16 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                   name="FieldName"
                   type="text"
                 />
-                <CustomField
-                  label="Area"
-                  id="Area"
-                  name="Area"
-                  type="number"
-                  width="50%"
-                />
+                <StyledAreaContainer>
+                  <CustomField
+                    label="Area"
+                    id="Area"
+                    name="Area"
+                    type="number"
+                    width="50%"
+                  />
+                  <p>Acres</p>
+                </StyledAreaContainer>
               </div>
               <StyledTextAreaContainer>
                 <CustomTextArea
