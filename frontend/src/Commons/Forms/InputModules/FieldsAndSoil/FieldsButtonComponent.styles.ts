@@ -5,7 +5,6 @@
  */
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
-import { typographyRegularLabel } from '@bcgov/design-tokens/js';
 
 const StyledButtonGroupContainer = styled.div`
   display: flex;
@@ -23,14 +22,14 @@ const StyledButtonGroupContainer = styled.div`
 const StyledButtonContainer = styled.div`
   margin-top: 10px;
 
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     width: 50%;
   }
 `;
 const StyledNewFieldButtonController = styled.div`
   margin-top: 10px;
 
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     width: 178px;
     position: relative;
     left: 0;
@@ -53,7 +52,7 @@ const StyledNewFieldButtonContainer = styled.div`
   top: 15px;
   width: 100%;
 
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     left: 0;
     top: 0;
   }
@@ -64,5 +63,5 @@ export {
   StyledButtonContainer,
   StyledAddCancelButtonContainer,
   StyledNewFieldButtonContainer,
-  StyledNewFieldButtonController
+  StyledNewFieldButtonController,
 };
