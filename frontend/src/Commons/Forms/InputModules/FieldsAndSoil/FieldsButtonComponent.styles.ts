@@ -9,36 +9,54 @@ import { typographyRegularLabel } from '@bcgov/design-tokens/js';
 
 const StyledButtonGroupContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 20px;
-  width: 100vw;
+  margin: auto;
+  width: 320px;
   justify-content: flex-end;
   @media (min-width: ${screenSizes.desktop}) {
+    flex-direction: row;
     justify-content: flex-start;
-    width: 100%;
+    width: 100vw;
   }
 `;
 const StyledButtonContainer = styled.div`
-  margin-top: 20px;
-  width: 50%;
-  font: ${typographyRegularLabel};
+  margin-top: 10px;
+
+  @media (min-width: ${screenSizes.desktop}){
+    width: 50%;
+  }
+`;
+const StyledNewFieldButtonController = styled.div`
+  margin-top: 10px;
+
+  @media (min-width: ${screenSizes.desktop}){
+    width: 178px;
+    position: relative;
+    left: 0;
+  }
 `;
 
 const StyledAddCancelButtonContainer = styled.div`
   display: flex;
-  position: absolute;
-  right: 7%;
-  gap: 10px;
+  flex-direction: column;
 
   @media (min-width: ${screenSizes.desktop}) {
+    flex-direction: row;
+    gap: 20px;
     position: absolute;
     right: 17%;
   }
 `;
 const StyledNewFieldButtonContainer = styled.div`
   position: relative;
-  left: 0;
+  top: 15px;
   width: 100%;
+
+  @media (min-width: ${screenSizes.desktop}){
+    left: 0;
+    top: 0;
+  }
 `;
 
 export {
@@ -46,4 +64,5 @@ export {
   StyledButtonContainer,
   StyledAddCancelButtonContainer,
   StyledNewFieldButtonContainer,
+  StyledNewFieldButtonController
 };

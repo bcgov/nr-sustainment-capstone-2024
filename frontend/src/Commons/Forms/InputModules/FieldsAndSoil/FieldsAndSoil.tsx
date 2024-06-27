@@ -138,14 +138,14 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                 <StyledButtonGroupContainer>
                   <Button
                     type="reset"
-                    size="sm"
+                    size="lg"
                     disabled={false}
                     actions="secondary"
                     text={ComponentText.CANCEL}
                   />
                   <Button
                     type="submit"
-                    size="sm"
+                    size="lg"
                     disabled={false}
                     text={ComponentText.ADD}
                   />

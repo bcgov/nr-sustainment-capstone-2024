@@ -52,6 +52,12 @@ const StyledAreaContainer = styled.div`
     top: 30px;
     left: 100px;
   }
+
+  @media (min-width: ${screenSizes.desktop}){
+    p {
+      left: 110px;
+    }
+  }
 `;
 
 export { StyledFarmInfo, StyledTextAreaContainer, StyledAreaContainer };

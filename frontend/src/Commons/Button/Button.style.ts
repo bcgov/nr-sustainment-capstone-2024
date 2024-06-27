@@ -28,8 +28,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   border-radius: ${(props) => props.radius};
   border: ${(props) => (props.actions === 'primary' ? 0 : `1px solid ${tokens.surfaceColorBorderMedium}`)};
   padding: 20px 30px;
-  font-family: ${tokens.typographyFontFamiliesBcSans};
-  font-weight: ${tokens.typographyFontWeightsBold};
+  font: ${tokens.typographyBoldLabel};
 
   &:disabled {
     cursor: not-allowed;
