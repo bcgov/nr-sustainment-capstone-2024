@@ -15,7 +15,11 @@ import CustomField from '@Commons/Input/Field/CustomField';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import OptionInterface from 'src/Interface/OptionInterface';
 import Button from '@Commons/Button/Button';
-import { StyledFarmInfo, StyledSelectContainer, StyledButtonController } from './FarmInformation.style';
+import {
+  StyledFarmInfo,
+  StyledSelectContainer,
+  StyledButtonController,
+} from './FarmInformation.style';
 
 interface SubmissionValues {
   FarmName: string;
