@@ -148,7 +148,7 @@ const MainPage: React.FC = () => {
     });
     setFormStates((prevStates) => prevStates.map((module, index) => {
       if (index === currForm) {
-        return { ...module, status: 'needattention' };
+        return { ...module, status: 'warning' };
       }
       if (index === currForm - 1) {
         return { ...module, status: 'completed' };
