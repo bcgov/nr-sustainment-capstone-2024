@@ -70,7 +70,7 @@ const StyledButtonGroupContainer = styled.div`
     flex-direction: row;
     margin: 0;
     justify-content: flex-start;
-    width: 67px;;
+    width: 67px;
   }
 `;
 
