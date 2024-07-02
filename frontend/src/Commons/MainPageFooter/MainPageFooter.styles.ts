@@ -8,6 +8,7 @@ const StyledMainFooter = styled.div`
   position: fixed;
   width: 100vw;
   bottom: -1px;
+  z-index: 2;
 
   @media (min-width: ${screenSizes.desktop}) {
     display: none;

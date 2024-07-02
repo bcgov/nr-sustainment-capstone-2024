@@ -8,6 +8,7 @@ import {
   StyledButtonContainer,
   StyledAddCancelButtonContainer,
   StyledNewFieldButtonContainer,
+  StyledNewFieldButtonController,
 } from './FieldsButtonComponent.styles';
 
 type ButtonComponentProps = {
@@ -27,10 +28,10 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
   return (
     <StyledButtonGroupContainer>
       <StyledNewFieldButtonContainer>
-        <StyledButtonContainer>
+        <StyledNewFieldButtonController>
           <Button
             type="button"
-            size="md"
+            size="lg"
             disabled={false}
             radius="50px"
             actions="secondary"
@@ -39,13 +40,13 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
           >
             <FontAwesomeIcon icon={faPlus} />
           </Button>
-        </StyledButtonContainer>
+        </StyledNewFieldButtonController>
       </StyledNewFieldButtonContainer>
       <StyledAddCancelButtonContainer>
         <StyledButtonContainer>
           <Button
             type="button"
-            size="sm"
+            size="lg"
             disabled={false}
             actions="secondary"
             text={ComponentText.BACK}
@@ -55,7 +56,7 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
         <StyledButtonContainer>
           <Button
             type="button"
-            size="sm"
+            size="lg"
             disabled={false}
             text={ComponentText.NEXT}
             handleClick={submitFarmInfo}

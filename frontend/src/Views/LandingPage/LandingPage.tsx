@@ -12,8 +12,7 @@ const LandingPage = () => {
     if (upload) upload.click();
   };
 
-  const isValidFile = (file: File): boolean =>
-    file.type === 'application/json' || file.name.endsWith('.nmp');
+  const isValidFile = (file: File): boolean => file.type === 'application/json' || file.name.endsWith('.nmp');
 
   const saveFile = (e: any) => {
     const file = e.target.files[0];
