@@ -16,13 +16,13 @@ const StyledField = styled.div<StyledFieldProps>`
 `;
 
 const StyledRadio = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 
-    label {
-        margin-top: -2px;
-    }
+  label {
+    margin-top: -2px;
+  }
 `;
 
 export { StyledField, StyledRadio };

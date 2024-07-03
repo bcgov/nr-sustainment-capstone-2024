@@ -8,7 +8,7 @@ import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import InputModuleProps from 'src/Interface/InputModuleProps';
 import React, { useState } from 'react';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
-import { Formik, Form } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
@@ -26,10 +26,10 @@ import {
   StyledTextAreaContainer,
   StyledAreaContainer,
   StyledButtonGroupContainer,
+  StyledTestContainer,
   StyledRadioGroupContainer,
   HeaderLabel,
 } from './FieldsAndSoil.style';
-
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   farmDetails,
@@ -46,10 +46,9 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
   const [isFieldAdded, setFieldAdd] = useState<boolean>(false);
-  // String instead of boolean so there's no default choice in the beginning.
-  const [isSoilTestEnabled, setSoilTestEnabled] = useState<string>('');
-  // String instead of boolean so there's no default choice in the beginning.
-  const [isLeafTestEnabled, setLeafTestEnabled] = useState<string>('');
+  // For checked attribute
+  const [isSoilTestEnabled, setSoilTestEnabled] = useState<boolean | null>(null);
+  const [isLeafTestEnabled, setLeafTestEnabled] = useState<boolean | null>(null);
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
     Area: Yup.number()
@@ -57,6 +56,8 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
       .max(100, 'Area should be lower than 100')
       .required('Required'),
     Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
+    hasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
+    hasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
   });
   /**
    *
@@ -73,6 +74,8 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
         FieldName: values.FieldName,
         Area: values.Area,
         Comment: values.Comment,
+        hasSoilTest: values.hasSoilTest,
+        hasLeafTest: values.hasLeafTest,
       });
       setInitialFieldValues(farmInfo.Fields[0]);
       setFieldsInfo(farmInfo);
@@ -91,9 +94,14 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   };
   const addNewField = () => {
     setFieldAdd(true);
+    setSoilTestEnabled(null);
+    setLeafTestEnabled(null);
   };
 
-  console.log(isSoilTestEnabled);
+  const radioOptions = [
+    { id: 'true', label: 'Yes', value: true },
+    { id: 'false', label: 'No', value: false },
+  ];
   return (
     <>
       {isSubmitted && (
@@ -118,7 +126,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
           validationSchema={validationSchema}
           onSubmit={addFieldData}
         >
-          {({ handleChange }) => (
+          {({ setFieldValue, values }) => (
             <Form>
               <StyledFarmInfo>
                 <div id="inputContainer">
@@ -150,80 +158,60 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                 </StyledTextAreaContainer>
                 <HeaderLabel>
                   Add Soil Test
-                  <span>
-                    <FontAwesomeIcon icon={faCircleInfo} />
-                  </span>
                 </HeaderLabel>
-                <StyledRadioGroupContainer>
-                  <CustomRadioButton
-                    label="Yes"
-                    id="SoilTestYes"
-                    name="SoilTestYes"
-                    type="radio"
-                    width="20%"
-                    value="true"
-                    checked={isSoilTestEnabled === 'true'}
-                    onChange={(e) => {
-                      handleChange(e);
-                      setSoilTestEnabled('true');
-                    }}
+                <StyledTestContainer>
+                  <StyledRadioGroupContainer>
+                    {radioOptions.map((option) => (
+                      <CustomRadioButton
+                        key={option.id}
+                        label={option.label}
+                        id={`hasSoilTest${option.id}`}
+                        name="hasSoilTest"
+                        type="radio"
+                        width="20%"
+                        checked={isSoilTestEnabled === option.value}
+                        onChange={() => {
+                          setFieldValue('hasSoilTest', option.value);
+                          setSoilTestEnabled(option.value);
+                        }}
+                      />
+                    ))}
+                  </StyledRadioGroupContainer>
+                  <ErrorMessage
+                    name="hasSoilTest"
+                    component="div"
+                    className="errorMessage"
                   />
-                  <CustomRadioButton
-                    label="No"
-                    id="SoilTestNo"
-                    name="SoilTestNo"
-                    type="radio"
-                    width="20%"
-                    value="true"
-                    checked={isSoilTestEnabled === 'false'}
-                    onChange={(e) => {
-                      handleChange(e);
-                      setSoilTestEnabled('false');
-                    }}
-                  />
-                </StyledRadioGroupContainer>
-                { isSoilTestEnabled === 'true' && (
-                  // SKELETON!!
-                  <p>Soil Test is Enabled!</p>
-                )}
+                </StyledTestContainer>
+                {values.hasSoilTest && <p>Soil Test is Enabled!</p>}
                 <HeaderLabel>
                   Add Leaf Test
-                  <span>
-                    <FontAwesomeIcon icon={faCircleInfo} />
-                  </span>
                 </HeaderLabel>
-                <StyledRadioGroupContainer>
-                  <CustomRadioButton
-                    label="Yes"
-                    id="LeafTestYes"
-                    name="LeafTestYes"
-                    type="radio"
-                    width="20%"
-                    value="true"
-                    checked={isLeafTestEnabled === 'true'}
-                    onChange={(e) => {
-                      handleChange(e);
-                      setLeafTestEnabled('true');
-                    }}
+                <StyledTestContainer>
+                  <StyledRadioGroupContainer>
+                    {radioOptions.map((option) => (
+                      <CustomRadioButton
+                        key={option.id}
+                        label={option.label}
+                        id={`hasLeafTest${option.id}`}
+                        name="hasLeafTest"
+                        type="radio"
+                        width="20%"
+                        checked={isLeafTestEnabled === option.value}
+                        onChange={() => {
+                          setFieldValue('hasLeafTest', option.value);
+                          setLeafTestEnabled(option.value);
+                        }}
+                      />
+                    ))}
+                  </StyledRadioGroupContainer>
+                  <ErrorMessage
+                    name="hasLeafTest"
+                    component="div"
+                    className="errorMessage"
                   />
-                  <CustomRadioButton
-                    label="No"
-                    id="LeafTestNo"
-                    name="LeafTestNo"
-                    type="radio"
-                    width="20%"
-                    value="true"
-                    checked={isLeafTestEnabled === 'false'}
-                    onChange={(e) => {
-                      handleChange(e);
-                      setLeafTestEnabled('false');
-                    }}
-                  />
-                </StyledRadioGroupContainer>
-                { isLeafTestEnabled === 'true' && (
-                  // SKELETON!!
-                  <p>Leaf Test is Enabled!</p>
-                )}
+                </StyledTestContainer>
+                {values.hasLeafTest && <p>Leaf Test is Enabled!</p>}
                 <StyledButtonGroupContainer>
                   <Button
                     type="reset"

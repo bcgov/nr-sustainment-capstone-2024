@@ -74,12 +74,14 @@ const StyledButtonGroupContainer = styled.div`
     width: 67px;
   }
 `;
-
+const StyledTestContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 const StyledRadioGroupContainer = styled.div`
   display: flex;
-  
 
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     width: 50%;
   }
 `;
@@ -87,11 +89,6 @@ const StyledRadioGroupContainer = styled.div`
 const HeaderLabel = styled.div`
   font-weight: ${tokens.typographyFontWeightsBold};
   margin-bottom: -10px;
-  
-  span {
-    padding-left: 10px;
-    color: ${tokens.iconsColorInfo};
-  }
 `;
 
 export {
@@ -99,6 +96,7 @@ export {
   StyledTextAreaContainer,
   StyledAreaContainer,
   StyledButtonGroupContainer,
+  StyledTestContainer,
   StyledRadioGroupContainer,
   HeaderLabel,
 };
