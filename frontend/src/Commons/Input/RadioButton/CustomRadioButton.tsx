@@ -13,8 +13,8 @@ interface CustomRadioProps {
   id: string;
   type: string;
   width?: string;
-  checked?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  checked: boolean;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const CustomRadioButton: FC<CustomRadioProps> = ({
