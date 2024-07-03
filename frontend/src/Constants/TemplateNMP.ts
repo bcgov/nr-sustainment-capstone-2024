@@ -1,4 +1,4 @@
-const emptyNMP = {
+const templateNMP = {
   farmDetails: {
     Year: '',
     FarmName: '',
@@ -37,4 +37,4 @@ const emptyNMP = {
   NMPReleaseVersion: 3,
 };
 
-export default emptyNMP;
+export default templateNMP;

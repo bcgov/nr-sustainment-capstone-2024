@@ -1,5 +1,5 @@
 import Button from '@Commons/Button/Button.tsx';
-import emptyNMP from '@Constants/TemplateNMP.ts';
+import templateNMP from '@Constants/TemplateNMP.ts';
 import {
   StyledContent,
   StyledButtonGroup,
@@ -35,7 +35,7 @@ const LandingPage = () => {
 
   const newCalcHandler = () => {
     localStorage.clear();
-    localStorage.setItem('farmDetails', JSON.stringify(emptyNMP));
+    localStorage.setItem('farmDetails', JSON.stringify(templateNMP));
     window.location.href = '/main';
   };
 
