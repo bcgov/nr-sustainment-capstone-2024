@@ -100,7 +100,6 @@ const StyledWarningBlock = styled.div`
     text-align: justify;
     padding: 10px 20px 0 20px;
   }
-
 `;
 
 export {
