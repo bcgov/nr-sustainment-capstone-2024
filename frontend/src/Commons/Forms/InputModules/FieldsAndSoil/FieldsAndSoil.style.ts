@@ -5,6 +5,7 @@
  */
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
+import * as tokens from '@bcgov/design-tokens/js';
 
 const StyledFarmInfo = styled.div`
   display: flex;
@@ -74,4 +75,30 @@ const StyledButtonGroupContainer = styled.div`
   }
 `;
 
-export { StyledFarmInfo, StyledTextAreaContainer, StyledAreaContainer, StyledButtonGroupContainer };
+const StyledRadioGroupContainer = styled.div`
+  display: flex;
+  
+
+  @media (min-width: ${screenSizes.desktop}){
+    width: 50%;
+  }
+`;
+
+const HeaderLabel = styled.div`
+  font-weight: ${tokens.typographyFontWeightsBold};
+  margin-bottom: -10px;
+  
+  span {
+    padding-left: 10px;
+    color: ${tokens.iconsColorInfo};
+  }
+`;
+
+export {
+  StyledFarmInfo,
+  StyledTextAreaContainer,
+  StyledAreaContainer,
+  StyledButtonGroupContainer,
+  StyledRadioGroupContainer,
+  HeaderLabel,
+};

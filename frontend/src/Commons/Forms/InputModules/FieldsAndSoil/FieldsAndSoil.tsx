@@ -14,9 +14,11 @@ import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
-import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
+import CustomRadioButton from '@Commons/Input/RadioButton/CustomRadioButton';
+import { faWheatAwn, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FieldsButtonComponent from './FieldsButtonComponent';
 import FieldsListComponent from './FieldsListComponent';
 import {
@@ -24,7 +26,10 @@ import {
   StyledTextAreaContainer,
   StyledAreaContainer,
   StyledButtonGroupContainer,
+  StyledRadioGroupContainer,
+  HeaderLabel,
 } from './FieldsAndSoil.style';
+
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   farmDetails,
@@ -41,6 +46,10 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
   const [isFieldAdded, setFieldAdd] = useState<boolean>(false);
+  // String instead of boolean so there's no default choice in the beginning.
+  const [isSoilTestEnabled, setSoilTestEnabled] = useState<string>('');
+  // String instead of boolean so there's no default choice in the beginning.
+  const [isLeafTestEnabled, setLeafTestEnabled] = useState<string>('');
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
     Area: Yup.number()
@@ -83,6 +92,8 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   const addNewField = () => {
     setFieldAdd(true);
   };
+
+  console.log(isSoilTestEnabled);
   return (
     <>
       {isSubmitted && (
@@ -107,34 +118,112 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
           validationSchema={validationSchema}
           onSubmit={addFieldData}
         >
-          <Form>
-            <StyledFarmInfo>
-              <div id="inputContainer">
-                <CustomField
-                  label="Field name"
-                  id="FieldName"
-                  name="FieldName"
-                  type="text"
-                />
-                <StyledAreaContainer>
+          {({ handleChange }) => (
+            <Form>
+              <StyledFarmInfo>
+                <div id="inputContainer">
                   <CustomField
-                    label="Area"
-                    id="Area"
-                    name="Area"
-                    type="number"
-                    width="50%"
+                    label="Field name"
+                    id="FieldName"
+                    name="FieldName"
+                    type="text"
                   />
-                  <p>Acres</p>
-                </StyledAreaContainer>
-              </div>
-              <StyledTextAreaContainer>
-                <CustomTextArea
-                  name="Comment"
-                  id="Comment"
-                  label="Comments (optional)"
-                  placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
-                  width="70%"
-                />
+                  <StyledAreaContainer>
+                    <CustomField
+                      label="Area"
+                      id="Area"
+                      name="Area"
+                      type="number"
+                      width="50%"
+                    />
+                    <p>Acres</p>
+                  </StyledAreaContainer>
+                </div>
+                <StyledTextAreaContainer>
+                  <CustomTextArea
+                    name="Comment"
+                    id="Comment"
+                    label="Comments (optional)"
+                    placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
+                    width="70%"
+                  />
+                </StyledTextAreaContainer>
+                <HeaderLabel>
+                  Add Soil Test
+                  <span>
+                    <FontAwesomeIcon icon={faCircleInfo} />
+                  </span>
+                </HeaderLabel>
+                <StyledRadioGroupContainer>
+                  <CustomRadioButton
+                    label="Yes"
+                    id="SoilTestYes"
+                    name="SoilTestYes"
+                    type="radio"
+                    width="20%"
+                    value="true"
+                    checked={isSoilTestEnabled === 'true'}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setSoilTestEnabled('true');
+                    }}
+                  />
+                  <CustomRadioButton
+                    label="No"
+                    id="SoilTestNo"
+                    name="SoilTestNo"
+                    type="radio"
+                    width="20%"
+                    value="true"
+                    checked={isSoilTestEnabled === 'false'}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setSoilTestEnabled('false');
+                    }}
+                  />
+                </StyledRadioGroupContainer>
+                { isSoilTestEnabled === 'true' && (
+                  // SKELETON!!
+                  <p>Soil Test is Enabled!</p>
+                )}
+                <HeaderLabel>
+                  Add Leaf Test
+                  <span>
+                    <FontAwesomeIcon icon={faCircleInfo} />
+                  </span>
+                </HeaderLabel>
+                <StyledRadioGroupContainer>
+                  <CustomRadioButton
+                    label="Yes"
+                    id="LeafTestYes"
+                    name="LeafTestYes"
+                    type="radio"
+                    width="20%"
+                    value="true"
+                    checked={isLeafTestEnabled === 'true'}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setLeafTestEnabled('true');
+                    }}
+                  />
+                  <CustomRadioButton
+                    label="No"
+                    id="LeafTestNo"
+                    name="LeafTestNo"
+                    type="radio"
+                    width="20%"
+                    value="true"
+                    checked={isLeafTestEnabled === 'false'}
+                    onChange={(e) => {
+                      handleChange(e);
+                      setLeafTestEnabled('false');
+                    }}
+                  />
+                </StyledRadioGroupContainer>
+                { isLeafTestEnabled === 'true' && (
+                  // SKELETON!!
+                  <p>Leaf Test is Enabled!</p>
+                )}
                 <StyledButtonGroupContainer>
                   <Button
                     type="reset"
@@ -150,9 +239,9 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                     text={ComponentText.ADD}
                   />
                 </StyledButtonGroupContainer>
-              </StyledTextAreaContainer>
-            </StyledFarmInfo>
-          </Form>
+              </StyledFarmInfo>
+            </Form>
+          )}
         </Formik>
       )}
     </>
