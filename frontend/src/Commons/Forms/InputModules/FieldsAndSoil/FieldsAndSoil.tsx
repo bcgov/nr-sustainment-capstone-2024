@@ -15,10 +15,9 @@ import Button from '@Commons/Button/Button';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
 import CustomRadioButton from '@Commons/Input/RadioButton/CustomRadioButton';
-import { faWheatAwn, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FieldsButtonComponent from './FieldsButtonComponent';
 import FieldsListComponent from './FieldsListComponent';
 import {
@@ -156,9 +155,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                     width="70%"
                   />
                 </StyledTextAreaContainer>
-                <HeaderLabel>
-                  Add Soil Test
-                </HeaderLabel>
+                <HeaderLabel>Add Soil Test</HeaderLabel>
                 <StyledTestContainer>
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
@@ -184,9 +181,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                   />
                 </StyledTestContainer>
                 {values.hasSoilTest && <p>Soil Test is Enabled!</p>}
-                <HeaderLabel>
-                  Add Leaf Test
-                </HeaderLabel>
+                <HeaderLabel>Add Leaf Test</HeaderLabel>
                 <StyledTestContainer>
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
