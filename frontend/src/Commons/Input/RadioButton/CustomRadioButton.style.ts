@@ -1,5 +1,5 @@
 /**
- * @desc Styling with BC Design Tokens and Emotion for Footer component
+ * @desc Styling with BC Design Tokens and Emotion for Radio Button component
  * @author @GDamaso
  */
 import styled from '@emotion/styled';

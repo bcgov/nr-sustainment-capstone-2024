@@ -1,5 +1,5 @@
 /**
- * @desc A footer with links to our terms of agreement and BC NMP Help resource
+ * @desc A Custom Radio Button that accepts props for modularity.
  *@author @Kcaparas
  */
 import React, { FC } from 'react';
