@@ -82,7 +82,7 @@ const StyledRadioGroupContainer = styled.div`
   display: flex;
 
   @media (min-width: ${screenSizes.desktop}) {
-    width: 50%;
+    width: 400px;
   }
 `;
 
