@@ -28,6 +28,7 @@ import {
   StyledTestContainer,
   StyledRadioGroupContainer,
   HeaderLabel,
+  StyledWarningBlock,
 } from './FieldsAndSoil.style';
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
@@ -180,6 +181,14 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                     className="errorMessage"
                   />
                 </StyledTestContainer>
+                {values.hasSoilTest === false && (
+                  <StyledWarningBlock>
+                    <p>
+                      For fields without a soil test, very high soil P and K fertility and a pH of
+                      4.0 will be assumed.
+                    </p>
+                  </StyledWarningBlock>
+                )}
                 {values.hasSoilTest && <p>Soil Test is Enabled!</p>}
                 <HeaderLabel>Add Leaf Test</HeaderLabel>
                 <StyledTestContainer>
@@ -206,6 +215,14 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                     className="errorMessage"
                   />
                 </StyledTestContainer>
+                {values.hasLeafTest === false && (
+                  <StyledWarningBlock>
+                    <p>
+                      For fields without a leaf test, high leaf P and K content will be assumed.
+                      Crop P and K requirements will be 0 on fields without a leaf test.
+                    </p>
+                  </StyledWarningBlock>
+                )}
                 {values.hasLeafTest && <p>Leaf Test is Enabled!</p>}
                 <StyledButtonGroupContainer>
                   <Button

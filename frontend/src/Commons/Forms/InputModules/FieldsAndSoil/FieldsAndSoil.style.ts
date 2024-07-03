@@ -91,6 +91,18 @@ const HeaderLabel = styled.div`
   margin-bottom: -10px;
 `;
 
+const StyledWarningBlock = styled.div`
+  border: 1px solid ${tokens.supportBorderColorWarning};
+  border-radius: 4px;
+
+  p {
+    font: ${tokens.typographyRegularLabel};
+    text-align: justify;
+    padding: 10px 20px 0 20px;
+  }
+
+`;
+
 export {
   StyledFarmInfo,
   StyledTextAreaContainer,
@@ -99,4 +111,5 @@ export {
   StyledTestContainer,
   StyledRadioGroupContainer,
   HeaderLabel,
+  StyledWarningBlock,
 };
