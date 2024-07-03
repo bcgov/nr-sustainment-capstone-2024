@@ -88,7 +88,7 @@ const StyledRadioGroupContainer = styled.div`
 
 const HeaderLabel = styled.div`
   font-weight: ${tokens.typographyFontWeightsBold};
-  margin-bottom: -10px;
+  margin-bottom: 5px;
 `;
 
 const StyledWarningBlock = styled.div`

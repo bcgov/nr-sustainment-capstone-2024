@@ -156,8 +156,8 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                     width="70%"
                   />
                 </StyledTextAreaContainer>
-                <HeaderLabel>Add Soil Test</HeaderLabel>
                 <StyledTestContainer>
+                  <HeaderLabel>Add Soil Test</HeaderLabel>
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
@@ -190,8 +190,8 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                   </StyledWarningBlock>
                 )}
                 {values.hasSoilTest && <p>Soil Test is Enabled!</p>}
-                <HeaderLabel>Add Leaf Test</HeaderLabel>
                 <StyledTestContainer>
+                  <HeaderLabel>Add Leaf Test</HeaderLabel>
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
