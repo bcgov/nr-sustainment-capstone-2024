@@ -94,11 +94,11 @@ const HeaderLabel = styled.div`
 const StyledWarningBlock = styled.div`
   border: 1px solid ${tokens.supportBorderColorWarning};
   border-radius: 4px;
+  font: ${tokens.typographyRegularLabel};
+  padding: 10px 20px 0 20px;
 
-  p {
-    font: ${tokens.typographyRegularLabel};
-    text-align: justify;
-    padding: 10px 20px 0 20px;
+  ul {
+    padding: 10px 0 0 10px;
   }
 `;
 

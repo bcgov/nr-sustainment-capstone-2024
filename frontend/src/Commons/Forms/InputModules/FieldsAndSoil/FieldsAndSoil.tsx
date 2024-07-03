@@ -217,10 +217,12 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                 </StyledTestContainer>
                 {values.hasLeafTest === false && (
                   <StyledWarningBlock>
-                    <p>
-                      For fields without a leaf test, high leaf P and K content will be assumed.
-                      Crop P and K requirements will be 0 on fields without a leaf test.
-                    </p>
+                    <ul>
+                      <li>
+                        For fields without a leaf test, high leaf P and K content will be assumed.
+                      </li>
+                      <li>Crop P and K requirements will be 0 on fields without a leaf test.</li>
+                    </ul>
                   </StyledWarningBlock>
                 )}
                 {values.hasLeafTest && <p>Leaf Test is Enabled!</p>}
