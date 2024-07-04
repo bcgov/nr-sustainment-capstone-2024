@@ -1,6 +1,4 @@
 import Button from '@Commons/Button/Button.tsx';
-import templateNMP from '@Constants/templateNMP.ts';
-import Names from '@Constants/Names.ts';
 import {
   StyledContent,
   StyledButtonGroup,
@@ -14,8 +12,7 @@ const LandingPage = () => {
     if (upload) upload.click();
   };
 
-  const isValidFile = (file: File): boolean =>
-    file.type === 'application/json' || file.name.endsWith('.nmp');
+  const isValidFile = (file: File): boolean => file.type === 'application/json' || file.name.endsWith('.nmp');
 
   const saveFile = (e: any) => {
     const file = e.target.files[0];
@@ -29,14 +26,13 @@ const LandingPage = () => {
 
     fr.onload = () => {
       const data = fr.result;
-      if (data) localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(data));
+      if (data) localStorage.setItem('farmDetails', data.toString());
     };
     window.location.href = '/main';
   };
 
   const newCalcHandler = () => {
     localStorage.clear();
-    localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(templateNMP));
     window.location.href = '/main';
   };
 

@@ -11,7 +11,6 @@ import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import * as InputModules from '@Commons/Forms/InputModules/index';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
-import Names from '@Constants/Names';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import nmpInterface from 'src/Interface/nmpInterface';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
@@ -26,7 +25,7 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
 ];
 
 const getLocalDetails = () => {
-  const nmpString = localStorage.getItem(Names.FARM_DETAILS);
+  const nmpString = localStorage.getItem('farmDetails');
   try {
     if (nmpString) return JSON.parse(nmpString);
   } catch (err) {
@@ -86,7 +85,7 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     if (localDetails) {
-      localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(localDetails));
+      localStorage.setItem('farmDetails', JSON.stringify(localDetails));
     }
   }, [localDetails]);
 
@@ -115,12 +114,14 @@ const MainPage: React.FC = () => {
         }
         break;
       default:
+        console.log('default');
         if (cmd && Object.keys(InputModules).includes(cmd)) {
           moduleID = cmd;
         }
         break;
     }
     const updatedStates = formStates.map((module: InputModuleInterface) => {
+      console.log('moduleID: ', moduleID, 'Second: ', secondModuleID);
       if (module.id === moduleID || module.id === secondModuleID) {
         return {
           ...module,
