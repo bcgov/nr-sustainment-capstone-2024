@@ -29,13 +29,15 @@ const LandingPage = () => {
 
     fr.onload = () => {
       const data = fr.result;
-      if (data) localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(data));
+      // data is not a JSON yet at this point. It's still .nmp
+      if (data) localStorage.setItem(Names.FARM_DETAILS, data.toString());
     };
     window.location.href = '/main';
   };
 
   const newCalcHandler = () => {
     localStorage.clear();
+    // Our template is a JSON .nmp compatible object
     localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(templateNMP));
     window.location.href = '/main';
   };
