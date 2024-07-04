@@ -40,4 +40,38 @@ const StyledTextAreaContainer = styled.div`
   }
 `;
 
-export { StyledFarmInfo, StyledTextAreaContainer };
+const StyledAreaContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  height: auto;
+  position: relative;
+
+  p {
+    position: absolute;
+    top: 30px;
+    left: 100px;
+  }
+
+  @media (min-width: ${screenSizes.desktop}) {
+    p {
+      left: 110px;
+    }
+  }
+`;
+const StyledButtonGroupContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto;
+  width: 320px;
+  justify-content: flex-end;
+  @media (min-width: ${screenSizes.desktop}) {
+    flex-direction: row;
+    margin: 0;
+    justify-content: flex-start;
+    width: 67px;
+  }
+`;
+
+export { StyledFarmInfo, StyledTextAreaContainer, StyledAreaContainer, StyledButtonGroupContainer };

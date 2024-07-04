@@ -1,0 +1,40 @@
+const templateNMP = {
+  farmDetails: {
+    Year: '',
+    FarmName: '',
+    FarmRegion: 21,
+    FarmSubRegion: null,
+    SoilTests: null,
+    TestingMethod: '11',
+    Manure: null,
+    HasSelectedFarmType: true,
+    ImportsManureCompost: true,
+    HasAnimals: false,
+    HasDairyCows: false,
+    HasBeefCows: false,
+    HasPoultry: false,
+    HasMixedLiveStock: false,
+    HasHorticulturalCrops: true,
+    HasBerries: true,
+    LeafTests: null,
+    LeafTestingMethod: '0',
+    UserJourney: 7,
+  },
+  unsaved: false,
+  years: [
+    {
+      Year: '',
+      Fields: [],
+      FarmAnimals: [],
+      FarmManures: [],
+      GeneratedManures: [],
+      ImportedManures: [],
+      SeparatedSolidManures: [],
+      ManureStorageSystems: [],
+    },
+  ],
+  LastAppliedFarmManureId: null,
+  NMPReleaseVersion: 3,
+};
+
+export default templateNMP;

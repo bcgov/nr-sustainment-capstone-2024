@@ -29,8 +29,8 @@ const StyledProgressBar = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  z-index: 1;
   width: 100%;
+  z-index: 1;
 `;
 const StyledLineBlock = styled.div`
   border: 5px solid ${tokens.surfaceColorBorderDark};

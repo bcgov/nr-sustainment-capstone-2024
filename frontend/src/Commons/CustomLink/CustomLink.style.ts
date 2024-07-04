@@ -19,8 +19,7 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
   color: ${tokens.typographyColorPrimaryInvert};
   border-radius: 8px;
   border: ${`1px solid ${tokens.surfaceColorBorderMedium}`};
-  font-family: ${tokens.typographyFontFamiliesBcSans};
-  font-weight: ${tokens.typographyFontWeightsBold};
+  font: ${tokens.typographyBoldLabel};
   @media (min-width: ${screenSizes.desktop}) {
     height: 100%;
     max-width: ${(props) => getButtonSize(props.size, true)};

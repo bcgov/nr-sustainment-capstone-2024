@@ -11,7 +11,10 @@ parameters:
     description: Organization name; e.g. bcgov or bcdevops
     value: bcgov
   - name: TAG
-    description: Image tag; e.g. PR number, latest or prod
+    description: Image tag; e.g. PR number or latest
+    required: true
+  - name: TARGET
+    description: Deployment target; e.g. PR number, test or prod
     required: true
   - name: DB_PASSWORD
     description: Password for the PostgreSQL connection user.
@@ -22,8 +25,8 @@ objects:
     apiVersion: v1
     metadata:
       labels:
-        app: ${APP}-${TAG}
-      name: ${APP}-${TAG}-${COMPONENT}
+        app: ${APP}-${TARGET}
+      name: ${APP}-${TARGET}-${COMPONENT}
     spec:
       type: ClusterIP
       ports:
@@ -32,50 +35,50 @@ objects:
           protocol: TCP
           name: http-3000
       selector:
-        service: ${APP}-${TAG}-${COMPONENT}
+        service: ${APP}-${TARGET}-${COMPONENT}
   - kind: Deployment
     apiVersion: apps/v1
     metadata:
       labels:
-        app: ${APP}-${TAG}
-        deployment: ${APP}-${TAG}-${COMPONENT}
-      name: ${APP}-${TAG}-${COMPONENT}
+        app: ${APP}-${TARGET}
+        deployment: ${APP}-${TARGET}-${COMPONENT}
+      name: ${APP}-${TARGET}-${COMPONENT}
     spec:
       strategy:
         type: RollingUpdate
       selector:
         matchLabels:
-          deployment: ${APP}-${TAG}-${COMPONENT}
+          deployment: ${APP}-${TARGET}-${COMPONENT}
       template:
         metadata:
           labels:
-            app: ${APP}-${TAG}
-            deployment: ${APP}-${TAG}-${COMPONENT}
-            service: ${APP}-${TAG}-${COMPONENT}
+            app: ${APP}-${TARGET}
+            deployment: ${APP}-${TARGET}-${COMPONENT}
+            service: ${APP}-${TARGET}-${COMPONENT}
         spec:
           containers:
-            - name: ${APP}-${TAG}-${COMPONENT}
-              image: 'ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}'
+            - name: ${APP}-${TARGET}-${COMPONENT}
+              image: ghcr.io/${ORG}/${APP}/${COMPONENT}:${TAG}
               imagePullPolicy: Always
               env:
                 - name: LOG_LEVEL
                   value: info
                 - name: POSTGRES_HOST
-                  value: ${APP}-${TAG}-database
+                  value: ${APP}-${TARGET}-database
                 - name: POSTGRES_DB
                   valueFrom:
                     secretKeyRef:
-                      name: ${APP}-${TAG}-database
+                      name: ${APP}-${TARGET}-database
                       key: database-name
                 - name: POSTGRES_PASSWORD
                   valueFrom:
                     secretKeyRef:
-                      name: ${APP}-${TAG}-database
+                      name: ${APP}-${TARGET}-database
                       key: database-password
                 - name: POSTGRES_USER
                   valueFrom:
                     secretKeyRef:
-                      name: ${APP}-${TAG}-database
+                      name: ${APP}-${TARGET}-database
                       key: database-user
               ports:
                 - containerPort: 3000
@@ -111,15 +114,15 @@ objects:
     apiVersion: route.openshift.io/v1
     metadata:
       labels:
-        app: ${APP}-${TAG}
-      name: ${APP}-${TAG}-${COMPONENT}
+        app: ${APP}-${TARGET}
+      name: ${APP}-${TARGET}-${COMPONENT}
     spec:
-      host: ${APP}-${TAG}-${COMPONENT}.apps.silver.devops.gov.bc.ca
+      host: ${APP}-${TARGET}-${COMPONENT}.apps.silver.devops.gov.bc.ca
       port:
         targetPort: http-3000
       to:
         kind: Service
-        name: ${APP}-${TAG}-${COMPONENT}
+        name: ${APP}-${TARGET}-${COMPONENT}
         weight: 100
       tls:
         termination: edge

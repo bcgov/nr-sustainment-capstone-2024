@@ -29,4 +29,14 @@ const StyledSelectContainer = styled.div`
   justify-content: space-between;
   align-items: flex-end;
 `;
-export { StyledFarmInfo, StyledSelectContainer };
+
+const StyledButtonController = styled.div`
+  width: 100%;
+  max-width: 327px;
+  height: 42px;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    max-width: 67px;
+  }
+`;
+export { StyledFarmInfo, StyledSelectContainer, StyledButtonController };

@@ -19,8 +19,12 @@ import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import FieldsButtonComponent from './FieldsButtonComponent';
 import FieldsListComponent from './FieldsListComponent';
-import { StyledFarmInfo, StyledTextAreaContainer } from './FieldsAndSoil.style';
-import { StyledButtonGroupContainer } from './FieldsButtonComponent.styles';
+import {
+  StyledFarmInfo,
+  StyledTextAreaContainer,
+  StyledAreaContainer,
+  StyledButtonGroupContainer,
+} from './FieldsAndSoil.style';
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   farmDetails,
@@ -117,13 +121,16 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                   name="FieldName"
                   type="text"
                 />
-                <CustomField
-                  label="Area (Acres)"
-                  id="Area"
-                  name="Area"
-                  type="number"
-                  width="50%"
-                />
+                <StyledAreaContainer>
+                  <CustomField
+                    label="Area"
+                    id="Area"
+                    name="Area"
+                    type="number"
+                    width="50%"
+                  />
+                  <p>Acres</p>
+                </StyledAreaContainer>
               </div>
               <StyledTextAreaContainer>
                 <CustomTextArea
@@ -136,14 +143,14 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                 <StyledButtonGroupContainer>
                   <Button
                     type="reset"
-                    size="sm"
+                    size="lg"
                     disabled={false}
                     actions="secondary"
                     text={ComponentText.CANCEL}
                   />
                   <Button
                     type="submit"
-                    size="sm"
+                    size="lg"
                     disabled={false}
                     text={ComponentText.ADD}
                   />

@@ -15,7 +15,11 @@ import CustomField from '@Commons/Input/Field/CustomField';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import OptionInterface from 'src/Interface/OptionInterface';
 import Button from '@Commons/Button/Button';
-import { StyledFarmInfo, StyledSelectContainer } from './FarmInformation.style';
+import {
+  StyledFarmInfo,
+  StyledSelectContainer,
+  StyledButtonController,
+} from './FarmInformation.style';
 
 interface SubmissionValues {
   FarmName: string;
@@ -89,12 +93,14 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
               options={options}
               width="50%"
             />
-            <Button
-              type="submit"
-              size="sm"
-              disabled={false}
-              text={ComponentText.NEXT}
-            />
+            <StyledButtonController>
+              <Button
+                type="submit"
+                size="lg"
+                disabled={false}
+                text={ComponentText.NEXT}
+              />
+            </StyledButtonController>
           </StyledSelectContainer>
         </StyledFarmInfo>
       </Form>

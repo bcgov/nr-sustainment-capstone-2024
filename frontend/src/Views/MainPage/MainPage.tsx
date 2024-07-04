@@ -6,11 +6,12 @@ import React, { useEffect, useState } from 'react';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
 import ProgressBar from '@Commons/ProgressBar/ProgressBar';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter';
-import FormModule from '@Commons/Forms/FormModule/FormModule.tsx';
+import FormModule from '@Commons/Forms/FormModule/FormModule';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import * as InputModules from '@Commons/Forms/InputModules/index';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
+import Names from '@Constants/Names';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import nmpInterface from 'src/Interface/nmpInterface';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
@@ -25,7 +26,7 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
 ];
 
 const getLocalDetails = () => {
-  const nmpString = localStorage.getItem('farmDetails');
+  const nmpString = localStorage.getItem(Names.FARM_DETAILS);
   try {
     if (nmpString) return JSON.parse(nmpString);
   } catch (err) {
@@ -85,7 +86,7 @@ const MainPage: React.FC = () => {
 
   useEffect(() => {
     if (localDetails) {
-      localStorage.setItem('farmDetails', JSON.stringify(localDetails));
+      localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(localDetails));
     }
   }, [localDetails]);
   /**
@@ -95,15 +96,31 @@ const MainPage: React.FC = () => {
    *            ** In the future, also update the ProgressBar status **
    * @param formMovement: string => A movement that indicates if you go back or forward
    */
-  const handleFormState = (moduleID: string, nexModuleID?: string, prevModuleID?: string) => {
+  const handleFormState = (cmd?: string) => {
+    let moduleID = formStates[currForm].id;
+    let secondModuleID = null;
+
+    switch (cmd) {
+      case 'back':
+        if (currForm >= 0) {
+          secondModuleID = formStates[currForm - 1].id;
+          setCurrForm((prevForm) => prevForm - 1);
+        }
+        break;
+      case 'forward':
+        if (formStates[currForm + 1]) {
+          secondModuleID = formStates[currForm + 1].id;
+          setCurrForm((prevForm) => prevForm + 1);
+        }
+        break;
+      default:
+        if (cmd && Object.keys(InputModules).includes(cmd)) {
+          moduleID = cmd;
+        }
+        break;
+    }
     const updatedStates = formStates.map((module: InputModuleInterface) => {
-      if (module.id === moduleID || module.id === nexModuleID) {
-        return {
-          ...module,
-          enable: !module.enable,
-        };
-      }
-      if (module.id === prevModuleID) {
+      if (module.id === moduleID || module.id === secondModuleID) {
         return {
           ...module,
           enable: !module.enable,
