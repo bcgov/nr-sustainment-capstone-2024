@@ -1,5 +1,6 @@
 import Button from '@Commons/Button/Button.tsx';
-import templateNMP from '@Constants/TemplateNMP.ts';
+import templateNMP from '@Constants/templateNMP.ts';
+import Names from '@Constants/Names.ts';
 import {
   StyledContent,
   StyledButtonGroup,
@@ -28,14 +29,14 @@ const LandingPage = () => {
 
     fr.onload = () => {
       const data = fr.result;
-      if (data) localStorage.setItem('farmDetails', data.toString());
+      if (data) localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(data));
     };
     window.location.href = '/main';
   };
 
   const newCalcHandler = () => {
     localStorage.clear();
-    localStorage.setItem('farmDetails', JSON.stringify(templateNMP));
+    localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(templateNMP));
     window.location.href = '/main';
   };
 
