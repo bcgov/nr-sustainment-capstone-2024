@@ -1,6 +1,6 @@
 /**
  * @desc Styling with BC Design Tokens and Emotion for Radio Button component
- * @author @GDamaso
+ * @author @Kcaparas
  */
 import styled from '@emotion/styled';
 
