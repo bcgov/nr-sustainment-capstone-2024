@@ -6,7 +6,7 @@ const initialFarmDetails: FarmDetailsInterface = {
   FarmName: '',
   FarmRegion: '',
   HasBerries: true,
-  Fields: [{ Id: 0, FieldName: '', Area: 0, Comment: '' }],
+  Fields: [{ Id: 0, FieldName: '', Area: 0, Comment: '', hasSoilTest: null, hasLeafTest: null }],
 };
 
 export default initialFarmDetails;

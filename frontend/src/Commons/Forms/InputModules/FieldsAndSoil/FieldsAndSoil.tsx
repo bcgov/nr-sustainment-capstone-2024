@@ -8,12 +8,13 @@ import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import InputModuleProps from 'src/Interface/InputModuleProps';
 import React, { useState } from 'react';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
-import { Formik, Form } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
+import CustomRadioButton from '@Commons/Input/RadioButton/CustomRadioButton';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
@@ -24,6 +25,10 @@ import {
   StyledTextAreaContainer,
   StyledAreaContainer,
   StyledButtonGroupContainer,
+  StyledTestContainer,
+  StyledRadioGroupContainer,
+  HeaderLabel,
+  StyledWarningBlock,
 } from './FieldsAndSoil.style';
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
@@ -41,6 +46,9 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
   const [isFieldAdded, setFieldAdd] = useState<boolean>(false);
+  // For checked attribute
+  const [isSoilTestEnabled, setSoilTestEnabled] = useState<boolean | null>(null);
+  const [isLeafTestEnabled, setLeafTestEnabled] = useState<boolean | null>(null);
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
     Area: Yup.number()
@@ -48,6 +56,8 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
       .max(100, 'Area should be lower than 100')
       .required('Required'),
     Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
+    hasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
+    hasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
   });
   /**
    *
@@ -64,6 +74,8 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
         FieldName: values.FieldName,
         Area: values.Area,
         Comment: values.Comment,
+        hasSoilTest: values.hasSoilTest,
+        hasLeafTest: values.hasLeafTest,
       });
       setInitialFieldValues(farmInfo.Fields[0]);
       setFieldsInfo(farmInfo);
@@ -82,7 +94,14 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   };
   const addNewField = () => {
     setFieldAdd(true);
+    setSoilTestEnabled(null);
+    setLeafTestEnabled(null);
   };
+
+  const radioOptions = [
+    { id: 'true', label: 'Yes', value: true },
+    { id: 'false', label: 'No', value: false },
+  ];
   return (
     <>
       {isSubmitted && (
@@ -107,34 +126,106 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
           validationSchema={validationSchema}
           onSubmit={addFieldData}
         >
-          <Form>
-            <StyledFarmInfo>
-              <div id="inputContainer">
-                <CustomField
-                  label="Field name"
-                  id="FieldName"
-                  name="FieldName"
-                  type="text"
-                />
-                <StyledAreaContainer>
+          {({ setFieldValue, values }) => (
+            <Form>
+              <StyledFarmInfo>
+                <div id="inputContainer">
                   <CustomField
-                    label="Area"
-                    id="Area"
-                    name="Area"
-                    type="number"
-                    width="50%"
+                    label="Field name"
+                    id="FieldName"
+                    name="FieldName"
+                    type="text"
                   />
-                  <p>Acres</p>
-                </StyledAreaContainer>
-              </div>
-              <StyledTextAreaContainer>
-                <CustomTextArea
-                  name="Comment"
-                  id="Comment"
-                  label="Comments (optional)"
-                  placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
-                  width="70%"
-                />
+                  <StyledAreaContainer>
+                    <CustomField
+                      label="Area"
+                      id="Area"
+                      name="Area"
+                      type="number"
+                      width="50%"
+                    />
+                    <p>Acres</p>
+                  </StyledAreaContainer>
+                </div>
+                <StyledTextAreaContainer>
+                  <CustomTextArea
+                    name="Comment"
+                    id="Comment"
+                    label="Comments (optional)"
+                    placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
+                    width="70%"
+                  />
+                </StyledTextAreaContainer>
+                <StyledTestContainer>
+                  <HeaderLabel>Add Soil Test</HeaderLabel>
+                  <StyledRadioGroupContainer>
+                    {radioOptions.map((option) => (
+                      <CustomRadioButton
+                        key={option.id}
+                        label={option.label}
+                        id={`hasSoilTest${option.id}`}
+                        name="hasSoilTest"
+                        type="radio"
+                        width="20%"
+                        checked={isSoilTestEnabled === option.value}
+                        onChange={() => {
+                          setFieldValue('hasSoilTest', option.value);
+                          setSoilTestEnabled(option.value);
+                        }}
+                      />
+                    ))}
+                  </StyledRadioGroupContainer>
+                  <ErrorMessage
+                    name="hasSoilTest"
+                    component="div"
+                    className="errorMessage"
+                  />
+                </StyledTestContainer>
+                {values.hasSoilTest === false && (
+                  <StyledWarningBlock>
+                    <p>
+                      For fields without a soil test, very high soil P and K fertility and a pH of
+                      4.0 will be assumed.
+                    </p>
+                  </StyledWarningBlock>
+                )}
+                {values.hasSoilTest && <p>Soil Test is Enabled!</p>}
+                <StyledTestContainer>
+                  <HeaderLabel>Add Leaf Test</HeaderLabel>
+                  <StyledRadioGroupContainer>
+                    {radioOptions.map((option) => (
+                      <CustomRadioButton
+                        key={option.id}
+                        label={option.label}
+                        id={`hasLeafTest${option.id}`}
+                        name="hasLeafTest"
+                        type="radio"
+                        width="20%"
+                        checked={isLeafTestEnabled === option.value}
+                        onChange={() => {
+                          setFieldValue('hasLeafTest', option.value);
+                          setLeafTestEnabled(option.value);
+                        }}
+                      />
+                    ))}
+                  </StyledRadioGroupContainer>
+                  <ErrorMessage
+                    name="hasLeafTest"
+                    component="div"
+                    className="errorMessage"
+                  />
+                </StyledTestContainer>
+                {values.hasLeafTest === false && (
+                  <StyledWarningBlock>
+                    <ul>
+                      <li>
+                        For fields without a leaf test, high leaf P and K content will be assumed.
+                      </li>
+                      <li>Crop P and K requirements will be 0 on fields without a leaf test.</li>
+                    </ul>
+                  </StyledWarningBlock>
+                )}
+                {values.hasLeafTest && <p>Leaf Test is Enabled!</p>}
                 <StyledButtonGroupContainer>
                   <Button
                     type="reset"
@@ -150,9 +241,9 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                     text={ComponentText.ADD}
                   />
                 </StyledButtonGroupContainer>
-              </StyledTextAreaContainer>
-            </StyledFarmInfo>
-          </Form>
+              </StyledFarmInfo>
+            </Form>
+          )}
         </Formik>
       )}
     </>
