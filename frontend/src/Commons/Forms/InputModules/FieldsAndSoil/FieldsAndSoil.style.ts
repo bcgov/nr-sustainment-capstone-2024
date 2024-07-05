@@ -77,6 +77,7 @@ const StyledButtonGroupContainer = styled.div`
 const StyledTestContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 10px;
 `;
 const StyledRadioGroupContainer = styled.div`
   display: flex;
@@ -88,7 +89,7 @@ const StyledRadioGroupContainer = styled.div`
 
 const HeaderLabel = styled.div`
   font-weight: ${tokens.typographyFontWeightsBold};
-  margin-bottom: 5px;
+  
 `;
 
 const StyledWarningBlock = styled.div`
@@ -102,6 +103,35 @@ const StyledWarningBlock = styled.div`
   }
 `;
 
+const StyledSelectContainer = styled.div`
+  width: 100vw;
+
+  @media (min-width: ${screenSizes.desktop}){
+    width: 30%;
+  
+  }
+`;
+
+const InputFieldsGroup = styled.div`
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  
+  @media (min-width: ${screenSizes.desktop}){
+    flex-direction: row;
+    width: 600px;
+    gap: 20px;
+  }
+`;
+
+const SingleInputField = styled.div`
+  width: 70vw;
+
+  @media (min-width: ${screenSizes.desktop}){
+    width: 290px;
+  }
+`;
+
 export {
   StyledFarmInfo,
   StyledTextAreaContainer,
@@ -111,4 +141,7 @@ export {
   StyledRadioGroupContainer,
   HeaderLabel,
   StyledWarningBlock,
+  StyledSelectContainer,
+  InputFieldsGroup,
+  SingleInputField,
 };
