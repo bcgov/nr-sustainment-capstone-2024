@@ -89,7 +89,6 @@ const StyledRadioGroupContainer = styled.div`
 
 const HeaderLabel = styled.div`
   font-weight: ${tokens.typographyFontWeightsBold};
-  
 `;
 
 const StyledWarningBlock = styled.div`
@@ -106,9 +105,8 @@ const StyledWarningBlock = styled.div`
 const StyledSelectContainer = styled.div`
   width: 100vw;
 
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     width: 30%;
-  
   }
 `;
 
@@ -116,8 +114,8 @@ const InputFieldsGroup = styled.div`
   width: 70vw;
   display: flex;
   flex-direction: column;
-  
-  @media (min-width: ${screenSizes.desktop}){
+
+  @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     width: 600px;
     gap: 20px;
@@ -127,7 +125,7 @@ const InputFieldsGroup = styled.div`
 const SingleInputField = styled.div`
   width: 70vw;
 
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     width: 290px;
   }
 `;

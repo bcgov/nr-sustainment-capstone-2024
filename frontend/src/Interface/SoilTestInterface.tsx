@@ -6,12 +6,12 @@
  * @author @Kcaparas
  */
 interface SoilTestInterface {
-  TestingMethod: string,
-  sampleDate: string,
-  valNO3H: number,
-  valP: number,
-  valK: number,
-  valPH: number,
+  TestingMethod: string;
+  sampleDate: string;
+  valNO3H: number;
+  valP: number;
+  valK: number;
+  valPH: number;
 }
 
 export default SoilTestInterface;
