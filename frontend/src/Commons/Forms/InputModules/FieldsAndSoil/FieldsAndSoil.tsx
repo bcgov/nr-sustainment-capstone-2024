@@ -64,7 +64,9 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
     Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
     hasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
     hasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
-    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) => (!hasSoilTest ? Yup.string().required('Must enter Testing Method') : Yup.string().notRequired())),
+    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) => (!hasSoilTest
+      ? Yup.string().required('Must enter Testing Method')
+      : Yup.string().notRequired())),
     sampleDate: Yup.string().when('hasSoilTest', (hasSoilTest) => (!hasSoilTest ? Yup.string().required('Must enter Sample Date') : Yup.string().notRequired())),
     valNO3H: Yup.number().when('hasSoilTest', (hasSoilTest) => (!hasSoilTest ? Yup.number().required('Required') : Yup.number().notRequired())),
     valP: Yup.number().when('hasSoilTest', (hasSoilTest) => (!hasSoilTest ? Yup.number().required('Required') : Yup.number().notRequired())),
