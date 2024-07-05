@@ -15,6 +15,7 @@ import {
 
 const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
   const fieldCount = farmDetails.Fields.length;
+  console.log(farmDetails.Fields[0].hasSoilTest);
   return (
     <StyledFieldInfoList>
       {farmDetails.Fields.map((fields: FieldDetailInterface) => (
