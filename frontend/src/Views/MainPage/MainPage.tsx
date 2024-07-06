@@ -20,9 +20,9 @@ import { StyledMain, StyledMainContainer } from './MainPage.styles';
 // This is the skeleton for the Berries workflow
 // Uncomment sections as they are implemented to have them instantiated ;)
 const mockBerriesWorkflow: InputModuleInterface[] = [
-  { ...InputModules.FarmInformation, status: 'active' },
-  { ...InputModules.FieldsAndSoil, status: 'inactive' },
-  { ...InputModules.Summary, status: 'inactive' },
+  InputModules.FarmInformation,
+  InputModules.FieldsAndSoil,
+  InputModules.Summary,
 ];
 
 const getLocalDetails = () => {
@@ -89,12 +89,13 @@ const MainPage: React.FC = () => {
       localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(localDetails));
     }
   }, [localDetails]);
+
   /**
    * @summary   Pass this handler to children who need to update InputModule states
    * @desc      A State handler that will update the current form section states,
    *            allowing you to expand/collapse form sections.
    *            ** In the future, also update the ProgressBar status **
-   * @param formMovement: string => A movement that indicates if you go back or forward
+   * @param     formMovement: string => A movement that indicates if you go back or forward
    */
   const handleFormState = (cmd?: string) => {
     let moduleID = formStates[currForm].id;
@@ -119,18 +120,27 @@ const MainPage: React.FC = () => {
         }
         break;
     }
+
     const updatedStates = formStates.map((module: InputModuleInterface) => {
-      if (module.id === moduleID || module.id === secondModuleID) {
+      if (module.id === moduleID) {
         return {
           ...module,
           enable: !module.enable,
+          status: 'completed',
+        };
+      } else if (module.id === secondModuleID) {
+        return {
+          ...module,
+          enable: !module.enable,
+          status: 'active',
         };
       }
       return module;
     });
-    console.log(updatedStates);
+
     setFormStates(updatedStates);
   };
+
   /**
    * @summary   Handler for updating the Main Data of the Calculator.
    * @desc      This updates the Main Data objet being built, 'farmDetails'.
@@ -142,36 +152,7 @@ const MainPage: React.FC = () => {
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
     updateLocalDetails(newDetails);
-    handleFormState(formStates[currForm].id, formStates[currForm + 1].id);
-    setCurrForm((prevForm) => prevForm + 1);
-    setFormStates((prevStates) => prevStates.map((module, index) => {
-      if (index === currForm) {
-        return { ...module, status: 'completed' };
-      }
-      if (index === currForm + 1) {
-        return { ...module, status: 'active' };
-      }
-      return module;
-    }));
-  };
-
-  const handleBackState = () => {
-    handleFormState(formStates[currForm].id, formStates[currForm - 1].id);
-    setCurrForm((prevForm: number): number => {
-      if (prevForm > 0) {
-        return prevForm - 1;
-      }
-      return prevForm;
-    });
-    setFormStates((prevStates) => prevStates.map((module, index) => {
-      if (index === currForm) {
-        return { ...module, status: 'warning' };
-      }
-      if (index === currForm - 1) {
-        return { ...module, status: 'completed' };
-      }
-      return module;
-    }));
+    handleFormState('forward');
   };
 
   return (
@@ -187,7 +168,6 @@ const MainPage: React.FC = () => {
                 farmDetails={farmDetails}
                 updateFarmDetails={updateFarmDetails}
                 handleFormState={handleFormState}
-                handleBackState={handleBackState}
                 key={InputModule.id}
               />
             );

@@ -14,55 +14,44 @@ import {
 type ButtonComponentProps = {
   addNewField: () => void;
   submitFarmInfo: () => void;
-  handleBackState: () => void;
 };
-const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
-  addNewField,
-  submitFarmInfo,
-  handleFormState,
-}) => {
-  const clickWrapper = () => {
-    handleFormState('back');
-  };
-  return (
-    <StyledButtonGroupContainer>
-      <StyledNewFieldButtonContainer>
-        <StyledNewFieldButtonController>
-          <Button
-            type="button"
-            size="lg"
-            disabled={false}
-            radius="50px"
-            actions="secondary"
-            text={ComponentText.ADD_FIELD}
-            handleClick={addNewField}
-          >
-            <FontAwesomeIcon icon={faPlus} />
-          </Button>
-        </StyledNewFieldButtonController>
-      </StyledNewFieldButtonContainer>
-      <StyledAddCancelButtonContainer>
-        <StyledButtonContainer>
-          <Button
-            type="button"
-            size="lg"
-            disabled={false}
-            actions="secondary"
-            text={ComponentText.BACK}
-            handleClick={clickWrapper}
-          />
-        </StyledButtonContainer>
-        <StyledButtonContainer>
-          <Button
-            type="button"
-            size="lg"
-            disabled={false}
-            text={ComponentText.NEXT}
-            handleClick={submitFarmInfo}
-          />
-        </StyledButtonContainer>
-      </StyledAddCancelButtonContainer>
-    </StyledButtonGroupContainer>
-  );
-};
+const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({ addNewField, submitFarmInfo }) => (
+  <StyledButtonGroupContainer>
+    <StyledNewFieldButtonContainer>
+      <StyledNewFieldButtonController>
+        <Button
+          type="button"
+          size="lg"
+          disabled={false}
+          radius="50px"
+          actions="secondary"
+          text={ComponentText.ADD_FIELD}
+          handleClick={addNewField}
+        >
+          <FontAwesomeIcon icon={faPlus} />
+        </Button>
+      </StyledNewFieldButtonController>
+    </StyledNewFieldButtonContainer>
+    <StyledAddCancelButtonContainer>
+      <StyledButtonContainer>
+        <Button
+          type="button"
+          size="lg"
+          disabled={false}
+          actions="secondary"
+          text={ComponentText.BACK}
+        />
+      </StyledButtonContainer>
+      <StyledButtonContainer>
+        <Button
+          type="button"
+          size="lg"
+          disabled={false}
+          text={ComponentText.NEXT}
+          handleClick={submitFarmInfo}
+        />
+      </StyledButtonContainer>
+    </StyledAddCancelButtonContainer>
+  </StyledButtonGroupContainer>
+);
 export default FieldsButtonComponent;
