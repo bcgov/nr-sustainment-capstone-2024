@@ -18,20 +18,18 @@ const Container = styled.div`
 `;
 const StyledItem = styled.div<ProgressProps>`
   border-radius: 50%;
-  background-color: ${(props) =>
-    props.status === 'active'
-      ? tokens.supportBorderColorWarning
-      : props.status === 'completed'
-        ? tokens.iconsColorSuccess
-        : props.status === 'warning'
-          ? tokens.iconsColorDanger
-          : tokens.iconsColorPrimaryInvert};
-  color: ${(props) =>
-    props.status === 'active'
-      ? tokens.iconsColorInfo
-      : props.status === 'completed' || props.status === 'warning'
-        ? tokens.iconsColorPrimaryInvert
-        : tokens.iconsColorPrimary};
+  background-color: ${(props) => (props.status === 'active'
+    ? tokens.supportBorderColorWarning
+    : props.status === 'completed'
+      ? tokens.iconsColorSuccess
+      : props.status === 'warning'
+        ? tokens.iconsColorDanger
+        : tokens.iconsColorPrimaryInvert)};
+  color: ${(props) => (props.status === 'active'
+    ? tokens.iconsColorInfo
+    : props.status === 'completed' || props.status === 'warning'
+      ? tokens.iconsColorPrimaryInvert
+      : tokens.iconsColorPrimary)};
   display: flex;
   justify-content: center;
   align-items: center;

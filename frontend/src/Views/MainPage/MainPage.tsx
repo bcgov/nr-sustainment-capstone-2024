@@ -128,7 +128,7 @@ const MainPage: React.FC = () => {
           enable: !module.enable,
           status: 'completed',
         };
-      } else if (module.id === secondModuleID) {
+      } if (module.id === secondModuleID) {
         return {
           ...module,
           enable: !module.enable,
