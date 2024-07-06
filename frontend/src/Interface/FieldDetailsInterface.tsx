@@ -10,6 +10,8 @@ interface FieldDetailInterface {
   FieldName: string;
   Area: number;
   Comment?: string | null;
+  hasSoilTest: boolean | null;
+  hasLeafTest: boolean | null;
 }
 
 export default FieldDetailInterface;

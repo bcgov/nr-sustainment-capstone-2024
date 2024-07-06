@@ -5,6 +5,7 @@
  */
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
+import * as tokens from '@bcgov/design-tokens/js';
 
 const StyledFarmInfo = styled.div`
   display: flex;
@@ -73,5 +74,41 @@ const StyledButtonGroupContainer = styled.div`
     width: 67px;
   }
 `;
+const StyledTestContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const StyledRadioGroupContainer = styled.div`
+  display: flex;
 
-export { StyledFarmInfo, StyledTextAreaContainer, StyledAreaContainer, StyledButtonGroupContainer };
+  @media (min-width: ${screenSizes.desktop}) {
+    width: 400px;
+  }
+`;
+
+const HeaderLabel = styled.div`
+  font-weight: ${tokens.typographyFontWeightsBold};
+  margin-bottom: 5px;
+`;
+
+const StyledWarningBlock = styled.div`
+  border: 1px solid ${tokens.supportBorderColorWarning};
+  border-radius: 4px;
+  font: ${tokens.typographyRegularLabel};
+  padding: 10px 20px 0 20px;
+
+  ul {
+    padding: 10px 0 0 10px;
+  }
+`;
+
+export {
+  StyledFarmInfo,
+  StyledTextAreaContainer,
+  StyledAreaContainer,
+  StyledButtonGroupContainer,
+  StyledTestContainer,
+  StyledRadioGroupContainer,
+  HeaderLabel,
+  StyledWarningBlock,
+};
