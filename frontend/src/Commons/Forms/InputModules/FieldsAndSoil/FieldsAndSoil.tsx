@@ -105,6 +105,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
           leafTissueK: values.LeafTest.leafTissueK,
         },
       });
+      console.log('Updated farm details:', farmInfo); // Debugging line
       setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
@@ -221,8 +222,8 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                     <>
                       <StyledSelectContainer>
                         <CustomSelect
-                          name="TestingMethod"
-                          id="TestingMethod"
+                          name="SoilTest.TestingMethod"
+                          id="SoilTest.TestingMethod"
                           label="Lab (Soil Test Methods)"
                           options={soilTestOptions}
                         />
@@ -231,36 +232,36 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                       <InputFieldsGroup>
                         <CustomField
                           label="Sample Month"
-                          id="sampleDate"
-                          name="sampleDate"
+                          id="SoilTest.sampleDate"
+                          name="SoilTest.sampleDate"
                           type="text"
                         />
                         <CustomField
                           label="NO3-N (ppm), nitrate-nitrogen"
-                          id="valNO3H"
-                          name="valNO3H"
+                          id="SoilTest.valNO3H"
+                          name="SoilTest.valNO3H"
                           type="number"
                         />
                       </InputFieldsGroup>
                       <InputFieldsGroup>
                         <CustomField
                           label="P (ppm), phosphorous"
-                          id="valP"
-                          name="valP"
+                          id="SoilTest.valP"
+                          name="SoilTest.valP"
                           type="number"
                         />
                         <CustomField
                           label="K (ppm), potassium"
-                          id="valK"
-                          name="valK"
+                          id="SoilTest.valK"
+                          name="SoilTest.valK"
                           type="number"
                         />
                       </InputFieldsGroup>
                       <SingleInputField>
                         <CustomField
                           label="pH"
-                          id="valPH"
-                          name="valPH"
+                          id="SoilTest.valPH"
+                          name="SoilTest.valPH"
                           type="number"
                         />
                       </SingleInputField>
@@ -306,14 +307,14 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                   <InputFieldsGroup>
                     <CustomField
                       label="Leaf tissue P (%)"
-                      id="leafTissueP"
-                      name="leafTissueP"
+                      id="LeafTest.leafTissueP"
+                      name="LeafTest.leafTissueP"
                       type="number"
                     />
                     <CustomField
                       label="Leaf tissue K (%)"
-                      id="leafTissueK"
-                      name="leafTissueK"
+                      id="LeafTest.leafTissueK"
+                      name="LeafTest.leafTissueK"
                       type="number"
                     />
                   </InputFieldsGroup>

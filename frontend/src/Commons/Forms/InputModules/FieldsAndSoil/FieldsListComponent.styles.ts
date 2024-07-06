@@ -85,6 +85,20 @@ const StyledDivider = styled.div`
   margin: auto;
 `;
 
+const StyledListItemGroupContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  
+  @media (min-width: ${screenSizes.desktop}){
+    flex-direction: row;
+  }
+`;
+
+const StyledListItemGroup = styled.div`
+  display: flex;
+
+`;
+
 export {
   StyledListContainer,
   StyledListItem,
@@ -93,4 +107,6 @@ export {
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
   StyledDivider,
+  StyledListItemGroupContainer,
+  StyledListItemGroup,
 };
