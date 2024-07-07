@@ -19,6 +19,7 @@ type ButtonGroupProps = {
     back: string;
     next: string;
   };
+  disabled: boolean;
 };
 
 const ButtonGroup: React.FC<ButtonGroupProps> = ({
@@ -26,6 +27,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   submitFarmInfo,
   handleFormState,
   buttonText,
+  disabled
 }) => {
   const clickWrapper = () => {
     handleFormState('back');
@@ -38,7 +40,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
           <Button
             type="button"
             size="lg"
-            disabled={false}
+            disabled={disabled}
             radius="50px"
             actions="secondary"
             text={buttonText.addField}
@@ -53,7 +55,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
           <Button
             type="button"
             size="lg"
-            disabled={false}
+            disabled={disabled}
             actions="secondary"
             text={buttonText.back}
             handleClick={clickWrapper}
@@ -63,7 +65,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
           <Button
             type="button"
             size="lg"
-            disabled={false}
+            disabled={disabled}
             text={buttonText.next}
             handleClick={submitFarmInfo}
           />

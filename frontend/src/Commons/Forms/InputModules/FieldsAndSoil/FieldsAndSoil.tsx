@@ -121,6 +121,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                 back: ComponentText.BACK,
                 next: ComponentText.NEXT,
               }}
+              disabled={false}
             />
           )}
         </>

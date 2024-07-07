@@ -50,6 +50,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
           back: ComponentText.BACK,
           next: ComponentText.NEXT,
         }}
+        disabled // to be changed so I don't forget
       />
     </>
   );
