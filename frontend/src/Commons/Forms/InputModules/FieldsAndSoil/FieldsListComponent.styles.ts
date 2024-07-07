@@ -51,6 +51,8 @@ const StyledFontAwesomeContainer = styled.div`
   @media (min-width: ${screenSizes.desktop}) {
     font-size: 32px;
     padding-top: 20px;
+    position: relative;
+    right: 0;
   }
 `;
 const StyledCommentContainerMobile = styled.div`
@@ -88,15 +90,14 @@ const StyledDivider = styled.div`
 const StyledListItemGroupContainer = styled.div`
   display: flex;
   flex-direction: column;
-  
-  @media (min-width: ${screenSizes.desktop}){
+
+  @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
   }
 `;
 
 const StyledListItemGroup = styled.div`
   display: flex;
-
 `;
 
 export {

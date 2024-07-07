@@ -62,23 +62,23 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
               </p>
             </StyledListItem>
             <StyledListItemGroup>
-              <StyledListItem width="150px">
+              <StyledListItem width="180px">
                 <h2>NO3-N (ppm)</h2>
                 <p key={fields.SoilTest.valNO3H}>
                   {fields.hasSoilTest ? fields.SoilTest.valNO3H : 'N/A'}
                 </p>
               </StyledListItem>
-              <StyledListItem width="150px">
+              <StyledListItem width="180px">
                 <h2>P (ppm)</h2>
                 <p key={fields.SoilTest.valP}>{fields.hasSoilTest ? fields.SoilTest.valP : '25'}</p>
               </StyledListItem>
             </StyledListItemGroup>
             <StyledListItemGroup>
-              <StyledListItem width="150px">
+              <StyledListItem width="180px">
                 <h2>K (ppm)</h2>
                 <p key={fields.SoilTest.valK}>{fields.hasSoilTest ? fields.SoilTest.valK : '25'}</p>
               </StyledListItem>
-              <StyledListItem width="150px">
+              <StyledListItem width="180px">
                 <h2>pH</h2>
                 <p key={fields.SoilTest.valPH}>
                   {fields.hasSoilTest ? fields.SoilTest.valPH : '4'}
@@ -89,11 +89,15 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
           <StyledListItemGroup>
             <StyledListItem width="180px">
               <h2>Leaf Tissue P(%)</h2>
-              <p key={fields.LeafTest.leafTissueP}>{fields.hasLeafTest ? fields.LeafTest.leafTissueP : '25'}</p>
+              <p key={fields.LeafTest.leafTissueP}>
+                {fields.hasLeafTest ? fields.LeafTest.leafTissueP : '25'}
+              </p>
             </StyledListItem>
             <StyledListItem width="180px">
               <h2>Leaf Tissue K(%)</h2>
-              <p key={fields.LeafTest.leafTissueK}>{fields.hasLeafTest ? fields.LeafTest.leafTissueK : '25'}</p>
+              <p key={fields.LeafTest.leafTissueK}>
+                {fields.hasLeafTest ? fields.LeafTest.leafTissueK : '25'}
+              </p>
             </StyledListItem>
           </StyledListItemGroup>
           {fieldCount > 1 && <StyledDivider />}
