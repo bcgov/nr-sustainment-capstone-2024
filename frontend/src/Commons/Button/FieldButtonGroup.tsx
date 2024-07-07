@@ -27,7 +27,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   submitFarmInfo,
   handleFormState,
   buttonText,
-  disabled
+  disabled,
 }) => {
   const clickWrapper = () => {
     handleFormState('back');
