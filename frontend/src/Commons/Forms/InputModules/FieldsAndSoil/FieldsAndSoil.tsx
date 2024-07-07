@@ -18,7 +18,7 @@ import CustomRadioButton from '@Commons/Input/RadioButton/CustomRadioButton';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
-import FieldsButtonComponent from './FieldsButtonComponent';
+import ButtonGroup from '@Commons/Button/FieldButtonGroup';
 import FieldsListComponent from './FieldsListComponent';
 import {
   StyledFarmInfo,
@@ -112,10 +112,15 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
             handleFormState={handleFormState}
           />
           {!isFieldAdded && (
-            <FieldsButtonComponent
+            <ButtonGroup
               addNewField={addNewField}
               submitFarmInfo={submitFarmInfo}
               handleFormState={handleFormState}
+              buttonText={{
+                addField: ComponentText.ADD_FIELD,
+                back: ComponentText.BACK,
+                next: ComponentText.NEXT,
+              }}
             />
           )}
         </>

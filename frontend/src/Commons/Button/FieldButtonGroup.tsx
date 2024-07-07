@@ -1,30 +1,36 @@
-import ComponentText from '@Constants/ComponentText';
-import Button from '@Commons/Button/Button';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import Button from '@Commons/Button/Button';
 import {
   StyledButtonGroupContainer,
   StyledButtonContainer,
   StyledAddCancelButtonContainer,
   StyledNewFieldButtonContainer,
   StyledNewFieldButtonController,
-} from './FieldsButtonComponent.styles';
+} from './FieldButtonGroup.style';
 
-type ButtonComponentProps = {
+type ButtonGroupProps = {
   addNewField: () => void;
   submitFarmInfo: () => void;
-  handleFormState(cmd?: string): void;
+  handleFormState: (cmd?: string) => void;
+  buttonText: {
+    addField: string;
+    back: string;
+    next: string;
+  };
 };
 
-const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
+const ButtonGroup: React.FC<ButtonGroupProps> = ({
   addNewField,
   submitFarmInfo,
   handleFormState,
+  buttonText,
 }) => {
   const clickWrapper = () => {
     handleFormState('back');
   };
+
   return (
     <StyledButtonGroupContainer>
       <StyledNewFieldButtonContainer>
@@ -35,7 +41,7 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
             disabled={false}
             radius="50px"
             actions="secondary"
-            text={ComponentText.ADD_FIELD}
+            text={buttonText.addField}
             handleClick={addNewField}
           >
             <FontAwesomeIcon icon={faPlus} />
@@ -49,7 +55,7 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
             size="lg"
             disabled={false}
             actions="secondary"
-            text={ComponentText.BACK}
+            text={buttonText.back}
             handleClick={clickWrapper}
           />
         </StyledButtonContainer>
@@ -58,7 +64,7 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
             type="button"
             size="lg"
             disabled={false}
-            text={ComponentText.NEXT}
+            text={buttonText.next}
             handleClick={submitFarmInfo}
           />
         </StyledButtonContainer>
@@ -66,4 +72,5 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
     </StyledButtonGroupContainer>
   );
 };
-export default FieldsButtonComponent;
+
+export default ButtonGroup;

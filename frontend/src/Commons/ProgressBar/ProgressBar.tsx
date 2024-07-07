@@ -6,6 +6,7 @@ import { Container, StyledProgressBar, StyledLineBlock } from './ProgressBar.sty
 const mockBerriesWorkflow = [
   { InputModuleID: 'FarmInformation' },
   { InputModuleID: 'FieldsAndSoil' },
+  { InputModuleID: 'CropsInformation' },
   { InputModuleID: 'ManureAndCompost' },
   { InputModuleID: 'Calculate' },
   { InputModuleID: 'Summary' },
