@@ -7,7 +7,7 @@ import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 import InputModuleProps from 'src/Interface/InputModuleProps';
 import React, { useState } from 'react';
-//import initialFarmDetails from '@Constants/InitialFarmDetails';
+// import initialFarmDetails from '@Constants/InitialFarmDetails';
 import ComponentText from '@Constants/ComponentText';
 import ButtonGroup from '@Commons/Button/FieldButtonGroup';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
@@ -18,12 +18,12 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   updateFarmDetails,
   handleFormState,
 }) => {
-//   const [fieldIndex, setFieldIndex] = useState(0);
-//   const [initialFieldValues, setInitialFieldValues] = useState(
-//     initialFarmDetails.Fields[fieldIndex],
-//   );
+  //   const [fieldIndex, setFieldIndex] = useState(0);
+  //   const [initialFieldValues, setInitialFieldValues] = useState(
+  //     initialFarmDetails.Fields[fieldIndex],
+  //   );
   // Only triggered once, it would show list and persists.
-//   const [isSubmitted, setSubmitted] = useState<boolean>(false);
+  //   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
   const [, setFieldAdd] = useState<boolean>(false);
 
