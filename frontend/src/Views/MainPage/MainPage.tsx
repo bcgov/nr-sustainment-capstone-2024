@@ -130,17 +130,20 @@ const MainPage: React.FC = () => {
       let newState = {
         ...module,
       };
-      if (module.id == currModuleID) {
+      if (module.id === currModuleID) {
         newState.enable = toggle ? !newState.enable : newState.enable;
-        if ((newState.status == 'active' || newState.status == 'warning') && status != 'warning') {
+        if (
+          (newState.status === 'active' || newState.status === 'warning') &&
+          status !== 'warning'
+        ) {
           newState.status = status ? status : newState.status;
         }
-        if (newState.status != 'active' && status == 'warning') {
+        if (newState.status !== 'active' && status === 'warning') {
           newState.status = status ? status : newState.status;
         }
       }
       // For cmds that go forward or backward
-      if (newState.id == nextModuleID) {
+      if (newState.id === nextModuleID) {
         newState.enable = toggle ? !newState.enable : newState.enable;
         newState.status = 'active';
       }
