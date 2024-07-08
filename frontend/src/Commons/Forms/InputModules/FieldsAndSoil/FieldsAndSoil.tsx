@@ -20,6 +20,7 @@ import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import FieldsButtonComponent from './FieldsButtonComponent';
 import FieldsListComponent from './FieldsListComponent';
+import SchemaStatus from '../../../../utils/SchemaStatus.ts';
 import {
   StyledFarmInfo,
   StyledTextAreaContainer,
@@ -34,7 +35,7 @@ import {
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   farmDetails,
   updateFarmDetails,
-  handleBackState,
+  handleFormState,
 }) => {
   // Builds field info inside the field form module.
   const [, setFieldsInfo] = useState(farmDetails);
@@ -49,6 +50,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   // For checked attribute
   const [isSoilTestEnabled, setSoilTestEnabled] = useState<boolean | null>(null);
   const [isLeafTestEnabled, setLeafTestEnabled] = useState<boolean | null>(null);
+
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
     Area: Yup.number()
@@ -59,6 +61,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
     hasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
     hasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
   });
+
   /**
    *
    * @param values : It's of type FieldDetailInterface, it calls, FieldName, Area, and Comments
@@ -88,15 +91,11 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
    * @desc    updateFarmDetails goes into the new form. Refer to MainPage.tsx
    * @author  @Kcaparas
    */
-  const submitFarmInfo = () => {
-    const farmInfo: FarmDetailsInterface = { ...farmDetails };
-    updateFarmDetails(farmInfo);
-  };
-  const setFormPrev = () => {
-    if (handleBackState) {
-      handleBackState();
-    }
-  };
+  // const submitFarmInfo = () => {
+  //   const farmInfo: FarmDetailsInterface = { ...farmDetails };
+  //   updateFarmDetails(farmInfo);
+  // };
+  // const setFormPrev = () => {};
   const addNewField = () => {
     setFieldAdd(true);
     setSoilTestEnabled(null);
@@ -111,15 +110,11 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
     <>
       {isSubmitted && (
         <>
-          <FieldsListComponent
-            farmDetails={farmDetails}
-            updateFarmDetails={updateFarmDetails}
-          />
+          <FieldsListComponent farmDetails={farmDetails} />
           {!isFieldAdded && (
             <FieldsButtonComponent
               addNewField={addNewField}
-              submitFarmInfo={submitFarmInfo}
-              handleBackState={setFormPrev}
+              updateFarmDetails={() => updateFarmDetails(farmDetails)}
             />
           )}
         </>
@@ -129,6 +124,9 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
           initialValues={initialFieldValues}
           validationSchema={validationSchema}
           onSubmit={addFieldData}
+          validate={(values) => {
+            SchemaStatus(validationSchema, values, handleFormState, 'FieldsAndSoil');
+          }}
         >
           {({ setFieldValue, values }) => (
             <Form>

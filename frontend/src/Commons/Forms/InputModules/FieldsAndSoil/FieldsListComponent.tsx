@@ -1,8 +1,8 @@
 import React from 'react';
-import InputModuleProps from 'src/Interface/InputModuleProps';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
+import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import {
   StyledListContainer,
   StyledListItem,
@@ -13,7 +13,11 @@ import {
   StyledDivider,
 } from './FieldsListComponent.styles';
 
-const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
+interface FieldListProps {
+  farmDetails: FarmDetailsInterface;
+}
+
+const FieldsListComponent: React.FC<FieldListProps> = ({ farmDetails }) => {
   const fieldCount = farmDetails.Fields.length;
   return (
     <StyledFieldInfoList>
