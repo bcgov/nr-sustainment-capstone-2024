@@ -19,7 +19,6 @@ const StyledRadio = styled.div`
   display: flex;
   flex-direction: row;
   gap: 10px;
-
 `;
 
 export { StyledField, StyledRadio };
