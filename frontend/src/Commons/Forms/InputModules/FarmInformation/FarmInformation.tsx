@@ -20,6 +20,7 @@ import {
   StyledSelectContainer,
   StyledButtonController,
 } from './FarmInformation.style';
+import SchemaStatus from '../../../../utils/SchemaStatus.ts';
 
 interface SubmissionValues {
   FarmName: string;
@@ -29,12 +30,17 @@ interface SubmissionValues {
 
 const options: OptionInterface[] = [{ value: 'Vancouver Island', label: 'Vancouver Island' }];
 
-const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
+const FarmInfoComponent: React.FC<InputModuleProps> = ({
+  farmDetails,
+  updateFarmDetails,
+  handleFormState,
+}) => {
   const initialValues = {
     FarmName: farmDetails.FarmName,
     Year: farmDetails.Year,
     FarmRegion: farmDetails.FarmRegion,
   };
+
   const validationSchema = Yup.object().shape({
     FarmName: Yup.string().max(24).required('Required'),
     Year: Yup.number().min(1900).max(2099).required('Required'),
@@ -65,6 +71,9 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      validate={(values) => {
+        SchemaStatus(validationSchema, values, handleFormState, 'FarmInformation');
+      }}
     >
       <Form>
         <StyledFarmInfo>

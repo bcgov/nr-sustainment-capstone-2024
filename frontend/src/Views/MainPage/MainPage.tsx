@@ -97,45 +97,54 @@ const MainPage: React.FC = () => {
    *            ** In the future, also update the ProgressBar status **
    * @param     formMovement: string => A movement that indicates if you go back or forward
    */
-  const handleFormState = (cmd?: string) => {
-    let moduleID = formStates[currForm].id;
-    let secondModuleID = null;
+  const handleFormState = (cmd: string, toggle?: boolean, status?: string) => {
+    // currModuleID can be any InputModule that's passed to this handler
+    let currModuleID = null;
+    // nextModuleID is the last activated InputModule, they are activated through the Next button
+    // which uses 'cmd = forward' argument
+    let nextModuleID = null;
 
     switch (cmd) {
       case 'back':
         if (currForm >= 0) {
-          secondModuleID = formStates[currForm - 1].id;
+          currModuleID = formStates[currForm].id;
+          nextModuleID = formStates[currForm - 1].id;
           setCurrForm((prevForm) => prevForm - 1);
+          toggle = true;
         }
         break;
       case 'forward':
         if (formStates[currForm + 1]) {
-          secondModuleID = formStates[currForm + 1].id;
+          currModuleID = formStates[currForm].id;
+          nextModuleID = formStates[currForm + 1].id;
           setCurrForm((prevForm) => prevForm + 1);
+          toggle = true;
         }
         break;
       default:
-        if (cmd && Object.keys(InputModules).includes(cmd)) {
-          moduleID = cmd;
-        }
+        currModuleID = cmd;
         break;
     }
 
     const updatedStates = formStates.map((module: InputModuleInterface) => {
-      if (module.id === moduleID) {
-        return {
-          ...module,
-          enable: !module.enable,
-          status: 'completed',
-        };
-      } if (module.id === secondModuleID) {
-        return {
-          ...module,
-          enable: !module.enable,
-          status: 'active',
-        };
+      let newState = {
+        ...module,
+      };
+      if (module.id == currModuleID) {
+        newState.enable = toggle ? !newState.enable : newState.enable;
+        if ((newState.status == 'active' || newState.status == 'warning') && status != 'warning') {
+          newState.status = status ? status : newState.status;
+        }
+        if (newState.status != 'active' && status == 'warning') {
+          newState.status = status ? status : newState.status;
+        }
       }
-      return module;
+      // For cmds that go forward or backward
+      if (newState.id == nextModuleID) {
+        newState.enable = toggle ? !newState.enable : newState.enable;
+        newState.status = 'active';
+      }
+      return newState;
     });
 
     setFormStates(updatedStates);

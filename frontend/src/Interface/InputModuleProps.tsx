@@ -11,6 +11,7 @@ import FarmDetailsInterface from './FarmDetailsInterface';
 interface InputModuleProps {
   farmDetails: FarmDetailsInterface;
   updateFarmDetails: (farmDetails: FarmDetailsInterface) => void;
+  handleFormState(cmd: string, toggle?: boolean, status?: string): void;
 }
 
 export default InputModuleProps;
