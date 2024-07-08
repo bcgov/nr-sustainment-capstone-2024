@@ -1,3 +1,6 @@
+import LeafTestInterface from './LeafTestInterface';
+import SoilTestInterface from './SoilTestInterface';
+
 /**
  * @summary Interface for the main data file
  * @description This interface defines how the main data file should be structured,
@@ -12,6 +15,8 @@ interface FieldDetailInterface {
   Comment?: string | null;
   hasSoilTest: boolean | null;
   hasLeafTest: boolean | null;
+  SoilTest: SoilTestInterface;
+  LeafTest: LeafTestInterface;
 }
 
 export default FieldDetailInterface;

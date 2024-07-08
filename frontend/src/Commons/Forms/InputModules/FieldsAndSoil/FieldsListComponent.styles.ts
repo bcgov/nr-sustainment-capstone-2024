@@ -29,12 +29,17 @@ const StyledListItem = styled.div<StyledListType>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: ${(props) => props.width};
+  width: 100%;
+  max-width: ${(props) => props.width};
 
   h2 {
     font: ${tokens.typographyBoldBody};
   }
   @media (min-width: ${screenSizes.desktop}) {
+    .smallItems {
+      width: 200%;
+      padding: 0 50px;
+    }
     h2 {
       font: ${tokens.typographyBoldH6};
     }
@@ -43,7 +48,7 @@ const StyledListItem = styled.div<StyledListType>`
 const StyledFontAwesomeContainer = styled.div`
   display: flex;
   flex-direction: row;
-  font-size: 24spx;
+  font-size: 24px;
   gap: 30px;
   margin-right: 10px;
   padding-top: 8px;
@@ -51,6 +56,8 @@ const StyledFontAwesomeContainer = styled.div`
   @media (min-width: ${screenSizes.desktop}) {
     font-size: 32px;
     padding-top: 20px;
+    position: relative;
+    right: 0;
   }
 `;
 const StyledCommentContainerMobile = styled.div`
@@ -85,6 +92,19 @@ const StyledDivider = styled.div`
   margin: auto;
 `;
 
+const StyledListItemGroupContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    flex-direction: row;
+  }
+`;
+
+const StyledListItemGroup = styled.div`
+  display: flex;
+`;
+
 export {
   StyledListContainer,
   StyledListItem,
@@ -93,4 +113,6 @@ export {
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
   StyledDivider,
+  StyledListItemGroupContainer,
+  StyledListItemGroup,
 };

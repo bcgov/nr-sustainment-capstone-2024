@@ -6,6 +6,7 @@ import { Field, ErrorMessage } from 'formik';
 import { FC } from 'react';
 import OptionInterface from 'src/Interface/OptionInterface';
 import StyledSelect from './CustomSelect.style';
+import '../ErrorMessage.css';
 
 interface CustomSelectProps {
   label: string;
@@ -42,6 +43,7 @@ const CustomSelect: FC<CustomSelectProps> = ({ name, id, label, width = '100%', 
     <ErrorMessage
       name={id}
       component="span"
+      render={(msg) => <div className="errorMessage">{msg}</div>}
     />
   </StyledSelect>
 );
