@@ -1,5 +1,5 @@
 /**
- * @desc A Custom Radio Button that accepts props for modularity.
+ * @desc  A Custom Radio Button that accepts props for modularity.
  *@author @Kcaparas
  */
 import React, { FC } from 'react';

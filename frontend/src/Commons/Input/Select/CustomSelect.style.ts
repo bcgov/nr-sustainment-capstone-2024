@@ -16,7 +16,7 @@ const StyledSelect = styled.div<StyledSelectProps>`
   width: 80%;
   margin-top: 5px;
   label {
-    font-weight: ${tokens.typographyFontWeightsBold};
+    font: ${tokens.typographyBoldLargeBody};
   }
 
   select {

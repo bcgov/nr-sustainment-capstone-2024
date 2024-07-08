@@ -15,7 +15,7 @@ const StyledField = styled.div<StyledFieldProps>`
   width: ${(props) => props.width};
   margin-top: 5px;
   label {
-    font-weight: ${tokens.typographyFontWeightsBold};
+    font: ${tokens.typographyBoldLargeBody};
   }
   input {
     border: solid 1px ${tokens.themeGray40};
