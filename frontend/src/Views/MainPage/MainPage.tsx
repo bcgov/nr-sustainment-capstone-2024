@@ -7,13 +7,15 @@ import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
 import ProgressBar from '@Commons/ProgressBar/ProgressBar';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter';
 import FormModule from '@Commons/Forms/FormModule/FormModule';
-import InputModuleInterface from 'src/Interface/InputModuleinterface';
-import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import * as InputModules from '@Commons/Forms/InputModules/index';
+import InputModuleInterface from '@Interface/InputModuleinterface';
+import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
+import FieldDetailInterface from '@Interface/FieldDetailsInterface';
+import NmpInterface from '@Interface/NmpInterface';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
+import { ACTIVE, WARNING } from '@Constants/ModuleStatus';
+import CmdOptions from '@Constants/CmdOptions';
 import Names from '@Constants/Names';
-import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
-import nmpInterface from 'src/Interface/nmpInterface';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 // The sequence of sections to show up on the main page
@@ -68,7 +70,7 @@ const MainPage: React.FC = () => {
   const [currForm, setCurrForm] = useState(0);
 
   const updateLocalDetails = (newDetails: FarmDetailsInterface) => {
-    setLocalDetails((prevDetails: nmpInterface) => {
+    setLocalDetails((prevDetails: NmpInterface) => {
       if (prevDetails) {
         return {
           ...prevDetails,
@@ -99,25 +101,23 @@ const MainPage: React.FC = () => {
    */
   const handleFormState = (cmd: string, toggle?: boolean, status?: string) => {
     // currModuleID can be any InputModule that's passed to this handler
-    let currModuleID = null;
+    let currModuleID = formStates[currForm].id;
     // nextModuleID is the last activated InputModule, they are activated through the Next button
-    // which uses 'cmd = forward' argument
+    // which uses 'cmd = forwards' argument
     let nextModuleID = null;
     // Respect ESLint no-param reassign
     let tgl = toggle;
 
     switch (cmd) {
-      case 'back':
+      case CmdOptions.BACKWARDS:
         if (currForm >= 0) {
-          currModuleID = formStates[currForm].id;
           nextModuleID = formStates[currForm - 1].id;
           setCurrForm((prevForm) => prevForm - 1);
           tgl = true;
         }
         break;
-      case 'forward':
+      case CmdOptions.FORWARDS:
         if (formStates[currForm + 1]) {
-          currModuleID = formStates[currForm].id;
           nextModuleID = formStates[currForm + 1].id;
           setCurrForm((prevForm) => prevForm + 1);
           tgl = true;
@@ -134,20 +134,20 @@ const MainPage: React.FC = () => {
       };
       if (module.id === currModuleID) {
         newState.enable = tgl ? !newState.enable : newState.enable;
-        if (
-          (newState.status === 'active' || newState.status === 'warning')
-          && status !== 'warning'
-        ) {
+        // Do not warn the usr on active status forms
+        if (status !== WARNING) {
           newState.status = status || newState.status;
         }
-        if (newState.status !== 'active' && status === 'warning') {
+        // Do warn the user on other statuses
+        if (newState.status !== ACTIVE && status === WARNING) {
           newState.status = status || newState.status;
         }
       }
-      // For cmds that go forward or backward
+
+      // For cmds that go forwards or backward
       if (newState.id === nextModuleID) {
         newState.enable = tgl ? !newState.enable : newState.enable;
-        newState.status = 'active';
+        newState.status = ACTIVE;
       }
       return newState;
     });
@@ -166,7 +166,7 @@ const MainPage: React.FC = () => {
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
     updateLocalDetails(newDetails);
-    handleFormState('forward');
+    handleFormState(CmdOptions.FORWARDS);
   };
 
   return (
