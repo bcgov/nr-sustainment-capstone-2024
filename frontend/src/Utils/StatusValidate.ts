@@ -1,6 +1,7 @@
 import { Schema } from 'yup';
+import { COMPLETED, WARNING } from '@Constants/ModuleStatus';
 
-const SchemaStatus = (
+const StatusValidate = (
   validationSchema: Schema,
   values: any,
   handleFormState: (cmd: string, toggle?: boolean, status?: string) => void,
@@ -8,10 +9,10 @@ const SchemaStatus = (
 ) => {
   try {
     validationSchema.validateSync(values, { abortEarly: false });
-    handleFormState(inputModuleID, undefined, 'completed');
+    handleFormState(inputModuleID, undefined, COMPLETED);
   } catch (err: any) {
-    handleFormState(inputModuleID, undefined, 'warning');
+    handleFormState(inputModuleID, undefined, WARNING);
   }
 };
 
-export default SchemaStatus;
+export default StatusValidate;

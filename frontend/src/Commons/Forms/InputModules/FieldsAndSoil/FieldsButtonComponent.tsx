@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import ComponentText from '@Constants/ComponentText';
+import CmdOptions from '@Constants/CmdOptions';
 import Button from '@Commons/Button/Button';
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -17,7 +18,7 @@ type ButtonComponentProps = {
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
 };
 
-const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
+const FieldsButtonComponent: FC<ButtonComponentProps> = ({
   addNewField,
   updateFarmDetails,
   handleFormState,
@@ -46,7 +47,7 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
           disabled={false}
           actions="secondary"
           text={ComponentText.BACK}
-          handleClick={() => handleFormState('back')}
+          handleClick={() => handleFormState(CmdOptions.BACKWARDS)}
         />
       </StyledButtonContainer>
       <StyledButtonContainer>

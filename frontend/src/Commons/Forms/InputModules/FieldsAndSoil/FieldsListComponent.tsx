@@ -1,8 +1,8 @@
 import React from 'react';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
-import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
+import FieldDetailInterface from '@Interface/FieldDetailsInterface';
+import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import {
   StyledListContainer,
   StyledListItem,

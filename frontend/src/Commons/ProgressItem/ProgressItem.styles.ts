@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import screenSizes from '@Constants/ScreenSize';
+import { ACTIVE, COMPLETED, WARNING } from '@Constants/ModuleStatus';
 
 type ProgressProps = {
   InputModule: InputModuleInterface;
@@ -16,20 +17,24 @@ const Container = styled.div`
   justify-content: center;
   min-width: 15%;
 `;
+
+function getStatusStyle(status: string): Record<string, string> {
+  switch (status) {
+    case ACTIVE:
+      return { backgroundColor: tokens.supportBorderColorWarning, color: tokens.iconsColorInfo };
+    case COMPLETED:
+      return { backgroundColor: tokens.iconsColorSuccess, color: tokens.iconsColorPrimaryInvert };
+    case WARNING:
+      return { backgroundColor: tokens.iconsColorDanger, color: tokens.iconsColorPrimaryInvert };
+    default:
+      return { backgroundColor: tokens.iconsColorPrimaryInvert, color: tokens.iconsColorPrimary };
+  }
+}
+
 const StyledItem = styled.div<ProgressProps>`
   border-radius: 50%;
-  background-color: ${(props) => (props.status === 'active'
-    ? tokens.supportBorderColorWarning
-    : props.status === 'completed'
-      ? tokens.iconsColorSuccess
-      : props.status === 'warning'
-        ? tokens.iconsColorDanger
-        : tokens.iconsColorPrimaryInvert)};
-  color: ${(props) => (props.status === 'active'
-    ? tokens.iconsColorInfo
-    : props.status === 'completed' || props.status === 'warning'
-      ? tokens.iconsColorPrimaryInvert
-      : tokens.iconsColorPrimary)};
+  background-color: ${({ status }) => getStatusStyle(status).backgroundColor};
+  color: ${({ status }) => getStatusStyle(status).color};
   display: flex;
   justify-content: center;
   align-items: center;

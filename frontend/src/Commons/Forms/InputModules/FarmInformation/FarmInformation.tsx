@@ -3,24 +3,24 @@
  * @description A module with input fields to be used in a Form Module
  * @author @GDamaso
  */
-import InputModuleInterface from 'src/Interface/InputModuleinterface';
-import { faTractor } from '@fortawesome/free-solid-svg-icons';
-import InputModuleProps from 'src/Interface/InputModuleProps';
-import React from 'react';
-import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
-import ComponentText from '@Constants/ComponentText';
-import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { FC } from 'react';
+import { Formik, Form } from 'formik';
+import { faTractor } from '@fortawesome/free-solid-svg-icons';
+import InputModuleProps from '@Interface/InputModuleProps';
+import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
+import InputModuleInterface from '@Interface/InputModuleinterface';
+import OptionInterface from '@Interface/OptionInterface';
+import ComponentText from '@Constants/ComponentText';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
-import OptionInterface from 'src/Interface/OptionInterface';
 import Button from '@Commons/Button/Button';
+import StatusValidate from '@Utils/StatusValidate';
 import {
   StyledFarmInfo,
   StyledSelectContainer,
   StyledButtonController,
 } from './FarmInformation.style';
-import SchemaStatus from '../../../../utils/SchemaStatus.ts';
 
 interface SubmissionValues {
   FarmName: string;
@@ -30,7 +30,7 @@ interface SubmissionValues {
 
 const options: OptionInterface[] = [{ value: 'Vancouver Island', label: 'Vancouver Island' }];
 
-const FarmInfoComponent: React.FC<InputModuleProps> = ({
+const FarmInfoComponent: FC<InputModuleProps> = ({
   farmDetails,
   updateFarmDetails,
   handleFormState,
@@ -72,7 +72,7 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({
       validationSchema={validationSchema}
       onSubmit={onSubmit}
       validate={(values) => {
-        SchemaStatus(validationSchema, values, handleFormState, 'FarmInformation');
+        StatusValidate(validationSchema, values, handleFormState, 'FarmInformation');
       }}
     >
       <Form>
