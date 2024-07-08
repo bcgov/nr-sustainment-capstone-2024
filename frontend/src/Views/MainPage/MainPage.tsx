@@ -103,6 +103,8 @@ const MainPage: React.FC = () => {
     // nextModuleID is the last activated InputModule, they are activated through the Next button
     // which uses 'cmd = forward' argument
     let nextModuleID = null;
+    // Respect ESLint no-param reassign
+    let tgl = toggle;
 
     switch (cmd) {
       case 'back':
@@ -110,7 +112,7 @@ const MainPage: React.FC = () => {
           currModuleID = formStates[currForm].id;
           nextModuleID = formStates[currForm - 1].id;
           setCurrForm((prevForm) => prevForm - 1);
-          toggle = true;
+          tgl = true;
         }
         break;
       case 'forward':
@@ -118,7 +120,7 @@ const MainPage: React.FC = () => {
           currModuleID = formStates[currForm].id;
           nextModuleID = formStates[currForm + 1].id;
           setCurrForm((prevForm) => prevForm + 1);
-          toggle = true;
+          tgl = true;
         }
         break;
       default:
@@ -127,24 +129,24 @@ const MainPage: React.FC = () => {
     }
 
     const updatedStates = formStates.map((module: InputModuleInterface) => {
-      let newState = {
+      const newState = {
         ...module,
       };
       if (module.id === currModuleID) {
-        newState.enable = toggle ? !newState.enable : newState.enable;
+        newState.enable = tgl ? !newState.enable : newState.enable;
         if (
-          (newState.status === 'active' || newState.status === 'warning') &&
-          status !== 'warning'
+          (newState.status === 'active' || newState.status === 'warning')
+          && status !== 'warning'
         ) {
-          newState.status = status ? status : newState.status;
+          newState.status = status || newState.status;
         }
         if (newState.status !== 'active' && status === 'warning') {
-          newState.status = status ? status : newState.status;
+          newState.status = status || newState.status;
         }
       }
       // For cmds that go forward or backward
       if (newState.id === nextModuleID) {
-        newState.enable = toggle ? !newState.enable : newState.enable;
+        newState.enable = tgl ? !newState.enable : newState.enable;
         newState.status = 'active';
       }
       return newState;

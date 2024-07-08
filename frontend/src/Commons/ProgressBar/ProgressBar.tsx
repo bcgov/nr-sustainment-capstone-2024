@@ -1,5 +1,6 @@
 // import React, { useEffect } from 'react';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
+import { FC } from 'react';
 import ProgressItem from '../ProgressItem/ProgressItem';
 import { Container, StyledProgressBar, StyledLineBlock } from './ProgressBar.styles';
 
@@ -7,7 +8,7 @@ interface ProgressBarProps {
   formStates: InputModuleInterface[];
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ formStates }) => (
+const ProgressBar: FC<ProgressBarProps> = ({ formStates }) => (
   <Container>
     <StyledProgressBar>
       {formStates.map((progressItem) => (
