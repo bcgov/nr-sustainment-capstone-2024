@@ -4,6 +4,7 @@ const ComponentText = {
   CANCEL: 'Cancel',
   ADD_FIELD: 'Add Field',
   BACK: 'Back',
+  NA: 'N/A',
   // For buttonSize arguments. Refer to ButtonSizeConstant.ts
   ISDESKTOP: true,
   ISMOBILE: false,

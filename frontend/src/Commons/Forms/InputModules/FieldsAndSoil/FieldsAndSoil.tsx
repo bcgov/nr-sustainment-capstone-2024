@@ -105,7 +105,6 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
           leafTissueK: values.LeafTest.leafTissueK,
         },
       });
-      console.log('Updated farm details:', farmInfo); // Debugging line
       setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
@@ -187,7 +186,9 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                   />
                 </StyledTextAreaContainer>
                 <StyledTestContainer>
-                  <HeaderLabel>Add Soil Test</HeaderLabel>
+                  <HeaderLabel>
+                    <h3>Add Soil Test</h3>
+                  </HeaderLabel>
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
@@ -196,7 +197,6 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                         id={`hasSoilTest${option.id}`}
                         name="hasSoilTest"
                         type="radio"
-                        width="20%"
                         checked={isSoilTestEnabled === option.value}
                         onChange={() => {
                           setFieldValue('hasSoilTest', option.value);
@@ -269,7 +269,9 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                   )}
                 </StyledTestContainer>
                 <StyledTestContainer>
-                  <HeaderLabel>Add Leaf Test</HeaderLabel>
+                  <HeaderLabel>
+                    <h3>Add Leaf Test</h3>
+                  </HeaderLabel>
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
@@ -278,7 +280,6 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                         id={`hasLeafTest${option.id}`}
                         name="hasLeafTest"
                         type="radio"
-                        width="20%"
                         checked={isLeafTestEnabled === option.value}
                         onChange={() => {
                           setFieldValue('hasLeafTest', option.value);

@@ -1,5 +1,6 @@
 import React from 'react';
 import InputModuleProps from 'src/Interface/InputModuleProps';
+import ComponentText from '@Constants/ComponentText';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
@@ -17,13 +18,16 @@ import {
 
 const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
   const fieldCount = farmDetails.Fields.length;
+  // Will put this here for the meantime until I get insights from Product Owner
+  const highValue = '25';
+  const highPH = '4';
   console.log(farmDetails.Fields[0].hasSoilTest);
   return (
     <StyledFieldInfoList>
       {farmDetails.Fields.map((fields: FieldDetailInterface) => (
         <div key={fields.FieldName + fields.Area + fields.Comment}>
           <StyledListContainer>
-            <StyledListItem width="150px">
+            <StyledListItem width="160px">
               <h2>Field Name</h2>
               <p key={fields.FieldName}>{fields.FieldName}</p>
             </StyledListItem>
@@ -32,7 +36,7 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
               <p key={fields.Area}>{fields.Area}</p>
             </StyledListItem>
             <StyledCommentContainerDesktop>
-              <StyledListItem width="500px">
+              <StyledListItem width="770px">
                 <h2>Field Comments (optional)</h2>
                 <p key={fields.Comment}>{fields.Comment}</p>
               </StyledListItem>
@@ -49,40 +53,52 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
             </StyledListItem>
           </StyledCommentContainerMobile>
           <StyledListItemGroupContainer>
-            <StyledListItem width="290px">
+            <StyledListItem width="300px">
               <h2>Lab (Soil Test Methods)</h2>
               <p key={fields.SoilTest.TestingMethod}>
-                {fields.hasSoilTest ? fields.SoilTest.TestingMethod : 'N/A'}
+                {fields.hasSoilTest ? fields.SoilTest.TestingMethod : ComponentText.NA}
               </p>
             </StyledListItem>
-            <StyledListItem width="200px">
+            <StyledListItem width="180px">
               <h2>Sampling Month</h2>
               <p key={fields.SoilTest.sampleDate}>
-                {fields.hasSoilTest ? fields.SoilTest.sampleDate : 'N/A'}
+                {fields.hasSoilTest ? fields.SoilTest.sampleDate : ComponentText.NA}
               </p>
             </StyledListItem>
             <StyledListItemGroup>
               <StyledListItem width="180px">
-                <h2>NO3-N (ppm)</h2>
-                <p key={fields.SoilTest.valNO3H}>
-                  {fields.hasSoilTest ? fields.SoilTest.valNO3H : 'N/A'}
-                </p>
+                <div className="smallItems">
+                  <h2>NO3-N (ppm)</h2>
+                  <p key={fields.SoilTest.valNO3H}>
+                    {fields.hasSoilTest ? fields.SoilTest.valNO3H : ComponentText.NA}
+                  </p>
+                </div>
               </StyledListItem>
               <StyledListItem width="180px">
-                <h2>P (ppm)</h2>
-                <p key={fields.SoilTest.valP}>{fields.hasSoilTest ? fields.SoilTest.valP : '25'}</p>
+                <div className="smallItems">
+                  <h2>P (ppm)</h2>
+                  <p key={fields.SoilTest.valP}>
+                    {fields.hasSoilTest ? fields.SoilTest.valP : highValue}
+                  </p>
+                </div>
               </StyledListItem>
             </StyledListItemGroup>
             <StyledListItemGroup>
               <StyledListItem width="180px">
-                <h2>K (ppm)</h2>
-                <p key={fields.SoilTest.valK}>{fields.hasSoilTest ? fields.SoilTest.valK : '25'}</p>
+                <div className="smallItems">
+                  <h2>K (ppm)</h2>
+                  <p key={fields.SoilTest.valK}>
+                    {fields.hasSoilTest ? fields.SoilTest.valK : highValue}
+                  </p>
+                </div>
               </StyledListItem>
               <StyledListItem width="180px">
-                <h2>pH</h2>
-                <p key={fields.SoilTest.valPH}>
-                  {fields.hasSoilTest ? fields.SoilTest.valPH : '4'}
-                </p>
+                <div className="smallItems">
+                  <h2>pH</h2>
+                  <p key={fields.SoilTest.valPH}>
+                    {fields.hasSoilTest ? fields.SoilTest.valPH : highPH}
+                  </p>
+                </div>
               </StyledListItem>
             </StyledListItemGroup>
           </StyledListItemGroupContainer>
@@ -90,13 +106,13 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
             <StyledListItem width="180px">
               <h2>Leaf Tissue P(%)</h2>
               <p key={fields.LeafTest.leafTissueP}>
-                {fields.hasLeafTest ? fields.LeafTest.leafTissueP : '25'}
+                {fields.hasLeafTest ? fields.LeafTest.leafTissueP : highValue}
               </p>
             </StyledListItem>
             <StyledListItem width="180px">
               <h2>Leaf Tissue K(%)</h2>
               <p key={fields.LeafTest.leafTissueK}>
-                {fields.hasLeafTest ? fields.LeafTest.leafTissueK : '25'}
+                {fields.hasLeafTest ? fields.LeafTest.leafTissueK : highValue}
               </p>
             </StyledListItem>
           </StyledListItemGroup>

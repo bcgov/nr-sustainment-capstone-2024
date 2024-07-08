@@ -81,14 +81,18 @@ const StyledTestContainer = styled.div`
 `;
 const StyledRadioGroupContainer = styled.div`
   display: flex;
-
+  width: 100%;
+  max-width: 150px;
   @media (min-width: ${screenSizes.desktop}) {
-    width: 400px;
+    max-width: 200px;
   }
 `;
 
 const HeaderLabel = styled.div`
-  font-weight: ${tokens.typographyFontWeightsBold};
+  h3{
+    font: ${tokens.typographyBoldLargeBody};
+    margin: 0;
+  }
 `;
 
 const StyledWarningBlock = styled.div`
