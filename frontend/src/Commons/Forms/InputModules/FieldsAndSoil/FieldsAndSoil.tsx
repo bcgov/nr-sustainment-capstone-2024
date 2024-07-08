@@ -115,6 +115,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
             <FieldsButtonComponent
               addNewField={addNewField}
               updateFarmDetails={() => updateFarmDetails(farmDetails)}
+              handleFormState={handleFormState}
             />
           )}
         </>

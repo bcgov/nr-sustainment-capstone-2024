@@ -14,11 +14,13 @@ import {
 type ButtonComponentProps = {
   addNewField: () => void;
   updateFarmDetails: () => void;
-  // handleFormState(cmd: string, toggle?: boolean, status?: string): void;
+  handleFormState(cmd: string, toggle?: boolean, status?: string): void;
 };
+
 const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
   addNewField,
   updateFarmDetails,
+  handleFormState,
 }) => (
   <StyledButtonGroupContainer>
     <StyledNewFieldButtonContainer>
@@ -44,6 +46,7 @@ const FieldsButtonComponent: React.FC<ButtonComponentProps> = ({
           disabled={false}
           actions="secondary"
           text={ComponentText.BACK}
+          handleClick={() => handleFormState('back')}
         />
       </StyledButtonContainer>
       <StyledButtonContainer>
