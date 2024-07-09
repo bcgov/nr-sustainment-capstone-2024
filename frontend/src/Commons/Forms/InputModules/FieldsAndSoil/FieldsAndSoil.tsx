@@ -55,6 +55,13 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   // For checked attribute
   const [isSoilTestEnabled, setSoilTestEnabled] = useState<boolean | null>(null);
   const [isLeafTestEnabled, setLeafTestEnabled] = useState<boolean | null>(null);
+
+  const hasSoilTestSchema = (hasSoilTest: string, message: string = 'Required') => {
+    return Yup.number().when(hasSoilTest, (value, schema) => {
+      return value ? schema.notRequired() : schema.required(message);
+    });
+  };
+
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
     Area: Yup.number()
@@ -64,15 +71,16 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
     Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
     hasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
     hasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
-    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Testing Method'))),
-    sampleDate: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Sample Date'))),
-    valNO3H: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valP: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valK: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valPH: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    leafTissueP: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    leafTissueK: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    TestingMethod: hasSoilTestSchema('hasSoilTest', 'Must enter Testing Method'),
+    sampleDate: hasSoilTestSchema('hasSoilTest', 'Must enter Sample Date'),
+    valNO3H: hasSoilTestSchema('hasSoilTest'),
+    valP: hasSoilTestSchema('hasSoilTest'),
+    valK: hasSoilTestSchema('hasSoilTest'),
+    valPH: hasSoilTestSchema('hasSoilTest'),
+    leafTissueP: hasSoilTestSchema('hasLeafTest'),
+    leafTissueK: hasSoilTestSchema('hasLeafTest'),
   });
+
   /**
    *
    * @param values : It's of type FieldDetailInterface, it calls, FieldName, Area, and Comments
@@ -109,6 +117,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
       setFieldAdd(false);
     }, 400);
   };
+
   /**
    * @desc    updateFarmDetails goes into the new form. Refer to MainPage.tsx
    * @author  @Kcaparas
@@ -117,6 +126,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
     const farmInfo: FarmDetailsInterface = { ...farmDetails };
     updateFarmDetails(farmInfo);
   };
+
   const addNewField = () => {
     setInitialFieldValues(emptyFieldDetails);
     setFieldAdd(true);

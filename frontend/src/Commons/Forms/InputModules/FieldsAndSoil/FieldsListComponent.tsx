@@ -21,7 +21,6 @@ const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
   // Will put this here for the meantime until I get insights from Product Owner
   const highValue = '25';
   const highPH = '4';
-  console.log(farmDetails.Fields[0].hasSoilTest);
   return (
     <StyledFieldInfoList>
       {farmDetails.Fields.map((fields: FieldDetailInterface) => (
