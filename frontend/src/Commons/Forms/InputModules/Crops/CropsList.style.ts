@@ -28,7 +28,6 @@ const StyledListContainer = styled.div`
 const StyledCropsGroup = styled.div`
   display: flex;
   flex-direction: row;
-  
 `;
 
 const StyledListItem = styled.div<StyledListType>`

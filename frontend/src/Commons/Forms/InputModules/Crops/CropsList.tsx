@@ -6,7 +6,10 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Button from '@Commons/Button/Button';
 import ComponentText from '@Constants/ComponentText';
 import { CropsDetailsInterface } from 'src/Interface/CropsDetailsInterface';
-import { StyledNewFieldButtonContainer, StyledNewFieldButtonController } from '@Commons/Button/FieldButtonGroup.style';
+import {
+  StyledNewFieldButtonContainer,
+  StyledNewFieldButtonController,
+} from '@Commons/Button/FieldButtonGroup.style';
 import {
   StyledListContainer,
   StyledListItem,
@@ -31,17 +34,18 @@ const CropsListComponent: React.FC<CropsListComponentProps> = ({ farmDetails, ad
               <h2>Field Name</h2>
               <p>{field.FieldName}</p>
             </StyledListItem>
-            {Array.isArray(field.Crops) && field.Crops.map((crop: CropsDetailsInterface) => (
-              <StyledCropsGroup key={crop.id}>
-                <StyledListItem width="0%">
-                  <div className="CropsList">
-                    <h2>Crop</h2>
-                    <h2>{crop.id + 1}</h2>
-                  </div>
-                  <p>{crop.cropId}</p>
-                </StyledListItem>
-              </StyledCropsGroup>
-            ))}
+            {Array.isArray(field.Crops)
+              && field.Crops.map((crop: CropsDetailsInterface) => (
+                <StyledCropsGroup key={crop.id}>
+                  <StyledListItem width="0%">
+                    <div className="CropsList">
+                      <h2>Crop</h2>
+                      <h2>{crop.id + 1}</h2>
+                    </div>
+                    <p>{crop.cropId}</p>
+                  </StyledListItem>
+                </StyledCropsGroup>
+              ))}
           </StyledListContainer>
           <StyledNewFieldButtonContainer>
             <StyledNewFieldButtonController>
