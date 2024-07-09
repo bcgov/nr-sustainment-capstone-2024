@@ -12,8 +12,8 @@ import InputModuleProps from 'src/Interface/InputModuleProps';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import CustomLink from '@Commons/CustomLink/CustomLink';
-import { StyledFarmInfo, StyledContainer } from './Summary.style';
 import { SUMMARY } from '@Constants/ModuleIDs';
+import { StyledFarmInfo, StyledContainer } from './Summary.style';
 
 const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => (
   <StyledContainer>

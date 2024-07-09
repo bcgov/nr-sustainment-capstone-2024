@@ -1,5 +1,4 @@
 import React from 'react';
-import InputModuleProps from 'src/Interface/InputModuleProps';
 import ComponentText from '@Constants/ComponentText';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +25,6 @@ const FieldsListComponent: React.FC<FieldListProps> = ({ farmDetails }) => {
   // Will put this here for the meantime until I get insights from Product Owner
   const highValue = '25';
   const highPH = '4';
-  console.log(farmDetails.Fields[0].hasSoilTest);
   return (
     <StyledFieldInfoList>
       {farmDetails.Fields.map((fields: FieldDetailInterface) => (
