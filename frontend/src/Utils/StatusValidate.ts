@@ -1,6 +1,12 @@
 import { Schema } from 'yup';
 import { COMPLETED, WARNING } from '@Constants/ModuleStatus';
 
+/**
+ * @desc   A validation function to update a form status depending
+ *         on the validationSchema. This allows a more dynamic status
+ *         feedback for the ProgressBar.
+ * @author @GDamaso
+ */
 const StatusValidate = (
   validationSchema: Schema,
   values: any,

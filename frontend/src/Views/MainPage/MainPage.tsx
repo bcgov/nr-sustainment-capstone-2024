@@ -95,9 +95,12 @@ const MainPage: React.FC = () => {
   /**
    * @summary   Pass this handler to children who need to update InputModule states
    * @desc      A State handler that will update the current form section states,
-   *            allowing you to expand/collapse form sections.
-   *            ** In the future, also update the ProgressBar status **
-   * @param     formMovement: string => A movement that indicates if you go back or forward
+   *            allowing you to expand/collapse form sections or update it's statuses
+   *            on the ProgressBar.
+   * @param     cmd: string => A command to move back, forward or an InputModuleID to be updated
+   * @param     toggle: boolean => When passing an InputModuleID, expand/collapse this module
+   * @param     status: string => Passed if a module status should be updated.
+   *            ('active', warning', 'completed')
    */
   const handleFormState = (cmd: string, toggle?: boolean, status?: string) => {
     // currModuleID can be any InputModule that's passed to this handler
@@ -132,6 +135,7 @@ const MainPage: React.FC = () => {
       const newState = {
         ...module,
       };
+
       if (module.id === currModuleID) {
         newState.enable = tgl ? !newState.enable : newState.enable;
         // Do not warn the usr on active status forms
