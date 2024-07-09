@@ -10,15 +10,15 @@ import { CropsDetailsInterface } from './CropsDetailsInterface';
  * @author @GDamaso
  */
 interface FieldDetailInterface {
-  Id: number;
-  FieldName: string;
-  Area: number;
+  Id?: number;
+  FieldName?: string;
+  Area?: number;
   Comment?: string | null;
-  hasSoilTest: boolean | null;
-  hasLeafTest: boolean | null;
-  SoilTest: SoilTestInterface;
-  LeafTest: LeafTestInterface;
-  Crops: CropsDetailsInterface[];
+  hasSoilTest?: boolean | null;
+  hasLeafTest?: boolean | null;
+  SoilTest?: SoilTestInterface;
+  LeafTest?: LeafTestInterface;
+  Crops?: CropsDetailsInterface;
 }
 
 export default FieldDetailInterface;

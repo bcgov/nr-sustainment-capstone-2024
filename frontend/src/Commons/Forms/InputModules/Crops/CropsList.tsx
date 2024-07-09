@@ -28,24 +28,21 @@ const CropsListComponent: React.FC<CropsListComponentProps> = ({ farmDetails, ad
   return (
     <StyledFieldInfoList>
       {farmDetails.Fields.map((field: FieldDetailInterface) => (
-        <div key={field.FieldName + field.Area + field.Comment}>
+        <div key={field.Id}>
           <StyledListContainer>
             <StyledListItem width="240px">
               <h2>Field Name</h2>
               <p>{field.FieldName}</p>
             </StyledListItem>
-            {Array.isArray(field.Crops)
-              && field.Crops.map((crop: CropsDetailsInterface) => (
-                <StyledCropsGroup key={crop.id}>
-                  <StyledListItem width="0%">
-                    <div className="CropsList">
-                      <h2>Crop</h2>
-                      <h2>{crop.id + 1}</h2>
-                    </div>
-                    <p>{crop.cropId}</p>
-                  </StyledListItem>
-                </StyledCropsGroup>
-              ))}
+            <StyledCropsGroup key={field.Crops?.id}>
+              <StyledListItem width="0%">
+                <div className="CropsList">
+                  <h2>Crop</h2>
+                  <h2>{field.Crops?.id ? field.Crops?.id : 0 + 1}</h2>
+                </div>
+                <p>{field.Crops?.cropId}</p>
+              </StyledListItem>
+            </StyledCropsGroup>
           </StyledListContainer>
           <StyledNewFieldButtonContainer>
             <StyledNewFieldButtonController>

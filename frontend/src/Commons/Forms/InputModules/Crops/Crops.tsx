@@ -13,7 +13,10 @@ import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
 import CropsInitialDetails from '@Constants/InitialCropsDetails';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
-import { CropsDetailsInterface, SubmissionCropsInterface } from 'src/Interface/CropsDetailsInterface';
+import {
+  CropsDetailsInterface,
+  SubmissionCropsInterface,
+} from 'src/Interface/CropsDetailsInterface';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import {
   CropIDOptions,
@@ -26,7 +29,6 @@ import {
 } from '@Constants/CropOptions';
 import CustomField from '@Commons/Input/Field/CustomField';
 import { emptyCropsDetails } from '@Constants/EmptyFieldDetails';
-import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import CropsListComponent from './CropsList';
 import { StyledFarmInfo, StyledButtonGroupContainer } from '../../../FormStyles.styles';
 import {
@@ -52,18 +54,26 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   const validationSchema = Yup.object().shape({
     cropId: Yup.string().required('Required'),
     yield: Yup.number().positive().max(100).required('Required'),
-    plantAgeYears: Yup.number().when('cropId', (cropId) => (cropId.toString() === 'Blueberry'
-      ? Yup.number().required('Required')
-      : Yup.number().notRequired())),
-    numberOfPlantsPerAcre: Yup.number().when('cropId', (cropId) => (cropId.toString() === 'Blueberry'
-      ? Yup.number().required('Required')
-      : Yup.number().notRequired())),
-    distanceBtwnPlants: Yup.string().when('cropId', (cropId) => (cropId.toString() === 'Blueberry'
-      ? Yup.string().required('Required')
-      : Yup.string().notRequired())),
-    distanceBtwnRows: Yup.string().when('cropId', (cropId) => (cropId.toString() === 'Blueberry'
-      ? Yup.string().required('Required')
-      : Yup.string().notRequired())),
+    plantAgeYears: Yup.number().when('cropId', (cropId) =>
+      cropId.toString() === 'Blueberry'
+        ? Yup.number().required('Required')
+        : Yup.number().notRequired(),
+    ),
+    numberOfPlantsPerAcre: Yup.number().when('cropId', (cropId) =>
+      cropId.toString() === 'Blueberry'
+        ? Yup.number().required('Required')
+        : Yup.number().notRequired(),
+    ),
+    distanceBtwnPlants: Yup.string().when('cropId', (cropId) =>
+      cropId.toString() === 'Blueberry'
+        ? Yup.string().required('Required')
+        : Yup.string().notRequired(),
+    ),
+    distanceBtwnRows: Yup.string().when('cropId', (cropId) =>
+      cropId.toString() === 'Blueberry'
+        ? Yup.string().required('Required')
+        : Yup.string().notRequired(),
+    ),
     willPlantsBePruned: Yup.boolean().required('Required'),
     whereWillPruningsGo: Yup.string().required('Required'),
     willSawdustBeApplied: Yup.boolean().required('Required'),
@@ -71,28 +81,23 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   const addFieldData = (values: SubmissionCropsInterface): void => {
     setTimeout(() => {
       const farmInfo: FarmDetailsInterface = { ...farmDetails };
-      const newCrop: CropsDetailsInterface = {
-        id: fieldIndex,
-        cropId: values.cropId,
-        yield: values.yield,
-        plantAgeYears: values.plantAgeYears,
-        numberOfPlantsPerAcre: values.numberOfPlantsPerAcre,
-        distanceBtwnPlantsRows: `${values.distanceBtwnPlants} ${values.distanceBtwnRows}`,
-        willPlantsBePruned: values.willPlantsBePruned,
-        whereWillPruningsGo: values.whereWillPruningsGo,
-        willSawdustBeApplied: values.willSawdustBeApplied,
-      };
-      console.log(newCrop);
-      if (Array.isArray(farmInfo.Fields[fieldIndex].Crops)) {
-        farmInfo.Fields[fieldIndex].Crops.push(newCrop);
-        // Update state with the modified farmDetails
-        setFieldsInfo(farmInfo);
-        setFieldIndex((prevIndex) => prevIndex + 1);
-        setSubmitted(true);
-        setFieldAdd(false);
-      } else {
-        console.error('Crops is not an array:', farmInfo.Fields[fieldIndex].Crops);
-      }
+      farmInfo.Fields.push({
+        Crops: {
+          id: fieldIndex,
+          cropId: values.cropId,
+          yield: values.yield,
+          plantAgeYears: values.plantAgeYears,
+          numberOfPlantsPerAcre: values.numberOfPlantsPerAcre,
+          distanceBtwnPlantsRows: `${values.distanceBtwnPlants} ${values.distanceBtwnRows}`,
+          willPlantsBePruned: values.willPlantsBePruned,
+          whereWillPruningsGo: values.whereWillPruningsGo,
+          willSawdustBeApplied: values.willSawdustBeApplied,
+        },
+      });
+      setFieldsInfo(farmInfo);
+      setFieldIndex((prevIndex) => prevIndex + 1);
+      setSubmitted(true);
+      setFieldAdd(false);
     }, 400);
   };
   const submitFarmInfo = () => {
@@ -105,20 +110,19 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   };
   return (
     <>
-      {farmDetails.Fields.map((fields) => (
-        <div key={fields.FieldName + fields.Area + fields.Comment}>
-          <CropsListComponent
-            farmDetails={farmDetails}
-            addNewField={addNewField}
-            updateFarmDetails={updateFarmDetails}
-            handleFormState={handleFormState}
-          />
-          <Formik
-            initialValues={initialFieldValues}
-            validationSchema={validationSchema}
-            onSubmit={addFieldData}
-          >
-            {({ values }) => isFieldAdded && (
+      <CropsListComponent
+        farmDetails={farmDetails}
+        addNewField={addNewField}
+        updateFarmDetails={updateFarmDetails}
+        handleFormState={handleFormState}
+      />
+      <Formik
+        initialValues={initialFieldValues}
+        validationSchema={validationSchema}
+        onSubmit={addFieldData}
+      >
+        {({ values }) =>
+          isFieldAdded && (
             <Form>
               <StyledFarmInfo>
                 <StyledCropsSmallGroup>
@@ -141,40 +145,40 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
                   </StyledAreaContainer>
                 </StyledCropsSmallGroup>
                 {values.cropId === 'Blueberry' && (
-                <>
-                  <StyledCropsSmallGroup>
-                    <CustomSelect
-                      name="plantAgeYears"
-                      id="plantAgeYears"
-                      label="Plant age (Years)"
-                      options={PlantAgeOptions}
-                      width="40%"
-                    />
-                    <CustomSelect
-                      name="numberOfPlantsPerAcre"
-                      id="numberOfPlantsPerAcre"
-                      label="Plants per acre"
-                      options={PlantsPerAcre}
-                      width="40%"
-                    />
-                  </StyledCropsSmallGroup>
-                  <StyledCropsLargeGroup>
-                    <CustomSelect
-                      name="distanceBtwnPlants"
-                      id="distanceBtwnPlants"
-                      label="Distance between plants"
-                      options={DistanceBtwnPlants}
-                      width="40%"
-                    />
-                    <CustomSelect
-                      name="distanceBtwnRows"
-                      id="distanceBtwnRows"
-                      label="Distance between rows"
-                      options={DistanceBtwnRows}
-                      width="40%"
-                    />
-                  </StyledCropsLargeGroup>
-                </>
+                  <>
+                    <StyledCropsSmallGroup>
+                      <CustomSelect
+                        name="plantAgeYears"
+                        id="plantAgeYears"
+                        label="Plant age (Years)"
+                        options={PlantAgeOptions}
+                        width="40%"
+                      />
+                      <CustomSelect
+                        name="numberOfPlantsPerAcre"
+                        id="numberOfPlantsPerAcre"
+                        label="Plants per acre"
+                        options={PlantsPerAcre}
+                        width="40%"
+                      />
+                    </StyledCropsSmallGroup>
+                    <StyledCropsLargeGroup>
+                      <CustomSelect
+                        name="distanceBtwnPlants"
+                        id="distanceBtwnPlants"
+                        label="Distance between plants"
+                        options={DistanceBtwnPlants}
+                        width="40%"
+                      />
+                      <CustomSelect
+                        name="distanceBtwnRows"
+                        id="distanceBtwnRows"
+                        label="Distance between rows"
+                        options={DistanceBtwnRows}
+                        width="40%"
+                      />
+                    </StyledCropsLargeGroup>
+                  </>
                 )}
                 <StyledCropsLargeGroup>
                   <CustomSelect
@@ -218,10 +222,9 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
                 </StyledButtonGroupContainer>
               </StyledFarmInfo>
             </Form>
-            )}
-          </Formik>
-        </div>
-      ))}
+          )
+        }
+      </Formik>
       {(!isFieldAdded || isSubmitted) && (
         <StyledAddCancelButtonGroup>
           <CropsButtonGroup
