@@ -25,5 +25,6 @@ interface InputModuleInterface {
   };
   faIcon: IconDefinition;
   enable: boolean;
+  status: string;
 }
 export default InputModuleInterface;

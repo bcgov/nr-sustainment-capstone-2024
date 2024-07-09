@@ -1,9 +1,9 @@
 import React from 'react';
+import ButtonTypes from 'src/Interface/ButtonTypes';
 import { StyledButton, StyledChildrenContainer } from './Button.style';
 
 type ButtonSizes = 'sm' | 'md' | 'lg';
 type ButtonActions = 'primary' | 'secondary';
-type ButtonTypes = 'button' | 'submit' | 'reset' | undefined;
 
 type ButtonProps = {
   handleClick?: () => void;

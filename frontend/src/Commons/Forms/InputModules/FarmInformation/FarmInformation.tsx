@@ -3,18 +3,20 @@
  * @description A module with input fields to be used in a Form Module
  * @author @GDamaso
  */
-import InputModuleInterface from 'src/Interface/InputModuleinterface';
-import { faTractor } from '@fortawesome/free-solid-svg-icons';
-import InputModuleProps from 'src/Interface/InputModuleProps';
-import React from 'react';
-import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
-import ComponentText from '@Constants/ComponentText';
-import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { FC } from 'react';
+import { Formik, Form } from 'formik';
+import { faTractor } from '@fortawesome/free-solid-svg-icons';
+import InputModuleProps from '@Interface/InputModuleProps';
+import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
+import InputModuleInterface from '@Interface/InputModuleinterface';
+import OptionInterface from '@Interface/OptionInterface';
+import ComponentText from '@Constants/ComponentText';
+import { FARM_INFORMATION } from '@Constants/ModuleIDs';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
-import OptionInterface from 'src/Interface/OptionInterface';
 import Button from '@Commons/Button/Button';
+import StatusValidate from '@Utils/StatusValidate';
 import {
   StyledFarmInfo,
   StyledSelectContainer,
@@ -29,12 +31,17 @@ interface SubmissionValues {
 
 const options: OptionInterface[] = [{ value: 'Vancouver Island', label: 'Vancouver Island' }];
 
-const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarmDetails }) => {
+const FarmInfoComponent: FC<InputModuleProps> = ({
+  farmDetails,
+  updateFarmDetails,
+  handleFormState,
+}) => {
   const initialValues = {
     FarmName: farmDetails.FarmName,
     Year: farmDetails.Year,
     FarmRegion: farmDetails.FarmRegion,
   };
+
   const validationSchema = Yup.object().shape({
     FarmName: Yup.string().max(24).required('Required'),
     Year: Yup.number().min(1900).max(2099).required('Required'),
@@ -65,6 +72,9 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      validate={(values) => {
+        StatusValidate(validationSchema, values, handleFormState, FARM_INFORMATION);
+      }}
     >
       <Form>
         <StyledFarmInfo>
@@ -110,10 +120,11 @@ const FarmInfoComponent: React.FC<InputModuleProps> = ({ farmDetails, updateFarm
 
 const FarmInfoForm: InputModuleInterface = {
   InputModuleComponent: FarmInfoComponent,
-  id: 'FarmInformation',
+  id: FARM_INFORMATION,
   name: { long: 'Farm Information', short: 'Farm Info' },
   faIcon: faTractor,
   enable: true,
+  status: 'active',
 };
 
 export default FarmInfoForm;

@@ -25,26 +25,9 @@ const StyledFarmInfo = styled.div`
 
 const StyledSelectContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: left;
-  width: 100%;
-  gap: 30px;
-
-  #btnContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-
-  @media (min-width: ${screenSizes.desktop}) {
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: flex-end;
-    #btnContainer {
-      justify-content: flex-end;
-    }
-  }
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
 `;
 
 const StyledButtonController = styled.div`

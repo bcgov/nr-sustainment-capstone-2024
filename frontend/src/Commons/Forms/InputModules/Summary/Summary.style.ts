@@ -19,7 +19,6 @@ const StyledContainer = styled.div`
   height: 100%;
   width: 100%;
   gap: 30px;
-
   #linkContainer {
     height: 45px;
     width: 100%;
@@ -27,7 +26,6 @@ const StyledContainer = styled.div`
     justify-content: center;
     align-items: center;
   }
-
   @media (min-width: ${screenSizes.desktop}) {
     gap: 0;
     #linkContainer {
@@ -45,7 +43,6 @@ const StyledFarmInfo = styled.div`
   align-items: left;
   height: 100%;
   width: 100%;
-
   .label {
     font-weight: ${tokens.typographyFontWeightsBold};
   }

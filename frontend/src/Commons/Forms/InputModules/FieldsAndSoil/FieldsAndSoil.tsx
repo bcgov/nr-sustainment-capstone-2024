@@ -4,23 +4,26 @@
  *              Optional Comments. This will be implemented further in the next tickets.
  * @author      @Kcaparas
  */
-import InputModuleInterface from 'src/Interface/InputModuleinterface';
-import InputModuleProps from 'src/Interface/InputModuleProps';
-import React, { useState } from 'react';
-import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
+import { useState, FC } from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import ComponentText from '@Constants/ComponentText';
+
 import Button from '@Commons/Button/Button';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
 import CustomRadioButton from '@Commons/Input/RadioButton/CustomRadioButton';
-import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
-import initialFarmDetails from '@Constants/InitialFarmDetails';
-import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
-import soilTestOptions from '@Constants/SoilTestOptions';
+import initialFarmDetails from '@Constants/InitialFarmDetails';
+import ComponentText from '@Constants/ComponentText';
 import emptyFieldDetails from '@Constants/EmptyFieldDetails';
+import { FIELDS_AND_SOIL } from '@Constants/ModuleIDs';
+import soilTestOptions from '@Constants/SoilTestOptions';
+import InputModuleInterface from '@Interface/InputModuleinterface';
+import InputModuleProps from '@Interface/InputModuleProps';
+import FieldDetailInterface from '@Interface/FieldDetailsInterface';
+import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
+import StatusValidate from '@Utils/StatusValidate';
+import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
 import FieldsButtonComponent from './FieldsButtonComponent';
 import FieldsListComponent from './FieldsListComponent';
 import {
@@ -37,7 +40,7 @@ import {
   SingleInputField,
 } from './FieldsAndSoil.style';
 
-const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
+const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   farmDetails,
   updateFarmDetails,
   handleFormState,
@@ -118,15 +121,6 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
     }, 400);
   };
 
-  /**
-   * @desc    updateFarmDetails goes into the new form. Refer to MainPage.tsx
-   * @author  @Kcaparas
-   */
-  const submitFarmInfo = () => {
-    const farmInfo: FarmDetailsInterface = { ...farmDetails };
-    updateFarmDetails(farmInfo);
-  };
-
   const addNewField = () => {
     setInitialFieldValues(emptyFieldDetails);
     setFieldAdd(true);
@@ -143,15 +137,11 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
     <>
       {isSubmitted && (
         <>
-          <FieldsListComponent
-            farmDetails={farmDetails}
-            updateFarmDetails={updateFarmDetails}
-            handleFormState={handleFormState}
-          />
+          <FieldsListComponent farmDetails={farmDetails} />
           {!isFieldAdded && (
             <FieldsButtonComponent
               addNewField={addNewField}
-              submitFarmInfo={submitFarmInfo}
+              updateFarmDetails={() => updateFarmDetails(farmDetails)}
               handleFormState={handleFormState}
             />
           )}
@@ -162,6 +152,9 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
           initialValues={initialFieldValues}
           validationSchema={validationSchema}
           onSubmit={addFieldData}
+          validate={(values) => {
+            StatusValidate(validationSchema, values, handleFormState, FIELDS_AND_SOIL);
+          }}
         >
           {({ setFieldValue, values }) => (
             <Form>
@@ -354,10 +347,11 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
 
 const FieldsAndSoil: InputModuleInterface = {
   InputModuleComponent: FieldsAndSoilComponent,
-  id: 'FieldsAndSoil',
-  name: { long: 'Fields and Soil', short: 'Fields' },
+  id: FIELDS_AND_SOIL,
+  name: { long: FIELDS_AND_SOIL, short: 'Fields' },
   faIcon: faWheatAwn,
   enable: false,
+  status: 'inactive',
 };
 
 export default FieldsAndSoil;

@@ -5,7 +5,7 @@
  *              FarmDetailsInterface
  * @author @GDamaso
  */
-interface nmpInterface {
+interface NmpInterface {
   farmDetails: {
     Year: string;
     FarmName: string;
@@ -147,4 +147,4 @@ interface nmpInterface {
   NMPReleaseVersion: number;
 }
 
-export default nmpInterface;
+export default NmpInterface;
