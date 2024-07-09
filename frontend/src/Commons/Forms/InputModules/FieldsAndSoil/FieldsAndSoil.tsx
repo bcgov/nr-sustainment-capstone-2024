@@ -32,6 +32,9 @@ import {
   StyledRadioGroupContainer,
   HeaderLabel,
   StyledWarningBlock,
+  StyledSelectContainer,
+  InputFieldsGroup,
+  SingleInputField,
 } from './FieldsAndSoil.style';
 
 const FieldsAndSoilComponent: FC<InputModuleProps> = ({
@@ -62,6 +65,14 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
     hasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
     hasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
+    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Testing Method'))),
+    sampleDate: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Sample Date'))),
+    valNO3H: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    valP: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    valK: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    valPH: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    leafTissueP: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    leafTissueK: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
   });
 
   /**
@@ -80,9 +91,20 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
         Area: values.Area,
         Comment: values.Comment,
         hasSoilTest: values.hasSoilTest,
+        SoilTest: {
+          TestingMethod: values.SoilTest.TestingMethod,
+          sampleDate: values.SoilTest.sampleDate,
+          valNO3H: values.SoilTest.valNO3H,
+          valP: values.SoilTest.valP,
+          valK: values.SoilTest.valK,
+          valPH: values.SoilTest.valPH,
+        },
         hasLeafTest: values.hasLeafTest,
+        LeafTest: {
+          leafTissueP: values.LeafTest.leafTissueP,
+          leafTissueK: values.LeafTest.leafTissueK,
+        },
       });
-      setInitialFieldValues(farmInfo.Fields[0]);
       setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
@@ -91,6 +113,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   };
 
   const addNewField = () => {
+    setInitialFieldValues(emptyFieldDetails);
     setFieldAdd(true);
     setSoilTestEnabled(null);
     setLeafTestEnabled(null);
@@ -155,7 +178,9 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                   />
                 </StyledTextAreaContainer>
                 <StyledTestContainer>
-                  <HeaderLabel>Add Soil Test</HeaderLabel>
+                  <HeaderLabel>
+                    <h3>Add Soil Test</h3>
+                  </HeaderLabel>
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
@@ -164,7 +189,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                         id={`hasSoilTest${option.id}`}
                         name="hasSoilTest"
                         type="radio"
-                        width="20%"
                         checked={isSoilTestEnabled === option.value}
                         onChange={() => {
                           setFieldValue('hasSoilTest', option.value);
@@ -178,18 +202,68 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     component="div"
                     className="errorMessage"
                   />
+                  {values.hasSoilTest === false && (
+                    <StyledWarningBlock>
+                      <p>
+                        For fields without a soil test, very high soil P and K fertility and a pH of
+                        4.0 will be assumed.
+                      </p>
+                    </StyledWarningBlock>
+                  )}
+                  {values.hasSoilTest && (
+                    <>
+                      <StyledSelectContainer>
+                        <CustomSelect
+                          name="SoilTest.TestingMethod"
+                          id="SoilTest.TestingMethod"
+                          label="Lab (Soil Test Methods)"
+                          options={soilTestOptions}
+                        />
+                      </StyledSelectContainer>
+                      <HeaderLabel>Soil Test values (top 6 inches of soil)</HeaderLabel>
+                      <InputFieldsGroup>
+                        <CustomField
+                          label="Sample Month"
+                          id="SoilTest.sampleDate"
+                          name="SoilTest.sampleDate"
+                          type="text"
+                        />
+                        <CustomField
+                          label="NO3-N (ppm), nitrate-nitrogen"
+                          id="SoilTest.valNO3H"
+                          name="SoilTest.valNO3H"
+                          type="number"
+                        />
+                      </InputFieldsGroup>
+                      <InputFieldsGroup>
+                        <CustomField
+                          label="P (ppm), phosphorous"
+                          id="SoilTest.valP"
+                          name="SoilTest.valP"
+                          type="number"
+                        />
+                        <CustomField
+                          label="K (ppm), potassium"
+                          id="SoilTest.valK"
+                          name="SoilTest.valK"
+                          type="number"
+                        />
+                      </InputFieldsGroup>
+                      <SingleInputField>
+                        <CustomField
+                          label="pH"
+                          id="SoilTest.valPH"
+                          name="SoilTest.valPH"
+                          type="number"
+                        />
+                      </SingleInputField>
+                    </>
+                  )}
                 </StyledTestContainer>
-                {values.hasSoilTest === false && (
-                  <StyledWarningBlock>
-                    <p>
-                      For fields without a soil test, very high soil P and K fertility and a pH of
-                      4.0 will be assumed.
-                    </p>
-                  </StyledWarningBlock>
-                )}
-                {values.hasSoilTest && <p>Soil Test is Enabled!</p>}
                 <StyledTestContainer>
-                  <HeaderLabel>Add Leaf Test</HeaderLabel>
+                  <HeaderLabel>
+                    <h3>Add Leaf Test</h3>
+                  </HeaderLabel>
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
@@ -198,7 +272,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                         id={`hasLeafTest${option.id}`}
                         name="hasLeafTest"
                         type="radio"
-                        width="20%"
                         checked={isLeafTestEnabled === option.value}
                         onChange={() => {
                           setFieldValue('hasLeafTest', option.value);
@@ -223,7 +296,22 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     </ul>
                   </StyledWarningBlock>
                 )}
-                {values.hasLeafTest && <p>Leaf Test is Enabled!</p>}
+                {values.hasLeafTest && (
+                  <InputFieldsGroup>
+                    <CustomField
+                      label="Leaf tissue P (%)"
+                      id="LeafTest.leafTissueP"
+                      name="LeafTest.leafTissueP"
+                      type="number"
+                    />
+                    <CustomField
+                      label="Leaf tissue K (%)"
+                      id="LeafTest.leafTissueK"
+                      name="LeafTest.leafTissueK"
+                      type="number"
+                    />
+                  </InputFieldsGroup>
+                )}
                 <StyledButtonGroupContainer>
                   <Button
                     type="reset"

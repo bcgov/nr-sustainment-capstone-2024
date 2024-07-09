@@ -17,7 +17,7 @@ const StyledField = styled.div<StyledFieldProps>`
   margin-top: 5px;
 
   label {
-    font-weight: ${tokens.typographyFontWeightsBold};
+    font: ${tokens.typographyBoldLargeBody};
   }
   textarea {
     border: solid 1px ${tokens.themeGray40};
