@@ -12,6 +12,7 @@ import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import InputModuleInterface from '@Interface/InputModuleinterface';
 import OptionInterface from '@Interface/OptionInterface';
 import ComponentText from '@Constants/ComponentText';
+import { FARM_INFORMATION } from '@Constants/ModuleIDs';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import Button from '@Commons/Button/Button';
@@ -72,7 +73,7 @@ const FarmInfoComponent: FC<InputModuleProps> = ({
       validationSchema={validationSchema}
       onSubmit={onSubmit}
       validate={(values) => {
-        StatusValidate(validationSchema, values, handleFormState, 'FarmInformation');
+        StatusValidate(validationSchema, values, handleFormState, FARM_INFORMATION);
       }}
     >
       <Form>
@@ -119,7 +120,7 @@ const FarmInfoComponent: FC<InputModuleProps> = ({
 
 const FarmInfoForm: InputModuleInterface = {
   InputModuleComponent: FarmInfoComponent,
-  id: 'FarmInformation',
+  id: FARM_INFORMATION,
   name: { long: 'Farm Information', short: 'Farm Info' },
   faIcon: faTractor,
   enable: true,

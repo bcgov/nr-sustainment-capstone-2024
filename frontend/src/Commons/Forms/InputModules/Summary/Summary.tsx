@@ -13,6 +13,7 @@ import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import CustomLink from '@Commons/CustomLink/CustomLink';
 import { StyledFarmInfo, StyledContainer } from './Summary.style';
+import { SUMMARY } from '@Constants/ModuleIDs';
 
 const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => (
   <StyledContainer>
@@ -76,8 +77,8 @@ const SummaryComponent: React.FC<InputModuleProps> = ({ farmDetails }) => (
 
 const Summary: InputModuleInterface = {
   InputModuleComponent: SummaryComponent,
-  id: 'Summary',
-  name: { long: 'Summary', short: 'Summary' },
+  id: SUMMARY,
+  name: { long: SUMMARY, short: SUMMARY },
   faIcon: faList,
   enable: false,
   status: 'inactive',

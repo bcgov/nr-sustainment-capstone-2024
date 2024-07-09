@@ -14,6 +14,7 @@ import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
 import CustomRadioButton from '@Commons/Input/RadioButton/CustomRadioButton';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import ComponentText from '@Constants/ComponentText';
+import { FIELDS_AND_SOIL } from '@Constants/ModuleIDs';
 import InputModuleInterface from '@Interface/InputModuleinterface';
 import InputModuleProps from '@Interface/InputModuleProps';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
@@ -120,7 +121,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           validationSchema={validationSchema}
           onSubmit={addFieldData}
           validate={(values) => {
-            StatusValidate(validationSchema, values, handleFormState, 'FieldsAndSoil');
+            StatusValidate(validationSchema, values, handleFormState, FIELDS_AND_SOIL);
           }}
         >
           {({ setFieldValue, values }) => (
@@ -249,8 +250,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
 
 const FieldsAndSoil: InputModuleInterface = {
   InputModuleComponent: FieldsAndSoilComponent,
-  id: 'FieldsAndSoil',
-  name: { long: 'Fields and Soil', short: 'Fields' },
+  id: FIELDS_AND_SOIL,
+  name: { long: FIELDS_AND_SOIL, short: 'Fields' },
   faIcon: faWheatAwn,
   enable: false,
   status: 'inactive',
