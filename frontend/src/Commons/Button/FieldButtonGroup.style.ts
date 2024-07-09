@@ -44,7 +44,8 @@ const StyledAddCancelButtonContainer = styled.div`
     flex-direction: row;
     gap: 20px;
     position: absolute;
-    right: 17%;
+    top: 0;
+    right: 0;
   }
 `;
 const StyledNewFieldButtonContainer = styled.div`

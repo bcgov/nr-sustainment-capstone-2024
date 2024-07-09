@@ -5,6 +5,7 @@
  *              be exported as JSON.
  * @author @GDamaso
  */
+
 import FieldDetailInterface from './FieldDetailsInterface';
 
 interface FarmDetailsInterface {

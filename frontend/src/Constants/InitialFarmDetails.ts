@@ -16,6 +16,7 @@ const initialFarmDetails: FarmDetailsInterface = {
       hasLeafTest: null,
       SoilTest: { TestingMethod: '', sampleDate: '', valNO3H: 0, valP: 0, valK: 0, valPH: 0 },
       LeafTest: { leafTissueP: 0, leafTissueK: 0 },
+      Crops: [],
     },
   ],
 };

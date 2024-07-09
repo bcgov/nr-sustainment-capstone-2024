@@ -22,7 +22,13 @@ const StyledListContainer = styled.div`
   display: flex;
   flex-direction: row;
   padding-top: 20px;
-  gap: 20px;
+  gap: 50px;
+`;
+
+const StyledCropsGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  
 `;
 
 const StyledListItem = styled.div<StyledListType>`
@@ -33,6 +39,10 @@ const StyledListItem = styled.div<StyledListType>`
 
   h2 {
     font: ${tokens.typographyBoldBody};
+  }
+  .CropsList {
+    display: flex;
+    gap: 5px;
   }
   @media (min-width: ${screenSizes.desktop}) {
     h2 {
@@ -93,4 +103,5 @@ export {
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
   StyledDivider,
+  StyledCropsGroup,
 };

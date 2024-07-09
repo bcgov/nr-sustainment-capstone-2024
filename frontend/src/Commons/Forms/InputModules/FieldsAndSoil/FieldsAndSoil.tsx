@@ -18,10 +18,10 @@ import CustomRadioButton from '@Commons/Input/RadioButton/CustomRadioButton';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
+import FieldButtonGroup from './FieldButtonComponent';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import soilTestOptions from '@Constants/SoilTestOptions';
-import emptyFieldDetails from '@Constants/EmptyFieldDetails';
-import ButtonGroup from '@Commons/Button/FieldButtonGroup';
+import { emptyFieldDetails } from '@Constants/EmptyFieldDetails';
 import FieldsListComponent from './FieldsListComponent';
 import {
   StyledFarmInfo,
@@ -64,14 +64,30 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
     Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
     hasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
     hasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
-    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Testing Method'))),
-    sampleDate: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Sample Date'))),
-    valNO3H: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valP: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valK: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valPH: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    leafTissueP: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    leafTissueK: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Testing Method'),
+    ),
+    sampleDate: Yup.string().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Sample Date'),
+    ),
+    valNO3H: Yup.number().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    valP: Yup.number().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    valK: Yup.number().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    valPH: Yup.number().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    leafTissueP: Yup.number().when('hasLeafTest', (hasLeafTest) =>
+      hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    leafTissueK: Yup.number().when('hasLeafTest', (hasLeafTest) =>
+      hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
   });
   /**
    *
@@ -101,6 +117,17 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
         LeafTest: {
           leafTissueP: values.LeafTest.leafTissueP,
           leafTissueK: values.LeafTest.leafTissueK,
+        },
+        Crops: {
+          id: 0,
+          cropId: '',
+          yield: 0,
+          plantAgeYears: '',
+          numberOfPlantsPerAcre: 0,
+          distanceBtwnPlantsRows: '',
+          willPlantsBePruned: null,
+          whereWillPruningsGo: '',
+          willSawdustBeApplied: null,
         },
       });
       setFieldsInfo(farmInfo);
@@ -139,7 +166,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
             handleFormState={handleFormState}
           />
           {!isFieldAdded && (
-            <ButtonGroup
+            <FieldButtonGroup
               addNewField={addNewField}
               submitFarmInfo={submitFarmInfo}
               handleFormState={handleFormState}
@@ -148,7 +175,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                 back: ComponentText.BACK,
                 next: ComponentText.NEXT,
               }}
-              disabled={false}
+              disabled
             />
           )}
         </>
