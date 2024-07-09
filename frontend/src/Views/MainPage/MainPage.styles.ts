@@ -21,11 +21,11 @@ const StyledMainContainer = styled.div`
   align-items: center;
   width: 100%;
   gap: 24px;
-  margin: 110px 0 140px 0;
+  margin: 110px 0 30% 0;
   padding: 0 10px;
 
   @media (min-width: ${screenSizes.desktop}) {
-    margin: 250px 0 10% 0;
+    margin-top: 25%;
     gap: 11px;
   }
 `;

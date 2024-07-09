@@ -8,7 +8,9 @@
     "baseUrl": ".",
     "paths": {
       "@Constants/*": ["src/Constants/*"],
-      "@Commons/*": ["src/Commons/*"]
+      "@Commons/*": ["src/Commons/*"],
+      "@Utils/*": ["src/Utils/*"],
+      "@Interface/*": ["src/Interface/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

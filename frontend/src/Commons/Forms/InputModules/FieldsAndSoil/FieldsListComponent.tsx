@@ -1,9 +1,9 @@
 import React from 'react';
-import InputModuleProps from 'src/Interface/InputModuleProps';
 import ComponentText from '@Constants/ComponentText';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
+import FieldDetailInterface from '@Interface/FieldDetailsInterface';
+import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import {
   StyledListContainer,
   StyledListItem,
@@ -16,12 +16,15 @@ import {
   StyledListItemGroup,
 } from './FieldsListComponent.styles';
 
-const FieldsListComponent: React.FC<InputModuleProps> = ({ farmDetails }) => {
+interface FieldListProps {
+  farmDetails: FarmDetailsInterface;
+}
+
+const FieldsListComponent: React.FC<FieldListProps> = ({ farmDetails }) => {
   const fieldCount = farmDetails.Fields.length;
   // Will put this here for the meantime until I get insights from Product Owner
   const highValue = '25';
   const highPH = '4';
-  console.log(farmDetails.Fields[0].hasSoilTest);
   return (
     <StyledFieldInfoList>
       {farmDetails.Fields.map((fields: FieldDetailInterface) => (

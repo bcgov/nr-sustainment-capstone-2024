@@ -9,6 +9,8 @@ export default defineConfig({
     alias: {
       '@Constants': path.resolve(__dirname, 'src/Constants'),
       '@Commons': path.resolve(__dirname, 'src/Commons'),
+      '@Utils': path.resolve(__dirname, 'src/Utils'),
+      '@Interface': path.resolve(__dirname, 'src/Interface'),
     },
   },
   server: {

@@ -15,7 +15,7 @@ const StyledHeader = styled.header`
   background-color: ${tokens.themeBlue100};
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   color: ${tokens.typographyColorPrimaryInvert};
   border-bottom: ${tokens.layoutBorderWidthMedium} solid ${tokens.themeGold100};
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
@@ -23,7 +23,6 @@ const StyledHeader = styled.header`
   }
   @media (min-width: ${screenSizes.desktop}) {
     height: 450px;
-    justify-content: space-between;
   }
 `;
 
@@ -39,10 +38,9 @@ const Logo = styled.img`
     width: 100%;
   }
   @media (min-width: ${screenSizes.desktop}) {
-    max-height: 87px;
-    height: 100%;
+    max-height: 123px;
     max-width: 250px;
-    margin-left: 40%;
+    margin-left: 14%;
     content: url(${desktopLogo});
   }
 `;
