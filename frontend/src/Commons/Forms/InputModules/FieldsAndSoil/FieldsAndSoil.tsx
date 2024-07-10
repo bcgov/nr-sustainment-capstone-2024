@@ -7,7 +7,6 @@
 import { useState, FC } from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
 import Button from '@Commons/Button/Button';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
@@ -24,6 +23,7 @@ import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import StatusValidate from '@Utils/StatusValidate';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
+import { ACTIVE } from '@Constants/ModuleStatus';
 import FieldsButtonComponent from './FieldsButtonComponent';
 import FieldsListComponent from './FieldsListComponent';
 import {
@@ -39,7 +39,6 @@ import {
   InputFieldsGroup,
   SingleInputField,
 } from './FieldsAndSoil.style';
-import { ACTIVE } from '@Constants/ModuleStatus';
 
 const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   farmDetails,
@@ -99,16 +98,16 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
         FieldName: values.FieldName,
         Area: values.Area,
         Comment: values.Comment,
-        hasSoilTest: values.hasSoilTest,
+        HasSoilTest: values.HasSoilTest,
         SoilTest: {
           TestingMethod: values.SoilTest.TestingMethod,
           sampleDate: values.SoilTest.sampleDate,
           valNO3H: values.SoilTest.valNO3H,
-          valP: values.SoilTest.valP,
+          ValP: values.SoilTest.ValP,
           valK: values.SoilTest.valK,
           valPH: values.SoilTest.valPH,
         },
-        hasLeafTest: values.hasLeafTest,
+        HasLeafTest: values.HasLeafTest,
         LeafTest: {
           leafTissueP: values.LeafTest.leafTissueP,
           leafTissueK: values.LeafTest.leafTissueK,
@@ -148,6 +147,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           )}
         </>
       )}
+
       {(isFieldAdded || !isSubmitted) && (
         <Formik
           initialValues={initialFieldValues}
@@ -196,23 +196,23 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                       <CustomRadioButton
                         key={option.id}
                         label={option.label}
-                        id={`hasSoilTest${option.id}`}
-                        name="hasSoilTest"
+                        id={`HasSoilTest${option.id}`}
+                        name="HasSoilTest"
                         type="radio"
                         checked={isSoilTestEnabled === option.value}
                         onChange={() => {
-                          setFieldValue('hasSoilTest', option.value);
+                          setFieldValue('HasSoilTest', option.value);
                           setSoilTestEnabled(option.value);
                         }}
                       />
                     ))}
                   </StyledRadioGroupContainer>
                   <ErrorMessage
-                    name="hasSoilTest"
+                    name="HasSoilTest"
                     component="div"
                     className="errorMessage"
                   />
-                  {values.hasSoilTest === false && (
+                  {values.HasSoilTest === false && (
                     <StyledWarningBlock>
                       <p>
                         For fields without a soil test, very high soil P and K fertility and a pH of
@@ -220,7 +220,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                       </p>
                     </StyledWarningBlock>
                   )}
-                  {values.hasSoilTest && (
+                  {values.HasSoilTest && (
                     <>
                       <StyledSelectContainer>
                         <CustomSelect
@@ -279,24 +279,24 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                       <CustomRadioButton
                         key={option.id}
                         label={option.label}
-                        id={`hasLeafTest${option.id}`}
-                        name="hasLeafTest"
+                        id={`HasLeafTest${option.id}`}
+                        name="HasLeafTest"
                         type="radio"
                         checked={isLeafTestEnabled === option.value}
                         onChange={() => {
-                          setFieldValue('hasLeafTest', option.value);
+                          setFieldValue('HasLeafTest', option.value);
                           setLeafTestEnabled(option.value);
                         }}
                       />
                     ))}
                   </StyledRadioGroupContainer>
                   <ErrorMessage
-                    name="hasLeafTest"
+                    name="HasLeafTest"
                     component="div"
                     className="errorMessage"
                   />
                 </StyledTestContainer>
-                {values.hasLeafTest === false && (
+                {values.HasLeafTest === false && (
                   <StyledWarningBlock>
                     <ul>
                       <li>
@@ -306,7 +306,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     </ul>
                   </StyledWarningBlock>
                 )}
-                {values.hasLeafTest && (
+                {values.HasLeafTest && (
                   <InputFieldsGroup>
                     <CustomField
                       label="Leaf tissue P (%)"
