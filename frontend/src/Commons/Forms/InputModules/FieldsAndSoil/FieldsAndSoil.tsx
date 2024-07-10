@@ -47,12 +47,12 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
 }) => {
   // Builds field info inside the field form module.
   const [, setFieldsInfo] = useState(farmDetails);
-  const [fieldIndex, setFieldIndex] = useState(0);
+  const [fieldIndex, setFieldIndex] = useState(farmDetails.Fields.length);
   const [initialFieldValues, setInitialFieldValues] = useState(
     initialFarmDetails.Fields[fieldIndex],
   );
   // Only triggered once, it would show list and persists.
-  const [isSubmitted, setSubmitted] = useState<boolean>(false);
+  const [isSubmitted, setSubmitted] = useState<boolean>(farmDetails.Fields.length > 0);
   // Would trigger when new field button is clicked.
   const [isFieldAdded, setFieldAdd] = useState<boolean>(false);
   // For checked attribute
