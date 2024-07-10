@@ -4,6 +4,7 @@ import CmdOptions from '@Constants/CmdOptions';
 import Button from '@Commons/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import {
   StyledButtonGroupContainer,
   StyledButtonContainer,
@@ -11,7 +12,6 @@ import {
   StyledNewFieldButtonContainer,
   StyledNewFieldButtonController,
 } from './FieldsButtonComponent.styles';
-import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 
 type ButtonComponentProps = {
   addNewField: () => void;
