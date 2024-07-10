@@ -13,10 +13,7 @@ import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
 import CropsInitialDetails from '@Constants/InitialCropsDetails';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
-import {
-  CropsDetailsInterface,
-  SubmissionCropsInterface,
-} from 'src/Interface/CropsDetailsInterface';
+import { SubmissionCropsInterface } from 'src/Interface/CropsDetailsInterface';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import {
   CropIDOptions,
@@ -38,6 +35,7 @@ import {
   StyledAddCancelButtonGroup,
 } from './Crops.style';
 import CropsButtonGroup from './CropsButtonComponent';
+import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 
 const CropsInfoComponent: React.FC<InputModuleProps> = ({
   farmDetails,
@@ -80,21 +78,19 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   });
   const addFieldData = (values: SubmissionCropsInterface): void => {
     setTimeout(() => {
-      const farmInfo: FarmDetailsInterface = { ...farmDetails };
-      farmInfo.Fields.push({
-        Crops: {
-          id: fieldIndex,
-          cropId: values.cropId,
-          yield: values.yield,
-          plantAgeYears: values.plantAgeYears,
-          numberOfPlantsPerAcre: values.numberOfPlantsPerAcre,
-          distanceBtwnPlantsRows: `${values.distanceBtwnPlants} ${values.distanceBtwnRows}`,
-          willPlantsBePruned: values.willPlantsBePruned,
-          whereWillPruningsGo: values.whereWillPruningsGo,
-          willSawdustBeApplied: values.willSawdustBeApplied,
-        },
+      const fieldInfo: FieldDetailInterface = { ...farmDetails.Fields };
+      fieldInfo.Crops.push({
+        id: fieldIndex,
+        cropId: values.cropId,
+        yield: values.yield,
+        plantAgeYears: values.plantAgeYears,
+        numberOfPlantsPerAcre: values.numberOfPlantsPerAcre,
+        distanceBtwnPlantsRows: `${values.distanceBtwnPlants} ${values.distanceBtwnRows}`,
+        willPlantsBePruned: values.willPlantsBePruned,
+        whereWillPruningsGo: values.whereWillPruningsGo,
+        willSawdustBeApplied: values.willSawdustBeApplied,
       });
-      setFieldsInfo(farmInfo);
+      setFieldsInfo(fieldInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
       setFieldAdd(false);
