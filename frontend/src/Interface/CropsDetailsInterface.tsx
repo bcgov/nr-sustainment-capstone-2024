@@ -7,15 +7,15 @@
  */
 
 interface CropsDetailsInterface {
-    id: number,
-    cropId: string,
-    yield: number,
-    plantAgeYears: string,
-    numberOfPlantsPerAcre: number,
-    distanceBtwnPlantsRows: string,
-    willPlantsBePruned: boolean | null,
-    whereWillPruningsGo: string,
-    willSawdustBeApplied: boolean | null,
+  id: number;
+  cropId: string;
+  yield: number;
+  plantAgeYears: string;
+  numberOfPlantsPerAcre: number;
+  distanceBtwnPlantsRows: string;
+  willPlantsBePruned: boolean | null;
+  whereWillPruningsGo: string;
+  willSawdustBeApplied: boolean | null;
 }
 
 /**
@@ -26,16 +26,16 @@ interface CropsDetailsInterface {
  */
 
 interface SubmissionCropsInterface {
-    id: number,
-    cropId: string,
-    yield: number,
-    plantAgeYears: string,
-    numberOfPlantsPerAcre: number,
-    distanceBtwnPlants: string,
-    distanceBtwnRows: string,
-    willPlantsBePruned: boolean | null,
-    whereWillPruningsGo: string,
-    willSawdustBeApplied: boolean | null,
+  id: number;
+  cropId: string;
+  yield: number;
+  plantAgeYears: string;
+  numberOfPlantsPerAcre: number;
+  distanceBtwnPlants: string;
+  distanceBtwnRows: string;
+  willPlantsBePruned: boolean | null;
+  whereWillPruningsGo: string;
+  willSawdustBeApplied: boolean | null;
 }
 
 export type { CropsDetailsInterface, SubmissionCropsInterface };

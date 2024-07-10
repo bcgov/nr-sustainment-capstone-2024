@@ -102,17 +102,19 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
           leafTissueP: values.LeafTest?.leafTissueP,
           leafTissueK: values.LeafTest?.leafTissueK,
         },
-        Crops: [{
-          id: 0,
-          cropId: '',
-          yield: 0,
-          plantAgeYears: '',
-          numberOfPlantsPerAcre: 0,
-          distanceBtwnPlantsRows: '',
-          willPlantsBePruned: null,
-          whereWillPruningsGo: '',
-          willSawdustBeApplied: null,
-        }],
+        Crops: [
+          {
+            id: 0,
+            cropId: '',
+            yield: 0,
+            plantAgeYears: '',
+            numberOfPlantsPerAcre: 0,
+            distanceBtwnPlantsRows: '',
+            willPlantsBePruned: null,
+            whereWillPruningsGo: '',
+            willSawdustBeApplied: null,
+          },
+        ],
       });
       setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
