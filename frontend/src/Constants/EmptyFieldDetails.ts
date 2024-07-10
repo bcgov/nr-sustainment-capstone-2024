@@ -1,4 +1,4 @@
-import CropsDetailsInterface from 'src/Interface/CropsDetailsInterface';
+import { CropsDetailsInterface } from 'src/Interface/CropsDetailsInterface';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 
 const emptyFieldDetails: FieldDetailInterface = {

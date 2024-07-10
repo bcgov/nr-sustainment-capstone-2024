@@ -90,19 +90,19 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
         Comment: values.Comment,
         hasSoilTest: values.hasSoilTest,
         SoilTest: {
-          TestingMethod: values.SoilTest.TestingMethod,
-          sampleDate: values.SoilTest.sampleDate,
-          valNO3H: values.SoilTest.valNO3H,
-          valP: values.SoilTest.valP,
-          valK: values.SoilTest.valK,
-          valPH: values.SoilTest.valPH,
+          TestingMethod: values.SoilTest?.TestingMethod,
+          sampleDate: values.SoilTest?.sampleDate,
+          valNO3H: values.SoilTest?.valNO3H,
+          valP: values.SoilTest?.valP,
+          valK: values.SoilTest?.valK,
+          valPH: values.SoilTest?.valPH,
         },
         hasLeafTest: values.hasLeafTest,
         LeafTest: {
-          leafTissueP: values.LeafTest.leafTissueP,
-          leafTissueK: values.LeafTest.leafTissueK,
+          leafTissueP: values.LeafTest?.leafTissueP,
+          leafTissueK: values.LeafTest?.leafTissueK,
         },
-        Crops: {
+        Crops: [{
           id: 0,
           cropId: '',
           yield: 0,
@@ -112,7 +112,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
           willPlantsBePruned: null,
           whereWillPruningsGo: '',
           willSawdustBeApplied: null,
-        },
+        }],
       });
       setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);

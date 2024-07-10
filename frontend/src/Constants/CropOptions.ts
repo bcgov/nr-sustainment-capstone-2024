@@ -52,27 +52,27 @@ const PlantAgeOptions: OptionInterface[] = [
 
 const PlantsPerAcre: OptionInterface[] = [
   {
-    value: 2498,
+    value: '2498',
     label: '2498',
   },
   {
-    value: 2248,
+    value: '2248',
     label: '2248',
   },
   {
-    value: 1999,
+    value: '1999',
     label: '1999',
   },
   {
-    value: 1799,
+    value: '1799',
     label: '1799',
   },
   {
-    value: 1665,
+    value: '1665',
     label: '1665',
   },
   {
-    value: 1499,
+    value: '1499',
     label: '1499',
   },
 ];
@@ -105,11 +105,11 @@ const DistanceBtwnRows: OptionInterface[] = [
 
 const YesOrNo: OptionInterface[] = [
   {
-    value: true,
+    value: 'true',
     label: 'Yes',
   },
   {
-    value: false,
+    value: 'false',
     label: 'No',
   },
 ];

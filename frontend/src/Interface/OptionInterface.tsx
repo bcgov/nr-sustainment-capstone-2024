@@ -4,7 +4,7 @@
  * @author @GDamaso
  */
 interface OptionInterface {
-  value: string | number | boolean;
+  value: string;
   label: string;
 }
 

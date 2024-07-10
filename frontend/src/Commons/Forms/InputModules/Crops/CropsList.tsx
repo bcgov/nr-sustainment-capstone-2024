@@ -24,25 +24,26 @@ interface CropsListComponentProps extends InputModuleProps {
 
 const CropsListComponent: React.FC<CropsListComponentProps> = ({ farmDetails, addNewField }) => {
   const fieldCount = farmDetails.Fields.length;
-  console.log(farmDetails);
   return (
     <StyledFieldInfoList>
-      {farmDetails.Fields.map((field: FieldDetailInterface) => (
-        <div key={field.Id}>
+      {farmDetails.Fields.map((fields: FieldDetailInterface) => (
+        <div key={fields.FieldName + fields.Area + fields.Comment}>
           <StyledListContainer>
             <StyledListItem width="240px">
               <h2>Field Name</h2>
-              <p>{field.FieldName}</p>
+              <p key={fields.FieldName}>{fields.FieldName}</p>
             </StyledListItem>
-            <StyledCropsGroup key={field.Crops?.id}>
-              <StyledListItem width="0%">
-                <div className="CropsList">
-                  <h2>Crop</h2>
-                  <h2>{field.Crops?.id ? field.Crops?.id : 0 + 1}</h2>
-                </div>
-                <p>{field.Crops?.cropId}</p>
-              </StyledListItem>
-            </StyledCropsGroup>
+            {fields.Crops.length > 0 && fields.Crops.map((crops: CropsDetailsInterface) => (
+              <StyledCropsGroup key={crops.id}>
+                <StyledListItem width="0%">
+                  <div className="CropsList">
+                    <h2>Crops</h2>
+                    <h2>{crops.id + 1}</h2>
+                  </div>
+                  <p key={crops.cropId}>{crops.cropId}</p>
+                </StyledListItem>
+              </StyledCropsGroup>
+            ))}
           </StyledListContainer>
           <StyledNewFieldButtonContainer>
             <StyledNewFieldButtonController>

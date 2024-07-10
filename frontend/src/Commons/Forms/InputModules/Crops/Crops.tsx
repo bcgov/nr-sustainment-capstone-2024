@@ -11,6 +11,7 @@ import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
+import CropsButtonGroup from './CropsButtonComponent';
 import CropsInitialDetails from '@Constants/InitialCropsDetails';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import { SubmissionCropsInterface } from 'src/Interface/CropsDetailsInterface';
@@ -25,7 +26,6 @@ import {
   WherePruningsGo,
 } from '@Constants/CropOptions';
 import CustomField from '@Commons/Input/Field/CustomField';
-import { emptyCropsDetails } from '@Constants/EmptyFieldDetails';
 import CropsListComponent from './CropsList';
 import { StyledFarmInfo, StyledButtonGroupContainer } from '../../../FormStyles.styles';
 import {
@@ -34,8 +34,6 @@ import {
   StyledAreaContainer,
   StyledAddCancelButtonGroup,
 } from './Crops.style';
-import CropsButtonGroup from './CropsButtonComponent';
-import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 
 const CropsInfoComponent: React.FC<InputModuleProps> = ({
   farmDetails,
@@ -78,19 +76,41 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   });
   const addFieldData = (values: SubmissionCropsInterface): void => {
     setTimeout(() => {
-      const fieldInfo: FieldDetailInterface = { ...farmDetails.Fields };
-      fieldInfo.Crops.push({
-        id: fieldIndex,
-        cropId: values.cropId,
-        yield: values.yield,
-        plantAgeYears: values.plantAgeYears,
-        numberOfPlantsPerAcre: values.numberOfPlantsPerAcre,
-        distanceBtwnPlantsRows: `${values.distanceBtwnPlants} ${values.distanceBtwnRows}`,
-        willPlantsBePruned: values.willPlantsBePruned,
-        whereWillPruningsGo: values.whereWillPruningsGo,
-        willSawdustBeApplied: values.willSawdustBeApplied,
+      const farmInfo: FarmDetailsInterface = { ...farmDetails };
+      farmInfo.Fields.push({
+        Id: farmInfo.Fields[fieldIndex].Id,
+        FieldName: farmInfo.Fields[fieldIndex].FieldName,
+        Area: farmInfo.Fields[fieldIndex].Area,
+        Comment: farmInfo.Fields[fieldIndex].Comment,
+        hasSoilTest: farmInfo.Fields[fieldIndex].hasSoilTest,
+        SoilTest: {
+          TestingMethod: farmInfo.Fields[fieldIndex].SoilTest.TestingMethod,
+          sampleDate: farmInfo.Fields[fieldIndex].SoilTest.sampleDate,
+          valNO3H: farmInfo.Fields[fieldIndex].SoilTest.valNO3H,
+          valP: farmInfo.Fields[fieldIndex].SoilTest.valP,
+          valK: farmInfo.Fields[fieldIndex].SoilTest.valK,
+          valPH: farmInfo.Fields[fieldIndex].SoilTest.valPH,
+        },
+        hasLeafTest: farmInfo.Fields[fieldIndex].hasLeafTest,
+        LeafTest: {
+          leafTissueP: farmInfo.Fields[fieldIndex].LeafTest.leafTissueP,
+          leafTissueK: farmInfo.Fields[fieldIndex].LeafTest.leafTissueK,
+        },
+        Crops: [
+          {
+            id: fieldIndex,
+            cropId: values.cropId,
+            yield: values.yield,
+            plantAgeYears: values.plantAgeYears,
+            numberOfPlantsPerAcre: values.numberOfPlantsPerAcre,
+            distanceBtwnPlantsRows: values.distanceBtwnPlants + values.distanceBtwnRows,
+            willPlantsBePruned: values.willPlantsBePruned,
+            whereWillPruningsGo: values.whereWillPruningsGo,
+            willSawdustBeApplied: values.willSawdustBeApplied,
+          },
+        ],
       });
-      setFieldsInfo(fieldInfo);
+      setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
       setFieldAdd(false);
@@ -101,7 +121,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
     updateFarmDetails(farmInfo);
   };
   const addNewField = () => {
-    setInitialFieldValues(emptyCropsDetails);
+    setInitialFieldValues(initialFieldValues);
     setFieldAdd(true);
   };
   return (
