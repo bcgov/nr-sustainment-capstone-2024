@@ -19,14 +19,14 @@ import {
 } from './CropsList.style';
 
 interface CropsListComponentProps extends InputModuleProps {
-  addNewField: () => void;
+  addNewField: (fieldIndex: number) => void;
 }
 
 const CropsListComponent: React.FC<CropsListComponentProps> = ({ farmDetails, addNewField }) => {
   const fieldCount = farmDetails.Fields.length;
   return (
     <StyledFieldInfoList>
-      {farmDetails.Fields.map((fields: FieldDetailInterface) => (
+      {farmDetails.Fields.map((fields: FieldDetailInterface, index: number) => (
         <div key={fields.FieldName + fields.Area + fields.Comment}>
           <StyledListContainer>
             <StyledListItem width="240px">
@@ -55,7 +55,10 @@ const CropsListComponent: React.FC<CropsListComponentProps> = ({ farmDetails, ad
                 radius="50px"
                 actions="secondary"
                 text={ComponentText.ADD_CROP}
-                handleClick={addNewField}
+                handleClick={() => {
+                  console.log(index);
+                  addNewField(index);
+                }}
               >
                 <FontAwesomeIcon icon={faPlus} />
               </Button>

@@ -116,6 +116,7 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
           },
         ],
       });
+      console.log(farmInfo);
       setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);

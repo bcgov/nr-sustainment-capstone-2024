@@ -13,7 +13,10 @@ import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
 import CropsInitialDetails from '@Constants/InitialCropsDetails';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
-import { SubmissionCropsInterface } from 'src/Interface/CropsDetailsInterface';
+import {
+  CropsDetailsInterface,
+  SubmissionCropsInterface,
+} from 'src/Interface/CropsDetailsInterface';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import {
   CropIDOptions,
@@ -34,6 +37,8 @@ import {
   StyledAreaContainer,
   StyledAddCancelButtonGroup,
 } from './Crops.style';
+import initialFarmDetails from '@Constants/InitialFarmDetails';
+import { emptyCropsDetails } from '@Constants/EmptyFieldDetails';
 
 const CropsInfoComponent: React.FC<InputModuleProps> = ({
   farmDetails,
@@ -42,7 +47,10 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
 }) => {
   const [, setFieldsInfo] = useState(farmDetails);
   const [fieldIndex, setFieldIndex] = useState(0);
-  const [initialFieldValues, setInitialFieldValues] = useState(CropsInitialDetails);
+  const [cropIndex, setCropIndex] = useState(0);
+  const [initialFieldValues, setInitialFieldValues] = useState(
+    initialFarmDetails.Fields[fieldIndex].Crops[cropIndex],
+  );
   // Only triggered once, it would show list and persists.
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
@@ -60,36 +68,38 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
         ? Yup.number().required('Required')
         : Yup.number().notRequired(),
     ),
-    distanceBtwnPlants: Yup.string().when('cropId', (cropId) =>
+    distanceBtwnPlantsRows: Yup.string().when('cropId', (cropId) =>
       cropId.toString() === 'Blueberry'
         ? Yup.string().required('Required')
         : Yup.string().notRequired(),
     ),
-    distanceBtwnRows: Yup.string().when('cropId', (cropId) =>
-      cropId.toString() === 'Blueberry'
-        ? Yup.string().required('Required')
-        : Yup.string().notRequired(),
-    ),
+    // distanceBtwnRows: Yup.string().when('cropId', (cropId) =>
+    //   cropId.toString() === 'Blueberry'
+    //     ? Yup.string().required('Required')
+    //     : Yup.string().notRequired(),
+    // ),
     willPlantsBePruned: Yup.boolean().required('Required'),
     whereWillPruningsGo: Yup.string().required('Required'),
     willSawdustBeApplied: Yup.boolean().required('Required'),
   });
-  const addFieldData = (values: SubmissionCropsInterface): void => {
+  const addFieldData = (values: CropsDetailsInterface): void => {
     setTimeout(() => {
       const farmInfo: FarmDetailsInterface = { ...farmDetails };
+
       farmInfo.Fields[fieldIndex].Crops.push({
-        id: fieldIndex,
+        id: cropIndex,
         cropId: values.cropId,
         yield: values.yield,
         plantAgeYears: values.plantAgeYears,
         numberOfPlantsPerAcre: values.numberOfPlantsPerAcre,
-        distanceBtwnPlantsRows: values.distanceBtwnPlants + values.distanceBtwnRows,
+        distanceBtwnPlantsRows: values.distanceBtwnPlantsRows,
         willPlantsBePruned: values.willPlantsBePruned,
         whereWillPruningsGo: values.whereWillPruningsGo,
         willSawdustBeApplied: values.willSawdustBeApplied,
       });
+      console.log(farmInfo);
       setFieldsInfo(farmInfo);
-      setFieldIndex((prevIndex) => prevIndex + 1);
+      // setCropIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
       setFieldAdd(false);
     }, 400);
@@ -98,8 +108,11 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
     const farmInfo: FarmDetailsInterface = { ...farmDetails };
     updateFarmDetails(farmInfo);
   };
-  const addNewField = () => {
-    setInitialFieldValues(initialFieldValues);
+  const addNewField = (index: number) => {
+    setFieldIndex(index);
+    console.log('Index: ', index, 'LENGTH: ', farmDetails.Fields[index].Crops.length);
+    setCropIndex(farmDetails.Fields[index].Crops.length);
+    setInitialFieldValues(emptyCropsDetails);
     setFieldAdd(true);
   };
   return (
@@ -158,8 +171,8 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
                     </StyledCropsSmallGroup>
                     <StyledCropsLargeGroup>
                       <CustomSelect
-                        name="distanceBtwnPlants"
-                        id="distanceBtwnPlants"
+                        name="distanceBtwnPlantsRows"
+                        id="distanceBtwnPlantsRows"
                         label="Distance between plants"
                         options={DistanceBtwnPlants}
                         width="40%"
