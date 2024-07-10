@@ -2,7 +2,7 @@
  * @desc Main Page of Better Berries App
  * @author @GDamaso @Kcaparas
  */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, FC } from 'react';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
 import ProgressBar from '@Commons/ProgressBar/ProgressBar';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter';
@@ -13,7 +13,7 @@ import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import NmpInterface from '@Interface/NmpInterface';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
-import { ACTIVE, WARNING } from '@Constants/ModuleStatus';
+import { ACTIVE, COMPLETED, WARNING } from '@Constants/ModuleStatus';
 import CmdOptions from '@Constants/CmdOptions';
 import Names from '@Constants/Names';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
@@ -62,7 +62,7 @@ const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterfac
   return updateFarmDetails;
 };
 
-const MainPage: React.FC = () => {
+const MainPage: FC = () => {
   const localStorageDetails = getLocalDetails();
   const [farmDetails, setFarmDetails] = useState(loadFarmDetails(initialFarmDetails));
   const [localDetails, setLocalDetails] = useState(localStorageDetails);
@@ -170,7 +170,7 @@ const MainPage: React.FC = () => {
   const updateFarmDetails = (newDetails: FarmDetailsInterface) => {
     setFarmDetails(newDetails);
     updateLocalDetails(newDetails);
-    handleFormState(CmdOptions.FORWARDS);
+    handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
   };
 
   return (
