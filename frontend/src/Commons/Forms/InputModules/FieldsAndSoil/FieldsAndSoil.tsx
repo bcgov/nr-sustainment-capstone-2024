@@ -71,16 +71,16 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
       .max(100, 'Area should be lower than 100')
       .required('Required'),
     Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
-    hasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
-    hasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
-    TestingMethod: hasSoilTestSchema('hasSoilTest', 'Must enter Testing Method'),
-    sampleDate: hasSoilTestSchema('hasSoilTest', 'Must enter Sample Date'),
-    valNO3H: hasSoilTestSchema('hasSoilTest'),
-    valP: hasSoilTestSchema('hasSoilTest'),
-    valK: hasSoilTestSchema('hasSoilTest'),
-    valPH: hasSoilTestSchema('hasSoilTest'),
-    leafTissueP: hasSoilTestSchema('hasLeafTest'),
-    leafTissueK: hasSoilTestSchema('hasLeafTest'),
+    HasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
+    HasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
+    TestingMethod: hasSoilTestSchema('HasSoilTest', 'Must enter Testing Method'),
+    sampleDate: hasSoilTestSchema('HasSoilTest', 'Must enter Sample Date'),
+    valNO3H: hasSoilTestSchema('HasSoilTest'),
+    ValP: hasSoilTestSchema('HasSoilTest'),
+    valK: hasSoilTestSchema('HasSoilTest'),
+    valPH: hasSoilTestSchema('HasSoilTest'),
+    leafTissueP: hasSoilTestSchema('HasLeafTest'),
+    leafTissueK: hasSoilTestSchema('HasLeafTest'),
   });
 
   /**
