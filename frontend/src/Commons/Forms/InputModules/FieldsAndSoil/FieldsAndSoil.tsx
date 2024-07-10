@@ -68,14 +68,30 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
     hasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
     hasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
-    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Testing Method'))),
-    sampleDate: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Sample Date'))),
-    valNO3H: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valP: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valK: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valPH: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    leafTissueP: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    leafTissueK: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Testing Method'),
+    ),
+    sampleDate: Yup.string().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Sample Date'),
+    ),
+    valNO3H: Yup.number().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    valP: Yup.number().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    valK: Yup.number().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    valPH: Yup.number().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    leafTissueP: Yup.number().when('hasLeafTest', (hasLeafTest) =>
+      hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    leafTissueK: Yup.number().when('hasLeafTest', (hasLeafTest) =>
+      hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
   });
 
   /**
@@ -181,9 +197,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                   />
                 </StyledTextAreaContainer>
                 <StyledTestContainer>
-                  <HeaderLabel>
-                    <h3>Add Soil Test</h3>
-                  </HeaderLabel>
+                  <HeaderLabel>Add Soil Test</HeaderLabel>
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
@@ -264,9 +278,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                   )}
                 </StyledTestContainer>
                 <StyledTestContainer>
-                  <HeaderLabel>
-                    <h3>Add Leaf Test</h3>
-                  </HeaderLabel>
+                  <HeaderLabel>Add Leaf Test</HeaderLabel>
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
@@ -342,7 +354,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
 const FieldsAndSoil: InputModuleInterface = {
   InputModuleComponent: FieldsAndSoilComponent,
   id: FIELDS_AND_SOIL,
-  name: { long: FIELDS_AND_SOIL, short: 'Fields' },
+  name: { long: 'Fields and Soil', short: 'Fields' },
   faIcon: faWheatAwn,
   enable: false,
   status: 'inactive',

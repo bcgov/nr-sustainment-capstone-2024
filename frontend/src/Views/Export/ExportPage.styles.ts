@@ -44,6 +44,12 @@ const StyledContent = styled.div`
     margin-bottom: 0;
   }
 
+  h2 {
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+  }
+
   @media (min-width: ${screenSizes.desktop}) {
     max-width: 40%;
     min-height: 40%;
@@ -52,7 +58,7 @@ const StyledContent = styled.div`
     text-align: center;
 
     h2 {
-      font: ${tokens.typographyBoldH2};
+      font-size: 18px;
     }
 
     p {
