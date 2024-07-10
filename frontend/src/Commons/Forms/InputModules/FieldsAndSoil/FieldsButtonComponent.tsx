@@ -11,17 +11,20 @@ import {
   StyledNewFieldButtonContainer,
   StyledNewFieldButtonController,
 } from './FieldsButtonComponent.styles';
+import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 
 type ButtonComponentProps = {
   addNewField: () => void;
-  updateFarmDetails: () => void;
+  updateFarmDetails: (newFarmDetails: FarmDetailsInterface) => void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
+  farmDetails: FarmDetailsInterface;
 };
 
 const FieldsButtonComponent: FC<ButtonComponentProps> = ({
   addNewField,
   updateFarmDetails,
   handleFormState,
+  farmDetails,
 }) => (
   <StyledButtonGroupContainer>
     <StyledNewFieldButtonContainer>
@@ -56,7 +59,9 @@ const FieldsButtonComponent: FC<ButtonComponentProps> = ({
           size="lg"
           disabled={false}
           text={ComponentText.NEXT}
-          handleClick={updateFarmDetails}
+          handleClick={() => {
+            updateFarmDetails(farmDetails);
+          }}
         />
       </StyledButtonContainer>
     </StyledAddCancelButtonContainer>

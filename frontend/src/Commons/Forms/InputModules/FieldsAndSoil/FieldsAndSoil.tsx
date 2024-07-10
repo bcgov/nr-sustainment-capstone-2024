@@ -143,6 +143,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
               addNewField={addNewField}
               updateFarmDetails={() => updateFarmDetails(farmDetails)}
               handleFormState={handleFormState}
+              farmDetails={farmDetails}
             />
           )}
         </>

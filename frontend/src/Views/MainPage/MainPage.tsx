@@ -79,7 +79,7 @@ const MainPage: FC = () => {
             FarmName: newDetails.FarmName,
             Year: newDetails.Year,
           },
-          years: [{ ...prevDetails.years[0], Year: newDetails.Year }],
+          years: [{ ...prevDetails.years[0], Year: newDetails.Year, Fields: newDetails.Fields }],
         };
       }
       return prevDetails;
