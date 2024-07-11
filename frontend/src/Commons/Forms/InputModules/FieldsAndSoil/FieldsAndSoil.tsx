@@ -107,7 +107,24 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           leafTissueP: values.LeafTest.leafTissueP,
           leafTissueK: values.LeafTest.leafTissueK,
         },
+        Crops: [
+          {
+            id: 0,
+            cropId: '',
+            yield: 0,
+            plantAgeYears: '',
+            numberOfPlantsPerAcre: 0,
+            distanceBtwnPlantsRows: '',
+            willPlantsBePruned: undefined,
+            whereWillPruningsGo: '',
+            willSawdustBeApplied: undefined,
+          },
+        ],
       });
+      if (farmInfo.Fields[fieldIndex].Crops.length === 1) {
+        farmInfo.Fields[fieldIndex].Crops.splice(0, 1);
+      }
+      console.log(farmInfo);
       setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
