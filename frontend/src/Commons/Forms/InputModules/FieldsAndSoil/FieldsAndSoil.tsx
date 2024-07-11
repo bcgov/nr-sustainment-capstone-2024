@@ -68,30 +68,14 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
     hasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
     hasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
-    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) =>
-      hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Testing Method'),
-    ),
-    sampleDate: Yup.string().when('hasSoilTest', (hasSoilTest) =>
-      hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Sample Date'),
-    ),
-    valNO3H: Yup.number().when('hasSoilTest', (hasSoilTest) =>
-      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
-    ),
-    valP: Yup.number().when('hasSoilTest', (hasSoilTest) =>
-      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
-    ),
-    valK: Yup.number().when('hasSoilTest', (hasSoilTest) =>
-      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
-    ),
-    valPH: Yup.number().when('hasSoilTest', (hasSoilTest) =>
-      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
-    ),
-    leafTissueP: Yup.number().when('hasLeafTest', (hasLeafTest) =>
-      hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'),
-    ),
-    leafTissueK: Yup.number().when('hasLeafTest', (hasLeafTest) =>
-      hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'),
-    ),
+    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Testing Method'))),
+    sampleDate: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Sample Date'))),
+    valNO3H: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    valP: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    valK: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    valPH: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    leafTissueP: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    leafTissueK: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
   });
 
   /**
@@ -123,7 +107,25 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           leafTissueP: values.LeafTest.leafTissueP,
           leafTissueK: values.LeafTest.leafTissueK,
         },
+        Crops: [
+          {
+            id: 0,
+            cropId: '',
+            yield: 0,
+            plantAgeYears: '',
+            numberOfPlantsPerAcre: 0,
+            distanceBtwnPlantsRows: '',
+            willPlantsBePruned: undefined,
+            whereWillPruningsGo: '',
+            willSawdustBeApplied: undefined,
+          },
+        ],
       });
+      if (farmInfo.Fields[fieldIndex].Crops.length === 1) {
+        // splice or pop to remove Crops after getting pushed to array
+        // Crops is not optional so this line is needed
+        farmInfo.Fields[fieldIndex].Crops.splice(0, 1);
+      }
       setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
