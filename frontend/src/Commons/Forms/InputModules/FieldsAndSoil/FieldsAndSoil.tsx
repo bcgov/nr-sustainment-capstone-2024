@@ -122,6 +122,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
         ],
       });
       if (farmInfo.Fields[fieldIndex].Crops.length === 1) {
+        // splice or pop to remove Crops after getting pushed to array
+        // Crops is not optional so this line is needed
         farmInfo.Fields[fieldIndex].Crops.splice(0, 1);
       }
       console.log(farmInfo);
