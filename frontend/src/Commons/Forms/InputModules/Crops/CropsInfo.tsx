@@ -34,7 +34,11 @@ import {
   StyledCropsLargeGroup,
   StyledAddCancelButtonGroup,
 } from './CropsInfo.styles';
-import { StyledFarmInfo, StyledButtonGroupContainer, StyledAreaContainer } from '../../../FormStyles.styles';
+import {
+  StyledFarmInfo,
+  StyledButtonGroupContainer,
+  StyledAreaContainer,
+} from '../../../FormStyles.styles';
 
 const CropsInfoComponent: React.FC<InputModuleProps> = ({
   farmDetails,

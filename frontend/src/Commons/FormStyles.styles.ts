@@ -8,8 +8,8 @@ import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
 
 type FormProps = {
-    formCrops: boolean;
-}
+  formCrops: boolean;
+};
 const StyledFarmInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -58,7 +58,7 @@ const StyledAreaContainer = styled.div<FormProps>`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-  margin-left: 0;
+    margin-left: 0;
     p {
       top: 35px;
     }

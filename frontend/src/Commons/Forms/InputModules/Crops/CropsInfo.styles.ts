@@ -28,8 +28,4 @@ const StyledAddCancelButtonGroup = styled.div`
   width: 100%;
   height: 50px;
 `;
-export {
-  StyledCropsSmallGroup,
-  StyledCropsLargeGroup,
-  StyledAddCancelButtonGroup,
-};
+export { StyledCropsSmallGroup, StyledCropsLargeGroup, StyledAddCancelButtonGroup };
