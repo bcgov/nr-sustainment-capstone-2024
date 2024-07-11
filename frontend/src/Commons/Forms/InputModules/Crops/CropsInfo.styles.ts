@@ -22,27 +22,6 @@ const StyledCropsLargeGroup = styled.div`
     width: 50vw;
   }
 `;
-/* Will figure out a way to make this dry */
-const StyledAreaContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 50%;
-  height: auto;
-  position: relative;
-  margin-left: 5px;
-  p {
-    position: relative;
-    top: 25px;
-    left: 5px;
-  }
-
-  @media (min-width: ${screenSizes.desktop}) {
-    margin-left: 0;
-    p {
-      top: 35px;
-    }
-  }
-`;
 
 const StyledAddCancelButtonGroup = styled.div`
   position: relative;
@@ -52,6 +31,5 @@ const StyledAddCancelButtonGroup = styled.div`
 export {
   StyledCropsSmallGroup,
   StyledCropsLargeGroup,
-  StyledAreaContainer,
   StyledAddCancelButtonGroup,
 };

@@ -32,10 +32,9 @@ import CropsButtonGroup from './CropsButtonGroup';
 import {
   StyledCropsSmallGroup,
   StyledCropsLargeGroup,
-  StyledAreaContainer,
   StyledAddCancelButtonGroup,
 } from './CropsInfo.styles';
-import { StyledFarmInfo, StyledButtonGroupContainer } from '../../../FormStyles.styles';
+import { StyledFarmInfo, StyledButtonGroupContainer, StyledAreaContainer } from '../../../FormStyles.styles';
 
 const CropsInfoComponent: React.FC<InputModuleProps> = ({
   farmDetails,
@@ -147,7 +146,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
                       options={CropIDOptions}
                       width="40%"
                     />
-                    <StyledAreaContainer>
+                    <StyledAreaContainer formCrops>
                       <CustomField
                         label="Yield"
                         id="yield"

@@ -7,6 +7,9 @@ import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
 
+type FormProps = {
+    formCrops: boolean;
+}
 const StyledFarmInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,13 +44,13 @@ const StyledTextAreaContainer = styled.div`
   }
 `;
 
-const StyledAreaContainer = styled.div`
+const StyledAreaContainer = styled.div<FormProps>`
   display: flex;
   flex-direction: row;
   width: 50%;
   height: auto;
   position: relative;
-
+  margin-left: ${(props) => (props.formCrops ? '5px' : 0)};
   p {
     position: relative;
     top: 25px;
@@ -55,6 +58,7 @@ const StyledAreaContainer = styled.div`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
+  margin-left: 0;
     p {
       top: 35px;
     }

@@ -178,7 +178,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     name="FieldName"
                     type="text"
                   />
-                  <StyledAreaContainer>
+                  <StyledAreaContainer formCrops={false}>
                     <CustomField
                       label="Area"
                       id="Area"
