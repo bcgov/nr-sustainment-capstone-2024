@@ -56,7 +56,7 @@ const StyledAreaContainer = styled.div`
 
   @media (min-width: ${screenSizes.desktop}) {
     p {
-        top: 35px;
+      top: 35px;
     }
   }
 `;
