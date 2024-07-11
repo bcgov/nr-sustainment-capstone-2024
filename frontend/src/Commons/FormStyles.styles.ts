@@ -49,15 +49,14 @@ const StyledAreaContainer = styled.div`
   position: relative;
 
   p {
-    position: absolute;
-    top: 30px;
-    left: 100px;
+    position: relative;
+    top: 25px;
+    left: 10px;
   }
 
   @media (min-width: ${screenSizes.desktop}) {
     p {
-      bottom: 20px;
-      left: 200px;
+        top: 35px;
     }
   }
 `;

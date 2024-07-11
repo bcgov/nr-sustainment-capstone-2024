@@ -38,7 +38,7 @@ import {
   StyledSelectContainer,
   InputFieldsGroup,
   SingleInputField,
-} from './FieldsAndSoil.style';
+} from '../../../FormStyles.styles';
 
 const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   farmDetails,
