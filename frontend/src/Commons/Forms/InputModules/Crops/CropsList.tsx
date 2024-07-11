@@ -14,8 +14,8 @@ import {
   StyledListContainer,
   StyledListItem,
   StyledFieldInfoList,
-  StyledDivider,
   StyledCropsGroup,
+  StyledDivider,
 } from './CropsList.style';
 
 interface CropsListComponentProps extends InputModuleProps {
@@ -38,17 +38,18 @@ const CropsListComponent: React.FC<CropsListComponentProps> = ({
           <h2>Field Name</h2>
           <p key={fields.FieldName}>{fields.FieldName}</p>
         </StyledListItem>
-        {fields.Crops.length > 0 && fields.Crops.slice(1).map((crops: CropsDetailsInterface) => (
-          <StyledCropsGroup key={crops.id}>
-            <StyledListItem width="0%">
-              <div className="CropsList">
-                <h2>Crops</h2>
-                <h2>{crops.id + 1}</h2>
-              </div>
-              <p key={crops.cropId}>{crops.cropId}</p>
-            </StyledListItem>
-          </StyledCropsGroup>
-        ))}
+        {fields.Crops.length > 0
+          && fields.Crops.slice(1).map((crops: CropsDetailsInterface) => (
+            <StyledCropsGroup key={crops.id}>
+              <StyledListItem width="0%">
+                <div className="CropsList">
+                  <h2>Crops</h2>
+                  <h2>{crops.id + 1}</h2>
+                </div>
+                <p key={crops.cropId}>{crops.cropId}</p>
+              </StyledListItem>
+            </StyledCropsGroup>
+          ))}
       </StyledListContainer>
       <StyledNewFieldButtonContainer>
         <StyledNewFieldButtonController>
@@ -68,7 +69,7 @@ const CropsListComponent: React.FC<CropsListComponentProps> = ({
           </Button>
         </StyledNewFieldButtonController>
       </StyledNewFieldButtonContainer>
-      {/* {fieldCount > 2 && <StyledDivider />} */}
+      {fieldCount > 2 && <StyledDivider />}
     </StyledFieldInfoList>
   );
 };

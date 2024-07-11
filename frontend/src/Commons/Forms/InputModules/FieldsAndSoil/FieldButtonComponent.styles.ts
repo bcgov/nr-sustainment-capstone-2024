@@ -15,7 +15,7 @@ const StyledAddCancelButtonContainer = styled.div`
 const StyledBack = styled.div`
   order: 1;
   margin-top: 10px;
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     order: 0;
     width: 50%;
   }
