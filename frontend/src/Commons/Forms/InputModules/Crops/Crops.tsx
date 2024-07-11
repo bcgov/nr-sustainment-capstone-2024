@@ -49,7 +49,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
   const [isFieldAdded, setFieldAdd] = useState<boolean>(false);
-  const [hasFieldBeenAdded, setHasFieldBeenAdded] = useState<boolean[]>(
+  const [hasFieldBeenAdded, setFieldAdded] = useState<boolean[]>(
     Array(farmDetails.Fields.length).fill(false),
   );
   console.log(hasFieldBeenAdded);
@@ -104,9 +104,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
     setCropIndex(farmDetails.Fields[index].Crops.length - 1);
     setInitialFieldValues(CropsInitialDetails);
     setFieldAdd(true);
-    setHasFieldBeenAdded((prevState) => prevState.map(
-      (item, idx) => (idx === index ? !item : item),
-    ));
+    setFieldAdded((prevState) => prevState.map((item, idx) => (idx === index ? !item : item)));
   };
   return (
     <>
