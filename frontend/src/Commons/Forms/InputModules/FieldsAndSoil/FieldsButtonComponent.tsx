@@ -4,6 +4,7 @@ import CmdOptions from '@Constants/CmdOptions';
 import Button from '@Commons/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import {
   StyledButtonGroupContainer,
   StyledButtonContainer,
@@ -14,14 +15,16 @@ import {
 
 type ButtonComponentProps = {
   addNewField: () => void;
-  updateFarmDetails: () => void;
+  updateFarmDetails: (newFarmDetails: FarmDetailsInterface) => void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
+  farmDetails: FarmDetailsInterface;
 };
 
 const FieldsButtonComponent: FC<ButtonComponentProps> = ({
   addNewField,
   updateFarmDetails,
   handleFormState,
+  farmDetails,
 }) => (
   <StyledButtonGroupContainer>
     <StyledNewFieldButtonContainer>
@@ -56,7 +59,9 @@ const FieldsButtonComponent: FC<ButtonComponentProps> = ({
           size="lg"
           disabled={false}
           text={ComponentText.NEXT}
-          handleClick={updateFarmDetails}
+          handleClick={() => {
+            updateFarmDetails(farmDetails);
+          }}
         />
       </StyledButtonContainer>
     </StyledAddCancelButtonContainer>

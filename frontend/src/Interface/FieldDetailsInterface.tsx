@@ -14,8 +14,8 @@ interface FieldDetailInterface {
   FieldName: string;
   Area: number;
   Comment?: string | null;
-  hasSoilTest: boolean | null;
-  hasLeafTest: boolean | null;
+  HasSoilTest: boolean | null;
+  HasLeafTest: boolean | null;
   SoilTest: SoilTestInterface;
   LeafTest: LeafTestInterface;
   Crops: CropsDetailsInterface[];
