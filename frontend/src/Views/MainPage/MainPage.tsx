@@ -17,6 +17,7 @@ import { ACTIVE, COMPLETED, WARNING } from '@Constants/ModuleStatus';
 import CmdOptions from '@Constants/CmdOptions';
 import Names from '@Constants/Names';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
+import convertToNMP from '@Utils/convertToNMP';
 
 // The sequence of sections to show up on the main page
 // This is the skeleton for the Berries workflow
@@ -69,18 +70,17 @@ const MainPage: FC = () => {
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
 
+  /**
+   * @desc    Take our apps main data object and save it to a template .nmp file,
+   *          saved in the users localStorage.
+   *          This is virtually where conversion between farmDetails and .nmp happens.
+   *          The equivalent atributes should be mapped here.
+   * @param   newDetails: FarmDetailsInterface => Our main data object in our own data structure
+   */
   const updateLocalDetails = (newDetails: FarmDetailsInterface) => {
     setLocalDetails((prevDetails: NmpInterface) => {
       if (prevDetails) {
-        return {
-          ...prevDetails,
-          farmDetails: {
-            ...prevDetails.farmDetails,
-            FarmName: newDetails.FarmName,
-            Year: newDetails.Year,
-          },
-          years: [{ ...prevDetails.years[0], Year: newDetails.Year, Fields: newDetails.Fields }],
-        };
+        return convertToNMP(newDetails, prevDetails);
       }
       return prevDetails;
     });
