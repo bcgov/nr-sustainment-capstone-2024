@@ -104,7 +104,9 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
     setCropIndex(farmDetails.Fields[index].Crops.length - 1);
     setInitialFieldValues(CropsInitialDetails);
     setFieldAdd(true);
-    setHasFieldBeenAdded((prevState) => prevState.map((item, idx) => (idx === index ? !item : item)));
+    setHasFieldBeenAdded((prevState) => prevState.map(
+      (item, idx) => (idx === index ? !item : item),
+    ));
   };
   return (
     <>
