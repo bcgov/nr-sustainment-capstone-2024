@@ -27,9 +27,9 @@ const StyledSelect = styled.div<StyledSelectProps>`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-   label {
-        font: ${tokens.typographyBoldLargeBody};
-      }
+    label {
+      font: ${tokens.typographyBoldLargeBody};
+    }
     width: ${(props) => props.width};
   }
 `;

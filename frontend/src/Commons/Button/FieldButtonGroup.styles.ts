@@ -7,7 +7,7 @@ import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 
 type ButtonGroupProps = {
-    formCrops: boolean
+  formCrops: boolean;
 };
 const StyledButtonGroupContainer = styled.div`
   display: flex;

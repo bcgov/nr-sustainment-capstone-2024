@@ -25,8 +25,8 @@ const StyledField = styled.div<StyledFieldProps>`
 
   @media (min-width: ${screenSizes.desktop}) {
     label {
-        font: ${tokens.typographyBoldLargeBody};
-      }
+      font: ${tokens.typographyBoldLargeBody};
+    }
   }
 `;
 

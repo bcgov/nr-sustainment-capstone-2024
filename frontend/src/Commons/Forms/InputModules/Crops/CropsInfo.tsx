@@ -53,26 +53,18 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   const validationSchema = Yup.object().shape({
     cropId: Yup.string().required('Required'),
     yield: Yup.number().positive().max(100).required('Required'),
-    plantAgeYears: Yup.string().when('cropId', (cropId) =>
-      cropId.toString() === 'Blueberry'
-        ? Yup.string().required('Required')
-        : Yup.string().notRequired(),
-    ),
-    numberOfPlantsPerAcre: Yup.number().when('cropId', (cropId) =>
-      cropId.toString() === 'Blueberry'
-        ? Yup.number().required('Required')
-        : Yup.number().notRequired(),
-    ),
-    distanceBtwnPlants: Yup.string().when('cropId', (cropId) =>
-      cropId.toString() === 'Blueberry'
-        ? Yup.string().required('Required')
-        : Yup.string().notRequired(),
-    ),
-    distanceBtwnRows: Yup.string().when('cropId', (cropId) =>
-      cropId.toString() === 'Blueberry'
-        ? Yup.string().required('Required')
-        : Yup.string().notRequired(),
-    ),
+    plantAgeYears: Yup.string().when('cropId', (cropId) => (cropId.toString() === 'Blueberry'
+      ? Yup.string().required('Required')
+      : Yup.string().notRequired())),
+    numberOfPlantsPerAcre: Yup.number().when('cropId', (cropId) => (cropId.toString() === 'Blueberry'
+      ? Yup.number().required('Required')
+      : Yup.number().notRequired())),
+    distanceBtwnPlants: Yup.string().when('cropId', (cropId) => (cropId.toString() === 'Blueberry'
+      ? Yup.string().required('Required')
+      : Yup.string().notRequired())),
+    distanceBtwnRows: Yup.string().when('cropId', (cropId) => (cropId.toString() === 'Blueberry'
+      ? Yup.string().required('Required')
+      : Yup.string().notRequired())),
     willPlantsBePruned: Yup.boolean().required('Required'),
     whereWillPruningsGo: Yup.string().required('Required'),
     willSawdustBeApplied: Yup.boolean().required('Required'),

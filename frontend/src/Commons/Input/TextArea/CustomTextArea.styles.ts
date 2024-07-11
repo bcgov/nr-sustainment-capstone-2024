@@ -18,7 +18,6 @@ const StyledField = styled.div<StyledFieldProps>`
 
   label {
     font: ${tokens.typographyBoldSmallBody};
-    
   }
   textarea {
     border: solid 1px ${tokens.themeGray40};

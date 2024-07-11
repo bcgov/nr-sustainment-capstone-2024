@@ -1,4 +1,3 @@
-import { CropsDetailsInterface } from 'src/Interface/CropsDetailsInterface';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 
 const emptyFieldDetails: FieldDetailInterface = {
@@ -24,6 +23,5 @@ const emptyFieldDetails: FieldDetailInterface = {
     },
   ],
 };
-
 
 export default emptyFieldDetails;

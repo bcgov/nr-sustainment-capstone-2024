@@ -7,7 +7,7 @@ const StyledCropsSmallGroup = styled.div`
   width: 100%;
   justify-content: space-between;
   @media (min-width: ${screenSizes.desktop}) {
-  justify-content: flex-start;
+    justify-content: flex-start;
     width: 50vw;
   }
 `;
@@ -37,7 +37,7 @@ const StyledAreaContainer = styled.div`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-  margin-left: 0;
+    margin-left: 0;
     p {
       top: 35px;
     }
