@@ -7,7 +7,6 @@
 import { useState, FC } from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
 import Button from '@Commons/Button/Button';
 import CustomField from '@Commons/Input/Field/CustomField';
 import CustomTextArea from '@Commons/Input/TextArea/CustomTextArea';
@@ -24,6 +23,7 @@ import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import StatusValidate from '@Utils/StatusValidate';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
+import { ACTIVE } from '@Constants/ModuleStatus';
 import {
   StyledFarmInfo,
   StyledTextAreaContainer,
@@ -47,17 +47,19 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
 }) => {
   // Builds field info inside the field form module.
   const [, setFieldsInfo] = useState(farmDetails);
-  const [fieldIndex, setFieldIndex] = useState(0);
+  const [fieldIndex, setFieldIndex] = useState(farmDetails.Fields.length);
   const [initialFieldValues, setInitialFieldValues] = useState(
     initialFarmDetails.Fields[fieldIndex],
   );
   // Only triggered once, it would show list and persists.
-  const [isSubmitted, setSubmitted] = useState<boolean>(false);
+  const [isSubmitted, setSubmitted] = useState<boolean>(farmDetails.Fields.length > 0);
   // Would trigger when new field button is clicked.
   const [isFieldAdded, setFieldAdd] = useState<boolean>(false);
   // For checked attribute
   const [isSoilTestEnabled, setSoilTestEnabled] = useState<boolean | null>(null);
   const [isLeafTestEnabled, setLeafTestEnabled] = useState<boolean | null>(null);
+
+  const hasSoilTestSchema = (hasSoilTest: string, message: string = 'Required') => Yup.number().when(hasSoilTest, (value, schema) => (value ? schema.notRequired() : schema.required(message)));
 
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
@@ -66,16 +68,16 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
       .max(100, 'Area should be lower than 100')
       .required('Required'),
     Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
-    hasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
-    hasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
-    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Testing Method'))),
-    sampleDate: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Sample Date'))),
-    valNO3H: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valP: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valK: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valPH: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    leafTissueP: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    leafTissueK: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    HasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
+    HasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
+    TestingMethod: hasSoilTestSchema('HasSoilTest', 'Must enter Testing Method'),
+    sampleDate: hasSoilTestSchema('HasSoilTest', 'Must enter Sample Date'),
+    valNO3H: hasSoilTestSchema('HasSoilTest'),
+    ValP: hasSoilTestSchema('HasSoilTest'),
+    valK: hasSoilTestSchema('HasSoilTest'),
+    valPH: hasSoilTestSchema('HasSoilTest'),
+    leafTissueP: hasSoilTestSchema('HasLeafTest'),
+    leafTissueK: hasSoilTestSchema('HasLeafTest'),
   });
 
   /**
@@ -93,16 +95,16 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
         FieldName: values.FieldName,
         Area: values.Area,
         Comment: values.Comment,
-        hasSoilTest: values.hasSoilTest,
+        HasSoilTest: values.HasSoilTest,
         SoilTest: {
           TestingMethod: values.SoilTest.TestingMethod,
           sampleDate: values.SoilTest.sampleDate,
           valNO3H: values.SoilTest.valNO3H,
-          valP: values.SoilTest.valP,
+          ValP: values.SoilTest.ValP,
           valK: values.SoilTest.valK,
           valPH: values.SoilTest.valPH,
         },
-        hasLeafTest: values.hasLeafTest,
+        HasLeafTest: values.HasLeafTest,
         LeafTest: {
           leafTissueP: values.LeafTest.leafTissueP,
           leafTissueK: values.LeafTest.leafTissueK,
@@ -134,6 +136,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   };
 
   const addNewField = () => {
+    handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
     setInitialFieldValues(emptyFieldDetails);
     setFieldAdd(true);
     setSoilTestEnabled(null);
@@ -155,10 +158,12 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
               addNewField={addNewField}
               updateFarmDetails={() => updateFarmDetails(farmDetails)}
               handleFormState={handleFormState}
+              farmDetails={farmDetails}
             />
           )}
         </>
       )}
+
       {(isFieldAdded || !isSubmitted) && (
         <Formik
           initialValues={initialFieldValues}
@@ -205,23 +210,23 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                       <CustomRadioButton
                         key={option.id}
                         label={option.label}
-                        id={`hasSoilTest${option.id}`}
-                        name="hasSoilTest"
+                        id={`HasSoilTest${option.id}`}
+                        name="HasSoilTest"
                         type="radio"
                         checked={isSoilTestEnabled === option.value}
                         onChange={() => {
-                          setFieldValue('hasSoilTest', option.value);
+                          setFieldValue('HasSoilTest', option.value);
                           setSoilTestEnabled(option.value);
                         }}
                       />
                     ))}
                   </StyledRadioGroupContainer>
                   <ErrorMessage
-                    name="hasSoilTest"
+                    name="HasSoilTest"
                     component="div"
                     className="errorMessage"
                   />
-                  {values.hasSoilTest === false && (
+                  {values.HasSoilTest === false && (
                     <StyledWarningBlock>
                       <p>
                         For fields without a soil test, very high soil P and K fertility and a pH of
@@ -229,7 +234,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                       </p>
                     </StyledWarningBlock>
                   )}
-                  {values.hasSoilTest && (
+                  {values.HasSoilTest && (
                     <>
                       <StyledSelectContainer>
                         <CustomSelect
@@ -286,24 +291,24 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                       <CustomRadioButton
                         key={option.id}
                         label={option.label}
-                        id={`hasLeafTest${option.id}`}
-                        name="hasLeafTest"
+                        id={`HasLeafTest${option.id}`}
+                        name="HasLeafTest"
                         type="radio"
                         checked={isLeafTestEnabled === option.value}
                         onChange={() => {
-                          setFieldValue('hasLeafTest', option.value);
+                          setFieldValue('HasLeafTest', option.value);
                           setLeafTestEnabled(option.value);
                         }}
                       />
                     ))}
                   </StyledRadioGroupContainer>
                   <ErrorMessage
-                    name="hasLeafTest"
+                    name="HasLeafTest"
                     component="div"
                     className="errorMessage"
                   />
                 </StyledTestContainer>
-                {values.hasLeafTest === false && (
+                {values.HasLeafTest === false && (
                   <StyledWarningBlock>
                     <ul>
                       <li>
@@ -313,7 +318,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     </ul>
                   </StyledWarningBlock>
                 )}
-                {values.hasLeafTest && (
+                {values.HasLeafTest && (
                   <InputFieldsGroup>
                     <CustomField
                       label="Leaf tissue P (%)"
