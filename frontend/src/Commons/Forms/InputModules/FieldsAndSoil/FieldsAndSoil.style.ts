@@ -89,10 +89,8 @@ const StyledRadioGroupContainer = styled.div`
 `;
 
 const HeaderLabel = styled.div`
-  h3 {
-    font: ${tokens.typographyBoldLargeBody};
-    margin: 0;
-  }
+  font: ${tokens.typographyBoldLargeBody};
+  margin: 0;
 `;
 
 const StyledWarningBlock = styled.div`

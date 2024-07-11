@@ -14,7 +14,7 @@ import {
   StyledDivider,
   StyledListItemGroupContainer,
   StyledListItemGroup,
-} from './FieldsListComponent.styles';
+} from '../ListComponent.styles';
 
 interface FieldListProps {
   farmDetails: FarmDetailsInterface;
