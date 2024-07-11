@@ -16,7 +16,7 @@ const StyledButtonGroupContainer = styled.div`
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     justify-content: flex-start;
-    width: 100vw;
+    width: 100%;
   }
 `;
 const StyledButtonContainer = styled.div`
