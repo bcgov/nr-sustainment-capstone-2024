@@ -126,7 +126,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
         // Crops is not optional so this line is needed
         farmInfo.Fields[fieldIndex].Crops.splice(0, 1);
       }
-      console.log(farmInfo);
       setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
