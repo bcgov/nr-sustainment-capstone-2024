@@ -1,6 +1,6 @@
 import LeafTestInterface from './LeafTestInterface';
 import SoilTestInterface from './SoilTestInterface';
-import { CropsDetailsInterface } from './CropsDetailInterface';
+import { CropsDetailsInterface } from './CropsDetailsInterface';
 
 /**
  * @summary Interface for the main data file
