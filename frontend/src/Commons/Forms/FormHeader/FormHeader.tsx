@@ -36,7 +36,7 @@ const FormHeader = ({ inputModule, handleFormState }: FormHeaderProps) => {
       onClick={handleToggle}
       active={inputModule.enable}
     >
-      {inputModule.name.long}
+      <h2>{inputModule.name.long}</h2>
       <div>
         <FontAwesomeIcon
           icon={inputModule.faIcon}

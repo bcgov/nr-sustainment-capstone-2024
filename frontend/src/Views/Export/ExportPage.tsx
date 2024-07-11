@@ -33,7 +33,7 @@ const ExportPage: FC = () => {
       <MainPageHeader />
       <StyledContent>
         <div id="dataFileHeader">
-          <p>NMP Data File </p>
+          <h2>NMP Data File </h2>
         </div>
         <p>To continue later, Download this file to your computer or mobile device.</p>
         <p>Load a NMP file on the Homepage when you want to continue.</p>
