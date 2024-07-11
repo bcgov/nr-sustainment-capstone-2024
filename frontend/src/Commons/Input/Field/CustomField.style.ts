@@ -4,6 +4,7 @@
  */
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
+import screenSizes from '@Constants/ScreenSize';
 
 type StyledFieldProps = {
   width: string;
@@ -15,11 +16,17 @@ const StyledField = styled.div<StyledFieldProps>`
   width: ${(props) => props.width};
   margin-top: 5px;
   label {
-    font: ${tokens.typographyBoldLargeBody};
+    font: ${tokens.typographyBoldSmallBody};
   }
   input {
     border: solid 1px ${tokens.themeGray40};
     border-radius: 3px;
+  }
+
+  @media (min-width: ${screenSizes.desktop}) {
+    label {
+        font: ${tokens.typographyBoldLargeBody};
+      }
   }
 `;
 

@@ -4,7 +4,7 @@ import {
   StyledButtonGroupContainer,
   StyledButtonContainer,
   StyledAddCancelButtonContainer,
-} from '../../../Button/FieldButtonGorup.styles';
+} from '../../../Button/FieldButtonGroup.styles';
 
 type CropsButtonGroupProps = {
   submitFarmInfo: () => void;
@@ -28,7 +28,7 @@ const CropsButtonGroup: React.FC<CropsButtonGroupProps> = ({
 
   return (
     <StyledButtonGroupContainer>
-      <StyledAddCancelButtonContainer>
+      <StyledAddCancelButtonContainer formCrops>
         <StyledButtonContainer>
           <Button
             type="button"

@@ -53,10 +53,10 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   const validationSchema = Yup.object().shape({
     cropId: Yup.string().required('Required'),
     yield: Yup.number().positive().max(100).required('Required'),
-    plantAgeYears: Yup.number().when('cropId', (cropId) =>
+    plantAgeYears: Yup.string().when('cropId', (cropId) =>
       cropId.toString() === 'Blueberry'
-        ? Yup.number().required('Required')
-        : Yup.number().notRequired(),
+        ? Yup.string().required('Required')
+        : Yup.string().notRequired(),
     ),
     numberOfPlantsPerAcre: Yup.number().when('cropId', (cropId) =>
       cropId.toString() === 'Blueberry'
@@ -77,6 +77,31 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
     whereWillPruningsGo: Yup.string().required('Required'),
     willSawdustBeApplied: Yup.boolean().required('Required'),
   });
+
+  const distanceBtwnPlantsRowsDataAppend = (values: SubmissionCropsInterface) => {
+    let resultString = '';
+
+    if (values.distanceBtwnPlants === '0.6' && values.distanceBtwnRows === '2.7') {
+      resultString += '(2ft x 9ft)';
+    }
+    if (values.distanceBtwnPlants === '0.6' && values.distanceBtwnRows === '3.0') {
+      resultString += '(2ft x 10ft)';
+    }
+    if (values.distanceBtwnPlants === '0.75' && values.distanceBtwnRows === '2.7') {
+      resultString += '(2.5ft x 9ft)';
+    }
+    if (values.distanceBtwnPlants === '0.75' && values.distanceBtwnRows === '3.0') {
+      resultString += '(2.5ft x 10ft)';
+    }
+    if (values.distanceBtwnPlants === '0.9' && values.distanceBtwnRows === '2.7') {
+      resultString += '(3ft x 9ft)';
+    }
+    if (values.distanceBtwnPlants === '0.9' && values.distanceBtwnRows === '3.0') {
+      resultString += '(3ft x 10ft)';
+    }
+
+    return resultString;
+  };
   const addFieldData = (values: SubmissionCropsInterface): void => {
     setTimeout(() => {
       const farmInfo: FarmDetailsInterface = { ...farmDetails };
@@ -86,7 +111,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
         yield: values.yield,
         plantAgeYears: values.plantAgeYears,
         numberOfPlantsPerAcre: values.numberOfPlantsPerAcre,
-        distanceBtwnPlantsRows: values.distanceBtwnPlants + values.distanceBtwnRows,
+        distanceBtwnPlantsRows: `${values.distanceBtwnPlants} m x ${values.distanceBtwnRows} m ${distanceBtwnPlantsRowsDataAppend(values)}`,
         willPlantsBePruned: values.willPlantsBePruned,
         whereWillPruningsGo: values.whereWillPruningsGo,
         willSawdustBeApplied: values.willSawdustBeApplied,
@@ -95,7 +120,6 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
       setFieldsInfo(farmInfo);
       setFieldIndex((prevIndex) => prevIndex);
       setCropIndex((prevIndex) => prevIndex + 1);
-      console.log('FieldIndex: ', fieldIndex, 'CropIndex: ', cropIndex);
       setButtonDisplayed(false);
       setInitialFieldValues(CropsInitialDetails);
       setSubmitted(true);
@@ -137,7 +161,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
                         id="yield"
                         name="yield"
                         type="number"
-                        width="40%"
+                        width="50%"
                       />
                       <p>tons/ac</p>
                     </StyledAreaContainer>
