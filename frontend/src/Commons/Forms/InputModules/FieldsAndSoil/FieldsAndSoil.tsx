@@ -35,7 +35,9 @@ import {
   StyledSelectContainer,
   InputFieldsGroup,
   SingleInputField,
+  StyledCancel,
 } from './FieldsAndSoil.style';
+import FarmInfoForm from '../FarmInformation/FarmInformation';
 
 const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
   farmDetails,
@@ -64,14 +66,30 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
     Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
     hasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
     hasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
-    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Testing Method'))),
-    sampleDate: Yup.string().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Sample Date'))),
-    valNO3H: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valP: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valK: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    valPH: Yup.number().when('hasSoilTest', (hasSoilTest) => (hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    leafTissueP: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
-    leafTissueK: Yup.number().when('hasLeafTest', (hasLeafTest) => (hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'))),
+    TestingMethod: Yup.string().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Testing Method'),
+    ),
+    sampleDate: Yup.string().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.string().notRequired() : Yup.string().required('Must enter Sample Date'),
+    ),
+    valNO3H: Yup.number().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    valP: Yup.number().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    valK: Yup.number().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    valPH: Yup.number().when('hasSoilTest', (hasSoilTest) =>
+      hasSoilTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    leafTissueP: Yup.number().when('hasLeafTest', (hasLeafTest) =>
+      hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
+    leafTissueK: Yup.number().when('hasLeafTest', (hasLeafTest) =>
+      hasLeafTest ? Yup.number().notRequired() : Yup.number().required('Required'),
+    ),
   });
   /**
    *
@@ -137,7 +155,6 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
     setSoilTestEnabled(null);
     setLeafTestEnabled(null);
   };
-
   const radioOptions = [
     { id: 'true', label: 'Yes', value: true },
     { id: 'false', label: 'No', value: false },
@@ -339,13 +356,15 @@ const FieldsAndSoilComponent: React.FC<InputModuleProps> = ({
                   </InputFieldsGroup>
                 )}
                 <StyledButtonGroupContainer>
-                  <Button
-                    type="reset"
-                    size="lg"
-                    disabled={false}
-                    actions="secondary"
-                    text={ComponentText.CANCEL}
-                  />
+                  <StyledCancel>
+                    <Button
+                      type="reset"
+                      size="lg"
+                      disabled={false}
+                      actions="secondary"
+                      text={ComponentText.CANCEL}
+                    />
+                  </StyledCancel>
                   <Button
                     type="submit"
                     size="lg"

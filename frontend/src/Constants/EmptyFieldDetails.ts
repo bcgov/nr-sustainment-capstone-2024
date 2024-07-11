@@ -18,9 +18,9 @@ const emptyFieldDetails: FieldDetailInterface = {
       plantAgeYears: '',
       numberOfPlantsPerAcre: 0,
       distanceBtwnPlantsRows: '',
-      willPlantsBePruned: null,
+      willPlantsBePruned: undefined,
       whereWillPruningsGo: '',
-      willSawdustBeApplied: null,
+      willSawdustBeApplied: undefined,
     },
   ],
 };
@@ -32,9 +32,9 @@ const emptyCropsDetails: CropsDetailsInterface = {
   plantAgeYears: '',
   numberOfPlantsPerAcre: 0,
   distanceBtwnPlantsRows: '',
-  willPlantsBePruned: null,
+  willPlantsBePruned: undefined,
   whereWillPruningsGo: '',
-  willSawdustBeApplied: null,
+  willSawdustBeApplied: undefined,
 };
 
 export { emptyFieldDetails, emptyCropsDetails };

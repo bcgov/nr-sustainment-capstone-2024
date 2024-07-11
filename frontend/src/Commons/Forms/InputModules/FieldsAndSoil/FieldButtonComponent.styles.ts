@@ -12,5 +12,13 @@ const StyledAddCancelButtonContainer = styled.div`
     right: 17%;
   }
 `;
+const StyledBack = styled.div`
+  order: 1;
+  margin-top: 10px;
+  @media (min-width: ${screenSizes.desktop}){
+    order: 0;
+    width: 50%;
+  }
+`;
 
-export default StyledAddCancelButtonContainer;
+export { StyledAddCancelButtonContainer, StyledBack };

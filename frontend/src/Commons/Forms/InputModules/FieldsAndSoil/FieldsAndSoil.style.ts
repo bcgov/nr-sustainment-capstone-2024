@@ -134,6 +134,14 @@ const SingleInputField = styled.div`
   }
 `;
 
+const StyledCancel = styled.div`
+  order: 1;
+
+  @media (min-width: ${screenSizes.desktop}){
+    order: 0;
+  }
+`;
+
 export {
   StyledFarmInfo,
   StyledTextAreaContainer,
@@ -146,4 +154,5 @@ export {
   StyledSelectContainer,
   InputFieldsGroup,
   SingleInputField,
+  StyledCancel,
 };

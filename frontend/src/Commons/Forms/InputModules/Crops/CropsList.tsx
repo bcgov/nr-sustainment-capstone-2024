@@ -20,53 +20,55 @@ import {
 
 interface CropsListComponentProps extends InputModuleProps {
   addNewField: (fieldIndex: number) => void;
+  fields: FieldDetailInterface;
+  index: number;
 }
 
-const CropsListComponent: React.FC<CropsListComponentProps> = ({ farmDetails, addNewField }) => {
+const CropsListComponent: React.FC<CropsListComponentProps> = ({
+  farmDetails,
+  addNewField,
+  fields,
+  index,
+}) => {
   const fieldCount = farmDetails.Fields.length;
   return (
     <StyledFieldInfoList>
-      {farmDetails.Fields.map((fields: FieldDetailInterface, index: number) => (
-        <div key={fields.FieldName + fields.Area + fields.Comment}>
-          <StyledListContainer>
-            <StyledListItem width="240px">
-              <h2>Field Name</h2>
-              <p key={fields.FieldName}>{fields.FieldName}</p>
+      <StyledListContainer>
+        <StyledListItem width="240px">
+          <h2>Field Name</h2>
+          <p key={fields.FieldName}>{fields.FieldName}</p>
+        </StyledListItem>
+        {fields.Crops.length > 0 && fields.Crops.slice(1).map((crops: CropsDetailsInterface) => (
+          <StyledCropsGroup key={crops.id}>
+            <StyledListItem width="0%">
+              <div className="CropsList">
+                <h2>Crops</h2>
+                <h2>{crops.id + 1}</h2>
+              </div>
+              <p key={crops.cropId}>{crops.cropId}</p>
             </StyledListItem>
-            {fields.Crops.length > 0
-              && fields.Crops.map((crops: CropsDetailsInterface) => (
-                <StyledCropsGroup key={crops.id}>
-                  <StyledListItem width="0%">
-                    <div className="CropsList">
-                      <h2>Crops</h2>
-                      <h2>{crops.id + 1}</h2>
-                    </div>
-                    <p key={crops.cropId}>{crops.cropId}</p>
-                  </StyledListItem>
-                </StyledCropsGroup>
-              ))}
-          </StyledListContainer>
-          <StyledNewFieldButtonContainer>
-            <StyledNewFieldButtonController>
-              <Button
-                type="button"
-                size="lg"
-                disabled={false}
-                radius="50px"
-                actions="secondary"
-                text={ComponentText.ADD_CROP}
-                handleClick={() => {
-                  console.log(index);
-                  addNewField(index);
-                }}
-              >
-                <FontAwesomeIcon icon={faPlus} />
-              </Button>
-            </StyledNewFieldButtonController>
-          </StyledNewFieldButtonContainer>
-        </div>
-      ))}
-      {fieldCount > 2 && <StyledDivider />}
+          </StyledCropsGroup>
+        ))}
+      </StyledListContainer>
+      <StyledNewFieldButtonContainer>
+        <StyledNewFieldButtonController>
+          <Button
+            type="button"
+            size="lg"
+            disabled={false}
+            radius="50px"
+            actions="secondary"
+            text={ComponentText.ADD_CROP}
+            handleClick={() => {
+              console.log(index);
+              addNewField(index);
+            }}
+          >
+            <FontAwesomeIcon icon={faPlus} />
+          </Button>
+        </StyledNewFieldButtonController>
+      </StyledNewFieldButtonContainer>
+      {/* {fieldCount > 2 && <StyledDivider />} */}
     </StyledFieldInfoList>
   );
 };

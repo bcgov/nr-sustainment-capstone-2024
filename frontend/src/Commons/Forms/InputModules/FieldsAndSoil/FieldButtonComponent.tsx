@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Button from '@Commons/Button/Button';
-import StyledAddCancelButtonContainer from './FieldButtonComponent.styles';
+import { StyledAddCancelButtonContainer, StyledBack } from './FieldButtonComponent.styles';
 import {
   StyledButtonGroupContainer,
   StyledButtonContainer,
@@ -55,7 +55,7 @@ const FieldButtonGroup: React.FC<ButtonGroupProps> = ({
         </StyledNewFieldButtonController>
       </StyledNewFieldButtonContainer>
       <StyledAddCancelButtonContainer>
-        <StyledButtonContainer>
+        <StyledBack>
           <Button
             type="button"
             size="lg"
@@ -64,7 +64,7 @@ const FieldButtonGroup: React.FC<ButtonGroupProps> = ({
             text={buttonText.back}
             handleClick={clickWrapper}
           />
-        </StyledButtonContainer>
+        </StyledBack>
         <StyledButtonContainer>
           <Button
             type="button"

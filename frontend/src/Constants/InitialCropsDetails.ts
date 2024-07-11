@@ -13,9 +13,9 @@ const CropsInitialDetails: SubmissionCropsInterface = {
   numberOfPlantsPerAcre: 0,
   distanceBtwnPlants: '',
   distanceBtwnRows: '',
-  willPlantsBePruned: null,
+  willPlantsBePruned: undefined,
   whereWillPruningsGo: '',
-  willSawdustBeApplied: null,
+  willSawdustBeApplied: undefined,
 };
 
 export default CropsInitialDetails;

@@ -13,9 +13,9 @@ interface CropsDetailsInterface {
   plantAgeYears: string;
   numberOfPlantsPerAcre: number;
   distanceBtwnPlantsRows: string;
-  willPlantsBePruned: boolean | null;
+  willPlantsBePruned: boolean | undefined;
   whereWillPruningsGo: string;
-  willSawdustBeApplied: boolean | null;
+  willSawdustBeApplied: boolean | undefined;
 }
 
 /**
@@ -33,9 +33,9 @@ interface SubmissionCropsInterface {
   numberOfPlantsPerAcre: number;
   distanceBtwnPlants: string;
   distanceBtwnRows: string;
-  willPlantsBePruned: boolean | null;
+  willPlantsBePruned: boolean | undefined;
   whereWillPruningsGo: string;
-  willSawdustBeApplied: boolean | null;
+  willSawdustBeApplied: boolean | undefined;
 }
 
 export type { CropsDetailsInterface, SubmissionCropsInterface };
