@@ -28,64 +28,58 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
 
   return (
     <StyledFieldInfoList>
-      {farmDetails.Fields.map((field: FieldDetailInterface) => (
-        <div key={field.FieldName + field.Area + field.Comment}>
-          <StyledListContainer>
-            <StyledListItem width="160px">
-              <h2>Field Name</h2>
-              <p key={field.FieldName}>{field.FieldName}</p>
-            </StyledListItem>
-            <StyledListItem width="100px">
-              <h2>Area</h2>
-              <p key={field.Area}>{field.Area}</p>
-            </StyledListItem>
-            <StyledCommentContainerDesktop>
-              <StyledListItem width="770px">
-                <h2>Field Comments (optional)</h2>
-                <p key={field.Comment}>{field.Comment}</p>
-              </StyledListItem>
-            </StyledCommentContainerDesktop>
-            <StyledFontAwesomeContainer>
-              <FontAwesomeIcon icon={faPencil} />
-              <FontAwesomeIcon icon={faTrash} />
-            </StyledFontAwesomeContainer>
-          </StyledListContainer>
-          <StyledCommentContainerMobile>
-            <StyledListItem width="100%">
-              <h2>Field Comments (optional)</h2>
-              <p key={field.Comment}>{field.Comment}</p>
-            </StyledListItem>
-          </StyledCommentContainerMobile>
+      {farmDetails.Fields.map((field: FieldDetailInterface) => {
+        const { FieldName, Area, Comment, HasSoilTest, SoilTest, HasLeafTest, LeafTest } = field;
 
-          {field.HasSoilTest && (
+        return (
+          <div key={`${FieldName}-${Area}-${Comment || 'NoComment'}`}>
+            <StyledListContainer>
+              <StyledListItem width="160px">
+                <h2>Field Name</h2>
+                <p>{FieldName}</p>
+              </StyledListItem>
+              <StyledListItem width="100px">
+                <h2>Area</h2>
+                <p>{Area}</p>
+              </StyledListItem>
+              <StyledCommentContainerDesktop>
+                <StyledListItem width="770px">
+                  <h2>Field Comments (optional)</h2>
+                  {Comment && <p>{Comment}</p>}
+                </StyledListItem>
+              </StyledCommentContainerDesktop>
+              <StyledFontAwesomeContainer>
+                <FontAwesomeIcon icon={faPencil} />
+                <FontAwesomeIcon icon={faTrash} />
+              </StyledFontAwesomeContainer>
+            </StyledListContainer>
+            <StyledCommentContainerMobile>
+              <StyledListItem width="100%">
+                <h2>Field Comments (optional)</h2>
+                {Comment && <p>{Comment}</p>}
+              </StyledListItem>
+            </StyledCommentContainerMobile>
+
             <StyledListItemGroupContainer>
               <StyledListItem width="300px">
                 <h2>Lab (Soil Test Methods)</h2>
-                <p key={field.SoilTest.TestingMethod}>
-                  {field.HasSoilTest ? field.SoilTest.TestingMethod : ComponentText.NA}
-                </p>
+                <p>{HasSoilTest ? SoilTest.TestingMethod : ComponentText.NA}</p>
               </StyledListItem>
               <StyledListItem width="180px">
                 <h2>Sampling Month</h2>
-                <p key={field.SoilTest.sampleDate}>
-                  {field.HasSoilTest ? field.SoilTest.sampleDate : ComponentText.NA}
-                </p>
+                <p>{HasSoilTest ? SoilTest.sampleDate : ComponentText.NA}</p>
               </StyledListItem>
               <StyledListItemGroup>
                 <StyledListItem width="180px">
                   <div className="smallItems">
                     <h2>NO3-N (ppm)</h2>
-                    <p key={field.SoilTest.valNO3H}>
-                      {field.HasSoilTest ? field.SoilTest.valNO3H : ComponentText.NA}
-                    </p>
+                    <p>{HasSoilTest ? SoilTest.valNO3H : ComponentText.NA}</p>
                   </div>
                 </StyledListItem>
                 <StyledListItem width="180px">
                   <div className="smallItems">
                     <h2>P (ppm)</h2>
-                    <p key={field.SoilTest.ValP}>
-                      {field.HasSoilTest ? field.SoilTest.ValP : highValue}
-                    </p>
+                    <p>{HasSoilTest ? SoilTest.ValP : highValue}</p>
                   </div>
                 </StyledListItem>
               </StyledListItemGroup>
@@ -93,40 +87,32 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
                 <StyledListItem width="180px">
                   <div className="smallItems">
                     <h2>K (ppm)</h2>
-                    <p key={field.SoilTest.valK}>
-                      {field.HasSoilTest ? field.SoilTest.valK : highValue}
-                    </p>
+                    <p>{HasSoilTest ? SoilTest.valK : highValue}</p>
                   </div>
                 </StyledListItem>
                 <StyledListItem width="180px">
                   <div className="smallItems">
                     <h2>pH</h2>
-                    <p key={field.SoilTest.valPH}>
-                      {field.HasSoilTest ? field.SoilTest.valPH : highPH}
-                    </p>
+                    <p>{HasSoilTest ? SoilTest.valPH : highPH}</p>
                   </div>
                 </StyledListItem>
               </StyledListItemGroup>
-              <StyledListItemGroup>
-                <StyledListItem width="180px">
-                  <h2>Leaf Tissue P(%)</h2>
-                  <p key={field.LeafTest.leafTissueP}>
-                    {field.HasLeafTest ? field.LeafTest.leafTissueP : highValue}
-                  </p>
-                </StyledListItem>
-                <StyledListItem width="180px">
-                  <h2>Leaf Tissue K(%)</h2>
-                  <p key={field.LeafTest.leafTissueK}>
-                    {field.HasLeafTest ? field.LeafTest.leafTissueK : highValue}
-                  </p>
-                </StyledListItem>
-              </StyledListItemGroup>
             </StyledListItemGroupContainer>
-          )}
+            <StyledListItemGroup>
+              <StyledListItem width="180px">
+                <h2>Leaf Tissue P(%)</h2>
+                <p>{HasLeafTest ? LeafTest.leafTissueP : highValue}</p>
+              </StyledListItem>
+              <StyledListItem width="180px">
+                <h2>Leaf Tissue K(%)</h2>
+                <p>{HasLeafTest ? LeafTest.leafTissueK : highValue}</p>
+              </StyledListItem>
+            </StyledListItemGroup>
 
-          {fieldCount > 1 && <StyledDivider />}
-        </div>
-      ))}
+            {fieldCount > 1 && <StyledDivider />}
+          </div>
+        );
+      })}
     </StyledFieldInfoList>
   );
 };
