@@ -10,7 +10,7 @@ import {
   StyledAddCancelButtonContainer,
   StyledNewFieldButtonContainer,
   StyledNewFieldButtonController,
-} from '../../../Button/FieldButtonGroup.styles';
+} from '@Commons/Button/FieldButtonGroup.styles';
 
 type ButtonComponentProps = {
   addNewField: () => void;

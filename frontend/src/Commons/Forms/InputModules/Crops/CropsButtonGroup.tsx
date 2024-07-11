@@ -4,7 +4,7 @@ import {
   StyledButtonGroupContainer,
   StyledButtonContainer,
   StyledAddCancelButtonContainer,
-} from '../../../Button/FieldButtonGroup.styles';
+} from '@Commons/Button/FieldButtonGroup.styles';
 
 type CropsButtonGroupProps = {
   submitFarmInfo: () => void;
