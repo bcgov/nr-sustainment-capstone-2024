@@ -1,3 +1,4 @@
+import { CropsDetailsInterface } from './CropsDetailsInterface';
 import LeafTestInterface from './LeafTestInterface';
 import SoilTestInterface from './SoilTestInterface';
 
@@ -17,6 +18,7 @@ interface FieldDetailInterface {
   hasLeafTest: boolean | null;
   SoilTest: SoilTestInterface;
   LeafTest: LeafTestInterface;
+  Crops: CropsDetailsInterface[];
 }
 
 export default FieldDetailInterface;
