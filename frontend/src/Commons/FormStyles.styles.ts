@@ -6,10 +6,8 @@
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
+import { FormProps } from 'src/Types/FormProps';
 
-type FormProps = {
-  formCrops?: boolean;
-};
 const StyledFarmInfo = styled.div`
   display: flex;
   flex-direction: column;
