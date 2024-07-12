@@ -42,7 +42,7 @@ const FieldsButtonComponent: FC<ButtonComponentProps> = ({
         </Button>
       </StyledNewFieldButtonController>
     </StyledNewFieldButtonContainer>
-    <StyledAddCancelButtonContainer formCrops={false}>
+    <StyledAddCancelButtonContainer>
       <StyledButtonContainer>
         <Button
           type="button"

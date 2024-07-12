@@ -1,3 +1,3 @@
 export type FormProps = {
-    formCrops?: boolean;
+  formCrops?: boolean;
 };
