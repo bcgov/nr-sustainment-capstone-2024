@@ -8,7 +8,7 @@ import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
 
 type FormProps = {
-  formCrops: boolean;
+  formCrops?: boolean;
 };
 const StyledFarmInfo = styled.div`
   display: flex;
