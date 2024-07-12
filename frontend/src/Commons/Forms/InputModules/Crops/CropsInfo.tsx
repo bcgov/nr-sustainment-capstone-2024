@@ -53,54 +53,51 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
   const [isButtonDisplayed, setButtonDisplayed] = useState<boolean>(false);
+  const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') =>
+    Yup.number().when(cropId, (value, schema) =>
+      value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired(),
+    );
+  const BlueberrySchemaString = (cropId: string, message: string = 'Required') =>
+    Yup.string().when(cropId, (value, schema) =>
+      value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired(),
+    );
   const validationSchema = Yup.object().shape({
     cropId: Yup.string().required('Required'),
     yield: Yup.number().positive().max(100).required('Required'),
-    plantAgeYears: Yup.string().when('cropId', (cropId) =>
-      cropId.toString() === 'Blueberry'
-        ? Yup.string().required('Required')
-        : Yup.string().notRequired(),
-    ),
-    numberOfPlantsPerAcre: Yup.number().when('cropId', (cropId) =>
-      cropId.toString() === 'Blueberry'
-        ? Yup.number().required('Required')
-        : Yup.number().notRequired(),
-    ),
-    distanceBtwnPlants: Yup.string().when('cropId', (cropId) =>
-      cropId.toString() === 'Blueberry'
-        ? Yup.string().required('Required')
-        : Yup.string().notRequired(),
-    ),
-    distanceBtwnRows: Yup.string().when('cropId', (cropId) =>
-      cropId.toString() === 'Blueberry'
-        ? Yup.string().required('Required')
-        : Yup.string().notRequired(),
-    ),
+    plantAgeYears: BlueberrySchemaString('cropId'),
+    numberOfPlantsPerAcre: BlueberrySchemaNumber('cropId'),
+    distanceBtwnPlants: BlueberrySchemaString('cropId'),
+    distanceBtwnRows: BlueberrySchemaString('cropId'),
     willPlantsBePruned: Yup.boolean().required('Required'),
     whereWillPruningsGo: Yup.string().required('Required'),
     willSawdustBeApplied: Yup.boolean().required('Required'),
   });
 
   const distanceBtwnPlantsRowsDataAppend = (values: SubmissionCropsInterface) => {
+    const distanceCombination = `${values.distanceBtwnPlants}x${values.distanceBtwnRows}`;
     let resultString = '';
 
-    if (values.distanceBtwnPlants === '0.6' && values.distanceBtwnRows === '2.7') {
-      resultString += '(2ft x 9ft)';
-    }
-    if (values.distanceBtwnPlants === '0.6' && values.distanceBtwnRows === '3.0') {
-      resultString += '(2ft x 10ft)';
-    }
-    if (values.distanceBtwnPlants === '0.75' && values.distanceBtwnRows === '2.7') {
-      resultString += '(2.5ft x 9ft)';
-    }
-    if (values.distanceBtwnPlants === '0.75' && values.distanceBtwnRows === '3.0') {
-      resultString += '(2.5ft x 10ft)';
-    }
-    if (values.distanceBtwnPlants === '0.9' && values.distanceBtwnRows === '2.7') {
-      resultString += '(3ft x 9ft)';
-    }
-    if (values.distanceBtwnPlants === '0.9' && values.distanceBtwnRows === '3.0') {
-      resultString += '(3ft x 10ft)';
+    switch (distanceCombination) {
+      case '0.6x2.7':
+        resultString += '(2ft x 9ft)';
+        break;
+      case '0.6x3.0':
+        resultString += '(2ft x 10ft)';
+        break;
+      case '0.75x2.7':
+        resultString += '(2.5ft x 9ft)';
+        break;
+      case '0.75x3.0':
+        resultString += '(2.5ft x 10ft)';
+        break;
+      case '0.9x2.7':
+        resultString += '(3ft x 9ft)';
+        break;
+      case '0.9x3.0':
+        resultString += '(3ft x 10ft)';
+        break;
+      default:
+        break;
     }
 
     return resultString;
