@@ -59,10 +59,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   const [isSoilTestEnabled, setSoilTestEnabled] = useState<boolean | null>(null);
   const [isLeafTestEnabled, setLeafTestEnabled] = useState<boolean | null>(null);
 
-  const hasSoilTestSchema = (hasSoilTest: string, message: string = 'Required') =>
-    Yup.number().when(hasSoilTest, (value, schema) =>
-      value ? schema.notRequired() : schema.required(message),
-    );
+  const hasSoilTestSchema = (hasSoilTest: string, message: string = 'Required') => Yup.number().when(hasSoilTest, (value, schema) => (value ? schema.notRequired() : schema.required(message)));
 
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
