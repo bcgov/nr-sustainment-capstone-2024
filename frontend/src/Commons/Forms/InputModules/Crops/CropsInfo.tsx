@@ -53,14 +53,8 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
   const [isButtonDisplayed, setButtonDisplayed] = useState<boolean>(false);
-  const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') =>
-    Yup.number().when(cropId, (value, schema) =>
-      value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired(),
-    );
-  const BlueberrySchemaString = (cropId: string, message: string = 'Required') =>
-    Yup.string().when(cropId, (value, schema) =>
-      value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired(),
-    );
+  const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') => Yup.number().when(cropId, (value, schema) => (value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired()));
+  const BlueberrySchemaString = (cropId: string, message: string = 'Required') => Yup.string().when(cropId, (value, schema) => (value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired()));
   const validationSchema = Yup.object().shape({
     cropId: Yup.string().required('Required'),
     yield: Yup.number().positive().max(100).required('Required'),
