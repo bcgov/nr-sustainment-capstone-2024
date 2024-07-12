@@ -24,8 +24,6 @@ import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import StatusValidate from '@Utils/StatusValidate';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
 import { ACTIVE } from '@Constants/ModuleStatus';
-import FieldsButtonComponent from './FieldsButtonComponent';
-import FieldsListComponent from './FieldsListComponent';
 import {
   StyledFarmInfo,
   StyledTextAreaContainer,
@@ -38,7 +36,9 @@ import {
   StyledSelectContainer,
   InputFieldsGroup,
   SingleInputField,
-} from './FieldsAndSoil.style';
+} from '@Commons/FormStyles.styles';
+import FieldsButtonComponent from './FieldsButtonComponent';
+import FieldsListComponent from './FieldsListComponent';
 
 const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   farmDetails,
