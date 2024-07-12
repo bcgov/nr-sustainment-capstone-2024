@@ -53,8 +53,12 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
   const [isButtonDisplayed, setButtonDisplayed] = useState<boolean>(false);
-  const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') => Yup.number().when(cropId, (value, schema) => (value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired()));
-  const BlueberrySchemaString = (cropId: string, message: string = 'Required') => Yup.string().when(cropId, (value, schema) => (value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired()));
+  const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') => Yup.number().when(cropId, (value, schema) => (value.toString() === 'Blueberry'
+    ? schema.required(message)
+    : schema.notRequired()));
+  const BlueberrySchemaString = (cropId: string, message: string = 'Required') => Yup.string().when(cropId, (value, schema) => (value.toString() === 'Blueberry'
+    ? schema.required(message)
+    : schema.notRequired()));
   const validationSchema = Yup.object().shape({
     cropId: Yup.string().required('Required'),
     yield: Yup.number().positive().max(100).required('Required'),
@@ -67,34 +71,26 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
     willSawdustBeApplied: Yup.boolean().required('Required'),
   });
 
-  const distanceBtwnPlantsRowsDataAppend = (values: SubmissionCropsInterface) => {
+  const distanceBtwnPlantsRowsDataAppend = (values: SubmissionCropsInterface): string => {
     const distanceCombination = `${values.distanceBtwnPlants}x${values.distanceBtwnRows}`;
-    let resultString = '';
 
     switch (distanceCombination) {
       case '0.6x2.7':
-        resultString += '(2ft x 9ft)';
-        break;
+        return '(2ft x 9ft)';
       case '0.6x3.0':
-        resultString += '(2ft x 10ft)';
-        break;
+        return '(2ft x 10ft)';
       case '0.75x2.7':
-        resultString += '(2.5ft x 9ft)';
-        break;
+        return '(2.5ft x 9ft)';
       case '0.75x3.0':
-        resultString += '(2.5ft x 10ft)';
-        break;
+        return '(2.5ft x 10ft)';
       case '0.9x2.7':
-        resultString += '(3ft x 9ft)';
-        break;
+        return '(3ft x 9ft)';
       case '0.9x3.0':
-        resultString += '(3ft x 10ft)';
-        break;
+        return '(3ft x 10ft)';
       default:
         break;
     }
-
-    return resultString;
+    return '';
   };
   const addFieldData = (values: SubmissionCropsInterface): void => {
     setTimeout(() => {
