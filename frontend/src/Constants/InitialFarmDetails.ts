@@ -1,5 +1,11 @@
-// Initial Values for calculation, some defaults are being used
-import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
+/**
+ * @desc    This populates the initial values of Formik input fields,
+ *          which must be initialized. It does not like null or undefined
+ *          values which changes components from being controlled
+ *          to uncontrolled.
+ * @author  @GDamaso
+ */
+import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 
 const initialFarmDetails: FarmDetailsInterface = {
   Year: '',

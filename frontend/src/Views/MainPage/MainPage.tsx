@@ -16,8 +16,8 @@ import initialFarmDetails from '@Constants/InitialFarmDetails';
 import { ACTIVE, COMPLETED, WARNING } from '@Constants/ModuleStatus';
 import CmdOptions from '@Constants/CmdOptions';
 import Names from '@Constants/Names';
-import { StyledMain, StyledMainContainer } from './MainPage.styles';
 import convertToNMP from '@Utils/convertToNMP';
+import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 // The sequence of sections to show up on the main page
 // This is the skeleton for the Berries workflow
@@ -38,6 +38,11 @@ const getLocalDetails = () => {
   return null;
 };
 
+/**
+ * @desc      Load an .nmp string object from localStorage to the MainPage,
+ *            converting it to JSON and making some basic .nmp to bb mapping.
+ * @author    @GDamaso
+ */
 const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
   const localDetails = getLocalDetails();
   const updateFarmDetails = { ...farmDetails };

@@ -1,5 +1,6 @@
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
-import NmpInterface, { nmpFieldInterface } from '@Interface/NmpInterface';
+import NmpInterface from '@Interface/NmpInterface';
+import NmpFieldInterface from '@Interface/NmpFieldInterface';
 import { templateFieldNMP } from '@Constants/templateNMP';
 
 /**
@@ -12,7 +13,7 @@ const convertToNMP = (
   newDetails: FarmDetailsInterface,
   prevDetails: NmpInterface,
 ): NmpInterface => {
-  const newFields: nmpFieldInterface[] = newDetails.Fields.map((field) => ({
+  const newFields: NmpFieldInterface[] = newDetails.Fields.map((field) => ({
     ...templateFieldNMP,
     Id: field.Id,
     Area: field.Area,

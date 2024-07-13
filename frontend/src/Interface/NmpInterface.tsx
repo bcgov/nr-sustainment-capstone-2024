@@ -1,73 +1,11 @@
 /**
- * @summary Interface nmp files
+ * @summary     Interface nmp files
  * @description This interface describes the structure of an nmp file
- *              to help in conversion for BetterBerries with
- *              FarmDetailsInterface
- * @author @GDamaso
+ *              to help in conversion for BetterBerries FarmDetailsInterface
+ *              and .nmp data structures
+ * @author      @GDamaso
  */
-interface CropInterface {
-  id: number;
-  cropId: string;
-  cropOther?: string | null;
-  yield: number;
-  reqN: number;
-  stdN: number;
-  reqP2o5: number;
-  reqK2o: number;
-  remN: number;
-  remP2o5: number;
-  remK2o: number;
-  crudeProtien?: boolean | null;
-  prevCropId: number;
-  coverCropHarvested?: boolean | null;
-  prevYearManureAppl_volCatCd: number;
-  yieldHarvestUnit: number;
-  yieldByHarvestUnit: number;
-  plantAgeYears?: string | null;
-  numberOfPlantsPerAcre: number;
-  distanceBtwnPlantsRows?: string | null;
-  willPlantsBePruned: boolean;
-  whereWillPruningsGo: string;
-  willSawdustBeApplied: boolean;
-}
-
-interface nmpFieldInterface {
-  Id: number;
-  FieldName: string;
-  Area: number;
-  Comment?: string | null;
-  Nutrients?: any[] | null;
-  HasNutrients: boolean;
-  Crops: CropInterface[];
-  FeedForageAnalyses: any[];
-  SoilTest?: {
-    sampleDate: string;
-    valNO3H: number;
-    ValP: number;
-    valK: number;
-    valPH: number;
-    ConvertedKelownaP: number;
-    ConvertedKelownaK: number;
-  } | null;
-  LeafTest?: {
-    leafTissueP: number;
-    leafTissueK: number;
-  } | null;
-  HasSoilTest: boolean;
-  PreviousYearManureApplicationFrequency?: any;
-  PreviousYearManureApplicationNitrogenCredit?: any;
-  SoilTestNitrateOverrideNitrogenCredit?: any;
-  IsSeasonalFeedingArea: boolean;
-  SeasonalFeedingArea?: any;
-  FeedingDaysSpentInFeedingArea?: any;
-  FeedingPercentageOutsideFeeingArea?: any;
-  MatureAnimalCount?: any;
-  GrowingAnimalCount?: any;
-  MatureAnimalAverageWeight?: any;
-  GrowingAnimalAverageWeight?: any;
-  MatureAnimalDailyFeedRequirementId: number;
-  GrowingAnimalDailyFeedRequirementId: number;
-}
+import NmpFieldInterface from './NmpFieldInterface';
 
 interface ManureInterface {
   Id: number;
@@ -141,7 +79,7 @@ interface NmpInterface {
   unsaved: boolean;
   years: {
     Year: string;
-    Fields: nmpFieldInterface[];
+    Fields: NmpFieldInterface[];
     FarmAnimals: any[];
     FarmManures: ManureInterface[];
     GeneratedManures: any[];
@@ -154,4 +92,3 @@ interface NmpInterface {
 }
 
 export default NmpInterface;
-export type { nmpFieldInterface };
