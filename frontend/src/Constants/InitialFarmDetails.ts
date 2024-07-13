@@ -7,7 +7,7 @@
  */
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 
-const initialFarmDetails: FarmDetailsInterface = {
+const initialFarmDetails: any = {
   Year: '',
   FarmName: '',
   FarmRegion: '',
@@ -18,10 +18,10 @@ const initialFarmDetails: FarmDetailsInterface = {
       FieldName: '',
       Area: 0,
       Comment: '',
-      HasSoilTest: null,
-      HasLeafTest: null,
-      SoilTest: { TestingMethod: '', sampleDate: '', valNO3H: 0, ValP: 0, valK: 0, valPH: 0 },
-      LeafTest: { leafTissueP: 0, leafTissueK: 0 },
+      HasSoilTest: '',
+      HasLeafTest: '',
+      SoilTest: { TestingMethod: '', sampleDate: '', valNO3H: '', ValP: '', valK: '', valPH: '' },
+      LeafTest: { leafTissueP: '', leafTissueK: '' },
       Crops: [
         {
           id: 0,
@@ -30,9 +30,9 @@ const initialFarmDetails: FarmDetailsInterface = {
           plantAgeYears: '',
           numberOfPlantsPerAcre: 0,
           distanceBtwnPlantsRows: '',
-          willPlantsBePruned: undefined,
+          willPlantsBePruned: false,
           whereWillPruningsGo: '',
-          willSawdustBeApplied: undefined,
+          willSawdustBeApplied: false,
         },
       ],
     },
