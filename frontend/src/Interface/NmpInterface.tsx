@@ -72,7 +72,7 @@ interface NmpInterface {
     HasMixedLiveStock: boolean;
     HasHorticulturalCrops: boolean;
     HasBerries: boolean;
-    LeafTests: any;
+    LeafTests: boolean;
     LeafTestingMethod: string;
     UserJourney: number;
   };
@@ -92,4 +92,3 @@ interface NmpInterface {
 }
 
 export default NmpInterface;
-export type { nmpFieldInterface };
