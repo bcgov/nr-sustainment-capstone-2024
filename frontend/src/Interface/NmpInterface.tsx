@@ -31,7 +31,7 @@ interface CropInterface {
   willSawdustBeApplied: boolean;
 }
 
-interface FieldInterface {
+interface nmpFieldInterface {
   Id: number;
   FieldName: string;
   Area: number;
@@ -141,7 +141,7 @@ interface NmpInterface {
   unsaved: boolean;
   years: {
     Year: string;
-    Fields: FieldInterface[];
+    Fields: nmpFieldInterface[];
     FarmAnimals: any[];
     FarmManures: ManureInterface[];
     GeneratedManures: any[];
@@ -154,3 +154,4 @@ interface NmpInterface {
 }
 
 export default NmpInterface;
+export type { nmpFieldInterface };
