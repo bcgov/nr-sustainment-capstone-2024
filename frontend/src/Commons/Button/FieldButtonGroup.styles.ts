@@ -5,6 +5,7 @@
  */
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
+import { FormProps } from 'src/Types/FormProps';
 
 const StyledButtonGroupContainer = styled.div`
   display: flex;
@@ -36,7 +37,7 @@ const StyledNewFieldButtonController = styled.div`
   }
 `;
 
-const StyledAddCancelButtonContainer = styled.div`
+const StyledAddCancelButtonContainer = styled.div<FormProps>`
   display: flex;
   flex-direction: column;
 
@@ -44,7 +45,7 @@ const StyledAddCancelButtonContainer = styled.div`
     flex-direction: row;
     gap: 20px;
     position: absolute;
-    right: 17%;
+    right: ${(props) => (props.formCrops ? '0' : '17%')};
   }
 `;
 const StyledNewFieldButtonContainer = styled.div`

@@ -17,7 +17,7 @@ const StyledField = styled.div<StyledFieldProps>`
   margin-top: 5px;
 
   label {
-    font: ${tokens.typographyBoldLargeBody};
+    font: ${tokens.typographyBoldSmallBody};
   }
   textarea {
     border: solid 1px ${tokens.themeGray40};
@@ -26,6 +26,9 @@ const StyledField = styled.div<StyledFieldProps>`
     height: 76px;
 
     @media (min-width: ${screenSizes.desktop}) {
+      label {
+        font: ${tokens.typographyBoldLargeBody};
+      }
       height: 56px;
     }
   }

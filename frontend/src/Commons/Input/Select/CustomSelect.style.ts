@@ -16,7 +16,7 @@ const StyledSelect = styled.div<StyledSelectProps>`
   width: 80%;
   margin-top: 5px;
   label {
-    font: ${tokens.typographyBoldLargeBody};
+    font: ${tokens.typographyBoldSmallBody};
   }
 
   select {
@@ -27,6 +27,9 @@ const StyledSelect = styled.div<StyledSelectProps>`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
+    label {
+      font: ${tokens.typographyBoldLargeBody};
+    }
     width: ${(props) => props.width};
   }
 `;

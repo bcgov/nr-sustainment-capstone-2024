@@ -6,6 +6,7 @@
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
+import { FormProps } from 'src/Types/FormProps';
 
 const StyledFarmInfo = styled.div`
   display: flex;
@@ -41,22 +42,23 @@ const StyledTextAreaContainer = styled.div`
   }
 `;
 
-const StyledAreaContainer = styled.div`
+const StyledAreaContainer = styled.div<FormProps>`
   display: flex;
   flex-direction: row;
   width: 50%;
   height: auto;
   position: relative;
-
+  margin-left: ${(props) => (props.formCrops ? '5px' : 0)};
   p {
-    position: absolute;
-    top: 30px;
-    left: 100px;
+    position: relative;
+    top: 25px;
+    left: 10px;
   }
 
   @media (min-width: ${screenSizes.desktop}) {
+    margin-left: 0;
     p {
-      left: 110px;
+      top: 35px;
     }
   }
 `;
@@ -89,8 +91,10 @@ const StyledRadioGroupContainer = styled.div`
 `;
 
 const HeaderLabel = styled.div`
-  font: ${tokens.typographyBoldLargeBody};
-  margin: 0;
+  h3 {
+    font: ${tokens.typographyBoldLargeBody};
+    margin: 0;
+  }
 `;
 
 const StyledWarningBlock = styled.div`

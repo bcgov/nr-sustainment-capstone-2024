@@ -25,6 +25,7 @@ import { StyledMain, StyledMainContainer } from './MainPage.styles';
 const mockBerriesWorkflow: InputModuleInterface[] = [
   InputModules.FarmInformation,
   InputModules.FieldsAndSoil,
+  InputModules.Crops,
   InputModules.Summary,
 ];
 
