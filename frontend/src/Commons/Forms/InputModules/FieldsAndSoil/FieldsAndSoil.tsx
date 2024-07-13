@@ -86,7 +86,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           .required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    LeafTest: Yup.object().when('$HasSoilTest', {
+    LeafTest: Yup.object().when('$HasLeafTest', {
       is: true,
       then: (schema) =>
         schema
