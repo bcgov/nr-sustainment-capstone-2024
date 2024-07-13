@@ -3,10 +3,9 @@ import LeafTestInterface from './LeafTestInterface';
 import SoilTestInterface from './SoilTestInterface';
 
 /**
- * @summary Interface for the main data file
- * @description This interface defines how the main data file should be structured,
- *              which values it takes and any calculation results. This can then
- *              be exported as JSON.
+ * @summary     Interface for the BB Field
+ * @description This interface defines the atributes of a Filed in
+ *              the BetterBerries App
  * @author @GDamaso
  */
 interface FieldDetailInterface {

@@ -1,19 +1,68 @@
 /**
- * @summary Interface nmp files
+ * @summary     Interface nmp files
  * @description This interface describes the structure of an nmp file
- *              to help in conversion for BetterBerries with
- *              FarmDetailsInterface
- * @author @GDamaso
+ *              to help in conversion for BetterBerries FarmDetailsInterface
+ *              and .nmp data structures
+ * @author      @GDamaso
  */
+import NmpFieldInterface from './NmpFieldInterface';
+
+interface ManureInterface {
+  Id: number;
+  Customized: boolean;
+  SourceOfMaterialId: string;
+  SourceOfMaterialStoredSystemId?: any;
+  SourceOfMaterialImportedManureId: number;
+  SourceOfMaterialName: string;
+  ManureId: number;
+  Name?: string | null;
+  ManureClass?: string | null;
+  SolidLiquid?: string | null;
+  Moisture?: string | null;
+  Nitrogen: number;
+  Ammonia: number;
+  Phosphorous: number;
+  Potassium: number;
+  DMId: number;
+  NMinerizationId: number;
+  Nitrate?: any;
+  Stored_Imported: number;
+  IsAssignedToStorage: boolean;
+  IncludedSourceOfMaterialIds: any[];
+  GroupedWithCollectedAnalysisSourceItemIds: any[];
+}
+
+interface ImportedManureInterface {
+  MaterialName: string;
+  ManureTypeName: string;
+  AnnualAmount: number;
+  AnnualAmountUSGallonsVolume: number;
+  AnnualAmountCubicYardsVolume: number;
+  AnnualAmountCubicMetersVolume: number;
+  AnnualAmountTonsWeight: number;
+  AnnualAmountDisplayVolume: string;
+  AnnualAmountDisplayWeight: string;
+  Units: number;
+  Moisture?: number | null;
+  StandardSolidMoisture: number;
+  IsMaterialStored: boolean;
+  ManureId: string;
+  ManagedManureName: string;
+  Id: number;
+  ManureType: number;
+  AssignedToStoredSystem: boolean;
+  AssignedWithNutrientAnalysis: boolean;
+}
+
 interface NmpInterface {
   farmDetails: {
     Year: string;
     FarmName: string;
     FarmRegion: number;
-    FarmSubRegion?: number;
-    SoilTests?: string;
+    FarmSubRegion: number | null;
+    SoilTests: any;
     TestingMethod: string;
-    Manure?: string;
+    Manure: any;
     HasSelectedFarmType: boolean;
     ImportsManureCompost: boolean;
     HasAnimals: boolean;
@@ -23,127 +72,22 @@ interface NmpInterface {
     HasMixedLiveStock: boolean;
     HasHorticulturalCrops: boolean;
     HasBerries: boolean;
-    LeafTests?: boolean;
+    LeafTests: any;
     LeafTestingMethod: string;
     UserJourney: number;
   };
   unsaved: boolean;
-  years: [
-    {
-      Year: string;
-      Fields: [
-        {
-          Id: number;
-          FieldName: string;
-          Area: number;
-          Comment: string;
-          Nutrients?: boolean;
-          HasNutrients: boolean;
-          Crops: [
-            {
-              id: number;
-              cropId: string;
-              cropOther?: boolean;
-              yield: number;
-              reqN: number;
-              stdN: number;
-              reqP2o5: number;
-              reqK2o: number;
-              remN: number;
-              remP2o5: number;
-              remK2o: number;
-              crudeProtien: boolean;
-              prevCropId: number;
-              coverCropHarvested?: boolean;
-              prevYearManureAppl_volCatCd: number;
-              yieldHarvestUnit: number;
-              yieldByHarvestUnit: number;
-              plantAgeYears: string;
-              numberOfPlantsPerAcre: number;
-              distanceBtwnPlantsRows: string;
-              willPlantsBePruned: boolean;
-              whereWillPruningsGo: string;
-              willSawdustBeApplied: boolean;
-            },
-          ];
-          FeedForageAnalyses: [];
-          SoilTest?: boolean;
-          LeafTest: {
-            leafTissueP: number;
-            leafTissueK: number;
-          };
-          HasSoilTest?: boolean;
-          PreviousYearManureApplicationFrequency?: boolean;
-          PreviousYearManureApplicationNitrogenCredit?: boolean;
-          SoilTestNitrateOverrideNitrogenCredit?: boolean;
-          IsSeasonalFeedingArea?: boolean;
-          SeasonalFeedingArea?: boolean;
-          FeedingDaysSpentInFeedingArea?: boolean;
-          FeedingPercentageOutsideFeeingArea?: boolean;
-          MatureAnimalCount?: boolean;
-          GrowingAnimalCount?: boolean;
-          MatureAnimalAverageWeight?: boolean;
-          GrowingAnimalAverageWeight?: boolean;
-          MatureAnimalDailyFeedRequirementId?: number;
-          GrowingAnimalDailyFeedRequirementId: number;
-        },
-      ];
-      FarmAnimals: [];
-      FarmManures: [
-        {
-          Id: number;
-          Customized: boolean;
-          SourceOfMaterialId: string;
-          SourceOfMaterialStoredSystemId?: boolean;
-          SourceOfMaterialImportedManureId: number;
-          SourceOfMaterialName: string;
-          ManureId: number;
-          Name?: boolean;
-          ManureClass?: boolean;
-          SolidLiquid?: boolean;
-          Moisture?: boolean;
-          Nitrogen: number;
-          Ammonia: number;
-          Phosphorous: number;
-          Potassium: number;
-          DMId: number;
-          NMinerizationId: number;
-          Nitrate?: boolean;
-          Stored_Imported: number;
-          IsAssignedToStorage: boolean;
-          IncludedSourceOfMaterialIds: [];
-          GroupedWithCollectedAnalysisSourceItemIds: [];
-        },
-      ];
-      GeneratedManures: [];
-      ImportedManures: [
-        {
-          MaterialName: string;
-          ManureTypeName: string;
-          AnnualAmount: number;
-          AnnualAmountUSGallonsVolume: number;
-          AnnualAmountCubicYardsVolume: number;
-          AnnualAmountCubicMetersVolume: number;
-          AnnualAmountTonsWeight: number;
-          AnnualAmountDisplayVolume: string;
-          AnnualAmountDisplayWeight: string;
-          Units: number;
-          Moisture: number;
-          StandardSolidMoisture: number;
-          IsMaterialStored: boolean;
-          ManureId: string;
-          ManagedManureName: string;
-          Id: number;
-          ManureType: number;
-          AssignedToStoredSystem: boolean;
-          AssignedWithNutrientAnalysis: boolean;
-        },
-      ];
-      SeparatedSolidManures: [];
-      ManureStorageSystems: [];
-    },
-  ];
-  LastAppliedFarmManureId: null;
+  years: {
+    Year: string;
+    Fields: NmpFieldInterface[];
+    FarmAnimals: any[];
+    FarmManures: ManureInterface[];
+    GeneratedManures: any[];
+    ImportedManures: ImportedManureInterface[];
+    SeparatedSolidManures: any[];
+    ManureStorageSystems: any[];
+  }[];
+  LastAppliedFarmManureId: number | null;
   NMPReleaseVersion: number;
 }
 

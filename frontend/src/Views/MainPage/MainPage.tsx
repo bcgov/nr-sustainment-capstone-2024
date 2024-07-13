@@ -16,6 +16,7 @@ import initialFarmDetails from '@Constants/InitialFarmDetails';
 import { ACTIVE, COMPLETED, WARNING } from '@Constants/ModuleStatus';
 import CmdOptions from '@Constants/CmdOptions';
 import Names from '@Constants/Names';
+import convertToNMP from '@Utils/convertToNMP';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 // The sequence of sections to show up on the main page
@@ -38,6 +39,11 @@ const getLocalDetails = () => {
   return null;
 };
 
+/**
+ * @desc      Load an .nmp string object from localStorage to the MainPage,
+ *            converting it to JSON and making some basic .nmp to bb mapping.
+ * @author    @GDamaso
+ */
 const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
   const localDetails = getLocalDetails();
   const updateFarmDetails = { ...farmDetails };
@@ -70,18 +76,17 @@ const MainPage: FC = () => {
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
 
+  /**
+   * @desc    Take our apps main data object and save it to a template .nmp file,
+   *          saved in the users localStorage.
+   *          This is virtually where conversion between farmDetails and .nmp happens.
+   *          The equivalent atributes should be mapped here.
+   * @param   newDetails: FarmDetailsInterface => Our main data object in our own data structure
+   */
   const updateLocalDetails = (newDetails: FarmDetailsInterface) => {
     setLocalDetails((prevDetails: NmpInterface) => {
       if (prevDetails) {
-        return {
-          ...prevDetails,
-          farmDetails: {
-            ...prevDetails.farmDetails,
-            FarmName: newDetails.FarmName,
-            Year: newDetails.Year,
-          },
-          years: [{ ...prevDetails.years[0], Year: newDetails.Year, Fields: newDetails.Fields }],
-        };
+        return convertToNMP(newDetails, prevDetails);
       }
       return prevDetails;
     });

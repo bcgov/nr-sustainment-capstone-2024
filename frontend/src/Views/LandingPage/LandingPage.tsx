@@ -1,5 +1,5 @@
 import Button from '@Commons/Button/Button.tsx';
-import templateNMP from '@Constants/templateNMP.ts';
+import { templateNMP } from '@Constants/templateNMP.ts';
 import Names from '@Constants/Names.ts';
 import {
   StyledContent,
