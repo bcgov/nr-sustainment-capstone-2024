@@ -1,12 +1,18 @@
-/**
+/*
  * @desc    This populates the initial values of Formik input fields,
  *          which must be initialized. It does not like null or undefined
  *          values which changes components from being controlled
- *          to uncontrolled.
+ *          to uncontrolled. Number values are being initialized to empty strings
+ *          because of this. It's a small hack to get the behaviour we want.
  * @author  @GDamaso
+ *
  */
-import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 
+/*
+ * This has an 'any' type because we need to initialize some numbers to an empty string
+ * to get the correct behaviour from formik/yup validation. It should be a FarmDetailInterface
+ * otherwise, which do not take strings instead of numbers... mostly.
+ */
 const initialFarmDetails: any = {
   Year: '',
   FarmName: '',
