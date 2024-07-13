@@ -22,7 +22,7 @@ const initialFarmDetails: any = {
     {
       Id: 0,
       FieldName: '',
-      Area: 0,
+      Area: '',
       Comment: '',
       HasSoilTest: '',
       HasLeafTest: '',
@@ -32,9 +32,9 @@ const initialFarmDetails: any = {
         {
           id: 0,
           cropId: '',
-          yield: 0,
+          yield: '',
           plantAgeYears: '',
-          numberOfPlantsPerAcre: 0,
+          numberOfPlantsPerAcre: '',
           distanceBtwnPlantsRows: '',
           willPlantsBePruned: false,
           whereWillPruningsGo: '',
