@@ -6,8 +6,8 @@
  * @author      @Kcaparas
  */
 interface LeafTestInterface {
-  leafTissueP: number;
-  leafTissueK: number;
+  leafTissueP: number | null;
+  leafTissueK: number | null;
 }
 
 export default LeafTestInterface;

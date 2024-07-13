@@ -92,3 +92,4 @@ interface NmpInterface {
 }
 
 export default NmpInterface;
+export type { nmpFieldInterface };

@@ -8,10 +8,10 @@
 interface SoilTestInterface {
   TestingMethod: string;
   sampleDate: string;
-  valNO3H: number;
-  ValP: number;
-  valK: number;
-  valPH: number;
+  valNO3H: number | null;
+  ValP: number | null;
+  valK: number | null;
+  valPH: number | null;
 }
 
 export default SoilTestInterface;
