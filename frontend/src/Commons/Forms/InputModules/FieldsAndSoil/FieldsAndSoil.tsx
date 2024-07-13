@@ -51,9 +51,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   const [isSubmitted, setSubmitted] = useState<boolean>(farmDetails.Fields.length > 0);
   // Would trigger when new field button is clicked.
   const [isFieldAdded, setFieldAdd] = useState<boolean>(false);
-  // For checked attribute
-  // const [isSoilTestEnabled, setSoilTestEnabled] = useState<boolean | null>(null);
-  // const [isLeafTestEnabled, setLeafTestEnabled] = useState<boolean | null>(null);
 
   const radioOptions = [
     { id: 'true', label: 'Yes', value: true },
@@ -72,30 +69,32 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     HasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
     SoilTest: Yup.object().when('$HasSoilTest', {
       is: true,
-      then: (object) => object
-        .shape({
-          TestingMethod: Yup.string().when('$HasSoilTest', {
-            is: true,
-            then: (schema) => schema.required(),
-            otherwise: (schema) => schema.notRequired(),
-          }),
-          sampleDate: Yup.string().required(),
-          valNO3H: Yup.number().min(0).max(7).required(),
-          ValP: Yup.number().min(0).max(7).required(),
-          valK: Yup.number().min(0).max(7).required(),
-          valPH: Yup.number().min(0).max(7).required(),
-        })
-        .required(),
+      then: (object) =>
+        object
+          .shape({
+            TestingMethod: Yup.string().when('$HasSoilTest', {
+              is: true,
+              then: (schema) => schema.required(),
+              otherwise: (schema) => schema.notRequired(),
+            }),
+            sampleDate: Yup.string().required(),
+            valNO3H: Yup.number().min(0).max(7).required(),
+            ValP: Yup.number().min(0).max(7).required(),
+            valK: Yup.number().min(0).max(7).required(),
+            valPH: Yup.number().min(0).max(7).required(),
+          })
+          .required(),
       otherwise: (schema) => schema.notRequired(),
     }),
     LeafTest: Yup.object().when('$HasSoilTest', {
       is: true,
-      then: (schema) => schema
-        .shape({
-          leafTissueP: Yup.number().min(0).max(7).required(),
-          leafTissueK: Yup.number().min(0).max(7).required(),
-        })
-        .required(),
+      then: (schema) =>
+        schema
+          .shape({
+            leafTissueP: Yup.number().min(0).max(7).required(),
+            leafTissueK: Yup.number().min(0).max(7).required(),
+          })
+          .required(),
       otherwise: (schema) => schema.notRequired(),
     }),
   });
@@ -163,8 +162,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   const addNewField = () => {
     handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
     setFieldAdd(true);
-    // setSoilTestEnabled(null);
-    // setLeafTestEnabled(null);
   };
 
   return (
@@ -233,10 +230,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                         id={`HasSoilTest${option.id}`}
                         name="HasSoilTest"
                         type="radio"
-                        // checked={isSoilTestEnabled === option.value}
                         onChange={() => {
                           setFieldValue('HasSoilTest', option.value);
-                          // setSoilTestEnabled(option.value);
                         }}
                       />
                     ))}
@@ -316,10 +311,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                         id={`HasLeafTest${option.id}`}
                         name="HasLeafTest"
                         type="radio"
-                        // checked={isLeafTestEnabled === option.value}
                         onChange={() => {
                           setFieldValue('HasLeafTest', option.value);
-                          // setLeafTestEnabled(option.value);
                         }}
                       />
                     ))}
