@@ -106,7 +106,6 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
         whereWillPruningsGo: values.whereWillPruningsGo,
         willSawdustBeApplied: values.willSawdustBeApplied,
       });
-      console.log(farmInfo);
       setFieldsInfo(farmInfo);
       setCropIndex((prevIndex) => prevIndex + 1);
       setButtonDisplayed(false);
