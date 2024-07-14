@@ -67,12 +67,12 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
     HasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
     HasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
-    SoilTest: Yup.object().when('$HasSoilTest', {
+    SoilTest: Yup.object().when('HasSoilTest', {
       is: true,
       then: (object) =>
         object
           .shape({
-            TestingMethod: Yup.string().when('$HasSoilTest', {
+            TestingMethod: Yup.string().when('HasSoilTest', {
               is: true,
               then: (schema) => schema.required(),
               otherwise: (schema) => schema.notRequired(),
@@ -86,7 +86,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           .required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    LeafTest: Yup.object().when('$HasLeafTest', {
+    LeafTest: Yup.object().when('HasLeafTest', {
       is: true,
       then: (schema) =>
         schema
