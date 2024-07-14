@@ -44,7 +44,7 @@ const CropsList: React.FC<CropsListComponentProps> = ({
           >
             <div className="CropsList">
               <h2>Crops</h2>
-              { /* For some reason, + 1 is id 0 */}
+              {/* For some reason, + 1 is id 0 */}
               <h2>{crops.id + 2}</h2>
             </div>
             <p key={crops.cropId}>{crops.cropId}</p>

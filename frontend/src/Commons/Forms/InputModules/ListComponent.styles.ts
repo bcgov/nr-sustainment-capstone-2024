@@ -25,7 +25,7 @@ const StyledListContainer = styled.div<FormProps>`
   padding-top: 20px;
   gap: ${(props) => (props.formCrops ? '50px' : '20px')};
 
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
   }
 `;
@@ -119,7 +119,7 @@ const StyledCropsGroup = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
 
-  @media (min-width:${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     flex-wrap: nowrap;
     gap: 50px;
   }

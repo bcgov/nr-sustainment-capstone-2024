@@ -29,7 +29,7 @@ const StyledAddCancelButtonGroup = styled.div`
   height: 50px;
   margin-bottom: 50px;
 
-  @media (min-width: ${screenSizes.desktop}){
+  @media (min-width: ${screenSizes.desktop}) {
     margin-bottom: 0;
   }
 `;

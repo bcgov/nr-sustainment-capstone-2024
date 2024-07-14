@@ -147,105 +147,105 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
             }}
           >
             {({ values }) => hasFieldBeenAdded[index] && (
-              <Form>
-                <StyledFarmInfo>
+            <Form>
+              <StyledFarmInfo>
+                <StyledCropsSmallGroup>
+                  <CustomSelect
+                    name="cropId"
+                    id="cropId"
+                    label="Crop"
+                    options={CropIDOptions}
+                    width="40%"
+                  />
+                  <StyledAreaContainer formCrops>
+                    <CustomField
+                      label="Yield"
+                      id="yield"
+                      name="yield"
+                      type="number"
+                      width="50%"
+                    />
+                    <p>tons/ac</p>
+                  </StyledAreaContainer>
+                </StyledCropsSmallGroup>
+                {values.cropId === 'Blueberry' && (
+                <>
                   <StyledCropsSmallGroup>
                     <CustomSelect
-                      name="cropId"
-                      id="cropId"
-                      label="Crop"
-                      options={CropIDOptions}
+                      name="plantAgeYears"
+                      id="plantAgeYears"
+                      label="Plant age (Years)"
+                      options={PlantAgeOptions}
                       width="40%"
                     />
-                    <StyledAreaContainer formCrops>
-                      <CustomField
-                        label="Yield"
-                        id="yield"
-                        name="yield"
-                        type="number"
-                        width="50%"
-                      />
-                      <p>tons/ac</p>
-                    </StyledAreaContainer>
+                    <CustomSelect
+                      name="numberOfPlantsPerAcre"
+                      id="numberOfPlantsPerAcre"
+                      label="Plants per acre"
+                      options={PlantsPerAcre}
+                      width="40%"
+                    />
                   </StyledCropsSmallGroup>
-                  {values.cropId === 'Blueberry' && (
-                    <>
-                      <StyledCropsSmallGroup>
-                        <CustomSelect
-                          name="plantAgeYears"
-                          id="plantAgeYears"
-                          label="Plant age (Years)"
-                          options={PlantAgeOptions}
-                          width="40%"
-                        />
-                        <CustomSelect
-                          name="numberOfPlantsPerAcre"
-                          id="numberOfPlantsPerAcre"
-                          label="Plants per acre"
-                          options={PlantsPerAcre}
-                          width="40%"
-                        />
-                      </StyledCropsSmallGroup>
-                      <StyledCropsLargeGroup>
-                        <CustomSelect
-                          name="distanceBtwnPlants"
-                          id="distanceBtwnPlants"
-                          label="Distance between plants"
-                          options={DistanceBtwnPlants}
-                          width="40%"
-                        />
-                        <CustomSelect
-                          name="distanceBtwnRows"
-                          id="distanceBtwnRows"
-                          label="Distance between rows"
-                          options={DistanceBtwnRows}
-                          width="40%"
-                        />
-                      </StyledCropsLargeGroup>
-                    </>
-                  )}
                   <StyledCropsLargeGroup>
                     <CustomSelect
-                      name="willPlantsBePruned"
-                      id="willPlantsBePruned"
-                      label="Will plants be pruned?"
-                      options={YesOrNo}
+                      name="distanceBtwnPlants"
+                      id="distanceBtwnPlants"
+                      label="Distance between plants"
+                      options={DistanceBtwnPlants}
                       width="40%"
                     />
                     <CustomSelect
-                      name="whereWillPruningsGo"
-                      id="whereWillPruningsGo"
-                      label="Where will prunings go?"
-                      options={WherePruningsGo}
+                      name="distanceBtwnRows"
+                      id="distanceBtwnRows"
+                      label="Distance between rows"
+                      options={DistanceBtwnRows}
                       width="40%"
                     />
                   </StyledCropsLargeGroup>
-                  <StyledCropsLargeGroup>
-                    <CustomSelect
-                      name="willSawdustBeApplied"
-                      id="willSawdustBeApplied"
-                      label="Is sawdust or wood mulch applied within 6 months prior to the growing season?"
-                      options={YesOrNo}
-                      width="75%"
-                    />
-                  </StyledCropsLargeGroup>
-                  <StyledButtonGroupContainer>
-                    <Button
-                      type="reset"
-                      size="lg"
-                      disabled={false}
-                      actions="secondary"
-                      text={ComponentText.CANCEL}
-                    />
-                    <Button
-                      type="submit"
-                      size="lg"
-                      disabled={false}
-                      text={ComponentText.ADD}
-                    />
-                  </StyledButtonGroupContainer>
-                </StyledFarmInfo>
-              </Form>
+                </>
+                )}
+                <StyledCropsLargeGroup>
+                  <CustomSelect
+                    name="willPlantsBePruned"
+                    id="willPlantsBePruned"
+                    label="Will plants be pruned?"
+                    options={YesOrNo}
+                    width="40%"
+                  />
+                  <CustomSelect
+                    name="whereWillPruningsGo"
+                    id="whereWillPruningsGo"
+                    label="Where will prunings go?"
+                    options={WherePruningsGo}
+                    width="40%"
+                  />
+                </StyledCropsLargeGroup>
+                <StyledCropsLargeGroup>
+                  <CustomSelect
+                    name="willSawdustBeApplied"
+                    id="willSawdustBeApplied"
+                    label="Is sawdust or wood mulch applied within 6 months prior to the growing season?"
+                    options={YesOrNo}
+                    width="75%"
+                  />
+                </StyledCropsLargeGroup>
+                <StyledButtonGroupContainer>
+                  <Button
+                    type="reset"
+                    size="lg"
+                    disabled={false}
+                    actions="secondary"
+                    text={ComponentText.CANCEL}
+                  />
+                  <Button
+                    type="submit"
+                    size="lg"
+                    disabled={false}
+                    text={ComponentText.ADD}
+                  />
+                </StyledButtonGroupContainer>
+              </StyledFarmInfo>
+            </Form>
             )}
           </Formik>
         </div>
