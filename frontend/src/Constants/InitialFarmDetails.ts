@@ -1,13 +1,19 @@
-/**
+/*
  * @desc    This populates the initial values of Formik input fields,
  *          which must be initialized. It does not like null or undefined
  *          values which changes components from being controlled
- *          to uncontrolled.
+ *          to uncontrolled. Number values are being initialized to empty strings
+ *          because of this. It's a small hack to get the behaviour we want.
  * @author  @GDamaso
+ *
  */
-import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 
-const initialFarmDetails: FarmDetailsInterface = {
+/*
+ * This has an 'any' type because we need to initialize some numbers to an empty string
+ * to get the correct behaviour from formik/yup validation. It should be a FarmDetailInterface
+ * otherwise, which do not take strings instead of numbers... mostly.
+ */
+const initialFarmDetails: any = {
   Year: '',
   FarmName: '',
   FarmRegion: '',
@@ -16,23 +22,23 @@ const initialFarmDetails: FarmDetailsInterface = {
     {
       Id: 0,
       FieldName: '',
-      Area: 0,
+      Area: '',
       Comment: '',
-      HasSoilTest: null,
-      HasLeafTest: null,
-      SoilTest: { TestingMethod: '', sampleDate: '', valNO3H: 0, ValP: 0, valK: 0, valPH: 0 },
-      LeafTest: { leafTissueP: 0, leafTissueK: 0 },
+      HasSoilTest: '',
+      HasLeafTest: '',
+      SoilTest: { TestingMethod: '', sampleDate: '', valNO3H: '', ValP: '', valK: '', valPH: '' },
+      LeafTest: { leafTissueP: '', leafTissueK: '' },
       Crops: [
         {
           id: 0,
           cropId: '',
-          yield: 0,
+          yield: '',
           plantAgeYears: '',
-          numberOfPlantsPerAcre: 0,
+          numberOfPlantsPerAcre: '',
           distanceBtwnPlantsRows: '',
-          willPlantsBePruned: undefined,
+          willPlantsBePruned: false,
           whereWillPruningsGo: '',
-          willSawdustBeApplied: undefined,
+          willSawdustBeApplied: false,
         },
       ],
     },
