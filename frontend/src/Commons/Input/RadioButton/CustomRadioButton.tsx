@@ -13,7 +13,7 @@ interface CustomRadioProps {
   id: string;
   type: string;
   width?: string;
-  checked: boolean;
+  checked?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
