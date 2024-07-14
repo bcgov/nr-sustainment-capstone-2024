@@ -6,6 +6,7 @@
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
+import { FormProps } from 'src/Types/FormProps';
 
 type StyledListType = {
   width?: string;
@@ -17,12 +18,16 @@ const StyledFieldInfoList = styled.div`
   position: relative;
 `;
 
-const StyledListContainer = styled.div`
+const StyledListContainer = styled.div<FormProps>`
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding-top: 20px;
-  gap: 20px;
+  gap: ${(props) => (props.formCrops ? '50px' : '20px')};
+
+  @media (min-width: ${screenSizes.desktop}){
+    flex-direction: row;
+  }
 `;
 
 const StyledListItem = styled.div<StyledListType>`
@@ -34,6 +39,10 @@ const StyledListItem = styled.div<StyledListType>`
 
   h2 {
     font: ${tokens.typographyBoldBody};
+  }
+  .CropsList {
+    display: flex;
+    gap: 5px;
   }
   @media (min-width: ${screenSizes.desktop}) {
     .smallItems {
@@ -105,6 +114,17 @@ const StyledListItemGroup = styled.div`
   display: flex;
 `;
 
+const StyledCropsGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  @media (min-width:${screenSizes.desktop}){
+    flex-wrap: nowrap;
+    gap: 50px;
+  }
+`;
+
 export {
   StyledListContainer,
   StyledListItem,
@@ -115,4 +135,5 @@ export {
   StyledDivider,
   StyledListItemGroupContainer,
   StyledListItemGroup,
+  StyledCropsGroup,
 };

@@ -39,6 +39,7 @@ import {
   StyledCropsLargeGroup,
   StyledAddCancelButtonGroup,
 } from './CropsInfo.styles';
+import CropsList from './CropsList';
 
 const CropsInfoComponent: React.FC<InputModuleProps> = ({
   farmDetails,
@@ -53,6 +54,9 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
   const [isButtonDisplayed, setButtonDisplayed] = useState<boolean>(false);
+  const [hasFieldBeenAdded, setFieldAdded] = useState<boolean[]>(
+    Array(farmDetails.Fields.length).fill(false),
+  );
   const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') => Yup.number().when(cropId, (value, schema) => (value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired()));
   const BlueberrySchemaString = (cropId: string, message: string = 'Required') => Yup.string().when(cropId, (value, schema) => (value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired()));
   const validationSchema = Yup.object().shape({
@@ -88,7 +92,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
     }
     return '';
   };
-  const addFieldData = (values: SubmissionCropsInterface): void => {
+  const addFieldData = (values: SubmissionCropsInterface, index: number): void => {
     setTimeout(() => {
       const farmInfo: FarmDetailsInterface = { ...farmDetails };
       farmInfo.Fields[fieldIndex].Crops.push({
@@ -104,10 +108,9 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
       });
       console.log(farmInfo);
       setFieldsInfo(farmInfo);
-      setFieldIndex((prevIndex) => prevIndex);
       setCropIndex((prevIndex) => prevIndex + 1);
       setButtonDisplayed(false);
-      setInitialFieldValues(CropsInitialDetails);
+      setFieldAdded((prevState) => prevState.map((item, idx) => (idx === index ? !item : item)));
       setSubmitted(true);
     }, 400);
   };
@@ -115,22 +118,36 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
     const farmInfo: FarmDetailsInterface = { ...farmDetails };
     updateFarmDetails(farmInfo);
   };
+  const addNewCrop = (index: number) => {
+    setFieldIndex(index);
+    setCropIndex(farmDetails.Fields[index].Crops.length - 1);
+    setInitialFieldValues(CropsInitialDetails);
+    setButtonDisplayed(true);
+    setFieldAdded((prevState) => prevState.map((item, idx) => (idx === index ? !item : item)));
+  };
 
   return (
     <>
-      {farmDetails.Fields.map((fields: FieldDetailInterface) => (
+      {farmDetails.Fields.map((fields: FieldDetailInterface, index: number) => (
         <div key={`${fields.FieldName}${fields.Area}${fields.Comment}`}>
-          <h3>Field Name</h3>
-          <p>{fields.FieldName}</p>
+          <CropsList
+            fields={fields}
+            index={index}
+            farmDetails={farmDetails}
+            addNewCrop={addNewCrop}
+            buttonDisplayed={isButtonDisplayed}
+            updateFarmDetails={updateFarmDetails}
+            handleFormState={handleFormState}
+          />
           <Formik
             initialValues={initialFieldValues}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
-              addFieldData(values);
+              addFieldData(values, index);
               setSubmitting(false);
             }}
           >
-            {({ values }) => (
+            {({ values }) => hasFieldBeenAdded[index] && (
               <Form>
                 <StyledFarmInfo>
                   <StyledCropsSmallGroup>

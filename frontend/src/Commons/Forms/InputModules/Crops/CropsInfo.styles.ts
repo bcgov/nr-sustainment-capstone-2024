@@ -27,5 +27,10 @@ const StyledAddCancelButtonGroup = styled.div`
   position: relative;
   width: 100%;
   height: 50px;
+  margin-bottom: 50px;
+
+  @media (min-width: ${screenSizes.desktop}){
+    margin-bottom: 0;
+  }
 `;
 export { StyledCropsSmallGroup, StyledCropsLargeGroup, StyledAddCancelButtonGroup };
