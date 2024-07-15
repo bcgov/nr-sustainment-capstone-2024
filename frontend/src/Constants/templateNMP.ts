@@ -37,6 +37,32 @@ const templateNMP = {
   NMPReleaseVersion: 3,
 };
 
+const templateCropNMP = {
+  id: 1,
+  cropId: '75',
+  cropOther: null,
+  yield: 5.0,
+  reqN: 38.0,
+  stdN: 0.0,
+  reqP2o5: 0.0,
+  reqK2o: 0.0,
+  remN: 0.0,
+  remP2o5: 7.0,
+  remK2o: 25.0,
+  crudeProtien: null,
+  prevCropId: 0,
+  coverCropHarvested: null,
+  prevYearManureAppl_volCatCd: 0,
+  yieldHarvestUnit: 1,
+  yieldByHarvestUnit: 5.0,
+  plantAgeYears: '1',
+  numberOfPlantsPerAcre: 2498,
+  distanceBtwnPlantsRows: '0.6 m x 2.7 m (2 ft x 9 ft)',
+  willPlantsBePruned: true,
+  whereWillPruningsGo: 'Removed from field',
+  willSawdustBeApplied: true,
+};
+
 const templateFieldNMP = {
   Id: 1,
   FieldName: 'FieldA',
@@ -44,33 +70,7 @@ const templateFieldNMP = {
   Comment: 'Comments(optional)',
   Nutrients: null,
   HasNutrients: false,
-  Crops: [
-    {
-      id: 1,
-      cropId: '75',
-      cropOther: null,
-      yield: 5.0,
-      reqN: 38.0,
-      stdN: 0.0,
-      reqP2o5: 0.0,
-      reqK2o: 0.0,
-      remN: 0.0,
-      remP2o5: 7.0,
-      remK2o: 25.0,
-      crudeProtien: null,
-      prevCropId: 0,
-      coverCropHarvested: null,
-      prevYearManureAppl_volCatCd: 0,
-      yieldHarvestUnit: 1,
-      yieldByHarvestUnit: 5.0,
-      plantAgeYears: '1',
-      numberOfPlantsPerAcre: 2498,
-      distanceBtwnPlantsRows: '0.6 m x 2.7 m (2 ft x 9 ft)',
-      willPlantsBePruned: true,
-      whereWillPruningsGo: 'Removed from field',
-      willSawdustBeApplied: true,
-    },
-  ],
+  Crops: [],
   FeedForageAnalyses: [],
   SoilTest: {
     sampleDate: '2024-06-01T00:00:00',
@@ -101,4 +101,4 @@ const templateFieldNMP = {
   GrowingAnimalDailyFeedRequirementId: 0,
 };
 
-export { templateNMP, templateFieldNMP };
+export { templateNMP, templateFieldNMP, templateCropNMP };
