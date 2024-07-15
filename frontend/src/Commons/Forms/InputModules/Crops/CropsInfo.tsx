@@ -54,7 +54,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
   const [isButtonDisplayed, setButtonDisplayed] = useState<boolean>(false);
-  const [hasFieldBeenAdded, setFieldAdded] = useState<boolean[]>(
+  const [hasFieldBeenSelected, setFieldSelected] = useState<boolean[]>(
     Array(farmDetails.Fields.length).fill(false),
   );
   const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') => Yup.number().when(cropId, (value, schema) => (value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired()));
@@ -109,7 +109,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
       setFieldsInfo(farmInfo);
       setCropIndex((prevIndex) => prevIndex + 1);
       setButtonDisplayed(false);
-      setFieldAdded((prevState) => prevState.map((item, idx) => (idx === index ? !item : item)));
+      setFieldSelected((prevState) => prevState.map((item, idx) => (idx === index ? !item : item)));
       setSubmitted(true);
     }, 400);
   };
@@ -122,7 +122,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
     setCropIndex(farmDetails.Fields[index].Crops.length - 1);
     setInitialFieldValues(CropsInitialDetails);
     setButtonDisplayed(true);
-    setFieldAdded((prevState) => prevState.map((item, idx) => (idx === index ? !item : item)));
+    setFieldSelected((prevState) => prevState.map((item, idx) => (idx === index ? !item : item)));
   };
 
   return (
@@ -146,7 +146,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
               setSubmitting(false);
             }}
           >
-            {({ values }) => hasFieldBeenAdded[index] && (
+            {({ values }) => hasFieldBeenSelected[index] && (
             <Form>
               <StyledFarmInfo>
                 <StyledCropsSmallGroup>
@@ -259,7 +259,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
               back: ComponentText.BACK,
               next: ComponentText.NEXT,
             }}
-            disabled // Adjust according to your logic
+            disabled // adjust in the future sprints
           />
         </StyledAddCancelButtonGroup>
       )}

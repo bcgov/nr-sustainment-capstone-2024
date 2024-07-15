@@ -28,7 +28,9 @@ const StyledButtonContainer = styled.div`
   }
 `;
 const StyledNewFieldButtonController = styled.div`
-  margin: 20px 0;
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
 
   @media (min-width: ${screenSizes.desktop}) {
     width: 178px;
