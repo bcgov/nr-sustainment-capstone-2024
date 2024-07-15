@@ -79,41 +79,54 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     willSawdustBeApplied: Yup.boolean().required('Required'),
   });
 
-  const distanceBtwnPlantsRowsDataAppend = (values: SubmissionCropsInterface): string => {
-    const distanceCombination = `${values.distanceBtwnPlants}x${values.distanceBtwnRows}`;
+  const appendDistanceBtwnPlants = (v1: string, v2: string): string => {
+    const distanceCombination = `${v1}x${v2}`;
+    let res = '';
 
     switch (distanceCombination) {
       case '0.6x2.7':
-        return '(2ft x 9ft)';
+        res = '(2ft x 9ft)';
+        break;
       case '0.6x3.0':
-        return '(2ft x 10ft)';
+        res = '(2ft x 10ft)';
+        break;
       case '0.75x2.7':
-        return '(2.5ft x 9ft)';
+        res = '(2.5ft x 9ft)';
+        break;
       case '0.75x3.0':
-        return '(2.5ft x 10ft)';
+        res = '(2.5ft x 10ft)';
+        break;
       case '0.9x2.7':
-        return '(3ft x 9ft)';
+        res = '(3ft x 9ft)';
+        break;
       case '0.9x3.0':
-        return '(3ft x 10ft)';
+        res = '(3ft x 10ft)';
+        break;
       default:
         break;
     }
-    return '';
+
+    return `${v1} m x ${v2} m ${res}`;
   };
   const addFieldData = (values: SubmissionCropsInterface, index: number): void => {
+  const addCrop = (values: SubmissionCropsInterface, fieldIdx: number, cropIdx: number): void => {
+    const farmInfo: FarmDetailsInterface = { ...farmDetails };
+    const newCrop: CropsDetailsInterface = {
+      id: cropIdx,
+      cropId: values.cropId,
+      yield: values.yield,
+      plantAgeYears: values.plantAgeYears,
+      numberOfPlantsPerAcre: values.numberOfPlantsPerAcre,
+      distanceBtwnPlantsRows: appendDistanceBtwnPlants(
+        values.distanceBtwnPlants,
+        values.distanceBtwnRows,
+      ),
+      willPlantsBePruned: values.willPlantsBePruned,
+      whereWillPruningsGo: values.whereWillPruningsGo,
+      willSawdustBeApplied: values.willSawdustBeApplied,
+    };
+
     setTimeout(() => {
-      const farmInfo: FarmDetailsInterface = { ...farmDetails };
-      farmInfo.Fields[fieldIndex].Crops.push({
-        id: cropIndex,
-        cropId: values.cropId,
-        yield: values.yield,
-        plantAgeYears: values.plantAgeYears,
-        numberOfPlantsPerAcre: values.numberOfPlantsPerAcre,
-        distanceBtwnPlantsRows: `${values.distanceBtwnPlants} m x ${values.distanceBtwnRows} m ${distanceBtwnPlantsRowsDataAppend(values)}`,
-        willPlantsBePruned: values.willPlantsBePruned,
-        whereWillPruningsGo: values.whereWillPruningsGo,
-        willSawdustBeApplied: values.willSawdustBeApplied,
-      });
       setFieldsInfo(farmInfo);
       setCropIndex((prevIndex) => prevIndex + 1);
       setButtonDisplayed(false);
