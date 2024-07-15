@@ -11,7 +11,6 @@ import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
-import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import { CROPS_INFORMATION } from '@Constants/ModuleIDs';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
@@ -46,8 +45,19 @@ import {
   StyledNewFieldButtonController,
 } from '@Commons/Button/FieldButtonGroup.styles';
 import StatusValidate from '@Utils/StatusValidate';
+import { ACTIVE } from '@Constants/ModuleStatus';
 
 const initialValues: SubmissionCropsInterface = initialFarmDetails.Fields[0].Crops[0];
+
+const checkHasCrops = (Fields: FieldDetailInterface[]) => {
+  let hasCrop = false;
+  Fields.forEach((field) => {
+    if (field.Crops.length > 0) {
+      hasCrop = true;
+    }
+  });
+  return hasCrop;
+};
 
 const CropsInfoComponent: FC<InputModuleProps> = ({
   farmDetails,
@@ -57,7 +67,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
   const [, setCropsInfo] = useState(farmDetails);
   const [cropInitialValues, setInitialFieldValues] = useState(initialValues);
   // Only triggered once, it would show list and persists.
-  const [fieldHasCrop, setFieldHasCrop] = useState<boolean>(false);
+  const [fieldHasCrop, setFieldHasCrop] = useState<boolean>(checkHasCrops(farmDetails.Fields));
   const [hasFieldBeenSelected, setFieldSelected] = useState<boolean[]>(
     Array(farmDetails.Fields.length).fill(false),
   );
@@ -114,18 +124,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     return `${v1} m x ${v2} m ${res}`;
   };
 
-  const checkCrops = () => {
-    let hasCrop = false;
-    farmDetails.Fields.forEach((field) => {
-      if (field.Crops.length > 0) {
-        hasCrop = true;
-      }
-    });
-    setFieldHasCrop(hasCrop);
-  };
-
   const addCrop = (values: SubmissionCropsInterface, fieldIdx: number, cropIdx: number): void => {
-    const farmInfo: FarmDetailsInterface = { ...farmDetails };
     const newCrop: CropsDetailsInterface = {
       id: cropIdx,
       cropId: values.cropId,
@@ -142,18 +141,17 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     };
 
     setTimeout(() => {
-      farmInfo.Fields[fieldIdx].Crops.push(newCrop);
-      setCropsInfo(farmInfo);
+      farmDetails.Fields[fieldIdx].Crops.push(newCrop);
+      setCropsInfo(farmDetails);
     }, 400);
 
     showFormHandler(fieldIdx);
     setInitialFieldValues(initialValues);
-    checkCrops();
+    setFieldHasCrop(checkHasCrops(farmDetails.Fields));
   };
 
   const submitFarmInfo = () => {
-    const farmInfo: FarmDetailsInterface = { ...farmDetails };
-    updateFarmDetails(farmInfo);
+    updateFarmDetails(farmDetails);
   };
 
   const showFormHandler = (index: number) => {
@@ -298,7 +296,10 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                   radius="50px"
                   actions="secondary"
                   text={ComponentText.ADD_CROP}
-                  handleClick={() => showFormHandler(index)}
+                  handleClick={() => {
+                    handleFormState(CROPS_INFORMATION, undefined, ACTIVE);
+                    showFormHandler(index);
+                  }}
                 >
                   <FontAwesomeIcon icon={faPlus} />
                 </Button>
