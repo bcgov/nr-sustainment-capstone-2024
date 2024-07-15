@@ -3,7 +3,6 @@
  * @description A module with input fields to be used in a Form Module
  * @author @Kcaparas
  */
-
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 import InputModuleProps from 'src/Interface/InputModuleProps';
@@ -14,7 +13,6 @@ import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
-import { SubmissionCropsInterface } from 'src/Interface/CropsDetailsInterface';
 import { CROPS_INFORMATION } from '@Constants/ModuleIDs';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import {
@@ -47,6 +45,8 @@ import {
   StyledNewFieldButtonContainer,
   StyledNewFieldButtonController,
 } from '@Commons/Button/FieldButtonGroup.styles';
+import StatusValidate from '@Utils/StatusValidate';
+
 const initialValues: SubmissionCropsInterface = initialFarmDetails.Fields[0].Crops[0];
 
 const CropsInfoComponent: FC<InputModuleProps> = ({
@@ -54,19 +54,24 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
   updateFarmDetails,
   handleFormState,
 }) => {
-  const [, setFieldsInfo] = useState(farmDetails);
-  const [fieldIndex, setFieldIndex] = useState(0);
-  const [cropIndex, setCropIndex] = useState(0);
+  const [, setCropsInfo] = useState(farmDetails);
   const [cropInitialValues, setInitialFieldValues] = useState(initialValues);
   // Only triggered once, it would show list and persists.
-  const [isSubmitted, setSubmitted] = useState<boolean>(false);
-  // Would trigger when new field button is clicked.
-  const [isButtonDisplayed, setButtonDisplayed] = useState<boolean>(false);
+  const [fieldHasCrop, setFieldHasCrop] = useState<boolean>(false);
   const [hasFieldBeenSelected, setFieldSelected] = useState<boolean[]>(
     Array(farmDetails.Fields.length).fill(false),
   );
-  const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') => Yup.number().when(cropId, (value, schema) => (value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired()));
-  const BlueberrySchemaString = (cropId: string, message: string = 'Required') => Yup.string().when(cropId, (value, schema) => (value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired()));
+
+  const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') =>
+    Yup.number().when(cropId, (value, schema) =>
+      value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired(),
+    );
+
+  const BlueberrySchemaString = (cropId: string, message: string = 'Required') =>
+    Yup.string().when(cropId, (value, schema) =>
+      value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired(),
+    );
+
   const validationSchema = Yup.object().shape({
     cropId: Yup.string().required('Required'),
     yield: Yup.number().positive().max(100).required('Required'),
@@ -108,7 +113,17 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
 
     return `${v1} m x ${v2} m ${res}`;
   };
-  const addFieldData = (values: SubmissionCropsInterface, index: number): void => {
+
+  const checkCrops = () => {
+    let hasCrop = false;
+    farmDetails.Fields.forEach((field) => {
+      if (field.Crops.length > 0) {
+        hasCrop = true;
+      }
+    });
+    setFieldHasCrop(hasCrop);
+  };
+
   const addCrop = (values: SubmissionCropsInterface, fieldIdx: number, cropIdx: number): void => {
     const farmInfo: FarmDetailsInterface = { ...farmDetails };
     const newCrop: CropsDetailsInterface = {
@@ -127,148 +142,152 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     };
 
     setTimeout(() => {
-      setFieldsInfo(farmInfo);
-      setCropIndex((prevIndex) => prevIndex + 1);
-      setButtonDisplayed(false);
-      setFieldSelected((prevState) => prevState.map((item, idx) => (idx === index ? !item : item)));
-      setSubmitted(true);
+      farmInfo.Fields[fieldIdx].Crops.push(newCrop);
+      setCropsInfo(farmInfo);
     }, 400);
+
+    showFormHandler(fieldIdx);
+    setInitialFieldValues(initialValues);
+    checkCrops();
   };
+
   const submitFarmInfo = () => {
     const farmInfo: FarmDetailsInterface = { ...farmDetails };
     updateFarmDetails(farmInfo);
   };
-  const addNewCrop = (index: number) => {
-    setFieldIndex(index);
-    setCropIndex(farmDetails.Fields[index].Crops.length - 1);
-    setInitialFieldValues(CropsInitialDetails);
-    setButtonDisplayed(true);
-    setFieldSelected((prevState) => prevState.map((item, idx) => (idx === index ? !item : item)));
+
+  const showFormHandler = (index: number) => {
+    setFieldSelected((prevState) =>
+      prevState.map((showForm, idx) => (idx === index ? !showForm : showForm)),
+    );
   };
 
   return (
     <>
-      {farmDetails.Fields.map((fields: FieldDetailInterface, index: number) => (
-        <div key={`${fields.FieldName}${fields.Area}${fields.Comment}`}>
+      {farmDetails.Fields.map((field: FieldDetailInterface, index: number) => (
+        <div key={`${field.FieldName}${field.Area}${field.Comment}`}>
           <CropsList
-            fields={fields}
-            index={index}
+            field={field}
             farmDetails={farmDetails}
-            addNewCrop={addNewCrop}
-            buttonDisplayed={isButtonDisplayed}
             updateFarmDetails={updateFarmDetails}
             handleFormState={handleFormState}
           />
           <Formik
-            initialValues={initialFieldValues}
+            initialValues={cropInitialValues}
             validationSchema={validationSchema}
-            onSubmit={(values, { setSubmitting }) => {
-              addFieldData(values, index);
-              setSubmitting(false);
+            onSubmit={(values) => {
+              addCrop(values, index, field.Crops.length + 1);
+            }}
+            validate={(values) => {
+              StatusValidate(validationSchema, values, handleFormState, CROPS_INFORMATION);
             }}
           >
-            {({ values }) => hasFieldBeenSelected[index] && (
-            <Form>
-              <StyledFarmInfo>
-                <StyledCropsSmallGroup>
-                  <CustomSelect
-                    name="cropId"
-                    id="cropId"
-                    label="Crop"
-                    options={CropIDOptions}
-                    width="40%"
-                  />
-                  <StyledAreaContainer formCrops>
-                    <CustomField
-                      label="Yield"
-                      id="yield"
-                      name="yield"
-                      type="number"
-                      width="50%"
-                    />
-                    <p>tons/ac</p>
-                  </StyledAreaContainer>
-                </StyledCropsSmallGroup>
-                {values.cropId === 'Blueberry' && (
-                <>
-                  <StyledCropsSmallGroup>
-                    <CustomSelect
-                      name="plantAgeYears"
-                      id="plantAgeYears"
-                      label="Plant age (Years)"
-                      options={PlantAgeOptions}
-                      width="40%"
-                    />
-                    <CustomSelect
-                      name="numberOfPlantsPerAcre"
-                      id="numberOfPlantsPerAcre"
-                      label="Plants per acre"
-                      options={PlantsPerAcre}
-                      width="40%"
-                    />
-                  </StyledCropsSmallGroup>
-                  <StyledCropsLargeGroup>
-                    <CustomSelect
-                      name="distanceBtwnPlants"
-                      id="distanceBtwnPlants"
-                      label="Distance between plants"
-                      options={DistanceBtwnPlants}
-                      width="40%"
-                    />
-                    <CustomSelect
-                      name="distanceBtwnRows"
-                      id="distanceBtwnRows"
-                      label="Distance between rows"
-                      options={DistanceBtwnRows}
-                      width="40%"
-                    />
-                  </StyledCropsLargeGroup>
-                </>
-                )}
-                <StyledCropsLargeGroup>
-                  <CustomSelect
-                    name="willPlantsBePruned"
-                    id="willPlantsBePruned"
-                    label="Will plants be pruned?"
-                    options={YesOrNo}
-                    width="40%"
-                  />
-                  <CustomSelect
-                    name="whereWillPruningsGo"
-                    id="whereWillPruningsGo"
-                    label="Where will prunings go?"
-                    options={WherePruningsGo}
-                    width="40%"
-                  />
-                </StyledCropsLargeGroup>
-                <StyledCropsLargeGroup>
-                  <CustomSelect
-                    name="willSawdustBeApplied"
-                    id="willSawdustBeApplied"
-                    label="Is sawdust or wood mulch applied within 6 months prior to the growing season?"
-                    options={YesOrNo}
-                    width="75%"
-                  />
-                </StyledCropsLargeGroup>
-                <StyledButtonGroupContainer>
-                  <Button
-                    type="reset"
-                    size="lg"
-                    disabled={false}
-                    actions="secondary"
-                    text={ComponentText.CANCEL}
-                  />
-                  <Button
-                    type="submit"
-                    size="lg"
-                    disabled={false}
-                    text={ComponentText.ADD}
-                  />
-                </StyledButtonGroupContainer>
-              </StyledFarmInfo>
-            </Form>
-            )}
+            {({ values }) =>
+              hasFieldBeenSelected[index] && (
+                <Form>
+                  <StyledFarmInfo>
+                    <StyledCropsSmallGroup>
+                      <CustomSelect
+                        name="cropId"
+                        id="cropId"
+                        label="Crop"
+                        options={CropIDOptions}
+                        width="40%"
+                      />
+                      <StyledAreaContainer formCrops>
+                        <CustomField
+                          label="Yield"
+                          id="yield"
+                          name="yield"
+                          type="number"
+                          width="50%"
+                        />
+                        <p>tons/ac</p>
+                      </StyledAreaContainer>
+                    </StyledCropsSmallGroup>
+                    {values.cropId === 'Blueberry' && (
+                      <>
+                        <StyledCropsSmallGroup>
+                          <CustomSelect
+                            name="plantAgeYears"
+                            id="plantAgeYears"
+                            label="Plant age (Years)"
+                            options={PlantAgeOptions}
+                            width="40%"
+                          />
+                          <CustomSelect
+                            name="numberOfPlantsPerAcre"
+                            id="numberOfPlantsPerAcre"
+                            label="Plants per acre"
+                            options={PlantsPerAcre}
+                            width="40%"
+                          />
+                        </StyledCropsSmallGroup>
+                        <StyledCropsLargeGroup>
+                          <CustomSelect
+                            name="distanceBtwnPlants"
+                            id="distanceBtwnPlants"
+                            label="Distance between plants"
+                            options={DistanceBtwnPlants}
+                            width="40%"
+                          />
+                          <CustomSelect
+                            name="distanceBtwnRows"
+                            id="distanceBtwnRows"
+                            label="Distance between rows"
+                            options={DistanceBtwnRows}
+                            width="40%"
+                          />
+                        </StyledCropsLargeGroup>
+                      </>
+                    )}
+                    <StyledCropsLargeGroup>
+                      <CustomSelect
+                        name="willPlantsBePruned"
+                        id="willPlantsBePruned"
+                        label="Will plants be pruned?"
+                        options={YesOrNo}
+                        width="40%"
+                      />
+                      <CustomSelect
+                        name="whereWillPruningsGo"
+                        id="whereWillPruningsGo"
+                        label="Where will prunings go?"
+                        options={WherePruningsGo}
+                        width="40%"
+                      />
+                    </StyledCropsLargeGroup>
+                    <StyledCropsLargeGroup>
+                      <CustomSelect
+                        name="willSawdustBeApplied"
+                        id="willSawdustBeApplied"
+                        label="Is sawdust or wood mulch applied within 6 months prior to the growing season?"
+                        options={YesOrNo}
+                        width="75%"
+                      />
+                    </StyledCropsLargeGroup>
+                    <StyledButtonGroupContainer>
+                      <Button
+                        type="reset"
+                        size="lg"
+                        disabled={false}
+                        actions="secondary"
+                        text={ComponentText.CANCEL}
+                        handleClick={() => showFormHandler(index)}
+                      />
+                      <Button
+                        type="submit"
+                        size="lg"
+                        disabled={false}
+                        text={ComponentText.ADD}
+                      />
+                    </StyledButtonGroupContainer>
+                  </StyledFarmInfo>
+                </Form>
+              )
+            }
           </Formik>
+
           {!hasFieldBeenSelected[index] && (
             <StyledNewFieldButtonContainer>
               <StyledNewFieldButtonController>
@@ -288,6 +307,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
           )}
         </div>
       ))}
+
+      {fieldHasCrop && !hasFieldBeenSelected.includes(true) && (
         <StyledAddCancelButtonGroup>
           <CropsButtonGroup
             submitFarmInfo={submitFarmInfo}
