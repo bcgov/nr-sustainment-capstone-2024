@@ -7,12 +7,11 @@
 import InputModuleInterface from 'src/Interface/InputModuleinterface';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 import InputModuleProps from 'src/Interface/InputModuleProps';
-import React, { useState } from 'react';
+import { useState, FC } from 'react';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import ComponentText from '@Constants/ComponentText';
 import Button from '@Commons/Button/Button';
-import CropsInitialDetails from '@Constants/InitialCropsDetails';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import { SubmissionCropsInterface } from 'src/Interface/CropsDetailsInterface';
@@ -40,8 +39,17 @@ import {
   StyledAddCancelButtonGroup,
 } from './CropsInfo.styles';
 import CropsList from './CropsList';
+import initialFarmDetails from '@Constants/InitialFarmDetails';
+import { CropsDetailsInterface, SubmissionCropsInterface } from '@Interface/CropsDetailsInterface';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  StyledNewFieldButtonContainer,
+  StyledNewFieldButtonController,
+} from '@Commons/Button/FieldButtonGroup.styles';
+const initialValues: SubmissionCropsInterface = initialFarmDetails.Fields[0].Crops[0];
 
-const CropsInfoComponent: React.FC<InputModuleProps> = ({
+const CropsInfoComponent: FC<InputModuleProps> = ({
   farmDetails,
   updateFarmDetails,
   handleFormState,
@@ -49,7 +57,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   const [, setFieldsInfo] = useState(farmDetails);
   const [fieldIndex, setFieldIndex] = useState(0);
   const [cropIndex, setCropIndex] = useState(0);
-  const [initialFieldValues, setInitialFieldValues] = useState(CropsInitialDetails);
+  const [cropInitialValues, setInitialFieldValues] = useState(initialValues);
   // Only triggered once, it would show list and persists.
   const [isSubmitted, setSubmitted] = useState<boolean>(false);
   // Would trigger when new field button is clicked.
@@ -248,9 +256,25 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
             </Form>
             )}
           </Formik>
+          {!hasFieldBeenSelected[index] && (
+            <StyledNewFieldButtonContainer>
+              <StyledNewFieldButtonController>
+                <Button
+                  type="button"
+                  size="lg"
+                  disabled={false}
+                  radius="50px"
+                  actions="secondary"
+                  text={ComponentText.ADD_CROP}
+                  handleClick={() => showFormHandler(index)}
+                >
+                  <FontAwesomeIcon icon={faPlus} />
+                </Button>
+              </StyledNewFieldButtonController>
+            </StyledNewFieldButtonContainer>
+          )}
         </div>
       ))}
-      {(!isButtonDisplayed || isSubmitted) && (
         <StyledAddCancelButtonGroup>
           <CropsButtonGroup
             submitFarmInfo={submitFarmInfo}
