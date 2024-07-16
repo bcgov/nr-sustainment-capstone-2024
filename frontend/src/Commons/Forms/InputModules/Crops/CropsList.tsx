@@ -1,7 +1,6 @@
 import { FC } from 'react';
-import InputModuleProps from 'src/Interface/InputModuleProps';
-import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
-import { CropsDetailsInterface } from 'src/Interface/CropsDetailsInterface';
+import FieldDetailInterface from '@Interface/FieldDetailsInterface';
+import { CropsDetailsInterface } from '@Interface/CropsDetailsInterface';
 import {
   StyledListContainer,
   StyledListItem,
@@ -9,7 +8,7 @@ import {
   StyledCropsGroup,
 } from '../ListComponent.styles';
 
-interface CropsListComponentProps extends InputModuleProps {
+interface CropsListComponentProps {
   field: FieldDetailInterface;
 }
 
@@ -27,8 +26,8 @@ const CropsList: FC<CropsListComponentProps> = ({ field }) => (
             key={crop.id}
           >
             <div className="CropsList">
-              <h2>Crops</h2>
-              <h2>{crop.id}</h2>
+              <h2>Crop</h2>
+              <h2>{crop.id + 1}</h2>
             </div>
             <p key={crop.cropId}>{crop.cropId}</p>
           </StyledListItem>
