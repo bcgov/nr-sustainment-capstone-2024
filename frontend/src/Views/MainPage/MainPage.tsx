@@ -120,9 +120,6 @@ const MainPage: FC = () => {
     let nextModuleID = null;
     // Respect ESLint no-param reassign
     let tgl = toggle;
-    console.log(`CurrModuleID: ${currModuleID}`);
-    console.log(`CurrForm: ${currForm}`);
-    console.log(`CMD: ${cmd}`);
     switch (cmd) {
       case CmdOptions.BACKWARDS:
         if (currForm >= 0) {

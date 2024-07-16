@@ -30,30 +30,22 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
   const [nutrientIndex, setNutrientIndex] = useState(0);
   const validationSchema = Yup.object().shape({
     fertilizerTypeId: Yup.string().required('Required'),
-    fertilizerId: Yup.string().when('fertlizerTypeId', (fertilizerTypeId) =>
-      fertilizerTypeId.toString() === 'Dry Fertilizer' ||
-      fertilizerTypeId.toString() === 'Liquid Fertilizer'
-        ? Yup.string().required('Required')
-        : Yup.string().notRequired(),
-    ),
-    customN: Yup.number().when('fertlizerTypeId', (fertilizerTypeId) =>
-      fertilizerTypeId.toString() === 'Dry Fertilizer (Custom)' ||
-      fertilizerTypeId.toString() === 'Liquid Fertilizer (Custom)'
-        ? Yup.number().min(0).max(25).required()
-        : Yup.number().notRequired(),
-    ),
-    customP2o5: Yup.number().when('fertlizerTypeId', (fertilizerTypeId) =>
-      fertilizerTypeId.toString() === 'Dry Fertilizer (Custom)' ||
-      fertilizerTypeId.toString() === 'Liquid Fertilizer (Custom)'
-        ? Yup.number().min(0).max(25).required()
-        : Yup.number().notRequired(),
-    ),
-    customK2o: Yup.number().when('fertlizerTypeId', (fertilizerTypeId) =>
-      fertilizerTypeId.toString() === 'Dry Fertilizer (Custom)' ||
-      fertilizerTypeId.toString() === 'Liquid Fertilizer (Custom)'
-        ? Yup.number().min(0).max(25).required()
-        : Yup.number().notRequired(),
-    ),
+    fertilizerId: Yup.string().when('fertlizerTypeId', (fertilizerTypeId) => (fertilizerTypeId.toString() === 'Dry Fertilizer'
+      || fertilizerTypeId.toString() === 'Liquid Fertilizer'
+      ? Yup.string().required('Required')
+      : Yup.string().notRequired())),
+    customN: Yup.number().when('fertlizerTypeId', (fertilizerTypeId) => (fertilizerTypeId.toString() === 'Dry Fertilizer (Custom)'
+      || fertilizerTypeId.toString() === 'Liquid Fertilizer (Custom)'
+      ? Yup.number().min(0).max(25).required()
+      : Yup.number().notRequired())),
+    customP2o5: Yup.number().when('fertlizerTypeId', (fertilizerTypeId) => (fertilizerTypeId.toString() === 'Dry Fertilizer (Custom)'
+      || fertilizerTypeId.toString() === 'Liquid Fertilizer (Custom)'
+      ? Yup.number().min(0).max(25).required()
+      : Yup.number().notRequired())),
+    customK2o: Yup.number().when('fertlizerTypeId', (fertilizerTypeId) => (fertilizerTypeId.toString() === 'Dry Fertilizer (Custom)'
+      || fertilizerTypeId.toString() === 'Liquid Fertilizer (Custom)'
+      ? Yup.number().min(0).max(25).required()
+      : Yup.number().notRequired())),
   });
   const addNutrientsData = (values: TempNutrientsInterface): void => {
     // Will be changed on enhancements.
@@ -95,7 +87,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
     });
   };
   const submitNutrientData = () => {
-    nutrientsInfo.map((nutrient) => {
+    nutrientsInfo.forEach((nutrient) => {
       updateNutrientDetails(nutrient);
     });
   };
@@ -128,8 +120,8 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
                 options={FertilizerTypeOptions}
                 width="40%"
               />
-              {values.fertilizerTypeId.includes('Dry Fertilizer (Custom)') ||
-              values.fertilizerTypeId.includes('Liquid Fertilizer (Custom)') ? (
+              {values.fertilizerTypeId.includes('Dry Fertilizer (Custom)')
+              || values.fertilizerTypeId.includes('Liquid Fertilizer (Custom)') ? (
                 <StyledCustomNumberField>
                   <CustomField
                     label="N (%)"
@@ -159,12 +151,12 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
                     id="fertilizerId"
                     label="Fertilizer Name"
                     options={
-                      values.fertilizerTypeId.includes('Dry Fertilizer')
-                        ? DryFertilizerOptions
-                        : values.fertilizerTypeId.includes('Liquid Fertilizer')
-                          ? LiquidFertilizerOptions
-                          : []
-                    }
+                    values.fertilizerTypeId.includes('Dry Fertilizer')
+                      ? DryFertilizerOptions
+                      : values.fertilizerTypeId.includes('Liquid Fertilizer')
+                        ? LiquidFertilizerOptions
+                        : []
+                  }
                     width="40%"
                   />
                 )}
