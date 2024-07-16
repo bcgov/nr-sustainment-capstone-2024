@@ -35,6 +35,24 @@ const initialFarmDetails: any = {
         valPH: '',
       },
       LeafTest: { leafTissueP: '', leafTissueK: '' },
+      Nutrients: [
+        {
+          id: 0,
+          fertilizerTypeId: '',
+          fertilizerId: '',
+          applRate: '',
+          applDate: '',
+          applMethodId: '',
+          customN: 0,
+          customP2o5: 0,
+          customK2o: 0,
+          fertN: 0,
+          fertP2o5: 0,
+          fertK2o: 0,
+          liquidDensity: 0,
+          liquidDensityId: '',
+        },
+      ],
       Crops: [
         {
           id: 0,
