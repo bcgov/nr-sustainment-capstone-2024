@@ -21,13 +21,25 @@ const Container = styled.div`
 function getStatusStyle(status: string): Record<string, string> {
   switch (status) {
     case ACTIVE:
-      return { backgroundColor: tokens.supportBorderColorWarning, color: tokens.iconsColorInfo };
+      return {
+        backgroundColor: tokens.supportBorderColorWarning,
+        color: tokens.iconsColorInfo,
+      };
     case COMPLETED:
-      return { backgroundColor: tokens.iconsColorSuccess, color: tokens.iconsColorPrimaryInvert };
+      return {
+        backgroundColor: tokens.iconsColorSuccess,
+        color: tokens.iconsColorPrimaryInvert,
+      };
     case WARNING:
-      return { backgroundColor: tokens.iconsColorDanger, color: tokens.iconsColorPrimaryInvert };
+      return {
+        backgroundColor: tokens.iconsColorDanger,
+        color: tokens.iconsColorPrimaryInvert,
+      };
     default:
-      return { backgroundColor: tokens.iconsColorPrimaryInvert, color: tokens.iconsColorPrimary };
+      return {
+        backgroundColor: tokens.iconsColorPrimaryInvert,
+        color: tokens.iconsColorPrimary,
+      };
   }
 }
 

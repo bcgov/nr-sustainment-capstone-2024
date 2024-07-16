@@ -26,7 +26,14 @@ const initialFarmDetails: any = {
       Comment: '',
       HasSoilTest: '',
       HasLeafTest: '',
-      SoilTest: { TestingMethod: '', sampleDate: '', valNO3H: '', ValP: '', valK: '', valPH: '' },
+      SoilTest: {
+        TestingMethod: '',
+        sampleDate: '',
+        valNO3H: '',
+        ValP: '',
+        valK: '',
+        valPH: '',
+      },
       LeafTest: { leafTissueP: '', leafTissueK: '' },
       Crops: [
         {

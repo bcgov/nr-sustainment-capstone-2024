@@ -1,4 +1,4 @@
-/**
+/*
  * @summary Crops Information Input Module
  * @description A module with input fields to be used in a Form Module
  * @author @Kcaparas
@@ -118,6 +118,10 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     return `${v1} m x ${v2} m ${res}`;
   };
 
+  const showFormHandler = (index: number) => {
+    setFieldSelected((prevState) => prevState.map((showForm, idx) => (idx === index ? !showForm : showForm)));
+  };
+
   const addCrop = (values: SubmissionCropsInterface, fieldIdx: number, cropIdx: number): void => {
     const newCrop: CropsDetailsInterface = {
       id: cropIdx,
@@ -145,10 +149,6 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
 
   const submitFarmInfo = () => {
     updateFarmDetails(farmDetails);
-  };
-
-  const showFormHandler = (index: number) => {
-    setFieldSelected((prevState) => prevState.map((showForm, idx) => (idx === index ? !showForm : showForm)));
   };
 
   return (
