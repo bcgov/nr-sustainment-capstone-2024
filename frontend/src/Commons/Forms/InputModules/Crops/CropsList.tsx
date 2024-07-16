@@ -29,7 +29,7 @@ const CropsList: FC<CropsListComponentProps> = ({ field }) => (
               <h2>Crop</h2>
               <h2>{crop.id + 1}</h2>
             </div>
-            <p key={crop.cropId}>{crop.cropId}</p>
+            <p key={crop.cropId}>{crop.cropId === '75' ? 'Blackberry' : 'Raspberry'}</p>
           </StyledListItem>
         ))}
       </StyledCropsGroup>
