@@ -17,11 +17,12 @@ const StyledButtonGroupContainer = styled.div`
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     width: 100%;
   }
 `;
 const StyledButtonContainer = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
 
   @media (min-width: ${screenSizes.desktop}) {
     width: 50%;
@@ -31,7 +32,6 @@ const StyledNewFieldButtonController = styled.div`
   display: flex;
   margin-bottom: 20px;
   justify-content: center;
-
   @media (min-width: ${screenSizes.desktop}) {
     width: 178px;
     position: relative;
@@ -57,7 +57,6 @@ const StyledNewFieldButtonContainer = styled.div`
 
   @media (min-width: ${screenSizes.desktop}) {
     left: 0;
-    top: 0;
   }
 `;
 

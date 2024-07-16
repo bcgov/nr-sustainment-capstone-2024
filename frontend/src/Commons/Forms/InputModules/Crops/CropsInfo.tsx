@@ -45,6 +45,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
   farmDetails,
   updateFarmDetails,
   handleFormState,
+  updateNutrientDetails,
 }) => {
   const [, setFieldsInfo] = useState(farmDetails);
   const [fieldIndex, setFieldIndex] = useState(0);
@@ -136,6 +137,7 @@ const CropsInfoComponent: React.FC<InputModuleProps> = ({
             addNewCrop={addNewCrop}
             buttonDisplayed={isButtonDisplayed}
             updateFarmDetails={updateFarmDetails}
+            updateNutrientDetails={updateNutrientDetails}
             handleFormState={handleFormState}
           />
           <Formik

@@ -7,10 +7,12 @@
  * @author    @GDamaso
  */
 import FarmDetailsInterface from './FarmDetailsInterface';
+import { TempNutrientsInterface } from './NutrientsInterface';
 
 interface InputModuleProps {
   farmDetails: FarmDetailsInterface;
   updateFarmDetails: (farmDetails: FarmDetailsInterface) => void;
+  updateNutrientDetails: (nutrientDetails: TempNutrientsInterface) => void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
 }
 

@@ -3,7 +3,7 @@ export interface NutrientsInterface {
   fertilizerTypeId: string;
   fertilizerId: string;
   applRate: number;
-  applDate?: Date;
+  applDate?: string;
   applMethodId?: string;
   customN: number;
   customP2o5: number;
