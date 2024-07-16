@@ -25,7 +25,7 @@ const StyledButtonContainer = styled.div`
   margin-top: 20px;
 
   @media (min-width: ${screenSizes.desktop}) {
-    width: 50%;
+    width: 100%;
   }
 `;
 const StyledNewFieldButtonController = styled.div`
@@ -42,7 +42,6 @@ const StyledNewFieldButtonController = styled.div`
 const StyledAddCancelButtonContainer = styled.div<FormProps>`
   display: flex;
   flex-direction: column;
-
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     gap: 20px;
@@ -60,10 +59,28 @@ const StyledNewFieldButtonContainer = styled.div`
   }
 `;
 
+const PrimaryButton = styled.div`
+  order: 0;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    order: 1;
+  }
+`;
+
+const SecondaryButton = styled.div`
+  order: 1;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    order: 0;
+  }
+`;
+
 export {
   StyledButtonGroupContainer,
   StyledButtonContainer,
   StyledAddCancelButtonContainer,
   StyledNewFieldButtonContainer,
   StyledNewFieldButtonController,
+  PrimaryButton,
+  SecondaryButton,
 };

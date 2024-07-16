@@ -11,6 +11,8 @@ import {
   StyledAddCancelButtonContainer,
   StyledNewFieldButtonContainer,
   StyledNewFieldButtonController,
+  PrimaryButton,
+  SecondaryButton,
 } from '@Commons/Button/FieldButtonGroup.styles';
 
 type ButtonComponentProps = {
@@ -41,28 +43,32 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
       </StyledNewFieldButtonController>
     </StyledNewFieldButtonContainer>
     <StyledAddCancelButtonContainer>
-      <StyledButtonContainer>
-        <Button
-          type="button"
-          size="lg"
-          disabled={false}
-          actions="secondary"
-          text={ComponentText.BACK}
-          handleClick={() => handleFormState(CmdOptions.BACKWARDS)}
-        />
-      </StyledButtonContainer>
-      <StyledButtonContainer>
-        <Button
-          type="button"
-          size="lg"
-          disabled={false}
-          text={ComponentText.NEXT}
-          handleClick={() => {
-            submitNutrientDetails();
-            handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
-          }}
-        />
-      </StyledButtonContainer>
+      <SecondaryButton>
+        <StyledButtonContainer>
+          <Button
+            type="button"
+            size="lg"
+            disabled={false}
+            actions="secondary"
+            text={ComponentText.BACK}
+            handleClick={() => handleFormState(CmdOptions.BACKWARDS)}
+          />
+        </StyledButtonContainer>
+      </SecondaryButton>
+      <PrimaryButton>
+        <StyledButtonContainer>
+          <Button
+            type="button"
+            size="lg"
+            disabled={false}
+            text={ComponentText.NEXT}
+            handleClick={() => {
+              submitNutrientDetails();
+              handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
+            }}
+          />
+        </StyledButtonContainer>
+      </PrimaryButton>
     </StyledAddCancelButtonContainer>
   </StyledButtonGroupContainer>
 );
