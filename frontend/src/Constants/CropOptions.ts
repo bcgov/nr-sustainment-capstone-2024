@@ -2,11 +2,11 @@ import OptionInterface from 'src/Interface/OptionInterface';
 
 const CropIDOptions: OptionInterface[] = [
   {
-    value: 'Blueberry',
+    value: '75',
     label: 'Blueberry',
   },
   {
-    value: 'Raspberry',
+    value: '76',
     label: 'Raspberry',
   },
 ];
