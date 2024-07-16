@@ -8,11 +8,10 @@ import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
 import { FormProps } from 'src/Types/FormProps';
 
-const StyledFarmInfo = styled.div`
+const StyledFarmInfo = styled.div<FormProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: left;
   height: 100%;
   gap: 20px;
 
@@ -23,9 +22,13 @@ const StyledFarmInfo = styled.div`
 
     @media (min-width: ${screenSizes.desktop}) {
       flex-direction: row;
+      position: relative;
       width: 50%;
       gap: 30px;
     }
+  }
+  @media (min-width: ${screenSizes.desktop}) {
+    flex-direction: ${(props) => (props.formNutrients ? 'row' : 'column')};
   }
 `;
 
@@ -62,18 +65,33 @@ const StyledAreaContainer = styled.div<FormProps>`
     }
   }
 `;
-const StyledButtonGroupContainer = styled.div`
+const StyledButtonGroupContainer = styled.div<FormProps>`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin: auto;
   width: 320px;
   justify-content: flex-end;
+  .nutrientsButton {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+  }
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     margin: 0;
     justify-content: flex-start;
     width: 67px;
+    .nutrientsButton {
+      flex-direction: row;
+      margin-top: ${(props) => (props.formNutrients ? '25px' : '0')};
+      position: absolute;
+      width: 350px;
+      right: 0;
+    }
   }
 `;
 const StyledTestContainer = styled.div`

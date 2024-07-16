@@ -17,21 +17,21 @@ const StyledButtonGroupContainer = styled.div`
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     width: 100%;
   }
 `;
 const StyledButtonContainer = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
 
   @media (min-width: ${screenSizes.desktop}) {
-    width: 50%;
+    width: 100%;
   }
 `;
 const StyledNewFieldButtonController = styled.div`
   display: flex;
   margin-bottom: 20px;
   justify-content: center;
-
   @media (min-width: ${screenSizes.desktop}) {
     width: 178px;
     position: relative;
@@ -42,7 +42,6 @@ const StyledNewFieldButtonController = styled.div`
 const StyledAddCancelButtonContainer = styled.div<FormProps>`
   display: flex;
   flex-direction: column;
-
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     gap: 20px;
@@ -57,7 +56,22 @@ const StyledNewFieldButtonContainer = styled.div`
 
   @media (min-width: ${screenSizes.desktop}) {
     left: 0;
-    top: 0;
+  }
+`;
+
+const PrimaryButton = styled.div`
+  order: 0;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    order: 1;
+  }
+`;
+
+const SecondaryButton = styled.div`
+  order: 1;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    order: 0;
   }
 `;
 
@@ -67,4 +81,6 @@ export {
   StyledAddCancelButtonContainer,
   StyledNewFieldButtonContainer,
   StyledNewFieldButtonController,
+  PrimaryButton,
+  SecondaryButton,
 };

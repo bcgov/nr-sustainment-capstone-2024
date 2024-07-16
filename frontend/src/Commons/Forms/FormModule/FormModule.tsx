@@ -25,6 +25,7 @@
 import { FC } from 'react';
 import InputModuleInterface from 'src/Interface/InputModuleinterface.tsx';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface.tsx';
+import { TempNutrientsInterface } from '@Interface/NutrientsInterface.tsx';
 import FormHeader from '../FormHeader/FormHeader.tsx';
 import { StyledFormContainer, StyledFormContent } from './FormModule.style';
 
@@ -32,6 +33,7 @@ interface FormModuleProps {
   InputModule: InputModuleInterface;
   farmDetails: FarmDetailsInterface;
   updateFarmDetails(farmDetails: FarmDetailsInterface): void;
+  updateNutrientDetails(nutrientDetails: TempNutrientsInterface): void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
 }
 
@@ -40,6 +42,7 @@ const FormModule: FC<FormModuleProps> = ({
   farmDetails,
   updateFarmDetails,
   handleFormState,
+  updateNutrientDetails,
 }) => {
   const { InputModuleComponent } = InputModule;
 
@@ -53,6 +56,7 @@ const FormModule: FC<FormModuleProps> = ({
         <StyledFormContent>
           <InputModuleComponent
             updateFarmDetails={updateFarmDetails}
+            updateNutrientDetails={updateNutrientDetails}
             farmDetails={farmDetails}
             handleFormState={handleFormState}
           />
