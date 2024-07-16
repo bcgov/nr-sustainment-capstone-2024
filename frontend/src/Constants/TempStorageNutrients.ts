@@ -1,5 +1,12 @@
 import { TempNutrientsInterface } from '@Interface/NutrientsInterface';
 
+/**
+ * @summary   Temporary Storage of Nutrients
+ * @desc      This is a temporary storage before getting passed in into @farmDetails
+ *            of FarmDetailInterface. This will be an option for a dropdown in Calculation Module
+ *            After being selected into a field. It will then be passed in to the interface.
+ * @author    @Kcaparas
+ */
 const tempNutrientsStorage: TempNutrientsInterface[] = [
   {
     id: 0,
