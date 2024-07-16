@@ -94,7 +94,9 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
   };
   const submitNutrientData = () => {
     nutrientsInfo.forEach((nutrient) => {
-      updateNutrientDetails(nutrient);
+      if (updateNutrientDetails) {
+        updateNutrientDetails(nutrient);
+      }
     });
   };
   const addNewFertilizer = () => {
