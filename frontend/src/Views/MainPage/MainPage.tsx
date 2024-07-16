@@ -17,7 +17,7 @@ import { ACTIVE, COMPLETED, WARNING } from '@Constants/ModuleStatus';
 import CmdOptions from '@Constants/CmdOptions';
 import Names from '@Constants/Names';
 import convertToNMP from '@Utils/convertToNMP';
-import tempNutrientsStorage from '@Constants/TempStorageNutrients';
+import tempNutrientsStorage from '@Constants/TempNutrientsStorage';
 import { TempNutrientsInterface } from '@Interface/NutrientsInterface';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
