@@ -169,8 +169,9 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
           <Formik
             initialValues={cropInitialValues}
             validationSchema={validationSchema}
-            onSubmit={(values) => {
+            onSubmit={(values, { resetForm }) => {
               addCrop(values, index, field.Crops.length);
+              resetForm();
             }}
             validate={(values) => {
               StatusValidate(validationSchema, values, handleFormState, CROPS_INFORMATION);
