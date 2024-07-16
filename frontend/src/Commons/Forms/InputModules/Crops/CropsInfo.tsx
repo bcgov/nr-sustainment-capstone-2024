@@ -72,9 +72,15 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     Array(farmDetails.Fields.length).fill(false),
   );
 
-  const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') => Yup.number().when(cropId, (value, schema) => (value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired()));
+  const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') =>
+    Yup.number().when(cropId, (value, schema) =>
+      value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired(),
+    );
 
-  const BlueberrySchemaString = (cropId: string, message: string = 'Required') => Yup.string().when(cropId, (value, schema) => (value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired()));
+  const BlueberrySchemaString = (cropId: string, message: string = 'Required') =>
+    Yup.string().when(cropId, (value, schema) =>
+      value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired(),
+    );
 
   const validationSchema = Yup.object().shape({
     cropId: Yup.string().required('Required'),
@@ -119,7 +125,9 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
   };
 
   const showFormHandler = (index: number) => {
-    setFieldSelected((prevState) => prevState.map((showForm, idx) => (idx === index ? !showForm : showForm)));
+    setFieldSelected((prevState) =>
+      prevState.map((showForm, idx) => (idx === index ? !showForm : showForm)),
+    );
   };
 
   const addCrop = (values: SubmissionCropsInterface, fieldIdx: number, cropIdx: number): void => {
@@ -168,108 +176,110 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
               StatusValidate(validationSchema, values, handleFormState, CROPS_INFORMATION);
             }}
           >
-            {({ values }) => hasFieldBeenSelected[index] && (
-            <Form>
-              <StyledFarmInfo>
-                <StyledCropsSmallGroup>
-                  <CustomSelect
-                    name="cropId"
-                    id="cropId"
-                    label="Crop"
-                    options={CropIDOptions}
-                    width="40%"
-                  />
-                  <StyledAreaContainer formCrops>
-                    <CustomField
-                      label="Yield"
-                      id="yield"
-                      name="yield"
-                      type="number"
-                      width="50%"
-                    />
-                    <p>tons/ac</p>
-                  </StyledAreaContainer>
-                </StyledCropsSmallGroup>
-                {values.cropId === '75' && (
-                <>
-                  <StyledCropsSmallGroup>
-                    <CustomSelect
-                      name="plantAgeYears"
-                      id="plantAgeYears"
-                      label="Plant age (Years)"
-                      options={PlantAgeOptions}
-                      width="40%"
-                    />
-                    <CustomSelect
-                      name="numberOfPlantsPerAcre"
-                      id="numberOfPlantsPerAcre"
-                      label="Plants per acre"
-                      options={PlantsPerAcre}
-                      width="40%"
-                    />
-                  </StyledCropsSmallGroup>
-                  <StyledCropsLargeGroup>
-                    <CustomSelect
-                      name="distanceBtwnPlants"
-                      id="distanceBtwnPlants"
-                      label="Distance between plants"
-                      options={DistanceBtwnPlants}
-                      width="40%"
-                    />
-                    <CustomSelect
-                      name="distanceBtwnRows"
-                      id="distanceBtwnRows"
-                      label="Distance between rows"
-                      options={DistanceBtwnRows}
-                      width="40%"
-                    />
-                  </StyledCropsLargeGroup>
-                </>
-                )}
-                <StyledCropsLargeGroup>
-                  <CustomSelect
-                    name="willPlantsBePruned"
-                    id="willPlantsBePruned"
-                    label="Will plants be pruned?"
-                    options={YesOrNo}
-                    width="40%"
-                  />
-                  <CustomSelect
-                    name="whereWillPruningsGo"
-                    id="whereWillPruningsGo"
-                    label="Where will prunings go?"
-                    options={WherePruningsGo}
-                    width="40%"
-                  />
-                </StyledCropsLargeGroup>
-                <StyledCropsLargeGroup>
-                  <CustomSelect
-                    name="willSawdustBeApplied"
-                    id="willSawdustBeApplied"
-                    label="Is sawdust or wood mulch applied within 6 months prior to the growing season?"
-                    options={YesOrNo}
-                    width="75%"
-                  />
-                </StyledCropsLargeGroup>
-                <StyledButtonGroupContainer>
-                  <Button
-                    type="reset"
-                    size="lg"
-                    disabled={false}
-                    actions="secondary"
-                    text={ComponentText.CANCEL}
-                    handleClick={() => showFormHandler(index)}
-                  />
-                  <Button
-                    type="submit"
-                    size="lg"
-                    disabled={false}
-                    text={ComponentText.ADD}
-                  />
-                </StyledButtonGroupContainer>
-              </StyledFarmInfo>
-            </Form>
-            )}
+            {({ values }) =>
+              hasFieldBeenSelected[index] && (
+                <Form>
+                  <StyledFarmInfo>
+                    <StyledCropsSmallGroup>
+                      <CustomSelect
+                        name="cropId"
+                        id="cropId"
+                        label="Crop"
+                        options={CropIDOptions}
+                        width="40%"
+                      />
+                      <StyledAreaContainer formCrops>
+                        <CustomField
+                          label="Yield"
+                          id="yield"
+                          name="yield"
+                          type="number"
+                          width="50%"
+                        />
+                        <p>tons/ac</p>
+                      </StyledAreaContainer>
+                    </StyledCropsSmallGroup>
+                    {values.cropId === '75' && (
+                      <>
+                        <StyledCropsSmallGroup>
+                          <CustomSelect
+                            name="plantAgeYears"
+                            id="plantAgeYears"
+                            label="Plant age (Years)"
+                            options={PlantAgeOptions}
+                            width="40%"
+                          />
+                          <CustomSelect
+                            name="numberOfPlantsPerAcre"
+                            id="numberOfPlantsPerAcre"
+                            label="Plants per acre"
+                            options={PlantsPerAcre}
+                            width="40%"
+                          />
+                        </StyledCropsSmallGroup>
+                        <StyledCropsLargeGroup>
+                          <CustomSelect
+                            name="distanceBtwnPlants"
+                            id="distanceBtwnPlants"
+                            label="Distance between plants"
+                            options={DistanceBtwnPlants}
+                            width="40%"
+                          />
+                          <CustomSelect
+                            name="distanceBtwnRows"
+                            id="distanceBtwnRows"
+                            label="Distance between rows"
+                            options={DistanceBtwnRows}
+                            width="40%"
+                          />
+                        </StyledCropsLargeGroup>
+                      </>
+                    )}
+                    <StyledCropsLargeGroup>
+                      <CustomSelect
+                        name="willPlantsBePruned"
+                        id="willPlantsBePruned"
+                        label="Will plants be pruned?"
+                        options={YesOrNo}
+                        width="40%"
+                      />
+                      <CustomSelect
+                        name="whereWillPruningsGo"
+                        id="whereWillPruningsGo"
+                        label="Where will prunings go?"
+                        options={WherePruningsGo}
+                        width="40%"
+                      />
+                    </StyledCropsLargeGroup>
+                    <StyledCropsLargeGroup>
+                      <CustomSelect
+                        name="willSawdustBeApplied"
+                        id="willSawdustBeApplied"
+                        label="Is sawdust or wood mulch applied within 6 months prior to the growing season?"
+                        options={YesOrNo}
+                        width="75%"
+                      />
+                    </StyledCropsLargeGroup>
+                    <StyledButtonGroupContainer>
+                      <Button
+                        type="reset"
+                        size="lg"
+                        disabled={false}
+                        actions="secondary"
+                        text={ComponentText.CANCEL}
+                        handleClick={() => showFormHandler(index)}
+                      />
+                      <Button
+                        type="submit"
+                        size="lg"
+                        disabled={false}
+                        text={ComponentText.ADD}
+                      />
+                    </StyledButtonGroupContainer>
+                  </StyledFarmInfo>
+                </Form>
+              )
+            }
           </Formik>
 
           {!hasFieldBeenSelected[index] && field.Crops.length < 2 && (
