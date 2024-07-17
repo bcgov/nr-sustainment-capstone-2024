@@ -44,7 +44,7 @@ const StyledListItem = styled.div<StyledListType>`
   align-items: flex-start;
   width: 100%;
   max-width: ${(props) => props.width};
-
+  flex-wrap: nowrap;
   h2 {
     font: ${tokens.typographyBoldBody};
   }
@@ -139,6 +139,11 @@ const StyledCustomFertilizerGroup = styled.div`
   justify-content: space-evenly;
   gap: 30px;
   margin-left: 20px;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    width: 300px;
+    margin-left: 0;
+  }
 `;
 
 export {
