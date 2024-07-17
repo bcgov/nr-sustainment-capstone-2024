@@ -22,7 +22,7 @@ import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import Button from '@Commons/Button/Button';
 import ComponentText from '@Constants/ComponentText';
 import CustomField from '@Commons/Input/Field/CustomField';
-import { FertilizerInterface } from '@Interface/FertilizerInterface';
+import FertilizerInterface from '@Interface/FertilizerInterface';
 import FertilizersButtonComponent from './FertilizersButtonComponent';
 import StyledCustomNumberField from './Fertilizers.styles';
 import FertilizersListComponent from './FertilizersListComponent';

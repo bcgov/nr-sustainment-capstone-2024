@@ -17,7 +17,7 @@ import { ACTIVE, COMPLETED, WARNING } from '@Constants/ModuleStatus';
 import CmdOptions from '@Constants/CmdOptions';
 import Names from '@Constants/Names';
 import convertToNMP from '@Utils/convertToNMP';
-import { FertilizerInterface } from '@Interface/FertilizerInterface';
+import FertilizerInterface from '@Interface/FertilizerInterface';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 // The sequence of sections to show up on the main page

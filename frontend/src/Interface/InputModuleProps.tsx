@@ -7,7 +7,7 @@
  * @author    @GDamaso
  */
 import FarmDetailsInterface from './FarmDetailsInterface';
-import { FertilizerInterface } from './FertilizerInterface';
+import FertilizerInterface from './FertilizerInterface';
 
 interface InputModuleProps {
   farmDetails: FarmDetailsInterface;

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FertilizerInterface } from '@Interface/FertilizerInterface';
+import FertilizerInterface from '@Interface/FertilizerInterface';
 import {
   StyledFieldInfoList,
   StyledListContainer,
