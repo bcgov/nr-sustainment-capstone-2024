@@ -196,8 +196,6 @@ const MainPage: FC = () => {
       setNutrientDetails((prevDetails) => [...prevDetails, newNutrients]);
     }
   };
-  // Development Log
-  console.log(nutrientDetails);
   return (
     <StyledMain>
       <MainPageHeader />

@@ -11,6 +11,7 @@ import { StyledFarmInfo } from '@Commons/FormStyles.styles';
 import StatusValidate from '@Utils/StatusValidate';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import OptionInterface from '@Interface/OptionInterface';
+import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 
 const CalculationComponent: React.FC<InputModuleProps> = ({
   farmDetails,
@@ -20,7 +21,12 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
 }) => {
   const [fieldIndex, setFieldIndex] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const initialValues: NutrientsInterface = initialFarmDetails.Fields[0].Nutrients[0];
+  const initialValues: FieldDetailInterface = initialFarmDetails.Fields[0].Nutrients[0];
+
+  const fieldsOption: OptionInterface[] = farmDetails.Fields.map((field) => ({
+    value: field.FieldName,
+    label: field.FieldName,
+  }));
 
   const validationSchema = Yup.object().shape({
     field: Yup.string().required('Required'),
@@ -30,43 +36,35 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
     // remaining are optional for now. Build it after running
   });
 
-  const submitCalculationData = (values: NutrientsInterface): void => {
+  const submitCalculationData = (values: FieldDetailInterface): void => {
     const fertilizer: NutrientsInterface[] = { ...fertilizersDetails };
     const updateFertilizer: NutrientsInterface = {
       id: fertilizer[selectedIndex].id,
       fertilizerTypeId: fertilizer[selectedIndex].fertilizerTypeId,
       fertilizerId: fertilizer[selectedIndex].fertilizerId,
-      applUnitId: values.applUnitId,
-      applRate: values.applRate,
-      applDate: values.applDate || '',
-      applMethodId: values.applMethodId || '',
+      applUnitId: values.Nutrients[selectedIndex].applUnitId,
+      applRate: values.Nutrients[selectedIndex].applRate,
+      applDate: values.Nutrients[selectedIndex].applDate || '',
+      applMethodId: values.Nutrients[selectedIndex].applMethodId || '',
       customN: fertilizer[selectedIndex].customN,
       customP2o5: fertilizer[selectedIndex].customP2o5,
       customK2o: fertilizer[selectedIndex].customK2o,
       fertN: fertilizer[selectedIndex].fertN,
       fertP2o5: fertilizer[selectedIndex].customP2o5,
       fertK2o: fertilizer[selectedIndex].fertK2o,
-      liquidDensity: values.liquidDensity,
-      liquidDensityUnitId: values.liquidDensityUnitId,
+      liquidDensity: values.Nutrients[selectedIndex].liquidDensity,
+      liquidDensityUnitId: values.Nutrients[selectedIndex].liquidDensityUnitId,
     };
     setTimeout(() => {
       farmDetails.Fields[fieldIndex].Nutrients.push(updateFertilizer);
       setFieldIndex((props) => props + 1); // for now
       setSelectedIndex((props) => props); // for now
       updateFarmDetails(farmDetails);
+      console.log(values.FieldName);
+      console.log(fieldsOption.findIndex((option) => option.value === values.FieldName));
     });
   };
 
-  const fieldsOption: OptionInterface[] = farmDetails.Fields.map((field) => ({
-    value: field.FieldName,
-    label: field.FieldName,
-  }));
-  const handleFieldChange = (selectedOption: OptionInterface) => {
-    const selectedidx = fieldsOption.findIndex((option) => option.value === selectedOption.value);
-    console.log(selectedidx);
-    setFieldIndex(selectedidx);
-    setSelectedIndex(selectedidx);
-  };
   return (
     <Formik
       initialValues={initialValues}
@@ -80,10 +78,9 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
         <StyledFarmInfo>
           <CustomSelect
             label="Field"
-            id="Field"
-            name="Field"
+            id="FieldName"
+            name="FieldName"
             options={fieldsOption}
-            onChange={() => handleFieldChange}
           />
         </StyledFarmInfo>
       </Form>
