@@ -36,10 +36,10 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
           <div key={`${FieldName}-${Area}-${Comment || 'NoComment'}`}>
             <StyledListContainer>
               <StyledFieldNameContainer>
-              <StyledListItem width="100%">
-                <h2>Field Name</h2>
-                <p>{FieldName}</p>
-              </StyledListItem>
+                <StyledListItem width="100%">
+                  <h2>Field Name</h2>
+                  <p>{FieldName}</p>
+                </StyledListItem>
               </StyledFieldNameContainer>
               <StyledListItem width="100px">
                 <h2>Area</h2>

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { TempNutrientsInterface } from '@Interface/NutrientsInterface';
 import {
   StyledFieldInfoList,
   StyledListContainer,
@@ -8,7 +9,6 @@ import {
   StyledFontAwesomeContainer,
   StyledCustomFertilizerGroup,
 } from '../ListComponent.styles';
-import { TempNutrientsInterface } from '@Interface/NutrientsInterface';
 
 interface FertilizerProps {
   nutrientDetails: TempNutrientsInterface[];

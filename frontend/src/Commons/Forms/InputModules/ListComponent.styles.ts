@@ -69,13 +69,12 @@ const StyledFontAwesomeContainer = styled.div`
   gap: 30px;
   margin-right: 10px;
   padding-top: 8px;
-  position:absolute;
+  position: absolute;
   right: 0;
 
   @media (min-width: ${screenSizes.desktop}) {
     font-size: 32px;
     padding-top: 20px;
-    
   }
 `;
 const StyledCommentContainerMobile = styled.div`
