@@ -14,6 +14,7 @@ import {
   StyledDivider,
   StyledListItemGroupContainer,
   StyledListItemGroup,
+  StyledFieldNameContainer,
 } from '../ListComponent.styles';
 
 interface FieldListProps {
@@ -34,10 +35,12 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
         return (
           <div key={`${FieldName}-${Area}-${Comment || 'NoComment'}`}>
             <StyledListContainer>
-              <StyledListItem width="160px">
+              <StyledFieldNameContainer>
+              <StyledListItem width="100%">
                 <h2>Field Name</h2>
                 <p>{FieldName}</p>
               </StyledListItem>
+              </StyledFieldNameContainer>
               <StyledListItem width="100px">
                 <h2>Area</h2>
                 <p>{Area}</p>

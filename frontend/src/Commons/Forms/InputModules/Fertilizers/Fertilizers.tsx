@@ -25,6 +25,7 @@ import ComponentText from '@Constants/ComponentText';
 import CustomField from '@Commons/Input/Field/CustomField';
 import FertilizersButtonComponent from './FertilizersButtonComponent';
 import StyledCustomNumberField from './Fertilizers.styles';
+import FertilizersListComponent from './FertilizersListComponent';
 
 const FertilizersInfo: React.FC<InputModuleProps> = ({
   handleFormState,
@@ -34,6 +35,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
   const [isAddButtonClicked, setAddButtonClicked] = useState<boolean>(false);
   const [nutrientsInfo, setNutrientsInfo] = useState<TempNutrientsInterface[]>([]);
   const [nutrientIndex, setNutrientIndex] = useState(0);
+  const [isSubmitted, setSubmitted] = useState<boolean>(nutrientsInfo.length > 0);
   const validationSchema = Yup.object().shape({
     fertilizerTypeId: Yup.string().required('Required'),
     fertilizerId: Yup.string().when('fertlizerTypeId', (fertilizerTypeId) =>
@@ -98,6 +100,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
       setNutrientsInfo((prevNutrients) => [...prevNutrients, nutrientinfo]);
       setNutrientIndex((prevIndex) => prevIndex + 1);
       setAddButtonClicked(false);
+      setSubmitted(true);
     });
   };
   const submitNutrientData = () => {
@@ -111,100 +114,204 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
     setAddButtonClicked(true);
   };
 
-  return !isAddButtonClicked ? (
-    <FertilizersButtonComponent
-      submitNutrientDetails={submitNutrientData}
-      addNewFertilizer={addNewFertilizer}
-      handleFormState={handleFormState}
-    />
-  ) : (
-    <Formik
-      initialValues={initialFieldValues}
-      validationSchema={validationSchema}
-      onSubmit={(values) => {
-        addNutrientsData(values);
-      }}
-    >
-      {({ values }) => (
-        <Form>
-          <StyledFarmInfo formNutrients>
-            <div id="inputContainer">
-              <CustomSelect
-                name="fertilizerTypeId"
-                id="fertilizerTypeId"
-                label="Fertilizer Type"
-                options={FertilizerTypeOptions}
-                width="40%"
-              />
-              {values.fertilizerTypeId.includes('Dry Fertilizer (Custom)') ||
-              values.fertilizerTypeId.includes('Liquid Fertilizer (Custom)') ? (
-                <StyledCustomNumberField>
-                  <CustomField
-                    label="N (%)"
-                    name="customN"
-                    id="customN"
-                    type="number"
-                    width="30%"
-                  />
-                  <CustomField
-                    label="P2O5 (%)"
-                    name="customP2o5"
-                    id="customP2o5"
-                    type="number"
-                    width="30%"
-                  />
-                  <CustomField
-                    label="K2O (%)"
-                    name="customK2o"
-                    id="customK2o"
-                    type="number"
-                    width="30%"
-                  />
-                </StyledCustomNumberField>
-              ) : (
-                <CustomSelect
-                  name="fertilizerId"
-                  id="fertilizerId"
-                  label="Fertilizer Name"
-                  options={
-                    values.fertilizerTypeId.includes('Dry Fertilizer')
-                      ? DryFertilizerOptions
-                      : values.fertilizerTypeId.includes('Liquid Fertilizer')
-                        ? LiquidFertilizerOptions
-                        : []
-                  }
-                  width="40%"
-                />
-              )}
-            </div>
-            <StyledAddCancelButtonContainer>
-              <SecondaryButton>
-                <StyledButtonContainer>
-                  <Button
-                    type="reset"
-                    size="lg"
-                    disabled={false}
-                    actions="secondary"
-                    text={ComponentText.CANCEL}
-                  />
-                </StyledButtonContainer>
-              </SecondaryButton>
-              <PrimaryButton>
-                <StyledButtonContainer>
-                  <Button
-                    type="submit"
-                    size="lg"
-                    disabled={false}
-                    text={ComponentText.SAVE_FERTILIZER}
-                  />
-                </StyledButtonContainer>
-              </PrimaryButton>
-            </StyledAddCancelButtonContainer>
-          </StyledFarmInfo>
-        </Form>
+  return (
+    <>
+      {isSubmitted && (
+        <>
+          <FertilizersListComponent nutrientDetails={nutrientsInfo} />
+          {!isAddButtonClicked && (
+            <FertilizersButtonComponent
+              submitNutrientDetails={submitNutrientData}
+              addNewFertilizer={addNewFertilizer}
+              handleFormState={handleFormState}
+            />
+          )}
+        </>
       )}
-    </Formik>
+      {(isAddButtonClicked || !isSubmitted) && (
+        <Formik
+          initialValues={initialFieldValues}
+          validationSchema={validationSchema}
+          onSubmit={(values) => {
+            addNutrientsData(values);
+          }}
+        >
+          {({ values }) => (
+            <Form>
+              <StyledFarmInfo formNutrients>
+                <div id="inputContainer">
+                  <CustomSelect
+                    name="fertilizerTypeId"
+                    id="fertilizerTypeId"
+                    label="Fertilizer Type"
+                    options={FertilizerTypeOptions}
+                    width="40%"
+                  />
+                  {values.fertilizerTypeId.includes('Dry Fertilizer (Custom)') ||
+                  values.fertilizerTypeId.includes('Liquid Fertilizer (Custom)') ? (
+                    <StyledCustomNumberField>
+                      <CustomField
+                        label="N (%)"
+                        name="customN"
+                        id="customN"
+                        type="number"
+                        width="30%"
+                      />
+                      <CustomField
+                        label="P2O5 (%)"
+                        name="customP2o5"
+                        id="customP2o5"
+                        type="number"
+                        width="30%"
+                      />
+                      <CustomField
+                        label="K2O (%)"
+                        name="customK2o"
+                        id="customK2o"
+                        type="number"
+                        width="30%"
+                      />
+                    </StyledCustomNumberField>
+                  ) : (
+                    <CustomSelect
+                      name="fertilizerId"
+                      id="fertilizerId"
+                      label="Fertilizer Name"
+                      options={
+                        values.fertilizerTypeId.includes('Dry Fertilizer')
+                          ? DryFertilizerOptions
+                          : values.fertilizerTypeId.includes('Liquid Fertilizer')
+                            ? LiquidFertilizerOptions
+                            : []
+                      }
+                      width="40%"
+                    />
+                  )}
+                </div>
+                <StyledAddCancelButtonContainer>
+                  <SecondaryButton>
+                    <StyledButtonContainer>
+                      <Button
+                        type="reset"
+                        size="lg"
+                        disabled={false}
+                        actions="secondary"
+                        text={ComponentText.CANCEL}
+                      />
+                    </StyledButtonContainer>
+                  </SecondaryButton>
+                  <PrimaryButton>
+                    <StyledButtonContainer>
+                      <Button
+                        type="submit"
+                        size="lg"
+                        disabled={false}
+                        text={ComponentText.SAVE_FERTILIZER}
+                      />
+                    </StyledButtonContainer>
+                  </PrimaryButton>
+                </StyledAddCancelButtonContainer>
+              </StyledFarmInfo>
+            </Form>
+          )}
+        </Formik>
+      )}
+    </>
   );
+  // return !isAddButtonClicked ? (
+  //   <FertilizersButtonComponent
+  //     submitNutrientDetails={submitNutrientData}
+  //     addNewFertilizer={addNewFertilizer}
+  //     handleFormState={handleFormState}
+  //   />
+  // ) : (
+  //   <Formik
+  //     initialValues={initialFieldValues}
+  //     validationSchema={validationSchema}
+  //     onSubmit={(values) => {
+  //       addNutrientsData(values);
+  //     }}
+  //   >
+  //     {({ values }) => (
+  //       <Form>
+  //         <StyledFarmInfo formNutrients>
+  //           <div id="inputContainer">
+  //             <CustomSelect
+  //               name="fertilizerTypeId"
+  //               id="fertilizerTypeId"
+  //               label="Fertilizer Type"
+  //               options={FertilizerTypeOptions}
+  //               width="40%"
+  //             />
+  //             {values.fertilizerTypeId.includes('Dry Fertilizer (Custom)') ||
+  //             values.fertilizerTypeId.includes('Liquid Fertilizer (Custom)') ? (
+  //               <StyledCustomNumberField>
+  //                 <CustomField
+  //                   label="N (%)"
+  //                   name="customN"
+  //                   id="customN"
+  //                   type="number"
+  //                   width="30%"
+  //                 />
+  //                 <CustomField
+  //                   label="P2O5 (%)"
+  //                   name="customP2o5"
+  //                   id="customP2o5"
+  //                   type="number"
+  //                   width="30%"
+  //                 />
+  //                 <CustomField
+  //                   label="K2O (%)"
+  //                   name="customK2o"
+  //                   id="customK2o"
+  //                   type="number"
+  //                   width="30%"
+  //                 />
+  //               </StyledCustomNumberField>
+  //             ) : (
+  //               <CustomSelect
+  //                 name="fertilizerId"
+  //                 id="fertilizerId"
+  //                 label="Fertilizer Name"
+  //                 options={
+  //                   values.fertilizerTypeId.includes('Dry Fertilizer')
+  //                     ? DryFertilizerOptions
+  //                     : values.fertilizerTypeId.includes('Liquid Fertilizer')
+  //                       ? LiquidFertilizerOptions
+  //                       : []
+  //                 }
+  //                 width="40%"
+  //               />
+  //             )}
+  //           </div>
+  //           <StyledAddCancelButtonContainer>
+  //             <SecondaryButton>
+  //               <StyledButtonContainer>
+  //                 <Button
+  //                   type="reset"
+  //                   size="lg"
+  //                   disabled={false}
+  //                   actions="secondary"
+  //                   text={ComponentText.CANCEL}
+  //                 />
+  //               </StyledButtonContainer>
+  //             </SecondaryButton>
+  //             <PrimaryButton>
+  //               <StyledButtonContainer>
+  //                 <Button
+  //                   type="submit"
+  //                   size="lg"
+  //                   disabled={false}
+  //                   text={ComponentText.SAVE_FERTILIZER}
+  //                 />
+  //               </StyledButtonContainer>
+  //             </PrimaryButton>
+  //           </StyledAddCancelButtonContainer>
+  //         </StyledFarmInfo>
+  //       </Form>
+  //     )}
+  //   </Formik>
+  // );
 };
 
 const FertilizersInfoForm: InputModuleInterface = {
