@@ -21,12 +21,20 @@ const StyledFieldInfoList = styled.div`
 const StyledListContainer = styled.div<FormProps>`
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) => (props.formNutrients ? 'column' : 'row')};
   padding-top: 20px;
   gap: ${(props) => (props.formCrops ? '50px' : '20px')};
 
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
+  }
+`;
+
+const StyledFieldNameContainer = styled.div`
+  width: 120px;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    width: 160px;
   }
 `;
 
@@ -36,7 +44,7 @@ const StyledListItem = styled.div<StyledListType>`
   align-items: flex-start;
   width: 100%;
   max-width: ${(props) => props.width};
-
+  flex-wrap: nowrap;
   h2 {
     font: ${tokens.typographyBoldBody};
   }
@@ -61,12 +69,12 @@ const StyledFontAwesomeContainer = styled.div`
   gap: 30px;
   margin-right: 10px;
   padding-top: 8px;
+  position: absolute;
+  right: 0;
 
   @media (min-width: ${screenSizes.desktop}) {
     font-size: 32px;
     padding-top: 20px;
-    position: relative;
-    right: 0;
   }
 `;
 const StyledCommentContainerMobile = styled.div`
@@ -125,6 +133,19 @@ const StyledCropsGroup = styled.div`
   }
 `;
 
+const StyledCustomFertilizerGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 30px;
+  margin-left: 20px;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    width: 300px;
+    margin-left: 0;
+  }
+`;
+
 export {
   StyledListContainer,
   StyledListItem,
@@ -136,4 +157,6 @@ export {
   StyledListItemGroupContainer,
   StyledListItemGroup,
   StyledCropsGroup,
+  StyledCustomFertilizerGroup,
+  StyledFieldNameContainer,
 };

@@ -4,14 +4,14 @@
  * @author      @GDamaso
  */
 import NmpCropInterface from './NmpCropInterface';
-import { NutrientsInterface } from './NutrientsInterface';
+import FertilizerInterface from './FertilizerInterface';
 
 interface NmpFieldInterface {
   Id: number;
   FieldName: string;
   Area: number;
   Comment?: string | null;
-  Nutrients?: NutrientsInterface[] | null;
+  Nutrients?: FertilizerInterface[] | null;
   HasNutrients: boolean;
   Crops: NmpCropInterface[];
   FeedForageAnalyses: any[];

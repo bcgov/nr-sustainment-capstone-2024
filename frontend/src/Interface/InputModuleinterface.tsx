@@ -4,7 +4,7 @@
  * @author @GDamaso
  */
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import { ComponentType } from 'react';
 import InputModuleProps from './InputModuleProps';
 
 /**
@@ -17,7 +17,7 @@ import InputModuleProps from './InputModuleProps';
  * @param enable: If the form section should be opened upon rendering
  */
 interface InputModuleInterface {
-  InputModuleComponent: React.ComponentType<InputModuleProps>;
+  InputModuleComponent: ComponentType<InputModuleProps>;
   id: string;
   name: {
     long: string;
