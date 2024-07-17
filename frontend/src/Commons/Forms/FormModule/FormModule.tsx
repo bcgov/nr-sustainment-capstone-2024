@@ -25,16 +25,16 @@
 import { FC } from 'react';
 import InputModuleInterface from 'src/Interface/InputModuleinterface.tsx';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface.tsx';
-import { TempNutrientsInterface } from '@Interface/NutrientsInterface.tsx';
 import FormHeader from '../FormHeader/FormHeader.tsx';
 import { StyledFormContainer, StyledFormContent } from './FormModule.style';
+import { FertilizerInterface } from '@Interface/FertilizerInterface.tsx';
 
 interface FormModuleProps {
   InputModule: InputModuleInterface;
   farmDetails: FarmDetailsInterface;
-  fertilizersDetails?: TempNutrientsInterface[];
+  fertilizersDetails?: FertilizerInterface[];
   updateFarmDetails(farmDetails: FarmDetailsInterface): void;
-  updateNutrientDetails(nutrientDetails: TempNutrientsInterface): void;
+  updateFertDetails(nutrientDetails: FertilizerInterface[]): void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
 }
 
@@ -44,7 +44,7 @@ const FormModule: FC<FormModuleProps> = ({
   fertilizersDetails,
   updateFarmDetails,
   handleFormState,
-  updateNutrientDetails,
+  updateFertDetails,
 }) => {
   const { InputModuleComponent } = InputModule;
 
@@ -59,7 +59,7 @@ const FormModule: FC<FormModuleProps> = ({
           <InputModuleComponent
             fertilizersDetails={fertilizersDetails || []}
             updateFarmDetails={updateFarmDetails}
-            updateNutrientDetails={updateNutrientDetails}
+            updateFertDetails={updateFertDetails}
             farmDetails={farmDetails}
             handleFormState={handleFormState}
           />
