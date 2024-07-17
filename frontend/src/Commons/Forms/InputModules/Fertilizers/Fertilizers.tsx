@@ -28,6 +28,7 @@ import StyledCustomNumberField from './Fertilizers.styles';
 import FertilizersListComponent from './FertilizersListComponent';
 
 const FertilizersInfo: React.FC<InputModuleProps> = ({
+  fertilizersDetails,
   handleFormState,
   updateNutrientDetails,
 }) => {
@@ -113,12 +114,12 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
   const addNewFertilizer = () => {
     setAddButtonClicked(true);
   };
-
+  console.log(fertilizersDetails.length);
   return (
     <>
-      {isSubmitted && (
+      {(fertilizersDetails.length > 0)  && (
         <>
-          <FertilizersListComponent nutrientDetails={nutrientsInfo} />
+          <FertilizersListComponent nutrientDetails={fertilizersDetails} />
           {!isAddButtonClicked && (
             <FertilizersButtonComponent
               submitNutrientDetails={submitNutrientData}
@@ -128,7 +129,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
           )}
         </>
       )}
-      {(isAddButtonClicked || !isSubmitted) && (
+      {(isAddButtonClicked) && (
         <Formik
           initialValues={initialFieldValues}
           validationSchema={validationSchema}

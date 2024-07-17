@@ -32,6 +32,7 @@ import { StyledFormContainer, StyledFormContent } from './FormModule.style';
 interface FormModuleProps {
   InputModule: InputModuleInterface;
   farmDetails: FarmDetailsInterface;
+  fertilizersDetails?: TempNutrientsInterface[];
   updateFarmDetails(farmDetails: FarmDetailsInterface): void;
   updateNutrientDetails(nutrientDetails: TempNutrientsInterface): void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
@@ -40,6 +41,7 @@ interface FormModuleProps {
 const FormModule: FC<FormModuleProps> = ({
   InputModule,
   farmDetails,
+  fertilizersDetails,
   updateFarmDetails,
   handleFormState,
   updateNutrientDetails,
@@ -55,6 +57,7 @@ const FormModule: FC<FormModuleProps> = ({
       {InputModule.enable && (
         <StyledFormContent>
           <InputModuleComponent
+            fertilizersDetails={fertilizersDetails || []}
             updateFarmDetails={updateFarmDetails}
             updateNutrientDetails={updateNutrientDetails}
             farmDetails={farmDetails}

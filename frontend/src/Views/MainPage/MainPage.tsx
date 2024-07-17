@@ -75,7 +75,7 @@ const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterfac
 const MainPage: FC = () => {
   const localStorageDetails = getLocalDetails();
   const [farmDetails, setFarmDetails] = useState(loadFarmDetails(initialFarmDetails));
-  const [, setNutrientDetails] = useState(tempNutrientsStorage);
+  const [nutrientDetails, setNutrientDetails] = useState(tempNutrientsStorage);
   const [localDetails, setLocalDetails] = useState(localStorageDetails);
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
@@ -207,6 +207,7 @@ const MainPage: FC = () => {
               <FormModule
                 InputModule={InputModule}
                 farmDetails={farmDetails}
+                fertilizersDetails={nutrientDetails}
                 updateFarmDetails={updateFarmDetails}
                 updateNutrientDetails={updateNutrientDetails}
                 handleFormState={handleFormState}
