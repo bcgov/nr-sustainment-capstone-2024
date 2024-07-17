@@ -22,10 +22,10 @@ import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import Button from '@Commons/Button/Button';
 import ComponentText from '@Constants/ComponentText';
 import CustomField from '@Commons/Input/Field/CustomField';
+import { FertilizerInterface } from '@Interface/FertilizerInterface';
 import FertilizersButtonComponent from './FertilizersButtonComponent';
 import StyledCustomNumberField from './Fertilizers.styles';
 import FertilizersListComponent from './FertilizersListComponent';
-import { FertilizerInterface } from '@Interface/FertilizerInterface';
 
 const FertilizersInfo: React.FC<InputModuleProps> = ({
   fertilizersDetails,
@@ -106,7 +106,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
       liquidDensityUnitId: '',
     };
 
-    updateFertDetails && updateFertDetails([...fertilizersDetails, newFertilizer]);
+    if (updateFertDetails) updateFertDetails([...fertilizersDetails, newFertilizer]);
     setAddButtonClicked(false);
   };
 
@@ -117,9 +117,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
   return (
     <>
       {fertilizersDetails.length > 0 && (
-        <>
-          <FertilizersListComponent fertilizerDetails={fertilizersDetails} />
-        </>
+        <FertilizersListComponent fertilizerDetails={fertilizersDetails} />
       )}
 
       {!isAddButtonClicked && (

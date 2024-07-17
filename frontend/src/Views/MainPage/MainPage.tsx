@@ -17,8 +17,8 @@ import { ACTIVE, COMPLETED, WARNING } from '@Constants/ModuleStatus';
 import CmdOptions from '@Constants/CmdOptions';
 import Names from '@Constants/Names';
 import convertToNMP from '@Utils/convertToNMP';
-import { StyledMain, StyledMainContainer } from './MainPage.styles';
 import { FertilizerInterface } from '@Interface/FertilizerInterface';
+import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 // The sequence of sections to show up on the main page
 // This is the skeleton for the Berries workflow

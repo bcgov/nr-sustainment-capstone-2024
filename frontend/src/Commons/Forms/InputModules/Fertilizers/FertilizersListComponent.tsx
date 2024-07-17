@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FertilizerInterface } from '@Interface/FertilizerInterface';
 import {
   StyledFieldInfoList,
   StyledListContainer,
@@ -9,7 +10,6 @@ import {
   StyledCustomFertilizerGroup,
   StyledDivider,
 } from '../ListComponent.styles';
-import { FertilizerInterface } from '@Interface/FertilizerInterface';
 
 interface FertilizerProps {
   fertilizerDetails: FertilizerInterface[];

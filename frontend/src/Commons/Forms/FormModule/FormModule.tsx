@@ -25,9 +25,9 @@
 import { FC } from 'react';
 import InputModuleInterface from 'src/Interface/InputModuleinterface.tsx';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface.tsx';
+import { FertilizerInterface } from '@Interface/FertilizerInterface.tsx';
 import FormHeader from '../FormHeader/FormHeader.tsx';
 import { StyledFormContainer, StyledFormContent } from './FormModule.style';
-import { FertilizerInterface } from '@Interface/FertilizerInterface.tsx';
 
 interface FormModuleProps {
   InputModule: InputModuleInterface;

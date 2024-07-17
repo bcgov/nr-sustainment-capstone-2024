@@ -63,7 +63,7 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
             disabled={false}
             text={ComponentText.NEXT}
             handleClick={() => {
-              submitFertDetails && submitFertDetails();
+              if (submitFertDetails) submitFertDetails();
               handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
             }}
           />
@@ -72,4 +72,5 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
     </StyledAddCancelButtonContainer>
   </StyledButtonGroupContainer>
 );
+
 export default FertilizersButtonComponent;

@@ -1,4 +1,4 @@
-export interface FertilizerInterface {
+interface FertilizerInterface {
   id: number;
   fertilizerTypeId: string;
   fertilizerId: string;
@@ -15,4 +15,4 @@ export interface FertilizerInterface {
   liquidDensityUnitId: string;
 }
 
-export interface FertilizerInterface {}
+export default FertilizerInterface;
