@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { TempNutrientsInterface } from '@Interface/NutrientsInterface';
 import {
   StyledFieldInfoList,
   StyledListContainer,
@@ -10,24 +9,25 @@ import {
   StyledCustomFertilizerGroup,
   StyledDivider,
 } from '../ListComponent.styles';
+import { FertilizerInterface } from '@Interface/FertilizerInterface';
 
 interface FertilizerProps {
-  nutrientDetails: TempNutrientsInterface[];
+  fertilizerDetails: FertilizerInterface[];
 }
 
-const FertilizersListComponent: FC<FertilizerProps> = ({ nutrientDetails }) => {
-  const fieldCount = nutrientDetails.length;
+const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails }) => {
+  const fieldCount = fertilizerDetails.length;
   return (
     <StyledFieldInfoList>
-      {nutrientDetails.map((nutrient: TempNutrientsInterface) => (
+      {fertilizerDetails.map((nutrient: FertilizerInterface) => (
         <div key={nutrient.id}>
           <StyledListContainer formNutrients>
             <StyledListItem width="240px">
               <h2>Fertilizer Type</h2>
               <p>{nutrient.fertilizerTypeId}</p>
             </StyledListItem>
-            {nutrient.fertilizerTypeId.includes('Dry Fertilizer (Custom)') ||
-            nutrient.fertilizerTypeId.includes('Liquid Fertilizer (Custom)') ? (
+            {nutrient.fertilizerTypeId === 'Dry Fertilizer (Custom)' ||
+            nutrient.fertilizerTypeId === 'Liquid Fertilizer (Custom)' ? (
               <StyledCustomFertilizerGroup>
                 <StyledListItem width="40%">
                   <h2>N (%)</h2>
