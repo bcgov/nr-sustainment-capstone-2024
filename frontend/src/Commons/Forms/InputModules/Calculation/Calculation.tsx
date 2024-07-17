@@ -9,6 +9,8 @@ import { CALCULATION_INFORMATION } from '@Constants/ModuleIDs';
 import { NutrientsInterface } from '@Interface/NutrientsInterface';
 import { StyledFarmInfo } from '@Commons/FormStyles.styles';
 import StatusValidate from '@Utils/StatusValidate';
+import CustomSelect from '@Commons/Input/Select/CustomSelect';
+import OptionInterface from '@Interface/OptionInterface';
 
 const CalculationComponent: React.FC<InputModuleProps> = ({
   farmDetails,
@@ -55,6 +57,16 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
     });
   };
 
+  const fieldsOption: OptionInterface[] = farmDetails.Fields.map((field) => ({
+    value: field.FieldName,
+    label: field.FieldName,
+  }));
+  const handleFieldChange = (selectedOption: OptionInterface) => {
+    const selectedidx = fieldsOption.findIndex((option) => option.value === selectedOption.value);
+    console.log(selectedidx);
+    setFieldIndex(selectedidx);
+    setSelectedIndex(selectedidx);
+  };
   return (
     <Formik
       initialValues={initialValues}
@@ -66,7 +78,13 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
     >
       <Form>
         <StyledFarmInfo>
-          <h2>Hello</h2>
+          <CustomSelect
+            label="Field"
+            id="Field"
+            name="Field"
+            options={fieldsOption}
+            onChange={() => handleFieldChange}
+          />
         </StyledFarmInfo>
       </Form>
     </Formik>
