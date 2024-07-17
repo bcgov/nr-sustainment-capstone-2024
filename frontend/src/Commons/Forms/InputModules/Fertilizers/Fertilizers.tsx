@@ -36,7 +36,6 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
   const [isAddButtonClicked, setAddButtonClicked] = useState<boolean>(false);
   const [nutrientsInfo, setNutrientsInfo] = useState<TempNutrientsInterface[]>([]);
   const [nutrientIndex, setNutrientIndex] = useState(0);
-  const [isSubmitted, setSubmitted] = useState<boolean>(nutrientsInfo.length > 0);
   const validationSchema = Yup.object().shape({
     fertilizerTypeId: Yup.string().required('Required'),
     fertilizerId: Yup.string().when('fertlizerTypeId', (fertilizerTypeId) =>
@@ -101,7 +100,6 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
       setNutrientsInfo((prevNutrients) => [...prevNutrients, nutrientinfo]);
       setNutrientIndex((prevIndex) => prevIndex + 1);
       setAddButtonClicked(false);
-      setSubmitted(true);
     });
   };
   const submitNutrientData = () => {
@@ -117,7 +115,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
   console.log(fertilizersDetails.length);
   return (
     <>
-      {(fertilizersDetails.length > 0)  && (
+      {fertilizersDetails.length > 0 && (
         <>
           <FertilizersListComponent nutrientDetails={fertilizersDetails} />
           {!isAddButtonClicked && (
@@ -129,7 +127,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
           )}
         </>
       )}
-      {(isAddButtonClicked) && (
+      {isAddButtonClicked && (
         <Formik
           initialValues={initialFieldValues}
           validationSchema={validationSchema}
