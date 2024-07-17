@@ -3,7 +3,7 @@
  * @author @GDamaso
  */
 import { Field, ErrorMessage } from 'formik';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import OptionInterface from 'src/Interface/OptionInterface';
 import StyledSelect from './CustomSelect.style';
 import '../ErrorMessage.css';
@@ -16,13 +16,7 @@ interface CustomSelectProps {
   width?: string;
 }
 
-const CustomSelect: FC<CustomSelectProps> = ({
-  name,
-  id,
-  label,
-  width = '100%',
-  options,
-}) => (
+const CustomSelect: FC<CustomSelectProps> = ({ name, id, label, width = '100%', options }) => (
   <StyledSelect width={width}>
     <label htmlFor={id}>{label}</label>
     <Field
