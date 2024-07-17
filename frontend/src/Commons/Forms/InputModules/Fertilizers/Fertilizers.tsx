@@ -6,7 +6,6 @@ import InputModuleProps from '@Interface/InputModuleProps';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
-import { TempNutrientsInterface } from '@Interface/NutrientsInterface';
 import { StyledFarmInfo } from '@Commons/FormStyles.styles';
 import {
   StyledAddCancelButtonContainer,
@@ -26,113 +25,116 @@ import CustomField from '@Commons/Input/Field/CustomField';
 import FertilizersButtonComponent from './FertilizersButtonComponent';
 import StyledCustomNumberField from './Fertilizers.styles';
 import FertilizersListComponent from './FertilizersListComponent';
+import { FertilizerInterface } from '@Interface/FertilizerInterface';
 
 const FertilizersInfo: React.FC<InputModuleProps> = ({
   fertilizersDetails,
   handleFormState,
-  updateNutrientDetails,
+  updateFertDetails,
 }) => {
   const initialFieldValues = initialFarmDetails.Fields[0].Nutrients[0];
   const [isAddButtonClicked, setAddButtonClicked] = useState<boolean>(false);
-  const [nutrientsInfo, setNutrientsInfo] = useState<TempNutrientsInterface[]>([]);
-  const [nutrientIndex, setNutrientIndex] = useState(0);
+
   const validationSchema = Yup.object().shape({
     fertilizerTypeId: Yup.string().required('Required'),
-    fertilizerId: Yup.string().when('fertlizerTypeId', (fertilizerTypeId) =>
+    fertilizerId: Yup.string().when('fertilizerTypeId', (fertilizerTypeId) =>
       fertilizerTypeId.toString() === 'Dry Fertilizer' ||
       fertilizerTypeId.toString() === 'Liquid Fertilizer'
         ? Yup.string().required('Required')
         : Yup.string().notRequired(),
     ),
-    customN: Yup.number().when('fertlizerTypeId', (fertilizerTypeId) =>
+    customN: Yup.number().when('fertilizerTypeId', (fertilizerTypeId) =>
       fertilizerTypeId.toString() === 'Dry Fertilizer (Custom)' ||
       fertilizerTypeId.toString() === 'Liquid Fertilizer (Custom)'
         ? Yup.number().min(0).max(25).required()
         : Yup.number().notRequired(),
     ),
-    customP2o5: Yup.number().when('fertlizerTypeId', (fertilizerTypeId) =>
+    customP2o5: Yup.number().when('fertilizerTypeId', (fertilizerTypeId) =>
       fertilizerTypeId.toString() === 'Dry Fertilizer (Custom)' ||
       fertilizerTypeId.toString() === 'Liquid Fertilizer (Custom)'
         ? Yup.number().min(0).max(25).required()
         : Yup.number().notRequired(),
     ),
-    customK2o: Yup.number().when('fertlizerTypeId', (fertilizerTypeId) =>
+    customK2o: Yup.number().when('fertilizerTypeId', (fertilizerTypeId) =>
       fertilizerTypeId.toString() === 'Dry Fertilizer (Custom)' ||
       fertilizerTypeId.toString() === 'Liquid Fertilizer (Custom)'
         ? Yup.number().min(0).max(25).required()
         : Yup.number().notRequired(),
     ),
   });
-  const addNutrientsData = (values: TempNutrientsInterface): void => {
+
+  const addFert = (values: FertilizerInterface): void => {
     // Will be changed on enhancements.
     let fertNValue = 0;
     let fertP2o5Value = 0;
     let fertK20Value = 0;
-    if (values.fertilizerId.includes('Urea (46-0-0)')) {
-      fertNValue = 46;
-    } else if (values.fertilizerId.includes('15-15-17')) {
-      fertNValue = 15;
-      fertP2o5Value = 15;
-      fertK20Value = 17;
-    } else if (values.fertilizerId.includes('Ammonium polyphosphate (10-34-0)')) {
-      fertNValue = 10;
-      fertP2o5Value = 34;
-    } else if (values.fertilizerId.includes('Liquid urea (23-0-0)')) {
-      fertNValue = 23;
+
+    switch (values.fertilizerId) {
+      case 'Urea (46-0-0)':
+        fertNValue = 46;
+        break;
+      case '15-15-17':
+        fertNValue = 15;
+        fertP2o5Value = 15;
+        fertK20Value = 17;
+        break;
+      case 'Ammonium polyphosphate (10-34-0)':
+        fertNValue = 10;
+        fertP2o5Value = 34;
+        break;
+      case 'Liquid urea (23-0-0)':
+        fertNValue = 23;
+        break;
+      default:
+        break;
     }
-    setTimeout(() => {
-      const nutrientinfo: TempNutrientsInterface = {
-        id: nutrientIndex,
-        fertilizerTypeId: values.fertilizerTypeId,
-        fertilizerId: values.fertilizerId,
-        applRate: values.applRate,
-        applDate: '',
-        applMethodId: '',
-        customN: values.customN,
-        customP2o5: values.customP2o5,
-        customK2o: values.customK2o,
-        fertN: fertNValue,
-        fertP2o5: fertP2o5Value,
-        fertK2o: fertK20Value,
-        liquidDensity: 0,
-        liquidDensityUnitId: '',
-      };
-      setNutrientsInfo((prevNutrients) => [...prevNutrients, nutrientinfo]);
-      setNutrientIndex((prevIndex) => prevIndex + 1);
-      setAddButtonClicked(false);
-    });
+
+    const newFertilizer: FertilizerInterface = {
+      id: fertilizersDetails.length,
+      fertilizerTypeId: values.fertilizerTypeId,
+      fertilizerId: values.fertilizerId,
+      applRate: values.applRate,
+      applDate: '',
+      applMethodId: '',
+      customN: values.customN,
+      customP2o5: values.customP2o5,
+      customK2o: values.customK2o,
+      fertN: fertNValue,
+      fertP2o5: fertP2o5Value,
+      fertK2o: fertK20Value,
+      liquidDensity: 0,
+      liquidDensityUnitId: '',
+    };
+
+    updateFertDetails && updateFertDetails([...fertilizersDetails, newFertilizer]);
+    setAddButtonClicked(false);
   };
-  const submitNutrientData = () => {
-    nutrientsInfo.forEach((nutrient) => {
-      if (updateNutrientDetails) {
-        updateNutrientDetails(nutrient);
-      }
-    });
-  };
+
   const addNewFertilizer = () => {
     setAddButtonClicked(true);
   };
-  console.log(fertilizersDetails.length);
+
   return (
     <>
       {fertilizersDetails.length > 0 && (
         <>
-          <FertilizersListComponent nutrientDetails={fertilizersDetails} />
-          {!isAddButtonClicked && (
-            <FertilizersButtonComponent
-              submitNutrientDetails={submitNutrientData}
-              addNewFertilizer={addNewFertilizer}
-              handleFormState={handleFormState}
-            />
-          )}
+          <FertilizersListComponent fertilizerDetails={fertilizersDetails} />
         </>
       )}
+
+      {!isAddButtonClicked && (
+        <FertilizersButtonComponent
+          addNewFertilizer={addNewFertilizer}
+          handleFormState={handleFormState}
+        />
+      )}
+
       {isAddButtonClicked && (
         <Formik
           initialValues={initialFieldValues}
           validationSchema={validationSchema}
           onSubmit={(values) => {
-            addNutrientsData(values);
+            addFert(values);
           }}
         >
           {({ values }) => (
