@@ -53,7 +53,7 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ nutrientDetails }) => {
               <FontAwesomeIcon icon={faTrash} />
             </StyledFontAwesomeContainer>
           </StyledListContainer>
-          {fieldCount > 1 && <StyledDivider/>}
+          {fieldCount > 1 && <StyledDivider />}
         </div>
       ))}
     </StyledFieldInfoList>
