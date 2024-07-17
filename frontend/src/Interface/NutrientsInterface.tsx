@@ -2,6 +2,7 @@ export interface NutrientsInterface {
   id: number;
   fertilizerTypeId: string;
   fertilizerId: string;
+  applUnitId: string;
   applRate: number;
   applDate?: string;
   applMethodId?: string;

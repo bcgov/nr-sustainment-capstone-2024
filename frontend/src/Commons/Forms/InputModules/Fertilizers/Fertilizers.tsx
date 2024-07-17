@@ -84,6 +84,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
         fertilizerTypeId: values.fertilizerTypeId,
         fertilizerId: values.fertilizerId,
         applRate: values.applRate,
+        applUnitId: '',
         applDate: '',
         applMethodId: '',
         customN: values.customN,

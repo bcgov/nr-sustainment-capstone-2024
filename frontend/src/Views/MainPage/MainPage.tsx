@@ -29,7 +29,7 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
   InputModules.FieldsAndSoil,
   InputModules.Crops,
   InputModules.Fertilizers,
-  InputModules.Summary,
+  InputModules.Calculation,
 ];
 
 const getLocalDetails = () => {
@@ -209,6 +209,7 @@ const MainPage: FC = () => {
               <FormModule
                 InputModule={InputModule}
                 farmDetails={farmDetails}
+                fertilizersDetails={nutrientDetails}
                 updateFarmDetails={updateFarmDetails}
                 updateNutrientDetails={updateNutrientDetails}
                 handleFormState={handleFormState}

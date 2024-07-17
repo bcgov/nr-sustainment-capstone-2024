@@ -15,6 +15,7 @@ const tempNutrientsStorage: TempNutrientsInterface[] = [
     applRate: 0,
     applDate: '',
     applMethodId: '',
+    applUnitId: '',
     customN: 0,
     customP2o5: 0,
     customK2o: 0,
