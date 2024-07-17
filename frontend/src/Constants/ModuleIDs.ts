@@ -4,4 +4,9 @@ export const CROPS_INFORMATION = 'Crops';
 export const FERTILIZERS_INFORMATION = 'Fertilizers';
 export const SUMMARY = 'Summary';
 
-export default { FARM_INFORMATION, FIELDS_AND_SOIL, CROPS_INFORMATION, SUMMARY };
+export default {
+  FARM_INFORMATION,
+  FIELDS_AND_SOIL,
+  CROPS_INFORMATION,
+  SUMMARY,
+};

@@ -69,30 +69,32 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     HasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
     SoilTest: Yup.object().when('HasSoilTest', {
       is: true,
-      then: (object) => object
-        .shape({
-          TestingMethod: Yup.string().when('HasSoilTest', {
-            is: true,
-            then: (schema) => schema.required(),
-            otherwise: (schema) => schema.notRequired(),
-          }),
-          sampleDate: Yup.string().required(),
-          valNO3H: Yup.number().min(0).max(7).required(),
-          ValP: Yup.number().min(0).max(7).required(),
-          valK: Yup.number().min(0).max(7).required(),
-          valPH: Yup.number().min(0).max(7).required(),
-        })
-        .required(),
+      then: (object) =>
+        object
+          .shape({
+            TestingMethod: Yup.string().when('HasSoilTest', {
+              is: true,
+              then: (schema) => schema.required(),
+              otherwise: (schema) => schema.notRequired(),
+            }),
+            sampleDate: Yup.string().required(),
+            valNO3H: Yup.number().min(0).max(7).required(),
+            ValP: Yup.number().min(0).max(7).required(),
+            valK: Yup.number().min(0).max(7).required(),
+            valPH: Yup.number().min(0).max(7).required(),
+          })
+          .required(),
       otherwise: (schema) => schema.notRequired(),
     }),
     LeafTest: Yup.object().when('HasLeafTest', {
       is: true,
-      then: (schema) => schema
-        .shape({
-          leafTissueP: Yup.number().min(0).max(7).required(),
-          leafTissueK: Yup.number().min(0).max(7).required(),
-        })
-        .required(),
+      then: (schema) =>
+        schema
+          .shape({
+            leafTissueP: Yup.number().min(0).max(7).required(),
+            leafTissueK: Yup.number().min(0).max(7).required(),
+          })
+          .required(),
       otherwise: (schema) => schema.notRequired(),
     }),
   });

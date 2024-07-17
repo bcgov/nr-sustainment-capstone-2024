@@ -10,42 +10,11 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime', // Include this for new JSX Transform
+    'prettier',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  overrides: [
-    {
-      files: ['*.ts', '*.tsx'],
-      rules: {
-        'react/jsx-filename-extension': ['error', { extensions: ['.tsx'] }],
-        'react/react-in-jsx-scope': 'off',
-        'react/jsx-uses-react': 'off',
-        'import/no-unresolved': 'off',
-        'import/no-absolute-path': 'off',
-        'import/no-undef': 'off',
-        'object-curly-newline': 'off',
-        'no-console': 'off',
-        'react/require-default-props': 'off',
-        'no-nested-ternary': 'off',
-        'arrow-parens': ['error', 'always'], // Ensure parentheses around arrow function arguments
-        'react/require-default-props': 'off',
-        'no-nested-ternary': 'off',
-        'no-unused-vars': 'off',
-        // Stop throwing errors Formik's custom fields
-        'jsx-a11y/label-has-associated-control': [
-          2,
-          {
-            labelComponents: ['CustomInputLabel'],
-            labelAttributes: ['label'],
-            controlComponents: ['CustomInput'],
-            depth: 3,
-          },
-        ],
-        '@typescript-eslint/no-unused-vars': 'error',
-      },
-    },
-  ],
-  plugins: ['react-refresh', '@typescript-eslint', 'react'],
+  plugins: ['react-refresh', '@typescript-eslint', 'react', 'prettier'],
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'react/function-component-definition': [
@@ -65,6 +34,7 @@ module.exports = {
         tsx: 'always',
       },
     ],
+    'prettier/prettier': 'error',
   },
   settings: {
     react: {
@@ -76,4 +46,33 @@ module.exports = {
       },
     },
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'react/jsx-filename-extension': ['error', { extensions: ['.tsx'] }],
+        'react/react-in-jsx-scope': 'off',
+        'react/jsx-uses-react': 'off',
+        'import/no-unresolved': 'off',
+        'import/no-absolute-path': 'off',
+        'import/no-undef': 'off',
+        'object-curly-newline': 'off',
+        'no-console': 'off',
+        'react/require-default-props': 'off',
+        'no-nested-ternary': 'off',
+        'arrow-parens': ['error', 'always'], // Ensure parentheses around arrow function arguments
+        'no-unused-vars': 'off',
+        'jsx-a11y/label-has-associated-control': [
+          2,
+          {
+            labelComponents: ['CustomInputLabel'],
+            labelAttributes: ['label'],
+            controlComponents: ['CustomInput'],
+            depth: 3,
+          },
+        ],
+        '@typescript-eslint/no-unused-vars': 'error',
+      },
+    },
+  ],
 };
