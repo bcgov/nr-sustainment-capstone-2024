@@ -151,7 +151,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
                 </StyledSmallFormGroup>
               </StyledLeftView>
             </StyledGroupFormView>
-            {/* <StyledAddCancelButtonContainer>
+            <StyledAddCancelButtonContainer>
               <SecondaryButton>
                 <StyledButtonContainer>
                   <Button
@@ -173,7 +173,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
                   />
                 </StyledButtonContainer>
               </PrimaryButton>
-            </StyledAddCancelButtonContainer> */}
+            </StyledAddCancelButtonContainer>
           </StyledFieldContainer>
         </Form>
       )}

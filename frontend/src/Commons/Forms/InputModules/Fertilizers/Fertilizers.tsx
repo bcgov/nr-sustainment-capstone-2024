@@ -23,9 +23,9 @@ import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import Button from '@Commons/Button/Button';
 import ComponentText from '@Constants/ComponentText';
 import CustomField from '@Commons/Input/Field/CustomField';
+import handleChange from '@Utils/handleChange';
 import FertilizersButtonComponent from './FertilizersButtonComponent';
 import StyledCustomNumberField from './Fertilizers.styles';
-import handleChange from '@Utils/handleChange';
 
 const FertilizersInfo: React.FC<InputModuleProps> = ({
   handleFormState,
