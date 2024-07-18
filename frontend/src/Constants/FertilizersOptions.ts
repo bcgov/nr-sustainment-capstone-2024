@@ -40,4 +40,43 @@ const LiquidFertilizerOptions: OptionInterface[] = [
   },
 ];
 
-export { FertilizerTypeOptions, DryFertilizerOptions, LiquidFertilizerOptions };
+const DryApplicationUnits: OptionInterface[] = [
+  {
+    value: 'lb/ac',
+    label: 'lb/ac',
+  },
+  {
+    value: 'kg/ha',
+    label: 'kg/ha',
+  },
+  {
+    value: 'lb/1000ft2',
+    label: 'lb/1000ft2',
+  },
+];
+
+const LiquidApplicationUnits: OptionInterface[] = [
+  {
+    value: 'L/ac',
+    label: 'L/ac',
+  },
+  {
+    value: 'imp. gallons/ac',
+    label: 'imp. gallons/ac',
+  },
+  {
+    value: 'US gallons/ac',
+    label: 'US gallons/ac',
+  },
+  {
+    value: 'L/ha',
+    label: 'L/ha',
+  },
+];
+export {
+  FertilizerTypeOptions,
+  DryFertilizerOptions,
+  LiquidFertilizerOptions,
+  DryApplicationUnits,
+  LiquidApplicationUnits,
+};

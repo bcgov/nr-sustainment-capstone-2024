@@ -16,4 +16,6 @@ export interface NutrientsInterface {
   liquidDensityUnitId: string;
 }
 // temporarily stored until it gets assigned to field
-export interface TempNutrientsInterface extends NutrientsInterface {}
+export interface TempNutrientsInterface extends NutrientsInterface {
+  FieldName?: string;
+}

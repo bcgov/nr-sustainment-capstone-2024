@@ -14,6 +14,7 @@ import Button from '@Commons/Button/Button';
 import FieldDetailInterface from 'src/Interface/FieldDetailsInterface';
 import { CROPS_INFORMATION } from '@Constants/ModuleIDs';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
+import handleChange from '@Utils/handleChange';
 import {
   CropIDOptions,
   PlantAgeOptions,
@@ -177,7 +178,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
               StatusValidate(validationSchema, values, handleFormState, CROPS_INFORMATION);
             }}
           >
-            {({ values }) =>
+            {({ values, setFieldValue }) =>
               hasFieldBeenSelected[index] && (
                 <Form>
                   <StyledFarmInfo>
@@ -188,6 +189,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         label="Crop"
                         options={CropIDOptions}
                         width="40%"
+                        onChange={(e) => handleChange(e, setFieldValue)}
                       />
                       <StyledAreaContainer formCrops>
                         <CustomField
@@ -209,6 +211,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             label="Plant age (Years)"
                             options={PlantAgeOptions}
                             width="40%"
+                            onChange={(e) => handleChange(e, setFieldValue)}
                           />
                           <CustomSelect
                             name="numberOfPlantsPerAcre"
@@ -216,6 +219,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             label="Plants per acre"
                             options={PlantsPerAcre}
                             width="40%"
+                            onChange={(e) => handleChange(e, setFieldValue)}
                           />
                         </StyledCropsSmallGroup>
                         <StyledCropsLargeGroup>
@@ -225,6 +229,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             label="Distance between plants"
                             options={DistanceBtwnPlants}
                             width="40%"
+                            onChange={(e) => handleChange(e, setFieldValue)}
                           />
                           <CustomSelect
                             name="distanceBtwnRows"
@@ -232,6 +237,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             label="Distance between rows"
                             options={DistanceBtwnRows}
                             width="40%"
+                            onChange={(e) => handleChange(e, setFieldValue)}
                           />
                         </StyledCropsLargeGroup>
                       </>
@@ -243,6 +249,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         label="Will plants be pruned?"
                         options={YesOrNo}
                         width="40%"
+                        onChange={(e) => handleChange(e, setFieldValue)}
                       />
                       <CustomSelect
                         name="whereWillPruningsGo"
@@ -250,6 +257,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         label="Where will prunings go?"
                         options={WherePruningsGo}
                         width="40%"
+                        onChange={(e) => handleChange(e, setFieldValue)}
                       />
                     </StyledCropsLargeGroup>
                     <StyledCropsLargeGroup>
@@ -259,6 +267,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         label="Is sawdust or wood mulch applied within 6 months prior to the growing season?"
                         options={YesOrNo}
                         width="75%"
+                        onChange={(e) => handleChange(e, setFieldValue)}
                       />
                     </StyledCropsLargeGroup>
                     <StyledButtonGroupContainer>

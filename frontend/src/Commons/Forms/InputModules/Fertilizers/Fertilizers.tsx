@@ -25,6 +25,7 @@ import ComponentText from '@Constants/ComponentText';
 import CustomField from '@Commons/Input/Field/CustomField';
 import FertilizersButtonComponent from './FertilizersButtonComponent';
 import StyledCustomNumberField from './Fertilizers.styles';
+import handleChange from '@Utils/handleChange';
 
 const FertilizersInfo: React.FC<InputModuleProps> = ({
   handleFormState,
@@ -126,7 +127,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
         addNutrientsData(values);
       }}
     >
-      {({ values }) => (
+      {({ values, setFieldValue }) => (
         <Form>
           <StyledFarmInfo formNutrients>
             <div id="inputContainer">
@@ -136,6 +137,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
                 label="Fertilizer Type"
                 options={FertilizerTypeOptions}
                 width="40%"
+                onChange={(e) => handleChange(e, setFieldValue)}
               />
               {values.fertilizerTypeId.includes('Dry Fertilizer (Custom)') ||
               values.fertilizerTypeId.includes('Liquid Fertilizer (Custom)') ? (
@@ -175,6 +177,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
                         : []
                   }
                   width="40%"
+                  onChange={(e) => handleChange(e, setFieldValue)}
                 />
               )}
             </div>
