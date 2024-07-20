@@ -82,7 +82,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
   const submitCalculationData = (values: FertilizerInterface): void => {
     const fertilizer: FertilizerInterface[] = { ...fertilizersDetails };
     const updateFertilizer: FertilizerInterface = {
-      id: fertilizerIndex,
+      id: fertilizerIndex[selectedFieldIndex],
       fertilizerTypeId: fertilizer[selectedIndex].fertilizerTypeId,
       fertilizerId: fertilizer[selectedIndex].fertilizerId,
       applUnitId: values.applUnitId,
