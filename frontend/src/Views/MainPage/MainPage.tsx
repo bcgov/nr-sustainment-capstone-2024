@@ -17,8 +17,7 @@ import { ACTIVE, COMPLETED, WARNING } from '@Constants/ModuleStatus';
 import CmdOptions from '@Constants/CmdOptions';
 import Names from '@Constants/Names';
 import convertToNMP from '@Utils/convertToNMP';
-import tempNutrientsStorage from '@Constants/TempNutrientsStorage';
-import { TempNutrientsInterface } from '@Interface/NutrientsInterface';
+import FertilizerInterface from '@Interface/FertilizerInterface';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 // The sequence of sections to show up on the main page
@@ -72,14 +71,15 @@ const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterfac
   return updateFarmDetails;
 };
 
+const fertilizersDetails: FertilizerInterface[] = [];
+
 const MainPage: FC = () => {
   const localStorageDetails = getLocalDetails();
   const [farmDetails, setFarmDetails] = useState(loadFarmDetails(initialFarmDetails));
-  const [nutrientDetails, setNutrientDetails] = useState(tempNutrientsStorage);
+  const [nutrientDetails, setNutrientDetails] = useState<FertilizerInterface[]>(fertilizersDetails);
   const [localDetails, setLocalDetails] = useState(localStorageDetails);
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
-  let nutrientsSliceFirstUpdate: boolean = false;
   /**
    * @desc    Take our apps main data object and save it to a template .nmp file,
    *          saved in the users localStorage.
@@ -181,6 +181,7 @@ const MainPage: FC = () => {
     updateLocalDetails(newDetails);
     handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
   };
+
   /**
    * @summary   Handler for updating the Nutrients Data of the Calculator.
    * @desc      This updates the temporaryStorage for nutrient data before it gets assigned
@@ -188,14 +189,10 @@ const MainPage: FC = () => {
    * @param     newNutrients => A new 'TempNutrientInterface' object with new data from
    *            from the nutrient module.
    * */
-  const updateNutrientDetails = (newNutrients: TempNutrientsInterface): void => {
-    if (!nutrientsSliceFirstUpdate) {
-      nutrientsSliceFirstUpdate = true;
-      setNutrientDetails((prevDetails) => [...prevDetails.slice(1), newNutrients]);
-    } else {
-      setNutrientDetails((prevDetails) => [...prevDetails, newNutrients]);
-    }
+  const updateFertDetails = (newFerts: FertilizerInterface[]): void => {
+    setNutrientDetails(newFerts);
   };
+
   return (
     <StyledMain>
       <MainPageHeader />
@@ -209,7 +206,7 @@ const MainPage: FC = () => {
                 farmDetails={farmDetails}
                 fertilizersDetails={nutrientDetails}
                 updateFarmDetails={updateFarmDetails}
-                updateNutrientDetails={updateNutrientDetails}
+                updateFertDetails={updateFertDetails}
                 handleFormState={handleFormState}
                 key={InputModule.id}
               />

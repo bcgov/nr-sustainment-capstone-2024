@@ -1,8 +1,7 @@
-export interface NutrientsInterface {
+interface FertilizerInterface {
   id: number;
   fertilizerTypeId: string;
   fertilizerId: string;
-  applUnitId: string;
   applRate: number;
   applDate?: string;
   applMethodId?: string;
@@ -15,7 +14,5 @@ export interface NutrientsInterface {
   liquidDensity: number;
   liquidDensityUnitId: string;
 }
-// temporarily stored until it gets assigned to field
-export interface TempNutrientsInterface extends NutrientsInterface {
-  FieldName?: string;
-}
+
+export default FertilizerInterface;

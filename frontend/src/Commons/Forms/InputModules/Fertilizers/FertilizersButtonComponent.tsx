@@ -17,14 +17,14 @@ import {
 
 type ButtonComponentProps = {
   addNewFertilizer: () => void;
-  submitNutrientDetails: () => void;
+  submitFertDetails?: () => void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
 };
 
 const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
   addNewFertilizer,
   handleFormState,
-  submitNutrientDetails,
+  submitFertDetails,
 }) => (
   <StyledButtonGroupContainer>
     <StyledNewFieldButtonContainer>
@@ -63,7 +63,7 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
             disabled={false}
             text={ComponentText.NEXT}
             handleClick={() => {
-              submitNutrientDetails();
+              if (submitFertDetails) submitFertDetails();
               handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
             }}
           />
@@ -72,4 +72,5 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
     </StyledAddCancelButtonContainer>
   </StyledButtonGroupContainer>
 );
+
 export default FertilizersButtonComponent;
