@@ -1,6 +1,6 @@
 import { CropsDetailsInterface } from './CropsDetailsInterface';
 import LeafTestInterface from './LeafTestInterface';
-import { NutrientsInterface } from './NutrientsInterface';
+import FertilizerInterface from './FertilizerInterface';
 import SoilTestInterface from './SoilTestInterface';
 
 /**
@@ -16,7 +16,7 @@ interface FieldDetailInterface {
   Comment?: string | undefined;
   HasSoilTest?: boolean;
   HasLeafTest?: boolean;
-  Nutrients: NutrientsInterface[];
+  Nutrients: FertilizerInterface[];
   SoilTest: SoilTestInterface;
   LeafTest: LeafTestInterface;
   Crops: CropsDetailsInterface[];

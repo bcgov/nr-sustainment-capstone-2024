@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import InputModuleProps from '@Interface/InputModuleProps';
 import { CALCULATION_INFORMATION } from '@Constants/ModuleIDs';
-import { NutrientsInterface, TempNutrientsInterface } from '@Interface/NutrientsInterface';
+import FertilizerInterface from '@Interface/NutrientsInterface';
 
 import StatusValidate from '@Utils/StatusValidate';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
@@ -42,7 +42,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
   const [fertilizerIndex, setFertilizerIndex] = useState<number>(0);
   const [selectedFieldIndex, setFieldIndex] = useState(farmDetails.Fields.length);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const initialValues: TempNutrientsInterface = initialFarmDetails.Fields[0].Nutrients[0];
+  const initialValues: FertilizerInterface = initialFarmDetails.Fields[0].Nutrients[0];
   // For calculation, it will be done next ticket. Change const into let
   const NCalc = 0;
   const P2O5Calc = 0;
@@ -76,9 +76,9 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
    * @param values  uses the interface @TempNutrientsInterface it holds the data that
    *              has been entered in the input fields.
    */
-  const submitCalculationData = (values: TempNutrientsInterface): void => {
-    const fertilizer: NutrientsInterface[] = { ...fertilizersDetails };
-    const updateFertilizer: NutrientsInterface = {
+  const submitCalculationData = (values: FertilizerInterface): void => {
+    const fertilizer: FertilizerInterface[] = { ...fertilizersDetails };
+    const updateFertilizer: FertilizerInterface = {
       id: fertilizerIndex,
       fertilizerTypeId: fertilizer[selectedIndex].fertilizerTypeId,
       fertilizerId: fertilizer[selectedIndex].fertilizerId,
