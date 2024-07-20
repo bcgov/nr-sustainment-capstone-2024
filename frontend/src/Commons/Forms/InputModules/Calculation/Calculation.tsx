@@ -13,21 +13,24 @@ import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import OptionInterface from '@Interface/OptionInterface';
 import Button from '@Commons/Button/Button';
 import ComponentText from '@Constants/ComponentText';
-import {
-  StyledAddCancelButtonContainer,
-  StyledButtonContainer,
-  PrimaryButton,
-  SecondaryButton,
-} from '@Commons/Button/FieldButtonGroup.styles';
+import { StyledButtonContainer } from '@Commons/Button/FieldButtonGroup.styles';
 import handleChange from '@Utils/handleChange';
-import { DryApplicationUnits, LiquidApplicationUnits } from '@Constants/FertilizersOptions';
+import {
+  DryApplicationUnits,
+  LiquidApplicationUnits,
+  ApplicationMethod,
+  DensityUnits,
+} from '@Constants/FertilizersOptions';
 import CustomField from '@Commons/Input/Field/CustomField';
 import {
   StyledFieldContainer,
   StyledFieldSelect,
   StyledGroupFormView,
   StyledLeftView,
+  StyledRightView,
   StyledSmallFormGroup,
+  RightListGroup,
+  RightListItem,
 } from './Calculation.styles';
 
 const CalculationComponent: React.FC<InputModuleProps> = ({
@@ -39,7 +42,10 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
   const [fieldIndex, setFieldIndex] = useState(farmDetails.Fields.length);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const initialValues: TempNutrientsInterface = initialFarmDetails.Fields[0].Nutrients[0];
-
+  // For calculation, it will be done next ticket. Change const into let
+  const NCalc = 0;
+  const P2O5Calc = 0;
+  const K2OCalc = 0;
   const fieldsOption: OptionInterface[] = farmDetails.Fields.map((field) => ({
     value: field.FieldName,
     label: field.FieldName,
@@ -49,13 +55,20 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
     value: fertilizer.fertilizerId,
     label: fertilizer.fertilizerId,
   }));
-
+  const isLiquid = fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid');
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().required('Required'),
     fertilizerId: Yup.string().required('Required'),
     applRate: Yup.number().positive().required('Required'),
-    // applUnitId: Yup.string().required('Required'),
-    // remaining are optional for now. Build it after running
+    applUnitId: Yup.string().required('Required'),
+    liquidDensity: Yup.number().when([], () =>
+      isLiquid
+        ? Yup.number().required('Required').positive('Liquid density must be a positive number')
+        : Yup.number().notRequired(),
+    ),
+    liquidDensityUnitId: Yup.string().when([], () =>
+      isLiquid ? Yup.string().required('Required') : Yup.string().notRequired(),
+    ),
   });
 
   const submitCalculationData = (values: TempNutrientsInterface): void => {
@@ -85,6 +98,13 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
       updateFarmDetails(farmDetails);
     });
   };
+  const handleFieldChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+    setFieldValue: Function,
+  ) => {
+    setFieldValue(event.target.name, event.target.value);
+    setFieldIndex(fieldsOption.findIndex((option) => option.value === event.target.value));
+  };
   const handleFertilizerChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
     setFieldValue: Function,
@@ -110,8 +130,9 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
                 id="FieldName"
                 name="FieldName"
                 options={fieldsOption}
-                width="40%"
-                onChange={(e) => handleChange(e, setFieldValue)}
+                width="100%"
+                formCalc
+                onChange={(e) => handleFieldChange(e, setFieldValue)}
               />
             </StyledFieldSelect>
             <StyledGroupFormView>
@@ -122,6 +143,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
                   name="fertilizerId"
                   options={fertilizerOption}
                   width="100%"
+                  formCalc
                   onChange={(e) => handleFertilizerChange(e, setFieldValue)}
                 />
                 <StyledSmallFormGroup>
@@ -146,34 +168,75 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
                           : []
                     }
                     width="50%"
+                    formCalc
                     onChange={(e) => handleChange(e, setFieldValue)}
                   />
                 </StyledSmallFormGroup>
-              </StyledLeftView>
-            </StyledGroupFormView>
-            <StyledAddCancelButtonContainer>
-              <SecondaryButton>
-                <StyledButtonContainer>
-                  <Button
-                    type="reset"
-                    size="lg"
-                    disabled={false}
-                    actions="secondary"
-                    text={ComponentText.CANCEL}
+                {fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid') && (
+                  <StyledSmallFormGroup>
+                    <CustomField
+                      label="Density"
+                      name="liquidDensity"
+                      id="liquidDensity"
+                      type="number"
+                      width="50%"
+                    />
+                    <CustomSelect
+                      label="Density Units"
+                      id="liquidDensityUnitId"
+                      name="liquidDensityUnitId"
+                      options={DensityUnits}
+                      width="50%"
+                      formCalc
+                      onChange={(e) => handleChange(e, setFieldValue)}
+                    />
+                  </StyledSmallFormGroup>
+                )}
+                <StyledSmallFormGroup>
+                  <CustomSelect
+                    label="Method (optional)"
+                    id="applMethodId"
+                    name="applMethodId"
+                    options={ApplicationMethod}
+                    width="50%"
+                    formCalc
+                    onChange={(e) => handleChange(e, setFieldValue)}
                   />
-                </StyledButtonContainer>
-              </SecondaryButton>
-              <PrimaryButton>
-                <StyledButtonContainer>
+                  <CustomField
+                    label="Date (optional)"
+                    name="applDate"
+                    id="applDate"
+                    type="text"
+                    width="50%"
+                  />
+                </StyledSmallFormGroup>
+              </StyledLeftView>
+              <StyledRightView>
+                <h3>Available Nutrients (lb/ac)</h3>
+                <RightListGroup>
+                  <RightListItem>
+                    <h4>N</h4>
+                    <p>{NCalc}</p>
+                  </RightListItem>
+                  <RightListItem>
+                    <h4>P2O5</h4>
+                    <p>{P2O5Calc}</p>
+                  </RightListItem>
+                  <RightListItem>
+                    <h4>k2O</h4>
+                    <p>{K2OCalc}</p>
+                  </RightListItem>
+                </RightListGroup>
+                <StyledButtonContainer formCalc>
                   <Button
                     type="submit"
                     size="lg"
                     disabled={false}
-                    text={ComponentText.SAVE_FERTILIZER}
+                    text={ComponentText.ADD_FERTILIZERS}
                   />
                 </StyledButtonContainer>
-              </PrimaryButton>
-            </StyledAddCancelButtonContainer>
+              </StyledRightView>
+            </StyledGroupFormView>
           </StyledFieldContainer>
         </Form>
       )}

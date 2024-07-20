@@ -64,9 +64,15 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
   });
   const addNutrientsData = (values: TempNutrientsInterface): void => {
     // Will be changed on enhancements.
+    let tempFertilizerId = '';
     let fertNValue = 0;
     let fertP2o5Value = 0;
     let fertK20Value = 0;
+    if (values.fertilizerTypeId.includes('Dry Fertilizer (Custom)')) {
+      tempFertilizerId = `Dry Fertilizer Custom (${values.customN}-${values.customP2o5}-${values.customK2o})`;
+    } else if (values.fertilizerTypeId.includes('Liquid Fertilizer (Custom)')) {
+      tempFertilizerId = `Liquid Fertilizer Custom (${values.customN}-${values.customP2o5}-${values.customK2o})`;
+    }
     if (values.fertilizerId.includes('Urea (46-0-0)')) {
       fertNValue = 46;
     } else if (values.fertilizerId.includes('15-15-17')) {
@@ -83,7 +89,9 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
       const nutrientinfo: TempNutrientsInterface = {
         id: nutrientIndex,
         fertilizerTypeId: values.fertilizerTypeId,
-        fertilizerId: values.fertilizerId,
+        fertilizerId: values.fertilizerTypeId.includes('(Custom)')
+          ? tempFertilizerId
+          : values.fertilizerId,
         applRate: values.applRate,
         applUnitId: '',
         applDate: '',

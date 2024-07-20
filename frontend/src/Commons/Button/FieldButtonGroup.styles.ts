@@ -21,9 +21,9 @@ const StyledButtonGroupContainer = styled.div`
     width: 100%;
   }
 `;
-const StyledButtonContainer = styled.div`
+const StyledButtonContainer = styled.div<FormProps>`
   margin-top: 20px;
-
+  width: ${(props) => (props.formCalc ? '100%' : '')};
   @media (min-width: ${screenSizes.desktop}) {
     width: 100%;
   }

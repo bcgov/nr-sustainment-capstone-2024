@@ -14,6 +14,7 @@ interface CustomSelectProps {
   id: string;
   options: OptionInterface[];
   width?: string;
+  formCalc?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -24,8 +25,12 @@ const CustomSelect: FC<CustomSelectProps> = ({
   width = '100%',
   options,
   onChange,
+  formCalc = false,
 }) => (
-  <StyledSelect width={width}>
+  <StyledSelect
+    width={width}
+    formCalc={formCalc}
+  >
     <label htmlFor={id}>{label}</label>
     <Field
       name={name}
