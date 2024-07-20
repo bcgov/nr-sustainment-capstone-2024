@@ -39,7 +39,8 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
   updateFarmDetails,
   handleFormState,
 }) => {
-  const [fieldIndex, setFieldIndex] = useState(farmDetails.Fields.length);
+  const [fertilizerIndex, setFertilizerIndex] = useState<number>(0);
+  const [selectedFieldIndex, setFieldIndex] = useState(farmDetails.Fields.length);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const initialValues: TempNutrientsInterface = initialFarmDetails.Fields[0].Nutrients[0];
   // For calculation, it will be done next ticket. Change const into let
@@ -70,13 +71,15 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
       isLiquid ? Yup.string().required('Required') : Yup.string().notRequired(),
     ),
   });
-
+  /**
+   * @description   submits the calculation data and uploads it into the Main JSON data file
+   * @param values  uses the interface @TempNutrientsInterface it holds the data that
+   *              has been entered in the input fields.
+   */
   const submitCalculationData = (values: TempNutrientsInterface): void => {
     const fertilizer: NutrientsInterface[] = { ...fertilizersDetails };
-    setFieldIndex(fieldsOption.findIndex((option) => option.value === values.FieldName));
-    console.log(fertilizer[selectedIndex].fertilizerTypeId);
     const updateFertilizer: NutrientsInterface = {
-      id: fertilizer[selectedIndex].id,
+      id: fertilizerIndex,
       fertilizerTypeId: fertilizer[selectedIndex].fertilizerTypeId,
       fertilizerId: fertilizer[selectedIndex].fertilizerId,
       applUnitId: values.applUnitId,
@@ -93,11 +96,20 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
       liquidDensityUnitId: values.liquidDensityUnitId,
     };
     setTimeout(() => {
-      farmDetails.Fields[fieldIndex].Nutrients.push(updateFertilizer);
+      farmDetails.Fields[selectedFieldIndex].Nutrients.push(updateFertilizer);
+      setFertilizerIndex((props) => props + 1);
+      // Development Log
       console.log(farmDetails);
       updateFarmDetails(farmDetails);
     });
   };
+  /**
+   * @desc                  A helper method that uses the state hook @setFieldIndex to find 
+   *                        the index of the selected field to access the correct field when accessing it
+   * @param event           Triggered when the value of a select element changes
+   * @param setFieldValue   Sets the value of the input field based on the event.target
+   * @author                @Kcaparas
+   */
   const handleFieldChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
     setFieldValue: Function,
@@ -105,6 +117,13 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
     setFieldValue(event.target.name, event.target.value);
     setFieldIndex(fieldsOption.findIndex((option) => option.value === event.target.value));
   };
+  /**
+   * @desc                  A helper method that uses the state hook @setSelectedIndex to find
+   *                        the index of the selected fertilizer to access the correct fertilizer when accessing it
+   * @param event           Triggered when the value of a select element changes
+   * @param setFieldValue   Sets the value of the input field based on the event.target
+   * @author                @Kcaparas
+   */
   const handleFertilizerChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
     setFieldValue: Function,
