@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import InputModuleProps from '@Interface/InputModuleProps';
 import { CALCULATION_INFORMATION } from '@Constants/ModuleIDs';
-import FertilizerInterface from '@Interface/NutrientsInterface';
+import FertilizerInterface from '@Interface/FertilizerInterface';
 
 import StatusValidate from '@Utils/StatusValidate';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
