@@ -104,7 +104,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
     });
   };
   /**
-   * @desc                  A helper method that uses the state hook @setFieldIndex to find 
+   * @desc                  A helper method that uses the state hook @setFieldIndex to find
    *                        the index of the selected field to access the correct field when accessing it
    * @param event           Triggered when the value of a select element changes
    * @param setFieldValue   Sets the value of the input field based on the event.target
