@@ -39,9 +39,12 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
   updateFarmDetails,
   handleFormState,
 }) => {
-  const [fertilizerIndex, setFertilizerIndex] = useState<number>(0);
+  const [fertilizerIndex, setFertilizerIndex] = useState<number[]>(
+    Array(farmDetails.Fields.length).fill(0),
+  );
   const [selectedFieldIndex, setFieldIndex] = useState(farmDetails.Fields.length);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+
   const initialValues: FertilizerInterface = initialFarmDetails.Fields[0].Nutrients[0];
   // For calculation, it will be done next ticket. Change const into let
   const NCalc = 0;
@@ -97,7 +100,12 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
     };
     setTimeout(() => {
       farmDetails.Fields[selectedFieldIndex].Nutrients.push(updateFertilizer);
-      setFertilizerIndex((props) => props + 1);
+      setFertilizerIndex((prevIndexes) => {
+        const fertilizerIndexArry = [...prevIndexes];
+        fertilizerIndexArry[selectedFieldIndex] =
+          (fertilizerIndexArry[selectedFieldIndex] || 0) + 1;
+        return fertilizerIndexArry;
+      });
       // Development Log
       console.log(farmDetails);
       updateFarmDetails(farmDetails);
