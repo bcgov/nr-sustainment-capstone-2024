@@ -145,7 +145,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
             addFert(values);
           }}
         >
-          {({ values }) => (
+          {({ values, setFieldValue }) => (
             <Form>
               <StyledFarmInfo formNutrients>
                 <div id="inputContainer">
@@ -155,6 +155,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
                     label="Fertilizer Type"
                     options={FertilizerTypeOptions}
                     width="40%"
+                    onChange={(e) => handleChange(e, setFieldValue)}
                   />
                   {values.fertilizerTypeId.includes('Dry Fertilizer (Custom)') ||
                   values.fertilizerTypeId.includes('Liquid Fertilizer (Custom)') ? (
@@ -194,6 +195,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
                             : []
                       }
                       width="40%"
+                      onChange={(e) => handleChange(e, setFieldValue)}
                     />
                   )}
                 </div>
