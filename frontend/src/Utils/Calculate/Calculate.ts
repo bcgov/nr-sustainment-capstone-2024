@@ -18,15 +18,14 @@ function calcN(calcLogic: CalcLogic, yieldValue: number, sawdust?: boolean): num
     N += sawdustAddition;
   }
 
-  for (const range of NYieldRanges) {
+  NYieldRanges.forEach((range) => {
     if (
       (range.min === undefined || yieldValue >= range.min) &&
       (range.max === undefined || yieldValue < range.max)
     ) {
       N += range.addition;
-      break;
     }
-  }
+  });
 
   return N;
 }
@@ -39,24 +38,22 @@ function calcPK(calcLogic: CalcLogic, soilTest: number, leafTissue: number): num
     return 0;
   }
 
-  for (const range of calcLogic.soilTestRanges) {
+  calcLogic.soilTestRanges.forEach((range) => {
     if (
       (range.min === undefined || soilTest >= range.min) &&
       (range.max === undefined || soilTest < range.max)
     ) {
       if (range.leafTissueRanges)
-        for (const leafRange of range.leafTissueRanges) {
+        range.leafTissueRanges.forEach((leafRange) => {
           if (
             (leafRange.min === undefined || leafTissue >= leafRange.min) &&
             (leafRange.max === undefined || leafTissue < leafRange.max)
           ) {
             if (leafRange.addition) val += leafRange.addition;
-            break;
           }
-        }
-      break;
+        });
     }
-  }
+  });
 
   return val;
 }

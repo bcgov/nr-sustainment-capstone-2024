@@ -122,7 +122,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
         leafTissueK: Infinity,
       };
 
-      let newField: FieldDetailInterface = {
+      const newField: FieldDetailInterface = {
         Id: fieldIndex,
         FieldName: values.FieldName,
         Area: values.Area,

@@ -48,8 +48,6 @@ import {
 import CropsButtonGroup from './CropsButtonGroup';
 import { StyledDivider } from '../ListComponent.styles';
 
-const initialValues: SubmissionCropsInterface = initialFarmDetails.Fields[0].Crops[0];
-
 const checkHasCrops = (Fields: FieldDetailInterface[]) => {
   let hasCrop = false;
   Fields.forEach((field) => {
@@ -79,6 +77,8 @@ interface SubmissionCropsInterface {
   whereWillPruningsGo: string;
   willSawdustBeApplied: boolean | undefined;
 }
+
+const initialValues: SubmissionCropsInterface = initialFarmDetails.Fields[0].Crops[0];
 
 const CropsInfoComponent: FC<InputModuleProps> = ({
   farmDetails,
