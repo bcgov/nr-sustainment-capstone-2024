@@ -32,7 +32,7 @@ const CalculationList: FC<CalculationListProps> = ({
     <DesktopView>
       <StyledH3HeaderContainer>
         <StyledH3HeaderItem width="35%">
-          <h3>{''}</h3>
+          <h3>&nbsp;</h3>
         </StyledH3HeaderItem>
         <StyledH3HeaderItem width="30%">
           <h3>Argonomic (lb/ac)</h3>
