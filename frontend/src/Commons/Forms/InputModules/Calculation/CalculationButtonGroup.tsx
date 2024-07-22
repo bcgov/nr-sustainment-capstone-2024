@@ -7,8 +7,6 @@ import {
   StyledButtonGroupContainer,
   StyledButtonContainer,
   StyledAddCancelButtonContainer,
-  PrimaryButton,
-  SecondaryButton,
 } from '@Commons/Button/FieldButtonGroup.styles';
 
 type ButtonComponentProps = {
@@ -16,29 +14,25 @@ type ButtonComponentProps = {
 };
 
 const CalculationButtonGroup: FC<ButtonComponentProps> = ({ handleFormState }) => (
-  <StyledButtonGroupContainer>
+  <StyledButtonGroupContainer formCalc>
     <StyledAddCancelButtonContainer>
-      <SecondaryButton>
-        <StyledButtonContainer>
-          <Button
-            type="button"
-            size="lg"
-            disabled={false}
-            actions="secondary"
-            text={ComponentText.BACK}
-            handleClick={() => handleFormState(CmdOptions.BACKWARDS)}
-          />
-        </StyledButtonContainer>
-      </SecondaryButton>
-      <PrimaryButton>
-        <StyledButtonContainer>
-          <CustomLink
-            path="/export"
-            size="lg"
-            text="Finish"
-          />
-        </StyledButtonContainer>
-      </PrimaryButton>
+      <StyledButtonContainer>
+        <Button
+          type="button"
+          size="lg"
+          disabled={false}
+          actions="secondary"
+          text={ComponentText.BACK}
+          handleClick={() => handleFormState(CmdOptions.BACKWARDS)}
+        />
+      </StyledButtonContainer>
+      <StyledButtonContainer>
+        <CustomLink
+          path="/export"
+          size="lg"
+          text="Finish"
+        />
+      </StyledButtonContainer>
     </StyledAddCancelButtonContainer>
   </StyledButtonGroupContainer>
 );
