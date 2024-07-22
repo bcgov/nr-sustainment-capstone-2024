@@ -3,6 +3,7 @@ interface FertilizerInterface {
   fertilizerTypeId: string;
   fertilizerId: string;
   applRate: number;
+  applUnitId: string;
   applDate?: string;
   applMethodId?: string;
   customN: number;
