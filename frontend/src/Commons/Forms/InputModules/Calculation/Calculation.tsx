@@ -111,8 +111,6 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
         return fertilizerIndexArry;
       });
       setFertilierAdded(true);
-      // Development Log
-      console.log(farmDetails);
       updateFarmDetails(farmDetails);
     });
   };
