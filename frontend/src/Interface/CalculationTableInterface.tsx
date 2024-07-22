@@ -7,16 +7,25 @@ interface NutrientRange {
 interface SoilTestRange {
   min?: number;
   max?: number;
-  leaf_tissue_ranges?: NutrientRange[];
+  leafTissueRanges?: NutrientRange[];
 }
 
 interface Params {
   sawdust?: string;
   Yield?: string;
-  soil_test?: string;
-  leaf_tissue?: string;
+  soilTest?: string;
+  leafTissue?: string;
   Pruned?: string;
   Removed?: string;
+}
+
+export interface CalcLogic {
+  sawdustAddition?: number;
+  yieldRanges?: NutrientRange[];
+  soilTestRanges?: SoilTestRange[];
+  N?: number;
+  P?: number;
+  K?: number;
 }
 
 interface Calculation {
@@ -26,30 +35,21 @@ interface Calculation {
 }
 
 interface AgronomicBalance {
-  nitrogen_calculation: Calculation;
-  phosphorus_calculation: Calculation;
-  potassium_calculation: Calculation;
+  nitrogenCalculation: Calculation;
+  phosphorusCalculation: Calculation;
+  potassiumCalculation: Calculation;
 }
 
 interface CropRemovalBalance {
-  phosphorus_removal: Calculation;
-  potassium_removal: Calculation;
-}
-
-export interface CalcLogic {
-  sawdust_addition?: number;
-  yield_ranges?: NutrientRange[];
-  soil_test_ranges?: SoilTestRange[];
-  N?: number;
-  P?: number;
-  K?: number;
+  phosphorusRemoval: Calculation;
+  potassiumRemoval: Calculation;
 }
 
 interface CalculationTable {
   cropType: string;
   crop: string;
-  agronomic_balance: AgronomicBalance;
-  crop_removal_balance: CropRemovalBalance;
+  agronomicBalance: AgronomicBalance;
+  cropRemovalBalance: CropRemovalBalance;
 }
 
 export default CalculationTable;

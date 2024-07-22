@@ -1,24 +1,24 @@
 import CalculationTable, { CalcLogic } from '@Interface/CalculationTableInterface';
-import * as calcData from './calculation-data/raspberry_calculation.json';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
+import * as calcData from './calculation-data/raspberryCalculation.json';
 
 function calcN(calcLogic: CalcLogic, yieldValue: number, sawdust?: boolean): number {
-  const sawdust_addition = calcLogic.sawdust_addition;
-  const N_yield_ranges = calcLogic.yield_ranges;
+  const { sawdustAddition } = calcLogic;
+  const NYieldRanges = calcLogic.yieldRanges;
   let N = 0;
 
-  if (!sawdust_addition || !N_yield_ranges) {
+  if (!sawdustAddition || !NYieldRanges) {
     console.error(
-      'Missing details in calculation_table/agronomic_balance/sawdust_addition || N_yield_ranges',
+      'Missing details in calculationTable/agronomicBalance/sawdustAddition || NYieldRanges',
     );
     return 0;
   }
 
   if (sawdust) {
-    N += sawdust_addition;
+    N += sawdustAddition;
   }
 
-  for (const range of N_yield_ranges) {
+  for (const range of NYieldRanges) {
     if (
       (range.min === undefined || yieldValue >= range.min) &&
       (range.max === undefined || yieldValue < range.max)
@@ -34,18 +34,18 @@ function calcN(calcLogic: CalcLogic, yieldValue: number, sawdust?: boolean): num
 function calcPK(calcLogic: CalcLogic, soilTest: number, leafTissue: number): number {
   let val = 0;
 
-  if (!calcLogic.soil_test_ranges) {
-    console.error('Missing details in calculation_table/agronomic_balance/soil_test_ranges');
+  if (!calcLogic.soilTestRanges) {
+    console.error('Missing details in calculationTable/agronomicBalance/soilTestRanges');
     return 0;
   }
 
-  for (const range of calcLogic.soil_test_ranges) {
+  for (const range of calcLogic.soilTestRanges) {
     if (
       (range.min === undefined || soilTest >= range.min) &&
       (range.max === undefined || soilTest < range.max)
     ) {
-      if (range.leaf_tissue_ranges)
-        for (const leafRange of range.leaf_tissue_ranges) {
+      if (range.leafTissueRanges)
+        for (const leafRange of range.leafTissueRanges) {
           if (
             (leafRange.min === undefined || leafTissue >= leafRange.min) &&
             (leafRange.max === undefined || leafTissue < leafRange.max)
@@ -66,19 +66,19 @@ function Calculate(field: FieldDetailInterface) {
   const calcTable: CalculationTable = calcData;
 
   const N = calcN(
-    calcTable.agronomic_balance.nitrogen_calculation.logic,
+    calcTable.agronomicBalance.nitrogenCalculation.logic,
     crop.yield,
     crop.willSawdustBeApplied,
   );
 
   const P = calcPK(
-    calcTable.agronomic_balance.phosphorus_calculation.logic,
+    calcTable.agronomicBalance.phosphorusCalculation.logic,
     field.SoilTest.ValP,
     field.LeafTest.leafTissueP,
   );
 
   const K = calcPK(
-    calcTable.agronomic_balance.potassium_calculation.logic,
+    calcTable.agronomicBalance.potassiumCalculation.logic,
     field.SoilTest.valK,
     field.LeafTest.leafTissueK,
   );
