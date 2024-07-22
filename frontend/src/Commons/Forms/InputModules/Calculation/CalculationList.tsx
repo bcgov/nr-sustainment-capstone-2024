@@ -92,7 +92,6 @@ const CalculationList: FC<CalculationListProps> = ({
           </StyledH4HeaderItem>
           {farmDetails.Fields[selectedFieldIndex]?.Nutrients.map(
             (fertilizer: FertilizerInterface) => {
-              a;
               const { fertilizerId } = fertilizer;
               return (
                 <StyledPContainer key={`Fertilizer-${fertilizer.id}-${fertilizerId}`}>
