@@ -48,27 +48,27 @@ const getLocalDetails = () => {
  */
 const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
   const localDetails = getLocalDetails();
-  const updateFarmDetails = { ...farmDetails };
+  const updatedFarmDetails = { ...farmDetails };
 
   if (localDetails) {
     const nmpFarmDetails = localDetails.farmDetails;
     const fieldsJSON: FieldDetailInterface[] = localDetails.years[0].Fields;
 
-    updateFarmDetails.FarmName = nmpFarmDetails.FarmName;
-    updateFarmDetails.Year = nmpFarmDetails.Year;
+    updatedFarmDetails.FarmName = nmpFarmDetails.FarmName;
+    updatedFarmDetails.Year = nmpFarmDetails.Year;
 
     if (nmpFarmDetails.FarmRegion === 21) {
-      updateFarmDetails.FarmRegion = 'Vancouver Island';
+      updatedFarmDetails.FarmRegion = 'Vancouver Island';
     }
 
     fieldsJSON.forEach((field) => {
       const updateField: FieldDetailInterface = field;
-      updateFarmDetails.Fields.push(updateField);
+      updatedFarmDetails.Fields.push(updateField);
     });
-    updateFarmDetails.Fields = localDetails.years[0].Fields;
+    updatedFarmDetails.Fields = localDetails.years[0].Fields;
   }
 
-  return updateFarmDetails;
+  return updatedFarmDetails;
 };
 
 const fertilizersDetails: FertilizerInterface[] = [];
