@@ -47,7 +47,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
   );
   const [selectedFieldIndex, setFieldIndex] = useState(farmDetails.Fields.length);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const [hasFertilizerAdded, setFertilierAdded] = useState<boolean>(false);
+  const [hasFertilizerAdded, setFertilizerAdded] = useState<boolean>(false);
 
   const initialValues: FertilizerInterface = initialFarmDetails.Fields[0].Nutrients[0];
   // For calculation, it will be done next ticket. Change const into let
@@ -110,7 +110,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
           (fertilizerIndexArry[selectedFieldIndex] || 0) + 1;
         return fertilizerIndexArry;
       });
-      setFertilierAdded(true);
+      setFertilizerAdded(true);
       updateFarmDetails(farmDetails);
     });
   };
@@ -141,6 +141,16 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
   ) => {
     setFieldValue(event.target.name, event.target.value);
     setSelectedIndex(fertilizerOption.findIndex((option) => option.value === event.target.value));
+  };
+
+  const displayFertilizerOption = (): OptionInterface[] => {
+    if (fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Dry Fertilizer')) {
+      return DryApplicationUnits;
+    }
+    if (fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid Fertilizer')) {
+      return LiquidApplicationUnits;
+    }
+    return [];
   };
   return (
     <>
@@ -190,17 +200,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
                       label="Units"
                       name="applUnitId"
                       id="applUnitId"
-                      options={
-                        fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes(
-                          'Dry Fertilizer',
-                        )
-                          ? DryApplicationUnits
-                          : fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes(
-                                'Liquid Fertilizer',
-                              )
-                            ? LiquidApplicationUnits
-                            : []
-                      }
+                      options={displayFertilizerOption()}
                       width="50%"
                       formCalc
                       onChange={(e) => handleChange(e, setFieldValue)}
