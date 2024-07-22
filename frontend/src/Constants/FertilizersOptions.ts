@@ -40,4 +40,91 @@ const LiquidFertilizerOptions: OptionInterface[] = [
   },
 ];
 
-export { FertilizerTypeOptions, DryFertilizerOptions, LiquidFertilizerOptions };
+const DryApplicationUnits: OptionInterface[] = [
+  {
+    value: 'lb/ac',
+    label: 'lb/ac',
+  },
+  {
+    value: 'kg/ha',
+    label: 'kg/ha',
+  },
+  {
+    value: 'lb/1000ft2',
+    label: 'lb/1000ft2',
+  },
+];
+
+const LiquidApplicationUnits: OptionInterface[] = [
+  {
+    value: 'L/ac',
+    label: 'L/ac',
+  },
+  {
+    value: 'imp. gallons/ac',
+    label: 'imp. gallons/ac',
+  },
+  {
+    value: 'US gallons/ac',
+    label: 'US gallons/ac',
+  },
+  {
+    value: 'L/ha',
+    label: 'L/ha',
+  },
+];
+
+const ApplicationMethod: OptionInterface[] = [
+  {
+    value: 'Broadcast',
+    label: 'Broadcast',
+  },
+  {
+    value: 'Banded',
+    label: 'Banded',
+  },
+  {
+    value: 'With Planter',
+    label: 'With Planter',
+  },
+  {
+    value: 'Sidedress',
+    label: 'Sidedress',
+  },
+  {
+    value: 'Fertigation',
+    label: 'Fertigation',
+  },
+  {
+    value: 'Foliar',
+    label: 'Foliar',
+  },
+];
+
+const DensityUnits: OptionInterface[] = [
+  {
+    value: 'kg/US Gallon',
+    label: 'kg/US Gallon',
+  },
+  {
+    value: 'kg/L',
+    label: 'kg/L',
+  },
+  {
+    value: 'lb imp. gallon',
+    label: 'lb imp. gallon',
+  },
+  {
+    value: 'lb/US gallon',
+    label: 'lb/US gallon',
+  },
+];
+export {
+  FertilizerTypeOptions,
+  DryFertilizerOptions,
+  LiquidFertilizerOptions,
+  DryApplicationUnits,
+  LiquidApplicationUnits,
+  ApplicationMethod,
+  DensityUnits,
+};

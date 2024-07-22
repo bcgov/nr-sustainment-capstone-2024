@@ -25,7 +25,7 @@ const StyledMainContainer = styled.div`
   padding: 0 10px;
 
   @media (min-width: ${screenSizes.desktop}) {
-    margin-top: 280px;
+    margin: 280px 0 0 0;
     gap: 11px;
   }
 `;

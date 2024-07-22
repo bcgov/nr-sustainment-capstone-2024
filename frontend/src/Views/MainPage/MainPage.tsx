@@ -28,7 +28,7 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
   InputModules.FieldsAndSoil,
   InputModules.Crops,
   InputModules.Fertilizers,
-  InputModules.Summary,
+  InputModules.Calculation,
 ];
 
 const getLocalDetails = () => {

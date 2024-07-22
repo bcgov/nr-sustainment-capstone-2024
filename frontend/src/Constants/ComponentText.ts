@@ -4,7 +4,7 @@ const ComponentText = {
   CANCEL: 'Cancel',
   ADD_FIELD: 'Add Field',
   ADD_CROP: 'Add Crop',
-  ADD_FERTILIZERS: 'Add Fertilizers',
+  ADD_FERTILIZERS: 'Add Fertilizer to Field',
   SAVE_FERTILIZER: 'Save Fertilizer',
   BACK: 'Back',
   NA: 'N/A',

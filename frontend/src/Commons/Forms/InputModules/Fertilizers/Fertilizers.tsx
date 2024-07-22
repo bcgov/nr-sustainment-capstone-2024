@@ -23,6 +23,7 @@ import Button from '@Commons/Button/Button';
 import ComponentText from '@Constants/ComponentText';
 import CustomField from '@Commons/Input/Field/CustomField';
 import FertilizerInterface from '@Interface/FertilizerInterface';
+import handleChange from '@Utils/handleChange';
 import FertilizersButtonComponent from './FertilizersButtonComponent';
 import StyledCustomNumberField from './Fertilizers.styles';
 import FertilizersListComponent from './FertilizersListComponent';
@@ -65,9 +66,16 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
 
   const addFert = (values: FertilizerInterface): void => {
     // Will be changed on enhancements.
+    let tempFertilizerId = '';
     let fertNValue = 0;
     let fertP2o5Value = 0;
     let fertK20Value = 0;
+
+    if (values.fertilizerTypeId.includes('Dry Fertilizer (Custom)')) {
+      tempFertilizerId = `Dry Fertilizer Custom (${values.customN}-${values.customP2o5}-${values.customK2o})`;
+    } else if (values.fertilizerTypeId.includes('Liquid Fertilizer (Custom)')) {
+      tempFertilizerId = `Liquid Fertilizer Custom (${values.customN}-${values.customP2o5}-${values.customK2o})`;
+    }
 
     switch (values.fertilizerId) {
       case 'Urea (46-0-0)':
@@ -92,9 +100,12 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
     const newFertilizer: FertilizerInterface = {
       id: fertilizersDetails.length,
       fertilizerTypeId: values.fertilizerTypeId,
-      fertilizerId: values.fertilizerId,
+      fertilizerId: values.fertilizerTypeId.includes('(Custom)')
+        ? tempFertilizerId
+        : values.fertilizerId,
       applRate: values.applRate,
       applDate: '',
+      applUnitId: '',
       applMethodId: '',
       customN: values.customN,
       customP2o5: values.customP2o5,
@@ -135,7 +146,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
             addFert(values);
           }}
         >
-          {({ values }) => (
+          {({ values, setFieldValue }) => (
             <Form>
               <StyledFarmInfo formNutrients>
                 <div id="inputContainer">
@@ -145,6 +156,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
                     label="Fertilizer Type"
                     options={FertilizerTypeOptions}
                     width="40%"
+                    onChange={(e) => handleChange(e, setFieldValue)}
                   />
                   {values.fertilizerTypeId.includes('Dry Fertilizer (Custom)') ||
                   values.fertilizerTypeId.includes('Liquid Fertilizer (Custom)') ? (
@@ -184,6 +196,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
                             : []
                       }
                       width="40%"
+                      onChange={(e) => handleChange(e, setFieldValue)}
                     />
                   )}
                 </div>

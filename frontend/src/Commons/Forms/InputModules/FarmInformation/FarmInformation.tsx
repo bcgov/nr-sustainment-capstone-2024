@@ -17,6 +17,7 @@ import CustomField from '@Commons/Input/Field/CustomField';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
 import Button from '@Commons/Button/Button';
 import StatusValidate from '@Utils/StatusValidate';
+import handleChange from '@Utils/handleChange';
 import {
   StyledFarmInfo,
   StyledSelectContainer,
@@ -76,44 +77,47 @@ const FarmInfoComponent: FC<InputModuleProps> = ({
         StatusValidate(validationSchema, values, handleFormState, FARM_INFORMATION);
       }}
     >
-      <Form>
-        <StyledFarmInfo>
-          <div id="inputContainer">
-            <CustomField
-              label="Year"
-              id="Year"
-              name="Year"
-              type="number"
-              width="20%"
-            />
-
-            <CustomField
-              label="Farm Name"
-              id="FarmName"
-              name="FarmName"
-              type="text"
-            />
-          </div>
-
-          <StyledSelectContainer>
-            <CustomSelect
-              name="FarmRegion"
-              id="FarmRegion"
-              label="Region"
-              options={options}
-              width="50%"
-            />
-            <StyledButtonController>
-              <Button
-                type="submit"
-                size="lg"
-                disabled={false}
-                text={ComponentText.NEXT}
+      {({ setFieldValue }) => (
+        <Form>
+          <StyledFarmInfo>
+            <div id="inputContainer">
+              <CustomField
+                label="Year"
+                id="Year"
+                name="Year"
+                type="number"
+                width="20%"
               />
-            </StyledButtonController>
-          </StyledSelectContainer>
-        </StyledFarmInfo>
-      </Form>
+
+              <CustomField
+                label="Farm Name"
+                id="FarmName"
+                name="FarmName"
+                type="text"
+              />
+            </div>
+
+            <StyledSelectContainer>
+              <CustomSelect
+                name="FarmRegion"
+                id="FarmRegion"
+                label="Region"
+                options={options}
+                width="50%"
+                onChange={(e) => handleChange(e, setFieldValue)}
+              />
+              <StyledButtonController>
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={false}
+                  text={ComponentText.NEXT}
+                />
+              </StyledButtonController>
+            </StyledSelectContainer>
+          </StyledFarmInfo>
+        </Form>
+      )}
     </Formik>
   );
 };

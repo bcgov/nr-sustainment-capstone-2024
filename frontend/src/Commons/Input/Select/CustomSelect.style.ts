@@ -8,12 +8,13 @@ import screenSizes from '@Constants/ScreenSize';
 
 type StyledSelectProps = {
   width: string;
+  formCalc?: boolean;
 };
 
 const StyledSelect = styled.div<StyledSelectProps>`
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: ${(props) => (props.formCalc ? '100%' : '80%')};
   margin-top: 5px;
   label {
     font: ${tokens.typographyBoldSmallBody};

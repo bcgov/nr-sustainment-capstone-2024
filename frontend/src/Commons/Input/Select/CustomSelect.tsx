@@ -3,7 +3,7 @@
  * @author @GDamaso
  */
 import { Field, ErrorMessage } from 'formik';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import OptionInterface from 'src/Interface/OptionInterface';
 import StyledSelect from './CustomSelect.style';
 import '../ErrorMessage.css';
@@ -14,15 +14,29 @@ interface CustomSelectProps {
   id: string;
   options: OptionInterface[];
   width?: string;
+  formCalc?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const CustomSelect: FC<CustomSelectProps> = ({ name, id, label, width = '100%', options }) => (
-  <StyledSelect width={width}>
+const CustomSelect: FC<CustomSelectProps> = ({
+  name,
+  id,
+  label,
+  width = '100%',
+  options,
+  onChange,
+  formCalc = false,
+}) => (
+  <StyledSelect
+    width={width}
+    formCalc={formCalc}
+  >
     <label htmlFor={id}>{label}</label>
     <Field
       name={name}
       id={id}
       as="select"
+      onChange={onChange}
     >
       <option
         value=""

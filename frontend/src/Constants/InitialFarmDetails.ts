@@ -40,6 +40,7 @@ const initialFarmDetails: any = {
           id: 0,
           fertilizerTypeId: '',
           fertilizerId: '',
+          applUnitId: '',
           applRate: '',
           applDate: '',
           applMethodId: '',
