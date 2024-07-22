@@ -32,6 +32,9 @@ import {
   RightListGroup,
   RightListItem,
 } from './Calculation.styles';
+import { StyledDivider } from '../ListComponent.styles';
+import CalculationList from './CalculationList';
+import CalculationButtonGroup from './CalculationButtonGroup';
 
 const CalculationComponent: React.FC<InputModuleProps> = ({
   farmDetails,
@@ -44,6 +47,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
   );
   const [selectedFieldIndex, setFieldIndex] = useState(farmDetails.Fields.length);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [hasFertilizerAdded, setFertilizerAdded] = useState<boolean>(false);
 
   const initialValues: FertilizerInterface = initialFarmDetails.Fields[0].Nutrients[0];
   // For calculation, it will be done next ticket. Change const into let
@@ -106,8 +110,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
           (fertilizerIndexArry[selectedFieldIndex] || 0) + 1;
         return fertilizerIndexArry;
       });
-      // Development Log
-      console.log(farmDetails);
+      setFertilizerAdded(true);
       updateFarmDetails(farmDetails);
     });
   };
@@ -139,135 +142,147 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
     setFieldValue(event.target.name, event.target.value);
     setSelectedIndex(fertilizerOption.findIndex((option) => option.value === event.target.value));
   };
+
+  const displayFertilizerOption = (): OptionInterface[] => {
+    if (fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Dry Fertilizer')) {
+      return DryApplicationUnits;
+    }
+    if (fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid Fertilizer')) {
+      return LiquidApplicationUnits;
+    }
+    return [];
+  };
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={submitCalculationData}
-      validate={(values) => {
-        StatusValidate(validationSchema, values, handleFormState, CALCULATION_INFORMATION);
-      }}
-    >
-      {({ setFieldValue }) => (
-        <Form>
-          <StyledFieldContainer>
-            <StyledFieldSelect>
-              <CustomSelect
-                label="Field"
-                id="FieldName"
-                name="FieldName"
-                options={fieldsOption}
-                width="100%"
-                formCalc
-                onChange={(e) => handleFieldChange(e, setFieldValue)}
-              />
-            </StyledFieldSelect>
-            <StyledGroupFormView>
-              <StyledLeftView>
+    <>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={submitCalculationData}
+        validate={(values) => {
+          StatusValidate(validationSchema, values, handleFormState, CALCULATION_INFORMATION);
+        }}
+      >
+        {({ setFieldValue }) => (
+          <Form>
+            <StyledFieldContainer>
+              <StyledFieldSelect>
                 <CustomSelect
-                  label="Fertilizer"
-                  id="fertilizerId"
-                  name="fertilizerId"
-                  options={fertilizerOption}
+                  label="Field"
+                  id="FieldName"
+                  name="FieldName"
+                  options={fieldsOption}
                   width="100%"
                   formCalc
-                  onChange={(e) => handleFertilizerChange(e, setFieldValue)}
+                  onChange={(e) => handleFieldChange(e, setFieldValue)}
                 />
-                <StyledSmallFormGroup>
-                  <CustomField
-                    label="Application Rate"
-                    name="applRate"
-                    id="applRate"
-                    type="number"
-                    width="50%"
-                  />
+              </StyledFieldSelect>
+              <StyledDivider />
+              <StyledGroupFormView>
+                <StyledLeftView>
                   <CustomSelect
-                    label="Units"
-                    name="applUnitId"
-                    id="applUnitId"
-                    options={
-                      fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Dry Fertilizer')
-                        ? DryApplicationUnits
-                        : fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes(
-                              'Liquid Fertilizer',
-                            )
-                          ? LiquidApplicationUnits
-                          : []
-                    }
-                    width="50%"
+                    label="Fertilizer"
+                    id="fertilizerId"
+                    name="fertilizerId"
+                    options={fertilizerOption}
+                    width="100%"
                     formCalc
-                    onChange={(e) => handleChange(e, setFieldValue)}
+                    onChange={(e) => handleFertilizerChange(e, setFieldValue)}
                   />
-                </StyledSmallFormGroup>
-                {fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid') && (
                   <StyledSmallFormGroup>
                     <CustomField
-                      label="Density"
-                      name="liquidDensity"
-                      id="liquidDensity"
+                      label="Application Rate"
+                      name="applRate"
+                      id="applRate"
                       type="number"
                       width="50%"
                     />
                     <CustomSelect
-                      label="Density Units"
-                      id="liquidDensityUnitId"
-                      name="liquidDensityUnitId"
-                      options={DensityUnits}
+                      label="Units"
+                      name="applUnitId"
+                      id="applUnitId"
+                      options={displayFertilizerOption()}
                       width="50%"
                       formCalc
                       onChange={(e) => handleChange(e, setFieldValue)}
                     />
                   </StyledSmallFormGroup>
-                )}
-                <StyledSmallFormGroup>
-                  <CustomSelect
-                    label="Method (optional)"
-                    id="applMethodId"
-                    name="applMethodId"
-                    options={ApplicationMethod}
-                    width="50%"
-                    formCalc
-                    onChange={(e) => handleChange(e, setFieldValue)}
-                  />
-                  <CustomField
-                    label="Date (optional)"
-                    name="applDate"
-                    id="applDate"
-                    type="text"
-                    width="50%"
-                  />
-                </StyledSmallFormGroup>
-              </StyledLeftView>
-              <StyledRightView>
-                <h3>Available Nutrients (lb/ac)</h3>
-                <RightListGroup>
-                  <RightListItem>
-                    <h4>N</h4>
-                    <p>{NCalc}</p>
-                  </RightListItem>
-                  <RightListItem>
-                    <h4>P2O5</h4>
-                    <p>{P2O5Calc}</p>
-                  </RightListItem>
-                  <RightListItem>
-                    <h4>k2O</h4>
-                    <p>{K2OCalc}</p>
-                  </RightListItem>
-                </RightListGroup>
-                <StyledButtonContainer formCalc>
-                  <Button
-                    type="submit"
-                    size="lg"
-                    disabled={false}
-                    text={ComponentText.ADD_FERTILIZERS}
-                  />
-                </StyledButtonContainer>
-              </StyledRightView>
-            </StyledGroupFormView>
-          </StyledFieldContainer>
-        </Form>
-      )}
-    </Formik>
+                  {fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid') && (
+                    <StyledSmallFormGroup>
+                      <CustomField
+                        label="Density"
+                        name="liquidDensity"
+                        id="liquidDensity"
+                        type="number"
+                        width="50%"
+                      />
+                      <CustomSelect
+                        label="Density Units"
+                        id="liquidDensityUnitId"
+                        name="liquidDensityUnitId"
+                        options={DensityUnits}
+                        width="50%"
+                        formCalc
+                        onChange={(e) => handleChange(e, setFieldValue)}
+                      />
+                    </StyledSmallFormGroup>
+                  )}
+                  <StyledSmallFormGroup>
+                    <CustomSelect
+                      label="Method (optional)"
+                      id="applMethodId"
+                      name="applMethodId"
+                      options={ApplicationMethod}
+                      width="50%"
+                      formCalc
+                      onChange={(e) => handleChange(e, setFieldValue)}
+                    />
+                    <CustomField
+                      label="Date (optional)"
+                      name="applDate"
+                      id="applDate"
+                      type="text"
+                      width="50%"
+                    />
+                  </StyledSmallFormGroup>
+                </StyledLeftView>
+                <StyledRightView>
+                  <h3>Available Nutrients (lb/ac)</h3>
+                  <RightListGroup>
+                    <RightListItem>
+                      <h4>N</h4>
+                      <p>{NCalc}</p>
+                    </RightListItem>
+                    <RightListItem>
+                      <h4>P2O5</h4>
+                      <p>{P2O5Calc}</p>
+                    </RightListItem>
+                    <RightListItem>
+                      <h4>k2O</h4>
+                      <p>{K2OCalc}</p>
+                    </RightListItem>
+                  </RightListGroup>
+                  <StyledButtonContainer formCalc>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={false}
+                      text={ComponentText.ADD_FERTILIZERS}
+                    />
+                  </StyledButtonContainer>
+                </StyledRightView>
+              </StyledGroupFormView>
+              <StyledDivider />
+              <CalculationList
+                farmDetails={farmDetails}
+                selectedFieldIndex={selectedFieldIndex}
+                hasFertilizerAdded={hasFertilizerAdded}
+              />
+            </StyledFieldContainer>
+          </Form>
+        )}
+      </Formik>
+      <CalculationButtonGroup handleFormState={handleFormState} />
+    </>
   );
 };
 
