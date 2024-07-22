@@ -13,9 +13,9 @@ N += 25
 Y = Yield (Tons/Ac)
 
 if Y > 5.35:            // Low
-N += 89     
+N += 89
 
-if  3.35 > Y <= 5.35:    // Medium 
+if  3.35 > Y <= 5.35:    // Medium
 N += 71
 
 if Y <= 3.35:           // High
@@ -23,7 +23,6 @@ N += 54
 
 return N
 ```
-
 
 ### Phosphorus Calculation
 
@@ -95,7 +94,6 @@ if ST < 120:
 return K
 ```
 
-
 ## Crop Removal Balance (lb/ac)
 
 ### Phosphorus Removal
@@ -112,7 +110,6 @@ if Pruned == true and Removed == true:
 
 return P
 ```
-
 
 ### Potassium Removal
 
