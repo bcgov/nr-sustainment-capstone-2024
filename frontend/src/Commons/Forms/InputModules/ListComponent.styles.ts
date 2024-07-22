@@ -21,7 +21,7 @@ const StyledFieldInfoList = styled.div`
 const StyledListContainer = styled.div<FormProps>`
   position: relative;
   display: flex;
-  flex-direction: ${(props) => (props.formNutrients ? 'column' : 'row')};
+  flex-direction: column;
   padding-top: 20px;
   gap: ${(props) => (props.formCrops ? '50px' : '20px')};
 
