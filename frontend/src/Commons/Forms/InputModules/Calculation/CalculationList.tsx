@@ -85,13 +85,14 @@ const CalculationList: FC<CalculationListProps> = ({
           </StyledPContainer>
         );
       })}
-      {hasFertilizerAdded && (
+      {hasFertilizerAdded && farmDetails.Fields[selectedFieldIndex].Nutrients.length > 0 && (
         <>
           <StyledH4HeaderItem width="30%">
             <h4>Fertilizer</h4>
           </StyledH4HeaderItem>
           {farmDetails.Fields[selectedFieldIndex]?.Nutrients.map(
             (fertilizer: FertilizerInterface) => {
+              a;
               const { fertilizerId } = fertilizer;
               return (
                 <StyledPContainer key={`Fertilizer-${fertilizer.id}-${fertilizerId}`}>
@@ -174,7 +175,7 @@ const CalculationList: FC<CalculationListProps> = ({
             </StyledPContainer>
           );
         })}
-        {hasFertilizerAdded && (
+        {hasFertilizerAdded && farmDetails.Fields[selectedFieldIndex].Nutrients.length > 0 && (
           <>
             <StyledH4HeaderItem width="30%">
               <h4>Fertilizer</h4>
