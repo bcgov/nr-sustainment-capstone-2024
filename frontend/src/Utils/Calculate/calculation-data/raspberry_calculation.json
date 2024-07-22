@@ -1,0 +1,194 @@
+{
+  "cropType": "Berry",
+  "crop": "Raspberry",
+  "agronomic_balance": {
+    "nitrogen_calculation": {
+      "description": "Calculates Nitrogen requirement in lb/ac based on sawdust usage and yield.",
+      "params": {
+        "sawdust": "boolean",
+        "Yield": "Yield (Tons/Ac)"
+      },
+      "logic": {
+        "N": 0,
+        "sawdust_addition": 25,
+        "yield_ranges": [
+          {
+            "min": 5.35,
+            "addition": 89
+          },
+          {
+            "min": 3.35,
+            "max": 5.35,
+            "addition": 71
+          },
+          {
+            "max": 3.35,
+            "addition": 54
+          }
+        ]
+      }
+    },
+    "phosphorus_calculation": {
+      "description": "Calculates Phosphorus requirement (P2O5) in lb/ac based on soil test P and leaf tissue P.",
+      "params": {
+        "soil_test": "Soil Test P (ppm)",
+        "leaf_tissue": "Leaf Tissue P (%)"
+      },
+      "logic": {
+        "P": 0,
+        "soil_test_ranges": [
+          {
+            "min": 30,
+            "leaf_tissue_ranges": [
+              {
+                "min": 0.19,
+                "addition": 0
+              },
+              {
+                "min": 0.16,
+                "max": 0.19,
+                "addition": 30
+              },
+              {
+                "max": 0.16,
+                "addition": 40
+              }
+            ]
+          },
+          {
+            "min": 15,
+            "max": 30,
+            "leaf_tissue_ranges": [
+              {
+                "min": 0.19,
+                "addition": 30
+              },
+              {
+                "min": 0.16,
+                "max": 0.19,
+                "addition": 60
+              },
+              {
+                "max": 0.16,
+                "addition": 70
+              }
+            ]
+          },
+          {
+            "max": 15,
+            "leaf_tissue_ranges": [
+              {
+                "min": 0.19,
+                "addition": 40
+              },
+              {
+                "min": 0.16,
+                "max": 0.19,
+                "addition": 70
+              },
+              {
+                "max": 0.16,
+                "addition": 80
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "potassium_calculation": {
+      "description": "Calculates Potassium requirement (K2O) in lb/ac based on soil test K and leaf tissue K.",
+      "params": {
+        "soil_test": "Soil Test K (ppm)",
+        "leaf_tissue": "Leaf Tissue K (%)"
+      },
+      "logic": {
+        "K": 0,
+        "soil_test_ranges": [
+          {
+            "min": 280,
+            "leaf_tissue_ranges": [
+              {
+                "min": 1.25,
+                "addition": 0
+              },
+              {
+                "min": 1,
+                "max": 1.25,
+                "addition": 30
+              },
+              {
+                "max": 1,
+                "addition": 50
+              }
+            ]
+          },
+          {
+            "min": 120,
+            "max": 280,
+            "leaf_tissue_ranges": [
+              {
+                "min": 1.25,
+                "addition": 30
+              },
+              {
+                "min": 1,
+                "max": 1.25,
+                "addition": 60
+              },
+              {
+                "max": 1,
+                "addition": 80
+              }
+            ]
+          },
+          {
+            "max": 120,
+            "leaf_tissue_ranges": [
+              {
+                "min": 1.25,
+                "addition": 50
+              },
+              {
+                "min": 1,
+                "max": 1.25,
+                "addition": 80
+              },
+              {
+                "max": 1,
+                "addition": 100
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "crop_removal_balance": {
+    "phosphorus_removal": {
+      "description": "Calculates Phosphorus removal (P2O5) in lb/ac based on yield and pruning status.",
+      "params": {
+        "Y": "Yield (Tons/Ac)",
+        "Pruned": "boolean",
+        "Removed": "boolean"
+      },
+      "logic": {
+        "P": 0,
+        "fruit_removal_factor": 1.145,
+        "pruning_removal_factor": 2.748
+      }
+    },
+    "potassium_removal": {
+      "description": "Calculates Potassium removal (K2O) in lb/ac based on yield and pruning status.",
+      "params": {
+        "Y": "Yield (Tons/Ac)",
+        "Pruned": "boolean",
+        "Removed": "boolean"
+      },
+      "logic": {
+        "K": 0,
+        "fruit_removal_factor": 3.64,
+        "pruning_removal_factor": 11.374
+      }
+    }
+  }
+}
