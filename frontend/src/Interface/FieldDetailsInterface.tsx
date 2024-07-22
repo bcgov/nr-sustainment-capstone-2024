@@ -1,4 +1,4 @@
-import { CropsDetailsInterface } from './CropsDetailsInterface';
+import CropsDetailsInterface from './CropsDetailsInterface';
 import LeafTestInterface from './LeafTestInterface';
 import FertilizerInterface from './FertilizerInterface';
 import SoilTestInterface from './SoilTestInterface';

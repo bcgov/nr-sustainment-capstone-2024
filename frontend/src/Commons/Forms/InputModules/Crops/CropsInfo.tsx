@@ -31,7 +31,7 @@ import {
   StyledAreaContainer,
 } from '@Commons/FormStyles.styles';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
-import { CropsDetailsInterface, SubmissionCropsInterface } from '@Interface/CropsDetailsInterface';
+import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   StyledNewFieldButtonContainer,
@@ -59,6 +59,26 @@ const checkHasCrops = (Fields: FieldDetailInterface[]) => {
   });
   return hasCrop;
 };
+
+/**
+ * @summary     Interface for the main data file
+ * @description This interface will be for Submission, it works the same as the CropsDetailInterface
+ *              but this is only for the submission of formik.
+ * @author      @Kcaparas
+ */
+
+interface SubmissionCropsInterface {
+  id: number;
+  cropId: string;
+  yield: number;
+  plantAgeYears: string;
+  numberOfPlantsPerAcre: number;
+  distanceBtwnPlants: string;
+  distanceBtwnRows: string;
+  willPlantsBePruned: boolean | undefined;
+  whereWillPruningsGo: string;
+  willSawdustBeApplied: boolean | undefined;
+}
 
 const CropsInfoComponent: FC<InputModuleProps> = ({
   farmDetails,
