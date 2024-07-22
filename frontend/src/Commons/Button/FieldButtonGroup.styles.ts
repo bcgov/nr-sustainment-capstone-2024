@@ -19,6 +19,7 @@ const StyledButtonGroupContainer = styled.div`
     justify-content: flex-start;
     align-items: center;
     width: 100%;
+    height: 50px;
   }
 `;
 const StyledButtonContainer = styled.div<FormProps>`
