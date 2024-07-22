@@ -56,6 +56,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     { id: 'true', label: 'Yes', value: true },
     { id: 'false', label: 'No', value: false },
   ];
+
   const initialValues: FieldDetailInterface = initialFarmDetails.Fields[0];
 
   const validationSchema = Yup.object().shape({
@@ -78,10 +79,10 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
               otherwise: (schema) => schema.notRequired(),
             }),
             sampleDate: Yup.string().required(),
-            valNO3H: Yup.number().min(0).max(7).required(),
-            ValP: Yup.number().min(0).max(7).required(),
-            valK: Yup.number().min(0).max(7).required(),
-            valPH: Yup.number().min(0).max(7).required(),
+            valNO3H: Yup.number().min(0).max(1000).required(),
+            ValP: Yup.number().min(0).max(1000).required(),
+            valK: Yup.number().min(0).max(1000).required(),
+            valPH: Yup.number().min(0).max(1000).required(),
           })
           .required(),
       otherwise: (schema) => schema.notRequired(),
@@ -109,8 +110,19 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   const addFieldData = (values: FieldDetailInterface): void => {
     setTimeout(() => {
       const farmInfo: FarmDetailsInterface = { ...farmDetails };
+      const noSoilTestVal = {
+        ...values.SoilTest,
+        ValP: Infinity,
+        valK: Infinity,
+        valPH: 4.0,
+      };
 
-      const newField: FieldDetailInterface = {
+      const noLeafTestVal = {
+        leafTissueP: Infinity,
+        leafTissueK: Infinity,
+      };
+
+      let newField: FieldDetailInterface = {
         Id: fieldIndex,
         FieldName: values.FieldName,
         Area: values.Area,
@@ -162,6 +174,11 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           },
         ],
       };
+
+      if (values.HasSoilTest === false) newField.SoilTest = noSoilTestVal;
+      if (values.HasLeafTest === false) newField.LeafTest = noLeafTestVal;
+      console.log(newField.SoilTest);
+      console.log(newField.LeafTest);
 
       farmInfo.Fields.push(newField);
 
@@ -254,6 +271,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                         type="radio"
                         onChange={() => {
                           setFieldValue('HasSoilTest', option.value);
+                          console.log(values.HasSoilTest);
                         }}
                       />
                     ))}
