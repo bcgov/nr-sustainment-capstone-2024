@@ -14,7 +14,7 @@ concurrency:
 jobs:
   cleanup:
     name: Cleanup and Images
-    uses: bcgov/quickstart-openshift-helpers/.github/workflows/.pr-close.yml@v0.6.0
+    uses: bcgov/quickstart-openshift-helpers/.github/workflows/.pr-close.yml@v0.6.1
     secrets:
       oc_namespace: ${{ secrets.OC_NAMESPACE }}
       oc_token: ${{ secrets.OC_TOKEN }}
