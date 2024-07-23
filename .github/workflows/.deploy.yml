@@ -68,6 +68,6 @@ jobs:
           oc_server: ${{ vars.OC_SERVER }}
           oc_token: ${{ secrets.OC_TOKEN }}
           file: frontend/openshift.deploy.yml
-          overwrite: trues
+          overwrite: true
           parameters:
             -p TAG=${{ inputs.tag }} -p TARGET=${{ inputs.target }}
