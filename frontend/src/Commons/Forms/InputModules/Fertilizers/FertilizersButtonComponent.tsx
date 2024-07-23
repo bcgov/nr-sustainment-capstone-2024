@@ -64,7 +64,7 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
           handleClick={() => {
             if (submitFertDetails) submitFertDetails();
             handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
-            console.log(Calculate(farmDetails.Fields[0]));
+            Calculate(farmDetails.Fields[0]);
           }}
         />
       </StyledButtonContainer>

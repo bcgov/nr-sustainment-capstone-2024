@@ -1,6 +1,8 @@
 import CalculationTable, { CalcLogic } from '@Interface/CalculationTableInterface';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import * as calcData from './calculation-data/raspberryCalculation.json';
+import AgronomicBalanceInterface from '@Interface/AgronomicBalanceInterface';
+import CropRemovalBalanceInterface from '@Interface/CropRemovalBalance';
 
 function calcN(calcLogic: CalcLogic, yieldValue: number, sawdust?: boolean): number {
   const { sawdustAddition } = calcLogic;
@@ -74,25 +76,14 @@ function calcRemovalPK(rmCoeficients: CalcLogic, cropYield: number, isPruned?: b
   return val;
 }
 
-interface AgronomicBalance {
-  N: number;
-  P: number;
-  K: number;
-}
-
-interface CropRemovalBalance {
-  P: number;
-  K: number;
-}
-
 // This function will be updated in the next ticket
 // It is mostly a proof of correct calculations being applied
 // For this reason, it is scoped to the first field first crop only at this point
 function Calculate(field: FieldDetailInterface) {
   const crop = field.Crops[0];
   const calcTable: CalculationTable = calcData;
-  const agronomicBalance: AgronomicBalance = { N: 0, P: 0, K: 0 };
-  const cropRemovalBalance: CropRemovalBalance = { P: 0, K: 0 };
+  const agronomicBalance: AgronomicBalanceInterface = { N: 0, P: 0, K: 0 };
+  const cropRemovalBalance: CropRemovalBalanceInterface = { P: 0, K: 0 };
   const isRemovedFromField = field.Crops[0].whereWillPruningsGo === 'Removed from field';
   console.log(field.Crops[0].whereWillPruningsGo);
 

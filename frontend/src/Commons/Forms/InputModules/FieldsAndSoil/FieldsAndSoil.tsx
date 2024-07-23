@@ -177,8 +177,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
 
       if (values.HasSoilTest === false) newField.SoilTest = noSoilTestVal;
       if (values.HasLeafTest === false) newField.LeafTest = noLeafTestVal;
-      console.log(newField.SoilTest);
-      console.log(newField.LeafTest);
 
       farmInfo.Fields.push(newField);
 
@@ -271,7 +269,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                         type="radio"
                         onChange={() => {
                           setFieldValue('HasSoilTest', option.value);
-                          console.log(values.HasSoilTest);
                         }}
                       />
                     ))}
