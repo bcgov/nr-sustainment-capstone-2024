@@ -4,7 +4,7 @@ import NmpFieldInterface from '@Interface/NmpFieldInterface';
 import { templateCropNMP, templateFieldNMP } from '@Constants/templateNMP';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import NmpCropInterface from '@Interface/NmpCropInterface';
-import { CropsDetailsInterface } from '@Interface/CropsDetailsInterface';
+import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 
 /**
  * @desc    Convert the FarmDetailsInterface to the NmpInterface structure.

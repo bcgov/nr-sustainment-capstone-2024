@@ -1,8 +1,8 @@
 import CalculationTable, { CalcLogic } from '@Interface/CalculationTableInterface';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
-import * as calcData from './calculation-data/raspberryCalculation.json';
 import AgronomicBalanceInterface from '@Interface/AgronomicBalanceInterface';
 import CropRemovalBalanceInterface from '@Interface/CropRemovalBalance';
+import * as calcData from './calculation-data/raspberryCalculation.json';
 
 function calcN(calcLogic: CalcLogic, yieldValue: number, sawdust?: boolean): number {
   const { sawdustAddition } = calcLogic;
