@@ -64,23 +64,12 @@ function calcRemovalPK(rmCoeficients: CalcLogic, cropYield: number, isPruned?: b
     return 0;
   }
 
-  console.log(
-    `pruningRemovalFactor: ${rmCoeficients.pruningRemovalFactor},
-    fruitRemovalFactor: ${rmCoeficients.fruitRemovalFactor},
-    cropYield: ${cropYield},
-    isPruned: ${isPruned}`,
-  );
-
   let val = 0;
   if (isPruned === true) {
     val += cropYield * rmCoeficients.pruningRemovalFactor;
-    console.log(cropYield + ' ' + rmCoeficients.pruningRemovalFactor);
-    console.log('isPruned: ', cropYield * rmCoeficients.pruningRemovalFactor);
   }
 
   val += cropYield * rmCoeficients.fruitRemovalFactor;
-  console.log(cropYield + ' ' + rmCoeficients.fruitRemovalFactor);
-  console.log('fruitRemovalFactor: ', cropYield * rmCoeficients.fruitRemovalFactor);
 
   return val;
 }
@@ -132,8 +121,9 @@ function Calculate(field: FieldDetailInterface) {
     field.Crops[0].willPlantsBePruned,
   );
 
-  // console.log(agronomicBalance);
-  console.log(cropRemovalBalance);
+  // Leaving it for now, will be removed when implementing Calculate Nutrients fuctionality
+  console.log('AgronomicBalance: ', agronomicBalance);
+  console.log('CropRemovalBalance: ', cropRemovalBalance);
 }
 
 export default Calculate;
