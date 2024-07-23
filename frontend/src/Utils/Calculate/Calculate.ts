@@ -58,38 +58,82 @@ function calcPK(calcLogic: CalcLogic, soilTest: number, leafTissue: number): num
   return val;
 }
 
+function calcRemovalPK(rmCoeficients: CalcLogic, cropYield: number, isPruned?: boolean) {
+  if (!rmCoeficients.pruningRemovalFactor || !rmCoeficients.fruitRemovalFactor) {
+    console.error('Missing details in calculationTable/cropsRemovalBalance/pruningRemovalFactor');
+    return 0;
+  }
+
+  console.log(
+    `pruningRemovalFactor: ${rmCoeficients.pruningRemovalFactor},
+    fruitRemovalFactor: ${rmCoeficients.fruitRemovalFactor},
+    cropYield: ${cropYield},
+    isPruned: ${isPruned}`,
+  );
+
+  let val = 0;
+  if (isPruned === true) {
+    val += cropYield * rmCoeficients.pruningRemovalFactor;
+    console.log(cropYield + ' ' + rmCoeficients.pruningRemovalFactor);
+    console.log('isPruned: ', cropYield * rmCoeficients.pruningRemovalFactor);
+  }
+
+  val += cropYield * rmCoeficients.fruitRemovalFactor;
+  console.log(cropYield + ' ' + rmCoeficients.fruitRemovalFactor);
+  console.log('fruitRemovalFactor: ', cropYield * rmCoeficients.fruitRemovalFactor);
+
+  return val;
+}
+
+interface AgronomicBalance {
+  N?: number;
+  P?: number;
+  K?: number;
+}
+
+interface CropRemovalBalance {
+  P?: number;
+  K?: number;
+}
+
 function Calculate(field: FieldDetailInterface) {
   const crop = field.Crops[0];
   const calcTable: CalculationTable = calcData;
+  const agronomicBalance: AgronomicBalance = { N: 0, P: 0, K: 0 };
+  const cropRemovalBalance: CropRemovalBalance = { P: 0, K: 0 };
 
-  const N = calcN(
+  agronomicBalance.N = calcN(
     calcTable.agronomicBalance.nitrogenCalculation.logic,
     crop.yield,
     crop.willSawdustBeApplied,
   );
 
-  const P = calcPK(
+  agronomicBalance.P = calcPK(
     calcTable.agronomicBalance.phosphorusCalculation.logic,
     field.SoilTest.ValP,
     field.LeafTest.leafTissueP,
   );
 
-  const K = calcPK(
+  agronomicBalance.K = calcPK(
     calcTable.agronomicBalance.potassiumCalculation.logic,
     field.SoilTest.valK,
     field.LeafTest.leafTissueK,
   );
 
-  // console.log('Yield: ', crop.yield);
-  // console.log('Sawdust: ', crop.willSawdustBeApplied);
-  console.log('Nitrogen:', N);
+  cropRemovalBalance.P = calcRemovalPK(
+    calcTable.cropRemovalBalance.phosphorusRemoval.logic,
+    field.Crops[0].yield,
+    field.Crops[0].willPlantsBePruned,
+  );
 
-  // console.log('soilTestP: ', field.SoilTest.ValP);
-  // console.log('leafTissueP: ', field.LeafTest.leafTissueP);
-  console.log('Phosphorus: ', P);
-  console.log('Potassium: ', K);
+  cropRemovalBalance.K = calcRemovalPK(
+    calcTable.cropRemovalBalance.potassiumRemoval.logic,
+    field.Crops[0].yield,
+    field.Crops[0].willPlantsBePruned,
+  );
 
-  console.log(calcData);
+  // console.log(agronomicBalance);
+  console.log(cropRemovalBalance);
 }
 
 export default Calculate;

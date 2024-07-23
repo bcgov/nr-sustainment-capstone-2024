@@ -26,6 +26,8 @@ export interface CalcLogic {
   N?: number;
   P?: number;
   K?: number;
+  fruitRemovalFactor?: number;
+  pruningRemovalFactor?: number;
 }
 
 interface Calculation {
@@ -40,7 +42,7 @@ interface AgronomicBalance {
   potassiumCalculation: Calculation;
 }
 
-interface CropRemovalBalance {
+export interface CropRemovalCoeficient {
   phosphorusRemoval: Calculation;
   potassiumRemoval: Calculation;
 }
@@ -49,7 +51,7 @@ interface CalculationTable {
   cropType: string;
   crop: string;
   agronomicBalance: AgronomicBalance;
-  cropRemovalBalance: CropRemovalBalance;
+  cropRemovalBalance: CropRemovalCoeficient;
 }
 
 export default CalculationTable;
