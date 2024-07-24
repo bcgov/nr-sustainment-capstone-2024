@@ -5,7 +5,6 @@ import Button from '@Commons/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { COMPLETED } from '@Constants/ModuleStatus';
-import Calculate from '@Utils/Calculate/Calculate';
 import {
   StyledButtonGroupContainer,
   StyledButtonContainer,
@@ -26,7 +25,6 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
   addNewFertilizer,
   handleFormState,
   submitFertDetails,
-  farmDetails,
 }) => (
   <StyledButtonGroupContainer>
     <StyledNewFieldButtonContainer>
@@ -64,7 +62,6 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
           handleClick={() => {
             if (submitFertDetails) submitFertDetails();
             handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
-            Calculate(farmDetails.Fields[0]);
           }}
         />
       </StyledButtonContainer>
