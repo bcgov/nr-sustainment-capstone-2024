@@ -95,6 +95,9 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
         fertNValue = 23;
         break;
       default:
+        fertNValue = values.customN;
+        fertP2o5Value = values.customP2o5;
+        fertK20Value = values.customK2o;
         break;
     }
 
