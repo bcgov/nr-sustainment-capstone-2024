@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
-import { CropsDetailsInterface } from '@Interface/CropsDetailsInterface';
+import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 import {
   StyledH3HeaderContainer,

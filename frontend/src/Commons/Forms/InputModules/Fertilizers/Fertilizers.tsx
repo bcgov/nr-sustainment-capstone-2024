@@ -32,6 +32,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
   fertilizersDetails,
   handleFormState,
   updateFertDetails,
+  farmDetails,
 }) => {
   const initialFieldValues = initialFarmDetails.Fields[0].Nutrients[0];
   const [isAddButtonClicked, setAddButtonClicked] = useState<boolean>(false);
@@ -135,6 +136,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
         <FertilizersButtonComponent
           addNewFertilizer={addNewFertilizer}
           handleFormState={handleFormState}
+          farmDetails={farmDetails}
         />
       )}
 

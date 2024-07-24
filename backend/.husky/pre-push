@@ -2,6 +2,7 @@ cd frontend
 npm run test
 npm run format
 npm run lint
+npm run build
 
 cd ../backend
 npm run test
