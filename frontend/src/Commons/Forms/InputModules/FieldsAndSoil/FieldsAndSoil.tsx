@@ -22,6 +22,7 @@ import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import StatusValidate from '@Utils/StatusValidate';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
+import handleChange from '@Utils/handleChange';
 import { ACTIVE } from '@Constants/ModuleStatus';
 import {
   StyledFarmInfo,
@@ -295,6 +296,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           id="SoilTest.TestingMethod"
                           label="Lab (Soil Test Methods)"
                           options={soilTestOptions}
+                          onChange={(e) => handleChange(e, setFieldValue)}
                         />
                       </StyledSelectContainer>
                       <HeaderLabel>Soil Test values (top 6 inches of soil)</HeaderLabel>
