@@ -266,7 +266,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
                       type="submit"
                       size="lg"
                       disabled={false}
-                      text={ComponentText.ADD_FERTILIZERS}
+                      text={ComponentText.ADD_FERTILIZERS_FIELD}
                     />
                   </StyledButtonContainer>
                 </StyledRightView>

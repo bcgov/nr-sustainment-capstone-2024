@@ -8,7 +8,7 @@ const StyledCustomNumberField = styled.div`
   gap: 20px;
 
   @media (min-width: ${screenSizes.desktop}) {
-    width: 54%;
+    width: 75%;
     gap: 10px;
   }
 `;
