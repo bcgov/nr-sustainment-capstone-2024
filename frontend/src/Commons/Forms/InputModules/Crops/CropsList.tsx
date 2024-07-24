@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
-import { CropsDetailsInterface } from '@Interface/CropsDetailsInterface';
+import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 import {
   StyledListContainer,
   StyledListItem,

@@ -106,7 +106,7 @@ Y = Yield (Tons/Ac)
 P += Y * 1.145      // Fruit: P2O5 removal (lb/ton fruit)
 
 if Pruned == true and Removed == true:
-    P += Y * 2.748      // Pruning: P2O5 removal (lb/ton fruit)
+    P +=  2.748      // Pruning: P2O5 removal (lb/ton fruit)
 
 return P
 ```
@@ -121,7 +121,7 @@ Y = Yield (Tons/Ac)
 K += Y * 3.64      // Fruit: K20 removal (lb/ton fruit)
 
 if Pruned == true and Removed == true:
-    K += Y * 11.374      // Pruning: K20 removal (lb/ton fruit)
+    K +=  11.374      // Pruning: K20 removal (lb/ton fruit)
 
 return K
 ```
