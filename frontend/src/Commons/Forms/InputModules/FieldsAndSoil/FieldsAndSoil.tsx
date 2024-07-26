@@ -23,6 +23,7 @@ import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import StatusValidate from '@Utils/StatusValidate';
 import { faWheatAwn } from '@fortawesome/free-solid-svg-icons';
 import handleChange from '@Utils/handleChange';
+import InformationIcons from '@Commons/InformationIcons/InformationIcons';
 import { ACTIVE } from '@Constants/ModuleStatus';
 import {
   StyledFarmInfo,
@@ -201,7 +202,21 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
     setFieldAdd(true);
   };
-
+  const SoilTextArray: string[] = [
+    'Different labs use different soil test methods for phosphorus (P) and potassium (K)',
+    'Different methods give different values for the same soil sample',
+    'This website converts lab report values to standard (Kelowna method-equivalent) values',
+  ];
+  const SoilTestValues: string =
+    'Do not enter results from soil samples taken deeper than 6 inches (15cm). Do not use post-harvest nitrate tests results here';
+  const Nitrate: string =
+    'The amount of nitrogen available in the form of nitrate (NO3-N), and is generally expressed in ppm or mg/kg. Found on a recent soil test report.';
+  const Phosporus: string =
+    'The amount of available phosphorus given from a recent soil test. Generally expressed in ppm or mg/kg.';
+  const Potassium: string =
+    'The amount of available potassium given from a recent soil test. Generally expressed in ppm or mg/kg.';
+  const pH: string =
+    "Soil pH is the measure of a soil's acidity or alkalinity. Ranges between 4 and 9 in most soils.";
   return (
     <>
       {isSubmitted && (
@@ -259,7 +274,12 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                 </StyledTextAreaContainer>
 
                 <StyledTestContainer>
-                  <HeaderLabel>Add Soil Test</HeaderLabel>
+                  <HeaderLabel>
+                    <h3>Add Soil Test</h3>
+                    <span>
+                      <InformationIcons arrayText={SoilTextArray} />
+                    </span>
+                  </HeaderLabel>
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
@@ -299,7 +319,15 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           onChange={(e) => handleChange(e, setFieldValue)}
                         />
                       </StyledSelectContainer>
-                      <HeaderLabel>Soil Test values (top 6 inches of soil)</HeaderLabel>
+                      <HeaderLabel>
+                        <h3>Soil Test values (top 6 inches of soil)</h3>
+                        <span>
+                          <InformationIcons
+                            text={SoilTestValues}
+                            rightPositioned
+                          />
+                        </span>
+                      </HeaderLabel>
                       <InputFieldsGroup>
                         <CustomField
                           label="Sample Month"
@@ -312,6 +340,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           id="SoilTest.valNO3H"
                           name="SoilTest.valNO3H"
                           type="number"
+                          text={Nitrate}
+                          rightPositioned
                         />
                       </InputFieldsGroup>
                       <InputFieldsGroup>
@@ -320,12 +350,15 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           id="SoilTest.ValP"
                           name="SoilTest.ValP"
                           type="number"
+                          text={Phosporus}
+                          rightPositioned
                         />
                         <CustomField
                           label="K (ppm), potassium"
                           id="SoilTest.valK"
                           name="SoilTest.valK"
                           type="number"
+                          text={Potassium}
                         />
                       </InputFieldsGroup>
                       <SingleInputField>
@@ -334,6 +367,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           id="SoilTest.valPH"
                           name="SoilTest.valPH"
                           type="number"
+                          text={pH}
                         />
                       </SingleInputField>
                     </>

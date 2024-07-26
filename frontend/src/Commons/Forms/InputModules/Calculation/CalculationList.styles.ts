@@ -12,10 +12,16 @@ const StyledH3HeaderContainer = styled.div`
 `;
 
 const StyledH3HeaderItem = styled.div<CalculationListProps>`
+  display: flex;
+  align-items: center;
   width: ${(props) => props.width};
   h3 {
     font: ${tokens.typographyBoldSmallBody};
     text-align: center;
+  }
+  span {
+    margin-left: 10px;
+    position: relative;
   }
   @media (min-width: ${screenSizes.desktop}) {
     h3 {
