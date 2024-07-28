@@ -152,6 +152,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
     }
     return [];
   };
+
   return (
     <>
       <Formik

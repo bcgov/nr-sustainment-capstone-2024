@@ -109,9 +109,21 @@ const StyledRadioGroupContainer = styled.div`
 `;
 
 const HeaderLabel = styled.div`
+  display: flex;
+  align-items: center;
   h3 {
-    font: ${tokens.typographyBoldLargeBody};
+    font: ${tokens.typographyBoldSmallBody};
     margin: 0;
+  }
+  span {
+    margin-left: 10px;
+    position: relative;
+  }
+
+  @media (min-width: ${screenSizes.desktop}) {
+    h3 {
+      font: ${tokens.typographyBoldLargeBody};
+    }
   }
 `;
 
@@ -127,7 +139,7 @@ const StyledWarningBlock = styled.div`
 `;
 
 const StyledSelectContainer = styled.div`
-  width: 100vw;
+  width: 100%;
 
   @media (min-width: ${screenSizes.desktop}) {
     width: 30%;
@@ -141,7 +153,7 @@ const InputFieldsGroup = styled.div`
 
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
-    width: 600px;
+    width: 700px;
     gap: 20px;
   }
 `;

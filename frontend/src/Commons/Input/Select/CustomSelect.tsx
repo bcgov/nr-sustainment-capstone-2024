@@ -5,7 +5,8 @@
 import { Field, ErrorMessage } from 'formik';
 import React, { FC } from 'react';
 import OptionInterface from 'src/Interface/OptionInterface';
-import StyledSelect from './CustomSelect.style';
+import InformationIcons from '@Commons/InformationIcons/InformationIcons';
+import { StyledSelect, StyledLabel } from './CustomSelect.style';
 import '../ErrorMessage.css';
 
 interface CustomSelectProps {
@@ -15,6 +16,8 @@ interface CustomSelectProps {
   options: OptionInterface[];
   width?: string;
   formCalc?: boolean;
+  text?: string;
+  rightPositioned?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -25,13 +28,27 @@ const CustomSelect: FC<CustomSelectProps> = ({
   width = '100%',
   options,
   onChange,
+  text,
+  rightPositioned,
   formCalc = false,
 }) => (
   <StyledSelect
     width={width}
     formCalc={formCalc}
   >
-    <label htmlFor={id}>{label}</label>
+    <StyledLabel>
+      <label htmlFor={id}>
+        {label}
+        {text && (
+          <span>
+            <InformationIcons
+              text={text}
+              rightPositioned={rightPositioned}
+            />
+          </span>
+        )}
+      </label>
+    </StyledLabel>
     <Field
       name={name}
       id={id}
