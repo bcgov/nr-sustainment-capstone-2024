@@ -139,7 +139,7 @@ const StyledWarningBlock = styled.div`
 `;
 
 const StyledSelectContainer = styled.div`
-  width: 100vw;
+  width: 100%;
 
   @media (min-width: ${screenSizes.desktop}) {
     width: 30%;
