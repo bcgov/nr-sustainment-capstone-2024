@@ -13,26 +13,31 @@ const StyledBubbleAndFontAwesomeContainer = styled.div`
 
 const StyledFontAwesomeContainer = styled.div`
   display: flex;
+  position: relative;
+`;
+
+const IconContainer = styled.div`
   font-size: 16px;
   color: ${tokens.iconsColorInfo};
+  cursor: pointer;
+  background-color: transparent;
   @media (min-width: ${screenSizes.desktop}) {
     font-size: 24px;
   }
-  position: relative;
 `;
 
 const StyledBubble = styled.div<StyledIconsProps>`
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: ${(props) => (props.rightPositioned ? '80%' : '30%')};
-  transform: ${(props) => (props.rightPositioned ? 'translateX(-80%)' : 'translateX(-30%)')};
+  left: ${(props) => (props.rightPositioned ? '85%' : '30%')};
+  transform: ${(props) => (props.rightPositioned ? 'translateX(-85%)' : 'translateX(-30%)')};
   bottom: 100%;
   padding: 10px 20px 0 0;
   border: 1px solid ${tokens.supportBorderColorInfo};
   border-radius: 4px;
-  background-color: white;
-  width: 250px;
+  background-color: ${tokens.surfaceColorBackgroundLightBlue};
+  width: 230px;
   li {
     font: ${tokens.typographyRegularLabel};
     color: ${tokens.typographyColorPrimary};
@@ -81,4 +86,5 @@ export {
   StyledBubbleContainer,
   StyledBubble,
   StyledCaretDown,
+  IconContainer,
 };

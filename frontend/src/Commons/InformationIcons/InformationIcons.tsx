@@ -7,6 +7,7 @@ import {
   StyledBubble,
   StyledBubbleContainer,
   StyledCaretDown,
+  IconContainer,
 } from './InformationIcons.styles';
 
 type InformationIconsProps = {
@@ -25,10 +26,12 @@ const InformationIcons = ({ arrayText, text, rightPositioned }: InformationIcons
   return (
     <StyledBubbleAndFontAwesomeContainer>
       <StyledFontAwesomeContainer>
-        <FontAwesomeIcon
-          icon={faCircleInfo}
-          onClick={handleClickWrapper}
-        />
+        <IconContainer>
+          <FontAwesomeIcon
+            icon={faCircleInfo}
+            onClick={handleClickWrapper}
+          />
+        </IconContainer>
         {isBubbleDisplayed && (
           <StyledBubbleContainer>
             <StyledBubble rightPositioned={rightPositioned}>
