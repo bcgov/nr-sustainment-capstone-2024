@@ -3,7 +3,7 @@ kind: Template
 parameters:
   - name: APP
     description: Application name
-    value: nr-sustainment-capstone-2024
+    value: better-berries
   - name: COMPONENT
     description: Component name
     value: frontend
@@ -101,7 +101,7 @@ objects:
         app: ${APP}-${TARGET}
       name: ${APP}-${TARGET}-${COMPONENT}
     spec:
-      host: ${APP}-${TARGET}-${COMPONENT}.apps.silver.devops.gov.bc.ca
+      host: ${APP}-${TARGET}.apps.silver.devops.gov.bc.ca
       port:
         targetPort: http-5173
       to:
