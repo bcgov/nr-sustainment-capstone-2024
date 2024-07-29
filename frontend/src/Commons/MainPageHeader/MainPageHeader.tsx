@@ -5,11 +5,14 @@ import ToggleText from '@Constants/ToggleText';
 import { StyledHeader, Logo, Title, ToggleContainer } from './MainPageHeader.styles';
 
 interface MainPageHeaderProps {
-  toggleEnabled: boolean;
-  setToggleEnabled: Dispatch<SetStateAction<boolean>>;
+  toggleEnabled?: boolean;
+  setToggleEnabled?: Dispatch<SetStateAction<boolean>>;
 }
 
-const MainPageHeader = ({ toggleEnabled, setToggleEnabled }: MainPageHeaderProps) => (
+const MainPageHeader = ({
+  toggleEnabled = false,
+  setToggleEnabled = () => {},
+}: MainPageHeaderProps) => (
   <StyledHeader>
     <a href="/">
       <Logo alt="bc-logo" />

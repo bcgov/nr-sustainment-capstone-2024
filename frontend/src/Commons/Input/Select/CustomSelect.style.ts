@@ -29,6 +29,7 @@ const StyledSelect = styled.div<StyledSelectProps>`
 `;
 
 const StyledLabel = styled.div`
+  min-height: 25px;
   label {
     display: flex;
     align-items: flex-end;
@@ -38,6 +39,7 @@ const StyledLabel = styled.div`
     margin-bottom: 2px;
   }
   @media (min-width: ${screenSizes.desktop}) {
+    min-height: 40px;
     label {
       font: ${tokens.typographyBoldLargeBody};
     }

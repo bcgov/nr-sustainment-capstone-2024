@@ -111,6 +111,7 @@ const StyledRadioGroupContainer = styled.div`
 const HeaderLabel = styled.div`
   display: flex;
   align-items: center;
+  min-height: 25px;
   h3 {
     font: ${tokens.typographyBoldSmallBody};
     margin: 0;
@@ -121,6 +122,7 @@ const HeaderLabel = styled.div`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
+    min-height: 40px;
     h3 {
       font: ${tokens.typographyBoldLargeBody};
     }

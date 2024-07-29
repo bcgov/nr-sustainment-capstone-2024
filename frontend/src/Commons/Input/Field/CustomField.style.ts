@@ -25,12 +25,13 @@ const StyledField = styled.div<StyledFieldProps>`
 const StyledLabel = styled.div`
   display: flex;
   gap: 20px;
-
+  min-height: 25px;
   label {
     font: ${tokens.typographyBoldSmallBody};
   }
 
   @media (min-width: ${screenSizes.desktop}) {
+    min-height: 40px;
     label {
       font: ${tokens.typographyBoldLargeBody};
     }

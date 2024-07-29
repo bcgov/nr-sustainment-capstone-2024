@@ -5,10 +5,13 @@ import ToggleText from '@Constants/ToggleText';
 import StyledMainFooter from './MainPageFooter.styles';
 
 interface MainPageFooterProps {
-  toggleEnabled: boolean;
-  setToggleEnabled: Dispatch<SetStateAction<boolean>>;
+  toggleEnabled?: boolean;
+  setToggleEnabled?: Dispatch<SetStateAction<boolean>>;
 }
-const MainPageFooter = ({ toggleEnabled, setToggleEnabled }: MainPageFooterProps) => (
+const MainPageFooter = ({
+  toggleEnabled = false,
+  setToggleEnabled = () => {},
+}: MainPageFooterProps) => (
   <StyledMainFooter>
     <InformationIcons
       text={ToggleText}
