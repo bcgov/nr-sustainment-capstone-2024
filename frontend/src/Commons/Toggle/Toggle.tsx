@@ -1,26 +1,23 @@
-import { Dispatch, SetStateAction, FC, useState } from 'react';
+import { Dispatch, SetStateAction, FC } from 'react';
 import { StyledToggleButton, Thumb } from './Toggle.styles';
 
 interface ToggleProps {
+  toggleEnabled: boolean;
   onToggleChange: Dispatch<SetStateAction<boolean>>;
 }
 
-const Toggle: FC<ToggleProps> = ({ onToggleChange }) => {
-  const [enabled, setLocalEnabled] = useState<boolean>(false);
-
+const Toggle: FC<ToggleProps> = ({ toggleEnabled, onToggleChange }) => {
   const handleToggle = () => {
-    const newState = !enabled;
-    setLocalEnabled(newState);
-    onToggleChange(newState);
+    onToggleChange(!toggleEnabled);
   };
 
   return (
     <StyledToggleButton
-      enabled={enabled}
+      enabled={toggleEnabled}
       type="button"
       onClick={handleToggle}
     >
-      <Thumb enabled={enabled} />
+      <Thumb enabled={toggleEnabled} />
     </StyledToggleButton>
   );
 };

@@ -10,7 +10,7 @@ interface MainPageHeaderProps {
 }
 
 const MainPageHeader = ({
-  toggleEnabled = false,
+  toggleEnabled = true,
   setToggleEnabled = () => {},
 }: MainPageHeaderProps) => (
   <StyledHeader>
@@ -24,9 +24,12 @@ const MainPageHeader = ({
         toggleIcon
         rightPositioned
         headerDesktop
-        toggleEnabled={toggleEnabled}
+        toggleEnabled
       />
-      <Toggle onToggleChange={setToggleEnabled} />
+      <Toggle
+        toggleEnabled={toggleEnabled}
+        onToggleChange={setToggleEnabled}
+      />
     </ToggleContainer>
   </StyledHeader>
 );

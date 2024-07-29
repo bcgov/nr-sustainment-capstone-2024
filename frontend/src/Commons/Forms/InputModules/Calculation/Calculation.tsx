@@ -41,6 +41,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
   fertilizersDetails,
   updateFarmDetails,
   handleFormState,
+  toggleEnabled = true,
 }) => {
   const [fertilizerIndex, setFertilizerIndex] = useState<number[]>(
     Array(farmDetails.Fields.length).fill(0),
@@ -277,6 +278,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
                 farmDetails={farmDetails}
                 selectedFieldIndex={selectedFieldIndex}
                 hasFertilizerAdded={hasFertilizerAdded}
+                toggleEnabled={toggleEnabled}
               />
             </StyledFieldContainer>
           </Form>

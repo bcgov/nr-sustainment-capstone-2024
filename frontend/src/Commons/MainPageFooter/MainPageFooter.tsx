@@ -9,7 +9,7 @@ interface MainPageFooterProps {
   setToggleEnabled?: Dispatch<SetStateAction<boolean>>;
 }
 const MainPageFooter = ({
-  toggleEnabled = false,
+  toggleEnabled = true,
   setToggleEnabled = () => {},
 }: MainPageFooterProps) => (
   <StyledMainFooter>
@@ -17,9 +17,12 @@ const MainPageFooter = ({
       text={ToggleText}
       toggleIcon
       rightPositioned
-      toggleEnabled={toggleEnabled}
+      toggleEnabled
     />
-    <Toggle onToggleChange={setToggleEnabled} />
+    <Toggle
+      toggleEnabled={toggleEnabled}
+      onToggleChange={setToggleEnabled}
+    />
   </StyledMainFooter>
 );
 

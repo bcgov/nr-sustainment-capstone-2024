@@ -21,6 +21,7 @@ interface CalculationListProps {
   farmDetails: FarmDetailsInterface;
   selectedFieldIndex: number;
   hasFertilizerAdded: boolean;
+  toggleEnabled: boolean;
 }
 // Will be changed with the correct value after implementation of the calculation
 const zeroConstant: number = 0;
@@ -28,6 +29,7 @@ const CalculationList: FC<CalculationListProps> = ({
   farmDetails,
   selectedFieldIndex,
   hasFertilizerAdded,
+  toggleEnabled,
 }) => {
   const agronomicArray: string[] = [
     'agronomic balances mainly indicate if crop nutrient requirements are met',
@@ -48,13 +50,19 @@ const CalculationList: FC<CalculationListProps> = ({
           <StyledH3HeaderItem width="30%">
             <h3>Argonomic (lb/ac)</h3>
             <span>
-              <InformationIcons arrayText={agronomicArray} />
+              <InformationIcons
+                arrayText={agronomicArray}
+                toggleEnabled={toggleEnabled}
+              />
             </span>
           </StyledH3HeaderItem>
           <StyledH3HeaderItem width="30%">
             <h3>Crop Removal (lb/ac)</h3>
             <span>
-              <InformationIcons arrayText={cropRemoval} />
+              <InformationIcons
+                arrayText={cropRemoval}
+                toggleEnabled={toggleEnabled}
+              />
             </span>
           </StyledH3HeaderItem>
         </StyledH3HeaderContainer>
@@ -161,7 +169,10 @@ const CalculationList: FC<CalculationListProps> = ({
           <StyledH3HeaderItem width="100%">
             <h3>Argonomic (lb/ac)</h3>
             <span>
-              <InformationIcons arrayText={agronomicArray} />
+              <InformationIcons
+                arrayText={agronomicArray}
+                toggleEnabled={toggleEnabled}
+              />
             </span>
           </StyledH3HeaderItem>
           <StyledH4HeaderContainer>
@@ -236,7 +247,10 @@ const CalculationList: FC<CalculationListProps> = ({
           <StyledH3HeaderItem width="100%">
             <h3>Crop Removal (lb/ac)</h3>
             <span>
-              <InformationIcons arrayText={cropRemoval} />
+              <InformationIcons
+                arrayText={cropRemoval}
+                toggleEnabled={toggleEnabled}
+              />
             </span>
           </StyledH3HeaderItem>
           <StyledH4HeaderContainer>

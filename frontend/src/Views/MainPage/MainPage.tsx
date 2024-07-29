@@ -80,7 +80,7 @@ const MainPage: FC = () => {
   const [localDetails, setLocalDetails] = useState(localStorageDetails);
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
-  const [toggleEnabled, setToggleEnabled] = useState<boolean>(false);
+  const [toggleEnabled, setToggleEnabled] = useState<boolean>(true);
   /**
    * @desc    Take our apps main data object and save it to a template .nmp file,
    *          saved in the users localStorage.

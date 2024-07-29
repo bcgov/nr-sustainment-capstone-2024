@@ -10,7 +10,7 @@ type StyledIconsProps = {
 };
 
 const StyledBubbleAndFontAwesomeContainer = styled.div<StyledIconsProps>`
-  display: ${(props) => (props.toggleEnabled ? 'none' : 'flex')};
+  display: ${(props) => (props.toggleEnabled ? 'flex' : 'none')};
   flex-direction: column;
   position: relative;
 `;
