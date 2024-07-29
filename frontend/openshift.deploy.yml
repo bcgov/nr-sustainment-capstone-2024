@@ -104,7 +104,7 @@ objects:
         app: ${APP}-${TARGET}
       name: ${APP}-${TARGET}-${COMPONENT}
     spec:
-      host: ${BBAPP}-${TARGET}.apps.silver.devops.gov.bc.ca
+      host: ${APP}-${TARGET}-${COMPONENT}.apps.silver.devops.gov.bc.ca
       port:
         targetPort: http-5173
       to:
