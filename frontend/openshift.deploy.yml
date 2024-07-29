@@ -4,9 +4,6 @@ parameters:
   - name: APP
     description: Application name
     value: nr-sustainment-capstone-2024
-  - name: BBAPP
-    description: Better Berries name
-    value: better-berries
   - name: COMPONENT
     description: Component name
     value: frontend
