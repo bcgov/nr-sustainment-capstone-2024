@@ -18,6 +18,7 @@ interface CustomSelectProps {
   formCalc?: boolean;
   text?: string;
   rightPositioned?: boolean;
+  toggleEnabled?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -30,6 +31,7 @@ const CustomSelect: FC<CustomSelectProps> = ({
   onChange,
   text,
   rightPositioned,
+  toggleEnabled,
   formCalc = false,
 }) => (
   <StyledSelect
@@ -44,6 +46,7 @@ const CustomSelect: FC<CustomSelectProps> = ({
             <InformationIcons
               text={text}
               rightPositioned={rightPositioned}
+              toggleEnabled={toggleEnabled}
             />
           </span>
         )}

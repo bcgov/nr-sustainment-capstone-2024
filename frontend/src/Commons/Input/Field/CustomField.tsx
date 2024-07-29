@@ -16,6 +16,7 @@ interface CustomFieldProps {
   width?: string;
   text?: string;
   rightPositioned?: boolean;
+  toggleEnabled?: boolean;
 }
 
 const CustomField: FC<CustomFieldProps> = ({
@@ -26,6 +27,7 @@ const CustomField: FC<CustomFieldProps> = ({
   width = '100%',
   text,
   rightPositioned,
+  toggleEnabled = false,
 }) => (
   <StyledField width={width}>
     <StyledLabel>
@@ -35,6 +37,7 @@ const CustomField: FC<CustomFieldProps> = ({
           <InformationIcons
             text={text}
             rightPositioned={rightPositioned}
+            toggleEnabled={toggleEnabled}
           />
         </span>
       )}

@@ -64,4 +64,15 @@ const Title = styled.h1`
   }
 `;
 
-export { StyledHeader, Logo, Title };
+const ToggleContainer = styled.div`
+  display: none;
+  @media (min-width: ${screenSizes.desktop}) {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    left: calc(100vw - 10px);
+    transform: translateX(-100%);
+  }
+`;
+
+export { StyledHeader, Logo, Title, ToggleContainer };
