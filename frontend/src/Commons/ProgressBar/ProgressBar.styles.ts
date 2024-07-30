@@ -21,7 +21,7 @@ const Container = styled.div`
     height: 150px;
     width: 80%;
     max-width: 1400px;
-    top: 8%;
+    top: 100px;
     order: 0;
   }
 `;
