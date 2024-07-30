@@ -122,7 +122,6 @@ const HeaderLabel = styled.div`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    //redeploy
     min-height: 40px;
     h3 {
       font: ${tokens.typographyBoldLargeBody};
