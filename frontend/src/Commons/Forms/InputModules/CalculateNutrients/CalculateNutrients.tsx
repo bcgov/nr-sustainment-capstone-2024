@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { faCalculator } from '@fortawesome/free-solid-svg-icons';
 import InputModuleInterface from '@Interface/InputModuleinterface';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
@@ -14,6 +14,10 @@ import Button from '@Commons/Button/Button';
 import ComponentText from '@Constants/ComponentText';
 import { StyledButtonContainer } from '@Commons/Button/FieldButtonGroup.styles';
 import handleChange from '@Utils/handleChange';
+import Calculate from '@Utils/Calculate/Calculate';
+import MainBalanceInterface from '@Interface/MainBalanceInterface';
+import CropRemovalBalanceInterface from '@Interface/CropRemovalBalance';
+import AgronomicBalanceInterface from '@Interface/AgronomicBalanceInterface';
 import {
   DryApplicationUnits,
   LiquidApplicationUnits,
@@ -34,20 +38,31 @@ import {
 import { StyledDivider } from '../ListComponent.styles';
 import CalculationList from './CalculateNutrientsList';
 import CalculationButtonGroup from './CalculateNutrientsButtonGroup';
+import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 
-const CalculationComponent: React.FC<InputModuleProps> = ({
+const initialAgronomicBalance: AgronomicBalanceInterface = { N: 0, P: 0, K: 0 };
+const initialCropRemovalBalance: CropRemovalBalanceInterface = { P: 0, K: 0 };
+const initialBalance: MainBalanceInterface[] = [
+  {
+    agronomic: initialAgronomicBalance,
+    cropRemoval: initialCropRemovalBalance,
+  },
+  {
+    agronomic: initialAgronomicBalance,
+    cropRemoval: initialCropRemovalBalance,
+  },
+];
+
+const CalculateNutrientsComponent: FC<InputModuleProps> = ({
   farmDetails,
   fertilizersDetails,
   updateFarmDetails,
   handleFormState,
 }) => {
-  const [fertilizerIndex, setFertilizerIndex] = useState<number[]>(
-    Array(farmDetails.Fields.length).fill(0),
-  );
-  const [selectedFieldIndex, setFieldIndex] = useState(farmDetails.Fields.length);
+  const [selectedFieldIndex, setFieldIndex] = useState(-1);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const [hasFertilizerAdded, setFertilizerAdded] = useState<boolean>(false);
-
+  const [cropBalances, setCropBalance] = useState<MainBalanceInterface[]>(initialBalance);
+  const [resultBalance, setResultBalance] = useState<MainBalanceInterface>(initialBalance[0]);
   const initialValues: FertilizerInterface = initialFarmDetails.Fields[0].Nutrients[0];
   const fieldsOption: OptionInterface[] = farmDetails.Fields.map((field) => ({
     value: field.FieldName,
@@ -76,75 +91,108 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
     ),
   });
 
-  /**
-   * @description   submits the calculation data and uploads it into the Main JSON data file
-   * @param values  uses the interface @TempNutrientsInterface it holds the data that
-   *              has been entered in the input fields.
-   */
+  const sumBalances = (balances: MainBalanceInterface[]): MainBalanceInterface => {
+    return balances.reduce(
+      (acc, balance) => ({
+        agronomic: {
+          N: acc.agronomic.N + balance.agronomic.N,
+          P: acc.agronomic.P + balance.agronomic.P,
+          K: acc.agronomic.K + balance.agronomic.K,
+        },
+        cropRemoval: {
+          N: (acc.cropRemoval.N || 0) + (balance.cropRemoval.N || 0),
+          P: acc.cropRemoval.P + balance.cropRemoval.P,
+          K: acc.cropRemoval.K + balance.cropRemoval.K,
+        },
+      }),
+      {
+        agronomic: { N: 0, P: 0, K: 0 },
+        cropRemoval: { N: 0, P: 0, K: 0 },
+      },
+    );
+  };
+
+  const calcFieldBalances = (field: FieldDetailInterface) => {
+    if (field) {
+      const balances = field.Crops.map((crop) => Calculate(field, crop));
+      setCropBalance(balances);
+
+      let fertN = 0;
+      let fertP = 0;
+      let fertK = 0;
+
+      if (field.Nutrients.length > 0) {
+        field.Nutrients.map((fertilizer) => {
+          fertN += fertilizer.fertN;
+          fertP += fertilizer.fertP2o5;
+          fertK += fertilizer.fertK2o;
+        });
+      }
+
+      let newResultBalance = sumBalances(balances);
+
+      newResultBalance = {
+        agronomic: {
+          N: newResultBalance.agronomic.N + fertN,
+          P: newResultBalance.agronomic.P + fertP,
+          K: newResultBalance.agronomic.K + fertK,
+        },
+        cropRemoval: {
+          N: newResultBalance.cropRemoval.N ? newResultBalance.cropRemoval.N + fertN : fertN,
+          P: newResultBalance.cropRemoval.P + fertP,
+          K: newResultBalance.cropRemoval.K + fertK,
+        },
+      };
+
+      setResultBalance(newResultBalance);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedFieldIndex !== -1) {
+      calcFieldBalances(farmDetails.Fields[selectedFieldIndex]);
+    }
+  }, [selectedFieldIndex]);
+
   const submitCalculationData = (values: FertilizerInterface): void => {
-    const fertilizer: FertilizerInterface[] = { ...fertilizersDetails };
-    const newFertilizer: FertilizerInterface = {
-      id: fertilizerIndex[selectedFieldIndex],
-      fertilizerTypeId: fertilizer[selectedIndex].fertilizerTypeId,
-      fertilizerId: fertilizer[selectedIndex].fertilizerId,
-      applUnitId: values.applUnitId,
-      applRate: values.applRate,
-      applDate: values.applDate || '',
-      applMethodId: values.applMethodId || '',
-      customN: fertilizer[selectedIndex].customN,
-      customP2o5: fertilizer[selectedIndex].customP2o5,
-      customK2o: fertilizer[selectedIndex].customK2o,
-      fertN: fertilizer[selectedIndex].fertN,
-      fertP2o5: fertilizer[selectedIndex].customP2o5,
-      fertK2o: fertilizer[selectedIndex].fertK2o,
-      liquidDensity: values.liquidDensity,
-      liquidDensityUnitId: values.liquidDensityUnitId,
-    };
-
     setTimeout(() => {
-      let newFarmDetails = farmDetails;
-      console.log(farmDetails.Fields[selectedFieldIndex]);
-      newFarmDetails.Fields[selectedFieldIndex].Nutrients.push(newFertilizer);
-      setFertilizerIndex((prevIndexes) => {
-        const fertilizerIndexArry = [...prevIndexes];
-        fertilizerIndexArry[selectedFieldIndex] =
-          (fertilizerIndexArry[selectedFieldIndex] || 0) + 1;
-        return fertilizerIndexArry;
-      });
+      const newFertilizer: FertilizerInterface = {
+        ...values,
+        id: fertilizersDetails.length,
+        fertilizerTypeId: fertilizersDetails[selectedIndex].fertilizerTypeId,
+        fertilizerId: fertilizersDetails[selectedIndex].fertilizerId,
+        customN: fertilizersDetails[selectedIndex].customN,
+        customP2o5: fertilizersDetails[selectedIndex].customP2o5,
+        customK2o: fertilizersDetails[selectedIndex].customK2o,
+        fertN: fertilizersDetails[selectedIndex].fertN,
+        fertP2o5: fertilizersDetails[selectedIndex].fertP2o5,
+        fertK2o: fertilizersDetails[selectedIndex].fertK2o,
+      };
 
-      setFertilizerAdded(true);
+      let newFarmDetails = { ...farmDetails };
+      newFarmDetails.Fields[selectedFieldIndex].Nutrients.push(newFertilizer);
+
+      calcFieldBalances(farmDetails.Fields[selectedFieldIndex]);
       updateFarmDetails(farmDetails);
     });
   };
 
-  /**
-   * @desc                  A helper method that uses the state hook @setFieldIndex to find
-   *                        the index of the selected field to access the correct field when accessing it
-   * @param event           Triggered when the value of a select element changes
-   * @param setFieldValue   Sets the value of the input field based on the event.target
-   * @author                @Kcaparas
-   */
   const handleFieldChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
     setFieldValue: Function,
   ) => {
+    const newIndex = fieldsOption.findIndex((option) => option.value === event.target.value);
     setFieldValue(event.target.name, event.target.value);
-    setFieldIndex(fieldsOption.findIndex((option) => option.value === event.target.value));
+    setFieldIndex(newIndex);
   };
 
-  /**
-   * @desc                  A helper method that uses the state hook @setSelectedIndex to find
-   *                        the index of the selected fertilizer to access the correct fertilizer when accessing it
-   * @param event           Triggered when the value of a select element changes
-   * @param setFieldValue   Sets the value of the input field based on the event.target
-   * @author                @Kcaparas
-   */
   const handleFertilizerChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
     setFieldValue: Function,
   ) => {
+    const newIndex = fertilizerOption.findIndex((option) => option.value === event.target.value);
     setFieldValue(event.target.name, event.target.value);
-    setSelectedIndex(fertilizerOption.findIndex((option) => option.value === event.target.value));
+    setSelectedIndex(newIndex);
   };
 
   const displayFertilizerOption = (): OptionInterface[] => {
@@ -156,7 +204,6 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
     }
     return [];
   };
-
   return (
     <>
       <Formik
@@ -178,7 +225,10 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
                   options={fieldsOption}
                   width="100%"
                   formCalc
-                  onChange={(e) => handleFieldChange(e, setFieldValue)}
+                  onChange={(e) => {
+                    calcFieldBalances(farmDetails.Fields[selectedFieldIndex]),
+                      handleFieldChange(e, setFieldValue);
+                  }}
                 />
               </StyledFieldSelect>
               <StyledDivider />
@@ -283,11 +333,14 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
               </StyledGroupFormView>
               <StyledDivider />
 
-              <CalculationList
-                farmDetails={farmDetails}
-                selectedFieldIndex={selectedFieldIndex}
-                hasFertilizerAdded={hasFertilizerAdded}
-              />
+              {farmDetails.Fields[selectedFieldIndex] &&
+                farmDetails.Fields[selectedFieldIndex].Crops && (
+                  <CalculationList
+                    field={farmDetails.Fields[selectedFieldIndex]}
+                    cropBalances={cropBalances}
+                    resultBalance={resultBalance}
+                  />
+                )}
             </StyledFieldContainer>
           </Form>
         )}
@@ -298,7 +351,7 @@ const CalculationComponent: React.FC<InputModuleProps> = ({
 };
 
 const Calculation: InputModuleInterface = {
-  InputModuleComponent: CalculationComponent,
+  InputModuleComponent: CalculateNutrientsComponent,
   id: CALCULATION_INFORMATION,
   name: { long: 'Calculation', short: 'Calculation' },
   faIcon: faCalculator,
