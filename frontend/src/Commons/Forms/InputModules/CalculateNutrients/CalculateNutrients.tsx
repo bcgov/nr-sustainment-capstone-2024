@@ -63,6 +63,9 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [cropBalances, setCropBalance] = useState<MainBalanceInterface[]>(initialBalance);
   const [resultBalance, setResultBalance] = useState<MainBalanceInterface>(initialBalance[0]);
+  const [fertBalance, setFertBalance] = useState<AgronomicBalanceInterface>(
+    initialBalance[0].agronomic,
+  );
   const initialValues: FertilizerInterface = initialFarmDetails.Fields[0].Nutrients[0];
   const fieldsOption: OptionInterface[] = farmDetails.Fields.map((field) => ({
     value: field.FieldName,
@@ -186,6 +189,64 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
     setFieldIndex(newIndex);
   };
 
+  const calcFertBalance = (
+    fert: FertilizerInterface,
+    applRate: number,
+    applUnit: string,
+    density?: number,
+    densityUnits?: string,
+  ): AgronomicBalanceInterface => {
+    let newFertBalance: AgronomicBalanceInterface = initialAgronomicBalance;
+    // https://www2.gov.bc.ca/assets/gov/farming-natural-resources-and-industry/agriculture-and-seafood/agriservicebc/production-guides/berries/metric_tables_2012.pdf
+    let convertedApplRate = applRate;
+    let convertedDensity = density || 1;
+
+    switch (applUnit) {
+      case 'kg/ha':
+        convertedApplRate *= 0.892;
+        break;
+      case 'lb/1000ft2':
+        convertedApplRate *= 43.56;
+        break;
+      case 'L/ac':
+        convertedApplRate /= 4.5;
+        break;
+      case 'US gallons/ac':
+        convertedApplRate *= 0.8345;
+        break;
+      default:
+        break;
+    }
+
+    if (density) {
+      switch (densityUnits) {
+        case 'kg/US Gallon':
+          // kg to lb
+          convertedDensity *= 2.20462;
+          // Freedom units to Imperial
+          convertedDensity /= 0.8345;
+          break;
+        case 'kg/L':
+          convertedDensity *= 2.20462;
+          convertedDensity /= 0.219969;
+          break;
+        case 'lb/US gallon':
+          convertedDensity /= 0.8345;
+          break;
+      }
+
+      convertedApplRate *= convertedDensity;
+    }
+
+    // fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid')
+    newFertBalance = {
+      N: Math.round((fert.fertN / 100) * convertedApplRate),
+      P: Math.round((fert.fertP2o5 / 100) * convertedApplRate),
+      K: Math.round((fert.fertK2o / 100) * convertedApplRate),
+    };
+    return newFertBalance;
+  };
+
   const handleFertilizerChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
     setFieldValue: Function,
@@ -204,6 +265,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
     }
     return [];
   };
+
   return (
     <>
       <Formik
@@ -212,6 +274,15 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
         onSubmit={submitCalculationData}
         validate={(values) => {
           StatusValidate(validationSchema, values, handleFormState, CALCULATION_INFORMATION);
+          setFertBalance(
+            calcFertBalance(
+              fertilizersDetails[selectedIndex],
+              values.applRate,
+              values.applUnitId,
+              values.liquidDensity || undefined,
+              values.liquidDensityUnitId || undefined,
+            ),
+          );
         }}
       >
         {({ setFieldValue }) => (
@@ -310,15 +381,15 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                   <RightListGroup>
                     <RightListItem>
                       <h4>N</h4>
-                      <p>{fertilizersDetails[selectedIndex]?.fertN}</p>
+                      <p>{fertBalance.N}</p>
                     </RightListItem>
                     <RightListItem>
                       <h4>P2O5</h4>
-                      <p>{fertilizersDetails[selectedIndex]?.fertP2o5}</p>
+                      <p>{fertBalance.P}</p>
                     </RightListItem>
                     <RightListItem>
                       <h4>k2O</h4>
-                      <p>{fertilizersDetails[selectedIndex]?.fertK2o}</p>
+                      <p>{fertBalance.K}</p>
                     </RightListItem>
                   </RightListGroup>
                   <StyledButtonContainer formCalc>
