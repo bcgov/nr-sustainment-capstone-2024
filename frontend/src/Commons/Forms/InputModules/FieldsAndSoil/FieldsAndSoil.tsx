@@ -45,6 +45,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   farmDetails,
   updateFarmDetails,
   handleFormState,
+  toggleEnabled,
 }) => {
   // Builds field info inside the field form module.
   const [, setFieldsInfo] = useState(farmDetails);
@@ -277,7 +278,10 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                   <HeaderLabel>
                     <h3>Add Soil Test</h3>
                     <span>
-                      <InformationIcons arrayText={SoilTextArray} />
+                      <InformationIcons
+                        arrayText={SoilTextArray}
+                        toggleEnabled={toggleEnabled}
+                      />
                     </span>
                   </HeaderLabel>
                   <StyledRadioGroupContainer>
@@ -325,6 +329,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           <InformationIcons
                             text={SoilTestValues}
                             rightPositioned
+                            toggleEnabled={toggleEnabled}
                           />
                         </span>
                       </HeaderLabel>
@@ -342,6 +347,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           type="number"
                           text={Nitrate}
                           rightPositioned
+                          toggleEnabled={toggleEnabled}
                         />
                       </InputFieldsGroup>
                       <InputFieldsGroup>
@@ -352,6 +358,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           type="number"
                           text={Phosporus}
                           rightPositioned
+                          toggleEnabled={toggleEnabled}
                         />
                         <CustomField
                           label="K (ppm), potassium"
@@ -359,6 +366,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           name="SoilTest.valK"
                           type="number"
                           text={Potassium}
+                          toggleEnabled={toggleEnabled}
                         />
                       </InputFieldsGroup>
                       <SingleInputField>
@@ -368,6 +376,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           name="SoilTest.valPH"
                           type="number"
                           text={pH}
+                          toggleEnabled={toggleEnabled}
                         />
                       </SingleInputField>
                     </>

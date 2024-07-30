@@ -80,6 +80,7 @@ const MainPage: FC = () => {
   const [localDetails, setLocalDetails] = useState(localStorageDetails);
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
+  const [toggleEnabled, setToggleEnabled] = useState<boolean>(true);
   /**
    * @desc    Take our apps main data object and save it to a template .nmp file,
    *          saved in the users localStorage.
@@ -195,7 +196,10 @@ const MainPage: FC = () => {
 
   return (
     <StyledMain>
-      <MainPageHeader />
+      <MainPageHeader
+        toggleEnabled={toggleEnabled}
+        setToggleEnabled={setToggleEnabled}
+      />
       <ProgressBar formStates={formStates} />
       <StyledMainContainer>
         {formStates.map((InputModule) => {
@@ -208,6 +212,7 @@ const MainPage: FC = () => {
                 updateFarmDetails={updateFarmDetails}
                 updateFertDetails={updateFertDetails}
                 handleFormState={handleFormState}
+                toggleEnabled={toggleEnabled}
                 key={InputModule.id}
               />
             );
@@ -215,7 +220,10 @@ const MainPage: FC = () => {
           return null;
         })}
       </StyledMainContainer>
-      <MainPageFooter />
+      <MainPageFooter
+        toggleEnabled={toggleEnabled}
+        setToggleEnabled={setToggleEnabled}
+      />
     </StyledMain>
   );
 };
