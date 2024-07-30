@@ -26,7 +26,7 @@ const StyledFormContent = styled.div`
   border-top-left-radius: 1px;
   border-top-right-radius: 1px;
   border: 1px solid ${tokens.themeGray40};
-  padding: 0 10px 15px 10px;
+  padding: 0 10px 20px 10px;
   background-color: ${tokens.themeGray10};
 `;
 
