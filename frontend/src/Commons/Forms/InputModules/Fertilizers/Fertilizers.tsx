@@ -100,7 +100,6 @@ const FertilizersInfo: FC<InputModuleProps> = ({
         break;
     }
 
-    console.log(fertilizersDetails);
     const newFertilizer: FertilizerInterface = {
       id: fertilizersDetails.length,
       fertilizerTypeId: values.fertilizerTypeId,

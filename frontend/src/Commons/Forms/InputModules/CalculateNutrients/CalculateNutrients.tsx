@@ -2,6 +2,7 @@ import { ChangeEvent, FC, useState, useEffect } from 'react';
 import { faCalculator } from '@fortawesome/free-solid-svg-icons';
 import InputModuleInterface from '@Interface/InputModuleinterface';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
+import ConversionCoeficient from '@Constants/ConversionCoeficient';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import InputModuleProps from '@Interface/InputModuleProps';
@@ -203,37 +204,41 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
 
     if (!fert) return newFertBalance;
 
+    // Default unit for calc is lb/ac for dry ferts, imp. gall/ac for liquid
+    // this will check for units and adjust accordingly
     switch (applUnit) {
       case 'kg/ha':
-        convertedApplRate *= 0.892;
+        convertedApplRate *= ConversionCoeficient.KgHa_LbAc;
         break;
       case 'lb/1000ft2':
-        convertedApplRate *= 43.56;
+        convertedApplRate *= ConversionCoeficient.Ac_SqrFt;
         break;
       case 'L/ac':
-        convertedApplRate /= 4.5;
+        convertedApplRate *= ConversionCoeficient.L_ImpGall;
         break;
       case 'US gallons/ac':
-        convertedApplRate *= 0.8345;
+        convertedApplRate *= ConversionCoeficient.USGall_ImpGall;
         break;
       default:
         break;
     }
 
+    // Default density unit is lb/imp. gall
+    // This checks and adjust if necessary
     if (fert.fertilizerTypeId.includes('Liquid Fertilizer')) {
       switch (densityUnits) {
         case 'kg/US Gallon':
           // kg to lb
-          convertedDensity *= 2.20462;
+          convertedDensity *= ConversionCoeficient.Kg_Lb;
           // Freedom units to Imperial
-          convertedDensity /= 0.8345;
+          convertedDensity /= ConversionCoeficient.USGall_ImpGall;
           break;
         case 'kg/L':
-          convertedDensity *= 2.20462;
-          convertedDensity /= 0.219969;
+          convertedDensity *= ConversionCoeficient.Kg_Lb;
+          convertedDensity /= ConversionCoeficient.L_ImpGall;
           break;
         case 'lb/US gallon':
-          convertedDensity /= 0.8345;
+          convertedDensity /= ConversionCoeficient.USGall_ImpGall;
           break;
         default:
           break;
@@ -243,6 +248,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
     }
 
     newFertBalance = {
+      // Fert NPK are percentages, make it so before multiplication
       N: Math.round((fert.fertN / 100) * convertedApplRate),
       P: Math.round((fert.fertP2o5 / 100) * convertedApplRate),
       K: Math.round((fert.fertK2o / 100) * convertedApplRate),
