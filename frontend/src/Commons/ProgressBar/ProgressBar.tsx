@@ -6,10 +6,11 @@ import { Container, StyledProgressBar, StyledLineBlock } from './ProgressBar.sty
 
 interface ProgressBarProps {
   formStates: InputModuleInterface[];
+  isHeaderVisible: boolean;
 }
 
-const ProgressBar: FC<ProgressBarProps> = ({ formStates }) => (
-  <Container>
+const ProgressBar: FC<ProgressBarProps> = ({ formStates, isHeaderVisible }) => (
+  <Container isHeaderVisible={isHeaderVisible}>
     <StyledProgressBar>
       {formStates.map((progressItem) => (
         <ProgressItem

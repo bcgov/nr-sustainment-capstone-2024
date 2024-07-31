@@ -13,15 +13,14 @@ const MainPageFooter = ({
   setToggleEnabled = () => {},
 }: MainPageFooterProps) => (
   <StyledMainFooter>
-    <InformationIcons
-      text={ToggleText}
-      toggleIcon
-      rightPositioned
-      toggleEnabled
-    />
     <Toggle
       toggleEnabled={toggleEnabled}
       onToggleChange={setToggleEnabled}
+    />
+    <InformationIcons
+      text={ToggleText}
+      toggleIcon
+      toggleEnabled
     />
   </StyledMainFooter>
 );

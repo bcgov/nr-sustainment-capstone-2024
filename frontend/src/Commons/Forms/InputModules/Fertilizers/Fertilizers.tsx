@@ -10,8 +10,6 @@ import { StyledFarmInfo } from '@Commons/FormStyles.styles';
 import {
   StyledAddCancelButtonContainer,
   StyledButtonContainer,
-  PrimaryButton,
-  SecondaryButton,
 } from '@Commons/Button/FieldButtonGroup.styles';
 import {
   DryFertilizerOptions,
@@ -204,27 +202,23 @@ const FertilizersInfo: FC<InputModuleProps> = ({
                   )}
                 </div>
                 <StyledAddCancelButtonContainer>
-                  <SecondaryButton>
-                    <StyledButtonContainer>
-                      <Button
-                        type="reset"
-                        size="lg"
-                        disabled={false}
-                        actions="secondary"
-                        text={ComponentText.CANCEL}
-                      />
-                    </StyledButtonContainer>
-                  </SecondaryButton>
-                  <PrimaryButton>
-                    <StyledButtonContainer>
-                      <Button
-                        type="submit"
-                        size="lg"
-                        disabled={false}
-                        text={ComponentText.SAVE_FERTILIZER}
-                      />
-                    </StyledButtonContainer>
-                  </PrimaryButton>
+                  <StyledButtonContainer>
+                    <Button
+                      type="reset"
+                      size="lg"
+                      disabled={false}
+                      actions="secondary"
+                      text={ComponentText.CANCEL}
+                    />
+                  </StyledButtonContainer>
+                  <StyledButtonContainer>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={false}
+                      text={ComponentText.SAVE_FERTILIZER}
+                    />
+                  </StyledButtonContainer>
                 </StyledAddCancelButtonContainer>
               </StyledFarmInfo>
             </Form>

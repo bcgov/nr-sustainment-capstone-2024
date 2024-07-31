@@ -2,13 +2,15 @@ import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 import desktopLogo from '/assets/BCID-logo-desktop.png';
-import mobileLogo from '/assets/BCID-MainMobile-logo.png';
 
-const StyledHeader = styled.header`
+type HeaderProps = {
+  isHeaderVisible: boolean;
+};
+const StyledHeader = styled.header<HeaderProps>`
   display: flex;
   align-items: center;
   max-width: 100vw;
-  max-height: 87px;
+  max-height: 65px;
   flex-direction: row;
   width: 100%;
   padding: 10px;
@@ -17,26 +19,20 @@ const StyledHeader = styled.header`
   top: 0;
   z-index: 2;
   color: ${tokens.typographyColorPrimaryInvert};
+  box-sizing: border-box;
+  transition: transform 0.5s ease-in-out;
   border-bottom: ${tokens.layoutBorderWidthMedium} solid ${tokens.themeGold100};
-  @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
-    max-height: 100px;
-  }
+  transform: translateY(${(props) => (props.isHeaderVisible ? '0' : '-100%')});
   @media (min-width: ${screenSizes.desktop}) {
+    max-height: 87px;
     height: 450px;
   }
 `;
 
 const Logo = styled.img`
-  max-height: 69.29px;
-  max-width: 76px;
-  margin-left: 10px;
-  content: url(${mobileLogo});
-  @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
-    max-height: 80px;
-    max-width: 80px;
-    height: 100%;
-    width: 100%;
-  }
+  max-height: 123px;
+  max-width: 150px;
+  content: url(${desktopLogo});
   @media (min-width: ${screenSizes.desktop}) {
     max-height: 123px;
     max-width: 250px;
@@ -46,21 +42,19 @@ const Logo = styled.img`
 `;
 
 const Title = styled.h1`
-  flex: 1;
+  // flex: 1;
   font-family: ${tokens.typographyFontFamiliesBcSans}, sans-serif;
   font: ${tokens.typographyBoldH4};
-  margin: 15px 0 0 15px;
-  @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
-    font-size: ${tokens.typographyRegularH1};
-    height: 100%;
-    width: 100%;
-  }
+  margin: auto;
+  position: absolute;
+  left: 90%;
+  transform: translateX(-90%);
+  width: 50%;
   @media (min-width: ${screenSizes.desktop}) {
     font-size: 40px; /* Will not use token on this one. */
     margin: ${tokens.layoutMarginNone};
-    position: absolute;
-    left: 50vw;
-    transform: translate(-50%, 0);
+    left: 80vw;
+    transform: translate(-80%, 0);
   }
 `;
 
@@ -70,7 +64,7 @@ const ToggleContainer = styled.div`
     display: flex;
     gap: 10px;
     position: absolute;
-    left: calc(100vw - 10px);
+    left: calc(100vw - 2%);
     transform: translateX(-100%);
   }
 `;

@@ -15,6 +15,7 @@
  *
  * @author @GDamaso
  */
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import InputModuleInterface from 'src/Interface/InputModuleinterface';

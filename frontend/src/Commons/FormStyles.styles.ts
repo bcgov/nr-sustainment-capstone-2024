@@ -68,7 +68,7 @@ const StyledAreaContainer = styled.div<FormProps>`
 const StyledButtonGroupContainer = styled.div<FormProps>`
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 20px;
   margin: auto;
   width: 320px;

@@ -15,6 +15,7 @@ import {
   StyledListItemGroupContainer,
   StyledListItemGroup,
   StyledFieldNameContainer,
+  NutrientsFieldListGroup,
 } from '../ListComponent.styles';
 
 interface FieldListProps {
@@ -72,34 +73,36 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
                 <h2>Sampling Month</h2>
                 <p>{HasSoilTest ? SoilTest.sampleDate : ComponentText.NA}</p>
               </StyledListItem>
-              <StyledListItemGroup>
-                <StyledListItem width="180px">
-                  <div className="smallItems">
-                    <h2>NO3-N (ppm)</h2>
-                    <p>{HasSoilTest ? SoilTest.valNO3H : ComponentText.NA}</p>
-                  </div>
-                </StyledListItem>
-                <StyledListItem width="180px">
-                  <div className="smallItems">
-                    <h2>P (ppm)</h2>
-                    <p>{HasSoilTest ? SoilTest.ValP : highValue}</p>
-                  </div>
-                </StyledListItem>
-              </StyledListItemGroup>
-              <StyledListItemGroup>
-                <StyledListItem width="180px">
-                  <div className="smallItems">
-                    <h2>K (ppm)</h2>
-                    <p>{HasSoilTest ? SoilTest.valK : highValue}</p>
-                  </div>
-                </StyledListItem>
-                <StyledListItem width="180px">
-                  <div className="smallItems">
-                    <h2>pH</h2>
-                    <p>{HasSoilTest ? SoilTest.valPH : highPH}</p>
-                  </div>
-                </StyledListItem>
-              </StyledListItemGroup>
+              <NutrientsFieldListGroup>
+                <StyledListItemGroup>
+                  <StyledListItem width="180px">
+                    <div className="smallItems">
+                      <h2>NO3-N (ppm)</h2>
+                      <p>{HasSoilTest ? SoilTest.valNO3H : ComponentText.NA}</p>
+                    </div>
+                  </StyledListItem>
+                  <StyledListItem width="180px">
+                    <div className="smallItems">
+                      <h2>P (ppm)</h2>
+                      <p>{HasSoilTest ? SoilTest.ValP : highValue}</p>
+                    </div>
+                  </StyledListItem>
+                </StyledListItemGroup>
+                <StyledListItemGroup>
+                  <StyledListItem width="180px">
+                    <div className="smallItems">
+                      <h2>K (ppm)</h2>
+                      <p>{HasSoilTest ? SoilTest.valK : highValue}</p>
+                    </div>
+                  </StyledListItem>
+                  <StyledListItem width="180px">
+                    <div className="smallItems">
+                      <h2>pH</h2>
+                      <p>{HasSoilTest ? SoilTest.valPH : highPH}</p>
+                    </div>
+                  </StyledListItem>
+                </StyledListItemGroup>
+              </NutrientsFieldListGroup>
             </StyledListItemGroupContainer>
             <StyledListItemGroup>
               <StyledListItem width="180px">
