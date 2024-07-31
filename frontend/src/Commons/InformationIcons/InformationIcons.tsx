@@ -53,26 +53,27 @@ const InformationIcons = ({
           onClick={handleClickWrapper}
         />
       </IconContainer>
-      {localBubbleDisplay && (
-        <StyledBubbleContainer headerDesktop={headerDesktop}>
-          <DesktopCaretDown headerDesktop={headerDesktop} />
-          <StyledBubble
-            rightPositioned={rightPositioned}
-            headerDesktop={headerDesktop}
-          >
-            {arrayText && arrayText.length > 0 ? (
-              <ul>
-                {arrayText.map((singleText: string) => (
-                  <li key={singleText}>{singleText}</li>
-                ))}
-              </ul>
-            ) : (
-              text && <p>{text}</p>
-            )}
-          </StyledBubble>
-          <StyledCaretDown headerDesktop={headerDesktop} />
-        </StyledBubbleContainer>
-      )}
+      {localBubbleDisplay ||
+        (isBubbleDisplayed && (
+          <StyledBubbleContainer headerDesktop={headerDesktop}>
+            <DesktopCaretDown headerDesktop={headerDesktop} />
+            <StyledBubble
+              rightPositioned={rightPositioned}
+              headerDesktop={headerDesktop}
+            >
+              {arrayText && arrayText.length > 0 ? (
+                <ul>
+                  {arrayText.map((singleText: string) => (
+                    <li key={singleText}>{singleText}</li>
+                  ))}
+                </ul>
+              ) : (
+                text && <p>{text}</p>
+              )}
+            </StyledBubble>
+            <StyledCaretDown headerDesktop={headerDesktop} />
+          </StyledBubbleContainer>
+        ))}
     </StyledBubbleAndFontAwesomeContainer>
   );
 };
