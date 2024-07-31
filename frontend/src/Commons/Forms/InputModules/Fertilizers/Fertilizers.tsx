@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import { faCow } from '@fortawesome/free-solid-svg-icons';
 import InputModuleInterface from '@Interface/InputModuleinterface';
 import { FERTILIZERS_INFORMATION } from '@Constants/ModuleIDs';
@@ -28,11 +28,10 @@ import FertilizersButtonComponent from './FertilizersButtonComponent';
 import StyledCustomNumberField from './Fertilizers.styles';
 import FertilizersListComponent from './FertilizersListComponent';
 
-const FertilizersInfo: React.FC<InputModuleProps> = ({
+const FertilizersInfo: FC<InputModuleProps> = ({
   fertilizersDetails,
   handleFormState,
   updateFertDetails,
-  farmDetails,
 }) => {
   const initialFieldValues = initialFarmDetails.Fields[0].Nutrients[0];
   const [isAddButtonClicked, setAddButtonClicked] = useState<boolean>(false);
@@ -101,6 +100,7 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
         break;
     }
 
+    console.log(fertilizersDetails);
     const newFertilizer: FertilizerInterface = {
       id: fertilizersDetails.length,
       fertilizerTypeId: values.fertilizerTypeId,
@@ -139,7 +139,6 @@ const FertilizersInfo: React.FC<InputModuleProps> = ({
         <FertilizersButtonComponent
           addNewFertilizer={addNewFertilizer}
           handleFormState={handleFormState}
-          farmDetails={farmDetails}
         />
       )}
 

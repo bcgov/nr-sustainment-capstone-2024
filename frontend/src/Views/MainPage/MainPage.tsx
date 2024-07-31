@@ -88,7 +88,7 @@ const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterfac
 
 const loadFertDetails = (): FertilizerInterface[] => {
   const localFerts: FertilizerInterface[] = getLocalFertilizers();
-  let updatedFertDetails: FertilizerInterface[] = [];
+  const updatedFertDetails: FertilizerInterface[] = [];
 
   if (localFerts) {
     localFerts.forEach((fertilizer) => updatedFertDetails.push(fertilizer));

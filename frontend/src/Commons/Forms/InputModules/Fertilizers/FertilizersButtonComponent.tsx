@@ -12,13 +12,11 @@ import {
   StyledNewFieldButtonContainer,
   StyledNewFieldButtonController,
 } from '@Commons/Button/FieldButtonGroup.styles';
-import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 
 type ButtonComponentProps = {
   addNewFertilizer: () => void;
   submitFertDetails?: () => void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
-  farmDetails: FarmDetailsInterface;
 };
 
 const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
