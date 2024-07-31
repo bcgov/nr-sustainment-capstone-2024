@@ -68,7 +68,7 @@ const templateFieldNMP = {
   FieldName: 'FieldA',
   Area: 1.0,
   Comment: 'Comments(optional)',
-  Nutrients: null,
+  Nutrients: [],
   HasNutrients: false,
   Crops: [],
   FeedForageAnalyses: [],

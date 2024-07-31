@@ -2,6 +2,8 @@ import CalculationTable, { CalcLogic } from '@Interface/CalculationTableInterfac
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import AgronomicBalanceInterface from '@Interface/AgronomicBalanceInterface';
 import CropRemovalBalanceInterface from '@Interface/CropRemovalBalance';
+import MainBalanceInterface from '@Interface/MainBalanceInterface';
+import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 import * as calcData from './calculation-data/raspberryCalculation.json';
 
 function calcN(calcLogic: CalcLogic, yieldValue: number, sawdust?: boolean): number {
@@ -29,7 +31,7 @@ function calcN(calcLogic: CalcLogic, yieldValue: number, sawdust?: boolean): num
     }
   });
 
-  return N;
+  return N * -1;
 }
 
 function calcPK(calcLogic: CalcLogic, soilTest: number, leafTissue: number): number {
@@ -57,7 +59,7 @@ function calcPK(calcLogic: CalcLogic, soilTest: number, leafTissue: number): num
     }
   });
 
-  return val;
+  return val * -1;
 }
 
 function calcRemovalPK(rmCoeficients: CalcLogic, cropYield: number, isPruned?: boolean) {
@@ -73,19 +75,17 @@ function calcRemovalPK(rmCoeficients: CalcLogic, cropYield: number, isPruned?: b
 
   val += cropYield * rmCoeficients.fruitRemovalFactor;
 
-  return val;
+  return Math.round(val * -1);
 }
 
 // This function will be updated in the next ticket
 // It is mostly a proof of correct calculations being applied
 // For this reason, it is scoped to the first field first crop only at this point
-function Calculate(field: FieldDetailInterface) {
-  const crop = field.Crops[0];
+function Calculate(field: FieldDetailInterface, crop: CropsDetailsInterface) {
   const calcTable: CalculationTable = calcData;
   const agronomicBalance: AgronomicBalanceInterface = { N: 0, P: 0, K: 0 };
   const cropRemovalBalance: CropRemovalBalanceInterface = { P: 0, K: 0 };
-  const isRemovedFromField = field.Crops[0].whereWillPruningsGo === 'Removed from field';
-  console.log(field.Crops[0].whereWillPruningsGo);
+  const isRemovedFromField = crop.whereWillPruningsGo === 'Removed from field';
 
   agronomicBalance.N = calcN(
     calcTable.agronomicBalance.nitrogenCalculation.logic,
@@ -107,19 +107,21 @@ function Calculate(field: FieldDetailInterface) {
 
   cropRemovalBalance.P = calcRemovalPK(
     calcTable.cropRemovalBalance.phosphorusRemoval.logic,
-    field.Crops[0].yield,
-    field.Crops[0].willPlantsBePruned && isRemovedFromField,
+    crop.yield,
+    crop.willPlantsBePruned && isRemovedFromField,
   );
 
   cropRemovalBalance.K = calcRemovalPK(
     calcTable.cropRemovalBalance.potassiumRemoval.logic,
-    field.Crops[0].yield,
-    field.Crops[0].willPlantsBePruned && isRemovedFromField,
+    crop.yield,
+    crop.willPlantsBePruned && isRemovedFromField,
   );
 
-  // Leaving it for now, will be removed when implementing Calculate Nutrients fuctionality
-  console.log('AgronomicBalance: ', agronomicBalance);
-  console.log('CropRemovalBalance: ', cropRemovalBalance);
+  const mainBalance: MainBalanceInterface = {
+    agronomic: agronomicBalance,
+    cropRemoval: cropRemovalBalance,
+  };
+  return mainBalance;
 }
 
 export default Calculate;
