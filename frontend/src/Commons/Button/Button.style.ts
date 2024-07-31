@@ -15,7 +15,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 42px;
+  max-height: 31px;
   height: 100%;
   width: 100%;
   max-width: ${(props) => getButtonSize(props.size, ComponentText.ISMOBILE)};
@@ -30,7 +30,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   border-radius: ${(props) => props.radius};
   border: ${(props) =>
     props.actions === 'primary' ? 0 : `1px solid ${tokens.surfaceColorBorderMedium}`};
-  padding: 20px 30px;
+  padding: 10px 30px;
   font: ${tokens.typographyBoldLabel};
 
   &:disabled {
@@ -38,6 +38,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
+    padding: 20px 30px;
     max-width: ${(props) => getButtonSize(props.size, ComponentText.ISDESKTOP)};
   }
 `;
