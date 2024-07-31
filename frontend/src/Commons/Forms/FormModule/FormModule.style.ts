@@ -28,7 +28,7 @@ const StyledFormContent = styled.div<{ isVisible: boolean }>`
   border-top-right-radius: 1px;
   padding: 0 10px 10px 10px;
   background-color: ${tokens.themeGray10};
-  max-height: ${(props) => (props.isVisible ? '2000px' : '0')};
+  max-height: ${(props) => (props.isVisible ? '100%' : '0')};
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   border: ${(props) => (props.isVisible ? `1px solid ${tokens.themeGray40}` : 'none')};
   overflow: hidden;
