@@ -1,3 +1,6 @@
+import NmpFertilizerInterface from '@Interface/NmpFertilizerInterface';
+import NmpFieldInterface from '@Interface/NmpFieldInterface';
+
 const templateNMP = {
   farmDetails: {
     Year: '',
@@ -63,12 +66,30 @@ const templateCropNMP = {
   willSawdustBeApplied: true,
 };
 
-const templateFieldNMP = {
+const templateNutrientsNMP: NmpFertilizerInterface = {
+  id: 1,
+  fertilizerTypeId: 1,
+  fertilizerId: 1,
+  applUnitId: 1,
+  applRate: 100.0,
+  applDate: '2024-06-01T00:00:00',
+  applMethodId: 1,
+  customN: 10.0,
+  customP2o5: 15.0,
+  customK2o: 30.0,
+  fertN: 10.0,
+  fertP2o5: 15.0,
+  fertK2o: 30.0,
+  liquidDensity: 0.0,
+  liquidDensityUnitId: 0,
+};
+
+const templateFieldNMP: NmpFieldInterface = {
   Id: 1,
   FieldName: 'FieldA',
   Area: 1.0,
   Comment: 'Comments(optional)',
-  Nutrients: [],
+  Nutrients: undefined,
   HasNutrients: false,
   Crops: [],
   FeedForageAnalyses: [],
@@ -101,4 +122,4 @@ const templateFieldNMP = {
   GrowingAnimalDailyFeedRequirementId: 0,
 };
 
-export { templateNMP, templateFieldNMP, templateCropNMP };
+export { templateNMP, templateFieldNMP, templateCropNMP, templateNutrientsNMP };
