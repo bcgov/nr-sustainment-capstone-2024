@@ -18,11 +18,9 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
     flex-direction: row;
     align-items: center;
     width: 100%;
-    // height: ${(props) => (props.formCalc ? '50px' : '0')};
   }
 `;
 const StyledButtonContainer = styled.div<FormProps>`
-  // margin-top: 20px;
   width: ${(props) => (props.formCalc ? '100%' : '')};
   max-width: 327px;
   @media (min-width: ${screenSizes.desktop}) {
@@ -54,7 +52,7 @@ const StyledNewFieldButtonContainer = styled.div<FormProps>`
   position: relative;
   top: 15px;
   width: 100%;
-  margin-bottom: ${(props) => (props.formCrops ? '40px' : '0')};
+  margin-bottom: ${(props) => (props.formCrops ? '40cpx' : '0')};
   @media (min-width: ${screenSizes.desktop}) {
     left: 0;
   }

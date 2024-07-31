@@ -42,7 +42,6 @@ const Logo = styled.img`
 `;
 
 const Title = styled.h1`
-  // flex: 1;
   font-family: ${tokens.typographyFontFamiliesBcSans}, sans-serif;
   font: ${tokens.typographyBoldH4};
   margin: auto;
