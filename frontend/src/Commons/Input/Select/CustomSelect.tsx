@@ -3,7 +3,7 @@
  * @author @GDamaso
  */
 import { Field, ErrorMessage } from 'formik';
-import React, { FC, Dispatch, SetStateAction } from 'react';
+import React, { FC } from 'react';
 import OptionInterface from 'src/Interface/OptionInterface';
 import InformationIcons from '@Commons/InformationIcons/InformationIcons';
 import { StyledSelect, StyledLabel } from './CustomSelect.style';

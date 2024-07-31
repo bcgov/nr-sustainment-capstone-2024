@@ -3,7 +3,7 @@
  * @author @GDamaso
  */
 import { Field, ErrorMessage } from 'formik';
-import { FC, Dispatch, SetStateAction } from 'react';
+import { FC } from 'react';
 import InformationIcons from '@Commons/InformationIcons/InformationIcons';
 import { StyledField, StyledLabel } from './CustomField.style';
 import '../ErrorMessage.css';
