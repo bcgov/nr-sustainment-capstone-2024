@@ -9,7 +9,7 @@ const getButtonSize = (size: string, isDesktop: boolean): string => {
       buttonSize = '178px';
       break;
     case 'lg':
-      buttonSize = isDesktop ? '483px' : '327px';
+      buttonSize = isDesktop ? '483px' : '322px';
       break;
     default:
       buttonSize = '100%';

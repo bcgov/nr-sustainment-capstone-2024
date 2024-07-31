@@ -28,7 +28,7 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
   InputModules.FieldsAndSoil,
   InputModules.Crops,
   InputModules.Fertilizers,
-  InputModules.Calculation,
+  InputModules.CalculateNutrients,
 ];
 
 const getLocalDetails = () => {
@@ -39,6 +39,21 @@ const getLocalDetails = () => {
     console.error(err);
   }
   return null;
+};
+
+const getLocalFertilizers = () => {
+  const fertString = localStorage.getItem(Names.FERTILIZER_DETAILS);
+  try {
+    if (fertString) {
+      const parsedFertString = JSON.parse(fertString);
+      if (Array.isArray(parsedFertString)) {
+        return parsedFertString;
+      }
+    }
+  } catch (err) {
+    console.error(err);
+  }
+  return [];
 };
 
 /**
@@ -71,12 +86,22 @@ const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterfac
   return updatedFarmDetails;
 };
 
-const fertilizersDetails: FertilizerInterface[] = [];
+const loadFertDetails = (): FertilizerInterface[] => {
+  const localFerts: FertilizerInterface[] = getLocalFertilizers();
+  const updatedFertDetails: FertilizerInterface[] = [];
+
+  if (localFerts) {
+    localFerts.forEach((fertilizer) => updatedFertDetails.push(fertilizer));
+  }
+  return updatedFertDetails;
+};
+
+const initialFertilizersDetails: FertilizerInterface[] = loadFertDetails();
 
 const MainPage: FC = () => {
   const localStorageDetails = getLocalDetails();
   const [farmDetails, setFarmDetails] = useState(loadFarmDetails(initialFarmDetails));
-  const [nutrientDetails, setNutrientDetails] = useState<FertilizerInterface[]>(fertilizersDetails);
+  const [fertDetails, setFertDetails] = useState<FertilizerInterface[]>(initialFertilizersDetails);
   const [localDetails, setLocalDetails] = useState(localStorageDetails);
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
@@ -101,7 +126,10 @@ const MainPage: FC = () => {
     if (localDetails) {
       localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(localDetails));
     }
-  }, [localDetails]);
+    if (fertDetails) {
+      localStorage.setItem(Names.FERTILIZER_DETAILS, JSON.stringify(fertDetails));
+    }
+  }, [localDetails, fertDetails]);
 
   /**
    * @summary   Pass this handler to children who need to update InputModule states
@@ -191,7 +219,7 @@ const MainPage: FC = () => {
    *            from the nutrient module.
    * */
   const updateFertDetails = (newFerts: FertilizerInterface[]): void => {
-    setNutrientDetails(newFerts);
+    setFertDetails(newFerts);
   };
   return (
     <StyledMain>
@@ -207,7 +235,7 @@ const MainPage: FC = () => {
               <FormModule
                 InputModule={InputModule}
                 farmDetails={farmDetails}
-                fertilizersDetails={nutrientDetails}
+                fertilizersDetails={fertDetails}
                 updateFarmDetails={updateFarmDetails}
                 updateFertDetails={updateFertDetails}
                 handleFormState={handleFormState}

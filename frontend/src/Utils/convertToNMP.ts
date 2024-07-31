@@ -5,6 +5,7 @@ import { templateCropNMP, templateFieldNMP } from '@Constants/templateNMP';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import NmpCropInterface from '@Interface/NmpCropInterface';
 import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
+import FertilizerInterface from '@Interface/FertilizerInterface';
 
 /**
  * @desc    Convert the FarmDetailsInterface to the NmpInterface structure.
@@ -30,6 +31,8 @@ const convertToNMP = (
       willSawdustBeApplied: crop.willSawdustBeApplied || templateCropNMP.willSawdustBeApplied,
     }));
 
+    const newNutrients: FertilizerInterface[] = field.Nutrients;
+
     return {
       ...templateFieldNMP,
       Id: field.Id,
@@ -49,6 +52,7 @@ const convertToNMP = (
         leafTissueK: field.LeafTest?.leafTissueK || templateFieldNMP.LeafTest.leafTissueK,
       },
       Crops: newCrops,
+      Nutrients: newNutrients,
     };
   });
 
