@@ -221,7 +221,6 @@ const MainPage: FC = () => {
   const updateFertDetails = (newFerts: FertilizerInterface[]): void => {
     setFertDetails(newFerts);
   };
-
   return (
     <StyledMain>
       <MainPageHeader
