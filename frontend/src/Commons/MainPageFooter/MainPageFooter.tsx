@@ -7,14 +7,10 @@ import StyledMainFooter from './MainPageFooter.styles';
 interface MainPageFooterProps {
   toggleEnabled?: boolean;
   setToggleEnabled?: Dispatch<SetStateAction<boolean>>;
-  isBubbleDisplayed?: boolean;
-  setDisplayedBubble?: Dispatch<SetStateAction<boolean>>;
 }
 const MainPageFooter = ({
   toggleEnabled = true,
   setToggleEnabled = () => {},
-  isBubbleDisplayed,
-  setDisplayedBubble,
 }: MainPageFooterProps) => (
   <StyledMainFooter>
     <InformationIcons
@@ -22,8 +18,6 @@ const MainPageFooter = ({
       toggleIcon
       rightPositioned
       toggleEnabled
-      isBubbleDisplayed={isBubbleDisplayed}
-      setDisplayedBubble={setDisplayedBubble}
     />
     <Toggle
       toggleEnabled={toggleEnabled}

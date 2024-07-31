@@ -1,4 +1,4 @@
-import { FC, Dispatch, SetStateAction } from 'react';
+import { FC } from 'react';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 import FertilizerInterface from '@Interface/FertilizerInterface';
@@ -22,8 +22,6 @@ interface CalculationListProps {
   selectedFieldIndex: number;
   hasFertilizerAdded: boolean;
   toggleEnabled: boolean;
-  isBubbleDisplayed?: boolean;
-  setDisplayedBubble?: Dispatch<SetStateAction<boolean>>;
 }
 // Will be changed with the correct value after implementation of the calculation
 const zeroConstant: number = 0;
@@ -32,8 +30,6 @@ const CalculationList: FC<CalculationListProps> = ({
   selectedFieldIndex,
   hasFertilizerAdded,
   toggleEnabled,
-  isBubbleDisplayed,
-  setDisplayedBubble,
 }) => {
   const agronomicArray: string[] = [
     'agronomic balances mainly indicate if crop nutrient requirements are met',
@@ -57,8 +53,6 @@ const CalculationList: FC<CalculationListProps> = ({
               <InformationIcons
                 arrayText={agronomicArray}
                 toggleEnabled={toggleEnabled}
-                isBubbleDisplayed={isBubbleDisplayed}
-                setDisplayedBubble={setDisplayedBubble}
               />
             </span>
           </StyledH3HeaderItem>
@@ -68,8 +62,6 @@ const CalculationList: FC<CalculationListProps> = ({
               <InformationIcons
                 arrayText={cropRemoval}
                 toggleEnabled={toggleEnabled}
-                isBubbleDisplayed={isBubbleDisplayed}
-                setDisplayedBubble={setDisplayedBubble}
               />
             </span>
           </StyledH3HeaderItem>
@@ -180,8 +172,6 @@ const CalculationList: FC<CalculationListProps> = ({
               <InformationIcons
                 arrayText={agronomicArray}
                 toggleEnabled={toggleEnabled}
-                isBubbleDisplayed={isBubbleDisplayed}
-                setDisplayedBubble={setDisplayedBubble}
               />
             </span>
           </StyledH3HeaderItem>
@@ -260,8 +250,6 @@ const CalculationList: FC<CalculationListProps> = ({
               <InformationIcons
                 arrayText={cropRemoval}
                 toggleEnabled={toggleEnabled}
-                isBubbleDisplayed={isBubbleDisplayed}
-                setDisplayedBubble={setDisplayedBubble}
               />
             </span>
           </StyledH3HeaderItem>

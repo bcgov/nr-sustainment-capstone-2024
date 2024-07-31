@@ -46,8 +46,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   updateFarmDetails,
   handleFormState,
   toggleEnabled,
-  isBubbleDisplayed,
-  setDisplayedBubble,
 }) => {
   // Builds field info inside the field form module.
   const [, setFieldsInfo] = useState(farmDetails);
@@ -283,8 +281,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                       <InformationIcons
                         arrayText={SoilTextArray}
                         toggleEnabled={toggleEnabled}
-                        isBubbleDisplayed={isBubbleDisplayed}
-                        setDisplayedBubble={setDisplayedBubble}
                       />
                     </span>
                   </HeaderLabel>
@@ -334,8 +330,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                             text={SoilTestValues}
                             rightPositioned
                             toggleEnabled={toggleEnabled}
-                            isBubbleDisplayed={isBubbleDisplayed}
-                            setDisplayedBubble={setDisplayedBubble}
                           />
                         </span>
                       </HeaderLabel>
@@ -354,8 +348,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           text={Nitrate}
                           rightPositioned
                           toggleEnabled={toggleEnabled}
-                          isBubbleDisplayed={isBubbleDisplayed}
-                          setDisplayedBubble={setDisplayedBubble}
                         />
                       </InputFieldsGroup>
                       <InputFieldsGroup>
@@ -367,8 +359,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           text={Phosporus}
                           rightPositioned
                           toggleEnabled={toggleEnabled}
-                          isBubbleDisplayed={isBubbleDisplayed}
-                          setDisplayedBubble={setDisplayedBubble}
                         />
                         <CustomField
                           label="K (ppm), potassium"
@@ -377,8 +367,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           type="number"
                           text={Potassium}
                           toggleEnabled={toggleEnabled}
-                          isBubbleDisplayed={isBubbleDisplayed}
-                          setDisplayedBubble={setDisplayedBubble}
                         />
                       </InputFieldsGroup>
                       <SingleInputField>
@@ -389,8 +377,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           type="number"
                           text={pH}
                           toggleEnabled={toggleEnabled}
-                          isBubbleDisplayed={isBubbleDisplayed}
-                          setDisplayedBubble={setDisplayedBubble}
                         />
                       </SingleInputField>
                     </>

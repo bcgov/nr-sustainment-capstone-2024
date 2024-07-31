@@ -81,7 +81,6 @@ const MainPage: FC = () => {
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
   const [toggleEnabled, setToggleEnabled] = useState<boolean>(true);
-  const [isBubbleDisplayed, setDisplayBubble] = useState<boolean>(false);
   /**
    * @desc    Take our apps main data object and save it to a template .nmp file,
    *          saved in the users localStorage.
@@ -194,18 +193,11 @@ const MainPage: FC = () => {
   const updateFertDetails = (newFerts: FertilizerInterface[]): void => {
     setNutrientDetails(newFerts);
   };
-  const infomationBubbleClickWrapper = () => {
-    if (isBubbleDisplayed) {
-      setDisplayBubble(!isBubbleDisplayed);
-    }
-  };
   return (
-    <StyledMain onClick={infomationBubbleClickWrapper}>
+    <StyledMain>
       <MainPageHeader
         toggleEnabled={toggleEnabled}
         setToggleEnabled={setToggleEnabled}
-        isBubbleDisplayed={isBubbleDisplayed}
-        setDisplayedBubble={setDisplayBubble}
       />
       <ProgressBar formStates={formStates} />
       <StyledMainContainer>
@@ -220,8 +212,6 @@ const MainPage: FC = () => {
                 updateFertDetails={updateFertDetails}
                 handleFormState={handleFormState}
                 toggleEnabled={toggleEnabled}
-                isBubbleDisplayed={isBubbleDisplayed}
-                setDisplayedBubble={setDisplayBubble}
                 key={InputModule.id}
               />
             );
@@ -232,8 +222,6 @@ const MainPage: FC = () => {
       <MainPageFooter
         toggleEnabled={toggleEnabled}
         setToggleEnabled={setToggleEnabled}
-        isBubbleDisplayed={isBubbleDisplayed}
-        setDisplayedBubble={setDisplayBubble}
       />
     </StyledMain>
   );
