@@ -27,6 +27,7 @@ const Container = styled.div<ProgressBarProps>`
     width: 80%;
     max-width: 1400px;
     top: ${(props) => (props.isHeaderVisible ? '85px' : '0')};
+    border-bottom: 2px solid ${tokens.themeGray40};
     order: 0;
   }
 `;
