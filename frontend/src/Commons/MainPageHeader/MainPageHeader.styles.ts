@@ -20,7 +20,7 @@ const StyledHeader = styled.header<HeaderProps>`
   z-index: 2;
   color: ${tokens.typographyColorPrimaryInvert};
   box-sizing: border-box;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   border-bottom: ${tokens.layoutBorderWidthMedium} solid ${tokens.themeGold100};
   transform: translateY(${(props) => (props.isHeaderVisible ? '0' : '-100%')});
   @media (min-width: ${screenSizes.desktop}) {
