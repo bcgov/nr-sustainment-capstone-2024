@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -31,10 +31,17 @@ const InformationIcons = ({
   isBubbleDisplayed,
   setDisplayedBubble,
 }: InformationIconsProps) => {
+  const [localBubbleDisplay, setLocalBubbleDisplay] = useState<boolean>(false);
   const handleClickWrapper = () => {
     // for optional values
-    if (setDisplayedBubble) {
-      setDisplayedBubble(!isBubbleDisplayed);
+    // if (setDisplayedBubble) {
+    //   setDisplayedBubble(!isBubbleDisplayed);
+    // }
+    setLocalBubbleDisplay(!localBubbleDisplay);
+    if (localBubbleDisplay) {
+      if (setDisplayedBubble) {
+        setDisplayedBubble(localBubbleDisplay);
+      }
     }
   };
 
@@ -46,7 +53,7 @@ const InformationIcons = ({
           onClick={handleClickWrapper}
         />
       </IconContainer>
-      {isBubbleDisplayed && (
+      {localBubbleDisplay && (
         <StyledBubbleContainer headerDesktop={headerDesktop}>
           <DesktopCaretDown headerDesktop={headerDesktop} />
           <StyledBubble
