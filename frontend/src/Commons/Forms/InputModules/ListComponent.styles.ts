@@ -23,7 +23,7 @@ const StyledListContainer = styled.div<FormProps>`
   display: flex;
   flex-direction: column;
   padding-top: 20px;
-  gap: ${(props) => (props.formCrops ? '50px' : '20px')};
+  gap: ${(props) => (props.formCrops ? '50px' : '0')};
 
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
@@ -55,7 +55,7 @@ const StyledListItem = styled.div<StyledListType>`
   @media (min-width: ${screenSizes.desktop}) {
     .smallItems {
       width: 200%;
-      padding: 0 50px;
+      padding: 0 50px 0 0;
     }
     h2 {
       font: ${tokens.typographyBoldH6};
@@ -115,11 +115,22 @@ const StyledListItemGroupContainer = styled.div`
 
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
+    flex-flow: row wrap;
   }
 `;
 
 const StyledListItemGroup = styled.div`
   display: flex;
+  gap: 50px;
+`;
+
+const NutrientsFieldListGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    flex-direction: row;
+  }
 `;
 
 const StyledCropsGroup = styled.div`
@@ -159,4 +170,5 @@ export {
   StyledCropsGroup,
   StyledCustomFertilizerGroup,
   StyledFieldNameContainer,
+  NutrientsFieldListGroup,
 };

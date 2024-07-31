@@ -22,6 +22,10 @@ const StyledFarmInfo = styled.div`
       gap: 30px;
     }
   }
+
+  @media (min-width: ${screenSizes.desktop}) {
+    gap: 0;
+  }
 `;
 
 const StyledSelectContainer = styled.div`
