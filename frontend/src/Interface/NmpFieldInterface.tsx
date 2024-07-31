@@ -21,13 +21,13 @@ interface NmpFieldInterface {
   FeedForageAnalyses: any[];
   SoilTest: {
     sampleDate: string;
-    valNO3H: number;
-    ValP: number;
-    valK: number;
-    valPH: number;
-    ConvertedKelownaP: number;
-    ConvertedKelownaK: number;
-  };
+    valNO3H?: number;
+    ValP?: number;
+    valK?: number;
+    valPH?: number;
+    ConvertedKelownaP?: number;
+    ConvertedKelownaK?: number;
+  } | null;
   LeafTest?: {
     leafTissueP: number;
     leafTissueK: number;

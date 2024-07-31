@@ -54,20 +54,24 @@ const convertToNMP = (
       Area: field.Area,
       Comment: field.Comment || templateFieldNMP.Comment,
       FieldName: field.FieldName,
-      HasSoilTest: field.HasSoilTest || templateFieldNMP.HasSoilTest,
-      SoilTest: {
-        ...templateFieldNMP.SoilTest,
-        valNO3H: field.SoilTest.valNO3H || templateFieldNMP.SoilTest.valNO3H,
-        ValP: field.SoilTest.ValP || templateFieldNMP.SoilTest.valNO3H,
-        valK: field.SoilTest.valK || templateFieldNMP.SoilTest.valK,
-        valPH: field.SoilTest.valPH || templateFieldNMP.SoilTest.valPH,
-        // sampleDate: field.SoilTest?.sampleDate || templateFieldNMP.SoilTest?.sampleDate,
-        sampleDate: '2024-07-01T00:00:00',
-      },
-      LeafTest: {
-        leafTissueP: field.LeafTest?.leafTissueP,
-        leafTissueK: field.LeafTest?.leafTissueK,
-      },
+      HasSoilTest: field.HasSoilTest,
+      SoilTest: field.HasSoilTest
+        ? {
+            ...templateFieldNMP.SoilTest,
+            valNO3H: field.SoilTest.valNO3H || templateFieldNMP.SoilTest?.valNO3H,
+            ValP: field.SoilTest.ValP || templateFieldNMP.SoilTest?.valNO3H,
+            valK: field.SoilTest.valK || templateFieldNMP.SoilTest?.valK,
+            valPH: field.SoilTest.valPH || templateFieldNMP.SoilTest?.valPH,
+            // sampleDate: field.SoilTest?.sampleDate || templateFieldNMP.SoilTest?.sampleDate,
+            sampleDate: '2024-07-01T00:00:00',
+          }
+        : null,
+      LeafTest: field.HasLeafTest
+        ? {
+            leafTissueP: field.LeafTest?.leafTissueP,
+            leafTissueK: field.LeafTest?.leafTissueK,
+          }
+        : null,
       Crops: newCrops,
 
       HasNutrients: field.Nutrients && field.Nutrients.length >= 0,
