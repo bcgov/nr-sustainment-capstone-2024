@@ -58,6 +58,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
   fertilizersDetails,
   updateFarmDetails,
   handleFormState,
+  toggleEnabled = true,
 }) => {
   const [selectedFieldIndex, setFieldIndex] = useState(-1);
   const [selectedIndex, setSelectedIndex] = useState(-1);

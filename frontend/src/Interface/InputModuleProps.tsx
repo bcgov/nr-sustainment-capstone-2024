@@ -12,6 +12,7 @@ import FertilizerInterface from './FertilizerInterface';
 interface InputModuleProps {
   farmDetails: FarmDetailsInterface;
   fertilizersDetails: FertilizerInterface[];
+  toggleEnabled?: boolean;
   updateFarmDetails: (farmDetails: FarmDetailsInterface) => void;
   updateFertDetails?: (fertilizersDetails: FertilizerInterface[]) => void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;

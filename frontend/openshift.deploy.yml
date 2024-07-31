@@ -101,7 +101,7 @@ objects:
         app: ${APP}-${TARGET}
       name: ${APP}-${TARGET}-${COMPONENT}
     spec:
-      host: ${APP}-${TARGET}-${COMPONENT}.apps.silver.devops.gov.bc.ca
+      host: better-berries-${TARGET}.apps.silver.devops.gov.bc.ca
       port:
         targetPort: http-5173
       to:

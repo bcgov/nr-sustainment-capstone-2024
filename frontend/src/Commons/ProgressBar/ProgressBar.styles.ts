@@ -8,6 +8,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 95%;
+  max-width: 800px;
   order: 2;
   position: fixed;
   bottom: 30px;
@@ -19,7 +20,8 @@ const Container = styled.div`
     padding-bottom: 50px;
     height: 150px;
     width: 80%;
-    top: 8%;
+    max-width: 1400px;
+    top: 100px;
     order: 0;
   }
 `;

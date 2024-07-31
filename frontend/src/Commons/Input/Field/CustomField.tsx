@@ -4,7 +4,8 @@
  */
 import { Field, ErrorMessage } from 'formik';
 import { FC } from 'react';
-import StyledField from './CustomField.style';
+import InformationIcons from '@Commons/InformationIcons/InformationIcons';
+import { StyledField, StyledLabel } from './CustomField.style';
 import '../ErrorMessage.css';
 
 interface CustomFieldProps {
@@ -13,11 +14,34 @@ interface CustomFieldProps {
   id: string;
   type: string;
   width?: string;
+  text?: string;
+  rightPositioned?: boolean;
+  toggleEnabled?: boolean;
 }
 
-const CustomField: FC<CustomFieldProps> = ({ name, id, type, label, width = '100%' }) => (
+const CustomField: FC<CustomFieldProps> = ({
+  name,
+  id,
+  type,
+  label,
+  width = '100%',
+  text,
+  rightPositioned,
+  toggleEnabled = false,
+}) => (
   <StyledField width={width}>
-    <label htmlFor={id}>{label}</label>
+    <StyledLabel>
+      <label htmlFor={id}>{label}</label>
+      {text && (
+        <span>
+          <InformationIcons
+            text={text}
+            rightPositioned={rightPositioned}
+            toggleEnabled={toggleEnabled}
+          />
+        </span>
+      )}
+    </StyledLabel>
     <Field
       name={name}
       id={id}

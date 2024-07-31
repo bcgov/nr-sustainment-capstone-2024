@@ -84,6 +84,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
   farmDetails,
   updateFarmDetails,
   handleFormState,
+  toggleEnabled,
 }) => {
   const [, setCropsInfo] = useState(farmDetails);
   const [cropInitialValues, setInitialFieldValues] = useState(initialValues);
@@ -179,6 +180,9 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
   const submitFarmInfo = () => {
     updateFarmDetails(farmDetails);
   };
+
+  const sawDustInfo: string =
+    'Sawdust and other materials with a high carbon to nitrogen ratio (C:N) will immobilize plant-available nitrogen in the soil. Selecting ‘Yes’ to this question will increase the amount of nitrogen that needs to be applied to ensure the crop receives enough nitrogen for optimal growth and yield.';
 
   return (
     <>
@@ -286,7 +290,10 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         id="willSawdustBeApplied"
                         label="Is sawdust or wood mulch applied within 6 months prior to the growing season?"
                         options={YesOrNo}
-                        width="75%"
+                        width="100"
+                        text={sawDustInfo}
+                        rightPositioned
+                        toggleEnabled={toggleEnabled}
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
                     </StyledCropsLargeGroup>

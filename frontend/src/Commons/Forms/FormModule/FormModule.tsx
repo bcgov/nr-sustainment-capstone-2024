@@ -33,6 +33,7 @@ interface FormModuleProps {
   InputModule: InputModuleInterface;
   farmDetails: FarmDetailsInterface;
   fertilizersDetails?: FertilizerInterface[];
+  toggleEnabled?: boolean;
   updateFarmDetails(farmDetails: FarmDetailsInterface): void;
   updateFertDetails(nutrientDetails: FertilizerInterface[]): void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
@@ -42,6 +43,7 @@ const FormModule: FC<FormModuleProps> = ({
   InputModule,
   farmDetails,
   fertilizersDetails,
+  toggleEnabled,
   updateFarmDetails,
   handleFormState,
   updateFertDetails,
@@ -61,6 +63,7 @@ const FormModule: FC<FormModuleProps> = ({
             updateFarmDetails={updateFarmDetails}
             updateFertDetails={updateFertDetails}
             farmDetails={farmDetails}
+            toggleEnabled={toggleEnabled}
             handleFormState={handleFormState}
           />
         </StyledFormContent>

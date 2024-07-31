@@ -15,19 +15,27 @@ const StyledField = styled.div<StyledFieldProps>`
   flex-direction: column;
   width: ${(props) => props.width};
   margin-top: 5px;
-  label {
-    font: ${tokens.typographyBoldSmallBody};
-  }
+
   input {
     border: solid 1px ${tokens.themeGray40};
     border-radius: 3px;
   }
+`;
+
+const StyledLabel = styled.div`
+  display: flex;
+  gap: 20px;
+  min-height: 25px;
+  label {
+    font: ${tokens.typographyBoldSmallBody};
+  }
 
   @media (min-width: ${screenSizes.desktop}) {
+    min-height: 40px;
     label {
       font: ${tokens.typographyBoldLargeBody};
     }
   }
 `;
 
-export default StyledField;
+export { StyledField, StyledLabel };

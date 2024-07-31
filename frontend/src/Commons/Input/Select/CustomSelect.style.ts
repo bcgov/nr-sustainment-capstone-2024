@@ -16,10 +16,6 @@ const StyledSelect = styled.div<StyledSelectProps>`
   flex-direction: column;
   width: ${(props) => (props.formCalc ? '100%' : '80%')};
   margin-top: 5px;
-  label {
-    font: ${tokens.typographyBoldSmallBody};
-  }
-
   select {
     border: solid 1px ${tokens.themeGray40};
     border-radius: 3px;
@@ -28,11 +24,26 @@ const StyledSelect = styled.div<StyledSelectProps>`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    label {
-      font: ${tokens.typographyBoldLargeBody};
-    }
     width: ${(props) => props.width};
   }
 `;
 
-export default StyledSelect;
+const StyledLabel = styled.div`
+  min-height: 25px;
+  label {
+    display: flex;
+    align-items: flex-end;
+    font: ${tokens.typographyBoldSmallBody};
+  }
+  span {
+    margin-bottom: 2px;
+  }
+  @media (min-width: ${screenSizes.desktop}) {
+    min-height: 40px;
+    label {
+      font: ${tokens.typographyBoldLargeBody};
+    }
+  }
+`;
+
+export { StyledSelect, StyledLabel };
