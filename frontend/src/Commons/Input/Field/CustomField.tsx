@@ -3,7 +3,7 @@
  * @author @GDamaso
  */
 import { Field, ErrorMessage } from 'formik';
-import { FC } from 'react';
+import { FC, Dispatch, SetStateAction } from 'react';
 import InformationIcons from '@Commons/InformationIcons/InformationIcons';
 import { StyledField, StyledLabel } from './CustomField.style';
 import '../ErrorMessage.css';
@@ -17,6 +17,8 @@ interface CustomFieldProps {
   text?: string;
   rightPositioned?: boolean;
   toggleEnabled?: boolean;
+  isBubbleDisplayed?: boolean;
+  setDisplayedBubble?: Dispatch<SetStateAction<boolean>>;
 }
 
 const CustomField: FC<CustomFieldProps> = ({
@@ -28,6 +30,8 @@ const CustomField: FC<CustomFieldProps> = ({
   text,
   rightPositioned,
   toggleEnabled = false,
+  isBubbleDisplayed,
+  setDisplayedBubble,
 }) => (
   <StyledField width={width}>
     <StyledLabel>
@@ -38,6 +42,8 @@ const CustomField: FC<CustomFieldProps> = ({
             text={text}
             rightPositioned={rightPositioned}
             toggleEnabled={toggleEnabled}
+            isBubbleDisplayed={isBubbleDisplayed}
+            setDisplayedBubble={setDisplayedBubble}
           />
         </span>
       )}

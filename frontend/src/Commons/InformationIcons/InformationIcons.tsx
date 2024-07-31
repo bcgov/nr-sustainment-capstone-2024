@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -17,6 +17,8 @@ type InformationIconsProps = {
   toggleIcon?: boolean;
   headerDesktop?: boolean;
   toggleEnabled?: boolean;
+  isBubbleDisplayed?: boolean;
+  setDisplayedBubble?: Dispatch<SetStateAction<boolean>>;
 };
 
 const InformationIcons = ({
@@ -26,11 +28,14 @@ const InformationIcons = ({
   toggleIcon,
   headerDesktop,
   toggleEnabled,
+  isBubbleDisplayed,
+  setDisplayedBubble,
 }: InformationIconsProps) => {
-  const [isBubbleDisplayed, setDisplayBubble] = useState<boolean>(false);
-
   const handleClickWrapper = () => {
-    setDisplayBubble(!isBubbleDisplayed);
+    // for optional values
+    if (setDisplayedBubble) {
+      setDisplayedBubble(!isBubbleDisplayed);
+    }
   };
 
   return (

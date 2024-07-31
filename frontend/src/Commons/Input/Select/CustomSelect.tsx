@@ -3,7 +3,7 @@
  * @author @GDamaso
  */
 import { Field, ErrorMessage } from 'formik';
-import React, { FC } from 'react';
+import React, { FC, Dispatch, SetStateAction } from 'react';
 import OptionInterface from 'src/Interface/OptionInterface';
 import InformationIcons from '@Commons/InformationIcons/InformationIcons';
 import { StyledSelect, StyledLabel } from './CustomSelect.style';
@@ -19,6 +19,8 @@ interface CustomSelectProps {
   text?: string;
   rightPositioned?: boolean;
   toggleEnabled?: boolean;
+  isBubbleDisplayed?: boolean;
+  setDisplayedBubble?: Dispatch<SetStateAction<boolean>>;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -33,6 +35,8 @@ const CustomSelect: FC<CustomSelectProps> = ({
   rightPositioned,
   toggleEnabled,
   formCalc = false,
+  isBubbleDisplayed,
+  setDisplayedBubble,
 }) => (
   <StyledSelect
     width={width}
@@ -47,6 +51,8 @@ const CustomSelect: FC<CustomSelectProps> = ({
               text={text}
               rightPositioned={rightPositioned}
               toggleEnabled={toggleEnabled}
+              isBubbleDisplayed={isBubbleDisplayed}
+              setDisplayedBubble={setDisplayedBubble}
             />
           </span>
         )}

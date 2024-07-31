@@ -7,11 +7,15 @@ import { StyledHeader, Logo, Title, ToggleContainer } from './MainPageHeader.sty
 interface MainPageHeaderProps {
   toggleEnabled?: boolean;
   setToggleEnabled?: Dispatch<SetStateAction<boolean>>;
+  isBubbleDisplayed?: boolean;
+  setDisplayedBubble?: Dispatch<SetStateAction<boolean>>;
 }
 
 const MainPageHeader = ({
   toggleEnabled = true,
   setToggleEnabled = () => {},
+  isBubbleDisplayed,
+  setDisplayedBubble,
 }: MainPageHeaderProps) => (
   <StyledHeader>
     <a href="/">
@@ -25,6 +29,8 @@ const MainPageHeader = ({
         rightPositioned
         headerDesktop
         toggleEnabled
+        isBubbleDisplayed={isBubbleDisplayed}
+        setDisplayedBubble={setDisplayedBubble}
       />
       <Toggle
         toggleEnabled={toggleEnabled}

@@ -22,7 +22,7 @@
  *
  * @author @GDamaso
  */
-import { FC } from 'react';
+import { FC, Dispatch, SetStateAction } from 'react';
 import InputModuleInterface from 'src/Interface/InputModuleinterface.tsx';
 import FarmDetailsInterface from 'src/Interface/FarmDetailsInterface.tsx';
 import FertilizerInterface from '@Interface/FertilizerInterface.tsx';
@@ -34,6 +34,8 @@ interface FormModuleProps {
   farmDetails: FarmDetailsInterface;
   fertilizersDetails?: FertilizerInterface[];
   toggleEnabled?: boolean;
+  isBubbleDisplayed?: boolean;
+  setDisplayedBubble?: Dispatch<SetStateAction<boolean>>;
   updateFarmDetails(farmDetails: FarmDetailsInterface): void;
   updateFertDetails(nutrientDetails: FertilizerInterface[]): void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
@@ -47,6 +49,8 @@ const FormModule: FC<FormModuleProps> = ({
   updateFarmDetails,
   handleFormState,
   updateFertDetails,
+  isBubbleDisplayed,
+  setDisplayedBubble,
 }) => {
   const { InputModuleComponent } = InputModule;
 
@@ -64,6 +68,8 @@ const FormModule: FC<FormModuleProps> = ({
             updateFertDetails={updateFertDetails}
             farmDetails={farmDetails}
             toggleEnabled={toggleEnabled}
+            isBubbleDisplayed={isBubbleDisplayed}
+            setDisplayedBubble={setDisplayedBubble}
             handleFormState={handleFormState}
           />
         </StyledFormContent>

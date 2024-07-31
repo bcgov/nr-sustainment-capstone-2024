@@ -85,6 +85,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
   updateFarmDetails,
   handleFormState,
   toggleEnabled,
+  isBubbleDisplayed,
+  setDisplayedBubble,
 }) => {
   const [, setCropsInfo] = useState(farmDetails);
   const [cropInitialValues, setInitialFieldValues] = useState(initialValues);
@@ -294,6 +296,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         text={sawDustInfo}
                         rightPositioned
                         toggleEnabled={toggleEnabled}
+                        isBubbleDisplayed={isBubbleDisplayed}
+                        setDisplayedBubble={setDisplayedBubble}
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
                     </StyledCropsLargeGroup>
