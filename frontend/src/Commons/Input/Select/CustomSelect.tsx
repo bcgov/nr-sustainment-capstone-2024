@@ -19,8 +19,6 @@ interface CustomSelectProps {
   text?: string;
   rightPositioned?: boolean;
   toggleEnabled?: boolean;
-  isBubbleDisplayed?: boolean;
-  setDisplayedBubble?: Dispatch<SetStateAction<boolean>>;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -35,8 +33,6 @@ const CustomSelect: FC<CustomSelectProps> = ({
   rightPositioned,
   toggleEnabled,
   formCalc = false,
-  isBubbleDisplayed,
-  setDisplayedBubble,
 }) => (
   <StyledSelect
     width={width}
@@ -51,8 +47,6 @@ const CustomSelect: FC<CustomSelectProps> = ({
               text={text}
               rightPositioned={rightPositioned}
               toggleEnabled={toggleEnabled}
-              isBubbleDisplayed={isBubbleDisplayed}
-              setDisplayedBubble={setDisplayedBubble}
             />
           </span>
         )}
