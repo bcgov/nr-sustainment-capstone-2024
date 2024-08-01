@@ -16,7 +16,11 @@ interface FieldDetailInterface {
   Comment?: string | undefined;
   HasSoilTest: boolean;
   HasLeafTest: boolean;
-  Nutrients: FertilizerInterface[];
+  Nutrients: {
+    nutrientManures: any[] | null;
+    nutrientFertilizers: FertilizerInterface[];
+    nutrientOthers: any[];
+  };
   SoilTest: SoilTestInterface;
   LeafTest: LeafTestInterface;
   Crops: CropsDetailsInterface[];
