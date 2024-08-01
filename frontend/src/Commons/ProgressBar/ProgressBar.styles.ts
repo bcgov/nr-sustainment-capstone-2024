@@ -11,21 +11,19 @@ const Container = styled.div<ProgressBarProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 347px;
+  width: 100vw;
   order: 2;
   position: sticky;
   bottom: 30px;
   background-color: #fff;
   height: 80px;
-  padding-bottom: 30px;
+  padding: 0 13px 30px 13px;
   z-index: 1;
   border-top: 2px solid ${tokens.surfaceColorBorderDefault};
   transition: 0.3s ease-in-out;
   @media (min-width: ${screenSizes.desktop}) {
     padding-bottom: 50px;
     height: 150px;
-    max-width: 100vw;
     top: ${(props) => (props.isHeaderVisible ? '85px' : '0')};
     border-top: 0;
     border-bottom: 2px solid ${tokens.surfaceColorBorderDefault};
@@ -43,7 +41,7 @@ const StyledProgressBar = styled.div`
   z-index: 1;
 `;
 const StyledLineBlock = styled.div`
-  border: 5px solid ${tokens.surfaceColorBorderDark};
+  border: 4px solid ${tokens.surfaceColorBorderDark};
   width: 90%;
   max-width: 1100px;
   margin-top: -60px;

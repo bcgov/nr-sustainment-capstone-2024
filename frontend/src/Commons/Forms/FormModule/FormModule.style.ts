@@ -27,7 +27,7 @@ const StyledFormContent = styled.div`
   border-radius: 2px;
   border-top-left-radius: 1px;
   border-top-right-radius: 1px;
-  padding: 0 10px 10px 10px;
+  padding: 0 10px 27px 10px;
   border: 1px solid ${tokens.surfaceColorBorderDefault};
   background-color: ${tokens.themeGray10};
 `;

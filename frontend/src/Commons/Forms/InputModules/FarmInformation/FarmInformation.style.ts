@@ -20,12 +20,12 @@ const StyledFarmInfo = styled.div`
       display: flex;
       flex-direction: row;
       width: 50%;
-      gap: 30px;
+      gap: 32px;
     }
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    gap: 0;
+    gap: 25px;
   }
 `;
 
