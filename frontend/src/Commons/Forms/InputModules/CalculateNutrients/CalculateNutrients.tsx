@@ -54,6 +54,11 @@ const initialBalance: MainBalanceInterface[] = [
   },
 ];
 
+interface FormValues extends FertilizerInterface {
+  FieldName: string;
+}
+const initialValues: FormValues = initialFarmDetails.Fields[0].Nutrients[0];
+
 const CalculateNutrientsComponent: FC<InputModuleProps> = ({
   farmDetails,
   fertilizersDetails,
@@ -67,7 +72,6 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
   const [fertBalance, setFertBalance] = useState<AgronomicBalanceInterface>(
     initialBalance[0].agronomic,
   );
-  const initialValues: FertilizerInterface = initialFarmDetails.Fields[0].Nutrients[0];
   const fieldsOption: OptionInterface[] = farmDetails.Fields.map((field) => ({
     value: field.FieldName,
     label: field.FieldName,
@@ -160,10 +164,16 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFieldIndex, farmDetails]);
 
-  const submitCalculationData = (values: FertilizerInterface): void => {
+  const submitCalculationData = (values: FertilizerInterface & { FieldName: string }): void => {
     setTimeout(() => {
+      // Destructure to exclude FieldName
+      // I want to remove FieldName from values, which is needed in initialValues
+      // for form validation
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { FieldName, ...fertValues } = values;
+
       const newFertilizer: FertilizerInterface = {
-        ...values,
+        ...fertValues,
         id: fertilizersDetails[selectedIndex].id,
         fertilizerTypeId: fertilizersDetails[selectedIndex].fertilizerTypeId,
         fertilizerId: fertilizersDetails[selectedIndex].fertilizerId,
@@ -176,11 +186,10 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
       };
 
       const newFarmDetails = { ...farmDetails };
-      console.log(newFarmDetails.Fields[selectedFieldIndex].Nutrients);
       newFarmDetails.Fields[selectedFieldIndex].Nutrients.nutrientFertilizers.push(newFertilizer);
 
-      calcFieldBalances(farmDetails.Fields[selectedFieldIndex]);
-      updateFarmDetails(farmDetails);
+      calcFieldBalances(newFarmDetails.Fields[selectedFieldIndex]);
+      updateFarmDetails(newFarmDetails);
     });
   };
 
