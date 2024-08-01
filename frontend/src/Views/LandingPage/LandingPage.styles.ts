@@ -7,8 +7,8 @@ const StyledContent = styled.div`
   flex-direction: column;
   max-width: 265px;
   max-height: 180px;
-  top: 15vh;
   gap: 2px;
+  margin-top: 60px;
   text-align: center;
 
   h2 {
@@ -23,6 +23,7 @@ const StyledContent = styled.div`
   @media (min-width: ${screenSizes.tablet}) {
     top: 10vh;
     max-width: 350px;
+    margin-top: 0;
 
     h2 {
       font: ${tokens.typographyBoldH5};
@@ -37,7 +38,6 @@ const StyledContent = styled.div`
     max-width: 510px;
     max-height: 270px;
     gap: 2px;
-    top: 10vh;
     text-align: center;
 
     h2 {
@@ -57,23 +57,22 @@ const StyledButtonGroup = styled.div`
   max-height: 149px;
   width: 100%;
   flex-direction: column;
-  gap: 2px;
-  top: 20vh;
+  gap: 24px;
   align-items: center;
-
   label {
     display: flex;
     justify-content: center;
     width: 100%;
   }
   @media (min-width: ${screenSizes.tablet}) {
-    top: 15vh;
+    // top: 15vh;
   }
 
   @media (min-width: ${screenSizes.desktop}) {
     max-width: 531px;
     max-height: 197px;
-    top: 15vh;
+    height: 100%;
+    top: 10vh;
   }
 `;
 
@@ -92,14 +91,14 @@ const StyledDivider = styled.div`
     content: '';
     padding: 1px;
     background-color: ${tokens.typographyColorPlaceholder};
-    width: 130px;
+    width: 145px;
     margin: 5px;
   }
 
   @media (min-width: ${screenSizes.desktop}) {
     &::before,
     &::after {
-      width: 200px;
+      width: 225px;
     }
   }
 `;
@@ -110,8 +109,8 @@ const StyledLandingContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+  gap: 34px;
   margin-top: auto;
-  gap: 40px;
 `;
 
 export { StyledContent, StyledButtonGroup, StyledDivider, StyledLandingContainer };

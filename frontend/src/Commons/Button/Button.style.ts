@@ -9,13 +9,14 @@ type StyledButtonProps = {
   disabled: boolean;
   radius: string;
   actions: string;
+  landingPageButton?: boolean;
 };
 
 const StyledButton = styled.button<StyledButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 31px;
+  max-height: ${(props) => (props.landingPageButton ? '40px' : '31px')};
   height: 100%;
   width: 100%;
   max-width: ${(props) => getButtonSize(props.size, ComponentText.ISMOBILE)};
@@ -30,16 +31,24 @@ const StyledButton = styled.button<StyledButtonProps>`
   border-radius: ${(props) => props.radius};
   border: ${(props) =>
     props.actions === 'primary' ? 0 : `1px solid ${tokens.surfaceColorBorderMedium}`};
-  padding: 10px 30px;
-  font: ${tokens.typographyBoldLabel};
+  padding: 20px;
+  font: ${tokens.typographyBoldSmallBody};
 
   &:disabled {
     cursor: not-allowed;
+  }
+  &:hover {
+    background-color: ${(props) =>
+      props.actions === 'primary'
+        ? tokens.surfaceColorPrimaryButtonHover
+        : tokens.surfaceColorSecondaryButtonHover};
   }
 
   @media (min-width: ${screenSizes.desktop}) {
     padding: 20px 30px;
     max-width: ${(props) => getButtonSize(props.size, ComponentText.ISDESKTOP)};
+    max-height: ${(props) => (props.landingPageButton ? '59px' : '31px')};
+    font: ${tokens.typographyBoldLargeBody};
   }
 `;
 

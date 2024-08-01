@@ -59,6 +59,7 @@ const LandingPage = () => {
           size="lg"
           handleClick={newCalcHandler}
           aria-label="New Calculation"
+          landingPageButton
         />
         <StyledDivider>or</StyledDivider>
         <Button
@@ -66,6 +67,7 @@ const LandingPage = () => {
           text="Load Existing File"
           handleClick={handleUpload}
           aria-label="Upload File"
+          landingPageButton
         />
         <input
           id="fileUp"
