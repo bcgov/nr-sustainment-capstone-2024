@@ -320,7 +320,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
           </Formik>
 
           {!hasFieldBeenSelected[index] && field.Crops.length < 2 && (
-            <StyledNewFieldButtonContainer>
+            <StyledNewFieldButtonContainer formCrops>
               <StyledNewFieldButtonController>
                 <Button
                   type="button"

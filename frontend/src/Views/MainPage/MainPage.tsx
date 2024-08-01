@@ -2,7 +2,7 @@
  * @desc Main Page of Better Berries App
  * @author @GDamaso @Kcaparas
  */
-import { useEffect, useState, FC } from 'react';
+import { useEffect, useState, useCallback, FC } from 'react';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
 import ProgressBar from '@Commons/ProgressBar/ProgressBar';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter';
@@ -106,6 +106,8 @@ const MainPage: FC = () => {
   const [formStates, setFormStates] = useState(mockBerriesWorkflow);
   const [currForm, setCurrForm] = useState(0);
   const [toggleEnabled, setToggleEnabled] = useState<boolean>(true);
+  const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
   /**
    * @desc    Take our apps main data object and save it to a template .nmp file,
    *          saved in the users localStorage.
@@ -221,13 +223,40 @@ const MainPage: FC = () => {
   const updateFertDetails = (newFerts: FertilizerInterface[]): void => {
     setFertDetails(newFerts);
   };
+
+  const scrollHeader = useCallback(() => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollDelta = Math.abs(scrollTop - lastScrollTop);
+    // trigger if scrolling goes beyond 10px
+    if (scrollDelta > 10) {
+      // going up
+      if (scrollTop > lastScrollTop) {
+        setIsHeaderVisible(false);
+        // going down
+      } else {
+        setIsHeaderVisible(true);
+      }
+    }
+    setLastScrollTop(scrollTop);
+  }, [lastScrollTop]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', scrollHeader);
+    return () => {
+      window.removeEventListener('scroll', scrollHeader);
+    };
+  }, [scrollHeader]);
   return (
     <StyledMain>
       <MainPageHeader
         toggleEnabled={toggleEnabled}
         setToggleEnabled={setToggleEnabled}
+        isHeaderVisible={isHeaderVisible}
       />
-      <ProgressBar formStates={formStates} />
+      <ProgressBar
+        formStates={formStates}
+        isHeaderVisible={isHeaderVisible}
+      />
       <StyledMainContainer>
         {formStates.map((InputModule) => {
           if (InputModule) {

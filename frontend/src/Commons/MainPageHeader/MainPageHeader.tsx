@@ -7,13 +7,15 @@ import { StyledHeader, Logo, Title, ToggleContainer } from './MainPageHeader.sty
 interface MainPageHeaderProps {
   toggleEnabled?: boolean;
   setToggleEnabled?: Dispatch<SetStateAction<boolean>>;
+  isHeaderVisible?: boolean;
 }
 
 const MainPageHeader = ({
   toggleEnabled = true,
   setToggleEnabled = () => {},
+  isHeaderVisible = true,
 }: MainPageHeaderProps) => (
-  <StyledHeader>
+  <StyledHeader isHeaderVisible={isHeaderVisible}>
     <a href="/">
       <Logo alt="bc-logo" />
     </a>
