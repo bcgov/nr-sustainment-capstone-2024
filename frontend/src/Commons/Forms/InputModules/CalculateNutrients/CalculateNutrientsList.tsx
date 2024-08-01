@@ -74,27 +74,27 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
           </StyledPItem>
           <StyledPItem width="30%">
             <StyledPItemList>
-              <p>{cropBalances[index].agronomic.N}</p>
-              <p>{cropBalances[index].agronomic.P}</p>
-              <p>{cropBalances[index].agronomic.K}</p>
+              <p>{cropBalances[index]?.agronomic?.N ?? zeroConstant}</p>
+              <p>{cropBalances[index]?.agronomic?.P ?? zeroConstant}</p>
+              <p>{cropBalances[index]?.agronomic?.K ?? zeroConstant}</p>
             </StyledPItemList>
           </StyledPItem>
           <StyledPItem width="30%">
             <StyledPItemList>
-              <p>{cropBalances[index].cropRemoval.N || zeroConstant}</p>
-              <p>{cropBalances[index].cropRemoval.P}</p>
-              <p>{cropBalances[index].cropRemoval.K}</p>
+              <p>{cropBalances[index]?.cropRemoval?.N ?? zeroConstant}</p>
+              <p>{cropBalances[index]?.cropRemoval?.P ?? zeroConstant}</p>
+              <p>{cropBalances[index]?.cropRemoval?.K ?? zeroConstant}</p>
             </StyledPItemList>
           </StyledPItem>
         </StyledPContainer>
       ))}
 
-      {field.Nutrients.nutrientFertilizers.length > 0 && (
+      {field.Nutrients?.nutrientFertilizers?.length > 0 && (
         <>
           <StyledH4HeaderItem width="30%">
             <h4>Fertilizer</h4>
           </StyledH4HeaderItem>
-          {field.Nutrients.nutrientFertilizers.map(
+          {field.Nutrients?.nutrientFertilizers.map(
             (fertilizer: FertilizerInterface, idx: number) => (
               // Couldn't fix this ESLint rule since we allow for more then one of the same fert to be added
               // Order is probably never changing without a rerender, which is the problem this rule tries to avoid

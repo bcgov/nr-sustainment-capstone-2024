@@ -128,7 +128,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
       let fertP = 0;
       let fertK = 0;
 
-      if (field.Nutrients.nutrientFertilizers.length > 0) {
+      if (field.Nutrients?.nutrientFertilizers?.length > 0) {
         field.Nutrients.nutrientFertilizers.forEach((fertilizer) => {
           fertN += fertilizer.fertN;
           fertP += fertilizer.fertP2o5;
@@ -186,7 +186,14 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
       };
 
       const newFarmDetails = { ...farmDetails };
-      newFarmDetails.Fields[selectedFieldIndex].Nutrients.nutrientFertilizers.push(newFertilizer);
+
+      console.log(newFarmDetails.Fields[selectedFieldIndex].Nutrients);
+      // Check is ferts array is null and initilize it if it is
+      const emptyFertsArr: FertilizerInterface[] = [];
+      newFarmDetails.Fields[selectedFieldIndex].Nutrients.nutrientFertilizers =
+        newFarmDetails.Fields[selectedFieldIndex].Nutrients?.nutrientFertilizers ?? emptyFertsArr;
+
+      newFarmDetails.Fields[selectedFieldIndex].Nutrients?.nutrientFertilizers?.push(newFertilizer);
 
       calcFieldBalances(newFarmDetails.Fields[selectedFieldIndex]);
       updateFarmDetails(newFarmDetails);
