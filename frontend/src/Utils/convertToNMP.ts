@@ -46,8 +46,8 @@ const convertToNMP = (
       willSawdustBeApplied: crop.willSawdustBeApplied || templateCropNMP.willSawdustBeApplied,
     }));
 
-    const newNutrients: FertilizerInterface[] = Array.isArray(field.Nutrients)
-      ? field.Nutrients
+    const newNutrients: FertilizerInterface[] = Array.isArray(field.Nutrients.nutrientFertilizers)
+      ? field.Nutrients.nutrientFertilizers
       : [];
 
     return {
@@ -79,7 +79,7 @@ const convertToNMP = (
       HasNutrients: field.Nutrients && field.Nutrients.nutrientFertilizers.length >= 0,
       Nutrients: {
         nutrientManures: [],
-        nutrientFertilizers: field.Nutrients
+        nutrientFertilizers: field.Nutrients.nutrientFertilizers
           ? newNutrients.map((nutrient: FertilizerInterface): NmpFertilizerInterface => {
               const isFertDry =
                 getOptionIndex(FertilizerTypeOptions, nutrient.fertilizerTypeId) <= 1;
