@@ -35,7 +35,7 @@ const convertToNMP = (
   const newFields: NmpFieldInterface[] = newDetails.Fields.map((field: FieldDetailInterface) => {
     const newCrops: NmpCropInterface[] = field.Crops.map((crop: CropsDetailsInterface) => ({
       ...templateCropNMP,
-      id: crop.id + 1,
+      id: crop.id,
       cropId: crop.cropId,
       yield: crop.yield,
       plantAgeYears: crop.plantAgeYears,
@@ -61,7 +61,7 @@ const convertToNMP = (
         ? {
             ...templateFieldNMP.SoilTest,
             valNO3H: field.SoilTest.valNO3H || templateFieldNMP.SoilTest?.valNO3H,
-            ValP: field.SoilTest.ValP || templateFieldNMP.SoilTest?.valNO3H,
+            ValP: field.SoilTest.ValP || templateFieldNMP.SoilTest?.ValP,
             valK: field.SoilTest.valK || templateFieldNMP.SoilTest?.valK,
             valPH: field.SoilTest.valPH || templateFieldNMP.SoilTest?.valPH,
             // sampleDate: field.SoilTest?.sampleDate || templateFieldNMP.SoilTest?.sampleDate,

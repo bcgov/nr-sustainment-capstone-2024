@@ -34,7 +34,7 @@ interface FormModuleProps {
   farmDetails: FarmDetailsInterface;
   fertilizersDetails?: FertilizerInterface[];
   toggleEnabled?: boolean;
-  updateFarmDetails(farmDetails: FarmDetailsInterface): void;
+  updateFarmDetails(farmDetails: FarmDetailsInterface, inputModuleID: string): void;
   updateFertDetails(nutrientDetails: FertilizerInterface[]): void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
 }
@@ -55,16 +55,18 @@ const FormModule: FC<FormModuleProps> = ({
         inputModule={InputModule}
         handleFormState={handleFormState}
       />
-      <StyledFormContent isVisible={InputModule.enable}>
-        <InputModuleComponent
-          fertilizersDetails={fertilizersDetails || []}
-          updateFarmDetails={updateFarmDetails}
-          updateFertDetails={updateFertDetails}
-          farmDetails={farmDetails}
-          toggleEnabled={toggleEnabled}
-          handleFormState={handleFormState}
-        />
-      </StyledFormContent>
+      {InputModule.enable && (
+        <StyledFormContent isVisible={InputModule.enable}>
+          <InputModuleComponent
+            fertilizersDetails={fertilizersDetails || []}
+            updateFarmDetails={updateFarmDetails}
+            updateFertDetails={updateFertDetails}
+            farmDetails={farmDetails}
+            toggleEnabled={toggleEnabled}
+            handleFormState={handleFormState}
+          />
+        </StyledFormContent>
+      )}
     </StyledFormContainer>
   );
 };

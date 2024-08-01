@@ -108,6 +108,7 @@ const MainPage: FC = () => {
   const [toggleEnabled, setToggleEnabled] = useState<boolean>(true);
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
+
   /**
    * @desc    Take our apps main data object and save it to a template .nmp file,
    *          saved in the users localStorage.
