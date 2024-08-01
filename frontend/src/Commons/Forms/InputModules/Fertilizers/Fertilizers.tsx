@@ -45,19 +45,19 @@ const FertilizersInfo: FC<InputModuleProps> = ({
     customN: Yup.number().when('fertilizerTypeId', (fertilizerTypeId) =>
       fertilizerTypeId.toString() === 'Dry Fertilizer (Custom)' ||
       fertilizerTypeId.toString() === 'Liquid Fertilizer (Custom)'
-        ? Yup.number().min(0).max(25).required()
+        ? Yup.number().min(0).max(100).required()
         : Yup.number().notRequired(),
     ),
     customP2o5: Yup.number().when('fertilizerTypeId', (fertilizerTypeId) =>
       fertilizerTypeId.toString() === 'Dry Fertilizer (Custom)' ||
       fertilizerTypeId.toString() === 'Liquid Fertilizer (Custom)'
-        ? Yup.number().min(0).max(25).required()
+        ? Yup.number().min(0).max(100).required()
         : Yup.number().notRequired(),
     ),
     customK2o: Yup.number().when('fertilizerTypeId', (fertilizerTypeId) =>
       fertilizerTypeId.toString() === 'Dry Fertilizer (Custom)' ||
       fertilizerTypeId.toString() === 'Liquid Fertilizer (Custom)'
-        ? Yup.number().min(0).max(25).required()
+        ? Yup.number().min(0).max(100).required()
         : Yup.number().notRequired(),
     ),
   });
@@ -92,9 +92,9 @@ const FertilizersInfo: FC<InputModuleProps> = ({
         fertNValue = 23;
         break;
       default:
-        fertNValue = values.customN;
-        fertP2o5Value = values.customP2o5;
-        fertK20Value = values.customK2o;
+        fertNValue = values.customN ? values.customN : 0;
+        fertP2o5Value = values.customP2o5 ? values.customP2o5 : 0;
+        fertK20Value = values.customK2o ? values.customK2o : 0;
         break;
     }
 

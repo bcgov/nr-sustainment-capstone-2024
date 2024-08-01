@@ -4,25 +4,29 @@
  * @author      @GDamaso
  */
 import NmpCropInterface from './NmpCropInterface';
-import FertilizerInterface from './FertilizerInterface';
+import NmpFertilizerInterface from './NmpFertilizerInterface';
 
 interface NmpFieldInterface {
   Id: number;
   FieldName: string;
   Area: number;
   Comment?: string | null;
-  Nutrients?: FertilizerInterface[] | null;
+  Nutrients?: {
+    nutrientManures: any[] | null;
+    nutrientFertilizers: NmpFertilizerInterface[] | null;
+    nutrientOthers: any[];
+  };
   HasNutrients: boolean;
   Crops: NmpCropInterface[];
   FeedForageAnalyses: any[];
-  SoilTest?: {
+  SoilTest: {
     sampleDate: string;
-    valNO3H: number;
-    ValP: number;
-    valK: number;
-    valPH: number;
-    ConvertedKelownaP: number;
-    ConvertedKelownaK: number;
+    valNO3H?: number;
+    ValP?: number;
+    valK?: number;
+    valPH?: number;
+    ConvertedKelownaP?: number;
+    ConvertedKelownaK?: number;
   } | null;
   LeafTest?: {
     leafTissueP: number;

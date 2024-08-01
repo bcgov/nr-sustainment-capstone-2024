@@ -14,8 +14,8 @@ interface FieldDetailInterface {
   FieldName: string;
   Area: number;
   Comment?: string | undefined;
-  HasSoilTest?: boolean;
-  HasLeafTest?: boolean;
+  HasSoilTest: boolean;
+  HasLeafTest: boolean;
   Nutrients: FertilizerInterface[];
   SoilTest: SoilTestInterface;
   LeafTest: LeafTestInterface;
