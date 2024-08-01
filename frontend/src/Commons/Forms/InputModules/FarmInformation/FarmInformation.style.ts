@@ -15,6 +15,7 @@ const StyledFarmInfo = styled.div`
   gap: 24px;
 
   #inputContainer {
+    gap: 24px;
     @media (min-width: ${screenSizes.desktop}) {
       display: flex;
       flex-direction: row;
@@ -32,7 +33,7 @@ const StyledSelectContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 20px;
+  gap: 48px;
 
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;

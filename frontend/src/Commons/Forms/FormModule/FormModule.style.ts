@@ -12,11 +12,12 @@ const StyledFormContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  width: 95%;
+  width: 100%;
+  max-width: 344px;
   transition: max-height 3s ease-in-out;
 
   @media (min-width: ${screenSizes.desktop}) {
-    max-width: 70%;
+    max-width: 1311px;
   }
 `;
 
@@ -27,6 +28,7 @@ const StyledFormContent = styled.div`
   border-top-left-radius: 1px;
   border-top-right-radius: 1px;
   padding: 0 10px 10px 10px;
+  border: 1px solid ${tokens.surfaceColorBorderDefault};
   background-color: ${tokens.themeGray10};
 `;
 
