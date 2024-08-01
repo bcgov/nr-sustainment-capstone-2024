@@ -124,8 +124,8 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
       let fertP = 0;
       let fertK = 0;
 
-      if (field.Nutrients.length > 0) {
-        field.Nutrients.forEach((fertilizer) => {
+      if (field.Nutrients.nutrientFertilizers.length > 0) {
+        field.Nutrients.nutrientFertilizers.forEach((fertilizer) => {
           fertN += fertilizer.fertN;
           fertP += fertilizer.fertP2o5;
           fertK += fertilizer.fertK2o;
@@ -176,7 +176,8 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
       };
 
       const newFarmDetails = { ...farmDetails };
-      newFarmDetails.Fields[selectedFieldIndex].Nutrients.push(newFertilizer);
+      console.log(newFarmDetails.Fields[selectedFieldIndex].Nutrients);
+      newFarmDetails.Fields[selectedFieldIndex].Nutrients.nutrientFertilizers.push(newFertilizer);
 
       calcFieldBalances(farmDetails.Fields[selectedFieldIndex]);
       updateFarmDetails(farmDetails);

@@ -96,13 +96,13 @@ function Calculate(field: FieldDetailInterface, crop: CropsDetailsInterface) {
   agronomicBalance.P = calcPK(
     calcTable.agronomicBalance.phosphorusCalculation.logic,
     field.SoilTest.ValP,
-    field.LeafTest.leafTissueP,
+    field.LeafTest?.leafTissueP,
   );
 
   agronomicBalance.K = calcPK(
     calcTable.agronomicBalance.potassiumCalculation.logic,
     field.SoilTest.valK,
-    field.LeafTest.leafTissueK,
+    field.LeafTest?.leafTissueK,
   );
 
   cropRemovalBalance.P = calcRemovalPK(
