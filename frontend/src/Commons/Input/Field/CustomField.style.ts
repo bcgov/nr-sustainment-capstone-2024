@@ -21,7 +21,7 @@ const StyledField = styled.div<StyledFieldProps>`
   margin-top: 12px;
 
   input {
-    border: solid 1px ${tokens.themeGray40};
+    border: solid 1px ${tokens.surfaceColorBorderDefault};
     border-radius: 3px;
   }
 
