@@ -18,20 +18,26 @@ type StyledLabelProps = {
 const StyledField = styled.div<StyledFieldProps>`
   display: flex;
   flex-direction: column;
-  width: ${(props) => props.mobileWidth};
+
   margin-top: 12px;
 
   input {
     border: solid 1px ${tokens.surfaceColorBorderDefault};
     border-radius: 3px;
+    width: ${(props) => props.mobileWidth};
+    height: 21px;
+    font: ${tokens.typographyRegularSmallBody};
   }
 
   @media (min-width: ${screenSizes.desktop}) {
     margin-top: 24px;
-    width: ${(props) => props.desktopWidth};
+
+    input {
+      width: ${(props) => props.desktopWidth};
+      height: 28px;
+    }
   }
 `;
-
 const StyledLabel = styled.div<StyledLabelProps>`
   display: flex;
   gap: 20px;

@@ -26,7 +26,7 @@ const Button = ({
   type = 'button',
   actions = 'primary',
   children,
-  landingPageButton,
+  landingPageButton = false,
 }: ButtonProps) => {
   const handleClickWrapper = () => {
     if (handleClick) {

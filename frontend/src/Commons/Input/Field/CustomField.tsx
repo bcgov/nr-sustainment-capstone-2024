@@ -51,6 +51,7 @@ const CustomField: FC<CustomFieldProps> = ({
       name={name}
       id={id}
       type={type}
+      width="100%"
     />
     <ErrorMessage
       name={id}
