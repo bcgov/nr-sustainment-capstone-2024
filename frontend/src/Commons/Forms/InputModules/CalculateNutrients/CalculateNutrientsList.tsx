@@ -68,7 +68,8 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
       </StyledH4HeaderContainer>
 
       {field.Crops.map((crop: CropsDetailsInterface, index: number) => (
-        <StyledPContainer key={`${crop}`}>
+        // eslint-disable-next-line react/no-array-index-key
+        <StyledPContainer key={`${crop}-${index}`}>
           <StyledPItem width="30%">
             <p>{crop.cropId === '75' ? 'Blueberry' : 'Raspberry'}</p>
           </StyledPItem>

@@ -39,7 +39,7 @@ const FarmInfoComponent: FC<InputModuleProps> = ({
 }) => {
   const initialValues = {
     FarmName: farmDetails.FarmName,
-    Year: farmDetails.Year,
+    Year: new Date().getFullYear().toString(),
     FarmRegion: farmDetails.FarmRegion,
   };
 

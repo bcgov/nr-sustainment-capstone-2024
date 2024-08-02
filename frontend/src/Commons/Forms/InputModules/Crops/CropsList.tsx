@@ -20,14 +20,14 @@ const CropsList: FC<CropsListComponentProps> = ({ field }) => (
         <p key={field.FieldName}>{field.FieldName}</p>
       </StyledListItem>
       <StyledCropsGroup>
-        {field.Crops.map((crop: CropsDetailsInterface) => (
+        {field.Crops.map((crop: CropsDetailsInterface, idx: number) => (
           <StyledListItem
             width="50%"
             key={crop.id}
           >
             <div className="CropsList">
               <h2>Crop</h2>
-              <h2>{crop.id + 1}</h2>
+              <h2>{idx + 1}</h2>
             </div>
             <p key={crop.cropId}>{crop.cropId === '75' ? 'Blueberry' : 'Raspberry'}</p>
           </StyledListItem>

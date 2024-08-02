@@ -52,7 +52,7 @@ const convertToNMP = (
 
     return {
       ...templateFieldNMP,
-      Id: field.Id + 1,
+      Id: field.Id,
       Area: field.Area,
       Comment: field.Comment || templateFieldNMP.Comment,
       FieldName: field.FieldName,
