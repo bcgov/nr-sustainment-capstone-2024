@@ -42,13 +42,14 @@ const StyledProgressBar = styled.div`
 `;
 const StyledLineBlock = styled.div`
   border: 4px solid ${tokens.surfaceColorBorderDark};
-  width: 90%;
-  max-width: 1100px;
+  width: 85%;
   margin-top: -60px;
   z-index: 0;
 
   @media (min-width: ${screenSizes.desktop}) {
     border: 8px solid ${tokens.surfaceColorBorderDark};
+    width: 90%;
+    max-width: 1100px;
     margin-top: -100px;
   }
 `;

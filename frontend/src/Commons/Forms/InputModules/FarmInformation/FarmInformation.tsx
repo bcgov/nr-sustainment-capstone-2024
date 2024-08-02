@@ -86,7 +86,8 @@ const FarmInfoComponent: FC<InputModuleProps> = ({
                 id="Year"
                 name="Year"
                 type="number"
-                width="137px"
+                desktopWidth="137px"
+                mobileWidth="71px"
               />
 
               <CustomField
@@ -94,7 +95,8 @@ const FarmInfoComponent: FC<InputModuleProps> = ({
                 id="FarmName"
                 name="FarmName"
                 type="text"
-                width="299px"
+                desktopWidth="299px"
+                mobileWidth="134px"
               />
             </div>
 
@@ -104,7 +106,8 @@ const FarmInfoComponent: FC<InputModuleProps> = ({
                 id="FarmRegion"
                 label="Region"
                 options={options}
-                width="468px"
+                desktopWidth="468px"
+                mobileWidth="259px"
                 onChange={(e) => handleChange(e, setFieldValue)}
               />
               <StyledButtonController>

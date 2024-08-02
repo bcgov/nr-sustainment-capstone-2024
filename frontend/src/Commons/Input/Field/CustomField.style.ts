@@ -7,7 +7,8 @@ import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 
 type StyledFieldProps = {
-  width: string;
+  mobileWidth: string;
+  desktopWidth: string;
 };
 
 type StyledLabelProps = {
@@ -17,7 +18,7 @@ type StyledLabelProps = {
 const StyledField = styled.div<StyledFieldProps>`
   display: flex;
   flex-direction: column;
-  width: ${(props) => props.width};
+  width: ${(props) => props.mobileWidth};
   margin-top: 12px;
 
   input {
@@ -27,6 +28,7 @@ const StyledField = styled.div<StyledFieldProps>`
 
   @media (min-width: ${screenSizes.desktop}) {
     margin-top: 24px;
+    width: ${(props) => props.desktopWidth};
   }
 `;
 

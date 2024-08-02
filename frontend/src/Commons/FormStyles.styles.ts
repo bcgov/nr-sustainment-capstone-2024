@@ -12,19 +12,17 @@ const StyledFarmInfo = styled.div<FormProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: left;
   height: 100%;
-  gap: 20px;
+  gap: 24px;
 
   #inputContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
+    gap: 24px;
     @media (min-width: ${screenSizes.desktop}) {
+      display: flex;
       flex-direction: row;
-      position: relative;
-      width: 50%;
-      gap: 30px;
+      width: 100%;
+      gap: 32px;
     }
   }
   @media (min-width: ${screenSizes.desktop}) {
@@ -54,14 +52,14 @@ const StyledAreaContainer = styled.div<FormProps>`
   margin-left: ${(props) => (props.formCrops ? '5px' : 0)};
   p {
     position: relative;
-    top: 25px;
+    top: 33px;
     left: 10px;
   }
 
   @media (min-width: ${screenSizes.desktop}) {
     margin-left: 0;
     p {
-      top: 35px;
+      top: 55px;
     }
   }
 `;

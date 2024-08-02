@@ -252,6 +252,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     id="FieldName"
                     name="FieldName"
                     type="text"
+                    width="392px"
                   />
                   <StyledAreaContainer>
                     <CustomField
@@ -259,7 +260,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                       id="Area"
                       name="Area"
                       type="number"
-                      width="50%"
+                      width="107px"
                     />
                     <p>Acres</p>
                   </StyledAreaContainer>

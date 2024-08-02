@@ -13,7 +13,8 @@ interface CustomFieldProps {
   name: string;
   id: string;
   type: string;
-  width?: string;
+  mobileWidth?: string;
+  desktopWidth?: string;
   text?: string;
   rightPositioned?: boolean;
   toggleEnabled?: boolean;
@@ -24,12 +25,16 @@ const CustomField: FC<CustomFieldProps> = ({
   id,
   type,
   label,
-  width = '100%',
+  mobileWidth = '100%',
+  desktopWidth = '100%',
   text,
   rightPositioned,
   toggleEnabled = false,
 }) => (
-  <StyledField width={width}>
+  <StyledField
+    mobileWidth={mobileWidth}
+    desktopWidth={desktopWidth}
+  >
     <StyledLabel hasText={!text}>
       <label htmlFor={id}>{label}</label>
       {text && (

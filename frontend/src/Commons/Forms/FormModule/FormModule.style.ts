@@ -12,8 +12,7 @@ const StyledFormContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  width: 100%;
-  max-width: 344px;
+  width: 95%;
   transition: max-height 3s ease-in-out;
 
   @media (min-width: ${screenSizes.desktop}) {
