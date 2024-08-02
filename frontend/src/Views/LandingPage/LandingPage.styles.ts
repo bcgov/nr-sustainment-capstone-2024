@@ -57,7 +57,7 @@ const StyledButtonGroup = styled.div`
   max-height: 149px;
   width: 100%;
   flex-direction: column;
-  gap: 24px;
+  gap: 12px;
   align-items: center;
   label {
     display: flex;

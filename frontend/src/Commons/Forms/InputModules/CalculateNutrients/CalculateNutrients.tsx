@@ -305,7 +305,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                   id="FieldName"
                   name="FieldName"
                   options={fieldsOption}
-                  width="100%"
+                  desktopWidth="100%"
                   formCalc
                   onChange={(e) => {
                     handleFieldChange(e, setFieldValue);
@@ -321,7 +321,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                     id="fertilizerId"
                     name="fertilizerId"
                     options={fertilizerOption}
-                    width="100%"
+                    desktopWidth="100%"
                     formCalc
                     onChange={(e) => handleFertilizerChange(e, setFieldValue)}
                   />
@@ -332,14 +332,14 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                       name="applRate"
                       id="applRate"
                       type="number"
-                      width="50%"
+                      desktopWidth="50%"
                     />
                     <CustomSelect
                       label="Units"
                       name="applUnitId"
                       id="applUnitId"
                       options={displayFertilizerOption()}
-                      width="50%"
+                      desktopWidth="50%"
                       formCalc
                       onChange={(e) => handleChange(e, setFieldValue)}
                     />
@@ -352,14 +352,14 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                         name="liquidDensity"
                         id="liquidDensity"
                         type="number"
-                        width="50%"
+                        desktopWidth="50%"
                       />
                       <CustomSelect
                         label="Density Units"
                         id="liquidDensityUnitId"
                         name="liquidDensityUnitId"
                         options={DensityUnits}
-                        width="50%"
+                        desktopWidth="50%"
                         formCalc
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
@@ -372,7 +372,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                       id="applMethodId"
                       name="applMethodId"
                       options={ApplicationMethod}
-                      width="50%"
+                      desktopWidth="50%"
                       formCalc
                       onChange={(e) => handleChange(e, setFieldValue)}
                     />
@@ -381,7 +381,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                       name="applDate"
                       id="applDate"
                       type="text"
-                      width="50%"
+                      desktopWidth="50%"
                     />
                   </StyledSmallFormGroup>
                 </StyledLeftView>

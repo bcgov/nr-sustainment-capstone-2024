@@ -29,6 +29,10 @@ const StyledFormContent = styled.div`
   padding: 0 10px 15px 10px;
   border: 1px solid ${tokens.surfaceColorBorderDefault};
   background-color: ${tokens.themeGray10};
+
+  @media (min-width: ${screenSizes.desktop}) {
+    padding-bottom: 24px;
+  }
 `;
 
 export { StyledFormContainer, StyledFormContent };

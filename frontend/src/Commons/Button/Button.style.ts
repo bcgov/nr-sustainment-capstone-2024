@@ -32,7 +32,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   border: ${(props) =>
     props.actions === 'primary' ? 0 : `1px solid ${tokens.surfaceColorBorderMedium}`};
   padding: ${(props) => (props.landingPageButton ? '20px' : '0')};
-  font: ${tokens.typographyBoldSmallBody};
+  font: ${tokens.typographyRegularSmallBody};
 
   &:disabled {
     cursor: not-allowed;
@@ -48,7 +48,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     padding: 20px 30px;
     max-width: ${(props) => getButtonSize(props.size, ComponentText.ISDESKTOP)};
     max-height: ${(props) => (props.landingPageButton ? '59px' : '31px')};
-    font: ${tokens.typographyBoldLargeBody};
+    font: ${tokens.typographyRegularLargeBody};
   }
 `;
 

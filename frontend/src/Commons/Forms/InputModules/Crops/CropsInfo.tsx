@@ -212,7 +212,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         id="cropId"
                         label="Crop"
                         options={CropIDOptions}
-                        width="40%"
+                        desktopWidth="40%"
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
                       <StyledAreaContainer formCrops>
@@ -221,7 +221,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                           id="yield"
                           name="yield"
                           type="number"
-                          width="50%"
+                          desktopWidth="50%"
                         />
                         <p>tons/ac</p>
                       </StyledAreaContainer>
@@ -234,7 +234,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             id="plantAgeYears"
                             label="Plant age (Years)"
                             options={PlantAgeOptions}
-                            width="40%"
+                            desktopWidth="40%"
                             onChange={(e) => handleChange(e, setFieldValue)}
                           />
                           <CustomSelect
@@ -242,7 +242,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             id="numberOfPlantsPerAcre"
                             label="Plants per acre"
                             options={PlantsPerAcre}
-                            width="40%"
+                            desktopWidth="40%"
                             onChange={(e) => handleChange(e, setFieldValue)}
                           />
                         </StyledCropsSmallGroup>
@@ -252,7 +252,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             id="distanceBtwnPlants"
                             label="Distance between plants"
                             options={DistanceBtwnPlants}
-                            width="40%"
+                            desktopWidth="40%"
                             onChange={(e) => handleChange(e, setFieldValue)}
                           />
                           <CustomSelect
@@ -260,7 +260,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             id="distanceBtwnRows"
                             label="Distance between rows"
                             options={DistanceBtwnRows}
-                            width="40%"
+                            desktopWidth="40%"
                             onChange={(e) => handleChange(e, setFieldValue)}
                           />
                         </StyledCropsLargeGroup>
@@ -272,7 +272,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         id="willPlantsBePruned"
                         label="Will plants be pruned?"
                         options={YesOrNo}
-                        width="40%"
+                        desktopWidth="40%"
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
                       <CustomSelect
@@ -280,7 +280,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         id="whereWillPruningsGo"
                         label="Where will prunings go?"
                         options={WherePruningsGo}
-                        width="40%"
+                        desktopWidth="40%"
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
                     </StyledCropsLargeGroup>
@@ -290,7 +290,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         id="willSawdustBeApplied"
                         label="Is sawdust or wood mulch applied within 6 months prior to the growing season?"
                         options={YesOrNo}
-                        width="100"
+                        desktopWidth="100"
                         text={sawDustInfo}
                         rightPositioned
                         toggleEnabled={toggleEnabled}

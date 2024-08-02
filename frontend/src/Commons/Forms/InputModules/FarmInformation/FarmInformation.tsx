@@ -96,7 +96,7 @@ const FarmInfoComponent: FC<InputModuleProps> = ({
                 name="FarmName"
                 type="text"
                 desktopWidth="299px"
-                mobileWidth="134px"
+                mobileWidth="256px"
               />
             </div>
 

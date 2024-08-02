@@ -47,7 +47,7 @@ const StyledLineBlock = styled.div`
   z-index: 0;
 
   @media (min-width: ${screenSizes.desktop}) {
-    border: 8px solid ${tokens.surfaceColorBorderDark};
+    border: 6px solid ${tokens.surfaceColorBorderDark};
     width: 90%;
     max-width: 1100px;
     margin-top: -100px;
