@@ -5,7 +5,7 @@ const templateNMP = {
   farmDetails: {
     Year: '',
     FarmName: '',
-    FarmRegion: 21,
+    FarmRegion: null,
     FarmSubRegion: null,
     SoilTests: null,
     TestingMethod: '',
@@ -86,10 +86,14 @@ const templateNutrientsNMP: NmpFertilizerInterface = {
 
 const templateFieldNMP: NmpFieldInterface = {
   Id: 1,
-  FieldName: 'FieldA',
+  FieldName: 'A',
   Area: 1.0,
-  Comment: 'Comments(optional)',
-  Nutrients: undefined,
+  Comment: null,
+  Nutrients: {
+    nutrientManures: null,
+    nutrientFertilizers: null,
+    nutrientOthers: [],
+  },
   HasNutrients: false,
   Crops: [],
   FeedForageAnalyses: [],
