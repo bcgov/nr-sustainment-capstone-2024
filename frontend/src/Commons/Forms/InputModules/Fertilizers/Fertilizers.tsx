@@ -77,7 +77,8 @@ const FertilizersInfo: FC<InputModuleProps> = ({
     }
 
     const defaultValues = { N: 0, P: 0, K: 0 };
-    const fertValues = dryFertilizerValues[values.fertilizerId] || defaultValues;
+    const customValues = { N: values.customN, P: values.customP2o5, K: values.customK2o };
+    const fertValues = dryFertilizerValues[values.fertilizerId] || customValues || defaultValues;
 
     fertNValue = fertValues.N;
     fertP2o5Value = fertValues.P;
@@ -102,7 +103,7 @@ const FertilizersInfo: FC<InputModuleProps> = ({
       liquidDensity: 0,
       liquidDensityUnitId: '',
     };
-    console.log(newFertilizer);
+
     if (updateFertDetails) updateFertDetails([...fertilizersDetails, newFertilizer]);
     setAddButtonClicked(false);
   };
