@@ -30,7 +30,7 @@ const CustomField: FC<CustomFieldProps> = ({
   toggleEnabled = false,
 }) => (
   <StyledField width={width}>
-    <StyledLabel>
+    <StyledLabel hasText={!text}>
       <label htmlFor={id}>{label}</label>
       {text && (
         <span>

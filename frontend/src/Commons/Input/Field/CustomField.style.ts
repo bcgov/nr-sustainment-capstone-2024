@@ -8,7 +8,10 @@ import screenSizes from '@Constants/ScreenSize';
 
 type StyledFieldProps = {
   width: string;
-  hasText: boolean;
+};
+
+type StyledLabelProps = {
+  hasText?: boolean;
 };
 
 const StyledField = styled.div<StyledFieldProps>`
@@ -27,16 +30,15 @@ const StyledField = styled.div<StyledFieldProps>`
   }
 `;
 
-const StyledLabel = styled.div<StyledFieldProps>`
+const StyledLabel = styled.div<StyledLabelProps>`
   display: flex;
   gap: 20px;
-  min-height: 25px;
   label {
     font: ${tokens.typographyBoldSmallBody};
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    min-height: ${(props) => (props.hasText ? '40px' : '0')};
+    min-height: 0;
     label {
       font: ${tokens.typographyBoldLargeBody};
     }
