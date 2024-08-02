@@ -19,7 +19,7 @@ const StyledSelect = styled.div<StyledSelectProps>`
   select {
     border: solid 1px ${tokens.themeGray40};
     border-radius: 3px;
-    height: 30px;
+    height: 28px;
     background-color: ${tokens.themeGrayWhite};
   }
 
