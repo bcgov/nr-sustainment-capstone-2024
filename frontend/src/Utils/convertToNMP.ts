@@ -90,6 +90,7 @@ const convertToNMP = (
                   ? parseInt(
                       DryFertilizerOptions.find((option) => option.value === nutrient.fertilizerId)
                         ?.value ?? '1',
+                      10,
                     )
                   : getOptionIndex(LiquidFertilizerOptions, nutrient.fertilizerId),
                 applRate: nutrient.applRate,

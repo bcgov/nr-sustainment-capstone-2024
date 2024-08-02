@@ -22,10 +22,10 @@ import ComponentText from '@Constants/ComponentText';
 import CustomField from '@Commons/Input/Field/CustomField';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 import handleChange from '@Utils/handleChange';
+import dryFertilizerValues from '@Constants/FertilizerValues';
 import FertilizersButtonComponent from './FertilizersButtonComponent';
 import StyledCustomNumberField from './Fertilizers.styles';
 import FertilizersListComponent from './FertilizersListComponent';
-import dryFertilizerValues from '@Constants/FertilizerValues';
 
 const FertilizersInfo: FC<InputModuleProps> = ({
   fertilizersDetails,

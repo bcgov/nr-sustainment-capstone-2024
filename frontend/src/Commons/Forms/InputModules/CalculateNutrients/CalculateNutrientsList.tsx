@@ -5,6 +5,7 @@ import { faCircleCheck, faTriangleExclamation } from '@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MainBalanceInterface from '@Interface/MainBalanceInterface';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
+import { DryFertilizerOptions } from '@Constants/FertilizersOptions';
 import {
   StyledH3HeaderContainer,
   StyledH3HeaderItem,
@@ -17,7 +18,6 @@ import {
   DesktopView,
 } from './CalculateNutrientsList.styles';
 import { StyledDivider } from '../ListComponent.styles';
-import { DryFertilizerOptions } from '@Constants/FertilizersOptions';
 
 interface CalculationListProps {
   field: FieldDetailInterface;
