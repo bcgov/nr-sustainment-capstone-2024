@@ -25,6 +25,7 @@ import handleChange from '@Utils/handleChange';
 import FertilizersButtonComponent from './FertilizersButtonComponent';
 import StyledCustomNumberField from './Fertilizers.styles';
 import FertilizersListComponent from './FertilizersListComponent';
+import dryFertilizerValues from '@Constants/FertilizerValues';
 
 const FertilizersInfo: FC<InputModuleProps> = ({
   fertilizersDetails,
@@ -75,28 +76,12 @@ const FertilizersInfo: FC<InputModuleProps> = ({
       tempFertilizerId = `Liquid Fertilizer Custom (${values.customN}-${values.customP2o5}-${values.customK2o})`;
     }
 
-    switch (values.fertilizerId) {
-      case 'Urea (46-0-0)':
-        fertNValue = 46;
-        break;
-      case '15-15-17':
-        fertNValue = 15;
-        fertP2o5Value = 15;
-        fertK20Value = 17;
-        break;
-      case 'Ammonium polyphosphate (10-34-0)':
-        fertNValue = 10;
-        fertP2o5Value = 34;
-        break;
-      case 'Liquid urea (23-0-0)':
-        fertNValue = 23;
-        break;
-      default:
-        fertNValue = values.customN ? values.customN : 0;
-        fertP2o5Value = values.customP2o5 ? values.customP2o5 : 0;
-        fertK20Value = values.customK2o ? values.customK2o : 0;
-        break;
-    }
+    const defaultValues = { N: 0, P: 0, K: 0 };
+    const fertValues = dryFertilizerValues[values.fertilizerId] || defaultValues;
+
+    fertNValue = fertValues.N;
+    fertP2o5Value = fertValues.P;
+    fertK20Value = fertValues.K;
 
     const newFertilizer: FertilizerInterface = {
       id: fertilizersDetails.length,
@@ -117,7 +102,7 @@ const FertilizersInfo: FC<InputModuleProps> = ({
       liquidDensity: 0,
       liquidDensityUnitId: '',
     };
-
+    console.log(newFertilizer);
     if (updateFertDetails) updateFertDetails([...fertilizersDetails, newFertilizer]);
     setAddButtonClicked(false);
   };

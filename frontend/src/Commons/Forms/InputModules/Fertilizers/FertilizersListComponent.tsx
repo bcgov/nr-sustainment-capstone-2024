@@ -10,6 +10,7 @@ import {
   StyledCustomFertilizerGroup,
   StyledDivider,
 } from '../ListComponent.styles';
+import { DryFertilizerOptions } from '@Constants/FertilizersOptions';
 
 interface FertilizerProps {
   fertilizerDetails: FertilizerInterface[];
@@ -45,7 +46,12 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails }) =>
             ) : (
               <StyledListItem width="300px">
                 <h2> Fertilizer Name</h2>
-                <p> {nutrient.fertilizerId}</p>
+                <p>
+                  {
+                    DryFertilizerOptions.find((option) => option.value === nutrient.fertilizerId)
+                      ?.label
+                  }
+                </p>
               </StyledListItem>
             )}
             <StyledFontAwesomeContainer>

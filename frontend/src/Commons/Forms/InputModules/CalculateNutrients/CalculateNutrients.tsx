@@ -24,6 +24,7 @@ import {
   LiquidApplicationUnits,
   ApplicationMethod,
   DensityUnits,
+  DryFertilizerOptions,
 } from '@Constants/FertilizersOptions';
 import CustomField from '@Commons/Input/Field/CustomField';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
@@ -79,7 +80,10 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
 
   const fertilizerOption: OptionInterface[] = fertilizersDetails.map((fertilizer) => ({
     value: fertilizer.fertilizerId,
-    label: fertilizer.fertilizerId,
+    label:
+      DryFertilizerOptions.find(
+        (option) => option.value === fertilizer.fertilizerId,
+      )?.label.toString() ?? fertilizer.fertilizerId,
   }));
 
   const isLiquid = fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid');
@@ -187,7 +191,6 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
 
       const newFarmDetails = { ...farmDetails };
 
-      console.log(newFarmDetails.Fields[selectedFieldIndex].Nutrients);
       // Check is ferts array is null and initilize it if it is
       const emptyFertsArr: FertilizerInterface[] = [];
       newFarmDetails.Fields[selectedFieldIndex].Nutrients.nutrientFertilizers =
@@ -301,7 +304,6 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
         onSubmit={submitCalculationData}
         validate={(values) => {
           StatusValidate(validationSchema, values, handleFormState, CALCULATION_INFORMATION);
-          // calcFieldBalances(farmDetails.Fields[selectedFieldIndex]);
           setFertBalance(
             calcFertBalance(
               fertilizersDetails[selectedIndex],

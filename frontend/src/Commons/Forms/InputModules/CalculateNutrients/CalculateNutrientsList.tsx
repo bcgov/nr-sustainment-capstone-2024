@@ -17,6 +17,7 @@ import {
   DesktopView,
 } from './CalculateNutrientsList.styles';
 import { StyledDivider } from '../ListComponent.styles';
+import { DryFertilizerOptions } from '@Constants/FertilizersOptions';
 
 interface CalculationListProps {
   field: FieldDetailInterface;
@@ -31,7 +32,6 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
     nutrient >= 0 ? faCircleCheck : faTriangleExclamation;
 
   const getResultIconColor = (nutrient: number) => (nutrient >= 0 ? '#42814A' : '#F8BB47');
-
   return (
     <DesktopView>
       <StyledH3HeaderContainer>
@@ -102,7 +102,11 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
               // eslint-disable-next-line react/no-array-index-key
               <StyledPContainer key={`${fertilizer.fertilizerId}-${idx}`}>
                 <StyledPItem width="30%">
-                  <p>{fertilizer.fertilizerId}</p>
+                  <p>
+                    {DryFertilizerOptions.find(
+                      (option) => option.value === fertilizer.fertilizerId.toString(),
+                    )?.label ?? fertilizer.fertilizerId}
+                  </p>
                 </StyledPItem>
                 <StyledPItem width="30%">
                   <StyledPItemList>

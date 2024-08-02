@@ -46,8 +46,8 @@ const convertToNMP = (
       willSawdustBeApplied: crop.willSawdustBeApplied || templateCropNMP.willSawdustBeApplied,
     }));
 
-    const newNutrients: FertilizerInterface[] = Array.isArray(field.Nutrients)
-      ? field.Nutrients
+    const newNutrients: FertilizerInterface[] = Array.isArray(field.Nutrients?.nutrientFertilizers)
+      ? field.Nutrients.nutrientFertilizers
       : [];
 
     return {
@@ -84,10 +84,13 @@ const convertToNMP = (
               const isFertDry =
                 getOptionIndex(FertilizerTypeOptions, nutrient.fertilizerTypeId) <= 1;
               return {
-                id: nutrient.id + 1,
+                id: nutrient.id,
                 fertilizerTypeId: getOptionIndex(FertilizerTypeOptions, nutrient.fertilizerTypeId),
                 fertilizerId: isFertDry
-                  ? getOptionIndex(DryFertilizerOptions, nutrient.fertilizerId)
+                  ? parseInt(
+                      DryFertilizerOptions.find((option) => option.value === nutrient.fertilizerId)
+                        ?.value ?? '1',
+                    )
                   : getOptionIndex(LiquidFertilizerOptions, nutrient.fertilizerId),
                 applRate: nutrient.applRate,
                 applUnitId: isFertDry
