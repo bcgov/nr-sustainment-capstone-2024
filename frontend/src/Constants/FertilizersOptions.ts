@@ -136,12 +136,40 @@ const DryFertilizerOptions: OptionInterface[] = [
 
 const LiquidFertilizerOptions: OptionInterface[] = [
   {
-    value: 'Ammonium polyphosphate (10-34-0)',
+    value: '18',
     label: 'Ammonium polyphosphate (10-34-0)',
   },
   {
-    value: 'Liquid urea (23-0-0)',
+    value: '27',
     label: 'Liquid urea (23-0-0)',
+  },
+  {
+    value: '26',
+    label: 'Phosphoric acid (0-54-0)',
+  },
+  {
+    value: '21',
+    label: 'Urea ammonium nitrate (UAN 28-0-0)',
+  },
+  {
+    value: '20',
+    label: 'Urea ammonium nitrate (UAN 30-0-0)',
+  },
+  {
+    value: '19',
+    label: 'Urea ammonium nitrate (UAN 32-0-0)',
+  },
+  {
+    value: '25',
+    label: '0-0-15-9.7S',
+  },
+  {
+    value: '23',
+    label: '12-0-0-26S',
+  },
+  {
+    value: '24',
+    label: '20.5-5-0',
   },
 ];
 

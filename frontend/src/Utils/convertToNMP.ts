@@ -10,13 +10,12 @@ import {
   ApplicationMethod,
   DensityUnits,
   DryApplicationUnits,
-  DryFertilizerOptions,
   FertilizerTypeOptions,
   LiquidApplicationUnits,
-  LiquidFertilizerOptions,
 } from '@Constants/FertilizersOptions';
 import OptionInterface from '@Interface/OptionInterface';
 import NmpFertilizerInterface from '@Interface/NmpFertilizerInterface';
+import getFertilizerOption from './getFertID';
 
 function getOptionIndex(options: OptionInterface[], val: string): number {
   return options.findIndex((option) => option.value === val) + 1;
@@ -86,13 +85,10 @@ const convertToNMP = (
               return {
                 id: nutrient.id,
                 fertilizerTypeId: getOptionIndex(FertilizerTypeOptions, nutrient.fertilizerTypeId),
-                fertilizerId: isFertDry
-                  ? parseInt(
-                      DryFertilizerOptions.find((option) => option.value === nutrient.fertilizerId)
-                        ?.value ?? '1',
-                      10,
-                    )
-                  : getOptionIndex(LiquidFertilizerOptions, nutrient.fertilizerId),
+                fertilizerId: parseInt(
+                  getFertilizerOption(nutrient.fertilizerId)?.value ?? '0',
+                  10,
+                ),
                 applRate: nutrient.applRate,
                 applUnitId: isFertDry
                   ? getOptionIndex(DryApplicationUnits, nutrient.applUnitId)

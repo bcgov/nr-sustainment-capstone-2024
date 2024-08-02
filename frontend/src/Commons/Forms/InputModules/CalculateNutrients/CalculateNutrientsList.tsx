@@ -5,7 +5,7 @@ import { faCircleCheck, faTriangleExclamation } from '@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MainBalanceInterface from '@Interface/MainBalanceInterface';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
-import { DryFertilizerOptions } from '@Constants/FertilizersOptions';
+import getFertilizerOption from '@Utils/getFertID';
 import {
   StyledH3HeaderContainer,
   StyledH3HeaderItem,
@@ -103,9 +103,8 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
               <StyledPContainer key={`${fertilizer.fertilizerId}-${idx}`}>
                 <StyledPItem width="30%">
                   <p>
-                    {DryFertilizerOptions.find(
-                      (option) => option.value === fertilizer.fertilizerId.toString(),
-                    )?.label ?? fertilizer.fertilizerId}
+                    {getFertilizerOption(fertilizer.fertilizerId.toString())?.label ??
+                      fertilizer.fertilizerId}
                   </p>
                 </StyledPItem>
                 <StyledPItem width="30%">

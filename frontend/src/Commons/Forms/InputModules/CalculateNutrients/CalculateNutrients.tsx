@@ -24,10 +24,10 @@ import {
   LiquidApplicationUnits,
   ApplicationMethod,
   DensityUnits,
-  DryFertilizerOptions,
 } from '@Constants/FertilizersOptions';
 import CustomField from '@Commons/Input/Field/CustomField';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
+import getFertilizerOption from '@Utils/getFertID';
 import {
   StyledFieldContainer,
   StyledFieldSelect,
@@ -80,10 +80,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
 
   const fertilizerOption: OptionInterface[] = fertilizersDetails.map((fertilizer) => ({
     value: fertilizer.fertilizerId,
-    label:
-      DryFertilizerOptions.find(
-        (option) => option.value === fertilizer.fertilizerId,
-      )?.label.toString() ?? fertilizer.fertilizerId,
+    label: getFertilizerOption(fertilizer.fertilizerId)?.label ?? fertilizer.fertilizerId,
   }));
 
   const isLiquid = fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid');
