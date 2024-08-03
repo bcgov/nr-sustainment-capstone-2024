@@ -10,13 +10,12 @@ import {
   ApplicationMethod,
   DensityUnits,
   DryApplicationUnits,
-  DryFertilizerOptions,
   FertilizerTypeOptions,
   LiquidApplicationUnits,
-  LiquidFertilizerOptions,
 } from '@Constants/FertilizersOptions';
 import OptionInterface from '@Interface/OptionInterface';
 import NmpFertilizerInterface from '@Interface/NmpFertilizerInterface';
+import getFertilizerOption from './getFertID';
 
 function getOptionIndex(options: OptionInterface[], val: string): number {
   return options.findIndex((option) => option.value === val) + 1;
@@ -35,7 +34,7 @@ const convertToNMP = (
   const newFields: NmpFieldInterface[] = newDetails.Fields.map((field: FieldDetailInterface) => {
     const newCrops: NmpCropInterface[] = field.Crops.map((crop: CropsDetailsInterface) => ({
       ...templateCropNMP,
-      id: crop.id + 1,
+      id: crop.id,
       cropId: crop.cropId,
       yield: crop.yield,
       plantAgeYears: crop.plantAgeYears,
@@ -46,11 +45,13 @@ const convertToNMP = (
       willSawdustBeApplied: crop.willSawdustBeApplied || templateCropNMP.willSawdustBeApplied,
     }));
 
-    const newNutrients: FertilizerInterface[] = field.Nutrients;
+    const newNutrients: FertilizerInterface[] = Array.isArray(field.Nutrients?.nutrientFertilizers)
+      ? field.Nutrients.nutrientFertilizers
+      : [];
 
     return {
       ...templateFieldNMP,
-      Id: field.Id + 1,
+      Id: field.Id,
       Area: field.Area,
       Comment: field.Comment || templateFieldNMP.Comment,
       FieldName: field.FieldName,
@@ -59,7 +60,7 @@ const convertToNMP = (
         ? {
             ...templateFieldNMP.SoilTest,
             valNO3H: field.SoilTest.valNO3H || templateFieldNMP.SoilTest?.valNO3H,
-            ValP: field.SoilTest.ValP || templateFieldNMP.SoilTest?.valNO3H,
+            ValP: field.SoilTest.ValP || templateFieldNMP.SoilTest?.ValP,
             valK: field.SoilTest.valK || templateFieldNMP.SoilTest?.valK,
             valPH: field.SoilTest.valPH || templateFieldNMP.SoilTest?.valPH,
             // sampleDate: field.SoilTest?.sampleDate || templateFieldNMP.SoilTest?.sampleDate,
@@ -74,19 +75,20 @@ const convertToNMP = (
         : null,
       Crops: newCrops,
 
-      HasNutrients: field.Nutrients && field.Nutrients.length >= 0,
+      HasNutrients: field.Nutrients && field.Nutrients?.nutrientFertilizers?.length >= 0,
       Nutrients: {
         nutrientManures: [],
-        nutrientFertilizers: field.Nutrients
+        nutrientFertilizers: field.Nutrients?.nutrientFertilizers
           ? newNutrients.map((nutrient: FertilizerInterface): NmpFertilizerInterface => {
               const isFertDry =
                 getOptionIndex(FertilizerTypeOptions, nutrient.fertilizerTypeId) <= 1;
               return {
-                id: nutrient.id + 1,
+                id: nutrient.id,
                 fertilizerTypeId: getOptionIndex(FertilizerTypeOptions, nutrient.fertilizerTypeId),
-                fertilizerId: isFertDry
-                  ? getOptionIndex(DryFertilizerOptions, nutrient.fertilizerId)
-                  : getOptionIndex(LiquidFertilizerOptions, nutrient.fertilizerId),
+                fertilizerId: parseInt(
+                  getFertilizerOption(nutrient.fertilizerId)?.value ?? '0',
+                  10,
+                ),
                 applRate: nutrient.applRate,
                 applUnitId: isFertDry
                   ? getOptionIndex(DryApplicationUnits, nutrient.applUnitId)

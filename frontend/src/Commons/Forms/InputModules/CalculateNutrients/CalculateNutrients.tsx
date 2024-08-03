@@ -27,6 +27,7 @@ import {
 } from '@Constants/FertilizersOptions';
 import CustomField from '@Commons/Input/Field/CustomField';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
+import getFertilizerOption from '@Utils/getFertID';
 import {
   StyledFieldContainer,
   StyledFieldSelect,
@@ -54,6 +55,11 @@ const initialBalance: MainBalanceInterface[] = [
   },
 ];
 
+interface FormValues extends FertilizerInterface {
+  FieldName: string;
+}
+const initialValues: FormValues = initialFarmDetails.Fields[0].Nutrients[0];
+
 const CalculateNutrientsComponent: FC<InputModuleProps> = ({
   farmDetails,
   fertilizersDetails,
@@ -67,7 +73,6 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
   const [fertBalance, setFertBalance] = useState<AgronomicBalanceInterface>(
     initialBalance[0].agronomic,
   );
-  const initialValues: FertilizerInterface = initialFarmDetails.Fields[0].Nutrients[0];
   const fieldsOption: OptionInterface[] = farmDetails.Fields.map((field) => ({
     value: field.FieldName,
     label: field.FieldName,
@@ -75,7 +80,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
 
   const fertilizerOption: OptionInterface[] = fertilizersDetails.map((fertilizer) => ({
     value: fertilizer.fertilizerId,
-    label: fertilizer.fertilizerId,
+    label: getFertilizerOption(fertilizer.fertilizerId)?.label ?? fertilizer.fertilizerId,
   }));
 
   const isLiquid = fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid');
@@ -124,8 +129,8 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
       let fertP = 0;
       let fertK = 0;
 
-      if (field.Nutrients.length > 0) {
-        field.Nutrients.forEach((fertilizer) => {
+      if (field.Nutrients?.nutrientFertilizers?.length > 0) {
+        field.Nutrients.nutrientFertilizers.forEach((fertilizer) => {
           fertN += fertilizer.fertN;
           fertP += fertilizer.fertP2o5;
           fertK += fertilizer.fertK2o;
@@ -160,10 +165,16 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFieldIndex, farmDetails]);
 
-  const submitCalculationData = (values: FertilizerInterface): void => {
+  const submitCalculationData = (values: FertilizerInterface & { FieldName: string }): void => {
     setTimeout(() => {
+      // Destructure to exclude FieldName
+      // I want to remove FieldName from values, which is needed in initialValues
+      // for form validation
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { FieldName, ...fertValues } = values;
+
       const newFertilizer: FertilizerInterface = {
-        ...values,
+        ...fertValues,
         id: fertilizersDetails[selectedIndex].id,
         fertilizerTypeId: fertilizersDetails[selectedIndex].fertilizerTypeId,
         fertilizerId: fertilizersDetails[selectedIndex].fertilizerId,
@@ -176,10 +187,16 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
       };
 
       const newFarmDetails = { ...farmDetails };
-      newFarmDetails.Fields[selectedFieldIndex].Nutrients.push(newFertilizer);
 
-      calcFieldBalances(farmDetails.Fields[selectedFieldIndex]);
-      updateFarmDetails(farmDetails);
+      // Check is ferts array is null and initilize it if it is
+      const emptyFertsArr: FertilizerInterface[] = [];
+      newFarmDetails.Fields[selectedFieldIndex].Nutrients.nutrientFertilizers =
+        newFarmDetails.Fields[selectedFieldIndex].Nutrients?.nutrientFertilizers ?? emptyFertsArr;
+
+      newFarmDetails.Fields[selectedFieldIndex].Nutrients?.nutrientFertilizers?.push(newFertilizer);
+
+      calcFieldBalances(newFarmDetails.Fields[selectedFieldIndex]);
+      updateFarmDetails(newFarmDetails);
     });
   };
 
@@ -284,7 +301,6 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
         onSubmit={submitCalculationData}
         validate={(values) => {
           StatusValidate(validationSchema, values, handleFormState, CALCULATION_INFORMATION);
-          // calcFieldBalances(farmDetails.Fields[selectedFieldIndex]);
           setFertBalance(
             calcFertBalance(
               fertilizersDetails[selectedIndex],

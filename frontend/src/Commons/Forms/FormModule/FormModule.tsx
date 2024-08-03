@@ -55,16 +55,18 @@ const FormModule: FC<FormModuleProps> = ({
         inputModule={InputModule}
         handleFormState={handleFormState}
       />
-      <StyledFormContent isVisible={InputModule.enable}>
-        <InputModuleComponent
-          fertilizersDetails={fertilizersDetails || []}
-          updateFarmDetails={updateFarmDetails}
-          updateFertDetails={updateFertDetails}
-          farmDetails={farmDetails}
-          toggleEnabled={toggleEnabled}
-          handleFormState={handleFormState}
-        />
-      </StyledFormContent>
+      {InputModule.enable && (
+        <StyledFormContent isVisible={InputModule.enable}>
+          <InputModuleComponent
+            fertilizersDetails={fertilizersDetails || []}
+            updateFarmDetails={updateFarmDetails}
+            updateFertDetails={updateFertDetails}
+            farmDetails={farmDetails}
+            toggleEnabled={toggleEnabled}
+            handleFormState={handleFormState}
+          />
+        </StyledFormContent>
+      )}
     </StyledFormContainer>
   );
 };
