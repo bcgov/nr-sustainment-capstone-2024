@@ -14,7 +14,8 @@ interface CustomTextAreaProps {
   name: string;
   id: string;
   placeholder: string;
-  width?: string;
+  mobileWidth?: string;
+  desktopWidth?: string;
 }
 
 const CustomTextArea: FC<CustomTextAreaProps> = ({
@@ -22,9 +23,13 @@ const CustomTextArea: FC<CustomTextAreaProps> = ({
   id,
   placeholder,
   name,
-  width = '100%',
+  mobileWidth = '100%',
+  desktopWidth = '100%',
 }) => (
-  <StyledField width={width}>
+  <StyledField
+    mobileWidth={mobileWidth}
+    desktopWidth={desktopWidth}
+  >
     <label htmlFor={id}>{label}</label>
     <Field
       as="textarea"

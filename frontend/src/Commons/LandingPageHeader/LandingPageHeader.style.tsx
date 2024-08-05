@@ -13,12 +13,14 @@ const StyledHeader = styled.header`
   border-top-right-radius: 2px;
   flex-direction: column;
   width: 100%;
+  margin-top: -30px;
 
   @media (min-width: ${screenSizes.tablet}) and (max-width: ${screenSizes.desktop}) {
     margin-top: 5vh;
     max-height: 300px;
   }
   @media (min-width: ${screenSizes.desktop}) {
+    margin-top: 0;
     flex-direction: row;
     background-color: ${tokens.themeBlue100};
     color: ${tokens.typographyColorPrimaryInvert};

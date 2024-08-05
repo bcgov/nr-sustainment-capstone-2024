@@ -142,7 +142,7 @@ const FertilizersInfo: FC<InputModuleProps> = ({
                     id="fertilizerTypeId"
                     label="Fertilizer Type"
                     options={FertilizerTypeOptions}
-                    width="40%"
+                    desktopWidth="40%"
                     onChange={(e) => handleChange(e, setFieldValue)}
                   />
                   {values.fertilizerTypeId.includes('Dry Fertilizer (Custom)') ||
@@ -153,21 +153,20 @@ const FertilizersInfo: FC<InputModuleProps> = ({
                         name="customN"
                         id="customN"
                         type="number"
-                        width="30%"
                       />
                       <CustomField
                         label="P2O5 (%)"
                         name="customP2o5"
                         id="customP2o5"
                         type="number"
-                        width="30%"
+                        desktopWidth="30%"
                       />
                       <CustomField
                         label="K2O (%)"
                         name="customK2o"
                         id="customK2o"
                         type="number"
-                        width="30%"
+                        desktopWidth="30%"
                       />
                     </StyledCustomNumberField>
                   ) : (
@@ -182,7 +181,7 @@ const FertilizersInfo: FC<InputModuleProps> = ({
                             ? LiquidFertilizerOptions
                             : []
                       }
-                      width="40%"
+                      desktopWidth="40%"
                       onChange={(e) => handleChange(e, setFieldValue)}
                     />
                   )}

@@ -7,31 +7,46 @@ import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 
 type StyledFieldProps = {
-  width: string;
+  mobileWidth: string;
+  desktopWidth: string;
+};
+
+type StyledLabelProps = {
+  hasText?: boolean;
 };
 
 const StyledField = styled.div<StyledFieldProps>`
   display: flex;
   flex-direction: column;
-  width: ${(props) => props.width};
-  margin-top: 5px;
+
+  margin-top: 12px;
 
   input {
-    border: solid 1px ${tokens.themeGray40};
+    border: solid 1px ${tokens.surfaceColorBorderDefault};
     border-radius: 3px;
+    width: ${(props) => props.mobileWidth};
+    height: 21px;
+    font: ${tokens.typographyRegularSmallBody};
+  }
+
+  @media (min-width: ${screenSizes.desktop}) {
+    margin-top: 24px;
+
+    input {
+      width: ${(props) => props.desktopWidth};
+      height: 28px;
+    }
   }
 `;
-
-const StyledLabel = styled.div`
+const StyledLabel = styled.div<StyledLabelProps>`
   display: flex;
   gap: 20px;
-  min-height: 25px;
   label {
     font: ${tokens.typographyBoldSmallBody};
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    min-height: 40px;
+    min-height: 0;
     label {
       font: ${tokens.typographyBoldLargeBody};
     }
