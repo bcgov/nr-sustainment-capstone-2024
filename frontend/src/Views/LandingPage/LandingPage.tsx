@@ -9,6 +9,7 @@ import {
 } from './LandingPage.styles.ts';
 
 const LandingPage = () => {
+  localStorage.clear();
   const handleUpload = () => {
     const upload = document.getElementById('fileUp');
     if (upload) upload.click();
