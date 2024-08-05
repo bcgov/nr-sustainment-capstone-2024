@@ -250,7 +250,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             onChange={(e) => handleChange(e, setFieldValue)}
                           />
                           <div id="plantsPerHa">
-                            <label>Plants per Acre</label>
+                            <p id="plantsPerHaLabel">Plants per Acre</p>
                             <p>{plantsPerHa}</p>
                           </div>
                         </StyledCropsSmallGroup>

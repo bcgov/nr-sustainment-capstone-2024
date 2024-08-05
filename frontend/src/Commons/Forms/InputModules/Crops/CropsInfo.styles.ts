@@ -16,11 +16,11 @@ const StyledCropsSmallGroup = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
-    label {
+    #plantsPerHaLabel {
       font: ${tokens.typographyBoldLargeBody};
     }
     p {
-      margin-bottom: 0;
+      margin: 9px 0 0 0;
     }
   }
 `;
