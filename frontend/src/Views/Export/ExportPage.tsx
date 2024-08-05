@@ -8,8 +8,8 @@ import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader.tsx';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter.tsx';
 import { FC } from 'react';
 import CustomLink from '@Commons/CustomLink/CustomLink.tsx';
-import { StyledContent, StyledLandingContainer } from './ExportPage.styles.ts';
 import LoacalStorageNames from '@Constants/LocalStorageNames.ts';
+import { StyledContent, StyledLandingContainer } from './ExportPage.styles.ts';
 
 const ExportPage: FC = () => {
   const downloadFile = () => {

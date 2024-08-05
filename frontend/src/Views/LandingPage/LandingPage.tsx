@@ -1,13 +1,13 @@
 import Button from '@Commons/Button/Button.tsx';
 import { templateNMP } from '@Constants/templateNMP.ts';
 
+import LoacalStorageNames from '@Constants/LocalStorageNames.ts';
 import {
   StyledContent,
   StyledButtonGroup,
   StyledDivider,
   StyledLandingContainer,
 } from './LandingPage.styles.ts';
-import LoacalStorageNames from '@Constants/LocalStorageNames.ts';
 
 const LandingPage = () => {
   localStorage.clear();
