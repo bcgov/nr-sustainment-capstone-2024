@@ -15,14 +15,12 @@ import {
 
 type ButtonComponentProps = {
   addNewFertilizer: () => void;
-  submitFertDetails?: () => void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
 };
 
 const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
   addNewFertilizer,
   handleFormState,
-  submitFertDetails,
 }) => (
   <StyledButtonGroupContainer>
     <StyledNewFieldButtonContainer>
@@ -58,7 +56,6 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
           disabled={false}
           text={ComponentText.NEXT}
           handleClick={() => {
-            if (submitFertDetails) submitFertDetails();
             handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
           }}
         />

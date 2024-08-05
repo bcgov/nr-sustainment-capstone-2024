@@ -93,7 +93,6 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
   const [hasFieldBeenSelected, setFieldSelected] = useState<boolean[]>(
     Array(farmDetails.Fields.length).fill(false),
   );
-
   const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') =>
     Yup.number().when(cropId, (value, schema) =>
       value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired(),
@@ -178,7 +177,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
   };
 
   const submitFarmInfo = () => {
-    updateFarmDetails(farmDetails);
+    updateFarmDetails(farmDetails, CROPS_INFORMATION);
   };
 
   const sawDustInfo: string =
