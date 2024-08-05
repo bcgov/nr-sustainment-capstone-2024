@@ -5,6 +5,7 @@ import { faCircleCheck, faTriangleExclamation } from '@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MainBalanceInterface from '@Interface/MainBalanceInterface';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
+import getFertilizerOption from '@Utils/getFertID';
 import {
   StyledH3HeaderContainer,
   StyledH3HeaderItem,
@@ -31,7 +32,6 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
     nutrient >= 0 ? faCircleCheck : faTriangleExclamation;
 
   const getResultIconColor = (nutrient: number) => (nutrient >= 0 ? '#42814A' : '#F8BB47');
-
   return (
     <DesktopView>
       <StyledH3HeaderContainer>
@@ -68,56 +68,62 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
       </StyledH4HeaderContainer>
 
       {field.Crops.map((crop: CropsDetailsInterface, index: number) => (
-        <StyledPContainer key={`${crop}`}>
+        // eslint-disable-next-line react/no-array-index-key
+        <StyledPContainer key={`${crop}-${index}`}>
           <StyledPItem width="30%">
             <p>{crop.cropId === '75' ? 'Blueberry' : 'Raspberry'}</p>
           </StyledPItem>
           <StyledPItem width="30%">
             <StyledPItemList>
-              <p>{cropBalances[index].agronomic.N}</p>
-              <p>{cropBalances[index].agronomic.P}</p>
-              <p>{cropBalances[index].agronomic.K}</p>
+              <p>{cropBalances[index]?.agronomic?.N ?? zeroConstant}</p>
+              <p>{cropBalances[index]?.agronomic?.P ?? zeroConstant}</p>
+              <p>{cropBalances[index]?.agronomic?.K ?? zeroConstant}</p>
             </StyledPItemList>
           </StyledPItem>
           <StyledPItem width="30%">
             <StyledPItemList>
-              <p>{cropBalances[index].cropRemoval.N || zeroConstant}</p>
-              <p>{cropBalances[index].cropRemoval.P}</p>
-              <p>{cropBalances[index].cropRemoval.K}</p>
+              <p>{cropBalances[index]?.cropRemoval?.N ?? zeroConstant}</p>
+              <p>{cropBalances[index]?.cropRemoval?.P ?? zeroConstant}</p>
+              <p>{cropBalances[index]?.cropRemoval?.K ?? zeroConstant}</p>
             </StyledPItemList>
           </StyledPItem>
         </StyledPContainer>
       ))}
 
-      {field.Nutrients.length > 0 && (
+      {field.Nutrients?.nutrientFertilizers?.length > 0 && (
         <>
           <StyledH4HeaderItem width="30%">
             <h4>Fertilizer</h4>
           </StyledH4HeaderItem>
-          {field.Nutrients.map((fertilizer: FertilizerInterface, idx: number) => (
-            // Couldn't fix this ESLint rule since we allow for more then one of the same fert to be added
-            // Order is probably never changing without a rerender, which is the problem this rule tries to avoid
-            // eslint-disable-next-line react/no-array-index-key
-            <StyledPContainer key={`${fertilizer.fertilizerId}-${idx}`}>
-              <StyledPItem width="30%">
-                <p>{fertilizer.fertilizerId}</p>
-              </StyledPItem>
-              <StyledPItem width="30%">
-                <StyledPItemList>
-                  <p>{fertilizer.fertN}</p>
-                  <p>{fertilizer.fertP2o5}</p>
-                  <p>{fertilizer.fertK2o}</p>
-                </StyledPItemList>
-              </StyledPItem>
-              <StyledPItem width="30%">
-                <StyledPItemList>
-                  <p>{fertilizer.fertN}</p>
-                  <p>{fertilizer.fertP2o5}</p>
-                  <p>{fertilizer.fertK2o}</p>
-                </StyledPItemList>
-              </StyledPItem>
-            </StyledPContainer>
-          ))}
+          {field.Nutrients?.nutrientFertilizers.map(
+            (fertilizer: FertilizerInterface, idx: number) => (
+              // Couldn't fix this ESLint rule since we allow for more then one of the same fert to be added
+              // Order is probably never changing without a rerender, which is the problem this rule tries to avoid
+              // eslint-disable-next-line react/no-array-index-key
+              <StyledPContainer key={`${fertilizer.fertilizerId}-${idx}`}>
+                <StyledPItem width="30%">
+                  <p>
+                    {getFertilizerOption(fertilizer.fertilizerId.toString())?.label ??
+                      fertilizer.fertilizerId}
+                  </p>
+                </StyledPItem>
+                <StyledPItem width="30%">
+                  <StyledPItemList>
+                    <p>{fertilizer.fertN}</p>
+                    <p>{fertilizer.fertP2o5}</p>
+                    <p>{fertilizer.fertK2o}</p>
+                  </StyledPItemList>
+                </StyledPItem>
+                <StyledPItem width="30%">
+                  <StyledPItemList>
+                    <p>{fertilizer.fertN}</p>
+                    <p>{fertilizer.fertP2o5}</p>
+                    <p>{fertilizer.fertK2o}</p>
+                  </StyledPItemList>
+                </StyledPItem>
+              </StyledPContainer>
+            ),
+          )}
         </>
       )}
       <StyledDivider />

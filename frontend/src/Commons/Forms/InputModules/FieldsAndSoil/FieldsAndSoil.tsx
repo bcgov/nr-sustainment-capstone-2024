@@ -144,25 +144,29 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           leafTissueP: values.LeafTest.leafTissueP,
           leafTissueK: values.LeafTest.leafTissueK,
         },
-        Nutrients: [
-          {
-            id: 0,
-            fertilizerTypeId: '',
-            fertilizerId: '',
-            applUnitId: '',
-            applRate: 0,
-            applDate: '',
-            applMethodId: '',
-            customN: 0,
-            customP2o5: 0,
-            customK2o: 0,
-            fertN: 0,
-            fertP2o5: 0,
-            fertK2o: 0,
-            liquidDensity: 0,
-            liquidDensityUnitId: '',
-          },
-        ],
+        Nutrients: {
+          nutrientManures: null,
+          nutrientFertilizers: [
+            {
+              id: 0,
+              fertilizerTypeId: '',
+              fertilizerId: '',
+              applUnitId: '',
+              applRate: 0,
+              applDate: '',
+              applMethodId: '',
+              customN: 0,
+              customP2o5: 0,
+              customK2o: 0,
+              fertN: 0,
+              fertP2o5: 0,
+              fertK2o: 0,
+              liquidDensity: 0,
+              liquidDensityUnitId: '',
+            },
+          ],
+          nutrientOthers: [],
+        },
         Crops: [
           {
             id: 0,
@@ -188,8 +192,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
         // Crops is not optional so this line is needed
         farmInfo.Fields[fieldIndex].Crops.splice(0, 1);
       }
-      if (farmInfo.Fields[fieldIndex].Nutrients.length === 1) {
-        farmInfo.Fields[fieldIndex].Nutrients.splice(0, 1);
+      if (farmInfo.Fields[fieldIndex].Nutrients.nutrientFertilizers.length === 1) {
+        farmInfo.Fields[fieldIndex].Nutrients.nutrientFertilizers.splice(0, 1);
       }
 
       setFieldsInfo(farmInfo);

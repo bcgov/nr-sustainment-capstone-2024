@@ -21,7 +21,7 @@ const ExportPage: FC = () => {
 
     if (nmpUrl) {
       link.href = nmpUrl;
-      link.download = `${nmpJSON.farmDetails.FarmName}BB.nmp`;
+      link.download = `${nmpJSON.farmDetails.FarmName}-BB.nmp`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
