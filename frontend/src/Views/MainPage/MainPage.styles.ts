@@ -13,8 +13,10 @@ const StyledMain = styled.div`
   width: 100%;
   height: 100%;
   min-height: 120vh; // added more height, due to progress bar covering calculation module
+  margin-bottom: 80px;
 
   @media (min-width: ${screenSizes.desktop}) {
+    margin-bottom: 0;
     min-height: 100vh;
   }
 `;
