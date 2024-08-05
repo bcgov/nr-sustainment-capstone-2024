@@ -46,8 +46,10 @@ const StyledButtonController = styled.div`
   width: 100%;
   max-width: 327px;
   height: 42px;
+  margin: auto;
 
   @media (min-width: ${screenSizes.desktop}) {
+    margin: 0;
     max-width: 67px;
   }
 `;
