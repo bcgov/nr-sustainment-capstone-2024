@@ -152,6 +152,7 @@ const MainPage: FC = () => {
     let nextModuleID = null;
     // Respect ESLint no-param reassign
     let tgl = toggle;
+
     switch (cmd) {
       case CmdOptions.BACKWARDS:
         if (currForm >= 0) {
@@ -191,7 +192,7 @@ const MainPage: FC = () => {
 
       // For cmds that go forwards or backward
       if (newState.id === nextModuleID) {
-        newState.enable = tgl ? !newState.enable : newState.enable;
+        newState.enable = true;
         newState.status = ACTIVE;
       }
       return newState;
@@ -208,10 +209,12 @@ const MainPage: FC = () => {
    * @param     newDetails => A new 'FarmDetailsInterface' object with new data from
    *            from a form section.
    * */
-  const updateFarmDetails = (newDetails: FarmDetailsInterface): void => {
+  const updateFarmDetails = (newDetails: FarmDetailsInterface, inputModuleID: string): void => {
     setFarmDetails(newDetails);
     updateLocalDetails(newDetails);
-    handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
+    if (inputModuleID === formStates[currForm].id)
+      handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
+    else handleFormState(inputModuleID, true);
   };
 
   /**
@@ -247,6 +250,7 @@ const MainPage: FC = () => {
       window.removeEventListener('scroll', scrollHeader);
     };
   }, [scrollHeader]);
+
   return (
     <StyledMain>
       <MainPageHeader

@@ -230,7 +230,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           {!isFieldAdded && (
             <FieldsButtonComponent
               addNewField={addNewField}
-              updateFarmDetails={() => updateFarmDetails(farmDetails)}
+              updateFarmDetails={() => updateFarmDetails(farmDetails, FIELDS_AND_SOIL)}
               handleFormState={handleFormState}
               farmDetails={farmDetails}
             />

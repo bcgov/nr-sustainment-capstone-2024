@@ -196,7 +196,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
       newFarmDetails.Fields[selectedFieldIndex].Nutrients?.nutrientFertilizers?.push(newFertilizer);
 
       calcFieldBalances(newFarmDetails.Fields[selectedFieldIndex]);
-      updateFarmDetails(newFarmDetails);
+      updateFarmDetails(newFarmDetails, CALCULATION_INFORMATION);
     });
   };
 
