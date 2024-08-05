@@ -52,7 +52,7 @@ const StyledNewFieldButtonContainer = styled.div<FormProps>`
   position: relative;
   top: 15px;
   width: 100%;
-  margin-bottom: ${(props) => (props.formCrops ? '40cpx' : '0')};
+  margin-bottom: ${(props) => (props.formCrops ? '40px' : '0')};
   @media (min-width: ${screenSizes.desktop}) {
     left: 0;
   }

@@ -6,10 +6,13 @@
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
-import { FormProps } from 'src/Types/FormProps';
 
 type StyledListType = {
-  width?: string;
+  desktopWidth?: string;
+  mobileWidth?: string;
+  marginRight?: string;
+  gap?: string;
+  fieldCount?: number;
 };
 
 const StyledFieldInfoList = styled.div`
@@ -17,16 +20,27 @@ const StyledFieldInfoList = styled.div`
   flex-direction: column;
   position: relative;
 `;
-
-const StyledListContainer = styled.div<FormProps>`
-  position: relative;
+const StyledList = styled.div<StyledListType>`
   display: flex;
   flex-direction: column;
+    gap: 24px;
+
+    &:not(:first-of-type) {
+    border-top: 2px solid ${tokens.typographyColorPlaceholder};
+    }
+  }
+`;
+const StyledListContainer = styled.div<StyledListType>`
+  position: relative;
+  display: flex;
+  flex-direction: row;
   padding-top: 20px;
-  gap: ${(props) => (props.formCrops ? '50px' : '0')};
+  gap: ${(props) => props.gap};
+  align-items: flex-start; // Add this line
 
   @media (min-width: ${screenSizes.desktop}) {
-    flex-direction: row;
+    // gap: 120px;
+    flex-wrap: nowrap;
   }
 `;
 
@@ -43,7 +57,7 @@ const StyledListItem = styled.div<StyledListType>`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  max-width: ${(props) => props.width};
+  max-width: ${(props) => props.mobileWidth};
   flex-wrap: nowrap;
   h2 {
     font: ${tokens.typographyBoldBody};
@@ -53,12 +67,10 @@ const StyledListItem = styled.div<StyledListType>`
     gap: 5px;
   }
   @media (min-width: ${screenSizes.desktop}) {
-    .smallItems {
-      width: 200%;
-      padding: 0 50px 0 0;
-    }
+    max-width: ${(props) => props.desktopWidth};
+    margin-right: ${(props) => props.marginRight};
     h2 {
-      font: ${tokens.typographyBoldH6};
+      font: ${tokens.typographyBoldLargeBody};
     }
   }
 `;
@@ -66,15 +78,16 @@ const StyledFontAwesomeContainer = styled.div`
   display: flex;
   flex-direction: row;
   font-size: 24px;
-  gap: 30px;
+  gap: 24px;
   margin-right: 10px;
   padding-top: 8px;
-  position: absolute;
-  right: 0;
+  margin-left: auto;
 
   @media (min-width: ${screenSizes.desktop}) {
     font-size: 32px;
     padding-top: 20px;
+    // position: absolute;
+    // right: 0;
   }
 `;
 const StyledCommentContainerMobile = styled.div`
@@ -89,7 +102,9 @@ const StyledCommentContainerDesktop = styled.div`
   display: none;
   @media (min-width: ${screenSizes.desktop}) {
     display: flex;
+    height: 84px !important;
     flex-direction: column;
+    flex-grow: 1;
   }
 `;
 
@@ -109,19 +124,26 @@ const StyledDivider = styled.div`
   margin: auto;
 `;
 
-const StyledListItemGroupContainer = styled.div`
+const StyledListItemGroupContainer = styled.div<StyledListType>`
   display: flex;
   flex-direction: column;
-
+  margin-top: 0;
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     flex-flow: row wrap;
+    width: 100%;
   }
 `;
 
-const StyledListItemGroup = styled.div`
+const StyledListItemGroup = styled.div<StyledListType>`
   display: flex;
   gap: 50px;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    gap: 0;
+    box-sizing: border-box;
+    width: ${(props) => props.desktopWidth};
+  }
 `;
 
 const NutrientsFieldListGroup = styled.div`
@@ -160,6 +182,7 @@ const StyledCustomFertilizerGroup = styled.div`
 export {
   StyledListContainer,
   StyledListItem,
+  StyledList,
   StyledFontAwesomeContainer,
   StyledFieldInfoList,
   StyledCommentContainerDesktop,

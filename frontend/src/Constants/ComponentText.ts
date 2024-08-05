@@ -2,7 +2,7 @@ const ComponentText = {
   NEXT: 'Next',
   ADD: 'Add',
   CANCEL: 'Cancel',
-  ADD_FIELD: 'Add Field',
+  ADD_FIELD: 'New Field',
   ADD_CROP: 'Add Crop',
   ADD_FERTILIZERS: 'Add Fertilizer',
   ADD_FERTILIZERS_FIELD: 'Add Fertilizer to Field',
