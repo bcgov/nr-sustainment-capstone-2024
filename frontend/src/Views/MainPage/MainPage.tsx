@@ -14,12 +14,13 @@ import CmdOptions from '@Constants/CmdOptions';
 import Names from '@Constants/Names';
 import convertToNMP from '@Utils/convertToNMP';
 import FertilizerInterface from '@Interface/FertilizerInterface';
-import { StyledMain, StyledMainContainer } from './MainPage.styles';
 import { getLocalDetails, loadFarmDetails } from '@Utils/getLocalDetails';
+import { loadLocalFormStates } from '@Utils/getLocalFormStates';
 import InputModuleInterface from '@Interface/InputModuleinterface';
 import FormModule from '@Commons/Forms/FormModule/FormModule';
 import { loadFertDetails } from '@Utils/getLocalFertilizers';
 import * as InputModules from '@Commons/Forms/InputModules/index';
+import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 const initialFertilizersDetails: FertilizerInterface[] = loadFertDetails();
 
@@ -39,8 +40,12 @@ const MainPage: FC = () => {
   const [farmDetails, setFarmDetails] = useState(loadFarmDetails(initialFarmDetails));
   const [fertDetails, setFertDetails] = useState<FertilizerInterface[]>(initialFertilizersDetails);
   const [localDetails, setLocalDetails] = useState(localStorageDetails);
-  const [formStates, setFormStates] = useState(mockBerriesWorkflow);
-  const [currForm, setCurrForm] = useState(0);
+  const [formStates, setFormStates] = useState<InputModuleInterface[]>(
+    loadLocalFormStates(mockBerriesWorkflow),
+  );
+  const [currForm, setCurrForm] = useState(
+    parseInt(localStorage.getItem(Names.CURRENT_FORM) ?? '0', 10),
+  );
   const [toggleEnabled, setToggleEnabled] = useState<boolean>(true);
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
@@ -65,9 +70,12 @@ const MainPage: FC = () => {
     try {
       if (localDetails) localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(localDetails));
       if (fertDetails) localStorage.setItem(Names.FERTILIZER_DETAILS, JSON.stringify(fertDetails));
+      if (formStates) localStorage.setItem(Names.FORM_STATES, JSON.stringify(formStates));
+      if (currForm) localStorage.setItem(Names.CURRENT_FORM, JSON.stringify(currForm));
     } catch (err) {
       console.error(err);
     }
+  }, [localDetails, fertDetails, formStates, currForm]);
 
   /**
    * @summary   Pass this handler to children who need to update InputModule states
