@@ -18,11 +18,11 @@ import handleChange from '@Utils/handleChange';
 import {
   CropIDOptions,
   PlantAgeOptions,
-  PlantsPerAcre,
   DistanceBtwnPlants,
   DistanceBtwnRows,
   YesOrNo,
   WherePruningsGo,
+  PlantsPerAcreOptions,
 } from '@Constants/CropOptions';
 import CustomField from '@Commons/Input/Field/CustomField';
 import {
@@ -64,7 +64,6 @@ const checkHasCrops = (Fields: FieldDetailInterface[]) => {
  *              but this is only for the submission of formik.
  * @author      @Kcaparas
  */
-
 interface SubmissionCropsInterface {
   id: number;
   cropId: string;
@@ -93,6 +92,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
   const [hasFieldBeenSelected, setFieldSelected] = useState<boolean[]>(
     Array(farmDetails.Fields.length).fill(false),
   );
+  const [plantsPerHa, setplantsPerHa] = useState<number>(0);
+
   const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') =>
     Yup.number().when(cropId, (value, schema) =>
       value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired(),
@@ -115,6 +116,10 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     willSawdustBeApplied: Yup.boolean().required('Required'),
   });
 
+  function getPlantsPerAcre(index: number) {
+    return parseInt(PlantsPerAcreOptions[index].value, 10);
+  }
+
   const appendDistanceBtwnPlants = (v1: string, v2: string): string => {
     const distanceCombination = `${v1}x${v2}`;
     let res = '';
@@ -122,26 +127,33 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     switch (distanceCombination) {
       case '0.6x2.7':
         res = '(2ft x 9ft)';
+        setplantsPerHa(getPlantsPerAcre(5));
         break;
       case '0.6x3.0':
         res = '(2ft x 10ft)';
+        setplantsPerHa(getPlantsPerAcre(4));
         break;
       case '0.75x2.7':
         res = '(2.5ft x 9ft)';
+        setplantsPerHa(getPlantsPerAcre(3));
         break;
       case '0.75x3.0':
         res = '(2.5ft x 10ft)';
+        setplantsPerHa(getPlantsPerAcre(2));
         break;
       case '0.9x2.7':
         res = '(3ft x 9ft)';
+        setplantsPerHa(getPlantsPerAcre(1));
         break;
       case '0.9x3.0':
         res = '(3ft x 10ft)';
+        setplantsPerHa(getPlantsPerAcre(0));
         break;
       default:
         break;
     }
 
+    console.log(plantsPerHa);
     return `${v1} m x ${v2} m ${res}`;
   };
 
@@ -199,6 +211,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
             }}
             validate={(values) => {
               StatusValidate(validationSchema, values, handleFormState, CROPS_INFORMATION);
+              appendDistanceBtwnPlants(values.distanceBtwnPlants, values.distanceBtwnRows);
             }}
           >
             {({ values, setFieldValue }) =>
@@ -236,14 +249,10 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             desktopWidth="40%"
                             onChange={(e) => handleChange(e, setFieldValue)}
                           />
-                          <CustomSelect
-                            name="numberOfPlantsPerAcre"
-                            id="numberOfPlantsPerAcre"
-                            label="Plants per acre"
-                            options={PlantsPerAcre}
-                            desktopWidth="40%"
-                            onChange={(e) => handleChange(e, setFieldValue)}
-                          />
+                          <div id="plantsPerHa">
+                            <label>Plants per Acre</label>
+                            <p>{plantsPerHa}</p>
+                          </div>
                         </StyledCropsSmallGroup>
                         <StyledCropsLargeGroup>
                           <CustomSelect
