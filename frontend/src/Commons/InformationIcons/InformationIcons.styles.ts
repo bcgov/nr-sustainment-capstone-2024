@@ -27,6 +27,7 @@ const IconContainer = styled.div<StyledIconsProps>`
   cursor: pointer;
   background-color: transparent;
   @media (min-width: ${screenSizes.desktop}) {
+    margin-top: -5px;
     font-size: 24px;
   }
 `;

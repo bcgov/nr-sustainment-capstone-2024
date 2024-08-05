@@ -70,6 +70,7 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
   gap: 20px;
   margin: auto;
   width: 320px;
+  height: 86px;
   justify-content: flex-end;
   .nutrientsButton {
     display: flex;
@@ -81,8 +82,9 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     margin: 0;
-    justify-content: flex-start;
-    width: 67px;
+    justify-content: flex-end;
+    width: 100%;
+    height: auto;
     .nutrientsButton {
       flex-direction: row;
       margin-top: ${(props) => (props.formNutrients ? '25px' : '0')};
@@ -95,12 +97,13 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
 const StyledTestContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 11px;
 `;
 const StyledRadioGroupContainer = styled.div`
   display: flex;
   width: 100%;
   max-width: 150px;
+  gap: 109px;
   @media (min-width: ${screenSizes.desktop}) {
     max-width: 200px;
   }

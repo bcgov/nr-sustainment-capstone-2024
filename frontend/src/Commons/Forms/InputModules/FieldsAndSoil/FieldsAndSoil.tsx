@@ -442,12 +442,16 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                       id="LeafTest.leafTissueP"
                       name="LeafTest.leafTissueP"
                       type="number"
+                      mobileWidth="221px"
+                      desktopWidth="226px"
                     />
                     <CustomField
                       label="Leaf tissue K (%)"
                       id="LeafTest.leafTissueK"
                       name="LeafTest.leafTissueK"
                       type="number"
+                      mobileWidth="221px"
+                      desktopWidth="226px"
                     />
                   </InputFieldsGroup>
                 )}

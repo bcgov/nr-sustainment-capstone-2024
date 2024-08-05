@@ -6,7 +6,7 @@
 
 import { Field, ErrorMessage } from 'formik';
 import { FC } from 'react';
-import StyledField from './CustomTextArea.styles';
+import { StyledField, StyledLabel } from './CustomTextArea.styles';
 import '../ErrorMessage.css';
 
 interface CustomTextAreaProps {
@@ -30,7 +30,9 @@ const CustomTextArea: FC<CustomTextAreaProps> = ({
     mobileWidth={mobileWidth}
     desktopWidth={desktopWidth}
   >
-    <label htmlFor={id}>{label}</label>
+    <StyledLabel>
+      <label htmlFor={id}>{label}</label>
+    </StyledLabel>
     <Field
       as="textarea"
       placeholder={placeholder}
