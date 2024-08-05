@@ -87,7 +87,12 @@ const MainPage: FC = () => {
    * @param     status: string => Passed if a module status should be updated.
    *            ('active', warning', 'completed')
    */
-  const handleFormState = (cmd: string, toggle?: boolean, status?: string) => {
+  const handleFormState = (
+    cmd: string,
+    toggle?: boolean,
+    status?: string,
+    moveBackModuleID?: string,
+  ) => {
     // currModuleID can be any InputModule that's passed to this handler
     let currModuleID = formStates[currForm].id;
     // nextModuleID is the last activated InputModule, they are activated through the Next button
@@ -98,11 +103,11 @@ const MainPage: FC = () => {
 
     switch (cmd) {
       case CmdOptions.BACKWARDS:
-        if (currForm >= 0) {
+        if (currForm > 0 && formStates[currForm].id === moveBackModuleID) {
           nextModuleID = formStates[currForm - 1].id;
           setCurrForm((prevForm) => prevForm - 1);
-          tgl = true;
-        }
+        } else if (moveBackModuleID) currModuleID = moveBackModuleID;
+        tgl = true;
         break;
       case CmdOptions.FORWARDS:
         if (formStates[currForm + 1]) {
@@ -136,7 +141,7 @@ const MainPage: FC = () => {
       // For cmds that go forwards or backward
       if (newState.id === nextModuleID) {
         newState.enable = true;
-        newState.status = ACTIVE;
+        if (moveBackModuleID === undefined) newState.status = ACTIVE;
       }
       return newState;
     });

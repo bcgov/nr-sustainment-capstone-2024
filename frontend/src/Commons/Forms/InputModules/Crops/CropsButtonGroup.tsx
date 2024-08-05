@@ -6,10 +6,11 @@ import {
   StyledButtonContainer,
   StyledAddCancelButtonContainer,
 } from '@Commons/Button/FieldButtonGroup.styles';
+import { CROPS_INFORMATION } from '@Constants/ModuleIDs';
 
 type CropsButtonGroupProps = {
   submitFarmInfo: () => void;
-  handleFormState: (cmd: string, toggle?: boolean, status?: string) => void;
+  handleFormState(cmd: string, toggle?: boolean, status?: string, moveBackModuleID?: string): void;
   buttonText: {
     back: string;
     next: string;
@@ -32,7 +33,9 @@ const CropsButtonGroup: React.FC<CropsButtonGroupProps> = ({
           disabled={!disabled}
           actions="secondary"
           text={buttonText.back}
-          handleClick={() => handleFormState(CmdOptions.BACKWARDS)}
+          handleClick={() =>
+            handleFormState(CmdOptions.BACKWARDS, undefined, undefined, CROPS_INFORMATION)
+          }
         />
       </StyledButtonContainer>
       <StyledButtonContainer>
