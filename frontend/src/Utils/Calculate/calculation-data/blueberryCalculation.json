@@ -71,12 +71,12 @@
             "min": 100,
             "leafTissueRanges": [
               {
-                "min": 0.10,
+                "min": 0.1,
                 "addition": 0
               },
               {
                 "min": 0.08,
-                "max": 0.10,
+                "max": 0.1,
                 "addition": 0
               },
               {
@@ -89,12 +89,12 @@
             "max": 99.9,
             "leafTissueRanges": [
               {
-                "min": 0.10,
+                "min": 0.1,
                 "addition": 0
               },
               {
                 "min": 0.08,
-                "max": 0.10,
+                "max": 0.1,
                 "addition": 40
               },
               {
@@ -132,7 +132,7 @@
                 "addition": 103
               }
             ]
-          },
+          }
         ]
       }
     }
