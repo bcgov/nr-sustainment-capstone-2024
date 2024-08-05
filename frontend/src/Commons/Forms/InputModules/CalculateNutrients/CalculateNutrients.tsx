@@ -6,7 +6,7 @@ import ConversionCoeficient from '@Constants/ConversionCoeficient';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import InputModuleProps from '@Interface/InputModuleProps';
-import { CALCULATION_INFORMATION } from '@Constants/ModuleIDs';
+import { CALCULATE_NUTRIENTS } from '@Constants/ModuleIDs';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 import StatusValidate from '@Utils/StatusValidate';
 import CustomSelect from '@Commons/Input/Select/CustomSelect';
@@ -196,7 +196,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
       newFarmDetails.Fields[selectedFieldIndex].Nutrients?.nutrientFertilizers?.push(newFertilizer);
 
       calcFieldBalances(newFarmDetails.Fields[selectedFieldIndex]);
-      updateFarmDetails(newFarmDetails, CALCULATION_INFORMATION);
+      updateFarmDetails(newFarmDetails, CALCULATE_NUTRIENTS);
     });
   };
 
@@ -300,7 +300,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
         validationSchema={validationSchema}
         onSubmit={submitCalculationData}
         validate={(values) => {
-          StatusValidate(validationSchema, values, handleFormState, CALCULATION_INFORMATION);
+          StatusValidate(validationSchema, values, handleFormState, CALCULATE_NUTRIENTS);
           setFertBalance(
             calcFertBalance(
               fertilizersDetails[selectedIndex],
@@ -447,13 +447,13 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
   );
 };
 
-const Calculation: InputModuleInterface = {
+const CalculateNutrients: InputModuleInterface = {
   InputModuleComponent: CalculateNutrientsComponent,
-  id: CALCULATION_INFORMATION,
+  id: CALCULATE_NUTRIENTS,
   name: { long: 'Calculation', short: 'Calculation' },
   faIcon: faCalculator,
   status: 'inactive',
   enable: false,
 };
 
-export default Calculation;
+export default CalculateNutrients;

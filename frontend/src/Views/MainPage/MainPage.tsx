@@ -6,11 +6,7 @@ import { useEffect, useState, useCallback, FC } from 'react';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader';
 import ProgressBar from '@Commons/ProgressBar/ProgressBar';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter';
-import FormModule from '@Commons/Forms/FormModule/FormModule';
-import * as InputModules from '@Commons/Forms/InputModules/index';
-import InputModuleInterface from '@Interface/InputModuleinterface';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
-import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import NmpInterface from '@Interface/NmpInterface';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import { ACTIVE, COMPLETED, WARNING } from '@Constants/ModuleStatus';
@@ -18,7 +14,15 @@ import CmdOptions from '@Constants/CmdOptions';
 import Names from '@Constants/Names';
 import convertToNMP from '@Utils/convertToNMP';
 import FertilizerInterface from '@Interface/FertilizerInterface';
+import { getLocalDetails, loadFarmDetails } from '@Utils/getLocalDetails';
+import { loadLocalFormStates } from '@Utils/getLocalFormStates';
+import InputModuleInterface from '@Interface/InputModuleinterface';
+import FormModule from '@Commons/Forms/FormModule/FormModule';
+import { loadFertDetails } from '@Utils/getLocalFertilizers';
+import * as InputModules from '@Commons/Forms/InputModules/index';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
+
+const initialFertilizersDetails: FertilizerInterface[] = loadFertDetails();
 
 // The sequence of sections to show up on the main page
 // This is the skeleton for the Berries workflow
@@ -31,80 +35,17 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
   InputModules.CalculateNutrients,
 ];
 
-const getLocalDetails = () => {
-  const nmpString = localStorage.getItem(Names.FARM_DETAILS);
-  try {
-    if (nmpString) return JSON.parse(nmpString);
-  } catch (err) {
-    console.error(err);
-  }
-  return null;
-};
-
-const getLocalFertilizers = () => {
-  const fertString = localStorage.getItem(Names.FERTILIZER_DETAILS);
-  try {
-    if (fertString) {
-      const parsedFertString = JSON.parse(fertString);
-      if (Array.isArray(parsedFertString)) {
-        return parsedFertString;
-      }
-    }
-  } catch (err) {
-    console.error(err);
-  }
-  return [];
-};
-
-/**
- * @desc      Load an .nmp string object from localStorage to the MainPage,
- *            converting it to JSON and making some basic .nmp to bb mapping.
- * @author    @GDamaso
- */
-const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
-  const localDetails = getLocalDetails();
-  const updatedFarmDetails = { ...farmDetails };
-
-  if (localDetails) {
-    const nmpFarmDetails = localDetails.farmDetails;
-    const fieldsJSON: FieldDetailInterface[] = localDetails.years[0].Fields;
-
-    updatedFarmDetails.FarmName = nmpFarmDetails.FarmName;
-    updatedFarmDetails.Year = nmpFarmDetails.Year;
-
-    if (nmpFarmDetails.FarmRegion === 21) {
-      updatedFarmDetails.FarmRegion = 'Vancouver Island';
-    }
-
-    fieldsJSON.forEach((field) => {
-      const updateField: FieldDetailInterface = field;
-      updatedFarmDetails.Fields.push(updateField);
-    });
-    updatedFarmDetails.Fields = localDetails.years[0].Fields;
-  }
-
-  return updatedFarmDetails;
-};
-
-const loadFertDetails = (): FertilizerInterface[] => {
-  const localFerts: FertilizerInterface[] = getLocalFertilizers();
-  const updatedFertDetails: FertilizerInterface[] = [];
-
-  if (localFerts) {
-    localFerts.forEach((fertilizer) => updatedFertDetails.push(fertilizer));
-  }
-  return updatedFertDetails;
-};
-
-const initialFertilizersDetails: FertilizerInterface[] = loadFertDetails();
-
 const MainPage: FC = () => {
   const localStorageDetails = getLocalDetails();
   const [farmDetails, setFarmDetails] = useState(loadFarmDetails(initialFarmDetails));
   const [fertDetails, setFertDetails] = useState<FertilizerInterface[]>(initialFertilizersDetails);
   const [localDetails, setLocalDetails] = useState(localStorageDetails);
-  const [formStates, setFormStates] = useState(mockBerriesWorkflow);
-  const [currForm, setCurrForm] = useState(0);
+  const [formStates, setFormStates] = useState<InputModuleInterface[]>(
+    loadLocalFormStates(mockBerriesWorkflow),
+  );
+  const [currForm, setCurrForm] = useState(
+    parseInt(localStorage.getItem(Names.CURRENT_FORM) ?? '0', 10),
+  );
   const [toggleEnabled, setToggleEnabled] = useState<boolean>(true);
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
   const [lastScrollTop, setLastScrollTop] = useState(0);
@@ -126,13 +67,15 @@ const MainPage: FC = () => {
   };
 
   useEffect(() => {
-    if (localDetails) {
-      localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(localDetails));
+    try {
+      if (localDetails) localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(localDetails));
+      if (fertDetails) localStorage.setItem(Names.FERTILIZER_DETAILS, JSON.stringify(fertDetails));
+      if (formStates) localStorage.setItem(Names.FORM_STATES, JSON.stringify(formStates));
+      if (currForm) localStorage.setItem(Names.CURRENT_FORM, JSON.stringify(currForm));
+    } catch (err) {
+      console.error(err);
     }
-    if (fertDetails) {
-      localStorage.setItem(Names.FERTILIZER_DETAILS, JSON.stringify(fertDetails));
-    }
-  }, [localDetails, fertDetails]);
+  }, [localDetails, fertDetails, formStates, currForm]);
 
   /**
    * @summary   Pass this handler to children who need to update InputModule states
@@ -263,7 +206,7 @@ const MainPage: FC = () => {
         isHeaderVisible={isHeaderVisible}
       />
       <StyledMainContainer>
-        {formStates.map((InputModule) => {
+        {formStates.map((InputModule: InputModuleInterface) => {
           if (InputModule) {
             return (
               <FormModule
