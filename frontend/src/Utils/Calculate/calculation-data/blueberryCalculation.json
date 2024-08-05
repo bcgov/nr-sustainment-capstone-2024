@@ -1,0 +1,168 @@
+{
+  "cropType": "Berry",
+  "crop": "Blueberry",
+  "agronomicBalance": {
+    "nitrogenCalculation": {
+      "description": "Calculates Nitrogen requirement in lb/ac based on sawdust usage and blueberry field plants age.",
+      "params": {
+        "sawdust": "boolean",
+        "Yield": "Yield (Tons/Ac)"
+      },
+      "logic": {
+        "N": 0,
+        "sawdustAddition": 25,
+        "yieldRanges": [
+          {
+            "min": 9,
+            "addition": 63
+          },
+          {
+            "min": 8,
+            "max": 8.9,
+            "addition": 45
+          },
+          {
+            "min": 7,
+            "max": 7.9,
+            "addition": 40
+          },
+          {
+            "min": 6,
+            "max": 6.9,
+            "addition": 31
+          },
+          {
+            "min": 5,
+            "max": 5.9,
+            "addition": 28
+          },
+          {
+            "min": 4,
+            "max": 4.9,
+            "addition": 23
+          },
+          {
+            "min": 3,
+            "max": 3.9,
+            "addition": 14
+          },
+          {
+            "min": 2,
+            "max": 2.9,
+            "addition": 8.5
+          },
+          {
+            "max": 1.9,
+            "addition": 6
+          }
+        ]
+      }
+    },
+    "phosphorusCalculation": {
+      "description": "Calculates Phosphorus requirement (P2O5) in lb/ac based on soil test P and leaf tissue P.",
+      "params": {
+        "soilTest": "Soil Test P (ppm)",
+        "leafTissue": "Leaf Tissue P (%)"
+      },
+      "logic": {
+        "P": 0,
+        "soilTestRanges": [
+          {
+            "min": 100,
+            "leafTissueRanges": [
+              {
+                "min": 0.1,
+                "addition": 0
+              },
+              {
+                "min": 0.08,
+                "max": 0.1,
+                "addition": 0
+              },
+              {
+                "max": 0.08,
+                "addition": 40
+              }
+            ]
+          },
+          {
+            "max": 99.9,
+            "leafTissueRanges": [
+              {
+                "min": 0.1,
+                "addition": 0
+              },
+              {
+                "min": 0.08,
+                "max": 0.1,
+                "addition": 40
+              },
+              {
+                "max": 0.08,
+                "addition": 63
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "potassiumCalculation": {
+      "description": "Calculates Potassium requirement (K2O) in lb/ac based on soil test K and leaf tissue K.",
+      "params": {
+        "soilTest": "Soil Test K (ppm) (This range is not used for Blueberry crops)",
+        "leafTissue": "Leaf Tissue K (%)"
+      },
+      "logic": {
+        "K": 0,
+        "soilTestRanges": [
+          {
+            "min": 0,
+            "leafTissueRanges": [
+              {
+                "min": 0.4,
+                "addition": 0
+              },
+              {
+                "min": 0.2,
+                "max": 0.4,
+                "addition": 76
+              },
+              {
+                "max": 0.2,
+                "addition": 103
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "cropRemovalBalance": {
+    "phosphorusRemoval": {
+      "description": "Calculates Phosphorus removal (P2O5) in lb/ac based on yield and pruning status.",
+      "params": {
+        "Y": "Yield (Tons/Ac)",
+        "Pruned": "boolean",
+        "Removed": "boolean"
+      },
+      "logic": {
+        "P": 0,
+        "fruitRemovalFactor": 0.687,
+        "pruningRemovalFactor": 3.435
+      }
+    },
+    "potassiumRemoval": {
+      "description": "Calculates Potassium removal (K2O) in lb/ac based on yield and pruning status.",
+      "params": {
+        "Y": "Yield (Tons/Ac)",
+        "Pruned": "boolean",
+        "Removed": "boolean"
+      },
+      "logic": {
+        "K": 0,
+        "fruitRemovalFactor": 3.509,
+        "pruningRemovalFactor": 7.865
+      }
+    }
+  }
+}
