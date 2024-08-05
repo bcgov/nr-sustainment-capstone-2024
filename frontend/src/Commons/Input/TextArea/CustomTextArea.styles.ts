@@ -7,20 +7,21 @@ import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 
 type StyledFieldProps = {
-  width: string;
+  mobileWidth: string;
+  desktopWidth: string;
 };
 
 const StyledField = styled.div<StyledFieldProps>`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: ${(props) => props.mobileWidth};
   margin-top: 5px;
 
   label {
     font: ${tokens.typographyBoldSmallBody};
   }
   textarea {
-    border: solid 1px ${tokens.themeGray40};
+    border: solid 1px ${tokens.surfaceColorBorderDefault};
     border-radius: 3px;
     resize: none;
     height: 76px;
@@ -34,7 +35,7 @@ const StyledField = styled.div<StyledFieldProps>`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    width: ${(props) => props.width};
+    width: ${(props) => props.desktopWidth};
   }
 `;
 

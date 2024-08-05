@@ -7,24 +7,25 @@ import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 
 type StyledSelectProps = {
-  width: string;
+  mobileWidth: string;
+  desktopWidth: string;
   formCalc?: boolean;
 };
 
 const StyledSelect = styled.div<StyledSelectProps>`
   display: flex;
   flex-direction: column;
-  width: ${(props) => (props.formCalc ? '100%' : '80%')};
+  width: ${(props) => props.mobileWidth};
   margin-top: 5px;
   select {
     border: solid 1px ${tokens.themeGray40};
     border-radius: 3px;
-    height: 30px;
+    height: 28px;
     background-color: ${tokens.themeGrayWhite};
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    width: ${(props) => props.width};
+    width: ${(props) => props.desktopWidth};
   }
 `;
 

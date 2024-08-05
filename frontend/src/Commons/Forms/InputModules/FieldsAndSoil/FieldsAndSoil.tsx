@@ -256,6 +256,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     id="FieldName"
                     name="FieldName"
                     type="text"
+                    desktopWidth="392px"
+                    mobileWidth="223px"
                   />
                   <StyledAreaContainer>
                     <CustomField
@@ -263,7 +265,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                       id="Area"
                       name="Area"
                       type="number"
-                      width="50%"
+                      desktopWidth="107px"
+                      mobileWidth="88px"
                     />
                     <p>Acres</p>
                   </StyledAreaContainer>
@@ -274,7 +277,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     id="Comment"
                     label="Comments (optional)"
                     placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
-                    width="70%"
+                    desktopWidth="590px"
+                    mobileWidth="322px"
                   />
                 </StyledTextAreaContainer>
 
@@ -324,6 +328,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           id="SoilTest.TestingMethod"
                           label="Lab (Soil Test Methods)"
                           options={soilTestOptions}
+                          mobileWidth="295px"
+                          desktopWidth="392px"
                           onChange={(e) => handleChange(e, setFieldValue)}
                         />
                       </StyledSelectContainer>
@@ -343,12 +349,16 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           id="SoilTest.sampleDate"
                           name="SoilTest.sampleDate"
                           type="text"
+                          mobileWidth="223px"
+                          desktopWidth="226px"
                         />
                         <CustomField
                           label="NO3-N (ppm), nitrate-nitrogen"
                           id="SoilTest.valNO3H"
                           name="SoilTest.valNO3H"
                           type="number"
+                          desktopWidth="226px"
+                          mobileWidth="223px"
                           text={Nitrate}
                           rightPositioned
                           toggleEnabled={toggleEnabled}
@@ -360,6 +370,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           id="SoilTest.ValP"
                           name="SoilTest.ValP"
                           type="number"
+                          desktopWidth="226px"
+                          mobileWidth="223px"
                           text={Phosporus}
                           rightPositioned
                           toggleEnabled={toggleEnabled}
@@ -369,6 +381,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           id="SoilTest.valK"
                           name="SoilTest.valK"
                           type="number"
+                          desktopWidth="226px"
+                          mobileWidth="223px"
                           text={Potassium}
                           toggleEnabled={toggleEnabled}
                         />
@@ -379,6 +393,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           id="SoilTest.valPH"
                           name="SoilTest.valPH"
                           type="number"
+                          desktopWidth="226px"
+                          mobileWidth="223px"
                           text={pH}
                           toggleEnabled={toggleEnabled}
                         />

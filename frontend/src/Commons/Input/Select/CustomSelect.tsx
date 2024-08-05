@@ -14,7 +14,8 @@ interface CustomSelectProps {
   name: string;
   id: string;
   options: OptionInterface[];
-  width?: string;
+  mobileWidth?: string;
+  desktopWidth?: string;
   formCalc?: boolean;
   text?: string;
   rightPositioned?: boolean;
@@ -26,7 +27,8 @@ const CustomSelect: FC<CustomSelectProps> = ({
   name,
   id,
   label,
-  width = '100%',
+  mobileWidth = '100%',
+  desktopWidth = '100%',
   options,
   onChange,
   text,
@@ -35,7 +37,8 @@ const CustomSelect: FC<CustomSelectProps> = ({
   formCalc = false,
 }) => (
   <StyledSelect
-    width={width}
+    mobileWidth={mobileWidth}
+    desktopWidth={desktopWidth}
     formCalc={formCalc}
   >
     <StyledLabel>

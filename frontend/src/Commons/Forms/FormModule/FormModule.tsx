@@ -56,7 +56,7 @@ const FormModule: FC<FormModuleProps> = ({
         handleFormState={handleFormState}
       />
       {InputModule.enable && (
-        <StyledFormContent isVisible={InputModule.enable}>
+        <StyledFormContent>
           <InputModuleComponent
             fertilizersDetails={fertilizersDetails || []}
             updateFarmDetails={updateFarmDetails}

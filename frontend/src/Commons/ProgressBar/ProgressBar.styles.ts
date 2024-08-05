@@ -11,23 +11,23 @@ const Container = styled.div<ProgressBarProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 95%;
-  max-width: 800px;
+  width: 100%;
   order: 2;
-  position: sticky;
+  position: fixed;
   bottom: 30px;
   background-color: #fff;
   height: 80px;
-  padding-bottom: 30px;
+  padding: 0 13px 30px 13px;
   z-index: 1;
+  border-top: 2px solid ${tokens.surfaceColorBorderDefault};
   transition: 0.3s ease-in-out;
   @media (min-width: ${screenSizes.desktop}) {
+    position: sticky;
     padding-bottom: 50px;
     height: 150px;
-    width: 80%;
-    max-width: 1400px;
     top: ${(props) => (props.isHeaderVisible ? '85px' : '0')};
-    border-bottom: 2px solid ${tokens.themeGray40};
+    border-top: 0;
+    border-bottom: 2px solid ${tokens.surfaceColorBorderDefault};
     order: 0;
   }
 `;
@@ -38,15 +38,19 @@ const StyledProgressBar = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  max-width: 1311px;
   z-index: 1;
 `;
 const StyledLineBlock = styled.div`
-  border: 5px solid ${tokens.surfaceColorBorderDark};
-  width: 90%;
+  border: 4px solid ${tokens.surfaceColorBorderDark};
+  width: 85%;
   margin-top: -60px;
+  z-index: 0;
 
   @media (min-width: ${screenSizes.desktop}) {
-    border: 8px solid ${tokens.surfaceColorBorderDark};
+    border: 6px solid ${tokens.surfaceColorBorderDark};
+    width: 90%;
+    max-width: 1100px;
     margin-top: -100px;
   }
 `;

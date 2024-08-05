@@ -9,7 +9,6 @@ type HeaderProps = {
 const StyledHeader = styled.header<HeaderProps>`
   display: flex;
   align-items: center;
-  max-width: 100vw;
   max-height: 65px;
   flex-direction: row;
   width: 100%;

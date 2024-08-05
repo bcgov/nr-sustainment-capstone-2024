@@ -15,16 +15,18 @@ const StyledFarmInfo = styled.div`
   gap: 24px;
 
   #inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     @media (min-width: ${screenSizes.desktop}) {
-      display: flex;
       flex-direction: row;
       width: 50%;
-      gap: 30px;
+      gap: 32px;
     }
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    gap: 0;
+    gap: 25px;
   }
 `;
 
@@ -32,7 +34,7 @@ const StyledSelectContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 20px;
+  gap: 48px;
 
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
@@ -44,8 +46,10 @@ const StyledButtonController = styled.div`
   width: 100%;
   max-width: 327px;
   height: 42px;
+  margin: auto;
 
   @media (min-width: ${screenSizes.desktop}) {
+    margin: 0;
     max-width: 67px;
   }
 `;
