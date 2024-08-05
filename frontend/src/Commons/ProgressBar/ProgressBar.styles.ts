@@ -13,7 +13,7 @@ const Container = styled.div<ProgressBarProps>`
   align-items: center;
   width: 100vw;
   order: 2;
-  position: sticky;
+  position: fixed;
   bottom: 30px;
   background-color: #fff;
   height: 80px;
@@ -22,6 +22,7 @@ const Container = styled.div<ProgressBarProps>`
   border-top: 2px solid ${tokens.surfaceColorBorderDefault};
   transition: 0.3s ease-in-out;
   @media (min-width: ${screenSizes.desktop}) {
+    position: sticky;
     padding-bottom: 50px;
     height: 150px;
     top: ${(props) => (props.isHeaderVisible ? '85px' : '0')};
