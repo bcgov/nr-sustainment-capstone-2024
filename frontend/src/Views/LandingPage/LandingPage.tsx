@@ -1,12 +1,13 @@
 import Button from '@Commons/Button/Button.tsx';
 import { templateNMP } from '@Constants/templateNMP.ts';
-import Names from '@Constants/Names.ts';
+
 import {
   StyledContent,
   StyledButtonGroup,
   StyledDivider,
   StyledLandingContainer,
 } from './LandingPage.styles.ts';
+import LoacalStorageNames from '@Constants/LocalStorageNames.ts';
 
 const LandingPage = () => {
   localStorage.clear();
@@ -31,7 +32,7 @@ const LandingPage = () => {
     fr.onload = () => {
       const data = fr.result;
       // data is not a JSON yet at this point. It's still .nmp
-      if (data) localStorage.setItem(Names.FARM_DETAILS, data.toString());
+      if (data) localStorage.setItem(LoacalStorageNames.FARM_DETAILS, data.toString());
     };
     window.location.href = '/main';
   };
@@ -39,7 +40,7 @@ const LandingPage = () => {
   const newCalcHandler = () => {
     localStorage.clear();
     // Our template is a JSON .nmp compatible object
-    localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(templateNMP));
+    localStorage.setItem(LoacalStorageNames.FARM_DETAILS, JSON.stringify(templateNMP));
     window.location.href = '/main';
   };
 

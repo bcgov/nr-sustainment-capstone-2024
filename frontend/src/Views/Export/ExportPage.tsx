@@ -8,12 +8,12 @@ import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader.tsx';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter.tsx';
 import { FC } from 'react';
 import CustomLink from '@Commons/CustomLink/CustomLink.tsx';
-import Names from '@Constants/Names.ts';
 import { StyledContent, StyledLandingContainer } from './ExportPage.styles.ts';
+import LoacalStorageNames from '@Constants/LocalStorageNames.ts';
 
 const ExportPage: FC = () => {
   const downloadFile = () => {
-    const nmpString = localStorage.getItem(Names.FARM_DETAILS);
+    const nmpString = localStorage.getItem(LoacalStorageNames.FARM_DETAILS);
     const nmpJSON = nmpString && JSON.parse(nmpString);
     const nmpBlob = nmpString && new Blob([nmpString], { type: 'application/json' });
     const nmpUrl = nmpBlob && URL.createObjectURL(nmpBlob);

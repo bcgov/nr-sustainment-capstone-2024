@@ -11,7 +11,6 @@ import NmpInterface from '@Interface/NmpInterface';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import { ACTIVE, COMPLETED, WARNING } from '@Constants/ModuleStatus';
 import CmdOptions from '@Constants/CmdOptions';
-import Names from '@Constants/Names';
 import convertToNMP from '@Utils/convertToNMP';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 import { getLocalDetails, loadFarmDetails } from '@Utils/getLocalDetails';
@@ -20,6 +19,7 @@ import InputModuleInterface from '@Interface/InputModuleinterface';
 import FormModule from '@Commons/Forms/FormModule/FormModule';
 import { loadFertDetails } from '@Utils/getLocalFertilizers';
 import * as InputModules from '@Commons/Forms/InputModules/index';
+import LocalStorageNames from '@Constants/LocalStorageNames';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 const initialFertilizersDetails: FertilizerInterface[] = loadFertDetails();
@@ -44,7 +44,7 @@ const MainPage: FC = () => {
     loadLocalFormStates(mockBerriesWorkflow),
   );
   const [currForm, setCurrForm] = useState(
-    parseInt(localStorage.getItem(Names.CURRENT_FORM) ?? '0', 10),
+    parseInt(localStorage.getItem(LocalStorageNames.CURRENT_FORM) ?? '0', 10),
   );
   const [toggleEnabled, setToggleEnabled] = useState<boolean>(true);
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
@@ -68,10 +68,13 @@ const MainPage: FC = () => {
 
   useEffect(() => {
     try {
-      if (localDetails) localStorage.setItem(Names.FARM_DETAILS, JSON.stringify(localDetails));
-      if (fertDetails) localStorage.setItem(Names.FERTILIZER_DETAILS, JSON.stringify(fertDetails));
-      if (formStates) localStorage.setItem(Names.FORM_STATES, JSON.stringify(formStates));
-      if (currForm) localStorage.setItem(Names.CURRENT_FORM, JSON.stringify(currForm));
+      if (localDetails)
+        localStorage.setItem(LocalStorageNames.FARM_DETAILS, JSON.stringify(localDetails));
+      if (fertDetails)
+        localStorage.setItem(LocalStorageNames.FERTILIZER_DETAILS, JSON.stringify(fertDetails));
+      if (formStates)
+        localStorage.setItem(LocalStorageNames.FORM_STATES, JSON.stringify(formStates));
+      if (currForm) localStorage.setItem(LocalStorageNames.CURRENT_FORM, JSON.stringify(currForm));
     } catch (err) {
       console.error(err);
     }

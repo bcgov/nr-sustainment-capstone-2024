@@ -1,9 +1,9 @@
-import Names from '@Constants/Names';
+import LoacalStorageNames from '@Constants/LocalStorageNames';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 
 const getLocalDetails = () => {
-  const nmpString = localStorage.getItem(Names.FARM_DETAILS);
+  const nmpString = localStorage.getItem(LoacalStorageNames.FARM_DETAILS);
   try {
     if (nmpString) return JSON.parse(nmpString);
   } catch (err) {
