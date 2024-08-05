@@ -11,7 +11,7 @@ const Container = styled.div<ProgressBarProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   order: 2;
   position: fixed;
   bottom: 30px;
