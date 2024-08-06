@@ -63,9 +63,13 @@ const ToggleContainer = styled.div`
     gap: 10px;
     position: absolute;
     align-items: center;
+    justify-content: center;
     left: calc(100vw - 2%);
     transform: translateX(-100%);
   }
 `;
 
-export { StyledHeader, Logo, Title, ToggleContainer };
+const InfoButtonContainer = styled.div`
+  margin-top: 3px;
+`;
+export { StyledHeader, Logo, Title, ToggleContainer, InfoButtonContainer };

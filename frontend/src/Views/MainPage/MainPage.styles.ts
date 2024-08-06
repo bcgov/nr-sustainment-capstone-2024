@@ -35,7 +35,7 @@ const StyledMainContainer = styled.div<MainProps>`
   transition: margin 0.3s ease;
 
   @media (min-width: ${screenSizes.desktop}) {
-    margin: 120px 0 60px 0;
+    margin: 150px 0 60px 0;
     gap: 11px;
   }
 `;
