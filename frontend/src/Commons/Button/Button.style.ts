@@ -33,7 +33,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   border-radius: ${(props) => props.radius};
   border: ${(props) =>
     props.actions === 'primary' ? 0 : `1px solid ${tokens.surfaceColorBorderMedium}`};
-  padding: ${(props) => (props.landingPageButton ? '20px' : '')};
+  padding: ${(props) => (props.landingPageButton ? '20px' : '0')};
   font: ${tokens.typographyRegularSmallBody};
 
   &:disabled {

@@ -88,7 +88,6 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
                 <h2>Sampling Month</h2>
                 <p>{HasSoilTest ? SoilTest.sampleDate : ComponentText.NA}</p>
               </StyledListItem>
-              {/* <NutrientsFieldListGroup> */}
               <StyledListItemGroup desktopWidth="25%">
                 <StyledListItem
                   desktopWidth="128px"
@@ -124,7 +123,6 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
                   <p>{HasSoilTest ? SoilTest.valPH : highPH}</p>
                 </StyledListItem>
               </StyledListItemGroup>
-              {/* </NutrientsFieldListGroup> */}
             </StyledListItemGroupContainer>
             <StyledListItemGroupContainer>
               <StyledListItemGroup desktopWidth="50%">

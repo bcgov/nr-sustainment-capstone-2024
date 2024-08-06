@@ -36,10 +36,9 @@ const StyledListContainer = styled.div<StyledListType>`
   flex-direction: row;
   padding-top: 20px;
   gap: ${(props) => props.gap};
-  align-items: flex-start; // Add this line
+  align-items: flex-start;
 
   @media (min-width: ${screenSizes.desktop}) {
-    // gap: 120px;
     flex-wrap: nowrap;
   }
 `;
@@ -86,8 +85,6 @@ const StyledFontAwesomeContainer = styled.div`
   @media (min-width: ${screenSizes.desktop}) {
     font-size: 32px;
     padding-top: 20px;
-    // position: absolute;
-    // right: 0;
   }
 `;
 const StyledCommentContainerMobile = styled.div`

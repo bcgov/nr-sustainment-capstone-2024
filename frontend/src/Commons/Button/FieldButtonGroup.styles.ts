@@ -18,6 +18,7 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
     flex-direction: row;
     align-items: center;
     width: 100%;
+    padding-right: 11px;
   }
 `;
 const StyledButtonContainer = styled.div<FormProps>`
@@ -35,7 +36,7 @@ const StyledNewFieldButtonController = styled.div`
   margin-bottom: 20px;
   justify-content: center;
   @media (min-width: ${screenSizes.desktop}) {
-    width: 178px;
+    width: 200px;
   }
 `;
 

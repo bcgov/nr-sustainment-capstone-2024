@@ -10,7 +10,7 @@ const getButtonSize = (
   if (landingPageButton) {
     largeButtonSize = '483px';
   } else if (addButton) {
-    largeButtonSize = '170px';
+    largeButtonSize = '200px';
   } else {
     largeButtonSize = '62px';
   }
