@@ -133,7 +133,8 @@ const StyledWarningBlock = styled.div`
   border: 1px solid ${tokens.supportBorderColorWarning};
   border-radius: 4px;
   font: ${tokens.typographyRegularLabel};
-  padding: 10px 20px 0 20px;
+  padding: 11px 20px 0 19px;
+  margin: 14px 0 0 0;
 
   ul {
     padding: 10px 0 0 10px;

@@ -39,7 +39,7 @@ const StyledListContainer = styled.div<StyledListType>`
   align-items: flex-start;
 
   @media (min-width: ${screenSizes.desktop}) {
-    flex-wrap: nowrap;
+    // flex-wrap: nowrap;
   }
 `;
 
@@ -57,7 +57,7 @@ const StyledListItem = styled.div<StyledListType>`
   align-items: flex-start;
   width: 100%;
   max-width: ${(props) => props.mobileWidth};
-  flex-wrap: nowrap;
+  overflow-wrap: anywhere;
   h2 {
     font: ${tokens.typographyBoldBody};
   }
@@ -89,6 +89,7 @@ const StyledFontAwesomeContainer = styled.div`
 `;
 const StyledCommentContainerMobile = styled.div`
   display: flex;
+  margin: -20px 0 -16px 0;
   @media (min-width: ${screenSizes.desktop}) {
     display: none;
   }
@@ -123,10 +124,12 @@ const StyledListItemGroupContainer = styled.div<StyledListType>`
   display: flex;
   flex-direction: column;
   margin-top: 0;
+  gap: 24px;
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     flex-flow: row wrap;
     width: 100%;
+    gap: 0;
   }
 `;
 
@@ -153,10 +156,10 @@ const NutrientsFieldListGroup = styled.div`
 const StyledCropsGroup = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
 
   @media (min-width: ${screenSizes.desktop}) {
-    flex-wrap: nowrap;
+    // flex-wrap: nowrap;
     gap: 50px;
   }
 `;

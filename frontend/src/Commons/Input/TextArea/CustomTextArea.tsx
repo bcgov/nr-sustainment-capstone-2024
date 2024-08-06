@@ -13,6 +13,7 @@ interface CustomTextAreaProps {
   label: string;
   name: string;
   id: string;
+  maxLength: number;
   placeholder: string;
   mobileWidth?: string;
   desktopWidth?: string;
@@ -23,6 +24,7 @@ const CustomTextArea: FC<CustomTextAreaProps> = ({
   id,
   placeholder,
   name,
+  maxLength,
   mobileWidth = '100%',
   desktopWidth = '100%',
 }) => (
@@ -35,6 +37,7 @@ const CustomTextArea: FC<CustomTextAreaProps> = ({
     </StyledLabel>
     <Field
       as="textarea"
+      maxLength={maxLength}
       placeholder={placeholder}
       name={name}
       id={id}
