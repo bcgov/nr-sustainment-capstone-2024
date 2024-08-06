@@ -69,7 +69,7 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
   flex-direction: column-reverse;
   gap: 20px;
   margin: auto;
-  width: 320px;
+  width: 300px;
   height: 86px;
   justify-content: flex-end;
   .nutrientsButton {

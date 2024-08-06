@@ -278,7 +278,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     label="Comments (optional)"
                     placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
                     desktopWidth="590px"
-                    mobileWidth="322px"
+                    mobileWidth="300px"
                   />
                 </StyledTextAreaContainer>
 

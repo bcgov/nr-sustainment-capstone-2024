@@ -36,7 +36,7 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
             key={`${FieldName}-${Area}-${Comment || 'NoComment'}`}
             fieldCount={fieldCount}
           >
-            <StyledListContainer gap="37px">
+            <StyledListContainer>
               <StyledListItem
                 desktopWidth="135px"
                 mobileWidth="124px"

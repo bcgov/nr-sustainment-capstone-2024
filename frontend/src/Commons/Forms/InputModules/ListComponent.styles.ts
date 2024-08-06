@@ -102,9 +102,8 @@ const StyledCommentContainerDesktop = styled.div`
   display: none;
   @media (min-width: ${screenSizes.desktop}) {
     display: flex;
-    height: 84px !important;
     flex-direction: column;
-    flex-grow: 1;
+    margin-right: 24px;
   }
 `;
 

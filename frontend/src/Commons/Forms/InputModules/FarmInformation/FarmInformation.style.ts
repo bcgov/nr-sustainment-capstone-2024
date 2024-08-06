@@ -39,6 +39,7 @@ const StyledSelectContainer = styled.div`
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     align-items: flex-end;
+    padding-right: 15px;
   }
 `;
 
