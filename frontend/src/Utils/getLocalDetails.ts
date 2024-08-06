@@ -1,0 +1,45 @@
+import Names from '@Constants/Names';
+import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
+import FieldDetailInterface from '@Interface/FieldDetailsInterface';
+
+const getLocalDetails = () => {
+  const nmpString = localStorage.getItem(Names.FARM_DETAILS);
+  try {
+    if (nmpString) return JSON.parse(nmpString);
+  } catch (err) {
+    console.error(err);
+  }
+  return null;
+};
+
+/**
+ * @desc      Load an .nmp string object from localStorage to the MainPage,
+ *            converting it to JSON and making some basic .nmp to bb mapping.
+ * @author    @GDamaso
+ */
+const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
+  const localDetails = getLocalDetails();
+  const updatedFarmDetails = { ...farmDetails };
+
+  if (localDetails) {
+    const nmpFarmDetails = localDetails.farmDetails;
+    const fieldsJSON: FieldDetailInterface[] = localDetails.years[0].Fields;
+
+    updatedFarmDetails.FarmName = nmpFarmDetails.FarmName;
+    updatedFarmDetails.Year = nmpFarmDetails.Year;
+
+    if (nmpFarmDetails.FarmRegion === 21) {
+      updatedFarmDetails.FarmRegion = 'Vancouver Island';
+    }
+
+    fieldsJSON.forEach((field) => {
+      const updateField: FieldDetailInterface = field;
+      updatedFarmDetails.Fields.push(updateField);
+    });
+    updatedFarmDetails.Fields = localDetails.years[0].Fields;
+  }
+
+  return updatedFarmDetails;
+};
+
+export { getLocalDetails, loadFarmDetails };
