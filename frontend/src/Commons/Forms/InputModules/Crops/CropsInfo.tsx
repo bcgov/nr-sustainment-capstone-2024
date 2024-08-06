@@ -153,7 +153,6 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
         break;
     }
 
-    console.log(plantsPerHa);
     return `${v1} m x ${v2} m ${res}`;
   };
 
