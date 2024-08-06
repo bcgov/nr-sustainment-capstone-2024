@@ -1,8 +1,8 @@
-import Names from '@Constants/Names';
+import LoacalStorageNames from '@Constants/LocalStorageNames';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 
 const getLocalFertilizers = () => {
-  const fertString = localStorage.getItem(Names.FERTILIZER_DETAILS);
+  const fertString = localStorage.getItem(LoacalStorageNames.FERTILIZER_DETAILS);
   try {
     if (fertString) {
       const parsedFertString = JSON.parse(fertString);

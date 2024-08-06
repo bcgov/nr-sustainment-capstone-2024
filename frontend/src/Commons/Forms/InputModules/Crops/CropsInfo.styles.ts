@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
+import * as tokens from '@bcgov/design-tokens/js';
 
 const StyledCropsSmallGroup = styled.div`
   display: flex;
@@ -9,6 +10,18 @@ const StyledCropsSmallGroup = styled.div`
   @media (min-width: ${screenSizes.desktop}) {
     justify-content: flex-start;
     width: 50vw;
+  }
+
+  #plantsPerHa {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    #plantsPerHaLabel {
+      font: ${tokens.typographyBoldLargeBody};
+    }
+    p {
+      margin: 9px 0 0 0;
+    }
   }
 `;
 const StyledCropsLargeGroup = styled.div`

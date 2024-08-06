@@ -12,10 +12,11 @@ import {
   StyledNewFieldButtonContainer,
   StyledNewFieldButtonController,
 } from '@Commons/Button/FieldButtonGroup.styles';
+import { FERTILIZERS } from '@Constants/ModuleIDs';
 
 type ButtonComponentProps = {
   addNewFertilizer: () => void;
-  handleFormState(cmd: string, toggle?: boolean, status?: string): void;
+  handleFormState(cmd: string, toggle?: boolean, status?: string, moveBackModuleID?: string): void;
 };
 
 const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
@@ -46,7 +47,9 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
           disabled={false}
           actions="secondary"
           text={ComponentText.BACK}
-          handleClick={() => handleFormState(CmdOptions.BACKWARDS)}
+          handleClick={() =>
+            handleFormState(CmdOptions.BACKWARDS, undefined, undefined, FERTILIZERS)
+          }
         />
       </StyledButtonContainer>
       <StyledButtonContainer>

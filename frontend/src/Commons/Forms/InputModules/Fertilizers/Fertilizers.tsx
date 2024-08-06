@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { faCow } from '@fortawesome/free-solid-svg-icons';
 import InputModuleInterface from '@Interface/InputModuleinterface';
-import { FERTILIZERS_INFORMATION } from '@Constants/ModuleIDs';
+import { FERTILIZERS } from '@Constants/ModuleIDs';
 import InputModuleProps from '@Interface/InputModuleProps';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import * as Yup from 'yup';
@@ -216,7 +216,7 @@ const FertilizersInfo: FC<InputModuleProps> = ({
 
 const FertilizersInfoForm: InputModuleInterface = {
   InputModuleComponent: FertilizersInfo,
-  id: FERTILIZERS_INFORMATION,
+  id: FERTILIZERS,
   name: { long: 'Fertilizer', short: 'Fertilizer' },
   faIcon: faCow,
   status: 'inactive',
