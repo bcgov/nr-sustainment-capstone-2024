@@ -61,14 +61,14 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   ];
 
   const initialValues: FieldDetailInterface = initialFarmDetails.Fields[0];
-
+  const textAreaMaxLength: number = 200;
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
     Area: Yup.number()
       .min(1, 'Area should be higher than 1')
       .max(100, 'Area should be lower than 100')
       .required('Required'),
-    Comment: Yup.string().max(200, 'Comments should be lower than 200 chars'),
+    Comment: Yup.string().max(textAreaMaxLength, 'Comments should be lower than 200 chars'),
     HasSoilTest: Yup.boolean().nullable().required('A Soil Test must be either `Yes` or `No`'),
     HasLeafTest: Yup.boolean().nullable().required('A Leaf Test must be either `Yes` or `No`'),
     SoilTest: Yup.object().when('HasSoilTest', {
@@ -276,9 +276,10 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     name="Comment"
                     id="Comment"
                     label="Comments (optional)"
+                    maxLength={textAreaMaxLength}
                     placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
                     desktopWidth="590px"
-                    mobileWidth="322px"
+                    mobileWidth="300px"
                   />
                 </StyledTextAreaContainer>
 
@@ -404,7 +405,9 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                 </StyledTestContainer>
 
                 <StyledTestContainer>
-                  <HeaderLabel>Add Leaf Test</HeaderLabel>
+                  <HeaderLabel>
+                    <h3>Add Leaf Test</h3>
+                  </HeaderLabel>
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
@@ -442,12 +445,16 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                       id="LeafTest.leafTissueP"
                       name="LeafTest.leafTissueP"
                       type="number"
+                      mobileWidth="221px"
+                      desktopWidth="226px"
                     />
                     <CustomField
                       label="Leaf tissue K (%)"
                       id="LeafTest.leafTissueK"
                       name="LeafTest.leafTissueK"
                       type="number"
+                      mobileWidth="221px"
+                      desktopWidth="226px"
                     />
                   </InputFieldsGroup>
                 )}

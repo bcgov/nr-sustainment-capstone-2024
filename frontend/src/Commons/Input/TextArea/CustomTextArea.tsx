@@ -6,13 +6,14 @@
 
 import { Field, ErrorMessage } from 'formik';
 import { FC } from 'react';
-import StyledField from './CustomTextArea.styles';
+import { StyledField, StyledLabel } from './CustomTextArea.styles';
 import '../ErrorMessage.css';
 
 interface CustomTextAreaProps {
   label: string;
   name: string;
   id: string;
+  maxLength: number;
   placeholder: string;
   mobileWidth?: string;
   desktopWidth?: string;
@@ -23,6 +24,7 @@ const CustomTextArea: FC<CustomTextAreaProps> = ({
   id,
   placeholder,
   name,
+  maxLength,
   mobileWidth = '100%',
   desktopWidth = '100%',
 }) => (
@@ -30,9 +32,12 @@ const CustomTextArea: FC<CustomTextAreaProps> = ({
     mobileWidth={mobileWidth}
     desktopWidth={desktopWidth}
   >
-    <label htmlFor={id}>{label}</label>
+    <StyledLabel>
+      <label htmlFor={id}>{label}</label>
+    </StyledLabel>
     <Field
       as="textarea"
+      maxLength={maxLength}
       placeholder={placeholder}
       name={name}
       id={id}

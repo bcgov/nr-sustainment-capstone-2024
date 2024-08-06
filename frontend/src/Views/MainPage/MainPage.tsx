@@ -213,7 +213,7 @@ const MainPage: FC = () => {
         formStates={formStates}
         isHeaderVisible={isHeaderVisible}
       />
-      <StyledMainContainer>
+      <StyledMainContainer isHeaderVisible={isHeaderVisible}>
         {formStates.map((InputModule: InputModuleInterface) => {
           if (InputModule) {
             return (

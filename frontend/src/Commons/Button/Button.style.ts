@@ -10,6 +10,7 @@ type StyledButtonProps = {
   radius: string;
   actions: string;
   landingPageButton?: boolean;
+  addButton?: boolean;
 };
 
 const StyledButton = styled.button<StyledButtonProps>`
@@ -19,7 +20,8 @@ const StyledButton = styled.button<StyledButtonProps>`
   max-height: ${(props) => (props.landingPageButton ? '40px' : '31px')};
   height: 100%;
   width: 100%;
-  max-width: ${(props) => getButtonSize(props.size, ComponentText.ISMOBILE)};
+  max-width: ${(props) =>
+    getButtonSize(props.size, ComponentText.ISMOBILE, props.landingPageButton, props.addButton)};
   background-color: ${(props) =>
     props.actions === 'primary'
       ? tokens.surfaceColorPrimaryButtonDefault
@@ -45,16 +47,17 @@ const StyledButton = styled.button<StyledButtonProps>`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    padding: 20px 30px;
-    max-width: ${(props) => getButtonSize(props.size, ComponentText.ISDESKTOP)};
+    padding: 20px 41px;
+    max-width: ${(props) =>
+      getButtonSize(props.size, ComponentText.ISDESKTOP, props.landingPageButton, props.addButton)};
     max-height: ${(props) => (props.landingPageButton ? '59px' : '31px')};
-    font: ${tokens.typographyRegularLargeBody};
   }
 `;
 
 const StyledChildrenContainer = styled.div`
   display: flex;
   align-items: center;
+  font: ${tokens.typographyRegularLargeBody};
   gap: 5px;
 `;
 

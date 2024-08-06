@@ -1,6 +1,19 @@
-const getButtonSize = (size: string, isDesktop: boolean): string => {
+const getButtonSize = (
+  size: string,
+  isDesktop: boolean,
+  landingPageButton: boolean | undefined,
+  addButton: boolean | undefined,
+): string => {
   let buttonSize;
+  let largeButtonSize;
 
+  if (landingPageButton) {
+    largeButtonSize = '483px';
+  } else if (addButton) {
+    largeButtonSize = '200px';
+  } else {
+    largeButtonSize = '62px';
+  }
   switch (size) {
     case 'sm':
       buttonSize = '62px';
@@ -9,7 +22,7 @@ const getButtonSize = (size: string, isDesktop: boolean): string => {
       buttonSize = '178px';
       break;
     case 'lg':
-      buttonSize = isDesktop ? '483px' : '322px';
+      buttonSize = isDesktop ? largeButtonSize : '322px';
       break;
     default:
       buttonSize = '100%';

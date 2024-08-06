@@ -14,7 +14,7 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
   height: 100%;
   width: 100%;
   max-height: 42px;
-  max-width: ${(props) => getButtonSize(props.size, false)};
+  max-width: ${(props) => getButtonSize(props.size, false, false, false)};
   background-color: ${tokens.surfaceColorPrimaryButtonDefault};
   color: ${tokens.typographyColorPrimaryInvert};
   border-radius: 8px;
@@ -22,7 +22,7 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
   font: ${tokens.typographyBoldLabel};
   @media (min-width: ${screenSizes.desktop}) {
     height: 100%;
-    max-width: ${(props) => getButtonSize(props.size, true)};
+    max-width: ${(props) => getButtonSize(props.size, true, false, false)};
     width: 100%;
   }
   a {

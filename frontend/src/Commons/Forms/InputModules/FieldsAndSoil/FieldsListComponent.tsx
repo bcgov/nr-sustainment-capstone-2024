@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import ComponentText from '@Constants/ComponentText';
-import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
@@ -11,11 +11,9 @@ import {
   StyledFieldInfoList,
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
-  StyledDivider,
   StyledListItemGroupContainer,
   StyledListItemGroup,
-  StyledFieldNameContainer,
-  NutrientsFieldListGroup,
+  StyledList,
 } from '../ListComponent.styles';
 
 interface FieldListProps {
@@ -34,89 +32,119 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
         const { FieldName, Area, Comment, HasSoilTest, SoilTest, HasLeafTest, LeafTest } = field;
 
         return (
-          <div key={`${FieldName}-${Area}-${Comment || 'NoComment'}`}>
+          <StyledList
+            key={`${FieldName}-${Area}-${Comment || 'NoComment'}`}
+            fieldCount={fieldCount}
+          >
             <StyledListContainer>
-              <StyledFieldNameContainer>
-                <StyledListItem width="100%">
-                  <h2>Field Name</h2>
-                  <p>{FieldName}</p>
-                </StyledListItem>
-              </StyledFieldNameContainer>
-              <StyledListItem width="100px">
+              <StyledListItem
+                desktopWidth="135px"
+                mobileWidth="124px"
+                marginRight="120px"
+              >
+                <h2>Field Name</h2>
+                <p>{FieldName}</p>
+              </StyledListItem>
+              <StyledListItem
+                desktopWidth="50px"
+                mobileWidth="50px"
+                marginRight="120px"
+              >
                 <h2>Area</h2>
                 <p>{Area}</p>
               </StyledListItem>
               <StyledCommentContainerDesktop>
-                <StyledListItem width="770px">
+                <StyledListItem desktopWidth="743px">
                   <h2>Field Comments (optional)</h2>
                   {Comment && <p>{Comment}</p>}
                 </StyledListItem>
               </StyledCommentContainerDesktop>
               <StyledFontAwesomeContainer>
                 <FontAwesomeIcon icon={faPencil} />
-                <FontAwesomeIcon icon={faTrash} />
+                <FontAwesomeIcon icon={faTrashCan} />
               </StyledFontAwesomeContainer>
             </StyledListContainer>
+
             <StyledCommentContainerMobile>
-              <StyledListItem width="100%">
+              <StyledListItem mobileWidth="322px">
                 <h2>Field Comments (optional)</h2>
                 {Comment && <p>{Comment}</p>}
               </StyledListItem>
             </StyledCommentContainerMobile>
 
             <StyledListItemGroupContainer>
-              <StyledListItem width="300px">
+              <StyledListItem
+                desktopWidth="230px"
+                mobileWidth="234px"
+                marginRight="195px"
+              >
                 <h2>Lab (Soil Test Methods)</h2>
                 <p>{HasSoilTest ? SoilTest.TestingMethod : ComponentText.NA}</p>
               </StyledListItem>
-              <StyledListItem width="180px">
+              <StyledListItem
+                desktopWidth="149px"
+                mobileWidth="136px"
+                marginRight="50px"
+              >
                 <h2>Sampling Month</h2>
                 <p>{HasSoilTest ? SoilTest.sampleDate : ComponentText.NA}</p>
               </StyledListItem>
-              <NutrientsFieldListGroup>
-                <StyledListItemGroup>
-                  <StyledListItem width="180px">
-                    <div className="smallItems">
-                      <h2>NO3-N (ppm)</h2>
-                      <p>{HasSoilTest ? SoilTest.valNO3H : ComponentText.NA}</p>
-                    </div>
-                  </StyledListItem>
-                  <StyledListItem width="180px">
-                    <div className="smallItems">
-                      <h2>P (ppm)</h2>
-                      <p>{HasSoilTest ? SoilTest.ValP : highValue}</p>
-                    </div>
-                  </StyledListItem>
-                </StyledListItemGroup>
-                <StyledListItemGroup>
-                  <StyledListItem width="180px">
-                    <div className="smallItems">
-                      <h2>K (ppm)</h2>
-                      <p>{HasSoilTest ? SoilTest.valK : highValue}</p>
-                    </div>
-                  </StyledListItem>
-                  <StyledListItem width="180px">
-                    <div className="smallItems">
-                      <h2>pH</h2>
-                      <p>{HasSoilTest ? SoilTest.valPH : highPH}</p>
-                    </div>
-                  </StyledListItem>
-                </StyledListItemGroup>
-              </NutrientsFieldListGroup>
+              <StyledListItemGroup desktopWidth="25%">
+                <StyledListItem
+                  desktopWidth="128px"
+                  mobileWidth="180px"
+                  marginRight="50px"
+                >
+                  <h2>NO3-N (ppm)</h2>
+                  <p>{HasSoilTest ? SoilTest.valNO3H : ComponentText.NA}</p>
+                </StyledListItem>
+                <StyledListItem
+                  desktopWidth="104px"
+                  mobileWidth="180px"
+                >
+                  <h2>P (ppm)</h2>
+                  <p>{HasSoilTest ? SoilTest.ValP : highValue}</p>
+                </StyledListItem>
+              </StyledListItemGroup>
+              <StyledListItemGroup desktopWidth="25%">
+                <StyledListItem
+                  desktopWidth="104px"
+                  mobileWidth="180px"
+                  marginRight="50px"
+                >
+                  <h2>K (ppm)</h2>
+                  <p>{HasSoilTest ? SoilTest.valK : highValue}</p>
+                </StyledListItem>
+                <StyledListItem
+                  desktopWidth="26px"
+                  mobileWidth="180px"
+                  marginRight="50px"
+                >
+                  <h2>pH</h2>
+                  <p>{HasSoilTest ? SoilTest.valPH : highPH}</p>
+                </StyledListItem>
+              </StyledListItemGroup>
             </StyledListItemGroupContainer>
-            <StyledListItemGroup>
-              <StyledListItem width="180px">
-                <h2>Leaf Tissue P(%)</h2>
-                <p>{HasLeafTest ? LeafTest.leafTissueP : highValue}</p>
-              </StyledListItem>
-              <StyledListItem width="180px">
-                <h2>Leaf Tissue K(%)</h2>
-                <p>{HasLeafTest ? LeafTest.leafTissueK : highValue}</p>
-              </StyledListItem>
-            </StyledListItemGroup>
-
-            {fieldCount > 1 && <StyledDivider />}
-          </div>
+            <StyledListItemGroupContainer>
+              <StyledListItemGroup desktopWidth="50%">
+                <StyledListItem
+                  desktopWidth="145px"
+                  mobileWidth="180px"
+                  marginRight="110px"
+                >
+                  <h2>Leaf Tissue P(%)</h2>
+                  <p>{HasLeafTest ? LeafTest.leafTissueP : highValue}</p>
+                </StyledListItem>
+                <StyledListItem
+                  desktopWidth="146px"
+                  mobileWidth="180px"
+                >
+                  <h2>Leaf Tissue K(%)</h2>
+                  <p>{HasLeafTest ? LeafTest.leafTissueK : highValue}</p>
+                </StyledListItem>
+              </StyledListItemGroup>
+            </StyledListItemGroupContainer>
+          </StyledList>
         );
       })}
     </StyledFieldInfoList>

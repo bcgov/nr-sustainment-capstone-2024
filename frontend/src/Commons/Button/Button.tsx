@@ -15,6 +15,7 @@ type ButtonProps = {
   actions?: ButtonActions;
   children?: React.ReactNode;
   landingPageButton?: boolean;
+  addButton?: boolean;
 };
 
 const Button = ({
@@ -27,6 +28,7 @@ const Button = ({
   actions = 'primary',
   children,
   landingPageButton = false,
+  addButton = false,
 }: ButtonProps) => {
   const handleClickWrapper = () => {
     if (handleClick) {
@@ -44,6 +46,7 @@ const Button = ({
       radius={radius}
       actions={actions}
       landingPageButton={landingPageButton}
+      addButton={addButton}
     >
       <StyledChildrenContainer>
         {children}
