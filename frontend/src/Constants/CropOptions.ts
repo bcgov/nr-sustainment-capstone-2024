@@ -45,12 +45,12 @@ const PlantAgeOptions: OptionInterface[] = [
     label: '8',
   },
   {
-    value: '9 or more',
+    value: '9',
     label: '9 or more',
   },
 ];
 
-const PlantsPerAcre: OptionInterface[] = [
+const PlantsPerAcreOptions: OptionInterface[] = [
   {
     value: '2498',
     label: '2498',
@@ -80,26 +80,26 @@ const PlantsPerAcre: OptionInterface[] = [
 const DistanceBtwnPlants: OptionInterface[] = [
   {
     value: '0.6',
-    label: '0.6',
+    label: '0.6 m (2 ft)',
   },
   {
     value: '0.75',
-    label: '0.75',
+    label: '0.75 m (2.5 ft)',
   },
   {
     value: '0.9',
-    label: '0.9',
+    label: '0.9 m (3 ft)',
   },
 ];
 
 const DistanceBtwnRows: OptionInterface[] = [
   {
     value: '2.7',
-    label: '2.7',
+    label: '2.7 m (9 ft)',
   },
   {
     value: '3.0',
-    label: '3.0',
+    label: '3.0 m (10 ft)',
   },
 ];
 
@@ -135,7 +135,7 @@ const WherePruningsGo: OptionInterface[] = [
 export {
   CropIDOptions,
   PlantAgeOptions,
-  PlantsPerAcre,
+  PlantsPerAcreOptions,
   DistanceBtwnPlants,
   DistanceBtwnRows,
   YesOrNo,
