@@ -18,6 +18,7 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
     flex-direction: row;
     align-items: center;
     width: 100%;
+    padding-right: 9px;
   }
 `;
 const StyledButtonContainer = styled.div<FormProps>`
@@ -35,7 +36,8 @@ const StyledNewFieldButtonController = styled.div`
   margin-bottom: 20px;
   justify-content: center;
   @media (min-width: ${screenSizes.desktop}) {
-    width: 178px;
+    width: 159px;
+    white-space: nowrap;
   }
 `;
 
@@ -45,6 +47,7 @@ const StyledAddCancelButtonContainer = styled.div<FormProps>`
   gap: 24px;
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
+    gap: 40px;
     margin-top: 10px;
   }
 `;
@@ -52,7 +55,7 @@ const StyledNewFieldButtonContainer = styled.div<FormProps>`
   position: relative;
   top: 15px;
   width: 100%;
-  margin-bottom: ${(props) => (props.formCrops ? '40cpx' : '0')};
+  margin-bottom: ${(props) => (props.formCrops ? '40px' : '0')};
   @media (min-width: ${screenSizes.desktop}) {
     left: 0;
   }

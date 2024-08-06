@@ -62,6 +62,8 @@ const ToggleContainer = styled.div`
     display: flex;
     gap: 10px;
     position: absolute;
+    align-items: center;
+    justify-content: center;
     left: calc(100vw - 2%);
     transform: translateX(-100%);
   }

@@ -15,14 +15,14 @@ interface CropsListComponentProps {
 const CropsList: FC<CropsListComponentProps> = ({ field }) => (
   <StyledFieldInfoList>
     <StyledListContainer>
-      <StyledListItem width="240px">
+      <StyledListItem desktopWidth="240px">
         <h2>Field Name</h2>
         <p key={field.FieldName}>{field.FieldName}</p>
       </StyledListItem>
       <StyledCropsGroup>
         {field.Crops.map((crop: CropsDetailsInterface, idx: number) => (
           <StyledListItem
-            width="50%"
+            desktopWidth="50%"
             key={crop.id}
           >
             <div className="CropsList">

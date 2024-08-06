@@ -39,4 +39,17 @@ const StyledField = styled.div<StyledFieldProps>`
   }
 `;
 
-export default StyledField;
+const StyledLabel = styled.div`
+  label {
+    display: flex;
+    align-items: flex-end;
+    font: ${tokens.typographyBoldSmallBody};
+  }
+  @media (min-width: ${screenSizes.desktop}) {
+    label {
+      font: ${tokens.typographyBoldLargeBody};
+    }
+  }
+`;
+
+export { StyledField, StyledLabel };
