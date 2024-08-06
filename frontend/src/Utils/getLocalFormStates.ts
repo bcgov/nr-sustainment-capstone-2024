@@ -1,8 +1,8 @@
-import Names from '@Constants/Names';
+import LoacalStorageNames from '@Constants/LocalStorageNames';
 import InputModuleInterface from '@Interface/InputModuleinterface';
 
 const getLocalFormStates = () => {
-  const stateStr = localStorage.getItem(Names.FORM_STATES);
+  const stateStr = localStorage.getItem(LoacalStorageNames.FORM_STATES);
   try {
     if (stateStr) return JSON.parse(stateStr);
   } catch (err) {
