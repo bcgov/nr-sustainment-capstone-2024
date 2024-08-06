@@ -63,7 +63,7 @@ const FarmInfoComponent: FC<InputModuleProps> = ({
       farmInformation.FarmRegion = values.FarmRegion;
       farmInformation.HasBerries = true; // will always be true for now
       // Update the Main Data Object
-      updateFarmDetails(farmInformation);
+      updateFarmDetails(farmInformation, FARM_INFORMATION);
       setSubmitting(false);
     }, 400);
   };
