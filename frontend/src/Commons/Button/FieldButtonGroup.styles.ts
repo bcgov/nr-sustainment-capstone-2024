@@ -36,7 +36,8 @@ const StyledNewFieldButtonController = styled.div`
   margin-bottom: 20px;
   justify-content: center;
   @media (min-width: ${screenSizes.desktop}) {
-    width: 200px;
+    width: 159px;
+    white-space: nowrap;
   }
 `;
 
