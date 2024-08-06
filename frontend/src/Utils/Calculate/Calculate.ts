@@ -4,9 +4,8 @@ import AgronomicBalanceInterface from '@Interface/AgronomicBalanceInterface';
 import CropRemovalBalanceInterface from '@Interface/CropRemovalBalance';
 import MainBalanceInterface from '@Interface/MainBalanceInterface';
 import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
-import * as calcData from './calculation-data/raspberryCalculation.json';
-
-function calcN(calcLogic: CalcLogic, yieldValue: number, sawdust?: boolean): number {
+import * as raspberryTable from './calculation-data/raspberryCalculation.json';
+import * as blueberryTable from './calculation-data/blueberryCalculation.json';
   const { sawdustAddition } = calcLogic;
   const NYieldRanges = calcLogic.yieldRanges;
   let N = 0;
@@ -86,6 +85,9 @@ function Calculate(field: FieldDetailInterface, crop: CropsDetailsInterface) {
   const agronomicBalance: AgronomicBalanceInterface = { N: 0, P: 0, K: 0 };
   const cropRemovalBalance: CropRemovalBalanceInterface = { P: 0, K: 0 };
   const isRemovedFromField = crop.whereWillPruningsGo === 'Removed from field';
+  // Raspberry id is 76 is NMP
+  const isRaspberry = crop.id === 76;
+  const calcTable: CalculationTable = isRaspberry ? raspberryTable : blueberryTable;
 
   agronomicBalance.N = calcN(
     calcTable.agronomicBalance.nitrogenCalculation.logic,
