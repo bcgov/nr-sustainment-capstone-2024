@@ -111,7 +111,7 @@ function Calculate(field: FieldDetailInterface, crop: CropsDetailsInterface) {
     crop.yield,
     crop.willSawdustBeApplied,
     isRaspberry,
-    parseInt(crop.plantAgeYears) ?? undefined,
+    parseInt(crop.plantAgeYears, 10) ?? undefined,
     crop.numberOfPlantsPerAcre ?? undefined,
   );
 
