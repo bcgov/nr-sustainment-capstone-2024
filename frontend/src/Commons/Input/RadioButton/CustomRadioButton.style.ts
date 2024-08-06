@@ -23,10 +23,33 @@ const StyledRadio = styled.div`
   gap: 11px;
   padding-right: 10px;
 
-  input {
+  input[type='radio'] {
+    appearance: none;
     width: 24px;
-  }
+    height: 24px;
+    border: 2px solid ${tokens.typographyColorSecondary};
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
 
+    &:checked {
+      border-color: black;
+      background-color: white;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: black;
+        margin: 4px;
+      }
+    }
+  }
   label {
     font: ${tokens.typographyRegularSmallBody};
     color: ${tokens.typographyColorSecondary};

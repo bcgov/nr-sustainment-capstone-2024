@@ -33,13 +33,12 @@ const StyledFarmInfo = styled.div<FormProps>`
 const StyledTextAreaContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 30px;
 
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
-    justify-content: flex-start;
   }
 `;
 

@@ -89,7 +89,6 @@ const StyledFontAwesomeContainer = styled.div`
 `;
 const StyledCommentContainerMobile = styled.div`
   display: flex;
-
   @media (min-width: ${screenSizes.desktop}) {
     display: none;
   }
