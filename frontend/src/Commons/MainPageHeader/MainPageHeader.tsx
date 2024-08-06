@@ -2,13 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import Toggle from '@Commons/Toggle/Toggle';
 import InformationIcons from '@Commons/InformationIcons/InformationIcons';
 import ToggleText from '@Constants/ToggleText';
-import {
-  StyledHeader,
-  Logo,
-  Title,
-  ToggleContainer,
-  InfoButtonContainer,
-} from './MainPageHeader.styles';
+import { StyledHeader, Logo, Title, ToggleContainer } from './MainPageHeader.styles';
 
 interface MainPageHeaderProps {
   toggleEnabled?: boolean;
@@ -27,15 +21,13 @@ const MainPageHeader = ({
     </a>
     <Title>Better Berries</Title>
     <ToggleContainer>
-      <InfoButtonContainer>
-        <InformationIcons
-          text={ToggleText}
-          toggleIcon
-          rightPositioned
-          headerDesktop
-          toggleEnabled
-        />
-      </InfoButtonContainer>
+      <InformationIcons
+        text={ToggleText}
+        toggleIcon
+        rightPositioned
+        headerDesktop
+        toggleEnabled
+      />
       <Toggle
         toggleEnabled={toggleEnabled}
         onToggleChange={setToggleEnabled}

@@ -69,7 +69,4 @@ const ToggleContainer = styled.div`
   }
 `;
 
-const InfoButtonContainer = styled.div`
-  margin-top: 3px;
-`;
-export { StyledHeader, Logo, Title, ToggleContainer, InfoButtonContainer };
+export { StyledHeader, Logo, Title, ToggleContainer };
