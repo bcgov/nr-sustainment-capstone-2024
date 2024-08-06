@@ -64,7 +64,7 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
                 <FontAwesomeIcon icon={faTrashCan} />
               </StyledFontAwesomeContainer>
             </StyledListContainer>
-            
+
             <StyledCommentContainerMobile>
               <StyledListItem mobileWidth="322px">
                 <h2>Field Comments (optional)</h2>
