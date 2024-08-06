@@ -12,11 +12,12 @@ import {
   StyledNewFieldButtonContainer,
   StyledNewFieldButtonController,
 } from '@Commons/Button/FieldButtonGroup.styles';
+import { FIELDS_AND_SOIL } from '@Constants/ModuleIDs';
 
 type ButtonComponentProps = {
   addNewField: () => void;
   updateFarmDetails: (newFarmDetails: FarmDetailsInterface) => void;
-  handleFormState(cmd: string, toggle?: boolean, status?: string): void;
+  handleFormState(cmd: string, toggle?: boolean, status?: string, moveBackModuleID?: string): void;
   farmDetails: FarmDetailsInterface;
 };
 
@@ -50,7 +51,9 @@ const FieldsButtonComponent: FC<ButtonComponentProps> = ({
           disabled={false}
           actions="secondary"
           text={ComponentText.BACK}
-          handleClick={() => handleFormState(CmdOptions.BACKWARDS)}
+          handleClick={() =>
+            handleFormState(CmdOptions.BACKWARDS, undefined, undefined, FIELDS_AND_SOIL)
+          }
         />
       </StyledButtonContainer>
       <StyledButtonContainer>

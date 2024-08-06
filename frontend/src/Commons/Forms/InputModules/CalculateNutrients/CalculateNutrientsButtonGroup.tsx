@@ -8,9 +8,10 @@ import {
   StyledButtonContainer,
   StyledAddCancelButtonContainer,
 } from '@Commons/Button/FieldButtonGroup.styles';
+import { CALCULATE_NUTRIENTS } from '@Constants/ModuleIDs';
 
 type ButtonComponentProps = {
-  handleFormState(cmd: string, toggle?: boolean, status?: string): void;
+  handleFormState(cmd: string, toggle?: boolean, status?: string, moveBackModuleID?: string): void;
 };
 
 const CalculationButtonGroup: FC<ButtonComponentProps> = ({ handleFormState }) => (
@@ -23,7 +24,9 @@ const CalculationButtonGroup: FC<ButtonComponentProps> = ({ handleFormState }) =
           disabled={false}
           actions="secondary"
           text={ComponentText.BACK}
-          handleClick={() => handleFormState(CmdOptions.BACKWARDS)}
+          handleClick={() =>
+            handleFormState(CmdOptions.BACKWARDS, undefined, undefined, CALCULATE_NUTRIENTS)
+          }
         />
       </StyledButtonContainer>
       <StyledButtonContainer>

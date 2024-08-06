@@ -450,7 +450,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
 const CalculateNutrients: InputModuleInterface = {
   InputModuleComponent: CalculateNutrientsComponent,
   id: CALCULATE_NUTRIENTS,
-  name: { long: 'Calculation', short: 'Calculation' },
+  name: { long: 'Calculate Nutrients', short: 'Calculation' },
   faIcon: faCalculator,
   status: 'inactive',
   enable: false,
