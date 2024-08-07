@@ -100,7 +100,7 @@ const StyledTable = styled.table`
   }
 
   tbody tr:nth-of-type(odd) {
-    background-color: #f2f2f2;
+    background-color: ${tokens.themeGray30};
   }
 
   td {
