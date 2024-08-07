@@ -6,7 +6,7 @@
       "description": "Calculates Nitrogen requirement in lb/ac based on sawdust usage and blueberry field plants age.",
       "params": {
         "sawdust": "boolean",
-        "Yield": "Yield (Tons/Ac)"
+        "Yield": "Yield (Tons/Ac) (Not used for blueberries)"
       },
       "logic": {
         "N": 0,

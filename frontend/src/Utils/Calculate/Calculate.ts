@@ -4,34 +4,51 @@ import AgronomicBalanceInterface from '@Interface/AgronomicBalanceInterface';
 import CropRemovalBalanceInterface from '@Interface/CropRemovalBalance';
 import MainBalanceInterface from '@Interface/MainBalanceInterface';
 import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
-import * as calcData from './calculation-data/raspberryCalculation.json';
+import * as raspberryTable from './calculation-data/raspberryCalculation.json';
+import * as blueberryTable from './calculation-data/blueberryCalculation.json';
 
-function calcN(calcLogic: CalcLogic, yieldValue: number, sawdust?: boolean): number {
+function calcN(
+  calcLogic: CalcLogic,
+  yieldValue: number,
+  sawdust?: boolean,
+  isRaspberry?: boolean,
+  plantAge?: number,
+  plantDensity?: number,
+): number {
   const { sawdustAddition } = calcLogic;
   const NYieldRanges = calcLogic.yieldRanges;
   let N = 0;
 
   if (!sawdustAddition || !NYieldRanges) {
-    console.error(
-      'Missing details in calculationTable/agronomicBalance/sawdustAddition || NYieldRanges',
-    );
+    console.error('Missing details in calculationTable/agronomicBalance/sawdustAddition');
     return 0;
+  }
+
+  if (!isRaspberry && plantAge && plantDensity) {
+    NYieldRanges.forEach((range) => {
+      if (
+        (range.min === undefined || plantAge >= range.min) &&
+        (range.max === undefined || plantAge < range.max)
+      ) {
+        N += (range.addition * plantDensity) / 1000 / 1.12;
+      }
+    });
+  } else {
+    NYieldRanges.forEach((range) => {
+      if (
+        (range.min === undefined || yieldValue >= range.min) &&
+        (range.max === undefined || yieldValue < range.max)
+      ) {
+        N += range.addition;
+      }
+    });
   }
 
   if (sawdust) {
     N += sawdustAddition;
   }
 
-  NYieldRanges.forEach((range) => {
-    if (
-      (range.min === undefined || yieldValue >= range.min) &&
-      (range.max === undefined || yieldValue < range.max)
-    ) {
-      N += range.addition;
-    }
-  });
-
-  return N * -1;
+  return Math.round(N * -1);
 }
 
 function calcPK(calcLogic: CalcLogic, soilTest: number, leafTissue: number): number {
@@ -82,15 +99,20 @@ function calcRemovalPK(rmCoeficients: CalcLogic, cropYield: number, isPruned?: b
 // It is mostly a proof of correct calculations being applied
 // For this reason, it is scoped to the first field first crop only at this point
 function Calculate(field: FieldDetailInterface, crop: CropsDetailsInterface) {
-  const calcTable: CalculationTable = calcData;
   const agronomicBalance: AgronomicBalanceInterface = { N: 0, P: 0, K: 0 };
   const cropRemovalBalance: CropRemovalBalanceInterface = { P: 0, K: 0 };
   const isRemovedFromField = crop.whereWillPruningsGo === 'Removed from field';
+  // Raspberry id is 76 is NMP
+  const isRaspberry = crop.cropId === '76';
+  const calcTable: CalculationTable = isRaspberry ? raspberryTable : blueberryTable;
 
   agronomicBalance.N = calcN(
     calcTable.agronomicBalance.nitrogenCalculation.logic,
     crop.yield,
     crop.willSawdustBeApplied,
+    isRaspberry,
+    parseInt(crop.plantAgeYears, 10) ?? undefined,
+    crop.numberOfPlantsPerAcre ?? undefined,
   );
 
   agronomicBalance.P = calcPK(
