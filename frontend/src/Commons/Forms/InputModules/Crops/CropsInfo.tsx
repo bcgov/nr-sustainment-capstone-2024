@@ -164,7 +164,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
       cropId: values.cropId,
       yield: values.yield,
       plantAgeYears: values.plantAgeYears,
-      numberOfPlantsPerAcre: values.numberOfPlantsPerAcre,
+      numberOfPlantsPerAcre: plantsPerHa,
       distanceBtwnPlantsRows: appendDistanceBtwnPlants(
         values.distanceBtwnPlants,
         values.distanceBtwnRows,
