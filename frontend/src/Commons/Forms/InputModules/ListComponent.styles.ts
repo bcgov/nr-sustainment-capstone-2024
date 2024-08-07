@@ -36,10 +36,6 @@ const StyledListContainer = styled.div<StyledListType>`
   flex-direction: row;
   gap: ${(props) => props.gap};
   align-items: flex-start;
-
-  @media (min-width: ${screenSizes.desktop}) {
-    // flex-wrap: nowrap;
-  }
 `;
 
 const StyledFieldNameContainer = styled.div`
@@ -102,22 +98,6 @@ const StyledCommentContainerDesktop = styled.div`
     flex-direction: column;
     margin-right: 24px;
   }
-`;
-
-const StyledDivider = styled.div`
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 30.61px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: ${tokens.typographyColorPlaceholder};
-  flex: 1;
-  content: '';
-  padding: 1px;
-  background-color: ${tokens.typographyColorPlaceholder};
-  width: 100%;
-  margin: auto;
 `;
 
 const StyledListItemGroupContainer = styled.div<StyledListType>`
@@ -185,7 +165,6 @@ export {
   StyledFieldInfoList,
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
-  StyledDivider,
   StyledListItemGroupContainer,
   StyledListItemGroup,
   StyledCropsGroup,
