@@ -62,6 +62,7 @@ const StyledListItem = styled.div<StyledListType>`
   }
   .CropsList {
     display: flex;
+    width: 100%;
     gap: 5px;
   }
   @media (min-width: ${screenSizes.desktop}) {
@@ -155,9 +156,11 @@ const NutrientsFieldListGroup = styled.div`
 const StyledCropsGroup = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
+  gap: 65px;
 
   @media (min-width: ${screenSizes.desktop}) {
-    gap: 50px;
+    gap: 110px;
   }
 `;
 

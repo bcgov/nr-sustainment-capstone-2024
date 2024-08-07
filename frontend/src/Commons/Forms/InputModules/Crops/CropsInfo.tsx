@@ -41,10 +41,8 @@ import {
   StyledCropsLargeGroup,
   StyledAddCancelButtonGroup,
   StyledNoCropsInfoContainer,
-  StyledAreaContainer,
 } from './CropsInfo.styles';
 import CropsButtonGroup from './CropsButtonGroup';
-import { StyledDivider } from '../ListComponent.styles';
 
 const checkHasCrops = (Fields: FieldDetailInterface[]) => {
   let hasCrop = false;
@@ -196,8 +194,10 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     <>
       {farmDetails.Fields.map((field: FieldDetailInterface, index: number) => (
         <div key={`${field.FieldName}${field.Area}${field.Comment}`}>
-          <StyledDivider />
-          <CropsList field={field} />
+          <CropsList
+            field={field}
+            farmDetails={farmDetails}
+          />
 
           <Formik
             initialValues={cropInitialValues}
@@ -221,21 +221,19 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         id="cropId"
                         label="Crop"
                         options={CropIDOptions}
-                        desktopWidth="212px"
+                        desktopWidth="226px"
                         mobileWidth="137px"
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
-                      <StyledAreaContainer>
-                        <CustomField
-                          label="Yield"
-                          id="yield"
-                          name="yield"
-                          type="number"
-                          desktopWidth="107px"
-                          mobileWidth="88px"
-                        />
-                        <p>tons/ac</p>
-                      </StyledAreaContainer>
+                      <CustomField
+                        label="Yield"
+                        id="yield"
+                        name="yield"
+                        type="number"
+                        acres="tons/ac"
+                        desktopWidth="107px"
+                        mobileWidth="88px"
+                      />
                     </StyledCropsSmallGroup>
                     {values.cropId === '75' && (
                       <>
@@ -326,111 +324,6 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         text={ComponentText.ADD}
                       />
                     </StyledButtonGroupContainer>
-                    {/* <StyledCropsSmallGroup>
-                      <CustomSelect
-                        name="cropId"
-                        id="cropId"
-                        label="Crop"
-                        options={CropIDOptions}
-                        desktopWidth="212px"
-                        mobileWidth="137px"
-                        onChange={(e) => handleChange(e, setFieldValue)}
-                      />
-                      <StyledAreaContainer formCrops>
-                        <CustomField
-                          label="Yield"
-                          id="yield"
-                          name="yield"
-                          type="number"
-                          desktopWidth="107px"
-                          mobileWidth="88px"
-                        />
-                        <p>tons/ac</p>
-                      </StyledAreaContainer>
-                    </StyledCropsSmallGroup>
-                    {values.cropId === '75' && (
-                      <>
-                        <StyledCropsSmallGroup>
-                          <CustomSelect
-                            name="plantAgeYears"
-                            id="plantAgeYears"
-                            label="Plant age (Years)"
-                            options={PlantAgeOptions}
-                            desktopWidth="40%"
-                            onChange={(e) => handleChange(e, setFieldValue)}
-                          />
-                          <div id="plantsPerHa">
-                            <p id="plantsPerHaLabel">Plants per Acre</p>
-                            <p>{plantsPerHa}</p>
-                          </div>
-                        </StyledCropsSmallGroup>
-                        <StyledCropsLargeGroup>
-                          <CustomSelect
-                            name="distanceBtwnPlants"
-                            id="distanceBtwnPlants"
-                            label="Distance between plants"
-                            options={DistanceBtwnPlants}
-                            desktopWidth="40%"
-                            onChange={(e) => handleChange(e, setFieldValue)}
-                          />
-                          <CustomSelect
-                            name="distanceBtwnRows"
-                            id="distanceBtwnRows"
-                            label="Distance between rows"
-                            options={DistanceBtwnRows}
-                            desktopWidth="40%"
-                            onChange={(e) => handleChange(e, setFieldValue)}
-                          />
-                        </StyledCropsLargeGroup>
-                      </>
-                    )}
-                    <StyledCropsLargeGroup>
-                      <CustomSelect
-                        name="willPlantsBePruned"
-                        id="willPlantsBePruned"
-                        label="Will plants be pruned?"
-                        options={YesOrNo}
-                        desktopWidth="40%"
-                        onChange={(e) => handleChange(e, setFieldValue)}
-                      />
-                      <CustomSelect
-                        name="whereWillPruningsGo"
-                        id="whereWillPruningsGo"
-                        label="Where will prunings go?"
-                        options={WherePruningsGo}
-                        desktopWidth="40%"
-                        onChange={(e) => handleChange(e, setFieldValue)}
-                      />
-                    </StyledCropsLargeGroup>
-                    <StyledCropsLargeGroup>
-                      <CustomSelect
-                        name="willSawdustBeApplied"
-                        id="willSawdustBeApplied"
-                        label="Is sawdust or wood mulch applied within 6 months prior to the growing season?"
-                        options={YesOrNo}
-                        desktopWidth="100"
-                        text={sawDustInfo}
-                        rightPositioned
-                        toggleEnabled={toggleEnabled}
-                        onChange={(e) => handleChange(e, setFieldValue)}
-                      />
-                    </StyledCropsLargeGroup>
-                    <StyledButtonGroupContainer>
-                      <Button
-                        type="reset"
-                        size="lg"
-                        disabled={false}
-                        actions="secondary"
-                        text={ComponentText.CANCEL}
-                        handleClick={() => showFormHandler(index)}
-                      />
-                      <Button
-                        type="submit"
-                        size="lg"
-                        disabled={false}
-                        text={ComponentText.ADD}
-                      />
-                    </StyledButtonGroupContainer> */}
                   </StyledFarmInfo>
                 </Form>
               )
@@ -446,6 +339,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                   disabled={false}
                   radius="50px"
                   actions="secondary"
+                  addButton
                   text={ComponentText.ADD_CROP}
                   handleClick={() => {
                     handleFormState(CROPS_INFORMATION, undefined, ACTIVE);

@@ -51,4 +51,26 @@ const StyledLabel = styled.div<StyledLabelProps>`
   }
 `;
 
-export { StyledField, StyledLabel };
+const StyledInputField = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 21px;
+
+  span {
+    display: flex;
+    align-items: center;
+    height: 21px;
+    font: ${tokens.typographyRegularLabel};
+  }
+
+  input {
+    height: 100%;
+  }
+
+  @media (min-width: ${screenSizes.desktop}) {
+    font: ${tokens.typographyRegularSmallBody};
+  }
+`;
+
+export { StyledField, StyledLabel, StyledInputField };
