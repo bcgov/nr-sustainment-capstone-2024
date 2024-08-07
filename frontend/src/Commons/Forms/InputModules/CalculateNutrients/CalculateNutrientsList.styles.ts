@@ -15,7 +15,7 @@ const StyledH3HeaderItem = styled.div<CalculationListProps>`
   display: flex;
   align-items: center;
   min-height: 25px;
-  width: ${(props) => props.width};
+  width: 100%;
   h3 {
     font: ${tokens.typographyBoldSmallBody};
     text-align: center;
@@ -39,6 +39,9 @@ const StyledH4HeaderContainer = styled.div`
 
 const StyledH4HeaderItem = styled.div<CalculationListProps>`
   width: ${(props) => props.width};
+  display: flex;
+  justify-content: center;
+  align-items: center;
   h4 {
     font: ${tokens.typographyBoldSmallBody};
   }
@@ -85,21 +88,54 @@ const StyledPItemList = styled.div`
   }
 `;
 
-const DesktopView = styled.div`
-  display: none;
-
+const CalcList = styled.div`
+  flex-direction: column;
   @media (min-width: ${screenSizes.desktop}) {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
 `;
 
-const MobileView = styled.div`
+const StyledAgronomic = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  justiy-content: center;
+  align-items: center;
+`;
+
+const StyledRemoval = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justiy-content: center;
+  align-items: center;
+`;
+
+// Pretty good tutorial on how to use grids
+// https://www.youtube.com/watch?v=9zBsdzdE4sM
+const StyledGrid = styled.div`
+  display: grid;
+  justify-content: space-around;
+  grid-template-columns: auto auto auto;
+  align-content: center;
+  /* grid-auto-rows: minmax(38px, auto); */
+  width: 100%;
+
+  // Make fertilizers and StyledDivider a row
+  .fullRow {
+    grid-column-start: 1;
+    grid-column-end: 5;
+  }
 
   @media (min-width: ${screenSizes.desktop}) {
-    display: none;
+    .cropRemoval {
+    }
+    .cropRemovalCol1 {
+      /* This is not working, but is the best solution I can come up */
+      /* today... I'll try again tomorrow :) */
+      /* display: none; */
+    }
   }
 `;
 
@@ -112,6 +148,8 @@ export {
   StyledPItem,
   StyledPItemList,
   StyledPContainer,
-  DesktopView,
-  MobileView,
+  CalcList,
+  StyledGrid,
+  StyledAgronomic,
+  StyledRemoval,
 };
