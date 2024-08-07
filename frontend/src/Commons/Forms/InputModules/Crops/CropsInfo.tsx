@@ -223,6 +223,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         options={CropIDOptions}
                         desktopWidth="226px"
                         mobileWidth="137px"
+                        CropField
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
                       <CustomField
@@ -230,9 +231,10 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         id="yield"
                         name="yield"
                         type="number"
+                        isYield
                         acres="tons/ac"
-                        desktopWidth="107px"
-                        mobileWidth="88px"
+                        desktopWidth="161px"
+                        mobileWidth="137px"
                       />
                     </StyledCropsSmallGroup>
                     {values.cropId === '75' && (

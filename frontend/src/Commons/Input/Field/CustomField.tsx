@@ -19,6 +19,7 @@ interface CustomFieldProps {
   rightPositioned?: boolean;
   toggleEnabled?: boolean;
   acres?: string;
+  isYield?: boolean;
 }
 
 const CustomField: FC<CustomFieldProps> = ({
@@ -30,14 +31,12 @@ const CustomField: FC<CustomFieldProps> = ({
   desktopWidth = '100%',
   text,
   acres,
+  isYield,
   rightPositioned,
   toggleEnabled = false,
 }) => (
-  <StyledField
-    mobileWidth={mobileWidth}
-    desktopWidth={desktopWidth}
-  >
-    <StyledLabel hasText={!text}>
+  <StyledField isYield={isYield}>
+    <StyledLabel>
       <label htmlFor={id}>{label}</label>
       {text && (
         <span>
@@ -49,7 +48,10 @@ const CustomField: FC<CustomFieldProps> = ({
         </span>
       )}
     </StyledLabel>
-    <StyledInputField>
+    <StyledInputField
+      mobileWidth={mobileWidth}
+      desktopWidth={desktopWidth}
+    >
       <Field
         name={name}
         id={id}

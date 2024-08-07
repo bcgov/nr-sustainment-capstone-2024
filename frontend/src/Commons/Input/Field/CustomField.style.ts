@@ -13,31 +13,15 @@ type StyledFieldProps = {
 
 type StyledLabelProps = {
   hasText?: boolean;
+  isYield?: boolean;
 };
 
-const StyledField = styled.div<StyledFieldProps>`
+const StyledField = styled.div<StyledLabelProps>`
   display: flex;
   flex-direction: column;
-
-  input {
-    border: solid 1px ${tokens.surfaceColorBorderDefault};
-    border-radius: 3px;
-    width: ${(props) => props.mobileWidth};
-    height: 21px;
-    font: ${tokens.typographyRegularLabel};
-  }
-
-  @media (min-width: ${screenSizes.desktop}) {
-    // margin-top: 24px;
-
-    input {
-      width: ${(props) => props.desktopWidth};
-      font: ${tokens.typographyRegularSmallBody};
-      height: 21px;
-    }
-  }
+  gap: ${(props) => (props.isYield ? '4px' : '0')};
 `;
-const StyledLabel = styled.div<StyledLabelProps>`
+const StyledLabel = styled.div`
   display: flex;
   gap: 20px;
   label {
@@ -51,26 +35,51 @@ const StyledLabel = styled.div<StyledLabelProps>`
   }
 `;
 
-const StyledInputField = styled.div`
-  display: inline-flex;
-  align-items: center;
+const StyledInputField = styled.div<StyledFieldProps>`
+  width: ${(props) => props.mobileWidth};
+  display: flex;
   gap: 5px;
-  height: 21px;
-
+  input {
+    width: 100%;
+    border: solid 1px ${tokens.themeGray40};
+    border-radius: 3px;
+    height: 21px;
+    background-color: ${tokens.themeGrayWhite};
+    font: ${tokens.typographyRegularLabel};
+  }
   span {
     display: flex;
     align-items: center;
     height: 21px;
+    width: 50%;
     font: ${tokens.typographyRegularLabel};
   }
-
-  input {
-    height: 100%;
-  }
-
   @media (min-width: ${screenSizes.desktop}) {
-    font: ${tokens.typographyRegularSmallBody};
+    width: ${(props) => props.desktopWidth};
+    input {
+      font: ${tokens.typographyRegularSmallBody};
+      width: 100%;
+    }
   }
+  // display: inline-flex;
+  // align-items: center;
+  // gap: 5px;
+  // height: 21px;
+
+  // span {
+  //   display: flex;
+  //   align-items: center;
+  //   height: 21px;
+  //   font: ${tokens.typographyRegularLabel};
+  // }
+
+  // input {
+  //   height: 100%;
+  // }
+
+  // @media (min-width: ${screenSizes.desktop}) {
+  //   font: ${tokens.typographyRegularSmallBody};
+  // }
 `;
 
 export { StyledField, StyledLabel, StyledInputField };

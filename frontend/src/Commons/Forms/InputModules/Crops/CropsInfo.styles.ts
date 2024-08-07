@@ -16,6 +16,7 @@ const StyledCropsSmallGroup = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
+    gap: 6px;
     #plantsPerHaLabel {
       font: ${tokens.typographyBoldSmallBody};
     }
@@ -27,6 +28,11 @@ const StyledCropsSmallGroup = styled.div`
       #plantsPerHaLabel {
         font: ${tokens.typographyBoldLargeBody};
       }
+    }
+  }
+  @media (min-width: ${screenSizes.desktop}) {
+    #plantsPerHa {
+      gap: 5px;
     }
   }
 `;

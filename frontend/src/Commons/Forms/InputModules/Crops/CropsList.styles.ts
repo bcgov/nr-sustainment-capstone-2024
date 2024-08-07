@@ -7,7 +7,10 @@ const StyledFieldInfoList = styled.div<{ isFirstChild?: boolean }>`
   flex-direction: column;
   position: relative;
   ${({ isFirstChild }) =>
-    !isFirstChild && `border-top: 2px solid ${tokens.typographyColorPlaceholder};`}
+    !isFirstChild &&
+    `border-top: 2px solid ${tokens.typographyColorPlaceholder}; 
+     margin-top: 24px;
+    `}
 `;
 
 const StyledListContainer = styled.div`

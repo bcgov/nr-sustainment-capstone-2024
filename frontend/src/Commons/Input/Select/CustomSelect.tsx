@@ -20,6 +20,7 @@ interface CustomSelectProps {
   text?: string;
   rightPositioned?: boolean;
   toggleEnabled?: boolean;
+  CropField?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -32,11 +33,15 @@ const CustomSelect: FC<CustomSelectProps> = ({
   options,
   onChange,
   text,
+  CropField,
   rightPositioned,
   toggleEnabled,
   formCalc = false,
 }) => (
-  <StyledSelect formCalc={formCalc}>
+  <StyledSelect
+    formCalc={formCalc}
+    CropField={CropField}
+  >
     <StyledLabel>
       <label htmlFor={id}>
         <span className="label-content">

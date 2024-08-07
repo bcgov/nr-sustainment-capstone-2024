@@ -10,11 +10,13 @@ type StyledSelectProps = {
   mobileWidth?: string;
   desktopWidth?: string;
   formCalc?: boolean;
+  CropField?: boolean;
 };
 
 const StyledSelect = styled.div<StyledSelectProps>`
   display: flex;
   flex-direction: column;
+  // height: ${(props) => (props.CropField ? '45px' : 'auto')};
 `;
 
 const StyledLabel = styled.div`
@@ -46,7 +48,7 @@ const StyledLabel = styled.div`
 
 const StyledField = styled.div<StyledSelectProps>`
   width: ${(props) => props.mobileWidth};
-
+  margin-top: ${(props) => (props.CropField ? '-3px' : '0')};
   select {
     width: 100%;
     border: solid 1px ${tokens.themeGray40};
@@ -55,7 +57,7 @@ const StyledField = styled.div<StyledSelectProps>`
     background-color: ${tokens.themeGrayWhite};
     font: ${tokens.typographyRegularLabel};
   }
-  @media (min-width: 768px) {
+  @media (min-width: ${screenSizes.desktop}) {
     width: ${(props) => props.desktopWidth};
     select {
       font: ${tokens.typographyRegularSmallBody};
