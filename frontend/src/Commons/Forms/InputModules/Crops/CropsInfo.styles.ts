@@ -58,7 +58,8 @@ const StyledNoCropsInfoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 24px;
+  text-align: center;
+  padding: 24px 11px 0 11px;
   h3 {
     font: ${tokens.typographyBoldH6};
   }
