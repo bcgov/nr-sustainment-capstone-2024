@@ -25,14 +25,16 @@ const StyledField = styled.div<StyledLabelProps>`
     gap: 0;
   }
 `;
-const StyledLabel = styled.div`
+const StyledLabel = styled.div<StyledLabelProps>`
   display: flex;
   gap: 20px;
+  margin-top: ${(props) => (props.isYield ? '1px' : '0')};
   label {
     font: ${tokens.typographyBoldSmallBody};
   }
 
   @media (min-width: ${screenSizes.desktop}) {
+    padding-bottom: 0;
     label {
       font: ${tokens.typographyBoldLargeBody};
     }

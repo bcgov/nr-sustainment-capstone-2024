@@ -36,7 +36,7 @@ const CustomField: FC<CustomFieldProps> = ({
   toggleEnabled = false,
 }) => (
   <StyledField isYield={isYield}>
-    <StyledLabel>
+    <StyledLabel isYield={isYield}>
       <label htmlFor={id}>{label}</label>
       {text && (
         <span>
