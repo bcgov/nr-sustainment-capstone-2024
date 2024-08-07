@@ -68,9 +68,6 @@ const StyledAgronomic = styled.div`
   @media (min-width: ${screenSizes.desktop}) {
     width: 90%;
 
-    h3 {
-      /* transform: translateX(135px); */
-    }
 `;
 
 const StyledRemoval = styled.div`
@@ -88,9 +85,6 @@ const StyledRemoval = styled.div`
       display: none;
     }
 
-    h3 {
-      transform: translateX(-50px);
-    }
     td {
       text-align: center;
     }
