@@ -17,6 +17,8 @@ const StyledFarmInfo = styled.div<FormProps>`
   gap: 24px;
 
   #inputContainer {
+    display: flex;
+    flex-direction: column;
     gap: 24px;
     @media (min-width: ${screenSizes.desktop}) {
       display: flex;
@@ -52,7 +54,7 @@ const StyledAreaContainer = styled.div<FormProps>`
   margin-left: ${(props) => (props.formCrops ? '5px' : 0)};
   p {
     position: relative;
-    top: 33px;
+    top: 18px;
     left: 10px;
   }
 

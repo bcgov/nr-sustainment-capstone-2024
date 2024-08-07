@@ -34,7 +34,6 @@ const StyledListContainer = styled.div<StyledListType>`
   position: relative;
   display: flex;
   flex-direction: row;
-  padding-top: 20px;
   gap: ${(props) => props.gap};
   align-items: flex-start;
 

@@ -1,12 +1,8 @@
 import { FC } from 'react';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
-import {
-  StyledListContainer,
-  StyledListItem,
-  StyledFieldInfoList,
-  StyledCropsGroup,
-} from '../ListComponent.styles';
+import { StyledListItem, StyledFieldInfoList, StyledCropsGroup } from '../ListComponent.styles';
+import StyledListContainer from './CropsList.styles';
 
 interface CropsListComponentProps {
   field: FieldDetailInterface;
@@ -22,7 +18,8 @@ const CropsList: FC<CropsListComponentProps> = ({ field }) => (
       <StyledCropsGroup>
         {field.Crops.map((crop: CropsDetailsInterface, idx: number) => (
           <StyledListItem
-            desktopWidth="50%"
+            desktopWidth="160px"
+            mobileWidth="121px"
             key={crop.id}
           >
             <div className="CropsList">
