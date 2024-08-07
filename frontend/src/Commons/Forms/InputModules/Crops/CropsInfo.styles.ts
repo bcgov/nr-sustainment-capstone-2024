@@ -30,11 +30,6 @@ const StyledCropsSmallGroup = styled.div`
       }
     }
   }
-  @media (min-width: ${screenSizes.desktop}) {
-    #plantsPerHa {
-      gap: 5px;
-    }
-  }
 `;
 const StyledCropsLargeGroup = styled.div`
   display: flex;

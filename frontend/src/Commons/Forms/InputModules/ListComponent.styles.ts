@@ -100,6 +100,22 @@ const StyledCommentContainerDesktop = styled.div`
   }
 `;
 
+const StyledDivider = styled.div`
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30.61px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: ${tokens.typographyColorPlaceholder};
+  flex: 1;
+  content: '';
+  padding: 1px;
+  background-color: ${tokens.typographyColorPlaceholder};
+  width: 100%;
+  margin: auto;
+`;
+
 const StyledListItemGroupContainer = styled.div<StyledListType>`
   display: flex;
   flex-direction: column;
@@ -165,6 +181,7 @@ export {
   StyledFieldInfoList,
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
+  StyledDivider,
   StyledListItemGroupContainer,
   StyledListItemGroup,
   StyledCropsGroup,
