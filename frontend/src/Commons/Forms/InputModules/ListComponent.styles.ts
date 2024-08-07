@@ -26,7 +26,8 @@ const StyledList = styled.div<StyledListType>`
     gap: 24px;
 
     &:not(:first-of-type) {
-    border-top: 2px solid ${tokens.typographyColorPlaceholder};
+      border-top: 2px solid ${tokens.typographyColorPlaceholder};
+      padding-top: 24px;
     }
   }
 `;
