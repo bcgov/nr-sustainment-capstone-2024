@@ -264,8 +264,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     name="Area"
                     type="number"
                     acres="Acres"
-                    desktopWidth="107px"
-                    mobileWidth="88px"
+                    desktopWidth="148px"
+                    mobileWidth="130px"
                   />
                 </div>
                 <StyledTextAreaContainer>

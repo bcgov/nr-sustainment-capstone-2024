@@ -20,6 +20,10 @@ const StyledField = styled.div<StyledLabelProps>`
   display: flex;
   flex-direction: column;
   gap: ${(props) => (props.isYield ? '4px' : '0')};
+
+  @media (min-width: ${screenSizes.desktop}) {
+    gap: 0;
+  }
 `;
 const StyledLabel = styled.div`
   display: flex;
@@ -61,25 +65,6 @@ const StyledInputField = styled.div<StyledFieldProps>`
       width: 100%;
     }
   }
-  // display: inline-flex;
-  // align-items: center;
-  // gap: 5px;
-  // height: 21px;
-
-  // span {
-  //   display: flex;
-  //   align-items: center;
-  //   height: 21px;
-  //   font: ${tokens.typographyRegularLabel};
-  // }
-
-  // input {
-  //   height: 100%;
-  // }
-
-  // @media (min-width: ${screenSizes.desktop}) {
-  //   font: ${tokens.typographyRegularSmallBody};
-  // }
 `;
 
 export { StyledField, StyledLabel, StyledInputField };

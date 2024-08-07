@@ -16,7 +16,6 @@ type StyledSelectProps = {
 const StyledSelect = styled.div<StyledSelectProps>`
   display: flex;
   flex-direction: column;
-  // height: ${(props) => (props.CropField ? '45px' : 'auto')};
 `;
 
 const StyledLabel = styled.div`
