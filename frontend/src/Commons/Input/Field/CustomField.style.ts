@@ -19,22 +19,21 @@ const StyledField = styled.div<StyledFieldProps>`
   display: flex;
   flex-direction: column;
 
-  margin-top: 12px;
-
   input {
     border: solid 1px ${tokens.surfaceColorBorderDefault};
     border-radius: 3px;
     width: ${(props) => props.mobileWidth};
     height: 21px;
-    font: ${tokens.typographyRegularSmallBody};
+    font: ${tokens.typographyRegularLabel};
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    margin-top: 24px;
+    // margin-top: 24px;
 
     input {
       width: ${(props) => props.desktopWidth};
-      height: 28px;
+      font: ${tokens.typographyRegularSmallBody};
+      height: 21px;
     }
   }
 `;

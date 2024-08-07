@@ -25,11 +25,7 @@ import {
   PlantsPerAcreOptions,
 } from '@Constants/CropOptions';
 import CustomField from '@Commons/Input/Field/CustomField';
-import {
-  StyledFarmInfo,
-  StyledButtonGroupContainer,
-  StyledAreaContainer,
-} from '@Commons/FormStyles.styles';
+import { StyledFarmInfo, StyledButtonGroupContainer } from '@Commons/FormStyles.styles';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -44,6 +40,8 @@ import {
   StyledCropsSmallGroup,
   StyledCropsLargeGroup,
   StyledAddCancelButtonGroup,
+  StyledNoCropsInfoContainer,
+  StyledAreaContainer,
 } from './CropsInfo.styles';
 import CropsButtonGroup from './CropsButtonGroup';
 import { StyledDivider } from '../ListComponent.styles';
@@ -93,7 +91,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     Array(farmDetails.Fields.length).fill(false),
   );
   const [plantsPerHa, setplantsPerHa] = useState<number>(0);
-
+  const fieldLength = farmDetails.Fields.length;
   const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') =>
     Yup.number().when(cropId, (value, schema) =>
       value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired(),
@@ -223,7 +221,119 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         id="cropId"
                         label="Crop"
                         options={CropIDOptions}
-                        desktopWidth="40%"
+                        desktopWidth="212px"
+                        mobileWidth="137px"
+                        onChange={(e) => handleChange(e, setFieldValue)}
+                      />
+                      <StyledAreaContainer>
+                        <CustomField
+                          label="Yield"
+                          id="yield"
+                          name="yield"
+                          type="number"
+                          desktopWidth="107px"
+                          mobileWidth="88px"
+                        />
+                        <p>tons/ac</p>
+                      </StyledAreaContainer>
+                    </StyledCropsSmallGroup>
+                    {values.cropId === '75' && (
+                      <>
+                        <StyledCropsSmallGroup>
+                          <CustomSelect
+                            name="plantAgeYears"
+                            id="plantAgeYears"
+                            label="Plant age (Years)"
+                            options={PlantAgeOptions}
+                            desktopWidth="226px"
+                            mobileWidth="137px"
+                            onChange={(e) => handleChange(e, setFieldValue)}
+                          />
+                          <div id="plantsPerHa">
+                            <p id="plantsPerHaLabel">Plants per Acre</p>
+                            <p>{plantsPerHa}</p>
+                          </div>
+                        </StyledCropsSmallGroup>
+                        <StyledCropsLargeGroup>
+                          <CustomSelect
+                            name="distanceBtwnPlants"
+                            id="distanceBtwnPlants"
+                            label="Distance between plants"
+                            options={DistanceBtwnPlants}
+                            desktopWidth="226px"
+                            mobileWidth="137px"
+                            onChange={(e) => handleChange(e, setFieldValue)}
+                          />
+                          <CustomSelect
+                            name="distanceBtwnRows"
+                            id="distanceBtwnRows"
+                            label="Distance between rows"
+                            options={DistanceBtwnRows}
+                            desktopWidth="226px"
+                            mobileWidth="137px"
+                            onChange={(e) => handleChange(e, setFieldValue)}
+                          />
+                        </StyledCropsLargeGroup>
+                      </>
+                    )}
+                    <StyledCropsLargeGroup>
+                      <CustomSelect
+                        name="willPlantsBePruned"
+                        id="willPlantsBePruned"
+                        label="Will plants be pruned?"
+                        options={YesOrNo}
+                        desktopWidth="226px"
+                        mobileWidth="137px"
+                        onChange={(e) => handleChange(e, setFieldValue)}
+                      />
+                      <CustomSelect
+                        name="whereWillPruningsGo"
+                        id="whereWillPruningsGo"
+                        label="Where will prunings go?"
+                        options={WherePruningsGo}
+                        desktopWidth="226px"
+                        mobileWidth="137px"
+                        onChange={(e) => handleChange(e, setFieldValue)}
+                      />
+                    </StyledCropsLargeGroup>
+                    <StyledCropsLargeGroup>
+                      <CustomSelect
+                        name="willSawdustBeApplied"
+                        id="willSawdustBeApplied"
+                        label="Is sawdust or wood mulch applied within 6 months prior to the growing season?"
+                        options={YesOrNo}
+                        desktopWidth="226px"
+                        mobileWidth="137px"
+                        text={sawDustInfo}
+                        rightPositioned
+                        toggleEnabled={toggleEnabled}
+                        onChange={(e) => handleChange(e, setFieldValue)}
+                      />
+                    </StyledCropsLargeGroup>
+                    <StyledButtonGroupContainer>
+                      <Button
+                        type="reset"
+                        size="lg"
+                        disabled={false}
+                        actions="secondary"
+                        text={ComponentText.CANCEL}
+                        handleClick={() => showFormHandler(index)}
+                      />
+                      <Button
+                        type="submit"
+                        size="lg"
+                        disabled={false}
+                        text={ComponentText.ADD}
+                      />
+                    </StyledButtonGroupContainer>
+                    {/* <StyledCropsSmallGroup>
+                      <CustomSelect
+                        name="cropId"
+                        id="cropId"
+                        label="Crop"
+                        options={CropIDOptions}
+                        desktopWidth="212px"
+                        mobileWidth="137px"
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
                       <StyledAreaContainer formCrops>
@@ -232,7 +342,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                           id="yield"
                           name="yield"
                           type="number"
-                          desktopWidth="50%"
+                          desktopWidth="107px"
+                          mobileWidth="88px"
                         />
                         <p>tons/ac</p>
                       </StyledAreaContainer>
@@ -319,7 +430,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         disabled={false}
                         text={ComponentText.ADD}
                       />
-                    </StyledButtonGroupContainer>
+                    </StyledButtonGroupContainer> */}
                   </StyledFarmInfo>
                 </Form>
               )
@@ -361,6 +472,11 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
             disabled // adjust in the future sprints
           />
         </StyledAddCancelButtonGroup>
+      )}
+      {fieldLength === 0 && (
+        <StyledNoCropsInfoContainer>
+          <h3>Add a field to display the contents of this form module.</h3>
+        </StyledNoCropsInfoContainer>
       )}
     </>
   );

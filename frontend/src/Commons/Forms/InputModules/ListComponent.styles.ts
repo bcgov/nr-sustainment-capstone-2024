@@ -156,10 +156,8 @@ const NutrientsFieldListGroup = styled.div`
 const StyledCropsGroup = styled.div`
   display: flex;
   flex-direction: row;
-  // flex-wrap: wrap;
 
   @media (min-width: ${screenSizes.desktop}) {
-    // flex-wrap: nowrap;
     gap: 50px;
   }
 `;

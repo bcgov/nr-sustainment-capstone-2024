@@ -26,6 +26,7 @@ const StyledFarmInfo = styled.div<FormProps>`
     }
   }
   @media (min-width: ${screenSizes.desktop}) {
+    padding-top: 24px;
     flex-direction: ${(props) => (props.formNutrients ? 'row' : 'column')};
   }
 `;
@@ -58,7 +59,7 @@ const StyledAreaContainer = styled.div<FormProps>`
   @media (min-width: ${screenSizes.desktop}) {
     margin-left: 0;
     p {
-      top: 55px;
+      top: 24px;
     }
   }
 `;
