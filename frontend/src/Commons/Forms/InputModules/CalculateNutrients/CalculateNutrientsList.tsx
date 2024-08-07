@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react';
+import { FC } from 'react';
 import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 import { faCircleCheck, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
@@ -7,14 +7,12 @@ import MainBalanceInterface from '@Interface/MainBalanceInterface';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import getFertilizerOption from '@Utils/getFertID';
 import {
-  StyledH3HeaderContainer,
-  StyledH3HeaderItem,
-  StyledH4HeaderItem,
-  StyledPItem,
   CalcList,
-  StyledGrid,
   StyledRemoval,
   StyledAgronomic,
+  StyledTable,
+  StyledH3Item,
+  StyledH3Container,
 } from './CalculateNutrientsList.styles';
 import { StyledDivider } from '../ListComponent.styles';
 
@@ -34,207 +32,254 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
   return (
     <CalcList>
       <StyledAgronomic>
-        <StyledH3HeaderContainer>
-          <StyledH3HeaderItem width="30%">
+        <StyledH3Container>
+          <StyledH3Item className="blankSpace">
+            <h3>&nbsp;</h3>
+          </StyledH3Item>
+          <StyledH3Item>
             <h3>Agronomic (lb/ac)</h3>
-          </StyledH3HeaderItem>
-        </StyledH3HeaderContainer>
+          </StyledH3Item>
+        </StyledH3Container>
 
-        <StyledGrid>
-          <StyledH4HeaderItem width="30%">
-            <h4>Crop</h4>
-          </StyledH4HeaderItem>
-          <StyledH4HeaderItem width="30%">
-            <h4>N</h4>
-          </StyledH4HeaderItem>
-          <StyledH4HeaderItem width="30%">
-            <h4>P2O5</h4>
-          </StyledH4HeaderItem>
-          <StyledH4HeaderItem width="30%">
-            <h4>K2O</h4>
-          </StyledH4HeaderItem>
-          {field.Crops.map((crop: CropsDetailsInterface, index: number) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Fragment key={`${crop}-${index}`}>
-              <StyledPItem width="30%">
-                <p>{crop.cropId === '75' ? 'Blueberry' : 'Raspberry'}</p>
-              </StyledPItem>
-              <StyledPItem width="30%">
-                <p>{cropBalances[index]?.agronomic?.N ?? zeroConstant}</p>
-              </StyledPItem>
-              <StyledPItem width="30%">
-                <p>{cropBalances[index]?.agronomic?.P ?? zeroConstant}</p>
-              </StyledPItem>
-              <StyledPItem width="30%">
-                <p>{cropBalances[index]?.agronomic?.K ?? zeroConstant}</p>
-              </StyledPItem>
-            </Fragment>
-          ))}
+        <StyledTable>
+          <thead>
+            <tr>
+              <th>
+                <h4 className="col1">Crop</h4>
+              </th>
+              <th>
+                <h4>N</h4>
+              </th>
+              <th>
+                <h4>P2O5</h4>
+              </th>
+              <th>
+                <h4>K2O</h4>
+              </th>
+            </tr>
+          </thead>
 
-          {field.Nutrients?.nutrientFertilizers?.length > 0 && (
-            <>
-              <StyledH4HeaderItem
-                width="30%"
-                className="fullRow"
-              >
-                <h4>Fertilizer</h4>
-              </StyledH4HeaderItem>
-              {field.Nutrients?.nutrientFertilizers.map(
-                (fertilizer: FertilizerInterface, idx: number) => (
-                  // Couldn't fix this ESLint rule since we allow for more then one of the same fert to be added
-                  // Order is probably never changing without a rerender, which is the problem this rule tries to avoid
-                  // eslint-disable-next-line react/no-array-index-key
-                  <Fragment key={`${fertilizer.fertilizerId}-${idx}`}>
-                    <p>
-                      {getFertilizerOption(fertilizer.fertilizerId.toString())?.label ??
-                        fertilizer.fertilizerId}
-                    </p>
-                    <StyledPItem width="30%">
-                      <p>{fertilizer.fertN}</p>
-                    </StyledPItem>
-                    <StyledPItem width="30%">
-                      <p>{fertilizer.fertP2o5}</p>
-                    </StyledPItem>
-                    <StyledPItem width="30%">
-                      <p>{fertilizer.fertK2o}</p>
-                    </StyledPItem>
-                  </Fragment>
-                ),
-              )}
-            </>
-          )}
+          <tbody>
+            {field.Crops.map((crop: CropsDetailsInterface, index: number) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <tr key={`${crop}-${index}`}>
+                <td>
+                  <p className="col1">{crop.cropId === '75' ? 'Blueberry' : 'Raspberry'}</p>
+                </td>
+                <td>
+                  <p>{cropBalances[index]?.agronomic?.N ?? zeroConstant}</p>
+                </td>
+                <td>
+                  <p>{cropBalances[index]?.agronomic?.P ?? zeroConstant}</p>
+                </td>
+                <td>
+                  <p>{cropBalances[index]?.agronomic?.K ?? zeroConstant}</p>
+                </td>
+              </tr>
+            ))}
 
-          <StyledDivider className="fullRow" />
-          <StyledPItem width="30%">
-            <p>Balance</p>
-          </StyledPItem>
-          <p>
-            <FontAwesomeIcon
-              icon={getResultsIcon(resultBalance.agronomic.N)}
-              color={getResultIconColor(resultBalance.agronomic.N)}
-            />
-            {resultBalance.agronomic.N}
-          </p>
-          <p>
-            <FontAwesomeIcon
-              icon={getResultsIcon(resultBalance.agronomic.P)}
-              color={getResultIconColor(resultBalance.agronomic.P)}
-            />
-            {resultBalance.agronomic.P}
-          </p>
-          <p>
-            <FontAwesomeIcon
-              icon={getResultsIcon(resultBalance.agronomic.K)}
-              color={getResultIconColor(resultBalance.agronomic.K)}
-            />
-            {resultBalance.agronomic.K}
-          </p>
-        </StyledGrid>
+            {field.Nutrients?.nutrientFertilizers?.length > 0 && (
+              <>
+                <tr>
+                  <td>
+                    <h4 className="fullRow col1">Fertilizer</h4>
+                  </td>
+                  <td>
+                    <h4 className="blankSpace">&nbsp;</h4>
+                  </td>
+                </tr>
+
+                {field.Nutrients?.nutrientFertilizers.map(
+                  (fertilizer: FertilizerInterface, idx: number) => (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <tr key={`${fertilizer.fertilizerId}-${idx}`}>
+                      <td>
+                        <p className="col1">
+                          {getFertilizerOption(fertilizer.fertilizerId.toString())?.label ??
+                            fertilizer.fertilizerId}
+                        </p>
+                      </td>
+                      <td>
+                        <p>{fertilizer.fertN}</p>
+                      </td>
+                      <td>
+                        <p>{fertilizer.fertP2o5}</p>
+                      </td>
+                      <td>
+                        <p>{fertilizer.fertK2o}</p>
+                      </td>
+                    </tr>
+                  ),
+                )}
+              </>
+            )}
+
+            <tr>
+              <td>
+                <StyledDivider className="fullRow" />
+              </td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td>
+                <p className="col1">Balance</p>
+              </td>
+              <td>
+                <p>
+                  <FontAwesomeIcon
+                    icon={getResultsIcon(resultBalance.agronomic.N)}
+                    color={getResultIconColor(resultBalance.agronomic.N)}
+                  />
+                  {resultBalance.agronomic.N}
+                </p>
+              </td>
+              <td>
+                <p>
+                  <FontAwesomeIcon
+                    icon={getResultsIcon(resultBalance.agronomic.P)}
+                    color={getResultIconColor(resultBalance.agronomic.P)}
+                  />
+                  {resultBalance.agronomic.P}
+                </p>
+              </td>
+              <td>
+                <p>
+                  <FontAwesomeIcon
+                    icon={getResultsIcon(resultBalance.agronomic.K)}
+                    color={getResultIconColor(resultBalance.agronomic.K)}
+                  />
+                  {resultBalance.agronomic.K}
+                </p>
+              </td>
+            </tr>
+          </tfoot>
+        </StyledTable>
       </StyledAgronomic>
 
       <StyledRemoval>
-        <StyledH3HeaderContainer>
-          <StyledH3HeaderItem width="30%">
-            <h3>Crop Removal (lb/ac)</h3>
-          </StyledH3HeaderItem>
-        </StyledH3HeaderContainer>
+        <StyledH3Item>
+          <h3>Crop Removal (lb/ac)</h3>
+        </StyledH3Item>
 
-        <StyledGrid>
-          <StyledH4HeaderItem
-            width="30%"
-            className="cropRemovalCol1"
-          >
-            <h4>Crop</h4>
-          </StyledH4HeaderItem>
-          <StyledH4HeaderItem width="30%">
-            <h4>N</h4>
-          </StyledH4HeaderItem>
-          <StyledH4HeaderItem width="30%">
-            <h4>P2O5</h4>
-          </StyledH4HeaderItem>
-          <StyledH4HeaderItem width="30%">
-            <h4>K2O</h4>
-          </StyledH4HeaderItem>
-          {field.Crops.map((crop: CropsDetailsInterface, index: number) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Fragment key={`${crop}-${index}`}>
-              <StyledPItem
-                width="30%"
-                className="cropRemovalCol1"
-              >
-                <p>{crop.cropId === '75' ? 'Blueberry' : 'Raspberry'}</p>
-              </StyledPItem>
-              <StyledPItem width="30%">
-                <p>{cropBalances[index]?.cropRemoval?.N ?? zeroConstant}</p>
-              </StyledPItem>
-              <StyledPItem width="30%">
-                <p>{cropBalances[index]?.cropRemoval?.P ?? zeroConstant}</p>
-              </StyledPItem>
-              <StyledPItem width="30%">
-                <p>{cropBalances[index]?.cropRemoval?.K ?? zeroConstant}</p>
-              </StyledPItem>
-            </Fragment>
-          ))}
+        <StyledTable>
+          <thead>
+            <tr>
+              <th>
+                <h4 className="cropRemovalCol1 col1">Crop</h4>
+              </th>
+              <th>
+                <h4>N</h4>
+              </th>
+              <th>
+                <h4>P2O5</h4>
+              </th>
+              <th>
+                <h4>K2O</h4>
+              </th>
+            </tr>
+          </thead>
 
-          {field.Nutrients?.nutrientFertilizers?.length > 0 && (
-            <>
-              <StyledH4HeaderItem
-                width="30%"
-                className="fullRow cropRemovalCol1"
-              >
-                <h4>Fertilizer</h4>
-              </StyledH4HeaderItem>
-              {field.Nutrients?.nutrientFertilizers.map(
-                (fertilizer: FertilizerInterface, idx: number) => (
-                  // Couldn't fix this ESLint rule since we allow for more then one of the same fert to be added
-                  // Order is probably never changing without a rerender, which is the problem this rule tries to avoid
-                  // eslint-disable-next-line react/no-array-index-key
-                  <Fragment key={`${fertilizer.fertilizerId}-${idx}`}>
-                    <p>
-                      {getFertilizerOption(fertilizer.fertilizerId.toString())?.label ??
-                        fertilizer.fertilizerId}
-                    </p>
-                    <StyledPItem width="30%">
-                      <p>{fertilizer.fertN}</p>
-                    </StyledPItem>
-                    <StyledPItem width="30%">
-                      <p>{fertilizer.fertP2o5}</p>
-                    </StyledPItem>
-                    <StyledPItem width="30%">
-                      <p>{fertilizer.fertK2o}</p>
-                    </StyledPItem>
-                  </Fragment>
-                ),
-              )}
-            </>
-          )}
+          <tbody>
+            {field.Crops.map((crop: CropsDetailsInterface, index: number) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <tr key={`removal-${crop}-${index}`}>
+                <td>
+                  <p className="cropRemovalCol1 col1">
+                    {crop.cropId === '75' ? 'Blueberry' : 'Raspberry'}
+                  </p>
+                </td>
+                <td>
+                  <p>{cropBalances[index]?.cropRemoval?.N ?? zeroConstant}</p>
+                </td>
+                <td>
+                  <p>{cropBalances[index]?.cropRemoval?.P ?? zeroConstant}</p>
+                </td>
+                <td>
+                  <p>{cropBalances[index]?.cropRemoval?.K ?? zeroConstant}</p>
+                </td>
+              </tr>
+            ))}
 
-          <StyledDivider className="fullRow" />
-          <StyledPItem width="30%">
-            <p>Balance</p>
-          </StyledPItem>
-          <p>
-            <FontAwesomeIcon
-              icon={getResultsIcon(resultBalance.cropRemoval.N || 0)}
-              color={getResultIconColor(resultBalance.cropRemoval.N || 0)}
-            />
-            {resultBalance.cropRemoval.N || 0}
-          </p>
-          <p>
-            <FontAwesomeIcon
-              icon={getResultsIcon(resultBalance.cropRemoval.P)}
-              color={getResultIconColor(resultBalance.cropRemoval.P)}
-            />
-            {resultBalance.cropRemoval.P}
-          </p>
-          <p>
-            <FontAwesomeIcon
-              icon={getResultsIcon(resultBalance.cropRemoval.K)}
-              color={getResultIconColor(resultBalance.cropRemoval.K)}
-            />
-            {resultBalance.cropRemoval.K}
-          </p>
-        </StyledGrid>
+            {field.Nutrients?.nutrientFertilizers?.length > 0 && (
+              <>
+                <tr>
+                  <td>
+                    <h4 className="fullRow cropRemovalCol1 col1">Fertilizer</h4>
+                  </td>
+                  <td>
+                    <h4>&nbsp;</h4>
+                  </td>
+                </tr>
+
+                {field.Nutrients?.nutrientFertilizers.map(
+                  (fertilizer: FertilizerInterface, idx: number) => (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <tr key={`${fertilizer.fertilizerId}-${idx}`}>
+                      <td>
+                        <p className="cropRemovalCol1 col1">
+                          {getFertilizerOption(fertilizer.fertilizerId.toString())?.label ??
+                            fertilizer.fertilizerId}
+                        </p>
+                      </td>
+                      <td>
+                        <p>{fertilizer.fertN}</p>
+                      </td>
+                      <td>
+                        <p>{fertilizer.fertP2o5}</p>
+                      </td>
+                      <td>
+                        <p>{fertilizer.fertK2o}</p>
+                      </td>
+                    </tr>
+                  ),
+                )}
+              </>
+            )}
+
+            <tr>
+              <td>
+                <StyledDivider className="fullRow" />
+              </td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td>
+                <p className="cropRemovalCol1 col1">Balance</p>
+              </td>
+              <td>
+                <p>
+                  <FontAwesomeIcon
+                    icon={getResultsIcon(resultBalance.cropRemoval.N || 0)}
+                    color={getResultIconColor(resultBalance.cropRemoval.N || 0)}
+                  />
+                  {resultBalance.cropRemoval.N || 0}
+                </p>
+              </td>
+              <td>
+                <p>
+                  <FontAwesomeIcon
+                    icon={getResultsIcon(resultBalance.cropRemoval.P)}
+                    color={getResultIconColor(resultBalance.cropRemoval.P)}
+                  />
+                  {resultBalance.cropRemoval.P}
+                </p>
+              </td>
+              <td>
+                <p>
+                  <FontAwesomeIcon
+                    icon={getResultsIcon(resultBalance.cropRemoval.K)}
+                    color={getResultIconColor(resultBalance.cropRemoval.K)}
+                  />
+                  {resultBalance.cropRemoval.K}
+                </p>
+              </td>
+            </tr>
+          </tfoot>
+        </StyledTable>
       </StyledRemoval>
     </CalcList>
   );
