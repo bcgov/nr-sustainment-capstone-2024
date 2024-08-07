@@ -39,14 +39,12 @@ const StyledField = styled.div<StyledFieldProps>`
 `;
 const StyledLabel = styled.div<StyledLabelProps>`
   display: flex;
-  height: 28px;
   gap: 20px;
   label {
     font: ${tokens.typographyBoldSmallBody};
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    min-height: 0;
     label {
       font: ${tokens.typographyBoldLargeBody};
     }
