@@ -82,7 +82,7 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
               <>
                 <tr>
                   <td>
-                    <h4 className="fullRow col1">Fertilizer</h4>
+                    <h4 className="col1">Fertilizer</h4>
                   </td>
                   <td>
                     <h4 className="blankSpace">&nbsp;</h4>
@@ -116,7 +116,16 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
 
             <tr>
               <td>
-                <StyledDivider className="fullRow" />
+                <StyledDivider />
+              </td>
+              <td>
+                <StyledDivider />
+              </td>
+              <td>
+                <StyledDivider />
+              </td>
+              <td>
+                <StyledDivider />
               </td>
             </tr>
           </tbody>
@@ -206,7 +215,7 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
               <>
                 <tr>
                   <td>
-                    <h4 className="fullRow cropRemovalCol1 col1">Fertilizer</h4>
+                    <h4 className=" cropRemovalCol1 col1">Fertilizer</h4>
                   </td>
                   <td>
                     <h4>&nbsp;</h4>
@@ -240,7 +249,16 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
 
             <tr>
               <td>
-                <StyledDivider className="fullRow" />
+                <StyledDivider />
+              </td>
+              <td>
+                <StyledDivider />
+              </td>
+              <td>
+                <StyledDivider />
+              </td>
+              <td>
+                <StyledDivider />
               </td>
             </tr>
           </tbody>
