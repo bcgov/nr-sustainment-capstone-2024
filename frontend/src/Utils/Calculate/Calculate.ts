@@ -103,7 +103,7 @@ function Calculate(field: FieldDetailInterface, crop: CropsDetailsInterface) {
   const cropRemovalBalance: CropRemovalBalanceInterface = { P: 0, K: 0 };
   const isRemovedFromField = crop.whereWillPruningsGo === 'Removed from field';
   // Raspberry id is 76 is NMP
-  const isRaspberry = crop.id === 76;
+  const isRaspberry = crop.cropId === '76';
   const calcTable: CalculationTable = isRaspberry ? raspberryTable : blueberryTable;
 
   agronomicBalance.N = calcN(

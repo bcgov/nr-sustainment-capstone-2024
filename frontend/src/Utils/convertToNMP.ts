@@ -39,9 +39,9 @@ const convertToNMP = (
       plantAgeYears: crop.plantAgeYears,
       numberOfPlantsPerAcre: crop.numberOfPlantsPerAcre,
       distanceBtwnPlantsRows: crop.distanceBtwnPlantsRows,
-      willPlantsBePruned: crop.willPlantsBePruned || templateCropNMP.willPlantsBePruned,
+      willPlantsBePruned: crop.willPlantsBePruned === true,
       whereWillPruningsGo: crop.whereWillPruningsGo,
-      willSawdustBeApplied: crop.willSawdustBeApplied || templateCropNMP.willSawdustBeApplied,
+      willSawdustBeApplied: crop.willSawdustBeApplied === true,
     }));
 
     const newNutrients: FertilizerInterface[] = Array.isArray(field.Nutrients?.nutrientFertilizers)
