@@ -28,7 +28,6 @@ import { ACTIVE } from '@Constants/ModuleStatus';
 import {
   StyledFarmInfo,
   StyledTextAreaContainer,
-  StyledAreaContainer,
   StyledButtonGroupContainer,
   StyledTestContainer,
   StyledRadioGroupContainer,

@@ -41,6 +41,7 @@ import {
   StyledCropsLargeGroup,
   StyledAddCancelButtonGroup,
   StyledNoCropsInfoContainer,
+  StyledAreaContainer,
 } from './CropsInfo.styles';
 import CropsButtonGroup from './CropsButtonGroup';
 

@@ -19,7 +19,6 @@ const StyledSelect = styled.div<StyledSelectProps>`
 
 const StyledLabel = styled.div`
   max-width: 320px;
-
   label {
     display: inline;
     font: ${tokens.typographyBoldSmallBody};

@@ -65,21 +65,8 @@ const StyledNoCropsInfoContainer = styled.div`
 
 const StyledAreaContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  width: 50%;
-  height: auto;
-  position: relative;
-  p {
-    position: relative;
-    top: 25px;
-    left: 10px;
-  }
-
+  gap: 4px;
   @media (min-width: ${screenSizes.desktop}) {
-    margin-left: 0;
-    p {
-      top: 25px;
-    }
   }
 `;
 export {
