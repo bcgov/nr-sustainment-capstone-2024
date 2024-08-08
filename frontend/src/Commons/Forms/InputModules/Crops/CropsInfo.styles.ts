@@ -4,9 +4,9 @@ import * as tokens from '@bcgov/design-tokens/js';
 
 const StyledCropsSmallGroup = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 24px;
   width: 100%;
-  justify-content: space-between;
+  align-items: center;
   @media (min-width: ${screenSizes.desktop}) {
     justify-content: flex-start;
     width: 50vw;
@@ -16,11 +16,18 @@ const StyledCropsSmallGroup = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
+    gap: 6px;
     #plantsPerHaLabel {
-      font: ${tokens.typographyBoldLargeBody};
+      font: ${tokens.typographyBoldSmallBody};
     }
     p {
-      margin: 9px 0 0 0;
+      margin: 0;
+      font: ${tokens.typographyRegularLabel};
+    }
+    @media (min-width: ${screenSizes.desktop}) {
+      #plantsPerHaLabel {
+        font: ${tokens.typographyBoldLargeBody};
+      }
     }
   }
 `;
@@ -46,4 +53,28 @@ const StyledAddCancelButtonGroup = styled.div`
     margin-bottom: 0;
   }
 `;
-export { StyledCropsSmallGroup, StyledCropsLargeGroup, StyledAddCancelButtonGroup };
+
+const StyledNoCropsInfoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px 11px 0 11px;
+  h3 {
+    font: ${tokens.typographyBoldH6};
+  }
+`;
+
+const StyledAreaContainer = styled.div`
+  display: flex;
+  gap: 4px;
+  @media (min-width: ${screenSizes.desktop}) {
+  }
+`;
+export {
+  StyledCropsSmallGroup,
+  StyledCropsLargeGroup,
+  StyledAddCancelButtonGroup,
+  StyledNoCropsInfoContainer,
+  StyledAreaContainer,
+};

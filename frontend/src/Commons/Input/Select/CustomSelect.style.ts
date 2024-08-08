@@ -7,44 +7,62 @@ import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 
 type StyledSelectProps = {
-  mobileWidth: string;
-  desktopWidth: string;
+  mobileWidth?: string;
+  desktopWidth?: string;
   formCalc?: boolean;
+  CropField?: boolean;
 };
 
 const StyledSelect = styled.div<StyledSelectProps>`
   display: flex;
   flex-direction: column;
-  width: ${(props) => props.mobileWidth};
-  margin-top: 5px;
-  select {
-    border: solid 1px ${tokens.themeGray40};
-    border-radius: 3px;
-    height: 28px;
-    background-color: ${tokens.themeGrayWhite};
-  }
-
-  @media (min-width: ${screenSizes.desktop}) {
-    width: ${(props) => props.desktopWidth};
-  }
 `;
 
 const StyledLabel = styled.div`
-  min-height: 25px;
+  max-width: 320px;
   label {
-    display: flex;
-    align-items: flex-end;
+    display: inline;
     font: ${tokens.typographyBoldSmallBody};
   }
-  span {
-    margin-bottom: 2px;
+
+  .label-content {
+    display: inline;
+    word-break: break-word;
   }
+
+  .info-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 6px;
+  }
+
   @media (min-width: ${screenSizes.desktop}) {
-    min-height: 40px;
+    max-width: 750px;
+    width: 100%;
     label {
       font: ${tokens.typographyBoldLargeBody};
     }
   }
 `;
 
-export { StyledSelect, StyledLabel };
+const StyledField = styled.div<StyledSelectProps>`
+  width: ${(props) => props.mobileWidth};
+  margin-top: ${(props) => (props.CropField ? '-3px' : '0')};
+  select {
+    width: 100%;
+    border: solid 1px ${tokens.themeGray40};
+    border-radius: 3px;
+    height: 21px;
+    background-color: ${tokens.themeGrayWhite};
+    font: ${tokens.typographyRegularLabel};
+  }
+  @media (min-width: ${screenSizes.desktop}) {
+    width: ${(props) => props.desktopWidth};
+    select {
+      font: ${tokens.typographyRegularSmallBody};
+      width: 100%;
+    }
+  }
+`;
+
+export { StyledSelect, StyledLabel, StyledField };

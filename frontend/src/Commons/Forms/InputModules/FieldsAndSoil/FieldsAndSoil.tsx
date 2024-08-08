@@ -28,7 +28,6 @@ import { ACTIVE } from '@Constants/ModuleStatus';
 import {
   StyledFarmInfo,
   StyledTextAreaContainer,
-  StyledAreaContainer,
   StyledButtonGroupContainer,
   StyledTestContainer,
   StyledRadioGroupContainer,
@@ -259,17 +258,15 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     desktopWidth="392px"
                     mobileWidth="223px"
                   />
-                  <StyledAreaContainer>
-                    <CustomField
-                      label="Area"
-                      id="Area"
-                      name="Area"
-                      type="number"
-                      desktopWidth="107px"
-                      mobileWidth="88px"
-                    />
-                    <p>Acres</p>
-                  </StyledAreaContainer>
+                  <CustomField
+                    label="Area"
+                    id="Area"
+                    name="Area"
+                    type="number"
+                    acres="Acres"
+                    desktopWidth="148px"
+                    mobileWidth="130px"
+                  />
                 </div>
                 <StyledTextAreaContainer>
                   <CustomTextArea
@@ -279,7 +276,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     maxLength={textAreaMaxLength}
                     placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
                     desktopWidth="590px"
-                    mobileWidth="300px"
+                    mobileWidth="90%"
                   />
                 </StyledTextAreaContainer>
 

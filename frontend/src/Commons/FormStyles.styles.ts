@@ -17,6 +17,8 @@ const StyledFarmInfo = styled.div<FormProps>`
   gap: 24px;
 
   #inputContainer {
+    display: flex;
+    flex-direction: column;
     gap: 24px;
     @media (min-width: ${screenSizes.desktop}) {
       display: flex;
@@ -26,6 +28,7 @@ const StyledFarmInfo = styled.div<FormProps>`
     }
   }
   @media (min-width: ${screenSizes.desktop}) {
+    padding-top: 24px;
     flex-direction: ${(props) => (props.formNutrients ? 'row' : 'column')};
   }
 `;
@@ -42,26 +45,6 @@ const StyledTextAreaContainer = styled.div`
   }
 `;
 
-const StyledAreaContainer = styled.div<FormProps>`
-  display: flex;
-  flex-direction: row;
-  width: 50%;
-  height: auto;
-  position: relative;
-  margin-left: ${(props) => (props.formCrops ? '5px' : 0)};
-  p {
-    position: relative;
-    top: 33px;
-    left: 10px;
-  }
-
-  @media (min-width: ${screenSizes.desktop}) {
-    margin-left: 0;
-    p {
-      top: 55px;
-    }
-  }
-`;
 const StyledButtonGroupContainer = styled.div<FormProps>`
   position: relative;
   display: flex;
@@ -172,7 +155,6 @@ const SingleInputField = styled.div`
 export {
   StyledFarmInfo,
   StyledTextAreaContainer,
-  StyledAreaContainer,
   StyledButtonGroupContainer,
   StyledTestContainer,
   StyledRadioGroupContainer,

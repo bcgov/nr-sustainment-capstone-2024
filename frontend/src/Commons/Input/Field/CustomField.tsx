@@ -5,7 +5,7 @@
 import { Field, ErrorMessage } from 'formik';
 import { FC } from 'react';
 import InformationIcons from '@Commons/InformationIcons/InformationIcons';
-import { StyledField, StyledLabel } from './CustomField.style';
+import { StyledField, StyledLabel, StyledInputField } from './CustomField.style';
 import '../ErrorMessage.css';
 
 interface CustomFieldProps {
@@ -18,6 +18,8 @@ interface CustomFieldProps {
   text?: string;
   rightPositioned?: boolean;
   toggleEnabled?: boolean;
+  acres?: string;
+  isYield?: boolean;
 }
 
 const CustomField: FC<CustomFieldProps> = ({
@@ -28,14 +30,13 @@ const CustomField: FC<CustomFieldProps> = ({
   mobileWidth = '100%',
   desktopWidth = '100%',
   text,
+  acres,
+  isYield,
   rightPositioned,
   toggleEnabled = false,
 }) => (
-  <StyledField
-    mobileWidth={mobileWidth}
-    desktopWidth={desktopWidth}
-  >
-    <StyledLabel hasText={!text}>
+  <StyledField isYield={isYield}>
+    <StyledLabel isYield={isYield}>
       <label htmlFor={id}>{label}</label>
       {text && (
         <span>
@@ -47,12 +48,18 @@ const CustomField: FC<CustomFieldProps> = ({
         </span>
       )}
     </StyledLabel>
-    <Field
-      name={name}
-      id={id}
-      type={type}
-      width="100%"
-    />
+    <StyledInputField
+      mobileWidth={mobileWidth}
+      desktopWidth={desktopWidth}
+    >
+      <Field
+        name={name}
+        id={id}
+        type={type}
+        width="100%"
+      />
+      {acres && <span>{acres}</span>}
+    </StyledInputField>
     <ErrorMessage
       name={id}
       render={(msg) => <div className="errorMessage">{msg}</div>}

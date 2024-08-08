@@ -26,7 +26,8 @@ const StyledList = styled.div<StyledListType>`
     gap: 24px;
 
     &:not(:first-of-type) {
-    border-top: 2px solid ${tokens.typographyColorPlaceholder};
+      border-top: 2px solid ${tokens.typographyColorPlaceholder};
+      padding-top: 24px;
     }
   }
 `;
@@ -34,13 +35,8 @@ const StyledListContainer = styled.div<StyledListType>`
   position: relative;
   display: flex;
   flex-direction: row;
-  padding-top: 20px;
   gap: ${(props) => props.gap};
   align-items: flex-start;
-
-  @media (min-width: ${screenSizes.desktop}) {
-    // flex-wrap: nowrap;
-  }
 `;
 
 const StyledFieldNameContainer = styled.div`
@@ -63,6 +59,7 @@ const StyledListItem = styled.div<StyledListType>`
   }
   .CropsList {
     display: flex;
+    width: 100%;
     gap: 5px;
   }
   @media (min-width: ${screenSizes.desktop}) {
@@ -157,11 +154,11 @@ const NutrientsFieldListGroup = styled.div`
 const StyledCropsGroup = styled.div`
   display: flex;
   flex-direction: row;
-  // flex-wrap: wrap;
+  width: 100%;
+  gap: 65px;
 
   @media (min-width: ${screenSizes.desktop}) {
-    // flex-wrap: nowrap;
-    gap: 50px;
+    gap: 110px;
   }
 `;
 
