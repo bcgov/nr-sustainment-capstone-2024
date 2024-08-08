@@ -41,7 +41,7 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
           </StyledH3Item>
         </StyledH3Container>
 
-        <StyledTable>
+        <StyledTable twoCrops={field.Crops.length > 1}>
           <thead>
             <tr>
               <th>
@@ -172,7 +172,7 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
           <h3>Crop Removal (lb/ac)</h3>
         </StyledH3Item>
 
-        <StyledTable>
+        <StyledTable twoCrops={field.Crops.length > 1}>
           <thead>
             <tr>
               <th>

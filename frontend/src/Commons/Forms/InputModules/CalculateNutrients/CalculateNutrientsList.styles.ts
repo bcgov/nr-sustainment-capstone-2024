@@ -2,6 +2,10 @@ import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
 
+interface TableProps {
+  twoCrops: boolean;
+}
+
 const StyledH3Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -90,7 +94,7 @@ const StyledRemoval = styled.div`
     }
 `;
 
-const StyledTable = styled.table`
+const StyledTable = styled.table<TableProps>`
   width: 100%;
 
   thead,
@@ -99,7 +103,7 @@ const StyledTable = styled.table`
     text-align: center;
   }
 
-  tbody tr:nth-of-type(odd) {
+  tbody tr:nth-of-type(${(props) => (props.twoCrops ? 'even' : 'odd')}) {
     background-color: ${tokens.themeGray30};
   }
 
