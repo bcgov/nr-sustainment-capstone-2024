@@ -112,7 +112,8 @@ const StyledDivider = styled.div`
   flex: 1;
   content: '';
   padding: 1px;
-  background-color: ${tokens.typographyColorPlaceholder};
+  // Same as Mockups
+  background-color: #d8d8d8;
   width: 100%;
   margin: auto;
 `;
