@@ -6,6 +6,7 @@
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
+import { FormProps } from 'src/Types/FormProps';
 
 type StyledListType = {
   desktopWidth?: string;
@@ -19,18 +20,13 @@ const StyledFieldInfoList = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  &:not(:first-of-type) {
-    border-top: 2px solid ${tokens.typographyColorPlaceholder};
-    padding-top: 24px;
-  }
 `;
 const StyledList = styled.div<StyledListType>`
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
     gap: 24px;
-
     &:not(:first-of-type) {
-      border-top: 2px solid ${tokens.typographyColorPlaceholder};
+      border-top: 1px solid #d8d8d8;
       padding-top: 24px;
     }
   }
@@ -111,7 +107,7 @@ const StyledCommentContainerDesktop = styled.div`
   }
 `;
 
-const StyledDivider = styled.div`
+const StyledDivider = styled.div<FormProps>`
   font-size: 18px;
   font-weight: 400;
   line-height: 30.61px;
@@ -125,7 +121,7 @@ const StyledDivider = styled.div`
   // Same as Mockups
   background-color: #d8d8d8;
   width: 100%;
-  margin: 24px 0;
+  margin: 24px 0 0 0;
 `;
 
 const StyledListItemGroupContainer = styled.div<StyledListType>`

@@ -27,8 +27,9 @@ const StyledButtonContainer = styled.div<FormProps>`
   @media (min-width: ${screenSizes.desktop}) {
     display: flex;
     width: 100%;
-    max-width: ${(props) => (props.formCalc ? '100%' : '67px')};
+    max-width: ${(props) => (props.formCalc ? '100%' : props.formNutrients ? '140px' : '67px')};
     justify-content: center;
+    white-space: nowrap;
   }
 `;
 const StyledNewFieldButtonController = styled.div`

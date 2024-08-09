@@ -202,11 +202,12 @@ const FertilizersInfo: FC<InputModuleProps> = ({
                       text={ComponentText.CANCEL}
                     />
                   </StyledButtonContainer>
-                  <StyledButtonContainer>
+                  <StyledButtonContainer formNutrients>
                     <Button
                       type="submit"
                       size="lg"
                       disabled={false}
+                      saveFertilizerButton
                       text={ComponentText.SAVE_FERTILIZER}
                     />
                   </StyledButtonContainer>
