@@ -77,14 +77,14 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           .shape({
             TestingMethod: Yup.string().when('HasSoilTest', {
               is: true,
-              then: (schema) => schema.required(),
+              then: (schema) => schema.required('Required'),
               otherwise: (schema) => schema.notRequired(),
             }),
-            sampleDate: Yup.string().required(),
-            valNO3H: Yup.number().min(0).max(1000).required(),
-            ValP: Yup.number().min(0).max(1000).required(),
-            valK: Yup.number().min(0).max(1000).required(),
-            valPH: Yup.number().min(0).max(1000).required(),
+            sampleDate: Yup.string().required('Required'),
+            valNO3H: Yup.number().min(0).max(1000).required('Required'),
+            ValP: Yup.number().min(0).max(1000).required('Required'),
+            valK: Yup.number().min(0).max(1000).required('Required'),
+            valPH: Yup.number().min(0).max(1000).required('Required'),
           })
           .required(),
       otherwise: (schema) => schema.notRequired(),
@@ -94,8 +94,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
       then: (schema) =>
         schema
           .shape({
-            leafTissueP: Yup.number().min(0).max(7).required(),
-            leafTissueK: Yup.number().min(0).max(7).required(),
+            leafTissueP: Yup.number().min(0).max(7).required('Required'),
+            leafTissueK: Yup.number().min(0).max(7).required('Required'),
           })
           .required(),
       otherwise: (schema) => schema.notRequired(),
@@ -272,7 +272,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                   <CustomTextArea
                     name="Comment"
                     id="Comment"
-                    label="Comments (optional)"
+                    label="Field Comments (optional)"
                     maxLength={textAreaMaxLength}
                     placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
                     desktopWidth="590px"
@@ -341,7 +341,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           />
                         </span>
                       </HeaderLabel>
-                      <InputFieldsGroup>
+                      <InputFieldsGroup hasNO3label>
                         <CustomField
                           label="Sample Month"
                           id="SoilTest.sampleDate"
@@ -359,6 +359,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           mobileWidth="223px"
                           text={Nitrate}
                           rightPositioned
+                          isNO3
                           toggleEnabled={toggleEnabled}
                         />
                       </InputFieldsGroup>

@@ -24,12 +24,20 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
 const StyledButtonContainer = styled.div<FormProps>`
   width: 100%;
   max-width: 327px;
-  margin-top: 24px;
   @media (min-width: ${screenSizes.desktop}) {
     display: flex;
     width: 100%;
-    max-width: ${(props) => (props.formCalc ? '100%' : '67px')};
+    max-width: ${(props) => {
+      if (props.formCalc) {
+        return '100%';
+      }
+      if (props.formNutrients) {
+        return '140px';
+      }
+      return '67px';
+    }};
     justify-content: center;
+    white-space: nowrap;
   }
 `;
 const StyledNewFieldButtonController = styled.div`

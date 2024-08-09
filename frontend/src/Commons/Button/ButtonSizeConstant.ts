@@ -3,6 +3,7 @@ const getButtonSize = (
   isDesktop: boolean,
   landingPageButton: boolean | undefined,
   addButton: boolean | undefined,
+  fertilizerButton: boolean | undefined,
 ): string => {
   let buttonSize;
   let largeButtonSize;
@@ -11,6 +12,8 @@ const getButtonSize = (
     largeButtonSize = '483px';
   } else if (addButton) {
     largeButtonSize = '200px';
+  } else if (fertilizerButton) {
+    largeButtonSize = '140px';
   } else {
     largeButtonSize = '62px';
   }
