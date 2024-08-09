@@ -87,7 +87,15 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
                 marginRight="50px"
               >
                 <h2>Sampling Month</h2>
-                <p>{HasSoilTest ? SoilTest.sampleDate : ComponentText.NA}</p>
+                <p>
+                  {/* undefined to default to en-us */}
+                  {HasSoilTest
+                    ? new Date(SoilTest.sampleDate).toLocaleDateString(undefined, {
+                        month: 'long',
+                        day: 'numeric',
+                      })
+                    : ComponentText.NA}
+                </p>
               </StyledListItem>
               <StyledListItemGroup desktopWidth="25%">
                 <StyledListItem

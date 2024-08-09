@@ -132,7 +132,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
         HasSoilTest: values.HasSoilTest,
         SoilTest: {
           TestingMethod: values.SoilTest.TestingMethod,
-          sampleDate: values.SoilTest.sampleDate,
+          sampleDate: new Date(values.SoilTest.sampleDate).toISOString(),
           valNO3H: values.SoilTest.valNO3H,
           ValP: values.SoilTest.ValP,
           valK: values.SoilTest.valK,
