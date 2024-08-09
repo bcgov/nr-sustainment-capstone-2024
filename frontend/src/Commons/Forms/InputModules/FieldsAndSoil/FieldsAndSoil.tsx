@@ -346,7 +346,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           label="Sample Month"
                           id="SoilTest.sampleDate"
                           name="SoilTest.sampleDate"
-                          type="text"
+                          type="date"
                           mobileWidth="223px"
                           desktopWidth="226px"
                         />
