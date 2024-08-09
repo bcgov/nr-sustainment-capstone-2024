@@ -359,6 +359,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           mobileWidth="223px"
                           text={Nitrate}
                           rightPositioned
+                          isNO3
                           toggleEnabled={toggleEnabled}
                         />
                       </InputFieldsGroup>
