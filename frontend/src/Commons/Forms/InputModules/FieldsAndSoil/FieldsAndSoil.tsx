@@ -272,7 +272,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                   <CustomTextArea
                     name="Comment"
                     id="Comment"
-                    label="Comments (optional)"
+                    label="Field Comments (optional)"
                     maxLength={textAreaMaxLength}
                     placeholder="e.g., poor drainage in southwest corner (no need to specify crop here)"
                     desktopWidth="590px"

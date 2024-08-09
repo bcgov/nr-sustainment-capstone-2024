@@ -13,6 +13,7 @@ const StyledMainFooter = styled.div`
   width: 100vw;
   bottom: -1px;
   z-index: 2;
+  border-top: ${tokens.layoutBorderWidthSmall} solid ${tokens.themeGold100};
 
   @media (min-width: ${screenSizes.desktop}) {
     display: none;
