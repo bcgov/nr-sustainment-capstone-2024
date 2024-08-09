@@ -132,15 +132,15 @@ const StyledSelectContainer = styled.div`
   }
 `;
 
-const InputFieldsGroup = styled.div`
+const InputFieldsGroup = styled.div<{ hasNO3label?: boolean }>`
   width: 70vw;
   display: flex;
   flex-direction: column;
-
+  gap: ${(props) => (props.hasNO3label ? '12px' : '0')};
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     width: 700px;
-    gap: 20px;
+    gap: ${(props) => (props.hasNO3label ? '25px' : '20px')};
   }
 `;
 

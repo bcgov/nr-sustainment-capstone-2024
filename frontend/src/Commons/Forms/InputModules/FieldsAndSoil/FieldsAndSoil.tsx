@@ -341,7 +341,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           />
                         </span>
                       </HeaderLabel>
-                      <InputFieldsGroup>
+                      <InputFieldsGroup hasNO3label>
                         <CustomField
                           label="Sample Month"
                           id="SoilTest.sampleDate"
