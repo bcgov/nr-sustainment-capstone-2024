@@ -17,4 +17,46 @@ const StyledCustomNumberField = styled.div`
   }
 `;
 
-export default StyledCustomNumberField;
+const StyledListContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    flex-direction: row;
+  }
+`;
+
+const DesktopFertilizerGroup = styled.div`
+  display: none;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    display: flex;
+    width: 75%;
+    margin-left: 77px;
+  }
+`;
+
+const MobileFertilizerGroup = styled.div`
+  display: flex;
+  width: 100%;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    display: none;
+  }
+`;
+
+const FertilizerTypeAndFontAwesomeContainer = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+export {
+  StyledCustomNumberField,
+  StyledListContainer,
+  DesktopFertilizerGroup,
+  MobileFertilizerGroup,
+  FertilizerTypeAndFontAwesomeContainer,
+};

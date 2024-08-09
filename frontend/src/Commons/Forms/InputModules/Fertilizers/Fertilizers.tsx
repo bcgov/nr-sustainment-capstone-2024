@@ -24,7 +24,7 @@ import FertilizerInterface from '@Interface/FertilizerInterface';
 import handleChange from '@Utils/handleChange';
 import dryFertilizerValues from '@Constants/FertilizerValues';
 import FertilizersButtonComponent from './FertilizersButtonComponent';
-import StyledCustomNumberField from './Fertilizers.styles';
+import { StyledCustomNumberField } from './Fertilizers.styles';
 import FertilizersListComponent from './FertilizersListComponent';
 
 const FertilizersInfo: FC<InputModuleProps> = ({
