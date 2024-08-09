@@ -88,7 +88,6 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
               >
                 <h2>Sampling Month</h2>
                 <p>
-                  {/* undefined to default to en-us */}
                   {HasSoilTest
                     ? new Date(SoilTest.sampleDate).toLocaleDateString('en-US', {
                         timeZone: 'UTC',
