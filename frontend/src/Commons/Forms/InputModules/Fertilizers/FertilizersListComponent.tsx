@@ -3,7 +3,6 @@ import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 import getFertilizerOption from '@Utils/getFertID';
-import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import {
   StyledFieldInfoList,
   StyledListItem,
