@@ -90,7 +90,8 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
                 <p>
                   {/* undefined to default to en-us */}
                   {HasSoilTest
-                    ? new Date(SoilTest.sampleDate).toLocaleDateString(undefined, {
+                    ? new Date(SoilTest.sampleDate).toLocaleDateString('en-US', {
+                        timeZone: 'UTC',
                         month: 'long',
                         day: 'numeric',
                       })
