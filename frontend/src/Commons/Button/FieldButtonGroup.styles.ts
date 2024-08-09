@@ -27,7 +27,15 @@ const StyledButtonContainer = styled.div<FormProps>`
   @media (min-width: ${screenSizes.desktop}) {
     display: flex;
     width: 100%;
-    max-width: ${(props) => (props.formCalc ? '100%' : props.formNutrients ? '140px' : '67px')};
+    max-width: ${(props) => {
+      if (props.formCalc) {
+        return '100%';
+      }
+      if (props.formNutrients) {
+        return '140px';
+      }
+      return '67px';
+    }};
     justify-content: center;
     white-space: nowrap;
   }
