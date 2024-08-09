@@ -20,6 +20,7 @@ interface CustomFieldProps {
   toggleEnabled?: boolean;
   acres?: string;
   isYield?: boolean;
+  isNO3?: boolean;
 }
 
 const CustomField: FC<CustomFieldProps> = ({
@@ -32,21 +33,29 @@ const CustomField: FC<CustomFieldProps> = ({
   text,
   acres,
   isYield,
+  isNO3,
   rightPositioned,
   toggleEnabled = false,
 }) => (
-  <StyledField isYield={isYield}>
+  <StyledField
+    isYield={isYield}
+    isNO3Label={isNO3}
+  >
     <StyledLabel isYield={isYield}>
-      <label htmlFor={id}>{label}</label>
-      {text && (
-        <span>
-          <InformationIcons
-            text={text}
-            rightPositioned={rightPositioned}
-            toggleEnabled={toggleEnabled}
-          />
+      <label htmlFor={id}>
+        <span className="label-content">
+          {label}
+          {text && (
+            <span className="info-icon">
+              <InformationIcons
+                text={text}
+                rightPositioned={rightPositioned}
+                toggleEnabled={toggleEnabled}
+              />
+            </span>
+          )}
         </span>
-      )}
+      </label>
     </StyledLabel>
     <StyledInputField
       mobileWidth={mobileWidth}
