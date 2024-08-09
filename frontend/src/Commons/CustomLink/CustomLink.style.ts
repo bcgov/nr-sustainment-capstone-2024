@@ -6,6 +6,10 @@ import getButtonSize from '@Commons/Button/ButtonSizeConstant';
 type StyledLinkProps = {
   size: string;
 };
+const isDesktop: boolean = true;
+const landingPageButton: boolean = false;
+const addButton: boolean = false;
+const saveFertilizerButton: boolean = false;
 
 const StyledLinkContainer = styled.div<StyledLinkProps>`
   display: flex;
@@ -14,7 +18,8 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
   height: 100%;
   width: 100%;
   max-height: 42px;
-  max-width: ${(props) => getButtonSize(props.size, false, false, false)};
+  max-width: ${(props) =>
+    getButtonSize(props.size, !isDesktop, landingPageButton, addButton, saveFertilizerButton)};
   background-color: ${tokens.surfaceColorPrimaryButtonDefault};
   color: ${tokens.typographyColorPrimaryInvert};
   border-radius: 8px;
@@ -22,7 +27,8 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
   font: ${tokens.typographyBoldLabel};
   @media (min-width: ${screenSizes.desktop}) {
     height: 100%;
-    max-width: ${(props) => getButtonSize(props.size, true, false, false)};
+    max-width: ${(props) =>
+      getButtonSize(props.size, isDesktop, landingPageButton, addButton, saveFertilizerButton)};
     width: 100%;
   }
   a {

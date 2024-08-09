@@ -16,6 +16,7 @@ type ButtonProps = {
   children?: React.ReactNode;
   landingPageButton?: boolean;
   addButton?: boolean;
+  saveFertilizerButton?: boolean;
 };
 
 const Button = ({
@@ -29,6 +30,7 @@ const Button = ({
   children,
   landingPageButton = false,
   addButton = false,
+  saveFertilizerButton = false,
 }: ButtonProps) => {
   const handleClickWrapper = () => {
     if (handleClick) {
@@ -47,6 +49,7 @@ const Button = ({
       actions={actions}
       landingPageButton={landingPageButton}
       addButton={addButton}
+      saveFertilizerButton={saveFertilizerButton}
     >
       <StyledChildrenContainer>
         {children}

@@ -11,6 +11,7 @@ type StyledButtonProps = {
   actions: string;
   landingPageButton?: boolean;
   addButton?: boolean;
+  saveFertilizerButton?: boolean;
 };
 
 const StyledButton = styled.button<StyledButtonProps>`
@@ -21,7 +22,13 @@ const StyledButton = styled.button<StyledButtonProps>`
   height: 100%;
   width: 100%;
   max-width: ${(props) =>
-    getButtonSize(props.size, ComponentText.ISMOBILE, props.landingPageButton, props.addButton)};
+    getButtonSize(
+      props.size,
+      ComponentText.ISMOBILE,
+      props.landingPageButton,
+      props.addButton,
+      props.saveFertilizerButton,
+    )};
   background-color: ${(props) =>
     props.actions === 'primary'
       ? tokens.surfaceColorPrimaryButtonDefault
@@ -49,7 +56,13 @@ const StyledButton = styled.button<StyledButtonProps>`
   @media (min-width: ${screenSizes.desktop}) {
     padding: 20px 41px;
     max-width: ${(props) =>
-      getButtonSize(props.size, ComponentText.ISDESKTOP, props.landingPageButton, props.addButton)};
+      getButtonSize(
+        props.size,
+        ComponentText.ISDESKTOP,
+        props.landingPageButton,
+        props.addButton,
+        props.saveFertilizerButton,
+      )};
     max-height: ${(props) => (props.landingPageButton ? '59px' : '31px')};
   }
 `;

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 
 const StyledFieldInfoList = styled.div<{ isFirstChild?: boolean }>`
@@ -8,7 +7,7 @@ const StyledFieldInfoList = styled.div<{ isFirstChild?: boolean }>`
   position: relative;
   ${({ isFirstChild }) =>
     !isFirstChild &&
-    `border-top: 2px solid ${tokens.typographyColorPlaceholder}; 
+    `border-top: 1px solid #d8d8d8; 
      margin-top: 24px;
     `}
 `;

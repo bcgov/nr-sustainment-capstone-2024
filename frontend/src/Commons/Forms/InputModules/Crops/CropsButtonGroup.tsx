@@ -25,7 +25,7 @@ const CropsButtonGroup: React.FC<CropsButtonGroupProps> = ({
   disabled,
 }) => (
   <StyledButtonGroupContainer>
-    <StyledAddCancelButtonContainer formCrops>
+    <StyledAddCancelButtonContainer>
       <StyledButtonContainer>
         <Button
           type="button"

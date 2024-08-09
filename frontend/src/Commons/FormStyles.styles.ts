@@ -49,7 +49,7 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
   position: relative;
   display: flex;
   flex-direction: column-reverse;
-  gap: 20px;
+  gap: 24px;
   margin: auto;
   width: 300px;
   height: 86px;
@@ -57,7 +57,7 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
   .nutrientsButton {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
     width: 100%;
     align-items: center;
   }

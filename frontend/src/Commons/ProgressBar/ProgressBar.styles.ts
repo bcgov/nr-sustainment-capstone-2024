@@ -17,7 +17,7 @@ const Container = styled.div<ProgressBarProps>`
   bottom: 30px;
   background-color: #fff;
   height: 80px;
-  padding: 0 13px 30px 13px;
+  padding: 0 13px 41px 13px;
   z-index: 1;
   border-top: 2px solid ${tokens.surfaceColorBorderDefault};
   transition: 0.3s ease-in-out;

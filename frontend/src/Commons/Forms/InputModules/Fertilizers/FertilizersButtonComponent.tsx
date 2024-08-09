@@ -32,6 +32,7 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
           disabled={false}
           radius="50px"
           actions="secondary"
+          addButton
           text={ComponentText.ADD_FERTILIZERS}
           handleClick={addNewFertilizer}
         >
