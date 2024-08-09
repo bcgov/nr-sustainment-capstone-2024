@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 import getFertilizerOption from '@Utils/getFertID';
@@ -23,22 +23,34 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails }) =>
       {fertilizerDetails.map((fertilizer: FertilizerInterface) => (
         <div key={fertilizer.id}>
           <StyledListContainer>
-            <StyledListItem desktopWidth="240px">
+            <StyledListItem
+              desktopWidth="168px"
+              mobileWidth="127px"
+            >
               <h2>Fertilizer Type</h2>
               <p>{fertilizer.fertilizerTypeId}</p>
             </StyledListItem>
             {fertilizer.fertilizerTypeId === 'Dry Fertilizer (Custom)' ||
             fertilizer.fertilizerTypeId === 'Liquid Fertilizer (Custom)' ? (
               <StyledCustomFertilizerGroup>
-                <StyledListItem desktopWidth="40%">
+                <StyledListItem
+                  desktopWidth="80px"
+                  mobileWidth="43px"
+                >
                   <h2>N (%)</h2>
                   <p>{fertilizer.customN}</p>
                 </StyledListItem>
-                <StyledListItem desktopWidth="40%">
+                <StyledListItem
+                  desktopWidth="80px"
+                  mobileWidth="43px"
+                >
                   <h2>P2o5 (%)</h2>
                   <p>{fertilizer.customP2o5}</p>
                 </StyledListItem>
-                <StyledListItem desktopWidth="40%">
+                <StyledListItem
+                  desktopWidth="80px"
+                  mobileWidth="43px"
+                >
                   <h2>K2o (%)</h2>
                   <p>{fertilizer.customK2o}</p>
                 </StyledListItem>
@@ -51,7 +63,7 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails }) =>
             )}
             <StyledFontAwesomeContainer>
               <FontAwesomeIcon icon={faPencil} />
-              <FontAwesomeIcon icon={faTrash} />
+              <FontAwesomeIcon icon={faTrashCan} />
             </StyledFontAwesomeContainer>
           </StyledListContainer>
           {fieldCount > 1 && <StyledDivider />}

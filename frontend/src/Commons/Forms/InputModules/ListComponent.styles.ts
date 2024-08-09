@@ -167,7 +167,7 @@ const StyledCropsGroup = styled.div`
 const StyledCustomFertilizerGroup = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  // justify-content: space-evenly;
   gap: 30px;
   margin-left: 20px;
 
