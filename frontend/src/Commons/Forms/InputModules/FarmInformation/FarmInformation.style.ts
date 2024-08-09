@@ -26,6 +26,7 @@ const StyledFarmInfo = styled.div`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
+    padding-top: 24px;
     gap: 25px;
   }
 `;

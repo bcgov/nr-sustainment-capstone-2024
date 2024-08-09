@@ -6,7 +6,7 @@ import { Field, ErrorMessage } from 'formik';
 import React, { FC } from 'react';
 import OptionInterface from 'src/Interface/OptionInterface';
 import InformationIcons from '@Commons/InformationIcons/InformationIcons';
-import { StyledSelect, StyledLabel } from './CustomSelect.style';
+import { StyledSelect, StyledLabel, StyledField } from './CustomSelect.style';
 import '../ErrorMessage.css';
 
 interface CustomSelectProps {
@@ -20,6 +20,7 @@ interface CustomSelectProps {
   text?: string;
   rightPositioned?: boolean;
   toggleEnabled?: boolean;
+  CropField?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -32,51 +33,57 @@ const CustomSelect: FC<CustomSelectProps> = ({
   options,
   onChange,
   text,
+  CropField,
   rightPositioned,
   toggleEnabled,
   formCalc = false,
 }) => (
   <StyledSelect
-    mobileWidth={mobileWidth}
-    desktopWidth={desktopWidth}
     formCalc={formCalc}
+    CropField={CropField}
   >
     <StyledLabel>
       <label htmlFor={id}>
-        {label}
-        {text && (
-          <span>
-            <InformationIcons
-              text={text}
-              rightPositioned={rightPositioned}
-              toggleEnabled={toggleEnabled}
-            />
-          </span>
-        )}
+        <span className="label-content">
+          {label}
+          {text && (
+            <span className="info-icon">
+              <InformationIcons
+                text={text}
+                rightPositioned={rightPositioned}
+                toggleEnabled={toggleEnabled}
+              />
+            </span>
+          )}
+        </span>
       </label>
     </StyledLabel>
-    <Field
-      name={name}
-      id={id}
-      as="select"
-      onChange={onChange}
+    <StyledField
+      mobileWidth={mobileWidth}
+      desktopWidth={desktopWidth}
     >
-      <option
-        value=""
-        defaultValue="true"
+      <Field
+        name={name}
+        id={id}
+        as="select"
+        onChange={onChange}
       >
-        Select an Option
-      </option>
-
-      {options.map((option) => (
         <option
-          key={option.value}
-          value={option.value}
+          value=""
+          defaultValue="true"
         >
-          {option.label}
+          Select an Option
         </option>
-      ))}
-    </Field>
+        {options.map((option) => (
+          <option
+            key={option.value}
+            value={option.value}
+          >
+            {option.label}
+          </option>
+        ))}
+      </Field>
+    </StyledField>
     <ErrorMessage
       name={id}
       component="span"

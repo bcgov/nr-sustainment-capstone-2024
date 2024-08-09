@@ -25,11 +25,7 @@ import {
   PlantsPerAcreOptions,
 } from '@Constants/CropOptions';
 import CustomField from '@Commons/Input/Field/CustomField';
-import {
-  StyledFarmInfo,
-  StyledButtonGroupContainer,
-  StyledAreaContainer,
-} from '@Commons/FormStyles.styles';
+import { StyledFarmInfo, StyledButtonGroupContainer } from '@Commons/FormStyles.styles';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -44,9 +40,9 @@ import {
   StyledCropsSmallGroup,
   StyledCropsLargeGroup,
   StyledAddCancelButtonGroup,
+  StyledNoCropsInfoContainer,
 } from './CropsInfo.styles';
 import CropsButtonGroup from './CropsButtonGroup';
-import { StyledDivider } from '../ListComponent.styles';
 
 const checkHasCrops = (Fields: FieldDetailInterface[]) => {
   let hasCrop = false;
@@ -93,7 +89,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     Array(farmDetails.Fields.length).fill(false),
   );
   const [plantsPerHa, setplantsPerHa] = useState<number>(0);
-
+  const fieldLength = farmDetails.Fields.length;
   const BlueberrySchemaNumber = (cropId: string, message: string = 'Required') =>
     Yup.number().when(cropId, (value, schema) =>
       value.toString() === 'Blueberry' ? schema.required(message) : schema.notRequired(),
@@ -198,8 +194,10 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     <>
       {farmDetails.Fields.map((field: FieldDetailInterface, index: number) => (
         <div key={`${field.FieldName}${field.Area}${field.Comment}`}>
-          <StyledDivider />
-          <CropsList field={field} />
+          <CropsList
+            field={field}
+            farmDetails={farmDetails}
+          />
 
           <Formik
             initialValues={cropInitialValues}
@@ -223,19 +221,21 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         id="cropId"
                         label="Crop"
                         options={CropIDOptions}
-                        desktopWidth="40%"
+                        desktopWidth="226px"
+                        mobileWidth="137px"
+                        CropField
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
-                      <StyledAreaContainer formCrops>
-                        <CustomField
-                          label="Yield"
-                          id="yield"
-                          name="yield"
-                          type="number"
-                          desktopWidth="50%"
-                        />
-                        <p>tons/ac</p>
-                      </StyledAreaContainer>
+                      <CustomField
+                        label="Yield"
+                        id="yield"
+                        name="yield"
+                        type="number"
+                        isYield
+                        acres="tons/ac"
+                        desktopWidth="161px"
+                        mobileWidth="137px"
+                      />
                     </StyledCropsSmallGroup>
                     {values.cropId === '75' && (
                       <>
@@ -245,7 +245,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             id="plantAgeYears"
                             label="Plant age (Years)"
                             options={PlantAgeOptions}
-                            desktopWidth="40%"
+                            desktopWidth="226px"
+                            mobileWidth="137px"
                             onChange={(e) => handleChange(e, setFieldValue)}
                           />
                           <div id="plantsPerHa">
@@ -259,7 +260,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             id="distanceBtwnPlants"
                             label="Distance between plants"
                             options={DistanceBtwnPlants}
-                            desktopWidth="40%"
+                            desktopWidth="226px"
+                            mobileWidth="137px"
                             onChange={(e) => handleChange(e, setFieldValue)}
                           />
                           <CustomSelect
@@ -267,7 +269,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             id="distanceBtwnRows"
                             label="Distance between rows"
                             options={DistanceBtwnRows}
-                            desktopWidth="40%"
+                            desktopWidth="226px"
+                            mobileWidth="137px"
                             onChange={(e) => handleChange(e, setFieldValue)}
                           />
                         </StyledCropsLargeGroup>
@@ -279,7 +282,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         id="willPlantsBePruned"
                         label="Will plants be pruned?"
                         options={YesOrNo}
-                        desktopWidth="40%"
+                        desktopWidth="226px"
+                        mobileWidth="137px"
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
                       <CustomSelect
@@ -287,7 +291,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         id="whereWillPruningsGo"
                         label="Where will prunings go?"
                         options={WherePruningsGo}
-                        desktopWidth="40%"
+                        desktopWidth="226px"
+                        mobileWidth="137px"
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
                     </StyledCropsLargeGroup>
@@ -297,7 +302,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         id="willSawdustBeApplied"
                         label="Is sawdust or wood mulch applied within 6 months prior to the growing season?"
                         options={YesOrNo}
-                        desktopWidth="100"
+                        desktopWidth="226px"
+                        mobileWidth="137px"
                         text={sawDustInfo}
                         rightPositioned
                         toggleEnabled={toggleEnabled}
@@ -335,6 +341,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                   disabled={false}
                   radius="50px"
                   actions="secondary"
+                  addButton
                   text={ComponentText.ADD_CROP}
                   handleClick={() => {
                     handleFormState(CROPS_INFORMATION, undefined, ACTIVE);
@@ -361,6 +368,11 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
             disabled // adjust in the future sprints
           />
         </StyledAddCancelButtonGroup>
+      )}
+      {fieldLength === 0 && (
+        <StyledNoCropsInfoContainer>
+          <h3>Add a field to display the contents of Crops Information</h3>
+        </StyledNoCropsInfoContainer>
       )}
     </>
   );

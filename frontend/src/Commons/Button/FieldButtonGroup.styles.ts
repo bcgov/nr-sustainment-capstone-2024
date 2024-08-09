@@ -22,8 +22,9 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
   }
 `;
 const StyledButtonContainer = styled.div<FormProps>`
-  width: ${(props) => (props.formCalc ? '100%' : '')};
+  width: 100%;
   max-width: 327px;
+  margin-top: 24px;
   @media (min-width: ${screenSizes.desktop}) {
     display: flex;
     width: 100%;
@@ -45,6 +46,7 @@ const StyledAddCancelButtonContainer = styled.div<FormProps>`
   display: flex;
   flex-direction: column-reverse;
   gap: 24px;
+  align-items: center;
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     gap: 40px;
