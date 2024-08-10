@@ -46,7 +46,7 @@ const StyledRadio = styled.div`
         height: 12px;
         border-radius: 50%;
         background: black;
-        margin: 4px;
+        // margin: 4px;
       }
     }
   }
