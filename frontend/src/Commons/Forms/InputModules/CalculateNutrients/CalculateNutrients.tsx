@@ -178,6 +178,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
         id: fertilizersDetails[selectedIndex].id,
         fertilizerTypeId: fertilizersDetails[selectedIndex].fertilizerTypeId,
         fertilizerId: fertilizersDetails[selectedIndex].fertilizerId,
+        applDate: new Date(values.applDate).toISOString(),
         customN: fertBalance.N,
         customP2o5: fertBalance.P,
         customK2o: fertBalance.K,
@@ -396,7 +397,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                       label="Date (optional)"
                       name="applDate"
                       id="applDate"
-                      type="text"
+                      type="date"
                       desktopWidth="50%"
                     />
                   </StyledSmallFormGroup>
