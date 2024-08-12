@@ -5,13 +5,14 @@
 import Button from '@Commons/Button/Button.tsx';
 import MainPageHeader from '@Commons/MainPageHeader/MainPageHeader.tsx';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter.tsx';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import CustomLink from '@Commons/CustomLink/CustomLink.tsx';
 import InformationIcons from '@Commons/InformationIcons/InformationIcons.tsx';
 import LoacalStorageNames from '@Constants/LocalStorageNames.ts';
 import { StyledContent, StyledLandingContainer, ParagraphContainer } from './ExportPage.styles.ts';
 
 const ExportPage: FC = () => {
+  const [toggleEnabled, setToggleEnabled] = useState<boolean>(true);
   const downloadFile = () => {
     const nmpString = localStorage.getItem(LoacalStorageNames.FARM_DETAILS);
     const nmpJSON = nmpString && JSON.parse(nmpString);
@@ -35,7 +36,10 @@ const ExportPage: FC = () => {
   ];
   return (
     <StyledLandingContainer>
-      <MainPageHeader />
+      <MainPageHeader
+        toggleEnabled={toggleEnabled}
+        setToggleEnabled={setToggleEnabled}
+      />
       <StyledContent>
         <div id="dataFileHeader">
           <h2>NMP Data File </h2>
@@ -48,7 +52,7 @@ const ExportPage: FC = () => {
           <span>
             <InformationIcons
               arrayText={arrayText}
-              toggleEnabled
+              toggleEnabled={toggleEnabled}
               rightPositioned
             />
           </span>
