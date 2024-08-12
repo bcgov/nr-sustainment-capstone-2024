@@ -7,7 +7,7 @@
  */
 interface SoilTestInterface {
   TestingMethod: string;
-  sampleDate: string;
+  sampleDate: string | null;
   valNO3H: number;
   ValP: number;
   valK: number;
