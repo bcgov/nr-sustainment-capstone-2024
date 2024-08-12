@@ -20,8 +20,8 @@ const StyledContent = styled.div`
   max-width: 90%;
   margin: 50px 0 30px 0;
   top: 15vh;
-  gap: 10px;
-  padding: 0 0 20px 0;
+  gap: 24px;
+  padding: 0 0 24px 0;
   border: 1px solid ${tokens.themeGray40};
 
   #dataFileHeader {
@@ -51,9 +51,8 @@ const StyledContent = styled.div`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    max-width: 40%;
-    min-height: 40%;
-    gap: 2px;
+    max-width: 516px;
+    gap: 24px;
     top: 10vh;
     text-align: center;
 
@@ -68,4 +67,19 @@ const StyledContent = styled.div`
   }
 `;
 
-export { StyledContent, StyledLandingContainer };
+const ParagraphContainer = styled.p`
+  display: flex;
+  gap: 10px;
+  font: ${tokens.typographyRegularSmallBody};
+  color: ${tokens.typographyColorSecondary};
+  text-align: center;
+  padding: 0 54px 0 54px;
+  margin-bottom: 0;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    font: ${tokens.typographyRegularLargeBody};
+    color: ${tokens.typographyColorSecondary};
+  }
+`;
+
+export { StyledContent, StyledLandingContainer, ParagraphContainer };

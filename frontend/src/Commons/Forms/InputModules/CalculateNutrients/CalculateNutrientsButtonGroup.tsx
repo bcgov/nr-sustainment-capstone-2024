@@ -34,6 +34,7 @@ const CalculationButtonGroup: FC<ButtonComponentProps> = ({ handleFormState }) =
           path="/export"
           size="lg"
           text="Finish"
+          finishButton
         />
       </StyledButtonContainer>
     </StyledAddCancelButtonContainer>

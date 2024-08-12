@@ -178,7 +178,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
         id: fertilizersDetails[selectedIndex].id,
         fertilizerTypeId: fertilizersDetails[selectedIndex].fertilizerTypeId,
         fertilizerId: fertilizersDetails[selectedIndex].fertilizerId,
-        applDate: new Date(values.applDate).toISOString(),
+        applDate: values.applDate ? new Date(values.applDate).toISOString() : null,
         customN: fertBalance.N,
         customP2o5: fertBalance.P,
         customK2o: fertBalance.K,
@@ -322,15 +322,14 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                   id="FieldName"
                   name="FieldName"
                   options={fieldsOption}
-                  desktopWidth="100%"
-                  formCalc
+                  desktopWidth="392px"
+                  mobileWidth="315px"
                   onChange={(e) => {
                     handleFieldChange(e, setFieldValue);
                   }}
                 />
               </StyledFieldSelect>
-              <StyledDivider />
-
+              <StyledDivider formCalc />
               <StyledGroupFormView>
                 <StyledLeftView>
                   <CustomSelect
@@ -338,8 +337,8 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                     id="fertilizerId"
                     name="fertilizerId"
                     options={fertilizerOption}
-                    desktopWidth="100%"
-                    formCalc
+                    desktopWidth="477px"
+                    mobileWidth="315px"
                     onChange={(e) => handleFertilizerChange(e, setFieldValue)}
                   />
 
@@ -349,15 +348,18 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                       name="applRate"
                       id="applRate"
                       type="number"
-                      desktopWidth="50%"
+                      isYield
+                      desktopWidth="212px"
+                      mobileWidth="146px"
                     />
                     <CustomSelect
                       label="Units"
                       name="applUnitId"
                       id="applUnitId"
                       options={displayFertilizerOption()}
-                      desktopWidth="50%"
-                      formCalc
+                      desktopWidth="212px"
+                      mobileWidth="146px"
+                      calcUnits
                       onChange={(e) => handleChange(e, setFieldValue)}
                     />
                   </StyledSmallFormGroup>
@@ -369,15 +371,16 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                         name="liquidDensity"
                         id="liquidDensity"
                         type="number"
-                        desktopWidth="50%"
+                        desktopWidth="212px"
+                        mobileWidth="146px"
                       />
                       <CustomSelect
                         label="Density Units"
                         id="liquidDensityUnitId"
                         name="liquidDensityUnitId"
                         options={DensityUnits}
-                        desktopWidth="50%"
-                        formCalc
+                        desktopWidth="212px"
+                        mobileWidth="146px"
                         onChange={(e) => handleChange(e, setFieldValue)}
                       />
                     </StyledSmallFormGroup>
@@ -389,8 +392,8 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                       id="applMethodId"
                       name="applMethodId"
                       options={ApplicationMethod}
-                      desktopWidth="50%"
-                      formCalc
+                      desktopWidth="212px"
+                      mobileWidth="146px"
                       onChange={(e) => handleChange(e, setFieldValue)}
                     />
                     <CustomField
@@ -398,7 +401,9 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                       name="applDate"
                       id="applDate"
                       type="date"
-                      desktopWidth="50%"
+                      isYield
+                      desktopWidth="212px"
+                      mobileWidth="146px"
                     />
                   </StyledSmallFormGroup>
                 </StyledLeftView>
@@ -424,6 +429,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                       type="submit"
                       size="lg"
                       disabled={false}
+                      calcAddFertButton
                       text={ComponentText.ADD_FERTILIZERS}
                     />
                   </StyledButtonContainer>

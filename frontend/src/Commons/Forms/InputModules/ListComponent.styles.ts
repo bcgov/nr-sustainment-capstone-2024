@@ -121,7 +121,7 @@ const StyledDivider = styled.div<FormProps>`
   // Same as Mockups
   background-color: #d8d8d8;
   width: 100%;
-  margin: 24px 0 0 0;
+  margin: ${(props) => (props.formCalc ? '0' : '24px 0 0 0')};
 `;
 
 const StyledListItemGroupContainer = styled.div<StyledListType>`

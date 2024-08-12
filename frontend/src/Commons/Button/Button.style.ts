@@ -12,6 +12,8 @@ type StyledButtonProps = {
   landingPageButton?: boolean;
   addButton?: boolean;
   saveFertilizerButton?: boolean;
+  calcAddFertButton?: boolean;
+  returnToCalc?: boolean;
 };
 
 const StyledButton = styled.button<StyledButtonProps>`
@@ -20,6 +22,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   justify-content: center;
   max-height: ${(props) => (props.landingPageButton ? '40px' : '31px')};
   height: 100%;
+  white-space: nowrap;
   width: 100%;
   max-width: ${(props) =>
     getButtonSize(
@@ -28,6 +31,8 @@ const StyledButton = styled.button<StyledButtonProps>`
       props.landingPageButton,
       props.addButton,
       props.saveFertilizerButton,
+      props.calcAddFertButton,
+      props.returnToCalc,
     )};
   background-color: ${(props) =>
     props.actions === 'primary'
@@ -54,6 +59,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
+    font: ${tokens.typographyRegularLargeBody};
     padding: 20px 41px;
     max-width: ${(props) =>
       getButtonSize(
@@ -62,6 +68,8 @@ const StyledButton = styled.button<StyledButtonProps>`
         props.landingPageButton,
         props.addButton,
         props.saveFertilizerButton,
+        props.calcAddFertButton,
+        props.returnToCalc,
       )};
     max-height: ${(props) => (props.landingPageButton ? '59px' : '31px')};
   }
