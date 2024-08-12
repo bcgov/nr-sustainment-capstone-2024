@@ -4,6 +4,8 @@ const getButtonSize = (
   landingPageButton: boolean | undefined,
   addButton: boolean | undefined,
   fertilizerButton: boolean | undefined,
+  calcAddFertButton: boolean | undefined,
+  returnToCalc: boolean | undefined,
 ): string => {
   let buttonSize;
   let largeButtonSize;
@@ -12,8 +14,12 @@ const getButtonSize = (
     largeButtonSize = '483px';
   } else if (addButton) {
     largeButtonSize = '200px';
+  } else if (calcAddFertButton) {
+    largeButtonSize = '240px';
   } else if (fertilizerButton) {
     largeButtonSize = '140px';
+  } else if (returnToCalc) {
+    largeButtonSize = '516px';
   } else {
     largeButtonSize = '62px';
   }
@@ -22,7 +28,7 @@ const getButtonSize = (
       buttonSize = '62px';
       break;
     case 'md':
-      buttonSize = '178px';
+      buttonSize = isDesktop ? '209px' : '139px';
       break;
     case 'lg':
       buttonSize = isDesktop ? largeButtonSize : '322px';

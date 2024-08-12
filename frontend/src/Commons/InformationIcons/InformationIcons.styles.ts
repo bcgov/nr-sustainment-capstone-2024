@@ -77,6 +77,8 @@ const StyledBubble = styled.div<StyledIconsProps>`
   li {
     font: ${tokens.typographyRegularLabel};
     color: ${tokens.typographyColorPrimary};
+    margin: 5px 0;
+    text-align: start;
   }
   p {
     padding: 10px 0 0 20px;
