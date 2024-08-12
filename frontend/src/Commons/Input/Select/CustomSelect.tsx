@@ -21,6 +21,7 @@ interface CustomSelectProps {
   rightPositioned?: boolean;
   toggleEnabled?: boolean;
   CropField?: boolean;
+  calcUnits?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -36,11 +37,13 @@ const CustomSelect: FC<CustomSelectProps> = ({
   CropField,
   rightPositioned,
   toggleEnabled,
+  calcUnits,
   formCalc = false,
 }) => (
   <StyledSelect
     formCalc={formCalc}
     CropField={CropField}
+    calcUnits={calcUnits}
   >
     <StyledLabel>
       <label htmlFor={id}>

@@ -134,7 +134,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           TestingMethod: values.SoilTest.TestingMethod,
           sampleDate: values.SoilTest.sampleDate
             ? new Date(values.SoilTest.sampleDate).toISOString()
-            : null, // without this uncaught error is returned,
+            : null, // without this uncaught error is returned
           valNO3H: values.SoilTest.valNO3H,
           ValP: values.SoilTest.ValP,
           valK: values.SoilTest.valK,

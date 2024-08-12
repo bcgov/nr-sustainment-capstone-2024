@@ -2,14 +2,17 @@ import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 import getButtonSize from '@Commons/Button/ButtonSizeConstant';
+import ComponentText from '@Constants/ComponentText';
 
 type StyledLinkProps = {
   size: string;
+  landingPageButton?: boolean;
+  addButton?: boolean;
+  saveFertilizerButton?: boolean;
+  calcAddFertButton?: boolean;
+  returnToCalc?: boolean;
+  finishButton?: boolean;
 };
-const isDesktop: boolean = true;
-const landingPageButton: boolean = false;
-const addButton: boolean = false;
-const saveFertilizerButton: boolean = false;
 
 const StyledLinkContainer = styled.div<StyledLinkProps>`
   display: flex;
@@ -17,18 +20,42 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
   justify-content: center;
   height: 100%;
   width: 100%;
-  max-height: 42px;
+  padding: 9.5px 0 9.5px 0;
+  max-height: ${(props) => (props.landingPageButton ? '40px' : '31px')};
   max-width: ${(props) =>
-    getButtonSize(props.size, !isDesktop, landingPageButton, addButton, saveFertilizerButton)};
+    getButtonSize(
+      props.size,
+      ComponentText.ISMOBILE,
+      props.landingPageButton,
+      props.addButton,
+      props.saveFertilizerButton,
+      props.calcAddFertButton,
+      props.returnToCalc,
+    )};
   background-color: ${tokens.surfaceColorPrimaryButtonDefault};
   color: ${tokens.typographyColorPrimaryInvert};
   border-radius: 8px;
   border: ${`1px solid ${tokens.surfaceColorBorderMedium}`};
-  font: ${tokens.typographyBoldLabel};
+  box-sizing: border-box;
+  a {
+    font: ${tokens.typographyRegularSmallBody};
+  }
+  &:hover {
+    background-color: ${tokens.surfaceColorPrimaryButtonHover};
+  }
   @media (min-width: ${screenSizes.desktop}) {
-    height: 100%;
+    height: 42px;
+    padding: ${(props) => (props.finishButton ? '20px 41px' : '20px 0')};
     max-width: ${(props) =>
-      getButtonSize(props.size, isDesktop, landingPageButton, addButton, saveFertilizerButton)};
+      getButtonSize(
+        props.size,
+        ComponentText.ISDESKTOP,
+        props.landingPageButton,
+        props.addButton,
+        props.saveFertilizerButton,
+        props.calcAddFertButton,
+        props.returnToCalc,
+      )};
     width: 100%;
   }
   a {
@@ -36,11 +63,13 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
     align-items: center;
     justify-content: center;
     color: inherit;
-    padding: 20px 30px;
+    padding: inherit;
     text-decoration: none;
     height: 100%;
     width: 100%;
     text-align: center;
+    font: ${tokens.typographyRegularLargeBody};
+    width: 100%;
   }
 `;
 

@@ -11,11 +11,13 @@ type StyledSelectProps = {
   desktopWidth?: string;
   formCalc?: boolean;
   CropField?: boolean;
+  calcUnits?: boolean;
 };
 
 const StyledSelect = styled.div<StyledSelectProps>`
   display: flex;
   flex-direction: column;
+  gap: ${(props) => (props.calcUnits ? '2px' : '0')};
 `;
 
 const StyledLabel = styled.div`
