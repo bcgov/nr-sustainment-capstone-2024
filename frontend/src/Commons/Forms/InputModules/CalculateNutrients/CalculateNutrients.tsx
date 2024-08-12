@@ -178,7 +178,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
         id: fertilizersDetails[selectedIndex].id,
         fertilizerTypeId: fertilizersDetails[selectedIndex].fertilizerTypeId,
         fertilizerId: fertilizersDetails[selectedIndex].fertilizerId,
-        applDate: new Date(values.applDate).toISOString(),
+        applDate: values.applDate ? new Date(values.applDate).toISOString() : null,
         customN: fertBalance.N,
         customP2o5: fertBalance.P,
         customK2o: fertBalance.K,

@@ -4,7 +4,7 @@ interface FertilizerInterface {
   fertilizerId: string;
   applRate: number;
   applUnitId: string;
-  applDate: string;
+  applDate: string | null;
   applMethodId: string;
   customN: number | null;
   customP2o5: number | null;
