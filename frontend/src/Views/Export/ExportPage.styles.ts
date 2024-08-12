@@ -51,9 +51,8 @@ const StyledContent = styled.div`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    max-width: 40%;
-    min-height: 40%;
-    gap: 2px;
+    max-width: 516px;
+    gap: 24px;
     top: 10vh;
     text-align: center;
 
@@ -70,7 +69,7 @@ const StyledContent = styled.div`
 
 const ParagraphContainer = styled.p`
   display: flex;
-  gap: 5px;
+  gap: 10px;
   font: ${tokens.typographyRegularSmallBody};
   color: ${tokens.typographyColorSecondary};
   text-align: center;
