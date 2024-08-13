@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface TableProps {
   twoCrops: boolean;

@@ -35,6 +35,7 @@ import {
 } from '@Commons/Button/FieldButtonGroup.styles';
 import StatusValidate from '@Utils/StatusValidate';
 import { ACTIVE } from '@Constants/ModuleStatus';
+import InformationIcons from '@Commons/InformationIcons/InformationIcons';
 import CropsList from './CropsList';
 import {
   StyledCropsSmallGroup,
@@ -43,7 +44,6 @@ import {
   StyledNoCropsInfoContainer,
 } from './CropsInfo.styles';
 import CropsButtonGroup from './CropsButtonGroup';
-import InformationIcons from '@Commons/InformationIcons/InformationIcons';
 
 const checkHasCrops = (Fields: FieldDetailInterface[]) => {
   let hasCrop = false;
