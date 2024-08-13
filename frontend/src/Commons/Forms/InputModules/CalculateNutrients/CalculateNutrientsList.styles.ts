@@ -150,7 +150,7 @@ const StyledPBalance = styled.div`
   }
 
   @media (min-width: ${screenSizes.desktop}) {
-    gap: 24px;
+    gap: 20px;
     p {
       font: ${tokens.typographyRegularBody};
     }
@@ -158,11 +158,12 @@ const StyledPBalance = styled.div`
 `;
 
 const FontAwesomeContainer = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   margin-left: -28px;
 
   @media (min-width: ${screenSizes.desktop}) {
-    margin-left: -40px;
+    font-size: 24px;
+    margin-left: -45px;
   }
 `;
 export {

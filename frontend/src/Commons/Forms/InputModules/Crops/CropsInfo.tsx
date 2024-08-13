@@ -109,7 +109,11 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     distanceBtwnPlants: BlueberrySchemaString('cropId'),
     distanceBtwnRows: BlueberrySchemaString('cropId'),
     willPlantsBePruned: Yup.boolean().required('Required'),
-    whereWillPruningsGo: Yup.string().required('Required'),
+    whereWillPruningsGo: Yup.string().when('willPlantsBePruned', {
+      is: true,
+      then: (schema) => schema.required('Required'),
+      otherwise: (schema) => schema.notRequired(),
+    }),
     willSawdustBeApplied: Yup.boolean().required('Required'),
   });
 
@@ -297,18 +301,22 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         mobileWidth="137px"
                         onChange={(e) => {
                           handleChange(e, setFieldValue);
+                          console.log(e.target.name, e.target.value);
                         }}
                       />
-
-                      <CustomSelect
-                        name="whereWillPruningsGo"
-                        id="whereWillPruningsGo"
-                        label="Where will prunings go?"
-                        options={WherePruningsGo}
-                        desktopWidth="226px"
-                        mobileWidth="137px"
-                        onChange={(e) => handleChange(e, setFieldValue)}
-                      />
+                      {((values.willPlantsBePruned &&
+                        values.willPlantsBePruned.toString().includes('true')) ||
+                        values.willPlantsBePruned === undefined) && (
+                        <CustomSelect
+                          name="whereWillPruningsGo"
+                          id="whereWillPruningsGo"
+                          label="Where will prunings go?"
+                          options={WherePruningsGo}
+                          desktopWidth="226px"
+                          mobileWidth="137px"
+                          onChange={(e) => handleChange(e, setFieldValue)}
+                        />
+                      )}
                     </StyledCropsLargeGroup>
                     <StyledCropsLargeGroup>
                       <CustomSelect
