@@ -295,8 +295,11 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         options={YesOrNo}
                         desktopWidth="226px"
                         mobileWidth="137px"
-                        onChange={(e) => handleChange(e, setFieldValue)}
+                        onChange={(e) => {
+                          handleChange(e, setFieldValue);
+                        }}
                       />
+
                       <CustomSelect
                         name="whereWillPruningsGo"
                         id="whereWillPruningsGo"
