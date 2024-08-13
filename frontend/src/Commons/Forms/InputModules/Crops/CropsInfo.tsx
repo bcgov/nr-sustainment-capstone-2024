@@ -81,7 +81,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
   handleFormState,
   toggleEnabled,
 }) => {
-  const [, setCropsInfo] = useState(farmDetails);
+  const [, setFarmDetails] = useState(farmDetails);
   const [cropInitialValues, setInitialFieldValues] = useState(initialValues);
   // Only triggered once, it would show list and persists.
   const [fieldHasCrop, setFieldHasCrop] = useState<boolean>(checkHasCrops(farmDetails.Fields));
@@ -176,11 +176,24 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
 
     setTimeout(() => {
       farmDetails.Fields[fieldIdx].Crops.push(newCrop);
-      setCropsInfo(farmDetails);
+      setFarmDetails(farmDetails);
       showFormHandler(fieldIdx);
       setInitialFieldValues(initialValues);
       setFieldHasCrop(checkHasCrops(farmDetails.Fields));
     }, 400);
+  };
+
+  const removeCrop = (field: FieldDetailInterface, crop: CropsDetailsInterface) => {
+    const updatedFarmDetails = { ...farmDetails };
+
+    const fieldIdx = updatedFarmDetails.Fields.findIndex(
+      (f) => f.FieldName === field.FieldName && f.Area === field.Area,
+    );
+
+    const cropIdx = updatedFarmDetails.Fields[fieldIdx].Crops.findIndex((c) => c === crop);
+
+    updatedFarmDetails.Fields[fieldIdx].Crops.splice(cropIdx, 1);
+    setFarmDetails(updatedFarmDetails);
   };
 
   const submitFarmInfo = () => {
@@ -197,6 +210,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
           <CropsList
             field={field}
             farmDetails={farmDetails}
+            removeCrop={removeCrop}
           />
 
           <Formik
