@@ -36,8 +36,10 @@ const CropsList: FC<CropsListComponentProps> = ({ farmDetails, field, removeCrop
                 <h2>Crop</h2>
                 <h2>{idx + 1}</h2>
                 <button
+                  type="button"
                   onClick={() => removeCrop(field, crop)}
                   style={{ border: 'none', background: 'none' }}
+                  aria-label="delete crop"
                 >
                   <FontAwesomeIcon icon={faTrashCan} />
                 </button>

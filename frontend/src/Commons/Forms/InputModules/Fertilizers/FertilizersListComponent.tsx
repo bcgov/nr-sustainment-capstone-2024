@@ -72,8 +72,10 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, remo
               </DesktopFertilizerGroup>
               <StyledFontAwesomeContainer>
                 <button
+                  type="button"
                   onClick={() => removeFert(fertilizer)}
                   style={{ border: 'none', background: 'none' }}
+                  aria-label="delete fertilizer"
                 >
                   <FontAwesomeIcon icon={faTrashCan} />
                 </button>

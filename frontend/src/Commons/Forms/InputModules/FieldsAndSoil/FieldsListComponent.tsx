@@ -63,14 +63,18 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
               </StyledCommentContainerDesktop>
               <StyledFontAwesomeContainer>
                 <button
+                  type="button"
                   onClick={() => editField(field)}
                   style={{ border: 'none', background: 'none' }}
+                  aria-label="edit field"
                 >
                   <FontAwesomeIcon icon={faPencil} />
                 </button>
                 <button
+                  type="button"
                   onClick={() => removeField(field)}
                   style={{ border: 'none', background: 'none' }}
+                  aria-label="delete field"
                 >
                   <FontAwesomeIcon icon={faTrashCan} />
                 </button>

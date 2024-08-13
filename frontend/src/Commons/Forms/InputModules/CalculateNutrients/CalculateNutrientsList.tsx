@@ -123,8 +123,10 @@ const CalculationList: FC<CalculationListProps> = ({
                       </td>
                       <td>
                         <button
+                          type="button"
                           onClick={() => removeFert(field, fertilizer)}
                           style={{ border: 'none', background: 'none' }}
+                          aria-label="Delete button"
                         >
                           <FontAwesomeIcon icon={faTrashCan} />
                         </button>
@@ -267,8 +269,10 @@ const CalculationList: FC<CalculationListProps> = ({
                       </td>
                       <td>
                         <button
+                          type="button"
                           onClick={() => removeFert(field, fertilizer)}
                           style={{ border: 'none', background: 'none' }}
+                          aria-label="Delete fertilizer from field"
                         >
                           <FontAwesomeIcon icon={faTrashCan} />
                         </button>
