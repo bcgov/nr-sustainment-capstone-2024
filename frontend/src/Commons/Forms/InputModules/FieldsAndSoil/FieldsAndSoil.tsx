@@ -207,22 +207,29 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   const removeField = (field: FieldDetailInterface) => {
     const updatedFarmDetails = { ...farmDetails };
 
-    const fieldIndex = updatedFarmDetails.Fields.findIndex(
+    const idx = updatedFarmDetails.Fields.findIndex(
       (f) => f.FieldName === field.FieldName && f.Area === field.Area,
     );
 
-    updatedFarmDetails.Fields.splice(fieldIndex, 1);
+    updatedFarmDetails.Fields.splice(idx, 1);
     setFarmDetails(updatedFarmDetails);
   };
 
   const editField = (field: FieldDetailInterface) => {
-    console.log(field);
+    const idx = farmDetails.Fields.findIndex(
+      (f) => f.FieldName === field.FieldName && f.Area === field.Area,
+    );
+
+    setFieldIndex(idx);
+    setFieldAdd(true);
+    handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
   };
 
   const addNewField = () => {
     handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
     setFieldAdd(true);
   };
+
   const SoilTextArray: string[] = [
     'Different labs use different soil test methods for phosphorus (P) and potassium (K)',
     'Different methods give different values for the same soil sample',
@@ -238,6 +245,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     'The amount of available potassium given from a recent soil test. Generally expressed in ppm or mg/kg.';
   const pH: string =
     "Soil pH is the measure of a soil's acidity or alkalinity. Ranges between 4 and 9 in most soils.";
+
   return (
     <>
       {isSubmitted && (
@@ -260,7 +268,9 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
 
       {(isFieldAdded || !isSubmitted) && (
         <Formik
-          initialValues={initialValues}
+          initialValues={
+            fieldIndex < farmDetails.Fields.length ? farmDetails.Fields[fieldIndex] : initialValues
+          }
           validationSchema={validationSchema}
           onSubmit={addFieldData}
           validate={(values) => {
