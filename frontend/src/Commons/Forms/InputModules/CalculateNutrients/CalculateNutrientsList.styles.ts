@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface TableProps {
   twoCrops: boolean;
@@ -129,4 +130,39 @@ const StyledTable = styled.table<TableProps>`
   }
 `;
 
-export { StyledH3Container, StyledH3Item, CalcList, StyledRemoval, StyledAgronomic, StyledTable };
+const StyledPBalance = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  p {
+    font: ${tokens.typographyRegularSmallBody};
+    padding: 0;
+  }
+
+  @media (min-width: ${screenSizes.desktop}) {
+    gap: 24px;
+    p {
+      font: ${tokens.typographyRegularBody};
+    }
+  }
+`;
+
+const FontAwesomeContainer = styled.div`
+  font-size: 18px;
+  margin-left: -28px;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    margin-left: -40px;
+  }
+`;
+export {
+  StyledH3Container,
+  StyledH3Item,
+  CalcList,
+  StyledRemoval,
+  StyledAgronomic,
+  StyledTable,
+  StyledPBalance,
+  FontAwesomeContainer,
+};

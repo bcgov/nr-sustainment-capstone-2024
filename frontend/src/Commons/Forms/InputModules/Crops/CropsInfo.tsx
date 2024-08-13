@@ -43,6 +43,7 @@ import {
   StyledNoCropsInfoContainer,
 } from './CropsInfo.styles';
 import CropsButtonGroup from './CropsButtonGroup';
+import InformationIcons from '@Commons/InformationIcons/InformationIcons';
 
 const checkHasCrops = (Fields: FieldDetailInterface[]) => {
   let hasCrop = false;
@@ -189,7 +190,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
 
   const sawDustInfo: string =
     'Sawdust and other materials with a high carbon to nitrogen ratio (C:N) will immobilize plant-available nitrogen in the soil. Selecting ‘Yes’ to this question will increase the amount of nitrogen that needs to be applied to ensure the crop receives enough nitrogen for optimal growth and yield.';
-
+  const PlantsPerAcre: string =
+    'Plants Per Acre is dynamically changing based on the Distance between Plants and Rows';
   return (
     <>
       {farmDetails.Fields.map((field: FieldDetailInterface, index: number) => (
@@ -250,7 +252,16 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             onChange={(e) => handleChange(e, setFieldValue)}
                           />
                           <div id="plantsPerHa">
-                            <p id="plantsPerHaLabel">Plants per Acre</p>
+                            <div id="plantsPerHaLabel">
+                              <h4>Plants per Acre</h4>
+                              <span>
+                                <InformationIcons
+                                  text={PlantsPerAcre}
+                                  toggleEnabled={toggleEnabled}
+                                  rightPositioned
+                                />
+                              </span>
+                            </div>
                             <p>{plantsPerHa}</p>
                           </div>
                         </StyledCropsSmallGroup>

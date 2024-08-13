@@ -18,16 +18,22 @@ const StyledCropsSmallGroup = styled.div`
     height: 100%;
     gap: 6px;
     #plantsPerHaLabel {
-      font: ${tokens.typographyBoldSmallBody};
+      display: flex;
+      gap: 10px;
+      h4 {
+        margin: 0;
+        font: ${tokens.typographyBoldSmallBody};
+      }
+
+      @media (min-width: ${screenSizes.desktop}) {
+        h4 {
+          font: ${tokens.typographyBoldLargeBody};
+        }
+      }
     }
     p {
       margin: 0;
       font: ${tokens.typographyRegularLabel};
-    }
-    @media (min-width: ${screenSizes.desktop}) {
-      #plantsPerHaLabel {
-        font: ${tokens.typographyBoldLargeBody};
-      }
     }
   }
 `;

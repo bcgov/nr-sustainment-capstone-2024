@@ -13,6 +13,8 @@ import {
   StyledTable,
   StyledH3Item,
   StyledH3Container,
+  StyledPBalance,
+  FontAwesomeContainer,
 } from './CalculateNutrientsList.styles';
 import { StyledDivider } from '../ListComponent.styles';
 
@@ -136,31 +138,37 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
                 <p className="col1">Balance</p>
               </td>
               <td>
-                <p>
-                  <FontAwesomeIcon
-                    icon={getResultsIcon(resultBalance.agronomic.N)}
-                    color={getResultIconColor(resultBalance.agronomic.N)}
-                  />
-                  {resultBalance.agronomic.N}
-                </p>
+                <StyledPBalance>
+                  <FontAwesomeContainer>
+                    <FontAwesomeIcon
+                      icon={getResultsIcon(resultBalance.agronomic.N)}
+                      color={getResultIconColor(resultBalance.agronomic.N)}
+                    />
+                  </FontAwesomeContainer>
+                  <p>{resultBalance.agronomic.N}</p>
+                </StyledPBalance>
               </td>
               <td>
-                <p>
-                  <FontAwesomeIcon
-                    icon={getResultsIcon(resultBalance.agronomic.P)}
-                    color={getResultIconColor(resultBalance.agronomic.P)}
-                  />
-                  {resultBalance.agronomic.P}
-                </p>
+                <StyledPBalance>
+                  <FontAwesomeContainer>
+                    <FontAwesomeIcon
+                      icon={getResultsIcon(resultBalance.agronomic.P)}
+                      color={getResultIconColor(resultBalance.agronomic.P)}
+                    />
+                  </FontAwesomeContainer>
+                  <p>{resultBalance.agronomic.P}</p>
+                </StyledPBalance>
               </td>
               <td>
-                <p>
-                  <FontAwesomeIcon
-                    icon={getResultsIcon(resultBalance.agronomic.K)}
-                    color={getResultIconColor(resultBalance.agronomic.K)}
-                  />
-                  {resultBalance.agronomic.K}
-                </p>
+                <StyledPBalance>
+                  <FontAwesomeContainer>
+                    <FontAwesomeIcon
+                      icon={getResultsIcon(resultBalance.agronomic.K)}
+                      color={getResultIconColor(resultBalance.agronomic.K)}
+                    />
+                  </FontAwesomeContainer>
+                  <p>{resultBalance.agronomic.K}</p>
+                </StyledPBalance>
               </td>
             </tr>
           </tfoot>
@@ -269,31 +277,38 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
                 <p className="cropRemovalCol1 col1">Balance</p>
               </td>
               <td>
-                <p>
-                  <FontAwesomeIcon
-                    icon={getResultsIcon(resultBalance.cropRemoval.N || 0)}
-                    color={getResultIconColor(resultBalance.cropRemoval.N || 0)}
-                  />
-                  {resultBalance.cropRemoval.N || 0}
-                </p>
+                <StyledPBalance>
+                  <FontAwesomeContainer>
+                    <FontAwesomeIcon
+                      icon={getResultsIcon(resultBalance.cropRemoval.N || 0)}
+                      color={getResultIconColor(resultBalance.cropRemoval.N || 0)}
+                    />
+                  </FontAwesomeContainer>
+                  <p>{resultBalance.cropRemoval.N || 0}</p>
+                </StyledPBalance>
               </td>
               <td>
-                <p>
-                  <FontAwesomeIcon
-                    icon={getResultsIcon(resultBalance.cropRemoval.P)}
-                    color={getResultIconColor(resultBalance.cropRemoval.P)}
-                  />
-                  {resultBalance.cropRemoval.P}
-                </p>
+                <StyledPBalance>
+                  <FontAwesomeContainer>
+                    <FontAwesomeIcon
+                      icon={getResultsIcon(resultBalance.cropRemoval.P)}
+                      color={getResultIconColor(resultBalance.cropRemoval.P)}
+                    />
+                  </FontAwesomeContainer>
+                  <p>{resultBalance.cropRemoval.P}</p>
+                </StyledPBalance>
               </td>
               <td>
-                <p>
-                  <FontAwesomeIcon
-                    icon={getResultsIcon(resultBalance.cropRemoval.K)}
-                    color={getResultIconColor(resultBalance.cropRemoval.K)}
-                  />
-                  {resultBalance.cropRemoval.K}
-                </p>
+                <StyledPBalance>
+                  <FontAwesomeContainer>
+                    <FontAwesomeIcon
+                      icon={getResultsIcon(resultBalance.cropRemoval.K)}
+                      color={getResultIconColor(resultBalance.cropRemoval.K)}
+                    />
+                  </FontAwesomeContainer>
+
+                  <p>{resultBalance.cropRemoval.K}</p>
+                </StyledPBalance>
               </td>
             </tr>
           </tfoot>
