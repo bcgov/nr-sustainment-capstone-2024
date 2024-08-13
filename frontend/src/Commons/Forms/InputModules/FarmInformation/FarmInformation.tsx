@@ -10,7 +10,7 @@ import { faTractor } from '@fortawesome/free-solid-svg-icons';
 import InputModuleProps from '@Interface/InputModuleProps';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import InputModuleInterface from '@Interface/InputModuleinterface';
-import OptionInterface from '@Interface/OptionInterface';
+import FarmRegionOptions from '@Constants/FarmRegionOptions';
 import ComponentText from '@Constants/ComponentText';
 import { FARM_INFORMATION } from '@Constants/ModuleIDs';
 import CustomField from '@Commons/Input/Field/CustomField';
@@ -29,8 +29,6 @@ interface SubmissionValues {
   Year: string;
   FarmRegion: string;
 }
-
-const options: OptionInterface[] = [{ value: 'Vancouver Island', label: 'Vancouver Island' }];
 
 const FarmInfoComponent: FC<InputModuleProps> = ({
   farmDetails,
@@ -105,7 +103,7 @@ const FarmInfoComponent: FC<InputModuleProps> = ({
                 name="FarmRegion"
                 id="FarmRegion"
                 label="Region"
-                options={options}
+                options={FarmRegionOptions}
                 desktopWidth="468px"
                 mobileWidth="259px"
                 onChange={(e) => handleChange(e, setFieldValue)}
