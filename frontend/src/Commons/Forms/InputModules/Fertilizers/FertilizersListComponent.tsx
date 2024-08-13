@@ -25,9 +25,9 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails }) =>
   const fieldCount = fertilizerDetails.length;
   return (
     <StyledFieldInfoList>
-      {fertilizerDetails.map((fertilizer: FertilizerInterface) => (
+      {fertilizerDetails.map((fertilizer: FertilizerInterface, index: number) => (
         <div key={fertilizer.id}>
-          <StyledListContainer>
+          <StyledListContainer hasBorderTop={index !== 0}>
             <FertilizerTypeAndFontAwesomeContainer>
               <StyledListItem
                 desktopWidth="200px"
@@ -109,7 +109,7 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails }) =>
               )}
             </MobileFertilizerGroup>
           </StyledListContainer>
-          {fieldCount > 1 && <StyledDivider />}
+          {/* {fieldCount > 1 && <StyledDivider />} */}
         </div>
       ))}
     </StyledFieldInfoList>

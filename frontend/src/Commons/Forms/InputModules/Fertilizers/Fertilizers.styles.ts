@@ -17,12 +17,13 @@ const StyledCustomNumberField = styled.div`
   }
 `;
 
-const StyledListContainer = styled.div`
+const StyledListContainer = styled.div<{ hasBorderTop: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 24px;
   align-items: flex-start;
+  ${({ hasBorderTop }) => hasBorderTop && `border-top: 1px solid #d8d8d8; padding: 24px 0;`}
 
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;

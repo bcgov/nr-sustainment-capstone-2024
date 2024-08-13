@@ -116,10 +116,20 @@ const StyledTable = styled.table<TableProps>`
   .col1 {
     display: flex;
     justify-content: flex-start;
+    text-align: start;
+    white-space: wrap;
+  }
+
+  h4 {
+    font: ${tokens.typographyBoldBody};
   }
 
   @media (min-width: ${screenSizes.desktop}) {
     width: 90%;
+
+    h4 {
+      font: ${tokens.typographyBoldLargeBody};
+    }
     td {
       white-space: nowrap;
     }
