@@ -47,7 +47,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   toggleEnabled,
 }) => {
   // Builds field info inside the field form module.
-  const [, setFieldsInfo] = useState(farmDetails);
+  const [, setFarmDetails] = useState(farmDetails);
   const [fieldIndex, setFieldIndex] = useState(farmDetails.Fields.length);
   // Only triggered once, it would show list and persists.
   const [isSubmitted, setSubmitted] = useState<boolean>(farmDetails.Fields.length > 0);
@@ -197,11 +197,26 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
         farmInfo.Fields[fieldIndex].Nutrients.nutrientFertilizers.splice(0, 1);
       }
 
-      setFieldsInfo(farmInfo);
+      setFarmDetails(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
       setFieldAdd(false);
     }, 400);
+  };
+
+  const removeField = (field: FieldDetailInterface) => {
+    const updatedFarmDetails = { ...farmDetails };
+
+    const fieldIndex = updatedFarmDetails.Fields.findIndex(
+      (f) => f.FieldName === field.FieldName && f.Area === field.Area,
+    );
+
+    updatedFarmDetails.Fields.splice(fieldIndex, 1);
+    setFarmDetails(updatedFarmDetails);
+  };
+
+  const editField = (field: FieldDetailInterface) => {
+    console.log(field);
   };
 
   const addNewField = () => {
@@ -227,7 +242,11 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     <>
       {isSubmitted && (
         <>
-          <FieldsListComponent farmDetails={farmDetails} />
+          <FieldsListComponent
+            farmDetails={farmDetails}
+            removeField={removeField}
+            editField={editField}
+          />
           {!isFieldAdded && (
             <FieldsButtonComponent
               addNewField={addNewField}
