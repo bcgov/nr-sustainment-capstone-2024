@@ -112,10 +112,22 @@ const FertilizersInfo: FC<InputModuleProps> = ({
     setAddButtonClicked(true);
   };
 
+  const removeFert = (fertilizer: FertilizerInterface) => {
+    const updatedFerts = [...fertilizersDetails];
+
+    const fertIdx = fertilizersDetails.findIndex((f) => f === fertilizer);
+
+    updatedFerts.splice(fertIdx, 1);
+    if (updateFertDetails) updateFertDetails([...updatedFerts]);
+  };
+
   return (
     <>
       {fertilizersDetails.length > 0 && (
-        <FertilizersListComponent fertilizerDetails={fertilizersDetails} />
+        <FertilizersListComponent
+          fertilizerDetails={fertilizersDetails}
+          removeFert={removeFert}
+        />
       )}
 
       {!isAddButtonClicked && (

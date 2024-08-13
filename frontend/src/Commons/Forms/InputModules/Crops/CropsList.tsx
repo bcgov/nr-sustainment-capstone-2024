@@ -2,10 +2,10 @@ import { FC } from 'react';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
-import { StyledListItem, StyledCropsGroup } from '../ListComponent.styles';
-import { StyledListContainer, StyledFieldInfoList } from './CropsList.styles';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { StyledListItem, StyledCropsGroup } from '../ListComponent.styles';
+import { StyledListContainer, StyledFieldInfoList } from './CropsList.styles';
 
 interface CropsListComponentProps {
   field: FieldDetailInterface;

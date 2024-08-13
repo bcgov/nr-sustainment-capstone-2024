@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 import getFertilizerOption from '@Utils/getFertID';
@@ -19,9 +19,10 @@ import {
 
 interface FertilizerProps {
   fertilizerDetails: FertilizerInterface[];
+  removeFert(fertilizer: FertilizerInterface): void;
 }
 
-const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails }) => {
+const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, removeFert }) => {
   const fieldCount = fertilizerDetails.length;
   return (
     <StyledFieldInfoList>
@@ -70,8 +71,12 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails }) =>
                 )}
               </DesktopFertilizerGroup>
               <StyledFontAwesomeContainer>
-                <FontAwesomeIcon icon={faPencil} />
-                <FontAwesomeIcon icon={faTrashCan} />
+                <button
+                  onClick={() => removeFert(fertilizer)}
+                  style={{ border: 'none', background: 'none' }}
+                >
+                  <FontAwesomeIcon icon={faTrashCan} />
+                </button>
               </StyledFontAwesomeContainer>
             </FertilizerTypeAndFontAwesomeContainer>
 
