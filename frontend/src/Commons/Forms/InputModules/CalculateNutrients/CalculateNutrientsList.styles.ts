@@ -67,11 +67,18 @@ const StyledAgronomic = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
-    margin: 28px auto 48px auto;
+  margin: 28px auto 48px auto;
+
+  td {
+    text-align: center;
+  }
 
   @media (min-width: ${screenSizes.desktop}) {
     width: 90%;
-
+    button {
+      display: none;
+    }
+  }
 `;
 
 const StyledRemoval = styled.div`
@@ -124,6 +131,9 @@ const StyledTable = styled.table<TableProps>`
       white-space: nowrap;
     }
     .cropRemovalCol1 {
+      display: none;
+    }
+    .delBtnSpacer {
       display: none;
     }
   }

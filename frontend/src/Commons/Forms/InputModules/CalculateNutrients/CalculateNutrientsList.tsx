@@ -1,7 +1,11 @@
 import { FC } from 'react';
 import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 import FertilizerInterface from '@Interface/FertilizerInterface';
-import { faCircleCheck, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleCheck,
+  faTrashCan,
+  faTriangleExclamation,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MainBalanceInterface from '@Interface/MainBalanceInterface';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
@@ -20,11 +24,17 @@ interface CalculationListProps {
   field: FieldDetailInterface;
   cropBalances: MainBalanceInterface[];
   resultBalance: MainBalanceInterface;
+  removeFert(field: FieldDetailInterface, fertilizer: FertilizerInterface): void;
 }
 
 const zeroConstant: number = 0;
 
-const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, resultBalance }) => {
+const CalculationList: FC<CalculationListProps> = ({
+  field,
+  cropBalances,
+  resultBalance,
+  removeFert,
+}) => {
   const getResultsIcon = (nutrient: number) =>
     nutrient >= 0 ? faCircleCheck : faTriangleExclamation;
 
@@ -75,6 +85,9 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
                 <td>
                   <p>{cropBalances[index]?.agronomic?.K ?? zeroConstant}</p>
                 </td>
+                <td aria-hidden="true">
+                  <h4 className="delBtnSpacer">&nbsp;</h4>
+                </td>
               </tr>
             ))}
 
@@ -95,7 +108,7 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
                     <tr key={`${fertilizer.fertilizerId}-${idx}`}>
                       <td>
                         <p className="col1">
-                          {getFertilizerOption(fertilizer.fertilizerId.toString())?.label ??
+                          {getFertilizerOption(fertilizer.fertilizerId?.toString())?.label ??
                             fertilizer.fertilizerId}
                         </p>
                       </td>
@@ -107,6 +120,14 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
                       </td>
                       <td>
                         <p>{fertilizer.fertK2o}</p>
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => removeFert(field, fertilizer)}
+                          style={{ border: 'none', background: 'none' }}
+                        >
+                          <FontAwesomeIcon icon={faTrashCan} />
+                        </button>
                       </td>
                     </tr>
                   ),
@@ -208,6 +229,9 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
                 <td>
                   <p>{cropBalances[index]?.cropRemoval?.K ?? zeroConstant}</p>
                 </td>
+                <td aria-hidden="true">
+                  <h4>&nbsp;</h4>
+                </td>
               </tr>
             ))}
 
@@ -228,7 +252,7 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
                     <tr key={`${fertilizer.fertilizerId}-${idx}`}>
                       <td>
                         <p className="cropRemovalCol1 col1">
-                          {getFertilizerOption(fertilizer.fertilizerId.toString())?.label ??
+                          {getFertilizerOption(fertilizer.fertilizerId?.toString())?.label ??
                             fertilizer.fertilizerId}
                         </p>
                       </td>
@@ -240,6 +264,14 @@ const CalculationList: FC<CalculationListProps> = ({ field, cropBalances, result
                       </td>
                       <td>
                         <p>{fertilizer.fertK2o}</p>
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => removeFert(field, fertilizer)}
+                          style={{ border: 'none', background: 'none' }}
+                        >
+                          <FontAwesomeIcon icon={faTrashCan} />
+                        </button>
                       </td>
                     </tr>
                   ),
