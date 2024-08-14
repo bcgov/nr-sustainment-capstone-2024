@@ -294,6 +294,21 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
     return [];
   };
 
+  const removeFertFromField = (field: FieldDetailInterface, fertilizer: FertilizerInterface) => {
+    const updatedFarmDetails = { ...farmDetails };
+
+    const fieldIdx = updatedFarmDetails.Fields.findIndex(
+      (f) => f.FieldName === field.FieldName && f.Area === field.Area,
+    );
+
+    const fertIdx = updatedFarmDetails.Fields[fieldIdx].Nutrients.nutrientFertilizers.findIndex(
+      (f) => f === fertilizer,
+    );
+
+    updatedFarmDetails.Fields[fieldIdx].Nutrients.nutrientFertilizers.splice(fertIdx, 1);
+    updateFarmDetails(updatedFarmDetails, CALCULATE_NUTRIENTS);
+  };
+
   return (
     <>
       <Formik
@@ -443,6 +458,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                     field={farmDetails.Fields[selectedFieldIndex]}
                     cropBalances={cropBalances}
                     resultBalance={resultBalance}
+                    removeFert={removeFertFromField}
                   />
                 )}
             </StyledFieldContainer>

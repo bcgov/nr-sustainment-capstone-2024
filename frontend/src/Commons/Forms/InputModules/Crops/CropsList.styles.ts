@@ -20,6 +20,13 @@ const StyledListContainer = styled.div`
   gap: 4px;
   align-items: flex-start;
 
+  .CropsList {
+    align-items: flex-start;
+    button {
+      margin-top: 1px;
+    }
+  }
+
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     gap: 110px;

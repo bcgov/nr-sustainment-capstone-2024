@@ -4,7 +4,6 @@ import CmdOptions from '@Constants/CmdOptions';
 import Button from '@Commons/Button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { COMPLETED } from '@Constants/ModuleStatus';
 import {
   StyledButtonGroupContainer,
   StyledButtonContainer,
@@ -13,15 +12,20 @@ import {
   StyledNewFieldButtonController,
 } from '@Commons/Button/FieldButtonGroup.styles';
 import { FERTILIZERS } from '@Constants/ModuleIDs';
+import FertilizerInterface from '@Interface/FertilizerInterface';
 
 type ButtonComponentProps = {
   addNewFertilizer: () => void;
   handleFormState(cmd: string, toggle?: boolean, status?: string, moveBackModuleID?: string): void;
+  updateFertDetails?(fertDetails: FertilizerInterface[], moveNext: boolean): void;
+  fertDetails: FertilizerInterface[];
 };
 
 const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
   addNewFertilizer,
   handleFormState,
+  updateFertDetails,
+  fertDetails,
 }) => (
   <StyledButtonGroupContainer>
     <StyledNewFieldButtonContainer>
@@ -60,7 +64,7 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
           disabled={false}
           text={ComponentText.NEXT}
           handleClick={() => {
-            handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
+            if (updateFertDetails) updateFertDetails(fertDetails, true);
           }}
         />
       </StyledButtonContainer>

@@ -47,19 +47,21 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   toggleEnabled,
 }) => {
   // Builds field info inside the field form module.
-  const [, setFieldsInfo] = useState(farmDetails);
+  const [, setFarmDetails] = useState(farmDetails);
   const [fieldIndex, setFieldIndex] = useState(farmDetails.Fields.length);
   // Only triggered once, it would show list and persists.
   const [isSubmitted, setSubmitted] = useState<boolean>(farmDetails.Fields.length > 0);
   // Would trigger when new field button is clicked.
   const [isFieldAdded, setFieldAdd] = useState<boolean>(false);
+  const [initialValues, setInitialValues] = useState<FieldDetailInterface>(
+    initialFarmDetails.Fields[0],
+  );
 
   const radioOptions = [
     { id: 'true', label: 'Yes', value: true },
     { id: 'false', label: 'No', value: false },
   ];
 
-  const initialValues: FieldDetailInterface = initialFarmDetails.Fields[0];
   const textAreaMaxLength: number = 200;
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
@@ -102,6 +104,34 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     }),
   });
 
+  const removeField = (field: FieldDetailInterface) => {
+    const updatedFarmDetails = { ...farmDetails };
+
+    const idx = updatedFarmDetails.Fields.findIndex(
+      (f) => f.FieldName === field.FieldName && f.Area === field.Area,
+    );
+
+    updatedFarmDetails.Fields.splice(idx, 1);
+    setFarmDetails(updatedFarmDetails);
+  };
+
+  const editField = (field: FieldDetailInterface) => {
+    const idx = farmDetails.Fields.findIndex(
+      (f) => f.FieldName === field.FieldName && f.Area === field.Area,
+    );
+
+    setInitialValues(field);
+    removeField(field);
+    setFieldIndex(idx);
+    setFieldAdd(true);
+    handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
+  };
+
+  const addNewField = () => {
+    handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
+    setFieldAdd(true);
+  };
+
   /**
    *
    * @param values : It's of type FieldDetailInterface, it calls, FieldName, Area, and Comments
@@ -125,6 +155,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
       };
 
       const newField: FieldDetailInterface = {
+        ...(farmDetails.Fields[fieldIndex] || initialValues),
         Id: fieldIndex,
         FieldName: values.FieldName,
         Area: values.Area,
@@ -145,69 +176,37 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           leafTissueP: values.LeafTest.leafTissueP,
           leafTissueK: values.LeafTest.leafTissueK,
         },
-        Nutrients: {
-          nutrientManures: null,
-          nutrientFertilizers: [
-            {
-              id: 0,
-              fertilizerTypeId: '',
-              fertilizerId: '',
-              applUnitId: '',
-              applRate: 0,
-              applDate: '',
-              applMethodId: '',
-              customN: 0,
-              customP2o5: 0,
-              customK2o: 0,
-              fertN: 0,
-              fertP2o5: 0,
-              fertK2o: 0,
-              liquidDensity: 0,
-              liquidDensityUnitId: '',
-            },
-          ],
-          nutrientOthers: [],
-        },
-        Crops: [
-          {
-            id: 0,
-            cropId: '',
-            yield: 0,
-            plantAgeYears: '',
-            numberOfPlantsPerAcre: 0,
-            distanceBtwnPlantsRows: '',
-            willPlantsBePruned: false,
-            whereWillPruningsGo: '',
-            willSawdustBeApplied: false,
-          },
-        ],
+        Crops: farmDetails.Fields[fieldIndex]?.Crops ?? [],
       };
 
       if (values.HasSoilTest === false) newField.SoilTest = noSoilTestVal;
       if (values.HasLeafTest === false) newField.LeafTest = noLeafTestVal;
 
+      if (
+        farmDetails.Fields.find(
+          (f) => f.FieldName === newField.FieldName && f.Area === newField.Area,
+        )
+      )
+        removeField(newField);
       farmInfo.Fields.push(newField);
 
       // splice or pop to remove Crops after getting pushed to array
-      if (farmInfo.Fields[fieldIndex].Crops.length === 1) {
-        // Crops is not optional so this line is needed
-        farmInfo.Fields[fieldIndex].Crops.splice(0, 1);
-      }
-      if (farmInfo.Fields[fieldIndex].Nutrients.nutrientFertilizers.length === 1) {
-        farmInfo.Fields[fieldIndex].Nutrients.nutrientFertilizers.splice(0, 1);
-      }
+      // if (farmInfo.Fields[fieldIndex].Crops.length === 1) {
+      //   // Crops is not optional so this line is needed
+      //   farmInfo.Fields[fieldIndex].Crops.splice(0, 1);
+      // }
+      // if (farmInfo.Fields[fieldIndex].Nutrients.nutrientFertilizers.length === 1) {
+      //   farmInfo.Fields[fieldIndex].Nutrients.nutrientFertilizers.splice(0, 1);
+      // }
 
-      setFieldsInfo(farmInfo);
+      setInitialValues(initialValues);
+      setFarmDetails(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
       setFieldAdd(false);
     }, 400);
   };
 
-  const addNewField = () => {
-    handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
-    setFieldAdd(true);
-  };
   const SoilTextArray: string[] = [
     'Different labs use different soil test methods for phosphorus (P) and potassium (K)',
     'Different methods give different values for the same soil sample',
@@ -223,11 +222,16 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     'The amount of available potassium given from a recent soil test. Generally expressed in ppm or mg/kg.';
   const pH: string =
     "Soil pH is the measure of a soil's acidity or alkalinity. Ranges between 4 and 9 in most soils.";
+
   return (
     <>
       {isSubmitted && (
         <>
-          <FieldsListComponent farmDetails={farmDetails} />
+          <FieldsListComponent
+            farmDetails={farmDetails}
+            removeField={removeField}
+            editField={editField}
+          />
           {!isFieldAdded && (
             <FieldsButtonComponent
               addNewField={addNewField}
@@ -241,7 +245,9 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
 
       {(isFieldAdded || !isSubmitted) && (
         <Formik
-          initialValues={initialValues}
+          initialValues={
+            fieldIndex < farmDetails.Fields.length ? farmDetails.Fields[fieldIndex] : initialValues
+          }
           validationSchema={validationSchema}
           onSubmit={addFieldData}
           validate={(values) => {

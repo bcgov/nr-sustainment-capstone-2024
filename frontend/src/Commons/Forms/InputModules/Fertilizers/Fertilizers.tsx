@@ -34,6 +34,7 @@ const FertilizersInfo: FC<InputModuleProps> = ({
 }) => {
   const initialFieldValues = initialFarmDetails.Fields[0].Nutrients[0];
   const [isAddButtonClicked, setAddButtonClicked] = useState<boolean>(false);
+  const [fertDetails, setFertDetails] = useState<FertilizerInterface[]>(fertilizersDetails);
 
   const validationSchema = Yup.object().shape({
     fertilizerTypeId: Yup.string().required('Required'),
@@ -85,7 +86,7 @@ const FertilizersInfo: FC<InputModuleProps> = ({
     fertK20Value = fertValues.K;
 
     const newFertilizer: FertilizerInterface = {
-      id: fertilizersDetails.length,
+      id: fertDetails.length,
       fertilizerTypeId: values.fertilizerTypeId,
       fertilizerId: values.fertilizerTypeId.includes('(Custom)')
         ? tempFertilizerId
@@ -104,7 +105,10 @@ const FertilizersInfo: FC<InputModuleProps> = ({
       liquidDensityUnitId: '',
     };
 
-    if (updateFertDetails) updateFertDetails([...fertilizersDetails, newFertilizer]);
+    fertDetails.push(newFertilizer);
+    setFertDetails(fertDetails);
+    if (updateFertDetails) updateFertDetails(fertDetails, false);
+
     setAddButtonClicked(false);
   };
 
@@ -112,16 +116,32 @@ const FertilizersInfo: FC<InputModuleProps> = ({
     setAddButtonClicked(true);
   };
 
+  const removeFert = (fertilizer: FertilizerInterface) => {
+    const updatedFerts = [...fertDetails];
+
+    const fertIdx = fertDetails.findIndex((f) => f === fertilizer);
+
+    updatedFerts.splice(fertIdx, 1);
+    setFertDetails([...updatedFerts]);
+    console.log(fertilizersDetails);
+    console.log(fertDetails);
+  };
+
   return (
     <>
-      {fertilizersDetails.length > 0 && (
-        <FertilizersListComponent fertilizerDetails={fertilizersDetails} />
+      {fertDetails.length > 0 && (
+        <FertilizersListComponent
+          fertilizerDetails={fertDetails}
+          removeFert={removeFert}
+        />
       )}
 
       {!isAddButtonClicked && (
         <FertilizersButtonComponent
           addNewFertilizer={addNewFertilizer}
           handleFormState={handleFormState}
+          fertDetails={fertDetails}
+          updateFertDetails={updateFertDetails}
         />
       )}
 
