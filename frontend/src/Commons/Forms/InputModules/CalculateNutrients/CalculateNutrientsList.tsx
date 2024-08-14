@@ -304,6 +304,9 @@ const CalculationList: FC<CalculationListProps> = ({
               <td aria-hidden="true">
                 <StyledDivider />
               </td>
+              <td aria-hidden="true">
+                <StyledDivider />
+              </td>
             </tr>
           </tbody>
 
