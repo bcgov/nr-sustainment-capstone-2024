@@ -112,7 +112,6 @@ const convertToNMP = (
       },
     };
   });
-  console.log(hasLeafTest);
   return {
     ...prevDetails,
     farmDetails: {
