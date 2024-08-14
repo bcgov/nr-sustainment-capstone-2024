@@ -12,8 +12,8 @@ const StyledFieldContainer = styled.div`
 const StyledFieldSelect = styled.div`
   display: flex;
   width: 100%;
+  justify-content: center;
   @media (min-width: ${screenSizes.desktop}) {
-    justify-content: center;
     margin-top: 13px;
   }
 `;
@@ -22,6 +22,7 @@ const StyledGroupFormView = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 24px;
+  align-items: center;
 
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;

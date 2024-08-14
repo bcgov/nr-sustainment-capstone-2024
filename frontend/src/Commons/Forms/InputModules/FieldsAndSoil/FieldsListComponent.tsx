@@ -52,7 +52,7 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
                 mobileWidth="50px"
                 marginRight="120px"
               >
-                <h2>Area</h2>
+                <h2>Acres</h2>
                 <p>{Area}</p>
               </StyledListItem>
               <StyledCommentContainerDesktop>
@@ -90,9 +90,9 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
 
             <StyledListItemGroupContainer>
               <StyledListItem
-                desktopWidth="230px"
+                desktopWidth="401px"
                 mobileWidth="234px"
-                marginRight="195px"
+                marginRight="24px"
               >
                 <h2>Lab (Soil Test Methods)</h2>
                 <p>{HasSoilTest ? SoilTest.TestingMethod : ComponentText.NA}</p>

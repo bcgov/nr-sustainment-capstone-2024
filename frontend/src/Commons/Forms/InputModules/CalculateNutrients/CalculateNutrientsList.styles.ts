@@ -123,10 +123,20 @@ const StyledTable = styled.table<TableProps>`
   .col1 {
     display: flex;
     justify-content: flex-start;
+    text-align: start;
+    white-space: wrap;
+  }
+
+  h4 {
+    font: ${tokens.typographyBoldBody};
   }
 
   @media (min-width: ${screenSizes.desktop}) {
     width: 90%;
+
+    h4 {
+      font: ${tokens.typographyBoldLargeBody};
+    }
     td {
       white-space: nowrap;
     }
@@ -139,4 +149,40 @@ const StyledTable = styled.table<TableProps>`
   }
 `;
 
-export { StyledH3Container, StyledH3Item, CalcList, StyledRemoval, StyledAgronomic, StyledTable };
+const StyledPBalance = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  p {
+    font: ${tokens.typographyRegularSmallBody};
+    padding: 0;
+  }
+
+  @media (min-width: ${screenSizes.desktop}) {
+    gap: 20px;
+    p {
+      font: ${tokens.typographyRegularBody};
+    }
+  }
+`;
+
+const FontAwesomeContainer = styled.div`
+  font-size: 16px;
+  margin-left: -28px;
+
+  @media (min-width: ${screenSizes.desktop}) {
+    font-size: 24px;
+    margin-left: -45px;
+  }
+`;
+export {
+  StyledH3Container,
+  StyledH3Item,
+  CalcList,
+  StyledRemoval,
+  StyledAgronomic,
+  StyledTable,
+  StyledPBalance,
+  FontAwesomeContainer,
+};
