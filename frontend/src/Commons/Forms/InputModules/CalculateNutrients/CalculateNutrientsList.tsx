@@ -56,7 +56,7 @@ const CalculationList: FC<CalculationListProps> = ({
         <StyledTable twoCrops={field.Crops.length > 1}>
           <thead>
             <tr>
-              <th>
+              <th className="th-crop">
                 <h4 className="col1">Crop</h4>
               </th>
               <th>
@@ -140,6 +140,9 @@ const CalculationList: FC<CalculationListProps> = ({
             )}
 
             <tr>
+              <td aria-hidden="true">
+                <StyledDivider />
+              </td>
               <td aria-hidden="true">
                 <StyledDivider />
               </td>

@@ -112,6 +112,10 @@ const StyledTable = styled.table<TableProps>`
     text-align: center;
   }
 
+  .th-crop {
+    width: 50%;
+  }
+
   tbody tr:nth-of-type(${(props) => (props.twoCrops ? 'even' : 'odd')}) {
     background-color: ${tokens.themeGray30};
   }
@@ -157,7 +161,7 @@ const StyledPBalance = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 11px;
+  gap: 5px;
   p {
     font: ${tokens.typographyRegularSmallBody};
     padding: 0;
@@ -173,7 +177,7 @@ const StyledPBalance = styled.div`
 
 const FontAwesomeContainer = styled.div`
   font-size: 16px;
-  margin-left: -28px;
+  margin-left: -20px;
 
   @media (min-width: ${screenSizes.desktop}) {
     font-size: 24px;
