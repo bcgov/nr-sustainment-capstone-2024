@@ -21,7 +21,7 @@ interface FertilizerProps {
   removeFert(fertilizer: FertilizerInterface): void;
 }
 
-const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails }) => (
+const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, removeFert }) => (
   <StyledFieldInfoList>
     {fertilizerDetails.map((fertilizer: FertilizerInterface, index: number) => (
       <div key={fertilizer.id}>
@@ -68,8 +68,14 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails }) =>
               )}
             </DesktopFertilizerGroup>
             <StyledFontAwesomeContainer>
-              <FontAwesomeIcon icon={faPencil} />
-              <FontAwesomeIcon icon={faTrashCan} />
+              <button
+                type="button"
+                onClick={() => removeFert(fertilizer)}
+                style={{ border: 'none', background: 'none' }}
+                aria-label="delete fertilizer"
+              >
+                <FontAwesomeIcon icon={faTrashCan} />
+              </button>
             </StyledFontAwesomeContainer>
           </FertilizerTypeAndFontAwesomeContainer>
 

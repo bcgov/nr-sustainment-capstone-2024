@@ -176,8 +176,10 @@ const MainPage: FC = () => {
    * @param     newNutrients => A new 'TempNutrientInterface' object with new data from
    *            from the nutrient module.
    * */
-  const updateFertDetails = (newFerts: FertilizerInterface[]): void => {
+  const updateFertDetails = (newFerts: FertilizerInterface[], moveNext: boolean): void => {
     setFertDetails(newFerts);
+    if (!moveNext) return;
+
     if (formStates[currForm].id === FERTILIZERS)
       handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
     else handleFormState(FERTILIZERS, true);

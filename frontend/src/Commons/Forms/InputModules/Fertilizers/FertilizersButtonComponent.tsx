@@ -17,7 +17,7 @@ import FertilizerInterface from '@Interface/FertilizerInterface';
 type ButtonComponentProps = {
   addNewFertilizer: () => void;
   handleFormState(cmd: string, toggle?: boolean, status?: string, moveBackModuleID?: string): void;
-  updateFertDetails?(fertDetails: FertilizerInterface[]): void;
+  updateFertDetails?(fertDetails: FertilizerInterface[], moveNext: boolean): void;
   fertDetails: FertilizerInterface[];
 };
 
@@ -64,7 +64,7 @@ const FertilizersButtonComponent: FC<ButtonComponentProps> = ({
           disabled={false}
           text={ComponentText.NEXT}
           handleClick={() => {
-            if (updateFertDetails) updateFertDetails(fertDetails);
+            if (updateFertDetails) updateFertDetails(fertDetails, true);
           }}
         />
       </StyledButtonContainer>
