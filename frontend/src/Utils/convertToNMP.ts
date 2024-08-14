@@ -30,7 +30,12 @@ const convertToNMP = (
   newDetails: FarmDetailsInterface,
   prevDetails: NmpInterface,
 ): NmpInterface => {
+  let hasLeafTest = false;
+  let testingMethod = '';
   const newFields: NmpFieldInterface[] = newDetails.Fields.map((field: FieldDetailInterface) => {
+    if (field.HasLeafTest) hasLeafTest = true;
+    if (field.HasSoilTest) testingMethod = field.SoilTest.TestingMethod;
+
     const newCrops: NmpCropInterface[] = field.Crops?.map((crop: CropsDetailsInterface) => ({
       ...templateCropNMP,
       id: crop.id,
@@ -39,9 +44,9 @@ const convertToNMP = (
       plantAgeYears: crop.plantAgeYears,
       numberOfPlantsPerAcre: crop.numberOfPlantsPerAcre,
       distanceBtwnPlantsRows: crop.distanceBtwnPlantsRows,
-      willPlantsBePruned: crop.willPlantsBePruned === true,
+      willPlantsBePruned: crop.willPlantsBePruned ?? false,
       whereWillPruningsGo: crop.whereWillPruningsGo,
-      willSawdustBeApplied: crop.willSawdustBeApplied === true,
+      willSawdustBeApplied: crop.willSawdustBeApplied ?? false,
     }));
 
     const newNutrients: FertilizerInterface[] = Array.isArray(field.Nutrients?.nutrientFertilizers)
@@ -62,14 +67,13 @@ const convertToNMP = (
             ValP: field.SoilTest.ValP || templateFieldNMP.SoilTest?.ValP,
             valK: field.SoilTest.valK || templateFieldNMP.SoilTest?.valK,
             valPH: field.SoilTest.valPH || templateFieldNMP.SoilTest?.valPH,
-            // sampleDate: field.SoilTest?.sampleDate || templateFieldNMP.SoilTest?.sampleDate,
-            sampleDate: '2024-07-01T00:00:00',
+            sampleDate: field.SoilTest.sampleDate ?? '2024-07-01T00:00:00',
           }
         : null,
       LeafTest: field.HasLeafTest
         ? {
-            leafTissueP: field.LeafTest?.leafTissueP,
-            leafTissueK: field.LeafTest?.leafTissueK,
+            leafTissueP: field.LeafTest.leafTissueP,
+            leafTissueK: field.LeafTest.leafTissueK,
           }
         : null,
       Crops: newCrops,
@@ -108,13 +112,16 @@ const convertToNMP = (
       },
     };
   });
-
+  console.log(hasLeafTest);
   return {
     ...prevDetails,
     farmDetails: {
       ...prevDetails.farmDetails,
       FarmName: newDetails.FarmName,
       Year: newDetails.Year,
+      FarmRegion: newDetails.FarmRegion,
+      LeafTestingMethod: hasLeafTest ? '0' : '',
+      TestingMethod: testingMethod,
     },
     years: [{ ...prevDetails.years[0], Year: newDetails.Year, Fields: newFields }],
   };
