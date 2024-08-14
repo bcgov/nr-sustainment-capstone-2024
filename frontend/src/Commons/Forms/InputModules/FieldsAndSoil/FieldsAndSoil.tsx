@@ -125,6 +125,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
       };
 
       const newField: FieldDetailInterface = {
+        ...(farmDetails.Fields[fieldIndex] || initialValues),
         Id: fieldIndex,
         FieldName: values.FieldName,
         Area: values.Area,
@@ -145,57 +146,28 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           leafTissueP: values.LeafTest.leafTissueP,
           leafTissueK: values.LeafTest.leafTissueK,
         },
-        Nutrients: {
-          nutrientManures: null,
-          nutrientFertilizers: [
-            {
-              id: 0,
-              fertilizerTypeId: '',
-              fertilizerId: '',
-              applUnitId: '',
-              applRate: 0,
-              applDate: '',
-              applMethodId: '',
-              customN: 0,
-              customP2o5: 0,
-              customK2o: 0,
-              fertN: 0,
-              fertP2o5: 0,
-              fertK2o: 0,
-              liquidDensity: 0,
-              liquidDensityUnitId: '',
-            },
-          ],
-          nutrientOthers: [],
-        },
-        Crops: [
-          {
-            id: 0,
-            cropId: '',
-            yield: 0,
-            plantAgeYears: '',
-            numberOfPlantsPerAcre: 0,
-            distanceBtwnPlantsRows: '',
-            willPlantsBePruned: false,
-            whereWillPruningsGo: '',
-            willSawdustBeApplied: false,
-          },
-        ],
       };
+      console.log(newField);
 
       if (values.HasSoilTest === false) newField.SoilTest = noSoilTestVal;
       if (values.HasLeafTest === false) newField.LeafTest = noLeafTestVal;
 
+      if (
+        farmDetails.Fields.find(
+          (f) => f.FieldName === newField.FieldName && f.Area === newField.Area,
+        )
+      )
+        removeField(newField);
       farmInfo.Fields.push(newField);
 
       // splice or pop to remove Crops after getting pushed to array
-      if (farmInfo.Fields[fieldIndex].Crops.length === 1) {
-        // Crops is not optional so this line is needed
-        farmInfo.Fields[fieldIndex].Crops.splice(0, 1);
-      }
-      if (farmInfo.Fields[fieldIndex].Nutrients.nutrientFertilizers.length === 1) {
-        farmInfo.Fields[fieldIndex].Nutrients.nutrientFertilizers.splice(0, 1);
-      }
+      // if (farmInfo.Fields[fieldIndex].Crops.length === 1) {
+      //   // Crops is not optional so this line is needed
+      //   farmInfo.Fields[fieldIndex].Crops.splice(0, 1);
+      // }
+      // if (farmInfo.Fields[fieldIndex].Nutrients.nutrientFertilizers.length === 1) {
+      //   farmInfo.Fields[fieldIndex].Nutrients.nutrientFertilizers.splice(0, 1);
+      // }
 
       setFarmDetails(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
