@@ -47,7 +47,7 @@ import CropsButtonGroup from './CropsButtonGroup';
 const checkHasCrops = (Fields: FieldDetailInterface[]) => {
   let hasCrop = false;
   Fields.forEach((field) => {
-    if (field.Crops.length > 0) {
+    if (field.Crops && field.Crops.length > 0) {
       hasCrop = true;
     }
   });
@@ -158,9 +158,9 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     );
   };
 
-  const addCrop = (values: SubmissionCropsInterface, fieldIdx: number, cropIdx: number): void => {
+  const addCrop = (values: SubmissionCropsInterface, fieldIdx: number): void => {
     const newCrop: CropsDetailsInterface = {
-      id: cropIdx,
+      id: farmDetails.Fields[fieldIdx].Crops?.length ?? 0,
       cropId: values.cropId,
       yield: values.yield,
       plantAgeYears: values.plantAgeYears,
@@ -175,7 +175,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     };
 
     setTimeout(() => {
-      farmDetails.Fields[fieldIdx].Crops.push(newCrop);
+      farmDetails.Fields[fieldIdx].Crops?.push(newCrop);
       setFarmDetails(farmDetails);
       showFormHandler(fieldIdx);
       setInitialFieldValues(initialValues);
@@ -190,9 +190,9 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
       (f) => f.FieldName === field.FieldName && f.Area === field.Area,
     );
 
-    const cropIdx = updatedFarmDetails.Fields[fieldIdx].Crops.findIndex((c) => c === crop);
+    const cropIdx = updatedFarmDetails.Fields[fieldIdx].Crops?.findIndex((c) => c === crop);
 
-    updatedFarmDetails.Fields[fieldIdx].Crops.splice(cropIdx, 1);
+    updatedFarmDetails.Fields[fieldIdx].Crops?.splice(cropIdx ?? 0, 1);
     setFarmDetails(updatedFarmDetails);
   };
 
@@ -217,7 +217,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
             initialValues={cropInitialValues}
             validationSchema={validationSchema}
             onSubmit={(values, { resetForm }) => {
-              addCrop(values, index, field.Crops.length);
+              addCrop(values, index);
               resetForm();
             }}
             validate={(values) => {
@@ -346,7 +346,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
             }
           </Formik>
 
-          {!hasFieldBeenSelected[index] && field.Crops.length < 2 && (
+          {!hasFieldBeenSelected[index] && (field.Crops?.length ?? 0) < 2 && (
             <StyledNewFieldButtonContainer formCrops>
               <StyledNewFieldButtonController>
                 <Button

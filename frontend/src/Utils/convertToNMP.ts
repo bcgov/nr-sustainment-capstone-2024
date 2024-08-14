@@ -31,7 +31,7 @@ const convertToNMP = (
   prevDetails: NmpInterface,
 ): NmpInterface => {
   const newFields: NmpFieldInterface[] = newDetails.Fields.map((field: FieldDetailInterface) => {
-    const newCrops: NmpCropInterface[] = field.Crops.map((crop: CropsDetailsInterface) => ({
+    const newCrops: NmpCropInterface[] = field.Crops?.map((crop: CropsDetailsInterface) => ({
       ...templateCropNMP,
       id: crop.id,
       cropId: crop.cropId,

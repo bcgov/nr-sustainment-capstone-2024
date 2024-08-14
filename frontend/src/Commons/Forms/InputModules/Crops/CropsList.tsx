@@ -26,7 +26,7 @@ const CropsList: FC<CropsListComponentProps> = ({ farmDetails, field, removeCrop
           <p key={field.FieldName}>{field.FieldName}</p>
         </StyledListItem>
         <StyledCropsGroup>
-          {field.Crops.map((crop: CropsDetailsInterface, idx: number) => (
+          {field.Crops?.map((crop: CropsDetailsInterface, idx: number) => (
             <StyledListItem
               desktopWidth="160px"
               mobileWidth="121px"

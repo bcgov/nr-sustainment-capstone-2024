@@ -53,13 +53,15 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
   const [isSubmitted, setSubmitted] = useState<boolean>(farmDetails.Fields.length > 0);
   // Would trigger when new field button is clicked.
   const [isFieldAdded, setFieldAdd] = useState<boolean>(false);
+  const [initialValues, setInitialValues] = useState<FieldDetailInterface>(
+    initialFarmDetails.Fields[0],
+  );
 
   const radioOptions = [
     { id: 'true', label: 'Yes', value: true },
     { id: 'false', label: 'No', value: false },
   ];
 
-  const initialValues: FieldDetailInterface = initialFarmDetails.Fields[0];
   const textAreaMaxLength: number = 200;
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().max(24).required('Required'),
@@ -118,6 +120,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
       (f) => f.FieldName === field.FieldName && f.Area === field.Area,
     );
 
+    setInitialValues(field);
+    removeField(field);
     setFieldIndex(idx);
     setFieldAdd(true);
     handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
@@ -172,8 +176,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
           leafTissueP: values.LeafTest.leafTissueP,
           leafTissueK: values.LeafTest.leafTissueK,
         },
+        Crops: farmDetails.Fields[fieldIndex]?.Crops ?? [],
       };
-      console.log(newField);
 
       if (values.HasSoilTest === false) newField.SoilTest = noSoilTestVal;
       if (values.HasLeafTest === false) newField.LeafTest = noLeafTestVal;
@@ -195,6 +199,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
       //   farmInfo.Fields[fieldIndex].Nutrients.nutrientFertilizers.splice(0, 1);
       // }
 
+      setInitialValues(initialValues);
       setFarmDetails(farmInfo);
       setFieldIndex((prevIndex) => prevIndex + 1);
       setSubmitted(true);
