@@ -71,9 +71,9 @@ const FertilizersInfo: FC<InputModuleProps> = ({
     let fertP2o5Value = 0;
     let fertK20Value = 0;
 
-    if (values.fertilizerTypeId.includes('Dry Fertilizer (Custom)')) {
+    if (values.fertilizerTypeId.includes('2')) {
       tempFertilizerId = `Dry Fertilizer Custom (${values.customN}-${values.customP2o5}-${values.customK2o})`;
-    } else if (values.fertilizerTypeId.includes('Liquid Fertilizer (Custom)')) {
+    } else if (values.fertilizerTypeId.includes('4')) {
       tempFertilizerId = `Liquid Fertilizer Custom (${values.customN}-${values.customP2o5}-${values.customK2o})`;
     }
 

@@ -83,7 +83,11 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
     label: getFertilizerOption(fertilizer.fertilizerId)?.label ?? fertilizer.fertilizerId,
   }));
 
-  const isLiquid = fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid');
+  const isLiquid =
+    fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('3') ||
+    fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('4');
+  console.log(fertilizersDetails[selectedIndex]);
+  console.log(isLiquid);
 
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().required('Required'),
@@ -243,7 +247,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
 
     // Default density unit is lb/imp. gall
     // This checks and adjust if necessary
-    if (fert.fertilizerTypeId.includes('Liquid Fertilizer')) {
+    if (fert.fertilizerTypeId.includes('3') || fert.fertilizerTypeId.includes('4')) {
       switch (densityUnits) {
         case 'kg/US Gallon':
           // kg to lb
@@ -379,7 +383,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                     />
                   </StyledSmallFormGroup>
 
-                  {fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid') && (
+                  {isLiquid && (
                     <StyledSmallFormGroup>
                       <CustomField
                         label="Density"
