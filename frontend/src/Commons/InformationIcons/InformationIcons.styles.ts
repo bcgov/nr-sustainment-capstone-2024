@@ -81,7 +81,7 @@ const StyledBubble = styled.div<StyledIconsProps>`
     text-align: start;
   }
   p {
-    padding: 10px 0 0 20px;
+    padding: 10px 20px 10px 20px;
     font: ${tokens.typographyRegularLabel};
     color: ${tokens.typographyColorPrimary};
   }

@@ -45,7 +45,7 @@ const StyledLinkContainer = styled.div<StyledLinkProps>`
   }
   @media (min-width: ${screenSizes.desktop}) {
     height: 42px;
-    padding: ${(props) => (props.finishButton ? '20px 41px' : '20px 0')};
+    padding: ${(props) => (props.finishButton ? '20px 41px' : '21px 0')};
     max-width: ${(props) =>
       getButtonSize(
         props.size,

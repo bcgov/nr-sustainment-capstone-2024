@@ -35,6 +35,7 @@ import {
 } from '@Commons/Button/FieldButtonGroup.styles';
 import StatusValidate from '@Utils/StatusValidate';
 import { ACTIVE } from '@Constants/ModuleStatus';
+import InformationIcons from '@Commons/InformationIcons/InformationIcons';
 import CropsList from './CropsList';
 import {
   StyledCropsSmallGroup,
@@ -108,7 +109,11 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     distanceBtwnPlants: BlueberrySchemaString('cropId'),
     distanceBtwnRows: BlueberrySchemaString('cropId'),
     willPlantsBePruned: Yup.boolean().required('Required'),
-    whereWillPruningsGo: Yup.string().required('Required'),
+    whereWillPruningsGo: Yup.string().when('willPlantsBePruned', {
+      is: true,
+      then: (schema) => schema.required('Required'),
+      otherwise: (schema) => schema.notRequired(),
+    }),
     willSawdustBeApplied: Yup.boolean().required('Required'),
   });
 
@@ -189,7 +194,8 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
 
   const sawDustInfo: string =
     'Sawdust and other materials with a high carbon to nitrogen ratio (C:N) will immobilize plant-available nitrogen in the soil. Selecting ‘Yes’ to this question will increase the amount of nitrogen that needs to be applied to ensure the crop receives enough nitrogen for optimal growth and yield.';
-
+  const PlantsPerAcre: string =
+    'Plants Per Acre is dynamically changing based on the Distance between Plants and Rows';
   return (
     <>
       {farmDetails.Fields.map((field: FieldDetailInterface, index: number) => (
@@ -250,7 +256,16 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                             onChange={(e) => handleChange(e, setFieldValue)}
                           />
                           <div id="plantsPerHa">
-                            <p id="plantsPerHaLabel">Plants per Acre</p>
+                            <div id="plantsPerHaLabel">
+                              <h4>Plants per Acre</h4>
+                              <span>
+                                <InformationIcons
+                                  text={PlantsPerAcre}
+                                  toggleEnabled={toggleEnabled}
+                                  rightPositioned
+                                />
+                              </span>
+                            </div>
                             <p>{plantsPerHa}</p>
                           </div>
                         </StyledCropsSmallGroup>
@@ -284,17 +299,24 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         options={YesOrNo}
                         desktopWidth="226px"
                         mobileWidth="137px"
-                        onChange={(e) => handleChange(e, setFieldValue)}
+                        onChange={(e) => {
+                          handleChange(e, setFieldValue);
+                          console.log(e.target.name, e.target.value);
+                        }}
                       />
-                      <CustomSelect
-                        name="whereWillPruningsGo"
-                        id="whereWillPruningsGo"
-                        label="Where will prunings go?"
-                        options={WherePruningsGo}
-                        desktopWidth="226px"
-                        mobileWidth="137px"
-                        onChange={(e) => handleChange(e, setFieldValue)}
-                      />
+                      {((values.willPlantsBePruned &&
+                        values.willPlantsBePruned.toString().includes('true')) ||
+                        values.willPlantsBePruned === undefined) && (
+                        <CustomSelect
+                          name="whereWillPruningsGo"
+                          id="whereWillPruningsGo"
+                          label="Where will prunings go?"
+                          options={WherePruningsGo}
+                          desktopWidth="226px"
+                          mobileWidth="137px"
+                          onChange={(e) => handleChange(e, setFieldValue)}
+                        />
+                      )}
                     </StyledCropsLargeGroup>
                     <StyledCropsLargeGroup>
                       <CustomSelect
