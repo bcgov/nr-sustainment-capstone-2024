@@ -2,19 +2,19 @@ import OptionInterface from 'src/Interface/OptionInterface';
 
 const soilTestOptions: OptionInterface[] = [
   {
-    value: 'Other Lab (Bicarbonate and Amm Acetate)',
+    value: '11',
     label: 'Other Lab (Bicarbonate and Amm Acetate)',
   },
   {
-    value: 'Other Lab (Original Kelowna Method)',
+    value: '12',
     label: 'Other Lab (Original Kelowna Method)',
   },
   {
-    value: 'AGAT (Mod Bray-1 and Amm Acetate)',
+    value: '1',
     label: 'AGAT (Mod Bray-1 and Amm Acetate)',
   },
   {
-    value: 'A and L Canada (Bray-1 and Mehlich 3)',
+    value: '2',
     label: 'A and L Canada (Bray-1 and Mehlich 3)',
   },
 ];

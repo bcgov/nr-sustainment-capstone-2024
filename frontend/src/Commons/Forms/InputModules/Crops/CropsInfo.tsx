@@ -128,27 +128,27 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     switch (distanceCombination) {
       case '0.6x2.7':
         res = '(2ft x 9ft)';
-        setplantsPerHa(getPlantsPerAcre(5));
+        setplantsPerHa(getPlantsPerAcre(0));
         break;
       case '0.6x3.0':
         res = '(2ft x 10ft)';
-        setplantsPerHa(getPlantsPerAcre(4));
+        setplantsPerHa(getPlantsPerAcre(1));
         break;
       case '0.75x2.7':
         res = '(2.5ft x 9ft)';
-        setplantsPerHa(getPlantsPerAcre(3));
+        setplantsPerHa(getPlantsPerAcre(2));
         break;
       case '0.75x3.0':
         res = '(2.5ft x 10ft)';
-        setplantsPerHa(getPlantsPerAcre(2));
+        setplantsPerHa(getPlantsPerAcre(3));
         break;
       case '0.9x2.7':
         res = '(3ft x 9ft)';
-        setplantsPerHa(getPlantsPerAcre(1));
+        setplantsPerHa(getPlantsPerAcre(4));
         break;
       case '0.9x3.0':
         res = '(3ft x 10ft)';
-        setplantsPerHa(getPlantsPerAcre(0));
+        setplantsPerHa(getPlantsPerAcre(5));
         break;
       default:
         break;

@@ -3,6 +3,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 import getFertilizerOption from '@Utils/getFertID';
+import { FertilizerTypeOptions } from '@Constants/FertilizersOptions';
 import {
   StyledFieldInfoList,
   StyledListItem,
@@ -32,11 +33,16 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, remo
               mobileWidth="127px"
             >
               <h2>Fertilizer Type</h2>
-              <p>{fertilizer.fertilizerTypeId}</p>
+              <p>
+                {
+                  FertilizerTypeOptions.find(
+                    (option) => option.value.toString() === fertilizer.fertilizerTypeId,
+                  )?.label
+                }
+              </p>
             </StyledListItem>
             <DesktopFertilizerGroup>
-              {fertilizer.fertilizerTypeId === 'Dry Fertilizer (Custom)' ||
-              fertilizer.fertilizerTypeId === 'Liquid Fertilizer (Custom)' ? (
+              {fertilizer.fertilizerTypeId === '2' || fertilizer.fertilizerTypeId === '4' ? (
                 <StyledCustomFertilizerGroup>
                   <StyledListItem
                     desktopWidth="80px"
