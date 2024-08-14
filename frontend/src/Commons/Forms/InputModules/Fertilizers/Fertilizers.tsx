@@ -72,9 +72,11 @@ const FertilizersInfo: FC<InputModuleProps> = ({
     let fertK20Value = 0;
 
     if (values.fertilizerTypeId.includes('2')) {
-      tempFertilizerId = `Dry Fertilizer Custom (${values.customN}-${values.customP2o5}-${values.customK2o})`;
+      // tempFertilizerId = `Dry Fertilizer Custom (${values.customN}-${values.customP2o5}-${values.customK2o})`;
+      tempFertilizerId = `2`;
     } else if (values.fertilizerTypeId.includes('4')) {
-      tempFertilizerId = `Liquid Fertilizer Custom (${values.customN}-${values.customP2o5}-${values.customK2o})`;
+      // tempFertilizerId = `Liquid Fertilizer Custom (${values.customN}-${values.customP2o5}-${values.customK2o})`;
+      tempFertilizerId = `4`;
     }
 
     const defaultValues = { N: 0, P: 0, K: 0 };
@@ -88,9 +90,10 @@ const FertilizersInfo: FC<InputModuleProps> = ({
     const newFertilizer: FertilizerInterface = {
       id: fertDetails.length,
       fertilizerTypeId: values.fertilizerTypeId,
-      fertilizerId: values.fertilizerTypeId.includes('(Custom)')
-        ? tempFertilizerId
-        : values.fertilizerId,
+      fertilizerId:
+        values.fertilizerTypeId.includes('2') || values.fertilizerTypeId.includes('4')
+          ? tempFertilizerId
+          : values.fertilizerId,
       applRate: values.applRate,
       applDate: '',
       applUnitId: '',

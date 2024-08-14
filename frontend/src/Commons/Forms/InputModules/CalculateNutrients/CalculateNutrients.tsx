@@ -78,16 +78,18 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
     label: field.FieldName,
   }));
 
-  const fertilizerOption: OptionInterface[] = fertilizersDetails.map((fertilizer) => ({
-    value: fertilizer.fertilizerId,
-    label: getFertilizerOption(fertilizer.fertilizerId)?.label ?? fertilizer.fertilizerId,
-  }));
+  const fertilizerOption: OptionInterface[] = fertilizersDetails.map((fertilizer) => {
+    console.log(fertilizer);
+    return {
+      value: fertilizer.fertilizerId,
+      label: getFertilizerOption(fertilizer.fertilizerId)?.label ?? fertilizer.fertilizerId,
+    };
+  });
 
   const isLiquid =
     fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('3') ||
     fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('4');
   console.log(fertilizersDetails[selectedIndex]);
-  console.log(isLiquid);
 
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().required('Required'),
