@@ -27,7 +27,7 @@ import {
 interface SubmissionValues {
   FarmName: string;
   Year: string;
-  FarmRegion: string;
+  FarmRegion: number;
 }
 
 const FarmInfoComponent: FC<InputModuleProps> = ({

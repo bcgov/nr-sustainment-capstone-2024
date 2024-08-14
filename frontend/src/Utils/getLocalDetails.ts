@@ -27,10 +27,7 @@ const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterfac
 
     updatedFarmDetails.FarmName = nmpFarmDetails.FarmName;
     updatedFarmDetails.Year = nmpFarmDetails.Year;
-
-    if (nmpFarmDetails.FarmRegion === 21) {
-      updatedFarmDetails.FarmRegion = 'Vancouver Island';
-    }
+    updatedFarmDetails.FarmRegion = nmpFarmDetails.FarmRegion ?? 0;
 
     fieldsJSON.forEach((field) => {
       const updateField: FieldDetailInterface = field;

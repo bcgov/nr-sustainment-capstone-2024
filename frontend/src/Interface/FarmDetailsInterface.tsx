@@ -10,7 +10,7 @@ import FieldDetailInterface from './FieldDetailsInterface';
 interface FarmDetailsInterface {
   Year: string;
   FarmName: string;
-  FarmRegion: string;
+  FarmRegion: number;
   HasBerries: boolean;
   Fields: FieldDetailInterface[];
 }
