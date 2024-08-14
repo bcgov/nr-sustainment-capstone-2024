@@ -134,6 +134,8 @@ const FertilizersInfo: FC<InputModuleProps> = ({
         <FertilizersButtonComponent
           addNewFertilizer={addNewFertilizer}
           handleFormState={handleFormState}
+          fertDetails={fertilizersDetails}
+          updateFertDetails={updateFertDetails}
         />
       )}
 

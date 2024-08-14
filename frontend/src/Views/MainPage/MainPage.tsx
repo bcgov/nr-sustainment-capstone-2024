@@ -20,6 +20,7 @@ import FormModule from '@Commons/Forms/FormModule/FormModule';
 import { loadFertDetails } from '@Utils/getLocalFertilizers';
 import * as InputModules from '@Commons/Forms/InputModules/index';
 import LocalStorageNames from '@Constants/LocalStorageNames';
+import { FERTILIZERS } from '@Constants/ModuleIDs';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
 const initialFertilizersDetails: FertilizerInterface[] = loadFertDetails();
@@ -177,6 +178,9 @@ const MainPage: FC = () => {
    * */
   const updateFertDetails = (newFerts: FertilizerInterface[]): void => {
     setFertDetails(newFerts);
+    if (formStates[currForm].id === FERTILIZERS)
+      handleFormState(CmdOptions.FORWARDS, undefined, COMPLETED);
+    else handleFormState(FERTILIZERS, true);
   };
 
   const scrollHeader = useCallback(() => {
