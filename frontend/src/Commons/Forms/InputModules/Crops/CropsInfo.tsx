@@ -48,7 +48,7 @@ import CropsButtonGroup from './CropsButtonGroup';
 const checkHasCrops = (Fields: FieldDetailInterface[]) => {
   let hasCrop = false;
   Fields.forEach((field) => {
-    if (field.Crops.length > 0) {
+    if (field.Crops && field.Crops.length > 0) {
       hasCrop = true;
     }
   });
@@ -82,7 +82,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
   handleFormState,
   toggleEnabled,
 }) => {
-  const [, setCropsInfo] = useState(farmDetails);
+  const [, setFarmDetails] = useState(farmDetails);
   const [cropInitialValues, setInitialFieldValues] = useState(initialValues);
   // Only triggered once, it would show list and persists.
   const [fieldHasCrop, setFieldHasCrop] = useState<boolean>(checkHasCrops(farmDetails.Fields));
@@ -163,9 +163,9 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     );
   };
 
-  const addCrop = (values: SubmissionCropsInterface, fieldIdx: number, cropIdx: number): void => {
+  const addCrop = (values: SubmissionCropsInterface, fieldIdx: number): void => {
     const newCrop: CropsDetailsInterface = {
-      id: cropIdx,
+      id: farmDetails.Fields[fieldIdx].Crops?.length ?? 0,
       cropId: values.cropId,
       yield: values.yield,
       plantAgeYears: values.plantAgeYears,
@@ -180,12 +180,25 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
     };
 
     setTimeout(() => {
-      farmDetails.Fields[fieldIdx].Crops.push(newCrop);
-      setCropsInfo(farmDetails);
+      farmDetails.Fields[fieldIdx].Crops?.push(newCrop);
+      setFarmDetails(farmDetails);
       showFormHandler(fieldIdx);
       setInitialFieldValues(initialValues);
       setFieldHasCrop(checkHasCrops(farmDetails.Fields));
     }, 400);
+  };
+
+  const removeCrop = (field: FieldDetailInterface, crop: CropsDetailsInterface) => {
+    const updatedFarmDetails = { ...farmDetails };
+
+    const fieldIdx = updatedFarmDetails.Fields.findIndex(
+      (f) => f.FieldName === field.FieldName && f.Area === field.Area,
+    );
+
+    const cropIdx = updatedFarmDetails.Fields[fieldIdx].Crops?.findIndex((c) => c === crop);
+
+    updatedFarmDetails.Fields[fieldIdx].Crops?.splice(cropIdx ?? 0, 1);
+    setFarmDetails(updatedFarmDetails);
   };
 
   const submitFarmInfo = () => {
@@ -203,13 +216,14 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
           <CropsList
             field={field}
             farmDetails={farmDetails}
+            removeCrop={removeCrop}
           />
 
           <Formik
             initialValues={cropInitialValues}
             validationSchema={validationSchema}
             onSubmit={(values, { resetForm }) => {
-              addCrop(values, index, field.Crops.length);
+              addCrop(values, index);
               resetForm();
             }}
             validate={(values) => {
@@ -354,7 +368,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
             }
           </Formik>
 
-          {!hasFieldBeenSelected[index] && field.Crops.length < 2 && (
+          {!hasFieldBeenSelected[index] && (field.Crops?.length ?? 0) < 2 && (
             <StyledNewFieldButtonContainer formCrops>
               <StyledNewFieldButtonController>
                 <Button

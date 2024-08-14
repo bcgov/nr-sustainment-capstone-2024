@@ -12,6 +12,8 @@ const StyledH3Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 70%;
+  margin: 0;
+  padding: 0;
 
   .blankSpace {
     display: none;
@@ -67,11 +69,18 @@ const StyledAgronomic = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
-    margin: 28px auto 48px auto;
+  margin: 28px auto 48px auto;
+
+  td {
+    text-align: center;
+  }
 
   @media (min-width: ${screenSizes.desktop}) {
     width: 90%;
-
+    button {
+      display: none;
+    }
+  }
 `;
 
 const StyledRemoval = styled.div`
@@ -80,7 +89,7 @@ const StyledRemoval = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
-  margin: 28px auto 48px auto;
+  margin: 18px auto 48px auto;
 
 
   @media (min-width: ${screenSizes.desktop}) {
@@ -103,6 +112,10 @@ const StyledTable = styled.table<TableProps>`
     text-align: center;
   }
 
+  .th-crop {
+    width: 50%;
+  }
+
   tbody tr:nth-of-type(${(props) => (props.twoCrops ? 'even' : 'odd')}) {
     background-color: ${tokens.themeGray30};
   }
@@ -122,6 +135,8 @@ const StyledTable = styled.table<TableProps>`
 
   h4 {
     font: ${tokens.typographyBoldBody};
+    margin: 0;
+    padding: 0;
   }
 
   @media (min-width: ${screenSizes.desktop}) {
@@ -136,6 +151,9 @@ const StyledTable = styled.table<TableProps>`
     .cropRemovalCol1 {
       display: none;
     }
+    .delBtnSpacer {
+      display: none;
+    }
   }
 `;
 
@@ -143,7 +161,7 @@ const StyledPBalance = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 11px;
+  gap: 5px;
   p {
     font: ${tokens.typographyRegularSmallBody};
     padding: 0;
@@ -159,7 +177,7 @@ const StyledPBalance = styled.div`
 
 const FontAwesomeContainer = styled.div`
   font-size: 16px;
-  margin-left: -28px;
+  margin-left: -20px;
 
   @media (min-width: ${screenSizes.desktop}) {
     font-size: 24px;

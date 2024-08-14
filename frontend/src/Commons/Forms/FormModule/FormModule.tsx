@@ -35,7 +35,7 @@ interface FormModuleProps {
   fertilizersDetails?: FertilizerInterface[];
   toggleEnabled?: boolean;
   updateFarmDetails(farmDetails: FarmDetailsInterface, inputModuleID: string): void;
-  updateFertDetails(nutrientDetails: FertilizerInterface[]): void;
+  updateFertDetails(nutrientDetails: FertilizerInterface[], moveNext?: boolean): void;
   handleFormState(cmd: string, toggle?: boolean, status?: string): void;
 }
 

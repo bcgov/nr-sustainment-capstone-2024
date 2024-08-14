@@ -18,9 +18,11 @@ import {
 
 interface FieldListProps {
   farmDetails: FarmDetailsInterface;
+  removeField(field: FieldDetailInterface): void;
+  editField(field: FieldDetailInterface): void;
 }
 
-const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
+const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, editField }) => {
   const fieldCount = farmDetails.Fields.length;
   // Will put this here for the meantime until I get insights from Product Owner
   const highValue = '25';
@@ -60,8 +62,22 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails }) => {
                 </StyledListItem>
               </StyledCommentContainerDesktop>
               <StyledFontAwesomeContainer>
-                <FontAwesomeIcon icon={faPencil} />
-                <FontAwesomeIcon icon={faTrashCan} />
+                <button
+                  type="button"
+                  onClick={() => editField(field)}
+                  style={{ border: 'none', background: 'none' }}
+                  aria-label="edit field"
+                >
+                  <FontAwesomeIcon icon={faPencil} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => removeField(field)}
+                  style={{ border: 'none', background: 'none' }}
+                  aria-label="delete field"
+                >
+                  <FontAwesomeIcon icon={faTrashCan} />
+                </button>
               </StyledFontAwesomeContainer>
             </StyledListContainer>
 

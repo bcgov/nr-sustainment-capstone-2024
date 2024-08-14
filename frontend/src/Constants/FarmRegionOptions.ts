@@ -34,7 +34,7 @@ const FarmRegionOptions: OptionInterface[] = [
     label: 'Fraser Valley, West (Delta to Langley/Maple Ridge)',
   },
   {
-    value: '9',
+    value: '11',
     label: 'Fraser-Fort George',
   },
   {
