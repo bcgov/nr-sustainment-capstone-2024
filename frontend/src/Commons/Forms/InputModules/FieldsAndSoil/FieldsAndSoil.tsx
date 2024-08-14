@@ -102,6 +102,32 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
     }),
   });
 
+  const removeField = (field: FieldDetailInterface) => {
+    const updatedFarmDetails = { ...farmDetails };
+
+    const idx = updatedFarmDetails.Fields.findIndex(
+      (f) => f.FieldName === field.FieldName && f.Area === field.Area,
+    );
+
+    updatedFarmDetails.Fields.splice(idx, 1);
+    setFarmDetails(updatedFarmDetails);
+  };
+
+  const editField = (field: FieldDetailInterface) => {
+    const idx = farmDetails.Fields.findIndex(
+      (f) => f.FieldName === field.FieldName && f.Area === field.Area,
+    );
+
+    setFieldIndex(idx);
+    setFieldAdd(true);
+    handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
+  };
+
+  const addNewField = () => {
+    handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
+    setFieldAdd(true);
+  };
+
   /**
    *
    * @param values : It's of type FieldDetailInterface, it calls, FieldName, Area, and Comments
@@ -174,32 +200,6 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
       setSubmitted(true);
       setFieldAdd(false);
     }, 400);
-  };
-
-  const removeField = (field: FieldDetailInterface) => {
-    const updatedFarmDetails = { ...farmDetails };
-
-    const idx = updatedFarmDetails.Fields.findIndex(
-      (f) => f.FieldName === field.FieldName && f.Area === field.Area,
-    );
-
-    updatedFarmDetails.Fields.splice(idx, 1);
-    setFarmDetails(updatedFarmDetails);
-  };
-
-  const editField = (field: FieldDetailInterface) => {
-    const idx = farmDetails.Fields.findIndex(
-      (f) => f.FieldName === field.FieldName && f.Area === field.Area,
-    );
-
-    setFieldIndex(idx);
-    setFieldAdd(true);
-    handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
-  };
-
-  const addNewField = () => {
-    handleFormState(FIELDS_AND_SOIL, undefined, ACTIVE);
-    setFieldAdd(true);
   };
 
   const SoilTextArray: string[] = [
