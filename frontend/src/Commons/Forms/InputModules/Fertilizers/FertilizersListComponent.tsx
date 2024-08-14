@@ -3,6 +3,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 import getFertilizerOption from '@Utils/getFertID';
+import { FertilizerTypeOptions } from '@Constants/FertilizersOptions';
 import {
   StyledFieldInfoList,
   StyledListItem,
@@ -15,7 +16,6 @@ import {
   MobileFertilizerGroup,
   FertilizerTypeAndFontAwesomeContainer,
 } from './Fertilizers.styles';
-import { FertilizerTypeOptions } from '@Constants/FertilizersOptions';
 
 interface FertilizerProps {
   fertilizerDetails: FertilizerInterface[];
