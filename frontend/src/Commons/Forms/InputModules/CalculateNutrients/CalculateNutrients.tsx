@@ -285,10 +285,10 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
   };
 
   const displayFertilizerOption = (): OptionInterface[] => {
-    if (fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Dry Fertilizer')) {
+    if (fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('1')) {
       return DryApplicationUnits;
     }
-    if (fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid Fertilizer')) {
+    if (fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('3')) {
       return LiquidApplicationUnits;
     }
     return [];

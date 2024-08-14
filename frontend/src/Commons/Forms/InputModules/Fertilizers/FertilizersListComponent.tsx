@@ -15,6 +15,7 @@ import {
   MobileFertilizerGroup,
   FertilizerTypeAndFontAwesomeContainer,
 } from './Fertilizers.styles';
+import { FertilizerTypeOptions } from '@Constants/FertilizersOptions';
 
 interface FertilizerProps {
   fertilizerDetails: FertilizerInterface[];
@@ -32,11 +33,16 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, remo
               mobileWidth="127px"
             >
               <h2>Fertilizer Type</h2>
-              <p>{fertilizer.fertilizerTypeId}</p>
+              <p>
+                {
+                  FertilizerTypeOptions.find(
+                    (option) => option.value.toString() === fertilizer.fertilizerTypeId,
+                  )?.label
+                }
+              </p>
             </StyledListItem>
             <DesktopFertilizerGroup>
-              {fertilizer.fertilizerTypeId === 'Dry Fertilizer (Custom)' ||
-              fertilizer.fertilizerTypeId === 'Liquid Fertilizer (Custom)' ? (
+              {fertilizer.fertilizerTypeId === '2' || fertilizer.fertilizerTypeId === '4' ? (
                 <StyledCustomFertilizerGroup>
                   <StyledListItem
                     desktopWidth="80px"

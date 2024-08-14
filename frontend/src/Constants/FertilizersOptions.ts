@@ -2,19 +2,19 @@ import OptionInterface from '@Interface/OptionInterface';
 
 const FertilizerTypeOptions: OptionInterface[] = [
   {
-    value: 'Dry Fertilizer',
+    value: '1',
     label: 'Dry Fertilizer',
   },
   {
-    value: 'Dry Fertilizer (Custom)',
+    value: '2',
     label: 'Dry Fertilizer (Custom)',
   },
   {
-    value: 'Liquid Fertilizer',
+    value: '3',
     label: 'Liquid Fertilizer',
   },
   {
-    value: 'Liquid Fertilizer (Custom)',
+    value: '4',
     label: 'Liquid Fertilizer (Custom)',
   },
 ];
