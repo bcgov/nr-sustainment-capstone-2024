@@ -21,14 +21,15 @@ const loadFertDetails = (farmDetails: FarmDetailsInterface): FertilizerInterface
   const localFerts = getLocalFertilizers();
   const updatedFertDetails = [...localFerts];
 
-  // Check for ferts in farmDetails, which is the main data object loaded/constructed
   farmDetails.Fields.forEach((field) => {
     field.Nutrients.nutrientFertilizers.forEach((fertilizer) => {
-      if (!updatedFertDetails.find((f) => f.fertilizerId === fertilizer.fertilizerId)) {
+      const normalizedFertilizerId = fertilizer.fertilizerId.toString();
+
+      if (!updatedFertDetails.find((f) => f.fertilizerId === normalizedFertilizerId)) {
         updatedFertDetails.push({
           ...fertilizer,
           fertilizerTypeId: fertilizer.fertilizerTypeId.toString(),
-          fertilizerId: fertilizer.fertilizerId.toString(),
+          fertilizerId: normalizedFertilizerId,
         });
       }
     });
