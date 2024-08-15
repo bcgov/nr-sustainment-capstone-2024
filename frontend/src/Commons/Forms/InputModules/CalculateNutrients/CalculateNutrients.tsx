@@ -304,8 +304,6 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
       return DryApplicationUnits;
     }
     return LiquidApplicationUnits;
-
-    // return [];
   };
 
   const removeFertFromField = (field: FieldDetailInterface, fertilizer: FertilizerInterface) => {
