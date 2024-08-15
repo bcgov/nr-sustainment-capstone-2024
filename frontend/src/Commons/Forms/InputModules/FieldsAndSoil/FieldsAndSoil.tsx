@@ -5,7 +5,6 @@
  * @author      @Kcaparas
  */
 import { useState, FC } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Button from '@Commons/Button/Button';
@@ -302,7 +301,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
-                        key={uuidv4()}
+                        key={option.id}
                         label={option.label}
                         id={`HasSoilTest${option.id}`}
                         name="HasSoilTest"
@@ -418,7 +417,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                   <StyledRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
-                        key={uuidv4()}
+                        key={option.id}
                         label={option.label}
                         id={`HasLeafTest${option.id}`}
                         name="HasLeafTest"
