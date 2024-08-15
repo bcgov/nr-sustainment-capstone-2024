@@ -67,7 +67,7 @@ const StyledContent = styled.div`
   }
 `;
 
-const ParagraphContainer = styled.p`
+const ParagraphContainer = styled.div`
   display: flex;
   gap: 10px;
   font: ${tokens.typographyRegularSmallBody};

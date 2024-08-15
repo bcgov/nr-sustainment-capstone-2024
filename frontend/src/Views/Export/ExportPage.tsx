@@ -48,7 +48,7 @@ const ExportPage: FC = () => {
         <p>Load a NMP file on the Homepage when you want to continue.</p>
 
         <ParagraphContainer>
-          How to use this data file
+          <p>How to use this data file</p>
           <span>
             <InformationIcons
               arrayText={arrayText}
