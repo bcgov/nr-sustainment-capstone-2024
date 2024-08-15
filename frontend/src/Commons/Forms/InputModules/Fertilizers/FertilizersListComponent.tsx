@@ -24,7 +24,6 @@ interface FertilizerProps {
 }
 
 const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, removeFert }) => {
-  console.log(fertilizerDetails);
   return (
     <StyledFieldInfoList>
       {fertilizerDetails.map((fertilizer: FertilizerInterface, index: number) => (
