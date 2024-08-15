@@ -33,7 +33,7 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
   return (
     <StyledFieldInfoList>
       {farmDetails.Fields.map((field: FieldDetailInterface) => {
-        const { FieldName, Area, Comment, HasSoilTest, SoilTest, HasLeafTest, LeafTest } = field;
+        const { FieldName, Area, Comment, HasSoilTest, SoilTest, LeafTest } = field;
 
         return (
           <StyledList
@@ -164,14 +164,14 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
                   marginRight="110px"
                 >
                   <h2>Leaf Tissue P(%)</h2>
-                  <p>{HasLeafTest ? LeafTest.leafTissueP : LeafTest.leafTissueP.toString()}</p>
+                  <p>{LeafTest?.leafTissueP ?? ComponentText.NA}</p>
                 </StyledListItem>
                 <StyledListItem
                   desktopWidth="146px"
                   mobileWidth="180px"
                 >
                   <h2>Leaf Tissue K(%)</h2>
-                  <p>{HasLeafTest ? LeafTest.leafTissueK : LeafTest.leafTissueK.toString()}</p>
+                  <p>{LeafTest?.leafTissueK ?? ComponentText.NA}</p>
                 </StyledListItem>
               </StyledListItemGroup>
             </StyledListItemGroupContainer>
