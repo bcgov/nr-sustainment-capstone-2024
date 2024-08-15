@@ -31,7 +31,11 @@ const loadFarmDetails = (): FarmDetailsInterface => {
     updatedFarmDetails.FarmRegion = nmpFarmDetails.FarmRegion ?? 0;
 
     fieldsJSON.forEach((field) => {
-      const updateField: FieldDetailInterface = field;
+      const updateField: FieldDetailInterface = {
+        ...field,
+        HasLeafTest:
+          (field.LeafTest?.leafTissueK >= 0 && field.LeafTest?.leafTissueP >= 0) ?? false,
+      };
       updatedFarmDetails.Fields.push(updateField);
     });
     updatedFarmDetails.Fields = localDetails.years[0].Fields;

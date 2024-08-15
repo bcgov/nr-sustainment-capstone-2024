@@ -21,8 +21,8 @@ const loadFertDetails = (farmDetails: FarmDetailsInterface): FertilizerInterface
   const localFerts = getLocalFertilizers();
   const updatedFertDetails = [...localFerts];
 
-  farmDetails.Fields.forEach((field) => {
-    field.Nutrients.nutrientFertilizers.forEach((fertilizer) => {
+  farmDetails.Fields?.forEach((field) => {
+    field.Nutrients.nutrientFertilizers?.forEach((fertilizer) => {
       const normalizedFertilizerId = fertilizer.fertilizerId.toString();
 
       if (!updatedFertDetails.find((f) => f.fertilizerId === normalizedFertilizerId)) {
