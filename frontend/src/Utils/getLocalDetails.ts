@@ -1,3 +1,4 @@
+import initialFarmDetails from '@Constants/InitialFarmDetails';
 import LoacalStorageNames from '@Constants/LocalStorageNames';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
@@ -17,9 +18,9 @@ const getLocalDetails = () => {
  *            converting it to JSON and making some basic .nmp to bb mapping.
  * @author    @GDamaso
  */
-const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
+const loadFarmDetails = (): FarmDetailsInterface => {
   const localDetails = getLocalDetails();
-  const updatedFarmDetails = { ...farmDetails };
+  const updatedFarmDetails = { ...initialFarmDetails };
 
   if (localDetails) {
     const nmpFarmDetails = localDetails.farmDetails;

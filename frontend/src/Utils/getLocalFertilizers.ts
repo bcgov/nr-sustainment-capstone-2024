@@ -1,4 +1,5 @@
 import LoacalStorageNames from '@Constants/LocalStorageNames';
+import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 
 const getLocalFertilizers = () => {
@@ -16,13 +17,23 @@ const getLocalFertilizers = () => {
   return [];
 };
 
-const loadFertDetails = (): FertilizerInterface[] => {
-  const localFerts: FertilizerInterface[] = getLocalFertilizers();
-  const updatedFertDetails: FertilizerInterface[] = [];
+const loadFertDetails = (farmDetails: FarmDetailsInterface): FertilizerInterface[] => {
+  const localFerts = getLocalFertilizers();
+  const updatedFertDetails = [...localFerts];
 
-  if (localFerts) {
-    localFerts.forEach((fertilizer) => updatedFertDetails.push(fertilizer));
-  }
+  // Check for ferts in farmDetails, which is the main data object loaded/constructed
+  farmDetails.Fields.forEach((field) => {
+    field.Nutrients.nutrientFertilizers.forEach((fertilizer) => {
+      if (!updatedFertDetails.find((f) => f.fertilizerId === fertilizer.fertilizerId)) {
+        updatedFertDetails.push({
+          ...fertilizer,
+          fertilizerTypeId: fertilizer.fertilizerTypeId.toString(),
+          fertilizerId: fertilizer.fertilizerId.toString(),
+        });
+      }
+    });
+  });
+
   return updatedFertDetails;
 };
 
