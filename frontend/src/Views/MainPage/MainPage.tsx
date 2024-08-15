@@ -8,7 +8,6 @@ import ProgressBar from '@Commons/ProgressBar/ProgressBar';
 import MainPageFooter from '@Commons/MainPageFooter/MainPageFooter';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import NmpInterface from '@Interface/NmpInterface';
-import initialFarmDetails from '@Constants/InitialFarmDetails';
 import { ACTIVE, COMPLETED, WARNING } from '@Constants/ModuleStatus';
 import CmdOptions from '@Constants/CmdOptions';
 import convertToNMP from '@Utils/convertToNMP';
@@ -23,8 +22,6 @@ import LocalStorageNames from '@Constants/LocalStorageNames';
 import { FERTILIZERS } from '@Constants/ModuleIDs';
 import { StyledMain, StyledMainContainer } from './MainPage.styles';
 
-const initialFertilizersDetails: FertilizerInterface[] = loadFertDetails();
-
 // The sequence of sections to show up on the main page
 // This is the skeleton for the Berries workflow
 // Uncomment sections as they are implemented to have them instantiated ;)
@@ -38,8 +35,10 @@ const mockBerriesWorkflow: InputModuleInterface[] = [
 
 const MainPage: FC = () => {
   const localStorageDetails = getLocalDetails();
-  const [farmDetails, setFarmDetails] = useState(loadFarmDetails(initialFarmDetails));
-  const [fertDetails, setFertDetails] = useState<FertilizerInterface[]>(initialFertilizersDetails);
+  const [farmDetails, setFarmDetails] = useState(loadFarmDetails());
+  const [fertDetails, setFertDetails] = useState<FertilizerInterface[]>(
+    loadFertDetails(farmDetails),
+  );
   const [localDetails, setLocalDetails] = useState(localStorageDetails);
   const [formStates, setFormStates] = useState<InputModuleInterface[]>(
     loadLocalFormStates(mockBerriesWorkflow),

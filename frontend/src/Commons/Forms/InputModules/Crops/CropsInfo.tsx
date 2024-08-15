@@ -315,7 +315,6 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         mobileWidth="137px"
                         onChange={(e) => {
                           handleChange(e, setFieldValue);
-                          console.log(e.target.name, e.target.value);
                         }}
                       />
                       {((values.willPlantsBePruned &&

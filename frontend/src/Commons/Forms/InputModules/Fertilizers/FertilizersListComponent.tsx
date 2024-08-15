@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FertilizerInterface from '@Interface/FertilizerInterface';
@@ -25,7 +26,7 @@ interface FertilizerProps {
 const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, removeFert }) => (
   <StyledFieldInfoList>
     {fertilizerDetails.map((fertilizer: FertilizerInterface, index: number) => (
-      <div key={fertilizer.id}>
+      <div key={uuidv4()}>
         <StyledListContainer hasBorderTop={index !== 0}>
           <FertilizerTypeAndFontAwesomeContainer>
             <StyledListItem
@@ -34,11 +35,9 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, remo
             >
               <h2>Fertilizer Type</h2>
               <p>
-                {
-                  FertilizerTypeOptions.find(
-                    (option) => option.value.toString() === fertilizer.fertilizerTypeId,
-                  )?.label
-                }
+                {FertilizerTypeOptions.find(
+                  (option) => option.value.toString() === fertilizer.fertilizerTypeId,
+                )?.label ?? fertilizer.fertilizerTypeId}
               </p>
             </StyledListItem>
             <DesktopFertilizerGroup>
@@ -69,7 +68,9 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, remo
               ) : (
                 <StyledListItem desktopWidth="300px">
                   <h2> Fertilizer Name</h2>
-                  <p>{getFertilizerOption(fertilizer.fertilizerId)?.label}</p>
+                  <p>
+                    {getFertilizerOption(fertilizer.fertilizerId)?.label ?? fertilizer.fertilizerId}
+                  </p>
                 </StyledListItem>
               )}
             </DesktopFertilizerGroup>
@@ -86,8 +87,7 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, remo
           </FertilizerTypeAndFontAwesomeContainer>
 
           <MobileFertilizerGroup>
-            {fertilizer.fertilizerTypeId === 'Dry Fertilizer (Custom)' ||
-            fertilizer.fertilizerTypeId === 'Liquid Fertilizer (Custom)' ? (
+            {fertilizer.fertilizerTypeId === '2' || fertilizer.fertilizerTypeId === '4' ? (
               <StyledCustomFertilizerGroup>
                 <StyledListItem
                   desktopWidth="80px"

@@ -78,12 +78,24 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
     label: field.FieldName,
   }));
 
-  const fertilizerOption: OptionInterface[] = fertilizersDetails.map((fertilizer) => ({
-    value: fertilizer.fertilizerId,
-    label: getFertilizerOption(fertilizer.fertilizerId)?.label ?? fertilizer.fertilizerId,
-  }));
+  const fertilizerOption: OptionInterface[] = fertilizersDetails.map((fertilizer) => {
+    if (fertilizer.fertilizerId === '2')
+      return {
+        value: fertilizer.fertilizerId,
+        label: `Custom Dry (${fertilizer.customN}-${fertilizer.customP2o5}-${fertilizer.customK2o})`,
+      };
+    if (fertilizer.fertilizerId === '4')
+      return {
+        value: fertilizer.fertilizerId,
+        label: `Custom Liquid (${fertilizer.customN}-${fertilizer.customP2o5}-${fertilizer.customK2o})`,
+      };
+    return {
+      value: fertilizer.fertilizerId,
+      label: getFertilizerOption(fertilizer.fertilizerId)?.label ?? fertilizer.fertilizerId,
+    };
+  });
 
-  const isLiquid = fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid');
+  const isLiquid = ['3', '4'].includes(fertilizersDetails[selectedIndex]?.fertilizerTypeId);
 
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().required('Required'),
@@ -243,7 +255,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
 
     // Default density unit is lb/imp. gall
     // This checks and adjust if necessary
-    if (fert.fertilizerTypeId.includes('Liquid Fertilizer')) {
+    if (fert.fertilizerTypeId.includes('3') || fert.fertilizerTypeId.includes('4')) {
       switch (densityUnits) {
         case 'kg/US Gallon':
           // kg to lb
@@ -285,13 +297,13 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
   };
 
   const displayFertilizerOption = (): OptionInterface[] => {
-    if (fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('1')) {
+    if (
+      fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('1') ||
+      fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('2')
+    ) {
       return DryApplicationUnits;
     }
-    if (fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('3')) {
-      return LiquidApplicationUnits;
-    }
-    return [];
+    return LiquidApplicationUnits;
   };
 
   const removeFertFromField = (field: FieldDetailInterface, fertilizer: FertilizerInterface) => {
@@ -379,7 +391,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                     />
                   </StyledSmallFormGroup>
 
-                  {fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('Liquid') && (
+                  {isLiquid && (
                     <StyledSmallFormGroup>
                       <CustomField
                         label="Density"

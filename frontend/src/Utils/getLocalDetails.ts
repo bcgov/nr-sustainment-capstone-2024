@@ -1,3 +1,4 @@
+import initialFarmDetails from '@Constants/InitialFarmDetails';
 import LoacalStorageNames from '@Constants/LocalStorageNames';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
@@ -17,9 +18,9 @@ const getLocalDetails = () => {
  *            converting it to JSON and making some basic .nmp to bb mapping.
  * @author    @GDamaso
  */
-const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterface => {
+const loadFarmDetails = (): FarmDetailsInterface => {
   const localDetails = getLocalDetails();
-  const updatedFarmDetails = { ...farmDetails };
+  const updatedFarmDetails = { ...initialFarmDetails };
 
   if (localDetails) {
     const nmpFarmDetails = localDetails.farmDetails;
@@ -30,7 +31,11 @@ const loadFarmDetails = (farmDetails: FarmDetailsInterface): FarmDetailsInterfac
     updatedFarmDetails.FarmRegion = nmpFarmDetails.FarmRegion ?? 0;
 
     fieldsJSON.forEach((field) => {
-      const updateField: FieldDetailInterface = field;
+      const updateField: FieldDetailInterface = {
+        ...field,
+        HasLeafTest:
+          (field.LeafTest?.leafTissueK >= 0 && field.LeafTest?.leafTissueP >= 0) ?? false,
+      };
       updatedFarmDetails.Fields.push(updateField);
     });
     updatedFarmDetails.Fields = localDetails.years[0].Fields;

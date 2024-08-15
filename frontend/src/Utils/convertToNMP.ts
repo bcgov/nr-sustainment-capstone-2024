@@ -70,12 +70,10 @@ const convertToNMP = (
             sampleDate: field.SoilTest.sampleDate ?? '2024-07-01T00:00:00',
           }
         : null,
-      LeafTest: field.HasLeafTest
-        ? {
-            leafTissueP: field.LeafTest.leafTissueP,
-            leafTissueK: field.LeafTest.leafTissueK,
-          }
-        : null,
+      LeafTest: {
+        leafTissueP: field.LeafTest?.leafTissueP ?? 0,
+        leafTissueK: field.LeafTest?.leafTissueK ?? 0,
+      },
       Crops: newCrops,
 
       HasNutrients: field.Nutrients && field.Nutrients?.nutrientFertilizers?.length >= 0,

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 import FertilizerInterface from '@Interface/FertilizerInterface';
 import {
@@ -73,8 +74,7 @@ const CalculationList: FC<CalculationListProps> = ({
 
           <tbody>
             {field.Crops.map((crop: CropsDetailsInterface, index: number) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <tr key={`${crop}-${index}`}>
+              <tr key={uuidv4()}>
                 <td>
                   <p className="col1">{crop.cropId === '75' ? 'Blueberry' : 'Raspberry'}</p>
                 </td>
@@ -104,38 +104,35 @@ const CalculationList: FC<CalculationListProps> = ({
                   </td>
                 </tr>
 
-                {field.Nutrients?.nutrientFertilizers.map(
-                  (fertilizer: FertilizerInterface, idx: number) => (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <tr key={`${fertilizer.fertilizerId}-${idx}`}>
-                      <td>
-                        <p className="col1">
-                          {getFertilizerOption(fertilizer.fertilizerId?.toString())?.label ??
-                            fertilizer.fertilizerId}
-                        </p>
-                      </td>
-                      <td>
-                        <p>{fertilizer.fertN}</p>
-                      </td>
-                      <td>
-                        <p>{fertilizer.fertP2o5}</p>
-                      </td>
-                      <td>
-                        <p>{fertilizer.fertK2o}</p>
-                      </td>
-                      <td>
-                        <button
-                          type="button"
-                          onClick={() => removeFert(field, fertilizer)}
-                          style={{ border: 'none', background: 'none' }}
-                          aria-label="Delete button"
-                        >
-                          <FontAwesomeIcon icon={faTrashCan} />
-                        </button>
-                      </td>
-                    </tr>
-                  ),
-                )}
+                {field.Nutrients?.nutrientFertilizers.map((fertilizer: FertilizerInterface) => (
+                  <tr key={uuidv4()}>
+                    <td>
+                      <p className="col1">
+                        {getFertilizerOption(fertilizer.fertilizerId?.toString())?.label ??
+                          fertilizer.fertilizerId}
+                      </p>
+                    </td>
+                    <td>
+                      <p>{fertilizer.fertN}</p>
+                    </td>
+                    <td>
+                      <p>{fertilizer.fertP2o5}</p>
+                    </td>
+                    <td>
+                      <p>{fertilizer.fertK2o}</p>
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        onClick={() => removeFert(field, fertilizer)}
+                        style={{ border: 'none', background: 'none' }}
+                        aria-label="Delete button"
+                      >
+                        <FontAwesomeIcon icon={faTrashCan} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </>
             )}
 
@@ -226,8 +223,7 @@ const CalculationList: FC<CalculationListProps> = ({
 
           <tbody>
             {field.Crops.map((crop: CropsDetailsInterface, index: number) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <tr key={`removal-${crop}-${index}`}>
+              <tr key={uuidv4()}>
                 <td>
                   <p className="cropRemovalCol1 col1">
                     {crop.cropId === '75' ? 'Blueberry' : 'Raspberry'}
@@ -259,38 +255,35 @@ const CalculationList: FC<CalculationListProps> = ({
                   </td>
                 </tr>
 
-                {field.Nutrients?.nutrientFertilizers.map(
-                  (fertilizer: FertilizerInterface, idx: number) => (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <tr key={`${fertilizer.fertilizerId}-${idx}`}>
-                      <td>
-                        <p className="cropRemovalCol1 col1">
-                          {getFertilizerOption(fertilizer.fertilizerId?.toString())?.label ??
-                            fertilizer.fertilizerId}
-                        </p>
-                      </td>
-                      <td>
-                        <p>{fertilizer.fertN}</p>
-                      </td>
-                      <td>
-                        <p>{fertilizer.fertP2o5}</p>
-                      </td>
-                      <td>
-                        <p>{fertilizer.fertK2o}</p>
-                      </td>
-                      <td>
-                        <button
-                          type="button"
-                          onClick={() => removeFert(field, fertilizer)}
-                          style={{ border: 'none', background: 'none' }}
-                          aria-label="Delete fertilizer from field"
-                        >
-                          <FontAwesomeIcon icon={faTrashCan} />
-                        </button>
-                      </td>
-                    </tr>
-                  ),
-                )}
+                {field.Nutrients?.nutrientFertilizers.map((fertilizer: FertilizerInterface) => (
+                  <tr key={uuidv4()}>
+                    <td>
+                      <p className="cropRemovalCol1 col1">
+                        {getFertilizerOption(fertilizer.fertilizerId?.toString())?.label ??
+                          fertilizer.fertilizerId}
+                      </p>
+                    </td>
+                    <td>
+                      <p>{fertilizer.fertN}</p>
+                    </td>
+                    <td>
+                      <p>{fertilizer.fertP2o5}</p>
+                    </td>
+                    <td>
+                      <p>{fertilizer.fertK2o}</p>
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        onClick={() => removeFert(field, fertilizer)}
+                        style={{ border: 'none', background: 'none' }}
+                        aria-label="Delete fertilizer from field"
+                      >
+                        <FontAwesomeIcon icon={faTrashCan} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </>
             )}
 

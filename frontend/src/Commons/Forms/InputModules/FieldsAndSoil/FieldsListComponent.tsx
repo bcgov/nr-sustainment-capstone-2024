@@ -1,9 +1,11 @@
 import { FC } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import ComponentText from '@Constants/ComponentText';
 import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
+import soilTestOptions from '@Constants/SoilTestOptions';
 import {
   StyledListContainer,
   StyledListItem,
@@ -31,11 +33,11 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
   return (
     <StyledFieldInfoList>
       {farmDetails.Fields.map((field: FieldDetailInterface) => {
-        const { FieldName, Area, Comment, HasSoilTest, SoilTest, HasLeafTest, LeafTest } = field;
+        const { FieldName, Area, Comment, HasSoilTest, SoilTest, LeafTest } = field;
 
         return (
           <StyledList
-            key={`${FieldName}-${Area}-${Comment || 'NoComment'}`}
+            key={uuidv4()}
             fieldCount={fieldCount}
           >
             <StyledListContainer>
@@ -95,7 +97,12 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
                 marginRight="24px"
               >
                 <h2>Lab (Soil Test Methods)</h2>
-                <p>{HasSoilTest ? SoilTest.TestingMethod : ComponentText.NA}</p>
+                <p>
+                  {HasSoilTest
+                    ? soilTestOptions.find((option) => option.value === SoilTest.TestingMethod)
+                        ?.label
+                    : ComponentText.NA}
+                </p>
               </StyledListItem>
               <StyledListItem
                 desktopWidth="149px"
@@ -157,14 +164,14 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
                   marginRight="110px"
                 >
                   <h2>Leaf Tissue P(%)</h2>
-                  <p>{HasLeafTest ? LeafTest.leafTissueP : highValue}</p>
+                  <p>{LeafTest?.leafTissueP ?? ComponentText.NA}</p>
                 </StyledListItem>
                 <StyledListItem
                   desktopWidth="146px"
                   mobileWidth="180px"
                 >
                   <h2>Leaf Tissue K(%)</h2>
-                  <p>{HasLeafTest ? LeafTest.leafTissueK : highValue}</p>
+                  <p>{LeafTest?.leafTissueK ?? ComponentText.NA}</p>
                 </StyledListItem>
               </StyledListItemGroup>
             </StyledListItemGroupContainer>
