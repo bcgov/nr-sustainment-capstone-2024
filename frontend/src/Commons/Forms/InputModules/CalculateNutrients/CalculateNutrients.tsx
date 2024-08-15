@@ -79,17 +79,23 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
   }));
 
   const fertilizerOption: OptionInterface[] = fertilizersDetails.map((fertilizer) => {
-    console.log(fertilizer);
+    if (fertilizer.fertilizerId === '2')
+      return {
+        value: fertilizer.fertilizerId,
+        label: `Custom Dry (${fertilizer.customN}-${fertilizer.customP2o5}-${fertilizer.customK2o})`,
+      };
+    if (fertilizer.fertilizerId === '4')
+      return {
+        value: fertilizer.fertilizerId,
+        label: `Custom Liquid (${fertilizer.customN}-${fertilizer.customP2o5}-${fertilizer.customK2o})`,
+      };
     return {
       value: fertilizer.fertilizerId,
       label: getFertilizerOption(fertilizer.fertilizerId)?.label ?? fertilizer.fertilizerId,
     };
   });
 
-  const isLiquid =
-    fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('3') ||
-    fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('4');
-  console.log(fertilizersDetails[selectedIndex]);
+  const isLiquid = ['3', '4'].includes(fertilizersDetails[selectedIndex]?.fertilizerTypeId);
 
   const validationSchema = Yup.object().shape({
     FieldName: Yup.string().required('Required'),
@@ -291,13 +297,15 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
   };
 
   const displayFertilizerOption = (): OptionInterface[] => {
-    if (fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('1')) {
+    if (
+      fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('1') ||
+      fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('2')
+    ) {
       return DryApplicationUnits;
     }
-    if (fertilizersDetails[selectedIndex]?.fertilizerTypeId.includes('3')) {
-      return LiquidApplicationUnits;
-    }
-    return [];
+    return LiquidApplicationUnits;
+
+    // return [];
   };
 
   const removeFertFromField = (field: FieldDetailInterface, fertilizer: FertilizerInterface) => {

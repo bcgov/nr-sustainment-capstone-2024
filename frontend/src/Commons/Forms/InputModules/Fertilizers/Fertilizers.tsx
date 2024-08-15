@@ -126,8 +126,6 @@ const FertilizersInfo: FC<InputModuleProps> = ({
 
     updatedFerts.splice(fertIdx, 1);
     setFertDetails([...updatedFerts]);
-    console.log(fertilizersDetails);
-    console.log(fertDetails);
   };
 
   return (
