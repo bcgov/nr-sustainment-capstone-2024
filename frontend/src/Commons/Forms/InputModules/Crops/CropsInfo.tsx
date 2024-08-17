@@ -25,7 +25,7 @@ import {
   PlantsPerAcreOptions,
 } from '@Constants/CropOptions';
 import CustomField from '@Commons/Input/Field/CustomField';
-import { StyledFarmInfo, StyledButtonGroupContainer } from '@Commons/FormStyles.styles';
+import { StyledFormContainer, StyledButtonGroupContainer } from '@Commons/FormStyles.styles';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -234,7 +234,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
             {({ values, setFieldValue }) =>
               hasFieldBeenSelected[index] && (
                 <Form>
-                  <StyledFarmInfo>
+                  <StyledFormContainer>
                     <StyledCropsSmallGroup>
                       <CustomSelect
                         name="cropId"
@@ -361,7 +361,7 @@ const CropsInfoComponent: FC<InputModuleProps> = ({
                         text={ComponentText.ADD}
                       />
                     </StyledButtonGroupContainer>
-                  </StyledFarmInfo>
+                  </StyledFormContainer>
                 </Form>
               )
             }

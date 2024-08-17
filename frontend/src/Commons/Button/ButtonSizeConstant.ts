@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @param size              accepts 'sm' | 'md' | 'lg'
  * @param isDesktop         accepts true or false
  * @param landingPageButton accepts true or false
