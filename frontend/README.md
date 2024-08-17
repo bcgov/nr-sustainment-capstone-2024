@@ -136,6 +136,10 @@ const StyledFooter = styled.footer`
 `;
 
 export default StyledFooter;
+
+
+> [!NOTE]
+> The stylings in here are not perfect and can be improved further. I left some comments along    the way to improve it in the future.
 ```
 
 ### Formik && Yup
