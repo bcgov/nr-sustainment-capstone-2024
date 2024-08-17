@@ -9,7 +9,11 @@ import screenSizes from '@Constants/ScreenSize';
 type MainProps = {
   isHeaderVisible?: boolean;
 };
-const StyledMain = styled.div`
+
+/**
+ * @description   Main Container for the Main Page.
+ */
+const StyledMainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +28,10 @@ const StyledMain = styled.div`
   }
 `;
 
-const StyledMainContainer = styled.div<MainProps>`
+/**
+ * @description  Container for each Form Modules.
+ */
+const StyledFormModuleContainer = styled.div<MainProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,4 +47,4 @@ const StyledMainContainer = styled.div<MainProps>`
   }
 `;
 
-export { StyledMain, StyledMainContainer };
+export { StyledMainContainer, StyledFormModuleContainer };

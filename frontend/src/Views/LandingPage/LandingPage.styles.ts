@@ -1,7 +1,16 @@
+/**
+ * @desc    Stylings for Landing Page
+ * @author  @Kcaparas
+ */
+
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 
+/**
+ * @description Container for the h2 and p tags that describes what the app is about.
+ *              values used are almost exact as the one described in mockups.
+ */
 const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -50,8 +59,10 @@ const StyledContent = styled.div`
     }
   }
 `;
-
-const StyledButtonGroup = styled.div`
+/**
+ * @description  Container for both Buttons and the Divider.
+ */
+const StyledLandingButtonGroup = styled.div`
   display: flex;
   max-width: 375px;
   max-height: 149px;
@@ -75,7 +86,11 @@ const StyledButtonGroup = styled.div`
     top: 10vh;
   }
 `;
-
+/**
+ * @description   You'll see this Divider in ListComponent and other Styles. It's not DRY
+ *                but can be improved to be reused in other components.
+ *                If needed specific changes, you can pass a prop and just define what's needed.
+ */
 const StyledDivider = styled.div`
   font-size: 18px;
   font-weight: 400;
@@ -103,6 +118,9 @@ const StyledDivider = styled.div`
   }
 `;
 
+/**
+ * @desc    main container of the landing page
+ */
 const StyledLandingContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -113,4 +131,4 @@ const StyledLandingContainer = styled.div`
   margin-top: auto;
 `;
 
-export { StyledContent, StyledButtonGroup, StyledDivider, StyledLandingContainer };
+export { StyledContent, StyledLandingButtonGroup, StyledDivider, StyledLandingContainer };

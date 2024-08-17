@@ -1,8 +1,16 @@
+/**
+ * @description   Stylings dedicated for the Export Page
+ * @authors       @Kcaparas
+ */
+
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
 
-const StyledLandingContainer = styled.div`
+/**
+ * @description   Main Container for the Export Page.
+ */
+const StyledExportContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,6 +20,9 @@ const StyledLandingContainer = styled.div`
   gap: 40px;
 `;
 
+/**
+ * @description     Container for the Content of the Export Page
+ */
 const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,6 +35,7 @@ const StyledContent = styled.div`
   padding: 0 0 24px 0;
   border: 1px solid ${tokens.themeGray40};
 
+  /* Div for header, specified with the attributes on the mockups. */
   #dataFileHeader {
     display: flex;
     text-align: center;
@@ -82,4 +94,4 @@ const ParagraphContainer = styled.div`
   }
 `;
 
-export { StyledContent, StyledLandingContainer, ParagraphContainer };
+export { StyledContent, StyledExportContainer, ParagraphContainer };

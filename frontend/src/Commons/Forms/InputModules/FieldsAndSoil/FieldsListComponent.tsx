@@ -7,15 +7,15 @@ import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import FarmDetailsInterface from '@Interface/FarmDetailsInterface';
 import soilTestOptions from '@Constants/SoilTestOptions';
 import {
-  StyledListContainer,
+  StyledListMainContainer,
   StyledListItem,
   StyledFontAwesomeContainer,
-  StyledFieldInfoList,
+  StyledFieldsFormListContainer,
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
-  StyledListItemGroupContainer,
+  StyledFieldTestGroup,
   StyledListItemGroup,
-  StyledList,
+  StyledFieldsFormList,
 } from '../ListComponent.styles';
 
 interface FieldListProps {
@@ -31,16 +31,16 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
   const highPH = '4';
 
   return (
-    <StyledFieldInfoList>
+    <StyledListMainContainer>
       {farmDetails.Fields.map((field: FieldDetailInterface) => {
         const { FieldName, Area, Comment, HasSoilTest, SoilTest, LeafTest } = field;
 
         return (
-          <StyledList
+          <StyledFieldsFormList
             key={uuidv4()}
             fieldCount={fieldCount}
           >
-            <StyledListContainer>
+            <StyledFieldsFormListContainer>
               <StyledListItem
                 desktopWidth="135px"
                 mobileWidth="124px"
@@ -81,7 +81,7 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
                   <FontAwesomeIcon icon={faTrashCan} />
                 </button>
               </StyledFontAwesomeContainer>
-            </StyledListContainer>
+            </StyledFieldsFormListContainer>
 
             <StyledCommentContainerMobile>
               <StyledListItem mobileWidth="322px">
@@ -90,7 +90,7 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
               </StyledListItem>
             </StyledCommentContainerMobile>
 
-            <StyledListItemGroupContainer>
+            <StyledFieldTestGroup>
               <StyledListItem
                 desktopWidth="401px"
                 mobileWidth="234px"
@@ -155,8 +155,8 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
                   <p>{HasSoilTest ? SoilTest.valPH : highPH}</p>
                 </StyledListItem>
               </StyledListItemGroup>
-            </StyledListItemGroupContainer>
-            <StyledListItemGroupContainer>
+            </StyledFieldTestGroup>
+            <StyledFieldTestGroup>
               <StyledListItemGroup desktopWidth="50%">
                 <StyledListItem
                   desktopWidth="145px"
@@ -174,11 +174,11 @@ const FieldsListComponent: FC<FieldListProps> = ({ farmDetails, removeField, edi
                   <p>{LeafTest?.leafTissueK ?? ComponentText.NA}</p>
                 </StyledListItem>
               </StyledListItemGroup>
-            </StyledListItemGroupContainer>
-          </StyledList>
+            </StyledFieldTestGroup>
+          </StyledFieldsFormList>
         );
       })}
-    </StyledFieldInfoList>
+    </StyledListMainContainer>
   );
 };
 

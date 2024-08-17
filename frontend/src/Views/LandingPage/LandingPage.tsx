@@ -4,7 +4,7 @@ import { templateNMP } from '@Constants/templateNMP.ts';
 import LoacalStorageNames from '@Constants/LocalStorageNames.ts';
 import {
   StyledContent,
-  StyledButtonGroup,
+  StyledLandingButtonGroup,
   StyledDivider,
   StyledLandingContainer,
 } from './LandingPage.styles.ts';
@@ -55,7 +55,7 @@ const LandingPage = () => {
           effectively.
         </p>
       </StyledContent>
-      <StyledButtonGroup>
+      <StyledLandingButtonGroup>
         <Button
           text="New Calculation"
           size="lg"
@@ -79,7 +79,7 @@ const LandingPage = () => {
           aria-label="Upload File"
           hidden
         />
-      </StyledButtonGroup>
+      </StyledLandingButtonGroup>
     </StyledLandingContainer>
   );
 };

@@ -9,7 +9,7 @@ import { FC, useState } from 'react';
 import CustomLink from '@Commons/CustomLink/CustomLink.tsx';
 import InformationIcons from '@Commons/InformationIcons/InformationIcons.tsx';
 import LoacalStorageNames from '@Constants/LocalStorageNames.ts';
-import { StyledContent, StyledLandingContainer, ParagraphContainer } from './ExportPage.styles.ts';
+import { StyledContent, StyledExportContainer, ParagraphContainer } from './ExportPage.styles.ts';
 
 const ExportPage: FC = () => {
   const [toggleEnabled, setToggleEnabled] = useState<boolean>(true);
@@ -35,7 +35,7 @@ const ExportPage: FC = () => {
     'Select your NMP file',
   ];
   return (
-    <StyledLandingContainer>
+    <StyledExportContainer>
       <MainPageHeader
         toggleEnabled={toggleEnabled}
         setToggleEnabled={setToggleEnabled}
@@ -71,7 +71,7 @@ const ExportPage: FC = () => {
         returnToCalc
       />
       <MainPageFooter />
-    </StyledLandingContainer>
+    </StyledExportContainer>
   );
 };
 

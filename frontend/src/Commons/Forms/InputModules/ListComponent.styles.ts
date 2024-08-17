@@ -1,6 +1,5 @@
 /**
- * @desc Styling with BC Design Tokens and Emotion for
- *       Field and Soil List Component Module
+ * @desc Styling with BC Design Tokens and Emotion for List Components
  * @author @Kcaparas
  */
 import styled from '@emotion/styled';
@@ -16,12 +15,12 @@ type StyledListType = {
   fieldCount?: number;
 };
 
-const StyledFieldInfoList = styled.div`
+const StyledListMainContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
 `;
-const StyledList = styled.div<StyledListType>`
+const StyledFieldsFormList = styled.div<StyledListType>`
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -31,7 +30,7 @@ const StyledList = styled.div<StyledListType>`
     }
   }
 `;
-const StyledListContainer = styled.div<StyledListType>`
+const StyledFieldsFormListContainer = styled.div<StyledListType>`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -39,14 +38,9 @@ const StyledListContainer = styled.div<StyledListType>`
   align-items: flex-start;
 `;
 
-const StyledFieldNameContainer = styled.div`
-  width: 120px;
-
-  @media (min-width: ${screenSizes.desktop}) {
-    width: 160px;
-  }
-`;
-
+/**
+ * @description   Reused in every Form modules' List Components
+ */
 const StyledListItem = styled.div<StyledListType>`
   display: flex;
   flex-direction: column;
@@ -60,6 +54,8 @@ const StyledListItem = styled.div<StyledListType>`
   p {
     font: ${tokens.typographyRegularLabel};
   }
+
+  /* Container for Crops in row; mobile or desktop. */
   .CropsList {
     display: flex;
     width: 100%;
@@ -76,6 +72,13 @@ const StyledListItem = styled.div<StyledListType>`
     }
   }
 `;
+
+/**
+ * @description   Reused in both Fields and Fertilizers. Container for font-awesome icons.
+ *                Gives spacing, and allows to be spaced on the right side of the container
+ *                Note: Postion absolute will break the spacing between field comments and this div.
+ *                This container will be on top of the fields comments if done so.
+ */
 const StyledFontAwesomeContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -90,6 +93,13 @@ const StyledFontAwesomeContainer = styled.div`
     padding-top: 20px;
   }
 `;
+
+/**
+ * @description   Quick and Dirty response to elegant design of the designer.
+ *                Comments should be below FieldName and Area on mobile.
+ *                While on desktop, Comments are aligned with them.
+ *
+ */
 const StyledCommentContainerMobile = styled.div`
   display: flex;
   margin: -20px 0 -16px 0;
@@ -107,6 +117,9 @@ const StyledCommentContainerDesktop = styled.div`
   }
 `;
 
+/**
+ * @description Can be improved, can be replaced by hr tag or border-bottom.
+ */
 const StyledDivider = styled.div<FormProps>`
   font-size: 18px;
   font-weight: 400;
@@ -121,10 +134,10 @@ const StyledDivider = styled.div<FormProps>`
   // Same as Mockups
   background-color: #d8d8d8;
   width: 100%;
-  margin: ${(props) => (props.formCalc ? '0' : '24px 0 0 0')};
+  margin: ${(props) => (props.formCalc ? '0' : '24px 0 0 0')}; // gives margin-top on first divider
 `;
 
-const StyledListItemGroupContainer = styled.div<StyledListType>`
+const StyledFieldTestGroup = styled.div<StyledListType>`
   display: flex;
   flex-direction: column;
   margin-top: 0;
@@ -145,15 +158,6 @@ const StyledListItemGroup = styled.div<StyledListType>`
     gap: 0;
     box-sizing: border-box;
     width: ${(props) => props.desktopWidth};
-  }
-`;
-
-const NutrientsFieldListGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: ${screenSizes.desktop}) {
-    flex-direction: row;
   }
 `;
 
@@ -184,18 +188,16 @@ const StyledCustomFertilizerGroup = styled.div`
 `;
 
 export {
-  StyledListContainer,
+  StyledListMainContainer,
   StyledListItem,
-  StyledList,
+  StyledFieldsFormList,
   StyledFontAwesomeContainer,
-  StyledFieldInfoList,
+  StyledFieldsFormListContainer,
   StyledCommentContainerDesktop,
   StyledCommentContainerMobile,
   StyledDivider,
-  StyledListItemGroupContainer,
+  StyledFieldTestGroup,
   StyledListItemGroup,
   StyledCropsGroup,
   StyledCustomFertilizerGroup,
-  StyledFieldNameContainer,
-  NutrientsFieldListGroup,
 };

@@ -26,14 +26,14 @@ import handleChange from '@Utils/handleChange';
 import InformationIcons from '@Commons/InformationIcons/InformationIcons';
 import { ACTIVE } from '@Constants/ModuleStatus';
 import {
-  StyledFarmInfo,
+  StyledFormContainer,
   StyledTextAreaContainer,
   StyledButtonGroupContainer,
-  StyledTestContainer,
-  StyledRadioGroupContainer,
-  HeaderLabel,
+  StyledFieldTestContainer,
+  StyledFieldRadioGroupContainer,
+  FieldsFormHeaderLabel,
   StyledWarningBlock,
-  StyledSelectContainer,
+  StyledFieldFormSelectContainer,
   InputFieldsGroup,
   SingleInputField,
 } from '@Commons/FormStyles.styles';
@@ -256,7 +256,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
         >
           {({ setFieldValue, values }) => (
             <Form>
-              <StyledFarmInfo>
+              <StyledFormContainer>
                 <div id="inputContainer">
                   <CustomField
                     label="Field name"
@@ -288,8 +288,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                   />
                 </StyledTextAreaContainer>
 
-                <StyledTestContainer>
-                  <HeaderLabel>
+                <StyledFieldTestContainer>
+                  <FieldsFormHeaderLabel>
                     <h3>Add Soil Test</h3>
                     <span>
                       <InformationIcons
@@ -297,8 +297,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                         toggleEnabled={toggleEnabled}
                       />
                     </span>
-                  </HeaderLabel>
-                  <StyledRadioGroupContainer>
+                  </FieldsFormHeaderLabel>
+                  <StyledFieldRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
                         key={option.id}
@@ -311,7 +311,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                         }}
                       />
                     ))}
-                  </StyledRadioGroupContainer>
+                  </StyledFieldRadioGroupContainer>
                   <ErrorMessage
                     name="HasSoilTest"
                     component="div"
@@ -328,7 +328,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
 
                   {values.HasSoilTest && (
                     <>
-                      <StyledSelectContainer>
+                      <StyledFieldFormSelectContainer>
                         <CustomSelect
                           name="SoilTest.TestingMethod"
                           id="SoilTest.TestingMethod"
@@ -338,8 +338,8 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                           desktopWidth="392px"
                           onChange={(e) => handleChange(e, setFieldValue)}
                         />
-                      </StyledSelectContainer>
-                      <HeaderLabel>
+                      </StyledFieldFormSelectContainer>
+                      <FieldsFormHeaderLabel>
                         <h3>Soil Test values (top 6 inches of soil)</h3>
                         <span>
                           <InformationIcons
@@ -348,7 +348,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                             toggleEnabled={toggleEnabled}
                           />
                         </span>
-                      </HeaderLabel>
+                      </FieldsFormHeaderLabel>
                       <InputFieldsGroup hasNO3label>
                         <CustomField
                           label="Sample Month"
@@ -408,13 +408,13 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                       </SingleInputField>
                     </>
                   )}
-                </StyledTestContainer>
+                </StyledFieldTestContainer>
 
-                <StyledTestContainer>
-                  <HeaderLabel>
+                <StyledFieldTestContainer>
+                  <FieldsFormHeaderLabel>
                     <h3>Add Leaf Test</h3>
-                  </HeaderLabel>
-                  <StyledRadioGroupContainer>
+                  </FieldsFormHeaderLabel>
+                  <StyledFieldRadioGroupContainer>
                     {radioOptions.map((option) => (
                       <CustomRadioButton
                         key={option.id}
@@ -427,13 +427,13 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                         }}
                       />
                     ))}
-                  </StyledRadioGroupContainer>
+                  </StyledFieldRadioGroupContainer>
                   <ErrorMessage
                     name="HasLeafTest"
                     component="div"
                     className="errorMessage"
                   />
-                </StyledTestContainer>
+                </StyledFieldTestContainer>
                 {values.HasLeafTest === false && (
                   <StyledWarningBlock>
                     <ul>
@@ -479,7 +479,7 @@ const FieldsAndSoilComponent: FC<InputModuleProps> = ({
                     text={ComponentText.ADD}
                   />
                 </StyledButtonGroupContainer>
-              </StyledFarmInfo>
+              </StyledFormContainer>
             </Form>
           )}
         </Formik>

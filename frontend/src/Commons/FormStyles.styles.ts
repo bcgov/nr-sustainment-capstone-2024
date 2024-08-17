@@ -1,6 +1,6 @@
 /**
- * @desc Styling with BC Design Tokens and Emotion for
- *       Field and Soil Input Module
+ * @desc Styling with BC Design Tokens and Emotion for Form Modules
+ *
  * @author @Kcaparas
  */
 import styled from '@emotion/styled';
@@ -8,7 +8,7 @@ import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
 import { FormProps } from 'src/Types/FormProps';
 
-const StyledFarmInfo = styled.div<FormProps>`
+const StyledFormContainer = styled.div<FormProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,6 +16,7 @@ const StyledFarmInfo = styled.div<FormProps>`
   height: 100%;
   gap: 24px;
 
+  /* Container for two input fields to be a row instead of columns */
   #inputContainer {
     display: flex;
     flex-direction: column;
@@ -45,6 +46,10 @@ const StyledTextAreaContainer = styled.div`
   }
 `;
 
+/**
+ * @description   This is reused through 2 forms Fields and Crops Form Module.
+ *                Can be improved to make even more DRY. Pass props to change specific design.
+ */
 const StyledButtonGroupContainer = styled.div<FormProps>`
   position: relative;
   display: flex;
@@ -54,34 +59,20 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
   width: 300px;
   height: 86px;
   justify-content: flex-end;
-  .nutrientsButton {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
-    align-items: center;
-  }
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     margin: 0;
     justify-content: flex-end;
     width: 100%;
     height: auto;
-    .nutrientsButton {
-      flex-direction: row;
-      margin-top: ${(props) => (props.formNutrients ? '25px' : '0')};
-      position: absolute;
-      width: 350px;
-      right: 0;
-    }
   }
 `;
-const StyledTestContainer = styled.div`
+const StyledFieldTestContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 11px;
 `;
-const StyledRadioGroupContainer = styled.div`
+const StyledFieldRadioGroupContainer = styled.div`
   display: flex;
   width: 100%;
   max-width: 150px;
@@ -91,7 +82,7 @@ const StyledRadioGroupContainer = styled.div`
   }
 `;
 
-const HeaderLabel = styled.div`
+const FieldsFormHeaderLabel = styled.div`
   display: flex;
   align-items: center;
   min-height: 25px;
@@ -112,6 +103,11 @@ const HeaderLabel = styled.div`
   }
 `;
 
+/**
+ * @description Warning Block for any Balance notificatons.
+ *              Can be used in the Calculate Nutrients balance notifications to notify users
+ *              for any extra or missing Nitrogen, Phosphorus, or Potassium.
+ */
 const StyledWarningBlock = styled.div`
   border: 1px solid ${tokens.supportBorderColorWarning};
   border-radius: 4px;
@@ -124,7 +120,7 @@ const StyledWarningBlock = styled.div`
   }
 `;
 
-const StyledSelectContainer = styled.div`
+const StyledFieldFormSelectContainer = styled.div`
   width: 100%;
 
   @media (min-width: ${screenSizes.desktop}) {
@@ -132,11 +128,15 @@ const StyledSelectContainer = styled.div`
   }
 `;
 
+/**
+ * @description   Container div for two input fields in Fields and Soil For,
+ *                built from mobile-first design. Separates other input fields into groups.
+ */
 const InputFieldsGroup = styled.div<{ hasNO3label?: boolean }>`
   width: 70vw;
   display: flex;
   flex-direction: column;
-  gap: ${(props) => (props.hasNO3label ? '12px' : '0')};
+  gap: ${(props) => (props.hasNO3label ? '12px' : '0')}; // added more gap due to information icons.
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
     width: 700px;
@@ -144,6 +144,9 @@ const InputFieldsGroup = styled.div<{ hasNO3label?: boolean }>`
   }
 `;
 
+/**
+ * @description Related to above styled div. but single since there's nothing to group.
+ */
 const SingleInputField = styled.div`
   width: 70vw;
 
@@ -153,14 +156,14 @@ const SingleInputField = styled.div`
 `;
 
 export {
-  StyledFarmInfo,
+  StyledFormContainer,
   StyledTextAreaContainer,
   StyledButtonGroupContainer,
-  StyledTestContainer,
-  StyledRadioGroupContainer,
-  HeaderLabel,
+  StyledFieldTestContainer,
+  StyledFieldRadioGroupContainer,
+  FieldsFormHeaderLabel,
   StyledWarningBlock,
-  StyledSelectContainer,
+  StyledFieldFormSelectContainer,
   InputFieldsGroup,
   SingleInputField,
 };
