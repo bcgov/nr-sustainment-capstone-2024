@@ -1,3 +1,7 @@
+/**
+ * @description    Styling for the Fertilizers Component.
+ * @author         @Kcaparas
+ */
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 
@@ -17,19 +21,28 @@ const StyledCustomNumberField = styled.div`
   }
 `;
 
-const StyledListContainer = styled.div<{ hasBorderTop: boolean }>`
+/**
+ * @description   Container for the list. Has same name as the other list container.
+ *                Can be improved to be DRY. This is created due to specific changes.
+ * @prop  {boolean} isFirstChild - a prop to be passed to indicate if it's the first item on the list.
+ */
+const StyledListContainer = styled.div<{ isFirstChild: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 24px;
   align-items: flex-start;
-  ${({ hasBorderTop }) => hasBorderTop && `border-top: 1px solid #d8d8d8; padding: 24px 0;`}
+  ${({ isFirstChild }) => isFirstChild && `border-top: 1px solid #d8d8d8; padding: 24px 0;`}
 
   @media (min-width: ${screenSizes.desktop}) {
     flex-direction: row;
   }
 `;
 
+/**
+ * @description   Fertilizer is aligned with FertilizerType on desktop
+ *                Fertilizer is below the FertilizerType on mobile
+ */
 const DesktopFertilizerGroup = styled.div`
   display: none;
 

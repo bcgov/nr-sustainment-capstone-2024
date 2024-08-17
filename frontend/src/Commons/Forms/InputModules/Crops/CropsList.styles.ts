@@ -1,10 +1,19 @@
+/**
+ * @description   Styling for the Crops List Component.
+ * @author        @Kcaparas
+ */
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 
-const StyledFieldInfoList = styled.div<{ isFirstChild?: boolean }>`
+/**
+ * @description   Main Container of the Crops List
+ * @prop {boolean} isFirstChild - a prop to be passed to indicate if it's the first item on the list.
+ */
+const StyledCropInfoList = styled.div<{ isFirstChild?: boolean }>`
   display: flex;
   flex-direction: column;
   position: relative;
+  //  Only applies border-top and margin-top if it's not the first item in the list.
   ${({ isFirstChild }) =>
     !isFirstChild &&
     `border-top: 1px solid #d8d8d8; 
@@ -12,6 +21,9 @@ const StyledFieldInfoList = styled.div<{ isFirstChild?: boolean }>`
     `}
 `;
 
+/**
+ *    @description    Container for the list items.
+ */
 const StyledListContainer = styled.div`
   position: relative;
   display: flex;
@@ -33,4 +45,4 @@ const StyledListContainer = styled.div`
   }
 `;
 
-export { StyledListContainer, StyledFieldInfoList };
+export { StyledListContainer, StyledCropInfoList };

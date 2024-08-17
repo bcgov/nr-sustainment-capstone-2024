@@ -1,3 +1,8 @@
+/**
+ * @description    Styling for the Calculate Nutrients List Component.
+ * @author         @Kcaparas
+ */
+
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
@@ -43,6 +48,9 @@ const StyledH3Item = styled.div`
   }
 `;
 
+/**
+ * @description   Main Container for the List Component of Calculate Nutrients module.
+ */
 const CalcList = styled.div`
   flex-direction: column;
 
@@ -63,6 +71,10 @@ const CalcList = styled.div`
   }
 `;
 
+/**
+ * @description   Main Container for the Agronomic Requirements of the List Component.
+ *                Built Mobile-First.
+ */
 const StyledAgronomic = styled.div`
   display: flex;
   flex-direction: column;
@@ -83,6 +95,10 @@ const StyledAgronomic = styled.div`
   }
 `;
 
+/**
+ * @description    Main Container for the Crop Removal of the List Component.
+ *                 Built Mobile-First.
+ */
 const StyledRemoval = styled.div`
   display: flex;
   flex-direction: column;
@@ -103,6 +119,11 @@ const StyledRemoval = styled.div`
     }
 `;
 
+/**
+ * @description   Styled Container for the table
+ * @prop {boolean} twoCrops - a prop to be passed to indicate whether the row is even or odd.
+ *                            determines background-color.
+ */
 const StyledTable = styled.table<TableProps>`
   width: 100%;
 

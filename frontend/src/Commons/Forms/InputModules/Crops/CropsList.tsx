@@ -5,7 +5,7 @@ import CropsDetailsInterface from '@Interface/CropsDetailsInterface';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyledListItem, StyledCropsGroup } from '../ListComponent.styles';
-import { StyledListContainer, StyledFieldInfoList } from './CropsList.styles';
+import { StyledListContainer, StyledCropInfoList } from './CropsList.styles';
 
 interface CropsListComponentProps {
   field: FieldDetailInterface;
@@ -16,7 +16,7 @@ interface CropsListComponentProps {
 const CropsList: FC<CropsListComponentProps> = ({ farmDetails, field, removeCrop }) => {
   const fieldIndex = farmDetails.Fields.indexOf(field);
   return (
-    <StyledFieldInfoList isFirstChild={fieldIndex === 0}>
+    <StyledCropInfoList isFirstChild={fieldIndex === 0}>
       <StyledListContainer>
         <StyledListItem
           desktopWidth="160px"
@@ -49,7 +49,7 @@ const CropsList: FC<CropsListComponentProps> = ({ farmDetails, field, removeCrop
           ))}
         </StyledCropsGroup>
       </StyledListContainer>
-    </StyledFieldInfoList>
+    </StyledCropInfoList>
   );
 };
 

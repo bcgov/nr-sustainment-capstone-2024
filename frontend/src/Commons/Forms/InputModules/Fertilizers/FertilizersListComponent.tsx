@@ -27,7 +27,7 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, remo
   <StyledListMainContainer>
     {fertilizerDetails.map((fertilizer: FertilizerInterface, index: number) => (
       <div key={uuidv4()}>
-        <StyledListContainer hasBorderTop={index !== 0}>
+        <StyledListContainer isFirstChild={index !== 0}>
           <FertilizerTypeAndFontAwesomeContainer>
             <StyledListItem
               desktopWidth="200px"

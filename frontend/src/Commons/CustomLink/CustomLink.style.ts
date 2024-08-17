@@ -1,3 +1,8 @@
+/**
+ * @description   Styling for the CustomLink.
+ * @author        @Kcaparas
+ */
+
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';
@@ -14,6 +19,10 @@ type StyledLinkProps = {
   finishButton?: boolean;
 };
 
+/**
+ * @description Main Container for the Link to be used like a Button.
+ *              Props passed are used for the helper method getButtonSize.
+ */
 const StyledLinkContainer = styled.div<StyledLinkProps>`
   display: flex;
   align-items: center;
