@@ -29,7 +29,7 @@ import CustomField from '@Commons/Input/Field/CustomField';
 import FieldDetailInterface from '@Interface/FieldDetailsInterface';
 import getFertilizerOption from '@Utils/getFertID';
 import {
-  StyledFieldContainer,
+  StyledFieldSelectContainer,
   StyledFieldSelect,
   StyledGroupFormView,
   StyledLeftView,
@@ -342,7 +342,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
       >
         {({ setFieldValue }) => (
           <Form>
-            <StyledFieldContainer>
+            <StyledFieldSelectContainer>
               <StyledFieldSelect>
                 <CustomSelect
                   label="Field"
@@ -473,7 +473,7 @@ const CalculateNutrientsComponent: FC<InputModuleProps> = ({
                     removeFert={removeFertFromField}
                   />
                 )}
-            </StyledFieldContainer>
+            </StyledFieldSelectContainer>
           </Form>
         )}
       </Formik>

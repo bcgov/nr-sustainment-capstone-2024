@@ -6,7 +6,7 @@ import InputModuleProps from '@Interface/InputModuleProps';
 import initialFarmDetails from '@Constants/InitialFarmDetails';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
-import { StyledFarmInfo } from '@Commons/FormStyles.styles';
+import { StyledFormContainer } from '@Commons/FormStyles.styles';
 import {
   StyledAddCancelButtonContainer,
   StyledButtonContainer,
@@ -156,7 +156,7 @@ const FertilizersInfo: FC<InputModuleProps> = ({
         >
           {({ values, setFieldValue }) => (
             <Form>
-              <StyledFarmInfo formNutrients>
+              <StyledFormContainer formNutrients>
                 <div id="inputContainer">
                   <CustomSelect
                     name="fertilizerTypeId"
@@ -233,7 +233,7 @@ const FertilizersInfo: FC<InputModuleProps> = ({
                     />
                   </StyledButtonContainer>
                 </StyledAddCancelButtonContainer>
-              </StyledFarmInfo>
+              </StyledFormContainer>
             </Form>
           )}
         </Formik>

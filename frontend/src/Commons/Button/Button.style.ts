@@ -1,3 +1,7 @@
+/**
+ * @description Stylings for button and it's children.
+ */
+
 import styled from '@emotion/styled';
 import * as tokens from '@bcgov/design-tokens/js';
 import screenSizes from '@Constants/ScreenSize';

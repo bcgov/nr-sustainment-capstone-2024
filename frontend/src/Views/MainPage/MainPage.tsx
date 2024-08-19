@@ -20,7 +20,7 @@ import { loadFertDetails } from '@Utils/getLocalFertilizers';
 import * as InputModules from '@Commons/Forms/InputModules/index';
 import LocalStorageNames from '@Constants/LocalStorageNames';
 import { FERTILIZERS } from '@Constants/ModuleIDs';
-import { StyledMain, StyledMainContainer } from './MainPage.styles';
+import { StyledMainContainer, StyledFormModuleContainer } from './MainPage.styles';
 
 // The sequence of sections to show up on the main page
 // This is the skeleton for the Berries workflow
@@ -208,7 +208,7 @@ const MainPage: FC = () => {
   }, [scrollHeader]);
 
   return (
-    <StyledMain>
+    <StyledMainContainer>
       <MainPageHeader
         toggleEnabled={toggleEnabled}
         setToggleEnabled={setToggleEnabled}
@@ -218,7 +218,7 @@ const MainPage: FC = () => {
         formStates={formStates}
         isHeaderVisible={isHeaderVisible}
       />
-      <StyledMainContainer isHeaderVisible={isHeaderVisible}>
+      <StyledFormModuleContainer isHeaderVisible={isHeaderVisible}>
         {formStates.map((InputModule: InputModuleInterface) => {
           if (InputModule) {
             return (
@@ -236,12 +236,12 @@ const MainPage: FC = () => {
           }
           return null;
         })}
-      </StyledMainContainer>
+      </StyledFormModuleContainer>
       <MainPageFooter
         toggleEnabled={toggleEnabled}
         setToggleEnabled={setToggleEnabled}
       />
-    </StyledMain>
+    </StyledMainContainer>
   );
 };
 

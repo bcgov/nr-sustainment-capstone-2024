@@ -1,3 +1,20 @@
+/**
+ *
+ * @param size              accepts 'sm' | 'md' | 'lg'
+ * @param isDesktop         accepts true or false
+ * @param landingPageButton accepts true or false
+ * @param addButton         accepts true or false
+ *                          this is for buttons with faPlus
+ * @param fertilizerButton  accepts true or false
+ *                          only for save fertilizer button
+ * @param calcAddFertButton accepts true or false
+ *                          only for add fertilizer button in calculate nutrients
+ * @param returnToCalc      accepts true or false
+ * @returns                 return buttonSize based on mockups.
+ * @description             A helper function to set the DIFFERENT button sizes
+ * @author                  @Kcaparas
+ */
+
 const getButtonSize = (
   size: string,
   isDesktop: boolean,

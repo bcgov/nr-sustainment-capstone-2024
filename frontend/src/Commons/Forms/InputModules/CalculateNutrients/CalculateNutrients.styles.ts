@@ -1,8 +1,13 @@
+/**
+ * @description   Styling for Calculate Nutrients.
+ * @author        @Kcaparas
+ */
+
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
 
-const StyledFieldContainer = styled.div`
+const StyledFieldSelectContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -92,7 +97,7 @@ const StyledSmallFormGroup = styled.div`
 `;
 
 export {
-  StyledFieldContainer,
+  StyledFieldSelectContainer,
   StyledFieldSelect,
   StyledGroupFormView,
   StyledLeftView,

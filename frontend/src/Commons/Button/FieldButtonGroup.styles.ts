@@ -7,6 +7,9 @@ import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import { FormProps } from 'src/Types/FormProps';
 
+/**
+ * @description   Reused in other FormModules. Container for a group of Buttons.
+ */
 const StyledButtonGroupContainer = styled.div<FormProps>`
   display: flex;
   flex-direction: column;
@@ -21,6 +24,10 @@ const StyledButtonGroupContainer = styled.div<FormProps>`
     padding-right: 9px;
   }
 `;
+
+/**
+ * @description   Container for a Button.
+ */
 const StyledButtonContainer = styled.div<FormProps>`
   width: 100%;
   max-width: 327px;
@@ -40,6 +47,8 @@ const StyledButtonContainer = styled.div<FormProps>`
     white-space: nowrap;
   }
 `;
+
+// This could be simplify with the other NewFieldButton Styling.
 const StyledNewFieldButtonController = styled.div`
   display: flex;
   margin-bottom: 20px;

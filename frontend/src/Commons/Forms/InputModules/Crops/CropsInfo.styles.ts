@@ -1,7 +1,15 @@
+/**
+ * @description   Stylings specific for Crops Information
+ * @author        @Kcaparas
+ */
+
 import styled from '@emotion/styled';
 import screenSizes from '@Constants/ScreenSize';
 import * as tokens from '@bcgov/design-tokens/js';
 
+/**
+ * @description   Container that contains two input fields.
+ */
 const StyledCropsSmallGroup = styled.div`
   display: flex;
   gap: 24px;
@@ -37,6 +45,10 @@ const StyledCropsSmallGroup = styled.div`
     }
   }
 `;
+
+/**
+ * @description   Container that contains one input field.
+ */
 const StyledCropsLargeGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -49,11 +61,17 @@ const StyledCropsLargeGroup = styled.div`
   }
 `;
 
+/**
+ * @description   For Add and Cancel when adding a crop
+ */
 const StyledAddCancelButtonGroup = styled.div`
   position: relative;
   width: 100%;
 `;
 
+/**
+ * @description Displays when there is no fields available when opening Crops Module
+ */
 const StyledNoCropsInfoContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -65,16 +83,9 @@ const StyledNoCropsInfoContainer = styled.div`
   }
 `;
 
-const StyledAreaContainer = styled.div`
-  display: flex;
-  gap: 4px;
-  @media (min-width: ${screenSizes.desktop}) {
-  }
-`;
 export {
   StyledCropsSmallGroup,
   StyledCropsLargeGroup,
   StyledAddCancelButtonGroup,
   StyledNoCropsInfoContainer,
-  StyledAreaContainer,
 };

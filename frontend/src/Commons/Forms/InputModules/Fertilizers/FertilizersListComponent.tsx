@@ -6,7 +6,7 @@ import FertilizerInterface from '@Interface/FertilizerInterface';
 import getFertilizerOption from '@Utils/getFertID';
 import { FertilizerTypeOptions } from '@Constants/FertilizersOptions';
 import {
-  StyledFieldInfoList,
+  StyledListMainContainer,
   StyledListItem,
   StyledFontAwesomeContainer,
   StyledCustomFertilizerGroup,
@@ -24,10 +24,10 @@ interface FertilizerProps {
 }
 
 const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, removeFert }) => (
-  <StyledFieldInfoList>
+  <StyledListMainContainer>
     {fertilizerDetails.map((fertilizer: FertilizerInterface, index: number) => (
       <div key={uuidv4()}>
-        <StyledListContainer hasBorderTop={index !== 0}>
+        <StyledListContainer isFirstChild={index !== 0}>
           <FertilizerTypeAndFontAwesomeContainer>
             <StyledListItem
               desktopWidth="200px"
@@ -121,7 +121,7 @@ const FertilizersListComponent: FC<FertilizerProps> = ({ fertilizerDetails, remo
         </StyledListContainer>
       </div>
     ))}
-  </StyledFieldInfoList>
+  </StyledListMainContainer>
 );
 
 export default FertilizersListComponent;
